@@ -11,8 +11,10 @@
 	<area name='지역_안양'>
 		<library name='박달도서관' valid=''></library>
 	</area>
+	<area name='지역_의왕'>
+		<library name='포일어울림' valid=''></library>
+	</area>
 	<keyword>
-		<list title='삼국지' author='이문열'></list>
-		<list title='[J2] Boo!' author='Janik Coat'></list>
+		<list title='구미호식당' author=''></list>
 	</keyword>
 </body>

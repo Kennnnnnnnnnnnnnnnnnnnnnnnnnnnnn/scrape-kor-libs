@@ -1,5 +1,6 @@
 import requests
 from requests.adapters import HTTPAdapter
+import urllib3
 from urllib3.util.ssl_ import create_urllib3_context
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
@@ -9,12 +10,14 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 import time
 
+urllib3.disable_warnings()
 CIPHERS = 'DEFAULT@SECLEVEL=0'
 
 
 class SslAdapter(HTTPAdapter):
     def init_poolmanager(self, *args, **kwargs):
         context = create_urllib3_context(ciphers=CIPHERS)
+        context.check_hostname = False
         kwargs['ssl_context'] = context
         return super(SslAdapter, self).init_poolmanager(*args, **kwargs)
 
@@ -58,7 +61,7 @@ class UtilRequest:
         try:
             # print('** GET %s' % url)
             # res = requests.get(url, verify=False)
-            res = self.session.get(url, headers=self.headers)
+            res = self.session.get(url, headers=self.headers, verify=False)
         except TimeoutError:
             print("The following URL isn't accessible now %s" % url)
         else:
