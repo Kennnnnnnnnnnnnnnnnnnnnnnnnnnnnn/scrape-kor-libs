@@ -1,0 +1,18 @@
+<body>
+	<area name='지역_화성'>
+		<library name='병점도서관' valid=''></library>
+	</area>
+	<area name='지역_용인'>
+		<library name='수지도서관' valid=''></library>
+	</area>
+	<area name='지역_수원'>
+		<library name='광교푸른숲도서관' valid='O'></library>
+	</area>
+	<area name='지역_안양'>
+		<library name='박달도서관' valid=''></library>
+	</area>
+	<keyword>
+		<list title='삼국지' author='이문열'></list>
+		<list title='[J2] Boo!' author='Janik Coat'></list>
+	</keyword>
+</body>

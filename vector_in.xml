@@ -1,0 +1,98 @@
+<body>
+	<area name='지역_화성'>
+		<library name='남양도서관' valid=''></library>
+		<library name='태안도서관' valid=''></library>
+		<library name='삼괴도서관' valid=''></library>
+		<library name='병점도서관' valid=''></library>
+		<library name='봉담도서관' valid=''></library>
+		<library name='동탄복합문화센터도서관' valid='O'></library>
+		<library name='송산도서관' valid=''></library>
+		<library name='정남도서관' valid=''></library>
+		<library name='진안도서관' valid=''></library>
+		<library name='왕배푸른숲도서관' valid=''></library>
+		<library name='노을빛도서관' valid=''></library>
+		<library name='중앙이음터도서관' valid=''></library>
+		<library name='다원이음터도서관' valid=''></library>
+		<library name='송린이음터도서관' valid=''></library>
+		<library name='목동이음터도서관' valid=''></library>
+		<library name='서연이음터도서관' valid=''></library>
+		<library name='두빛나래어린이도서관' valid=''></library>
+		<library name='둥지나래어린이도서관' valid=''></library>
+		<library name='달빛나래어린이도서관' valid=''></library>
+		<library name='작은도서관' valid=''></library>
+	</area>
+	<area name='지역_용인'>
+		<library name='용인중앙도서관' valid=''></library>
+		<library name='구갈희망누리도서관' valid=''></library>
+		<library name='구성도서관' valid=''></library>
+		<library name='기흥도서관' valid=''></library>
+		<library name='남사도서관' valid=''></library>
+		<library name='동백도서관' valid=''></library>
+		<library name='모현도서관' valid=''></library>
+		<library name='보라도서관' valid=''></library>
+		<library name='상현도서관' valid=''></library>
+		<library name='서농도서관' valid=''></library>
+		<library name='성복도서관' valid=''></library>
+		<library name='수지도서관' valid='O'></library>
+		<library name='양지해밀도서관' valid=''></library>
+		<library name='영덕도서관' valid=''></library>
+		<library name='이동꿈틀도서관' valid=''></library>
+		<library name='죽전도서관' valid=''></library>
+		<library name='청덕도서관' valid=''></library>
+		<library name='포곡도서관' valid=''></library>
+		<library name='흥덕도서관' valid=''></library>
+	</area>
+	<area name='지역_수원'>
+		<library name='선경도서관' valid=''></library>
+		<library name='중앙도서관' valid=''></library>
+		<library name='창룡도서관' valid=''></library>
+		<library name='화서다산도서관' valid=''></library>
+		<library name='호매실도서관' valid=''></library>
+		<library name='서수원도서관' valid=''></library>
+		<library name='한림도서관' valid=''></library>
+		<library name='버드내도서관' valid=''></library>
+		<library name='북수원도서관' valid=''></library>
+		<library name='대추골도서관' valid=''></library>
+		<library name='일월도서관' valid=''></library>
+		<library name='광교홍재도서관' valid=''></library>
+		<library name='영통도서관' valid=''></library>
+		<library name='태장마루도서관' valid=''></library>
+		<library name='광교푸른숲도서관' valid='O'></library>
+		<library name='매여울도서관' valid=''></library>
+		<library name='망포글빛도서관' valid=''></library>
+		<library name='슬기샘도서관' valid=''></library>
+		<library name='지혜샘도서관' valid=''></library>
+		<library name='바른샘도서관' valid=''></library>
+		<library name='한아름도서관' valid=''></library>
+		<library name='사랑샘도서관' valid=''></library>
+		<library name='희망샘도서관' valid=''></library>
+		<library name='반달어린이도서관' valid=''></library>
+		<library name='화홍어린이도서관' valid=''></library>
+	</area>
+	<area name='지역_수원'>
+		<library name='석수도서관' valid=''></library>
+		<library name='만안도서관' valid=''></library>
+		<library name='삼덕도서관' valid=''></library>
+		<library name='박달도서관' valid='O'></library>
+		<library name='평촌도서관' valid=''></library>
+		<library name='관양도서관' valid=''></library>
+		<library name='비산도서관' valid=''></library>
+		<library name='호계도서관' valid=''></library>
+		<library name='어린이도서관' valid=''></library>
+		<library name='벌말도서관' valid=''></library>
+		<library name='안양역스마트도서관' valid=''></library>
+		<library name='동안구청스마트도서관' valid=''></library>
+		<library name='범계스마트도서관' valid=''></library>
+		<library name='인덕원역스마트도서관' valid=''></library>
+	</area>
+	<keyword>
+		<list title='구미호식당' author=''></list>
+		<list title='삼국지' author='이문열'></list>
+		<list title='[J2] Boo!' author='Janik Coat'></list>
+		<list title='[J3] More Stories A: The Go-Kart Race' author=''></list>
+		<list title='[J2] Almost(Richard Torrey: Jack 시리즈)' author='Richard'></list>
+		<list title='[J2] Nana Loves You More(Jimmy Fallon: Family 시리즈)' author='Jimmy Fallon'></list>
+		<list title='[J2] It is (Not) Perfect (You Are Not Small #5)' author='Anna'></list>
+		<list title='[J2] It is (Not) Perfect (You Are Not Small #5) Anna' author=''></list>
+	</keyword>
+</body>
