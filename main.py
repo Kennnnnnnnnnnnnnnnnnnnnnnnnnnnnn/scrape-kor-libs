@@ -128,6 +128,9 @@ def main():
             title = _title
             if args.filter == 'pat1':
                 title = stripTitle(title)
+            # for too long book name
+            if len(title) > 70:
+                title = title[:69]
             # print("%d: %s %s %s" % (totalEntries, _title, title, author))
             iofile.insert_keyword_iter(_title)
             iofile.insert_keyword_iter(title)

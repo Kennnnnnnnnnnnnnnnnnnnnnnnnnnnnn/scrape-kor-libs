@@ -58,15 +58,18 @@ class UtilRequest:
 
     def getHtmlByGet(self, url):
         str_res = ''
-        try:
-            # print('** GET %s' % url)
-            # res = requests.get(url, verify=False)
-            res = self.session.get(url, headers=self.headers, verify=False)
-        except TimeoutError:
-            print("The following URL isn't accessible now %s" % url)
-        else:
-            if self.check_response(res.status_code, url) == 0:
-                str_res = res.text
+        res = 0
+        for i in range(0, 3):
+            try:
+                # print('** GET %s' % url)
+                # res = requests.get(url, verify=False)
+                res = self.session.get(url, headers=self.headers)
+            except Exception as e:
+                print(f"{e} for {url}")
+            else:
+                if self.check_response(res.status_code, url) == 0:
+                    str_res = res.text
+                break
         return str_res
 
     def getHtmlByPost(self, url, payload):
