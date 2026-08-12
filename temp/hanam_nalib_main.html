@@ -1,0 +1,1428 @@
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+        <meta name="title" content="하남시 나룰도서관" />
+        <meta name="keywords" content="하남시립도서관, 하남시 나룰도서관, 나룰도서관" />
+        <meta name="author" content="하남시 나룰도서관" />
+        <meta name="description" content="반갑습니다. 여기는 하남시나룰도서관입니다." />
+        <link rel="stylesheet" type="text/css" href="/common/css/default.css" />
+        <link rel="stylesheet" type="text/css" href="/common/css/font.css" />
+        <link rel="stylesheet" type="text/css" href="/site/nalib/css/main.css?ver=20240321" />
+        <!--<script type="text/javascript" src="/common/js/jquery-1.11.1.min.js"></script>-->
+		<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script type="text/javascript" src="/common/js/jquery.easing.js"></script>
+        <script type="text/javascript" src="/common/js/jquery-migrate-1.2.1.min.js"></script>
+        <script type="text/javascript" src="/common/js/common.js"></script>
+        <script type="text/javascript" src="/site/nalib/js/common.js"></script>
+        <script type="text/javascript" src="/site/nalib/js/main.js"></script>
+		<script type="text/javascript" src="/common/js/dbpia_outConn.js"></script>
+		<script type="text/javascript" src="/common/js/lay_pop.js"></script>
+
+        <!--[if lt IE 8]>
+        <script src="/work/sancheong/common/js/respond.min.js"></script>
+        <![endif]-->
+        <title>하남시 나룰도서관 홈페이지에 오신것을 환영합니다.</title>
+        <script type="text/javascript">
+            function valideBookSearch(f) {
+                if( jQuery.trim(f.keyword.value) == '' ) {
+                    alert('검색어를 입력하십시오.');
+                    f.keyword.value = '';
+                    f.keyword.focus();
+                    return false;
+                }
+            }
+
+
+	   function aspservice_01(member_id)
+		{
+			var filter = "win16|win32|win64|mac";
+
+			if(member_id==""){
+				alert("로그인 후 이용해주세요");
+				location.href="./loginFrm.do?key=277";
+				return false;
+			}else{
+				if(navigator.platform){
+
+					if(0 > filter.indexOf(navigator.platform.toLowerCase())){
+
+						//alert("Mobile");
+						window.open("http://m.asp.audien.com/mpoc/web/main.htm?paId=81913b1e3c8aa5a1158e&userId=",'audien_pop', 'width=950, height=670,scrollbars=yes,resizable=yes');
+
+					}else{
+
+						//alert("PC");
+						window.open("https://aspservice.audien.com/inticube/front/NeoAspMain.do?paId=81913b1e3c8aa5a1158e&userId=",'audien_pop', 'width=950, height=670,scrollbars=yes,resizable=yes');
+					}
+
+				}
+
+			}
+		}
+		function fn_elMagazine() {
+				
+				
+				
+		        
+					alert('로그인 후 이용하시기 바랍니다.');
+					location.href="./loginFrm.do?key=277";
+					return false;
+				
+			
+			}
+
+	    function fn_dbpia_open(){
+		    
+				
+				
+		        
+					alert('로그인 후 이용가능합니다.');
+					return false;
+				
+			
+		}
+		function fn_siyooil() {
+		
+			
+			
+	        
+				alert('로그인 후 이용가능합니다.');
+	    		location.href="./loginFrm.do?key=277";
+				return false;
+			
+		
+	}
+        </script>
+    </head>
+    <body>
+    <!--<div class="layer_pop"><div class="pop_img"><button></button><img src="/common/images/common/pop.jpg" alt="" /></div></div>
+    <script>
+    /* var isWebLoad = false;
+    if ( !isWebLoad ) {
+        isWebLoad = true;
+        var winHeight = $(window).innerHeight();
+        $("html").css("overflow","hidden");
+        $("body").css({overflow:"hidden",height:winHeight});
+
+        $(".pop_img button").click(function(){
+            $(".layer_pop").fadeOut(100);
+            $("html").css({overflow:"initial"});
+            $("body").css({overflow:"initial",height:"initial"});
+        });
+    } */
+    $(".pop_img button").click(function(){
+        $(".layer_pop").fadeOut(100);
+    });
+    </script>-->
+    	<div class="mlnb_bg"></div>
+    	<!-- 반응형 모드에서 전체메뉴 표시할 경우 나오는 배경-->
+    	<div class="accessibility">
+    		<a href="#container">본문바로가기</a>
+    	</div>
+
+    	
+
+
+
+
+
+    	<div id="header">
+    		<div class="gnb">
+    			<div class="wrap clearfix">
+    				<ul class="gnb_link clearfix">
+						<li class="mslib"><a href="/mslib/index.do" target="_blank" title="새창"><span>미사도서관</span></a></li>
+                        <li class="nrlib"><a href="/nalib/index.do" target="_blank" title="새창"><span>나룰도서관</span></a></li>
+                        <li class="wilib"><a href="/wilib/index.do" target="_blank" title="새창"><span>위례도서관</span></a></li>
+                        <li class="sjlib"><a href="/silib/index.do" target="_blank" title="새창"><span>신장도서관</span></a></li>
+						<li class="gamlib"><a href="/gamlib/index.do" target="_blank" title="새창"><span>감일도서관</span></a></li>
+                        <li class="selib"><a href="/selib/index.do" target="_blank" title="새창"><span>세미도서관</span></a></li>
+						<li class="dilib"><a href="/dilib/index.do" target="_blank" title="새창"><span>디지털도서관</span></a></li>
+                        <li class="dplib"><a href="/dulib/index.do" target="_blank" title="새창"><span>덕풍도서관</span></a></li>
+						<li class="iglib"><a href="/iglib/index.do" target="_blank" title="새창"><span>일가도서관</span></a></li>
+						<li class="eulib">
+							<a href="#"><span>작은도서관</span></a>
+							<div class="smBox">
+									<span>작은도서관</span>
+									<div class="smCont">
+										<p><a href="/dslib/index.do" target="_blank" title="새창">덕풍스포츠작은도서관</a></p>
+											<p><a href="/eulib/index.do" target="_blank" title="새창">어울림작은도서관</a></p>
+											<p><a href="/eulib/contents.do?key=1273" target="_blank" title="새창">사립작은도서관</a></p>
+									</div>
+									<button class="close"></button>
+							</div>
+					</li>
+            <li class="smlib"><a href="./sub.do?key=357"><span>스마트도서관</span></a></li>
+                        <li class="movelib"><a href="/nalib/sub.do?key=418"><span>이동도서관</span></a></li>
+    				</ul>
+    				<!-- //상단 글로벌 사이트 이동 -->
+    				<ul class="gnb_navi clearfix">
+    					<li class="home"><a href="./index.do">홈</a></li>
+    					<li><a href="./sub.do?key=129">사이트맵</a></li>
+                            
+                                
+                                
+                                    <li><a href="./sub.do?key=325">회원가입</a><a href="./loginFrm.do?key=277" class="mypage">로그인</a></li>
+                                
+                            
+                        </li>
+    					<li>
+                            <a href="/eng/index.do" target="_blank" title="새창으로 열림"><span>ENGLISH</span></a>
+    						<!--<button class="lang_off">LANGUAGE</button>
+    						<ul>
+    							<li><a href="#"><span>ENGLISH</span></a></li>
+    							<li><a href="#"><span>JAPANESE</span></a></li>
+    							<li><a href="#"><span>CHINESE</span></a></li>
+    						</ul>-->
+    					</li>
+    				</ul>
+    				<!-- 글로벌메뉴 -->
+    			</div>
+    			<!-- //gnb wrap -->
+    		</div>
+    		<!-- //gnb -->
+    		<div class="wrap">
+    			<div class="logo">
+    				<h1>
+    					<a href="./index.do">
+                            <img src="/site/nalib/images/common/logo.png" alt="하남시 나룰도서관 Hanam City Narul Library 로고" />
+                        </a>
+    				</h1>
+    			</div>
+                <div class="mobile_btn">
+                    <button class="m_search_btn">
+                        <span class="line1"></span>
+                        <span class="line2"></span>
+                        <span class="line3"></span>
+                    </button>
+                    <button class="m_menu_btn">
+                        <span class="line1"></span>
+                        <span class="line2"></span>
+                        <span class="line3"></span>
+                    </button>
+                </div>
+    			<!-- //반응형 메뉴 전체보기 버튼. 웹에선 숨겨짐 -->
+    		</div>
+    		<!-- // header_ wrap -->
+    		<div id="lnb">
+                <div class="m_member clearfix">
+                    
+                        
+                        
+                            <a href="./sub.do?key=325"><span>회원가입</span></a>
+                            <a href="./loginFrm.do?key=277"><span>로그인</span></a>
+                        
+                    
+                </div>
+    			
+
+				<ul id="top1menu" class="clearfix">
+					<li class="depth1 ">
+						<a href="/nalib/contents.do?key=50" class="depth1_ti" accesskey="1" target="_self" ><span>도서관소개</span></a>
+								<div class="tm1_title">
+									<strong>도서관소개</strong>
+									<p>하남시립 도서관에 오신 것을 환영합니다.</p>
+								</div>
+								<ul class="depth2">
+									<li><a href="/nalib/contents.do?key=50" target="_self" >소개</a></li>
+									<li><a href="/nalib/contents.do?key=56" target="_self" >연혁</a></li>
+									<li><a href="/nalib/contents.do?key=57" target="_self" >조직도</a></li>
+									<li><a href="/nalib/contents.do?key=58" target="_self" >도서관현황</a></li>
+									<li><a href="/nalib/contents.do?key=811" target="_self" >도서관 LI</a></li>
+									<li><a href="/nalib/contents.do?key=59" target="_self" >운영시간/휴관일</a></li>
+									<li><a href="/nalib/contents.do?key=99" target="_self" >도서관이용안내</a></li>
+									<li><a href="/nalib/contents.do?key=1152" target="_self" >도서관지도</a></li>
+									<li><a href="/nalib/contents.do?key=61" target="_self" >오시는 길</a></li>
+								</ul>
+					</li>
+					<li class="depth1 ">
+						<a href="/nalib/searchSimple.do?key=64" class="depth1_ti" accesskey="2" target="_self" ><span>도서관자료</span></a>
+								<div class="tm2_title">
+									<strong>도서관자료</strong>
+									<p>신착, 추천도서 등 도서관의 다양한 자료를 검색하세요.</p>
+								</div>
+								<ul class="depth2">
+									<li><a href="/nalib/searchSimple.do?key=64" target="_self" >자료검색</a></li>
+									<li><a href="/nalib/searchNew.do?key=65" target="_self" >신착자료검색</a></li>
+									<li><a href="/nalib/loanBestList.do?key=389" target="_self" >대출베스트</a></li>
+									<li><a href="/nalib/smartLibrarySearch.do?key=981" target="_self" >스마트도서관자료</a></li>
+									<li><a href="/nalib/moveLibrarySearch.do?key=1601" target="_self" >이동도서관자료</a></li>
+									<li><a href="/nalib/dvdLibrarySearch.do?key=1132" target="_self" >DVD 자료</a></li>
+									<li><a href="/nalib/contents.do?key=66" target="_self" >전자도서관</a></li>
+									<li><a href="/nalib/selectBbsNttList.do?bbsNo=15&amp;key=108&amp;integrDeptCode=C01" target="_self" >추천도서 목록</a></li>
+									<li><a href="/nalib/selectBbsNttList.do?bbsNo=34&amp;key=70" target="_self" >영어원서 목록</a></li>
+									<li><a href="/nalib/selectBbsNttList.do?bbsNo=9&amp;key=112" target="_self" >책꾸러미 목록</a></li>
+									<li><a href="/nalib/selectBbsNttList.do?bbsNo=185&amp;key=1204" target="_self" >전집대출</a></li>
+									<li><a href="/nalib/contents.do?key=111" target="_self" >연속간행물 목록</a></li>
+								</ul>
+					</li>
+					<li class="depth1 ">
+						<a href="/nalib/selectSchedule.do?key=71" class="depth1_ti" accesskey="3" target="_self" ><span>독서문화행사</span></a>
+								<div class="tm3_title">
+									<strong>독서문화행사</strong>
+									<p>문화강좌, 영화상영 등 다양한 문화행사에 참여하세요.</p>
+								</div>
+								<ul class="depth2">
+									<li><a href="/nalib/selectSchedule.do?key=71" target="_self" >이달의 행사</a></li>
+									<li><a href="/nalib/selectWebEdcLctreList.do?key=72" target="_self" >독서문화프로그램 신청</a></li>
+									<li><a href="/nalib/selectBbsNttList.do?bbsNo=29&amp;key=73" target="_self" >영화상영</a></li>
+								</ul>
+					</li>
+					<li class="depth1 ">
+						<a href="/nalib/selectBbsNttList.do?bbsNo=6&amp;key=76" class="depth1_ti" accesskey="4" target="_self" ><span>열린공간</span></a>
+								<div class="tm4_title">
+									<strong>열린공간</strong>
+									<p>하남시립도서관의 다양한 소식을 전해드립니다.</p>
+								</div>
+								<ul class="depth2">
+									<li><a href="/nalib/selectBbsNttList.do?bbsNo=6&amp;key=76" target="_self" >공지사항</a></li>
+									<li><a href="/nalib/selectBbsNttList.do?bbsNo=11&amp;key=77" target="_self" >자주하는 질문</a></li>
+									<li><a href="/nalib/selectBbsNttList.do?bbsNo=12&amp;key=78" target="_self" >묻고답하기</a></li>
+									<li><a href="/nalib/selectBbsNttList.do?bbsNo=13&amp;key=80" target="_self" >공개자료실</a></li>
+								</ul>
+					</li>
+					<li class="depth1 ">
+						<a href="/nalib/contents.do?key=81" class="depth1_ti" accesskey="5" target="_self" ><span>도서 서비스</span></a>
+								<div class="tm5_title">
+									<strong>도서 서비스</strong>
+									<p>책이음, 책바다 등 다양한 서비스를 제공하고 있습니다.</p>
+								</div>
+								<ul class="depth2">
+									<li><a href="/nalib/contents.do?key=81" target="_self" >책이음</a></li>
+									<li><a href="/nalib/contents.do?key=643" target="_self" >상호대차 책두레</a></li>
+									<li><a href="/nalib/contents.do?key=82" target="_self" >책바다 / 책나래</a></li>
+									<li><a href="/nalib/contents.do?key=83" target="_self" >두루두루</a></li>
+									<li><a href="/nalib/contents.do?key=84" target="_self" >내 생애 첫 도서관</a></li>
+									<li><a href="/nalib/contents.do?key=75" target="_self" >북스타트</a></li>
+									<li><a href="/nalib/contents.do?key=357" target="_self" >스마트도서관</a></li>
+									<li><a href="/nalib/contents.do?key=418" target="_self" >이동도서관</a></li>
+								</ul>
+					</li>
+					<li class="depth1 ">
+						<a href="/nalib/contents.do?key=283" class="depth1_ti" accesskey="6" target="_self" ><span>온라인서비스</span></a>
+								<div class="tm6_title">
+									<strong>온라인서비스</strong>
+									<p>희망도서, 도서관견학, 사물함신청 등을 확인하세요.</p>
+								</div>
+								<ul class="depth2">
+									<li><a href="/nalib/contents.do?key=283" target="_self" >희망도서 신청</a></li>
+									<li><a href="https://www.hanamlib.go.kr/277/nalib/hopeBookLoanImmediately.do" target="_self" >희망도서 바로대출</a></li>
+									<li><a href="/nalib/loanStatusList.do?key=343" target="_self" >대출도서 연기</a></li>
+									<li><a href="/nalib/selectLnbnsList.do?key=88" target="_self" >도서관 견학신청</a></li>
+									<li><a href="/nalib/selectBbsNttList.do?bbsNo=4&amp;key=267" target="_self" >사물함 신청</a></li>
+									<li><a href="http://seat.hanamlib.go.kr:8000/seatmate_nl/" target="_blank" title="새창">열람실 현황</a></li>
+									<li><a href="/nalib/contents.do?key=335" target="_self" >기증안내</a></li>
+									<li><a href="/nalib/contents.do?key=1003" target="_self" >시설물 예약</a></li>
+								</ul>
+					</li>
+					<li class="depth1 ">
+						<a href="/eulib/contents.do?key=1273" class="depth1_ti" accesskey="7" target="_self" ><span>작은도서관</span></a>
+								<div class="tm7_title">
+									<strong>작은도서관</strong>
+									<p>우리동네 작은 도서관을 확인해보세요.</p>
+								</div>
+								<ul class="depth2">
+									<li><a href="/eulib/contents.do?key=1273" target="_self" >작은도서관 현황</a></li>
+									<li><a href="/eulib/contents.do?key=1274" target="_self" >작은도서관 등록</a></li>
+									<li><a href="/eulib/selectBbsNttList.do?bbsNo=201&amp;key=1275" target="_self" >작은도서관 문화행사</a></li>
+									<li><a href="/eulib/selectBbsNttList.do?bbsNo=202&amp;key=1276" target="_self" >작은도서관 소식</a></li>
+								</ul>
+					</li>
+					<li class="depth1 webHide">
+						<a href="/nalib/myStatus.do?key=829" class="depth1_ti" accesskey="8" target="_self" ><span>나의도서관</span></a>
+								<div class="tm8_title">
+									<strong>나의도서관</strong>
+									<p></p>
+								</div>
+								<ul class="depth2">
+									<li><a href="/nalib/reservationStatusList.do?key=392" target="_self" >예약/대출/상호대차 내역</a></li>
+									<li><a href="/nalib/hopeBookList.do?key=121" target="_self" >희망도서 내역</a></li>
+									<li><a href="/nalib/basketList.do?key=395" target="_self" >관심도서조회</a></li>
+									<li><a href="/nalib/selectMyBookStartPackageList.do?key=1466" target="_self" >북스타트 내역</a></li>
+									<li><a href="/nalib/selectMyEdcLctreList.do?key=122" target="_self" >독서문화프로그램</a></li>
+									<li><a href="/nalib/selectMyLnbnsList.do?key=123" target="_self" >견학내역</a></li>
+									<li><a href="/nalib/selectMyLockerRceptList.do?key=124" target="_self" >사물함내역</a></li>
+									<li><a href="/nalib/selectMyBookCntrList.do?key=266" target="_self" >기증내역</a></li>
+									<li><a href="/nalib/joinmemUpdt.do?key=118" target="_self" >회원정보 수정</a></li>
+									<li><a href="/nalib/memWithdraw.do?key=817" target="_self" >회원탈퇴</a></li>
+									<li><a href="/nalib/selectMyFacilityReservationList.do?key=1312" target="_self" >시설물예약 내역</a></li>
+									<li><a href="/nalib/selectMyBookStartProgramList.do?key=1323" target="_self" >전집대출</a></li>
+								</ul>
+					</li>
+				</ul>
+
+    		</div>
+    		<!-- //lnb -->
+    	</div>
+    	<!-- //header -->
+    	<hr />
+        <!-- 레이어팝업 -->
+        <div class="layer_pop">
+			<!-- 
+				===메인페이지 팝업 작업 방법===
+				● 분관 공통 팝업용 ID: notice_pop1 ~ notice_pop3
+				● 분관 별도 팝업용 ID: notice_pop4 ~ notice_pop6
+				● 긴급/주말단기 최상단 노출 팝업용 ID: notice_pop_important1
+				
+				*팝업 위치 인라인 스타일 적용 금지 (예: left: 0px; top: 0px;)
+				CSS로 위치 잡혀있음
+				
+				*이미지 파일 사이즈는 가급적 가로 500px로 넣기
+				
+				*팝업창 내릴 때 html, script 삭제하지 말고 팝업 종료일로 제어
+			-->
+			
+        <!-- 레이어팝업 -->
+
+			<!-- 분관 공통 팝업용 1~3 -->
+			 <div id="notice_pop1">
+					<img src="/popup/popup_20260727.jpg" alt="" class="popup_img" />
+				<div class="notice_pop_chk">
+					<form name="notice_form1" action="javascript:main_closeWind()">
+						<input type="checkbox" name="chkbox" id="chkbox_1" value="" /><label for="chkbox_1">7일간 이 창을 열지 않음</label>
+					</form>
+				</div>
+				<a href="#n" onclick="main_closeWind('notice_pop1', 'notice_form1');" class="close" >팝업창 닫기</a>
+			</div>
+
+
+			<div id="notice_pop2">
+				
+				<img src="/popup/popup_20260724.jpg" alt="" class="popup_img" />
+				
+				<div class="notice_pop_chk">
+					<form name="notice_form2" action="javascript:main_closeWind()">
+						<input type="checkbox" name="chkbox" id="chkbox_2" value="" /><label for="chkbox_2">7일간 이 창을 열지 않음</label>
+					</form>
+				</div>
+				<a href="#n" onclick="main_closeWind('notice_pop2', 'notice_form2');" class="close" >팝업창 닫기</a>
+			</div>
+
+			<div id="notice_pop3">
+				
+				<img src="/popup/popup_20260722.png" alt="" class="popup_img" />
+				
+				<div class="notice_pop_chk">
+					<form name="notice_form3" action="javascript:main_closeWind()">
+						<input type="checkbox" name="chkbox" id="chkbox_3" value="" /><label for="chkbox_3">7일간 이 창을 열지 않음</label>
+					</form>
+				</div>
+				<a href="#n" onclick="main_closeWind('notice_pop3', 'notice_form3');" class="close" >팝업창 닫기</a>
+			</div>
+
+			<div id="notice_pop_important1" style="z-index: 9999">
+				<img src="/popup/popup_20251002.jpg" alt="" class="popup_img" />
+				<div class="notice_pop_chk">
+					<form name="notice_form_important1" action="javascript:main_closeWind()">
+						<input type="checkbox" name="chkbox" id="chkbox_important1" value="" /><label for="chkbox_important1">7일간 이 창을 열지 않음</label>
+					</form>
+				</div>
+				<a href="#n" onclick="main_closeWind('notice_pop_important1', 'notice_form_important1');" class="close" >팝업창 닫기</a>
+			</div>
+
+        <script type="text/javascript">
+			//<![CDATA[
+			cookiedata = document.cookie;
+			var d_now = new Date();
+
+			/* 분관 공통 팝업용 1~3 */
+			var sdate1= new Date("2026/07/27 09:00:00");
+			var edate1= new Date("2026/07/31 23:59:00");
+			if(d_now >= sdate1 && d_now <= edate1 && cookiedata.indexOf("notice_pop1=done") < 0){
+				document.getElementById('notice_pop1').style.display = "block";
+			} else {
+				document.getElementById('notice_pop1').style.display = "none";
+			}
+
+			var sdate2= new Date("2026/07/20 09:00:00");
+			var edate2= new Date("2026/07/31 23:59:00");
+			if(d_now >= sdate2 && d_now <= edate2 && cookiedata.indexOf("notice_pop2=done") < 0){
+				document.getElementById('notice_pop2').style.display = "block";
+			} else {
+				document.getElementById('notice_pop2').style.display = "none";
+			}
+
+			var sdate3= new Date("2026/07/22 09:00:00");
+			var edate3= new Date("2026/08/31 23:59:00");
+			if(d_now >= sdate3 && d_now <= edate3 && cookiedata.indexOf("notice_pop3=done") < 0){
+				document.getElementById('notice_pop3').style.display = "block";
+			} else {
+				document.getElementById('notice_pop3').style.display = "none";
+			}
+
+			/* 긴급 & 중요 공지용 */
+			var sdate_important1= new Date("2025/10/02 09:00:00");
+			var edate_important1= new Date("2025/10/10 09:00:00");
+            if(d_now >= sdate_important1 && d_now <= edate_important1 && cookiedata.indexOf("notice_pop_important1=done") < 0){
+                document.getElementById('notice_pop_important1').style.display = "block";
+            } else {
+                document.getElementById('notice_pop_important1').style.display = "none";
+            }
+
+        //]]>
+        </script>
+
+			<!-- 분관 별도 팝업용 4~6 -->
+			<div id="notice_pop4">
+				<a href="https://www.hanamlib.go.kr/nalib/selectWebEdcLctreList.do?key=72">
+				<img src="/popup/popup_20260721_na.png" alt="" class="popup_img" />
+				</a>
+				<div class="notice_pop_chk">
+					<form name="notice_form4" action="javascript:main_closeWind()">
+						<input type="checkbox" name="chkbox" id="chkbox_4" value="" /><label for="chkbox_4">7일간 이 창을 열지 않음</label>
+					</form>
+				</div>
+				<a href="#n" onclick="main_closeWind('notice_pop4', 'notice_form4');" class="close" >팝업창 닫기</a>
+			</div>
+			
+			<div id="notice_pop5">
+				<a href="https://www.hanamlib.go.kr/nalib/selectWebEdcLctreView.do?key=72&edcLctreNo=5004&pageUnit=10&pageIndex=1&searchCnd=all">
+				<img src="/popup/popup_20260629_na.png" alt="" class="popup_img" />
+				</a>
+                <div class="notice_pop_chk">
+                    <form name="notice_form5" action="javascript:main_closeWind()">
+                        <input type="checkbox" name="chkbox" id="chkbox_5" value="" /><label for="chkbox_5">7일간 이 창을 열지 않음</label>
+                    </form>
+                </div>
+                <a href="#n" onclick="main_closeWind('notice_pop5', 'notice_form5');" class="close" >팝업창 닫기</a>
+            </div>
+			
+			<div id="notice_pop6">
+				<a href="https://www.hanamlib.go.kr/nalib/selectWebEdcLctreView.do?key=72&edcLctreNo=5004&pageUnit=10&pageIndex=1&searchCnd=all">
+				<img src="/popup/popup_20260629_na.png" alt="" class="popup_img" />
+				</a>
+                <div class="notice_pop_chk">
+                    <form name="notice_form6" action="javascript:main_closeWind()">
+                        <input type="checkbox" name="chkbox" id="chkbox_6" value="" /><label for="chkbox_6">7일간 이 창을 열지 않음</label>
+                    </form>
+                </div>
+                <a href="#n" onclick="main_closeWind('notice_pop6', 'notice_form6');" class="close" >팝업창 닫기</a>
+            </div>
+        </div>
+
+
+		<script type="text/javascript">
+
+			cookiedata = document.cookie;
+			var d_now = new Date();
+
+			/* 분관 별도 팝업용 4~6 */
+			var sdate4= new Date("2026/07/21 09:00:00");
+			var edate4= new Date("2026/08/28 23:59:00");
+			if(d_now >= sdate4 && d_now <= edate4 && cookiedata.indexOf("notice_pop4=done") < 0){
+				document.getElementById('notice_pop4').style.display = "block";
+			} else {
+				document.getElementById('notice_pop4').style.display = "none";
+			}
+			
+			var sdate5= new Date("2026/06/30 09:00:00");
+			var edate5= new Date("2026/07/28 23:59:00");
+            if(d_now >= sdate5 && d_now <= edate5 && cookiedata.indexOf("notice_pop5=done") < 0){
+            	document.getElementById('notice_pop5').style.display = "block";
+            } else {
+            	document.getElementById('notice_pop5').style.display = "none";
+            }
+			
+			var sdate6= new Date("2026/06/30 09:00:00");
+			var edate6= new Date("2026/07/26 23:59:00");
+            if(d_now >= sdate6 && d_now <= edate6 && cookiedata.indexOf("notice_pop6=done") < 0){
+            	document.getElementById('notice_pop6').style.display = "block";
+            } else {
+            	document.getElementById('notice_pop6').style.display = "none";
+            }
+
+        </script>
+    	<!-- //레이어팝업 -->
+    	<div id="container" class="visual1">
+            <div class="back_img">
+                <div class="back_img1"></div>
+                <div class="back_img2"></div>
+                <div class="back_img3"></div>
+                <div class="back_img4"></div>
+                <div class="back_img5"></div>
+                <div class="back_img6"></div>
+                <div class="back_img7"></div>
+                <div class="back_img8"></div>
+                <div class="back_img9"></div>
+                <div class="back_img10"></div>
+                <div class="back_img11"></div>
+                <div class="back_img12"></div>
+                <div class="back_img13"></div>
+                <div class="back_img14"></div>
+                <div class="back_img15"></div>
+            </div>
+    		<div class="search_wrap">
+    			<!--<button class="src_btn"><span>통합검색</span></button>-->
+    			<div class="src_form">
+    				<h2 class="skip">자료검색</h2>
+    				<form name="bookSearchFrm" method="post" action="/nalib/searchSimple.do" onsubmit="return valideBookSearch(this)">
+    				    <input type="hidden" name="searchType" id="searchType" value="SIMPLE"/>
+    				    <input type="hidden" name="searchKey" value="TITLE"/>
+    				    <input type="hidden" name="searchCategory" id="searchType" value="ALL"/>
+    				    <input type="hidden" name="key" value="64"/>
+    					<fieldset>
+    						<legend>자료검색</legend>
+    						<!--<select name="" title="검색 분야를 선택하세요">
+    							<option value="">전체</option>
+    							<option value="">분야1</option>
+    							<option value="">분야2</option>
+    						</select>-->
+    						<input type="text" name="searchKeyword" id="searchKeyword" title="검색어를 입력하세요" value="검색어를 입력하세요"
+    							onfocus="this.value=''" onblur="if(this.value=='')this.value='검색어를 입력하세요';" />
+                            <input type="submit" value="검색하기" />
+
+    					</fieldset>
+    				</form>
+    			</div>
+    			<!-- //src_form -->
+    			<!--<button class="src_close">통합검색 닫기</button>-->
+    		</div>
+    		<!-- //search_wrap 통합검색 -->
+    		<div class="colgroup1 clearfix">
+    			<div class="leisure clearfix">
+    				<div class="culture">
+    					<h2>문화&middot;행사</h2>
+    					<ul class="clearfix">
+    					 
+    						<li><a class="clearfix" href="./selectWebEdcLctreView.do?key=72&amp;edcLctreNo=5048">
+    						<span class="kind EDTY01">전체</span>
+    						<span>[2026 길 위의 인문학]우리동네 꼬마 철학자</span></a></li>
+    					 
+    						<li><a class="clearfix" href="./selectWebEdcLctreView.do?key=72&amp;edcLctreNo=5046">
+    						<span class="kind EDTY06">일반</span>
+    						<span>제106회 나를 찾는 삶의 인문학 '그리고 잃어버리지 않은 것들' 정이현 작가 강연</span></a></li>
+    					 
+    						<li><a class="clearfix" href="./selectWebEdcLctreView.do?key=72&amp;edcLctreNo=5045">
+    						<span class="kind EDTY01">전체</span>
+    						<span>[2026 지혜학교] 고전과 뮤지컬로 읽는 인간의 서사</span></a></li>
+    					 
+    					</ul>
+    					<a href="./selectWebEdcLctreList.do?key=72" class="more">문화행사 더보기</a>
+    				</div>
+    				<!-- //문화행사 -->
+    				<div class="movie">
+    					<h2 class="skip">상영중인 영화</h2>
+						<p class="tit">영화 상영</p>
+    					<div class="movie_ctrl clearfix">
+    						<button class="prev">이전 컨텐츠 보기</button>
+    						<button class="next">다음 컨텐츠 보기</button>
+    					</div>
+    					<div class="movie_wrap">
+    						<ul class="clearfix">
+	    						
+	                                <li>
+	                                    <a href="./selectBbsNttView.do?key=73&amp;bbsNo=29&amp;nttNo=89642&amp;integrDeptCode=nalib">
+	    								
+	                                        <img src="/DATA/bbs/29/thumb/t_20260724020400769s6o.jpg" alt="트롤 월드투어 이미지" />
+	    								
+	    								
+	                                        <strong>트롤 월드투어</strong>
+	                                        <span class="type">전체 관람가 (91분)</span>
+	                                        
+	                                        
+	                                       2026년 08월  08일
+	    								</a>
+	    							</li>
+	    						
+	                                <li>
+	                                    <a href="./selectBbsNttView.do?key=73&amp;bbsNo=29&amp;nttNo=89643&amp;integrDeptCode=nalib">
+	    								
+	                                        <img src="/DATA/bbs/29/thumb/t_20260724020442985d46.jpg" alt="빌리와 용감한 녀석들: 스노우 베어 구조대 이미지" />
+	    								
+	    								
+	                                        <strong>빌리와 용감한 녀석들: 스노우 베어 구조대</strong>
+	                                        <span class="type">전체 관람가 (80분)</span>
+	                                        
+	                                        
+	                                       2026년 08월  22일
+	    								</a>
+	    							</li>
+	    						
+	                                <li>
+	                                    <a href="./selectBbsNttView.do?key=73&amp;bbsNo=29&amp;nttNo=89644&amp;integrDeptCode=nalib">
+	    								
+	                                        <img src="/DATA/bbs/29/thumb/t_2026072402052318503y.jpg" alt="크루즈 패밀리: 뉴 에이지 이미지" />
+	    								
+	    								
+	                                        <strong>크루즈 패밀리: 뉴 에이지</strong>
+	                                        <span class="type">전체 관람가 (95분)</span>
+	                                        
+	                                        
+	                                       2026년 08월  29일
+	    								</a>
+	    							</li>
+	    						
+    						</ul>
+    					</div>
+    				</div>
+    				<!-- //상영중인 영화 -->
+    			</div>
+    			<!-- //문화행사&상영중인 영화 -->
+    			<div class="board">
+    				<div class="notice">
+    					<h2>공지사항</h2>
+    					<ul>
+	    					
+	                            <li><a href="./selectBbsNttView.do?key=76&amp;bbsNo=6&amp;nttNo=89623&amp;integrDeptCode=nalib">하남시립도서관 알림서비스 변경 안내</a><span>2026.07.22</span></li>
+	    					
+	                            <li><a href="./selectBbsNttView.do?key=76&amp;bbsNo=6&amp;nttNo=89612&amp;integrDeptCode=nalib">2026년 희망도서 바로대출 7월 예산 소진 안내</a><span>2026.07.20</span></li>
+	    					
+	                            <li><a href="./selectBbsNttView.do?key=76&amp;bbsNo=6&amp;nttNo=89608&amp;integrDeptCode=nalib">★이동도서관 임시휴관 안내: 2026. 7. 28.(금)~8. 7.(금)</a><span>2026.07.20</span></li>
+	    					
+    					</ul>
+    					<a href="./selectBbsNttList.do?bbsNo=6&key=76" class="more">공지사항 더보기</a>
+    				</div>
+    				<div class="service">
+    					<h2 class="skip">주요 서비스 링크</h2>
+    					<div class="srvc_ctrl clearfix">
+    						<button class="prev">이전 서비스 보기</button>
+    						<button class="next">다음 서비스 보기</button>
+    					</div>
+    					<div class="srvc_wrap">
+    						<ul class="clearfix">
+    							<li>
+			                  		<a href="/277/nalib/hopeBookLoanImmediately.do" target="_blank"><span class="icon icon11"></span>희망도서 바로대출</a>
+    								<a href="./sub.do?key=283"><span class="icon icon2"></span>희망도서 신청/조회</a>
+    							</li>
+    							<li>
+    								<a href="./sub.do?key=66"><span class="icon icon10"></span>전자도서관</a>
+    								<a href="#n" onclick="return aspservice_01('');" ><span class="icon icon7"></span>오디오북</a>
+    							</li>
+    							<li>
+    								<a href="./sub.do?key=61"><span class="icon icon9"></span>도서관 오시는길</a>
+									<a href="./sub.do?key=88"><span class="icon icon6"></span>도서관 견학신청</a>
+    							</li>
+    							<li>
+    								<a href="http://seat.hanamlib.go.kr:8000/SeatMate/SeatMate.php" onclick="fn_popWindow(this.href,'schedulePop','toolbors=no,scrollbars=yes,width=1000px,height=1000px'); return false;" target="_blank" title="새창"><span class="icon icon4"></span>열람실 좌석확인</a>
+    								<a href="./sub.do?key=267"><span class="icon icon5"></span>개인사물함 신청</a>
+    							</li>
+    						</ul>
+    					</div>
+    				</div>
+    				<!-- //service -->
+    			</div>
+    			<div class="popup">
+    				
+    				<h2>팝업존</h2>
+    				<div class="pop_ctrl">
+    					<div class="pop_num">
+    						
+    							<button class="num_1">1번 팝업</button>
+    						
+    							<button class="num_2">2번 팝업</button>
+    						
+    							<button class="num_3">3번 팝업</button>
+    						
+    							<button class="num_4">4번 팝업</button>
+    						
+    							<button class="num_5">5번 팝업</button>
+    						
+    							<button class="num_6">6번 팝업</button>
+    						
+    							<button class="num_7">7번 팝업</button>
+    						
+    							<button class="num_8">8번 팝업</button>
+    						
+    							<button class="num_9">9번 팝업</button>
+    						
+    							<button class="num_10">10번 팝업</button>
+    						
+    							<button class="num_11">11번 팝업</button>
+    						
+    					</div>
+                        <div class="pop_control">
+    					    <button class="pop_stop">팝업 롤링 정지</button>
+                        </div>
+    				</div>
+    				<ul class="pop_list">
+	    				
+	    					<li><a href="https://www.hanamlib.go.kr/mslib/contents.do?key=1594" target="_self" ><img src="/DATA/popup/202601280912185523HP.jpg" alt="웹DB서비스 이용 안내"/></a></li>
+	    				
+	    					<li><a href="https://blog.naver.com/hanamlibrary" target="_blank" title="새창"><img src="/DATA/popup/20230207125902192VJ3.jpg" alt="네이버 블로그 바로가기"/></a></li>
+	    				
+	    					<li><a href="https://www.instagram.com/hanamlibrary" target="_blank" title="새창"><img src="/DATA/popup/20230207010035653UA8.jpg" alt="인스타그램 바로가기"/></a></li>
+	    				
+	    					<li><a href="/nalib/contents.do?key=643" target="_self" ><img src="/DATA/popup/20201130025253157cgq.jpg" alt="상호대차 책두레 서비스"/></a></li>
+	    				
+	    					<li><a href="#" target="_self" ><img src="/DATA/popup/20220913061316005im7.jpg" alt="도서관 부설주차장 유료화 운영 안내
+
+이용시간 / 요금
+1시간까지 무료
+1시간 이후 30분까지 800원
+시간 초과 10분당 300원
+1일 추차료 7,000원
+자동할인 서비스 등록 가능
+※ 할인대상 및 증빙서류 제출은 데스크 문의"/></a></li>
+	    				
+	    					<li><a href="#" target="_self" ><img src="/DATA/popup/20200730094821018J2x.jpg" alt="하남시 부설주차장 관리규칙에 따른 주차요금 할인 안내(할인율 50%)"/></a></li>
+	    				
+	    					<li><a href="/nalib/contents.do?key=66" target="_self" ><img src="/DATA/popup/20200630013919437Ye4.jpg" alt="전자도서관 이용가능 서비스
+-전자책, 오디오북, 전자잡지, 디비피아
+-정회원 로그인 필수"/></a></li>
+	    				
+	    					<li><a href="#" target="_self" ><img src="/DATA/popup/202108060131016611nT.jpg" alt="하남시나룰도서관 오시는 길
+1. 주차장 이용안내 - 주차면수 : 50면 / 이용료: 무료
+※도서관주차장 이외 주차는 주·정차위반 집중단속대상이므로 대중교통을 이용하여 주시기 바랍니다.
+2. 대중교통 안내
+근린3호공원: 이마트 16, 23, 87, 9302, 9303, 3, 3-1,3-2,5
+나룰도서관 10"/></a></li>
+	    				
+	    					<li><a href="https://www.hanamlib.go.kr/baro/homepage/main.do" target="_blank" title="새창"><img src="/DATA/popup/201807021131571656GT.png" alt="동네서점에서 읽고 싶은 책을 바로 대출해서 읽어요 - 희망도서바로대출"/></a></li>
+	    				
+	    					<li><a href="#" target="_self" ><img src="/DATA/popup/20170426021838460NBZ.png" alt="시정소식을 휴대폰 문자로 받아보세요!
+시민 참여, 각종신청, 복지, 문화, 축제, 교육 등 우리시의 다양한 소식을 
+휴대폰 문자로 받아 보세요.
+하남시청 홈페이지 또는 동 주민센터로 방문해 성명과 휴대폰 번호만 입력(기재)
+하시면 됩니다.
+개인정보보호법에 의거해 전화신청은 불가능합니다."/></a></li>
+	    				
+	    					<li><a href="#" target="_self" ><img src="/DATA/popup/20190906024553095n6v.png" alt="경기도 문화의 날
+매월 마지막 수요일은
+도서관 대출권수가 두배!"/></a></li>
+	    				
+    				</ul>
+    				
+                    <script>
+                        //<![CDATA[
+                        var mv_slide = new mainVisual_slide();
+                        mv_slide.init();
+                        //]]>
+                    </script>
+    			</div>
+    			<!-- //팝업존 -->
+    		</div>
+    		<!-- //colgroup1 -->
+            <div class="colgroup2_wrap">
+                <div class="colgroup2 clearfix">
+                    <div class="schedule">
+                        <h2 class="skip">일정안내 휴관일안내&실별안내</h2>
+                        <ul class="clearfix">
+                            <li>
+                                <button onclick="tabOn(1,1); return false;" id="tab1m1">
+                                    <span>휴관일안내</span>
+                                </button>
+                                <div id="tab1c1" class="tabcontent">
+                                </div>
+                                <script type="text/javascript">
+	                                var toDate = new Date();
+	                                var toMonth = toDate.getMonth() + 1;
+	                                var toYear = toDate.getFullYear();
+
+	                                $(function() {
+	                                	$("#tab1c1").load("/nalib/mainScheduleList.do", {sYear: toYear, sMonth: toMonth});
+	                                	$(document).on("click", ".month_control .month_prev", function() {
+	                                		toMonth = toMonth - 1;
+	                                		if (toMonth < 1) {
+	                                			toMonth = 12;
+	                                			toYear = toYear - 1;
+	                                		}
+	                                		$("#tab1c1").load("/nalib/mainScheduleList.do", {sYear: toYear, sMonth: toMonth});
+	                                	});
+
+	                                	$(document).on("click", ".month_control .month_next", function() {
+	                                		toMonth ++;
+	                                		if (toMonth > 12) {
+	                                			toMonth = 1;
+	                                			toYear++;
+	                                		}
+	                                		$("#tab1c1").load("/nalib/mainScheduleList.do", {sYear: toYear, sMonth: toMonth});
+	                                	});
+	                                });
+                                </script>
+                                <a href="./contents.do?key=59" id="tab1more1" class="brd_more">휴관일 더보기</a>
+                            </li>
+                            <!-- //휴관일안내 -->
+                            <li>
+                                <button onclick="tabOn(1,2); return false;" id="tab1m2">
+                                    <span>운영시간</span>
+                                </button>
+                                <div id="tab1c2" class="tabcontent room_info">
+                                    <ul>
+                                        <li><span class="room1">어린이실</span>09:00~18:00</li>
+                                        <li><span class="room2">새싹실</span>09:00~18:00</li>
+                                        <li><span class="room3">열람실</span>08:00~23:00</li>
+                                        <li><span class="room4">자료실</span>09:00~22:00(평일)<br>09:00~18:00(주말)</li>
+                                    </ul>
+                                </div> <a href="./contents.do?key=59" id="tab1more2" class="brd_more">실별안내 더보기</a>
+                            </li>
+                            <!-- //실별안내 -->
+                        </ul>
+                        <script type="text/javascript">
+                            tabOn(1, 1);
+                        </script>
+                    </div>
+                    <!-- //일정안내 -->
+                    <div class="book">
+                        <h2>이달의 도서</h2>
+                        <ul>
+                            <!-- //휴관일안내 -->
+                            <li>
+                                <button onclick="tabOn(2,1); return false;" id="tab2m1">
+                                    <span style="font-size:16px;line-height:19px">추천도서<br/>(일반)</span>
+                                </button>
+                                <div id="tab2c1" class="tabcontent">
+                                    <div class="book_ctrl book_ctrl2 clearfix">
+                                        <button class="prev">이전 서비스 보기</button>
+                                        <button class="next">다음 서비스 보기</button>
+                                    </div>
+                                    <div class="book_wrap">
+                                        <ul class="book_list2 clearfix">
+                                            
+                                            <li>
+                                                <a href="./selectBbsNttView.do?key=108&amp;bbsNo=15&amp;nttNo=87602&amp;integrDeptCode=C01">
+                                                
+                                                	
+                                                	
+                                                	    <img src="/DATA/bbs/15/thumb/t_202504251105016529NJ.jpg" alt="우리는 사랑 안에 살고 있다 이미지" />
+                                                	
+                                                	
+                                                
+                                                </a>
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="./selectBbsNttView.do?key=108&amp;bbsNo=15&amp;nttNo=87601&amp;integrDeptCode=C01">
+                                                
+                                                	
+                                                	
+                                                	    <img src="/DATA/bbs/15/thumb/t_20250425110125793FkB.jpg" alt="미로 속 아이 이미지" />
+                                                	
+                                                	
+                                                
+                                                </a>
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="./selectBbsNttView.do?key=108&amp;bbsNo=15&amp;nttNo=87600&amp;integrDeptCode=C01">
+                                                
+                                                	
+                                                	
+                                                	    <img src="/DATA/bbs/15/thumb/t_20250425105951079Gyn.jpg" alt="행동하지 않으면 인생은 바뀌지 않는다 이미지" />
+                                                	
+                                                	
+                                                
+                                                </a>
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="./selectBbsNttView.do?key=108&amp;bbsNo=15&amp;nttNo=87599&amp;integrDeptCode=C01">
+                                                
+                                                	
+                                                	
+                                                	    <img src="/DATA/bbs/15/thumb/t_20250425105812210GyM.jpg" alt="딸에게 주고 싶은 가장 좋은 말 이미지" />
+                                                	
+                                                	
+                                                
+                                                </a>
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="./selectBbsNttView.do?key=108&amp;bbsNo=15&amp;nttNo=87597&amp;integrDeptCode=C01">
+                                                
+                                                	
+                                                	
+                                                	    <img src="/DATA/bbs/15/thumb/t_20250425105542871HL8.jpg" alt="언니네 미술관 이미지" />
+                                                	
+                                                	
+                                                
+                                                </a>
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="./selectBbsNttView.do?key=108&amp;bbsNo=15&amp;nttNo=87596&amp;integrDeptCode=C01">
+                                                
+                                                	
+                                                	
+                                                	    <img src="/DATA/bbs/15/thumb/t_20250425105350558Iug.jpg" alt="자세를 펴면 인생이 펴집니다 이미지" />
+                                                	
+                                                	
+                                                
+                                                </a>
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="./selectBbsNttView.do?key=108&amp;bbsNo=15&amp;nttNo=87595&amp;integrDeptCode=C01">
+                                                
+                                                	
+                                                	
+                                                	    <img src="/DATA/bbs/15/thumb/t_20250425105143872byO.jpg" alt="서평스기, 저만 어려운가요 이미지" />
+                                                	
+                                                	
+                                                
+                                                </a>
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="./selectBbsNttView.do?key=108&amp;bbsNo=15&amp;nttNo=86797&amp;integrDeptCode=C01">
+                                                
+                                                	
+                                                	
+                                                	    <img src="/DATA/bbs/15/thumb/t_20241122102031410Xqv.jpg" alt="키 성장력 이미지" />
+                                                	
+                                                	
+                                                
+                                                </a>
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="./selectBbsNttView.do?key=108&amp;bbsNo=15&amp;nttNo=86796&amp;integrDeptCode=C01">
+                                                
+                                                	
+                                                	
+                                                	    <img src="/DATA/bbs/15/thumb/t_20241122101913417rgC.jpg" alt="좋은 기분 이미지" />
+                                                	
+                                                	
+                                                
+                                                </a>
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="./selectBbsNttView.do?key=108&amp;bbsNo=15&amp;nttNo=86793&amp;integrDeptCode=C01">
+                                                
+                                                	
+                                                	
+                                                	    <img src="/DATA/bbs/15/thumb/t_20241122101656425UYm.jpg" alt="시골살이 두런두런 이미지" />
+                                                	
+                                                	
+                                                
+                                                </a>
+                                            </li>
+                                            
+                                        </ul>
+                                    </div>
+                                </div>
+                                <a href="./sub.do?key=108" id="tab2more1" class="more">추천도서 더보기</a>
+                            </li>
+                            <!-- //추천도서 -->
+                            <li>
+                                <button onclick="tabOn(2,2); return false;" id="tab2m2">
+                                    <span style="font-size:16px;line-height:19px">추천도서<br/>(어린이)</span>
+                                </button>
+                                <div id="tab2c2" class="tabcontent">
+                                    <div class="book_ctrl book_ctrl3 clearfix">
+                                        <button class="prev">이전 서비스 보기</button>
+                                        <button class="next">다음 서비스 보기</button>
+                                    </div>
+                                    <div class="book_wrap">
+                                        <ul class="book_list3 clearfix">
+                                            
+                                            <li>
+                                                <a href="./selectBbsNttView.do?key=276&amp;bbsNo=15&amp;nttNo=87354&amp;integrDeptCode=C02">
+                                                
+                                                	
+                                                	
+                                                	    <img src="/DATA/bbs/15/thumb/t_202503130226306448WK.jpg" alt="용을 찾아서 이미지" />
+                                                	
+                                                	
+                                                
+                                                </a>
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="./selectBbsNttView.do?key=276&amp;bbsNo=15&amp;nttNo=87353&amp;integrDeptCode=C02">
+                                                
+                                                	
+                                                	
+                                                	    <img src="/DATA/bbs/15/thumb/t_20250313022529323YYq.jpg" alt="자그맣고 커다란 고릴라 : 반대와 반대의 세계 이미지" />
+                                                	
+                                                	
+                                                
+                                                </a>
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="./selectBbsNttView.do?key=276&amp;bbsNo=15&amp;nttNo=87352&amp;integrDeptCode=C02">
+                                                
+                                                	
+                                                	
+                                                	    <img src="/DATA/bbs/15/thumb/t_20250313022403573LL0.jpg" alt="가르마 이발소 이미지" />
+                                                	
+                                                	
+                                                
+                                                </a>
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="./selectBbsNttView.do?key=276&amp;bbsNo=15&amp;nttNo=87351&amp;integrDeptCode=C02">
+                                                
+                                                	
+                                                	
+                                                	    <img src="/DATA/bbs/15/thumb/t_20250313022256937tEV.jpg" alt="날개는 없지만 이미지" />
+                                                	
+                                                	
+                                                
+                                                </a>
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="./selectBbsNttView.do?key=276&amp;bbsNo=15&amp;nttNo=87350&amp;integrDeptCode=C02">
+                                                
+                                                	
+                                                	
+                                                	    <img src="/DATA/bbs/15/thumb/t_20250313022141394kfb.jpg" alt="재밌게 걷자! 덕수궁·경희궁 이미지" />
+                                                	
+                                                	
+                                                
+                                                </a>
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="./selectBbsNttView.do?key=276&amp;bbsNo=15&amp;nttNo=87349&amp;integrDeptCode=C02">
+                                                
+                                                	
+                                                	
+                                                	    <img src="/DATA/bbs/15/thumb/t_20250313021640258YVL.jpg" alt="건강을 위한 먹거리 채소·과일 이미지" />
+                                                	
+                                                	
+                                                
+                                                </a>
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="./selectBbsNttView.do?key=276&amp;bbsNo=15&amp;nttNo=87348&amp;integrDeptCode=C02">
+                                                
+                                                	
+                                                	
+                                                	    <img src="/DATA/bbs/15/thumb/t_20250313021401142LBx.jpg" alt="뇌가 뭔데? 이미지" />
+                                                	
+                                                	
+                                                
+                                                </a>
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="./selectBbsNttView.do?key=276&amp;bbsNo=15&amp;nttNo=87347&amp;integrDeptCode=C02">
+                                                
+                                                	
+                                                	
+                                                	    <img src="/DATA/bbs/15/thumb/t_20250313021234040PcM.jpg" alt="나의 경제 일기 : 용돈 박사 재인이 이번엔 경제다! 이미지" />
+                                                	
+                                                	
+                                                
+                                                </a>
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="./selectBbsNttView.do?key=276&amp;bbsNo=15&amp;nttNo=87346&amp;integrDeptCode=C02">
+                                                
+                                                	
+                                                	
+                                                	    <img src="/DATA/bbs/15/thumb/t_20250313021112297n7F.jpg" alt="책을 사랑하는 사람들 : 이 책이 우리 집에 오기까지 이미지" />
+                                                	
+                                                	
+                                                
+                                                </a>
+                                            </li>
+                                            
+                                            <li>
+                                                <a href="./selectBbsNttView.do?key=276&amp;bbsNo=15&amp;nttNo=87345&amp;integrDeptCode=C02">
+                                                
+                                                	
+                                                	
+                                                	    <img src="/DATA/bbs/15/thumb/t_202503130209301084U3.jpg" alt="기네스 세계 기록 2025 : 70주년 기념판 이미지" />
+                                                	
+                                                	
+                                                
+                                                </a>
+                                            </li>
+                                            
+                                        </ul>
+                                    </div>
+                                </div>
+                                <a href="./sub.do?key=276" id="tab2more2" class="more">추천도서 더보기</a>
+                            </li>
+                            <!-- //인기도서 -->
+                            <li>
+                                <button onclick="tabOn(2,3); return false;" id="tab2m3">
+                                    <span>신착도서</span>
+                                </button>
+                                <div id="tab2c3" class="tabcontent">
+                                    <div class="book_ctrl book_ctrl1 clearfix">
+                                        <button class="prev">이전 서비스 보기</button>
+                                        <button class="next">다음 서비스 보기</button>
+                                    </div>
+                                    <div class="book_wrap">
+                                        <ul class="book_list1 clearfix">
+                                            
+                                                <li>
+                                                    <a href="./searchNew.do?key=65&amp;bookKey=258596018&amp;recKey=258596016">
+	                                                
+	                                                	
+	                                                		<img id="img_new_1" src="" alt="生의 이면: 이승우 장편소설 이미지" />
+	                                                		<script type="text/javascript">isbnToImgNoSave('img_new_1', '9788974564698');</script>
+	                                               		
+	                                               		
+	                                                
+                                                    </a>
+                                                </li>
+                                            
+                                                <li>
+                                                    <a href="./searchNew.do?key=65&amp;bookKey=258544464&amp;recKey=258544462">
+	                                                
+	                                                	
+	                                                		<img id="img_new_2" src="" alt="개인투자 궁금증 300문 300답: 종잣돈 불리기부터 노후 자금 마련까지 이미지" />
+	                                                		<script type="text/javascript">isbnToImgNoSave('img_new_2', '9788970909073');</script>
+	                                               		
+	                                               		
+	                                                
+                                                    </a>
+                                                </li>
+                                            
+                                                <li>
+                                                    <a href="./searchNew.do?key=65&amp;bookKey=258545060&amp;recKey=258545058">
+	                                                
+	                                                	
+	                                                		<img id="img_new_3" src="" alt="C. S. 루이스의 글쓰기에 관하여: 우리는 평생 글쓰기를 한다 이미지" />
+	                                                		<script type="text/javascript">isbnToImgNoSave('img_new_3', '9788953150812');</script>
+	                                               		
+	                                               		
+	                                                
+                                                    </a>
+                                                </li>
+                                            
+                                                <li>
+                                                    <a href="./searchNew.do?key=65&amp;bookKey=258242993&amp;recKey=258242991">
+	                                                
+	                                                	
+	                                                		<img id="img_new_4" src="" alt="예술적 다중의 웅성거림: 전 지구적 예술, 정치 그리고 포스트포드주의 이미지" />
+	                                                		<script type="text/javascript">isbnToImgNoSave('img_new_4', '9788961954167');</script>
+	                                               		
+	                                               		
+	                                                
+                                                    </a>
+                                                </li>
+                                            
+                                                <li>
+                                                    <a href="./searchNew.do?key=65&amp;bookKey=258243002&amp;recKey=258243000">
+	                                                
+	                                                	
+	                                                		<img id="img_new_5" src="" alt="1억부터는 포트폴리오다: 연기금처럼 투자하라 이미지" />
+	                                                		<script type="text/javascript">isbnToImgNoSave('img_new_5', '9791194322290');</script>
+	                                               		
+	                                               		
+	                                                
+                                                    </a>
+                                                </li>
+                                            
+                                                <li>
+                                                    <a href="./searchNew.do?key=65&amp;bookKey=258243014&amp;recKey=258243012">
+	                                                
+	                                                	
+	                                                		<img id="img_new_6" src="" alt="루미너스: 박지선 장편소설 이미지" />
+	                                                		<script type="text/javascript">isbnToImgNoSave('img_new_6', '9791170527527');</script>
+	                                               		
+	                                               		
+	                                                
+                                                    </a>
+                                                </li>
+                                            
+                                                <li>
+                                                    <a href="./searchNew.do?key=65&amp;bookKey=258243020&amp;recKey=258243018">
+	                                                
+	                                                	
+	                                                		<img id="img_new_7" src="" alt="지푸라기 왕관을 쓴 여자: 박상영 장편소설 이미지" />
+	                                                		<script type="text/javascript">isbnToImgNoSave('img_new_7', '9791168344044');</script>
+	                                               		
+	                                               		
+	                                                
+                                                    </a>
+                                                </li>
+                                            
+                                                <li>
+                                                    <a href="./searchNew.do?key=65&amp;bookKey=258243029&amp;recKey=258243027">
+	                                                
+	                                                	
+	                                                		<img id="img_new_8" src="" alt="좋겠다, 아무것도 안 하고 월급 받으면: 박선영 장편소설 이미지" />
+	                                                		<script type="text/javascript">isbnToImgNoSave('img_new_8', '9791124668146');</script>
+	                                               		
+	                                               		
+	                                                
+                                                    </a>
+                                                </li>
+                                            
+                                                <li>
+                                                    <a href="./searchNew.do?key=65&amp;bookKey=258243041&amp;recKey=258243039">
+	                                                
+	                                                	
+	                                                		<img id="img_new_9" src="" alt="주와 연: 청예 장편소설 이미지" />
+	                                                		<script type="text/javascript">isbnToImgNoSave('img_new_9', '9791168343887');</script>
+	                                               		
+	                                               		
+	                                                
+                                                    </a>
+                                                </li>
+                                            
+                                                <li>
+                                                    <a href="./searchNew.do?key=65&amp;bookKey=258243050&amp;recKey=258243048">
+	                                                
+	                                                	
+	                                                		<img id="img_new_10" src="" alt="나의 아름다운 성에 초대된 자그마한 파괴자: 기꺼이 엄마가 되고도 온전히 내가 되어가는 여정 이미지" />
+	                                                		<script type="text/javascript">isbnToImgNoSave('img_new_10', '9791193344064');</script>
+	                                               		
+	                                               		
+	                                                
+                                                    </a>
+                                                </li>
+                                            
+                                        </ul>
+                                    </div>
+                                </div>
+                                <a href="./searchNew.do?key=65&amp;manageCode=MB" id="tab2more3" class="more">신착도서 더보기</a>
+                            </li>
+                        </ul>
+                        <script type="text/javascript">
+                            tabOn(2, 1);
+                        </script>
+                        <div class="book_bg"></div>
+                    </div>
+                    <!-- //이달의 도서 -->
+                </div>
+                <!-- //colgroup2 -->
+    		</div>
+    		<div class="link_set">
+    			<div class="wrap clearfix">
+    				<div class="site_link clearfix">
+    					<h2 class="skip">관련기관</h2>
+    					<div class="sitelink_cont f_list">
+    						<h3>
+    							<button class="open">유관사이트</button>
+    						</h3>
+    						<div class="layer">
+    							<button class="close">유관사이트목록 닫기</button>
+    							<div class="link_part">
+    								<h4>유관사이트</h4>
+
+                                    
+                <ul>
+                    <li><a href="http://www.hanam.go.kr" target="_blank"  title="새창">하남시청</a></li>
+                    <li><a href="http://www.gg.go.kr/" target="_blank"  title="새창">경기도청</a></li>
+                    <li><a href="http://www.하남문화원.kr/" target="_blank"  title="새창">하남문화원</a></li>
+                    <li><a href="http://www.hanammuseum.com/" target="_blank"  title="새창">하남역사박물관</a></li>
+                    <li><a href="http://www.dbpia.co.kr/" target="_blank"  title="새창">DBPIA</a></li>
+                    <li><a href="https://www.huic.co.kr" target="_blank"  title="새창">하남도시공사</a></li>
+                    <li><a href="https://www.mois.go.kr/frt/sub/a03/corruptionDeclareInfo/screen.do" target="_blank"  title="새창">공직비리익명신고</a></li>
+                </ul>
+
+
+    							</div>
+    						</div>
+    					</div>
+    					<div class="sitelink_cont">
+    						<h3>
+    							<button class="open">도서관모음</button>
+    						</h3>
+    						<div class="layer">
+    							<button class="close">도서관모음 사이트목록 닫기</button>
+    							<div class="link_part">
+    								<h4>도서관모음</h4>
+
+                                    
+<ul>
+    <li><a href="http://www.nl.go.kr/" target="_blank"  title="새창">국립중앙도서관</a></li>
+    <li><a href="http://www.library.kr" target="_blank"  title="새창">경기도사이버도서관</a></li>
+    <li><a href="https://www.nld.go.kr/ableFront/index.jsp" target="_blank"  title="새창">국립장애인도서관</a></li>
+    <li><a href="https://s-space.snu.ac.kr/" target="_blank"  title="새창">서울대학교 S-SPAC</a></li>
+    <li><a href="https://snu-primo.hosted.exlibrisgroup.com/primo-explore/collectionDiscovery?vid=82SNU&lang=ko_KR" target="_blank"  title="새창">서울대학교 디지털컬렉션</a></li>
+    <li><a href="https://www.nl.go.kr/NL/contents/N10200000000.do" target="_blank"  title="새창">국립중앙도서관 디지털화 자료실</a></li>
+    <li><a href="https://www.nanet.go.kr/main.do" target="_blank"  title="새창">국회도서관</a></li>
+</ul>
+
+
+    							</div>
+    						</div>
+    					</div>
+    				</div>
+    				<!--//site_link  -->
+    				<div class="banner_wrap">
+    					<h2>배너모음</h2>
+    					<div class="bn_ctrl clearfix">
+    						<button class="bn_prev"><img src="/common/images/common/bn_prev.png" alt="이전 배너 보기" /></button>
+    						<button class="bn_control "><img src="/common/images/common/bn_stop.png" alt="배너 롤링 정지" /></button>
+    						<button class="bn_next"><img src="/common/images/common/bn_next.png" alt="다음 배너 보기" /></button>
+    						<!--<a href="#"><img src="/common/images/common/bn_more.png" alt="모든 배너 보기" /></a>-->
+    					</div>
+                        <div class="banner_list">
+                        
+                <ul class="clearfix">
+                    <li><a href="https://lll.hanam.go.kr/" target="_blank"  title="새창" ><img src="/DATA/banner/banner_lll.png" alt="하남시 평생학습포털" /></a></li>
+                    <li><a href="http://www.gg.go.kr" target="_blank"  title="새창" ><img src="/DATA/banner/20160721061941466SWy.png" alt="세계속의경기도" /></a></li>
+                    <li><a href="https://www.library.kr/" target="_blank"  title="새창" ><img src="/DATA/banner/20160721061925160i0K.png" alt="경기도사이버도서관" /></a></li>
+                    <li><a href="http://global.library.kr" target="_blank"  title="새창" ><img src="/DATA/banner/20160721062223251lJe.png" alt="경기 사이버 다문화 도서관" /></a></li>
+                    <li><a href="http://www.hanam.go.kr" target="_blank"  title="새창" ><img src="/DATA/banner/20160721061844030Vh1.png" alt="하남시" /></a></li>
+                    <li><a href="http://www.dbpia.co.kr/" target="_blank"  title="새창" onclick="fn_dbpia_open(); return false;"><img src="/DATA/banner/20160721061824361TYH.png" alt="DBPia" /></a></li>
+                    <li><a href="https://www.hnart.or.kr/museum/index.do" target="_blank"  title="새창" ><img src="/DATA/banner/20160721062056411SXW.png" alt="하남역사박물관" /></a></li>
+                    <li><a href="http://www.하남문화원.kr" target="_blank"  title="새창" ><img src="/DATA/banner/20160721062123272P6P.png" alt="하남문화원" /></a></li>
+                    <li><a href="https://www.huic.co.kr/www/index.do" target="_blank"  title="새창" ><img src="/DATA/banner/20160721062150204smc.png" alt="huic하남도시개발공사" /></a></li>
+                    <li><a href="http://www.data4library.kr" target="_blank"  title="새창" ><img src="/DATA/banner/20170828090710861X1K.jpg" alt="도서관 정보나루" /></a></li>
+					<li><a href="https://www.nld.go.kr/ableFront/index.jsp" target="_blank"  title="새창" ><img src="/DATA/banner/20210703094926896vcn.png" alt="국립장애인도서관" /></a></li>
+                    <li><a href="https://job.cleaneye.go.kr/index.jsp" target="_blank"  title="새창" ><img src="/DATA/banner/20230825_01.png" alt="클린아이 잡플러스" /></a></li>
+                    <li><a href="http://www.worldjob.or.kr" target="_blank"  title="새창" ><img src="/DATA/banner/20230825_02.png" alt="월드잡플러스" /></a></li>
+                    <li><a href="https://s-space.snu.ac.kr/" target="_blank"  title="새창" ><img src="/DATA/banner/20231220.png" alt="서울대학교 S-SPACE" /></a></li>
+                    <li><a href="https://snu-primo.hosted.exlibrisgroup.com/primo-explore/collectionDiscovery?vid=82SNU&lang=ko_KR" target="_blank"  title="새창" ><img src="/DATA/banner/20231221.png" alt="서울대학교 중앙도서관" /></a></li>
+                    <li><a href="http://www.nl.go.kr" target="_blank"  title="새창" ><img src="/DATA/banner/20160721062022187gwu.png" alt="국립중앙도서관" /></a></li>
+                    <li><a href="http://www.nanet.go.kr/" target="_blank"  title="새창" ><img src="/DATA/banner/20160721061903416haw.png" alt="국회도서관" /></a></li>
+
+                </ul>
+
+                        </div>
+    				</div>
+    				<!-- //banner -->
+    			</div>
+    			<!-- //wrap -->
+    		</div>
+    		<!-- //배너모음 -->
+    	</div>
+    	<!-- //container -->
+    	<hr />
+    	<div id="footer">
+
+    		<div class="wrap">
+    			<h2 class="skip">사이트정보</h2>
+    			<img src="/common/images/common/flogo.png" alt="하남시 로고" class="flogo" />
+				
+<ul class="fnavi clearfix">
+<li><a href="./sub.do?key=198" target="_self" >개인정보처리방침</a></li>
+<li><a href="./sub.do?key=196" target="_self" >도서관법규</a></li>
+<li><a href="./sub.do?key=316" target="_self" >영상정보처리기기 운영방침</a></li>
+<li><a href="./sub.do?key=197" target="_self" >이메일무단수집거부</a></li>
+<li><a href="./sub.do?key=99" target="_self" >이용도우미</a></li>
+<!--<li class="gnb_sns"><a href="#" class="fb">나룰도서관 페이스북 바로가기</a>
+<a href="#" class="bl">나룰도서관 블로그 바로가기</a></li>-->
+        </ul>
+
+    			<div class="footer_info">
+    				<address>[12927] 경기도 하남시 덕풍북로 180 하남시나룰도서관 <span><a href="tel:031-790-6887">TEL:(031)790-6887</a> / FAX:(031)790-6502</span></address>
+    				<p>Copyright 2009 by 하남시 나룰도서관. All Right Reserved.</p>
+    			</div>
+				<!--
+				<div class="wa">
+					<a href="http://www.webwatch.or.kr/Situation/WA_Situation.html?MenuCD=110"><img src="/common/images/common/wa.png" alt="미래창조과학부 WEB ACCESSIBILITY 마크(웹 접근성 품질인증 마크)" title="국가 공인 인증기관 : 웹와치"></a>
+				</div>
+				-->
+				<div class="explorer9_txt">
+					<p>본 홈페이지는 Internet Explorer 9 이상의 브라우저 환경에 최적화되어있습니다. Internet Explorer 9 이하의 브라우저에서는 일부 기능이 지원되지 않을 수 있으니 양해부탁드립니다.</p>
+					<a href="https://support.microsoft.com/ko-kr/help/17621/internet-explorer-downloads" target="_blank" title="새창"><span>최신 익스플로러11 업그레이드</span></a>
+				</div>
+    		</div>
+    		<!-- //wrap2 -->
+
+    	</div>
+    	<!-- //footer -->
+
+
+	<script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
+	<script type="text/javascript">
+	if(!wcs_add) var wcs_add = {};
+	wcs_add["wa"] = "178b3b477112c9";
+	wcs_do();
+	</script>
+    </body>
+</html>

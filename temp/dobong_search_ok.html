@@ -1,0 +1,5335 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="language" content="ko" />
+<meta name="format-detection" content="telephone=no" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>도봉구통합도서관 : 통합검색</title>
+<script type="text/javascript" src="/nanum/site/common/js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="/nanum/site/common/js/jquery.easing.1.3.min.js"></script><script type="text/javascript" src="/nanum/site/common/js/common_design.js"></script>
+<script type="text/javascript" src="/nanum/site/common/js/common_dev.js"></script>
+<script type="text/javascript" src="/nanum/site/common/js/respond.js"></script>
+<script type="text/javascript" src="/nanum/site/common/js/jquery.print.min.js"></script>
+<!--슬라이드-->
+<script type="text/javascript" src="/nanum/site/common/js/swiper-bundle.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/nanum/site/common/css/swiper-bundle.min.css" />
+<!--//슬라이드-->
+<!--반응형모바일-->
+<script type="text/javascript" src="/nanum/site/common/js/mobile_submenu.js"></script>
+<script type="text/javascript" src="/nanum/site/common/js/libs.js"></script>
+<script type="text/javascript" src="/nanum/site/common/js/common.js"></script>
+<!--//반응형모바일-->
+<link rel="stylesheet" type="text/css" href="/nanum/site/common/css/all.css" />
+<link rel="stylesheet" type="text/css" href="/nanum/site/common/css/sub_layout.css" />
+<link rel="stylesheet" type="text/css" href="/nanum/site/common/css/sub_design.css" />
+<link rel="stylesheet" type="text/css" href="/nanum/site/common/css/hover.css" />
+<!-- 아이콘 -->
+<script type="text/javascript" src="/nanum/site/common/js/TweenMax.min.js"></script>
+<script type="text/javascript" src="/nanum/site/common/js/animate_front.js"></script>
+<link rel="shortcut icon" href="/nanum/site/img/common/favicon.ico" />
+<!-- 메뉴마다 필요CSS -->
+<script type="text/javascript">
+window.onload = function(){
+	function reset(){
+	if(document.getElementById('quick_wrap')){
+		var width = (document.documentElement || document.body).scrollWidth;
+		document.getElementById('quick_wrap').style.display =
+			width > 1300 ?
+			'block' :
+			'none';
+		}
+	}
+	
+	window.onresize = reset;
+	reset();
+}
+</script>
+
+<script type="text/javascript">
+$(function(){
+   // 메뉴열기
+   $( "#totalmenu" ).live( "click", function() {
+
+      if($('body').hasClass('show-menu') != true){
+         $("#wrapper").css("height", "auto");
+         $("#menu-wrap").hide();
+         //$("div.detailed_fixd").css("position","fixed");
+      }else{
+         $("#wrapper").css("height", "680px");
+         $("#wrapper").css("overflow", "hidden");
+
+         box_height = $(document).height();
+         $("#menu-wrap").css("height",box_height).show();
+
+         padding_top = ( box_height - $("#menu-wrap").find(".cont").height())/2;   // 
+         if (padding_top<0) {   // 
+            padding_top = 0;
+            box_height = $("#menu-wrap").find(".cont").height();
+         }
+         $("#menu-wrap").css("height",box_height);
+         //$("#menu-wrap").find(".cont").css("padding-top",padding_top);
+         
+         //$("div.detailed_fixd").css("position","relative");
+      }
+   });
+});
+
+</script>
+<script>
+$(function () {
+	var $header = $('#head');
+	var $sidebar = $('#sidebar');
+	var navOffset = $header.offset().top;
+	$(window).scroll( function() {
+		var scrollTop = $(document).scrollTop();
+		if (navOffset < scrollTop) {
+			$header.addClass('fixed');
+			$sidebar.addClass('fixed');
+		} else {
+			$header.removeClass('fixed');
+			$sidebar.removeClass('fixed');
+		}
+	});
+});
+</script>
+
+
+
+<!--[if lt IE 9]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+<!--[if gte IE 9]><!-->
+<!--<![endif]-->
+<!--[if lte IE 9]>
+<script src="/nanum/site/common/js/html5shiv.min.js"></script>
+<![endif]-->
+
+<link href="https://fonts.googleapis.com/css?family=Anaheim" rel="stylesheet" />
+
+<script type="text/javascript" >
+$(function(){
+	$(".search_input").each(function(){
+		if($(this).val() != "")	$("label[for='"+$(this).attr("id")+"']").hide();
+	}).focus(function(){
+		$("label[for='"+$(this).attr("id")+"']").hide();
+	}).blur(function(){
+		if($(this).val() == "")	$("label[for='"+$(this).attr("id")+"']").show();
+	});
+});
+</script>
+
+<script type="text/javascript" src="/nanum/site/common/js/jquery-jqtransform.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('.comm_sel').jqTransform();
+	});
+</script>
+
+</head>
+<body id="sub">
+<div id="wrapper">
+	<!--상단영역-->
+	<link rel="stylesheet" type="text/css" href="/nanum/site/common/css/login_session.css" />
+
+<script type="text/javascript">
+let sessionTime = 600;
+
+$(function(){
+
+});
+function sessionRefrash(){
+	try{
+		
+		$.ajax({
+			type: "GET",
+			url: "/sessionTime.jsp",
+			dataType:"html",
+			async:false,
+			beforeSend:function(){//통신시작할때 처리
+			},
+			complete:function(){//통신완료후 처리
+			},
+			error:function(request, status, error){//(ie 8부터 제대로 작동)
+				//alert("code:"+request.staus+"\nmessage:"+request.responseText);
+				alert("내부오류로 인해 로그인 연장이 거부되었습니다.\n증상이 계속될 경우 관리자에게 문의하시기 바랍니다.");
+			},
+			success: function(msg){
+				$("#jsLogoutMessage").css("display","none");
+				sessionTime = msg;
+			},
+			complete : function () {   // 정상이든 비정상인든 실행이 완료될 경우 실행될 함수
+			}
+		});
+		
+	}catch(e){
+		alert("로그인 연장 실패.\n다시 로그인 하시기 바랍니다.");
+		location.href="/sso/logout.jsp";
+	}
+}
+</script>
+	<div id="jsLogoutMessage" class="login_session" style="display:none;">
+		<div class="session_box">
+			<dl>
+				<dt><span class="blue">자동 로그아웃</span> 안내</dt>
+				<dd>자동 로그아웃 남은시간 : <span id="jsSessionTimeout" class="red"></span>초</dd>
+			</dl>
+			<p class="txt">로그인 시간을 연장하시겠습니까?</p>
+			<ul>	
+				<li><a href="#sessionRefrash" onclick="sessionRefrash();" class="login_btn_check">로그인 연장</a></li>
+				<li><a href="/sso/logout.jsp" class="login_btn_close">로그아웃</a></li>
+			</ul>
+		</div>
+	</div>
+	<!--스킵네비게이션-->
+	<div>
+		<a href="#contents" class="sknavi">본문으로 바로가기</a>
+		<a href="#menu_navi" class="sknavi">대메뉴로 바로가기</a>
+		<a href="#sidebar" class="sknavi">서브메뉴 바로가기</a>
+		</div>
+	<!--//스킵네비게이션-->
+	
+	<div id="head">
+		<div class="area">
+			<h1 id="logo"><a href="/intro.do"><img src="/nanum/site/img/common/logo.png" alt="도봉구통합도서관" /></a></h1>
+			<div class="tmenu">
+				<ul>
+					<li><a href="/site/member/login.do?prepage=%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC" class="mo_login">로그인</a></li>
+							<li><a href="/contents.do?idx=174" class="join">회원가입</a></li>
+						<!-- <li><a href="/sitemap.do">사이트맵</a></li>
+					<li class="tarea01"><a href="http://www.dobong.go.kr/" target="_blank">도봉구청</a></li>
+					<li class="tarea02"><a href="http://www.dbfac.or.kr/" target="_blank">도봉문화재단</a></li>-->
+				</ul>
+			</div>
+		</div>
+		
+		<!-- 메뉴영역 -->
+		<div class="menu_bx_wrap">
+			<div class="menu_bx">
+				<div class="wsize mwide">
+					<div id="menu_navi">
+						<div class="menu_area">
+							<div class="menu_list">
+								<script type="text/javascript">
+	$(document).ready(function(){
+		$(".depth2_menu").click(function(){
+			var idx = $(this).data("idx");
+			$(".depth3_menu").each(function (index, item) {
+				if($(item).data("idx") == idx){
+					if($(item).css("display") == "none"){
+						$(item).parent("li").addClass("on");
+						$(item).css("display", "block");
+					}else{
+						$(item).parent("li").removeClass("on");
+						$(item).css("display", "none");
+					}
+				}else{
+					$(item).parent("li").removeClass("on");
+					$(item).css("display", "none");
+				}
+			});
+		});
+	});
+</script>
+
+<div class="menu1"><a href="/contents.do?idx=381" ><span>도서관소개</span></a>
+			<div class="two_depth">
+				<ul>
+				<li>
+								<a href="/contents.do?idx=381"  class="depth2_menu" data-idx="381" >인사말</a>
+
+								</li>
+						<li>
+								<a href="/contents.do?idx=385"  class="depth2_menu" data-idx="385" >조직도/담당업무</a>
+
+								</li>
+						<li>
+								<a href="/contents.do?idx=448"  class="depth2_menu" data-idx="386" >도서관현황</a>
+
+								</li>
+						</ul>
+				</div>
+			</div>
+	<div class="menu2"><a href="/contents.do?idx=90" ><span>이용안내</span></a>
+			<div class="two_depth">
+				<ul>
+				<li>
+								<a href="/contents.do?idx=90"  class="depth2_menu" data-idx="90" >회원가입</a>
+
+								</li>
+						<li>
+								<a href="/contents.do?idx=306"  class="depth2_menu" data-idx="306" >비대면 간편가입</a>
+
+								</li>
+						<li>
+								<a href="/contents.do?idx=91"  class="depth2_menu" data-idx="91" >대출반납</a>
+
+								</li>
+						<li>
+								<a href="/contents.do?idx=93"  class="depth2_menu" data-idx="93" >책이음/상호대차</a>
+
+								</li>
+						<li>
+								<a href="/contents.do?idx=301"  class="depth2_menu" data-idx="301" >전자책도서관</a>
+
+								</li>
+						<li>
+								<a href="/contents.do?idx=443"  class="depth2_menu" data-idx="312" >스마트도서관</a>
+
+								</li>
+						<li>
+								<a href="/contents.do?idx=353"  class="depth2_menu" data-idx="353" >낙소스 뮤직 라이브러리</a>
+
+								</li>
+						<li>
+								<a href="/contents.do?idx=92"  class="depth2_menu" data-idx="92" >희망도서</a>
+
+								</li>
+						<li>
+								<a href="/contents.do?idx=94"  class="depth2_menu" data-idx="94" >U-도서관</a>
+
+								</li>
+						<li>
+								<a href="/contents.do?idx=95"  class="depth2_menu" data-idx="95" >책바다</a>
+
+								</li>
+						<li>
+								<a href="/contents.do?idx=96"  class="depth2_menu" data-idx="96" >책나래</a>
+
+								</li>
+						<li>
+								<a href="/contents.do?idx=97"  class="depth2_menu" data-idx="97" >사서에게 물어보세요</a>
+
+								</li>
+						<li>
+								<a href="/contents.do?idx=98"  class="depth2_menu" data-idx="98" >국회원문D/B서비스</a>
+
+								</li>
+						</ul>
+				</div>
+			</div>
+	<div class="menu3"><a href="/site/search/search00.do" ><span>소장자료검색</span></a>
+			<div class="two_depth">
+				<ul>
+				<li>
+								<a href="/site/search/search00.do"  class="depth2_menu" data-idx="100" >통합검색</a>
+
+								</li>
+						<li>
+								<a href="/site/search/search01.do"  class="depth2_menu" data-idx="101" >단행본</a>
+
+								</li>
+						<li>
+								<a href="/site/search/search08.do"  class="depth2_menu" data-idx="309" >전자책</a>
+
+								</li>
+						<li>
+								<a href="/site/search/search09.do"  class="depth2_menu" data-idx="313" >오디오북</a>
+
+								</li>
+						<li>
+								<a href="/site/search/smartSearch.do?station_name=CHDSECOBOX01&menu=all&keyword="  class="depth2_menu" data-idx="311" >스마트도서관</a>
+
+								</li>
+						<li>
+								<a href="/site/search/search02.do"  class="depth2_menu" data-idx="102" >연속간행물</a>
+
+								</li>
+						<li>
+								<a href="/site/search/search03.do"  class="depth2_menu" data-idx="103" >멀티미디어</a>
+
+								</li>
+						<li>
+								<a href="/site/search/search04.do"  class="depth2_menu" data-idx="104" >신착자료</a>
+
+								</li>
+						<li>
+								<a href="/site/search/search06.do"  class="depth2_menu" data-idx="218" >인기도서</a>
+
+								</li>
+						</ul>
+				</div>
+			</div>
+	<div class="menu4"><a href="/contents.do?idx=107" ><span>프로그램/문화교실</span></a>
+			<div class="two_depth">
+				<ul>
+				<li>
+								<a href="/contents.do?idx=107"  class="depth2_menu" data-idx="107" >독서문화프로그램</a>
+
+								</li>
+						<li>
+								<a href="/edusat2/list.do"  class="depth2_menu" data-idx="108" >문화교실</a>
+
+								</li>
+						</ul>
+				</div>
+			</div>
+	<div class="menu5"><a href="/contents.do?idx=109" ><span>참여마당</span></a>
+			<div class="two_depth">
+				<ul>
+				<li>
+								<a href="/contents.do?idx=109"  class="depth2_menu" data-idx="109" >도서관소식</a>
+
+								</li>
+						<li>
+								<a href="/contents.do?idx=363"  class="depth2_menu" data-idx="363" >도서관견학 신청</a>
+
+								</li>
+						<li>
+								<a href="/contents.do?idx=184"  class="depth2_menu" data-idx="184" >이달의 행사</a>
+
+								</li>
+						<li>
+								<a href="/contents.do?idx=154"  class="depth2_menu" data-idx="154" >자주하는 질문</a>
+
+								</li>
+						<li>
+								<a href="/contents.do?idx=155"  class="depth2_menu" data-idx="155" >Q&A</a>
+
+								</li>
+						<li>
+								<a href="/contents.do?idx=273"  class="depth2_menu" data-idx="273" >대관 신청</a>
+
+								</li>
+						<li>
+								<a href="/contents.do?idx=338"  class="depth2_menu" data-idx="337" >메이커스페이스</a>
+
+								</li>
+						<li>
+								<a href="/contents.do?idx=340"  class="depth2_menu" data-idx="340" >유실물 안내</a>
+
+								</li>
+						</ul>
+				</div>
+			</div>
+	<div class="menu6"><a href="/contents.do?idx=112" ><span>나의 도서관</span></a>
+			<div class="two_depth">
+				<ul>
+				<li>
+								<a href="/contents.do?idx=112"  class="depth2_menu" data-idx="112" >내 서재</a>
+
+								</li>
+						<li>
+								<a href="/contents.do?idx=118"  class="depth2_menu" data-idx="118" >신청내역</a>
+
+								</li>
+						<li>
+								<a href="/site/mylib/hope_book_request.do"  class="depth2_menu" data-idx="163" >희망도서 신청</a>
+
+								</li>
+						<li>
+								<a href="/site/mylib/modify.do"  class="depth2_menu" data-idx="164" >개인정보 수정</a>
+
+								</li>
+						<li>
+								<a href="/site/mylib/drop_out.do"  class="depth2_menu" data-idx="165" >회원탈퇴</a>
+
+								</li>
+						</ul>
+				</div>
+			</div>
+	<div class="menu7"><a href="/contents.do?idx=495" ><span>함께하는 도서관</span></a>
+			<div class="two_depth">
+				<ul>
+				<li>
+								<a href="/contents.do?idx=495"  class="depth2_menu" data-idx="491" >학교에 간 도서관</a>
+
+								</li>
+						<li>
+								<a href="/contents.do?idx=168"  class="depth2_menu" data-idx="168" >책축제</a>
+
+								</li>
+						<li>
+								<a href="/contents.do?idx=300"  class="depth2_menu" data-idx="300" >1일 1장</a>
+
+								</li>
+						<li>
+								<a href="/contents.do?idx=167"  class="depth2_menu" data-idx="167" >한 주제로 함께 읽기</a>
+
+								</li>
+						<li>
+								<a href="/contents.do?idx=170"  class="depth2_menu" data-idx="170" >북스타트</a>
+
+								</li>
+						<li>
+								<a href="/board/list.do?a_num=27662096"  class="depth2_menu" data-idx="303" >북팟</a>
+
+								</li>
+						</ul>
+				</div>
+			</div>
+	<div class="menu8"><a href="/contents.do?idx=428" ><span>정보광장</span></a>
+			<div class="two_depth">
+				<ul>
+				<li>
+								<a href="/contents.do?idx=428"  class="depth2_menu" data-idx="428" >지금 도서관은</a>
+
+								</li>
+						<li>
+								<a href="/board/list.do?a_num=34636844"  class="depth2_menu" data-idx="119" >언론보도</a>
+
+								</li>
+						<li>
+								<a href="/board/list.do?a_num=61479544"  class="depth2_menu" data-idx="121" >홍보영상</a>
+
+								</li>
+						<li>
+								<a href="/board/list.do?a_num=93428317"  class="depth2_menu" data-idx="321" >발간자료</a>
+
+								</li>
+						</ul>
+				</div>
+			</div>
+	</div>
+						</div>
+					</div>
+					<a href="/sitemap.do" class="btn_sitemap">사이트맵</a>
+				</div>
+				<div class="gnb_bg"></div>
+			</div>
+		</div>
+		<div class="header_dimmed"></div>
+		<!--//메뉴영역 -->
+		
+		 <!--<p class="log_btn">
+			<a href="/site/member/login.do?prepage=%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC">로그인</a>
+				</p>-->
+		
+		<!-- 퀵메뉴 -->
+		<div class="mquick">
+			<ul>
+				<li class="qtit">Quick Menu</li>
+				<li class="icon01"><a href="#navi" class="help">첫 방문</a></li>
+				<li class="icon02"><a href="/contents.do?idx=448" class="libFind">도서관 바로가기</a></li>
+				<li class="icon03"><a href="/site/mylib/mybook02.do">나의 도서관</a></li>
+				<li class="icon04"><a href="https://m.dobong.go.kr/wdb_dev/smssvc/m_default.asp" target="_blank" title="새창열림">도봉구 소식받기</a></li>
+				<li>
+					<!-- 최상하단 이동-->
+					<div class="go-top">
+						<p class="top_btn"><a href="#head">최상단 이동</a></p>
+						<!-- <p class="bottom_btn"><a href="#footer">최하단 이동</a></p> -->
+					</div>
+					<script type="text/javascript">
+					/*Add class when scroll down*/
+					$(window).scroll(function(event){
+						var scroll = $(window).scrollTop();
+						if (scroll >= 50) {
+							$(".go-top").addClass("show");
+							$(".floating").addClass("show");
+						} else {
+							$(".go-top").removeClass("show");
+							$(".floating").removeClass("show");
+						}
+					});
+					/*Animation anchor*/
+					$('.top_btn a').click(function(){
+						$('html, body').animate({
+							scrollTop: $( $(this).attr('href') ).offset().top
+						}, 1000);
+					});
+					</script>
+					<!-- //최상하단 이동-->
+				</li>
+			</ul>
+		</div>
+		<!-- //퀵메뉴 -->
+
+		<!-- 첫 방문 -->
+		<div class="firstIntroWrap" style="display: none;">
+			<div class="firstIntro">
+				<div class="topItem">
+					<p class="tit">첫 방문</p>
+					<a href="#close" class="barClose" title="창 닫기"></a>
+				</div>
+				<div class="inner">
+					<ul class="quickList">
+						<li class="icon02">
+							<a href="/contents.do?idx=90" title="회원가입"><span class="blind">회원가입</span></a>
+							<p>회원가입</p>
+						</li>
+						<li class="icon03">
+							<a href="/contents.do?idx=306" title="비대면 간편가입"><span class="blind">비대면 간편가입</span></a>
+							<p>비대면 간편가입</p>
+						</li>
+						<li class="icon04">
+							<a href="javascript:;" onclick="javascript:$('.firstIntroWrap').hide();location.href='/main.do?popnone=y#4Page';" title="도서관 안내"><span class="blind">도서관 안내</span></a>
+							<p>도서관안내</p>
+						</li>
+						<li class="icon05">
+							<a href="/contents.do?idx=91" title="대출반납"><span class="blind">대출반납</span></a>
+							<p>대출반납</p>
+						</li>
+						<!-- <li class="icon01">
+							<a href="/contents.do?idx=381" title="인사말"><span class="blind">인사말</span></a>
+							<p>인사말</p>
+						</li>
+						<li class="icon06">
+							<a href="/contents.do?idx=385" title="조직 및 업무"><span class="blind">조직 및 업무</span></a>
+							<p>조직 및 업무</p>
+						</li>
+						<li class="list06">
+							<div class="imgBox">
+								<a href="/contents.do?idx=90" title="회원가입"></a>
+							</div>
+							<p class="txtBox">회원가입</p>
+						</li>
+						<li class="list06">
+							<div class="imgBox">
+								<a href="/contents.do?idx=306" title="비대면 간편가입"></a>
+							</div>
+							<p class="txtBox">비대면 간편가입</p>
+						</li> -->
+					</ul>
+				</div>
+			</div>
+			<div class="popDim">
+			</div>
+		</div>
+		<!-- //첫 방문 -->
+		
+		<!-- 도서관 바로가기 -->
+		<div class="libPopWrap" style="display: none;">
+			<!-- <div class="libPop">
+				<div class="topItem">
+					<p class="tit">바로가기</p>
+					<a href="#close" class="barClose" title="창 닫기"></a>
+				</div>
+				<div class="inner">
+					<ul class="quickList">
+						<li class="list01">
+							<div class="txtBox"><a href=""><p>정보<span class="libMobileHide">도서관</span></p></a></div>
+						</li>
+						<li class="list02">
+							<div class="txtBox"><a href=""><p>정보<br class="mobileShow4"><span class="libMobileHide">도서관</span></p></a></div>
+						</li>
+						<li class="list07">
+							<div class="txtBox"><a href="">북</a></div>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="popDim"></div> -->
+		</div>
+		<!-- //도서관 바로가기 -->
+
+<!-- 모바일메뉴영역 -->
+		<div class="viewAllMenu">
+			<button type="button" class="btnViewAll">전체메뉴 열기</button><!-- 스크립트 : 클릭 시 <div class="viewAllMenu"> class="open" -->
+			<div class="con">
+				<div class="con_head">
+	
+	
+					<!-- <a class="jsNaverLogout" style="display:none;" href="javascript:;" onclick="javascript: naver_logout();">[네이버 로그아웃]</a>
+						<a class="jsKakaoLogout" style="display:none;" href="javascript:;" onclick="javascript: kakao_logout();">[카카오 로그아웃]</a> -->
+										
+						<p class="mo_intro">환영합니다.</p>
+						<!--<a href="/main/site/member/login.do?prepage=%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC">로그인하세요</a>-->
+					</div>
+				<nav>
+					<ul>
+						<li class="jsMmenu">
+							<a href="javascript:;"><span>도서관소개</span></a>
+							<div class="jsMsubMenu" style="display:none;">
+								<ul>
+									<li><a href="/contents.do?idx=381" >인사말</a>
+											</li>
+											<li><a href="/contents.do?idx=385" >조직도/담당업무</a>
+											</li>
+											<li><a href="/contents.do?idx=448" class="depth3">도서관현황</a>
+											<ul style="display:none;">
+											<li><a href="/contents.do?idx=448" >도봉문화정보도서관</a></li>
+												
+													<li><a href="/contents.do?idx=453" >도봉아이나라도서관</a></li>
+												
+													<li><a href="/contents.do?idx=458" >학마을도서관</a></li>
+												
+													<li><a href="/contents.do?idx=463" >도봉기적의도서관</a></li>
+												
+													<li><a href="/contents.do?idx=468" >쌍문채움도서관</a></li>
+												
+													<li><a href="/contents.do?idx=473" >원당마을한옥도서관</a></li>
+												
+													<li><a href="/contents.do?idx=478" >둘리도서관</a></li>
+												
+													<li><a href="/contents.do?idx=483" >김근태기념도서관</a></li>
+												
+													<li><a href="/contents.do?idx=394" >공립작은도서관</a></li>
+												
+													</ul>
+											</li>
+											</ul>
+							</div>
+						</li>					
+					<li class="jsMmenu">
+							<a href="javascript:;"><span>이용안내</span></a>
+							<div class="jsMsubMenu" style="display:none;">
+								<ul>
+									<li><a href="/contents.do?idx=90" >회원가입</a>
+											</li>
+											<li><a href="/contents.do?idx=306" >비대면 간편가입</a>
+											</li>
+											<li><a href="/contents.do?idx=91" >대출반납</a>
+											</li>
+											<li><a href="/contents.do?idx=93" >책이음/상호대차</a>
+											</li>
+											<li><a href="/contents.do?idx=301" >전자책도서관</a>
+											</li>
+											<li><a href="/contents.do?idx=443" class="depth3">스마트도서관</a>
+											<ul style="display:none;">
+											<li><a href="/contents.do?idx=443" >도봉구청</a></li>
+												
+													<li><a href="/contents.do?idx=444" >방학동</a></li>
+												
+													<li><a href="/contents.do?idx=445" >쌍문역</a></li>
+												
+													</ul>
+											</li>
+											<li><a href="/contents.do?idx=353" >낙소스 뮤직 라이브러리</a>
+											</li>
+											<li><a href="/contents.do?idx=92" >희망도서</a>
+											</li>
+											<li><a href="/contents.do?idx=94" >U-도서관</a>
+											</li>
+											<li><a href="/contents.do?idx=95" >책바다</a>
+											</li>
+											<li><a href="/contents.do?idx=96" >책나래</a>
+											</li>
+											<li><a href="/contents.do?idx=97" >사서에게 물어보세요</a>
+											</li>
+											<li><a href="/contents.do?idx=98" >국회원문D/B서비스</a>
+											</li>
+											</ul>
+							</div>
+						</li>					
+					<li class="jsMmenu">
+							<a href="javascript:;"><span>소장자료검색</span></a>
+							<div class="jsMsubMenu" style="display:none;">
+								<ul>
+									<li><a href="/site/search/search00.do" >통합검색</a>
+											</li>
+											<li><a href="/site/search/search01.do" >단행본</a>
+											</li>
+											<li><a href="/site/search/search08.do" >전자책</a>
+											</li>
+											<li><a href="/site/search/search09.do" >오디오북</a>
+											</li>
+											<li><a href="/site/search/smartSearch.do?station_name=CHDSECOBOX01&menu=all&keyword=" >스마트도서관</a>
+											</li>
+											<li><a href="/site/search/search02.do" >연속간행물</a>
+											</li>
+											<li><a href="/site/search/search03.do" >멀티미디어</a>
+											</li>
+											<li><a href="/site/search/search04.do" >신착자료</a>
+											</li>
+											<li><a href="/site/search/search06.do" >인기도서</a>
+											</li>
+											</ul>
+							</div>
+						</li>					
+					<li class="jsMmenu">
+							<a href="javascript:;"><span>프로그램/문화교실</span></a>
+							<div class="jsMsubMenu" style="display:none;">
+								<ul>
+									<li><a href="/contents.do?idx=107" >독서문화프로그램</a>
+											</li>
+											<li><a href="/edusat2/list.do" >문화교실</a>
+											</li>
+											</ul>
+							</div>
+						</li>					
+					<li class="jsMmenu">
+							<a href="javascript:;"><span>참여마당</span></a>
+							<div class="jsMsubMenu" style="display:none;">
+								<ul>
+									<li><a href="/contents.do?idx=109" >도서관소식</a>
+											</li>
+											<li><a href="/contents.do?idx=363" >도서관견학 신청</a>
+											</li>
+											<li><a href="/contents.do?idx=184" >이달의 행사</a>
+											</li>
+											<li><a href="/contents.do?idx=154" >자주하는 질문</a>
+											</li>
+											<li><a href="/contents.do?idx=155" >Q&A</a>
+											</li>
+											<li><a href="/contents.do?idx=273" >대관 신청</a>
+											</li>
+											<li><a href="/contents.do?idx=338" class="depth3">메이커스페이스</a>
+											<ul style="display:none;">
+											<li><a href="/contents.do?idx=338" >도봉문화정보도서관</a></li>
+												
+													<li><a href="/contents.do?idx=339" >학마을도서관</a></li>
+												
+													</ul>
+											</li>
+											<li><a href="/contents.do?idx=340" >유실물 안내</a>
+											</li>
+											</ul>
+							</div>
+						</li>					
+					<li class="jsMmenu">
+							<a href="javascript:;"><span>나의 도서관</span></a>
+							<div class="jsMsubMenu" style="display:none;">
+								<ul>
+									<li><a href="/contents.do?idx=112" >내 서재</a>
+											</li>
+											<li><a href="/contents.do?idx=118" >신청내역</a>
+											</li>
+											<li><a href="/site/mylib/hope_book_request.do" >희망도서 신청</a>
+											</li>
+											<li><a href="/site/mylib/modify.do" >개인정보 수정</a>
+											</li>
+											<li><a href="/site/mylib/drop_out.do" >회원탈퇴</a>
+											</li>
+											</ul>
+							</div>
+						</li>					
+					<li class="jsMmenu">
+							<a href="javascript:;"><span>함께하는 도서관</span></a>
+							<div class="jsMsubMenu" style="display:none;">
+								<ul>
+									<li><a href="/contents.do?idx=495" class="depth3">학교에 간 도서관</a>
+											<ul style="display:none;">
+											<li><a href="/contents.do?idx=495" >2026년</a></li>
+												
+													<li><a href="/contents.do?idx=496" >2025년</a></li>
+												
+													<li><a href="/contents.do?idx=497" >2024년</a></li>
+												
+													</ul>
+											</li>
+											<li><a href="/contents.do?idx=168" >책축제</a>
+											</li>
+											<li><a href="/contents.do?idx=300" >1일 1장</a>
+											</li>
+											<li><a href="/contents.do?idx=167" >한 주제로 함께 읽기</a>
+											</li>
+											<li><a href="/contents.do?idx=170" >북스타트</a>
+											</li>
+											<li><a href="/board/list.do?a_num=27662096" >북팟</a>
+											</li>
+											</ul>
+							</div>
+						</li>					
+					<li class="jsMmenu">
+							<a href="javascript:;"><span>정보광장</span></a>
+							<div class="jsMsubMenu" style="display:none;">
+								<ul>
+									<li><a href="/contents.do?idx=428" >지금 도서관은</a>
+											</li>
+											<li><a href="/board/list.do?a_num=34636844" >언론보도</a>
+											</li>
+											<li><a href="/board/list.do?a_num=61479544" >홍보영상</a>
+											</li>
+											<li><a href="/board/list.do?a_num=93428317" class="depth3">발간자료</a>
+											<ul style="display:none;">
+											<li><a href="/board/list.do?a_num=93428317" >소식지</a></li>
+												
+													<li><a href="/board/list.do?a_num=87817574" >운영보고서</a></li>
+												
+													<li><a href="/board/list.do?a_num=50261858" >기타자료</a></li>
+												
+													</ul>
+											</li>
+											</ul>
+							</div>
+						</li>					
+					</ul>
+				</nav>
+				<div class="con_btm">
+					<!-- <ul class="sns_area">
+						<li><a href="https://www.facebook.com/yutongdanji" target="_blank"><img src="/nanum/site/builder/skin/main/img/common/sns_facebook.png" alt="페이스북" /></a></li>
+						<li><a href="https://pf.kakao.com/_RsSSG" target="_blank"><img src="/nanum/site/builder/skin/main/img/common/sns_kakao_ch.png" alt="카카오채널" /></a></li>
+						<li><a href="https://www.instagram.com/yutongdanji_official/" target="_blank"><img src="/nanum/site/builder/skin/main/img/common/sns_instagram.png" alt="인스타그램" /></a></li>
+						<li><a href="https://blog.naver.com/yutongdanji_blog" target="_blank"><img src="/nanum/site/builder/skin/main/img/common/sns_blog.png" alt="블로그" /></a></li>
+					</ul>-->
+					<ul class="mem_log">
+						<li><a href="/site/member/login.do?prepage=%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC">로그인</a></li>
+								<li><a href="/contents.do?idx=174">회원가입</a></li>
+							</ul>
+				</div>
+				<script type="text/javascript">
+				$(function(){
+					$(".jsMmenu").find("a:first").click(function(){
+						var menu1 = $(this);
+						var sub = $(this).next(".jsMsubMenu");
+						if (sub.is(":visible")){
+							sub.slideUp();
+							menu1.removeClass("on");
+						}else{
+							$(".jsMsubMenu").slideUp();
+							$(".jsMmenu").find("a:first").removeClass("on");
+	
+							sub.slideDown();
+							menu1.addClass("on");
+						}
+					})
+					
+					$(".jsMsubMenu").find("a.depth3").click(function(){
+						var ul = $(this).parent().find("ul");
+						if( ul.length != 0 ){
+							if(ul.css("display") == "none"){
+								$(this).addClass("on");
+								ul.slideDown();
+							}else{
+								$(this).removeClass("on");
+								ul.slideUp();
+							}
+							return false;
+						}
+					});
+				});
+				</script>
+			</div>
+			<button type="button" class="btnAllClose">전체메뉴 닫기</button><!-- 스크립트 : 클릭 시 class="open" 삭제 -->
+		</div>
+		<div class="dimmed"></div>
+		<script>
+		$(function(){
+			$(".langbox .btnlang").on("click", function(){
+				if(!$(this).hasClass("on")) {
+					$(this).addClass("on");
+					$(".langbox .langlist").show();
+				} else {
+					$(this).removeClass("on");
+					$(".langbox .langlist").hide();
+				}
+			}).focusout(function(){
+				setTimeout(function(){
+					$(".langbox .btnlang").removeClass("on");
+					$(".langbox .langlist").hide();
+				}, 200);
+			});
+		});
+		</script>
+		<!-- //모바일메뉴영역 -->
+	</div>
+	
+	
+
+
+
+<script type="text/javascript">
+$(function($){
+	$(window).scroll(function(){
+		if ($(this).scrollTop() > 300) {
+			// $('.smenu_down').css({display:'block'});
+			$('.smenu_down').slideDown();
+			//$('.fix_menu').slideDown();
+		} else {
+			$('.smenu_down').slideUp();
+			//$('.fix_menu').slideUp();
+			//$('.smenu_down').css({display:'none'});
+		};
+	});
+});
+</script>
+<!--중간영역-->
+	<div id="container">
+		<!-- <div class="smenu_down">
+			<p class="tit jsMMenuText2"><a href="#empty" class="jsMMenuBtn2"></a></p>
+			<div id="dep_viwe">
+				<ul class="sub01">
+					
+					
+					
+					<li class="on"><a href="/site/search/search00.do"  >통합검색</a></li>
+					
+					
+					
+					<li ><a href="/site/search/search01.do"  >단행본</a></li>
+					
+					
+					
+					<li ><a href="/site/search/search08.do"  >전자책</a></li>
+					
+					
+					
+					<li ><a href="/site/search/search09.do"  >오디오북</a></li>
+					
+					
+					
+					<li ><a href="/site/search/smartSearch.do?station_name=CHDSECOBOX01&menu=all&keyword="  >스마트도서관</a></li>
+					
+					
+					
+					<li ><a href="/site/search/search02.do"  >연속간행물</a></li>
+					
+					
+					
+					<li ><a href="/site/search/search03.do"  >멀티미디어</a></li>
+					
+					
+					
+					<li ><a href="/site/search/search04.do"  >신착자료</a></li>
+					
+					
+					
+					<li ><a href="/site/search/search06.do"  >인기도서</a></li>
+					
+					
+					
+					<li ><a href="/site/search/search05.do"  >장난감</a></li>
+					
+				</ul>
+			</div>
+		</div>
+		<script type="text/javascript"> 
+			$(function(){
+				$(".jsMMenuText2>a").text($("li.on").text());
+				$(".jsMMenuBtn2").click(function(){
+					if ($("#dep_viwe:visible").length>0){
+						$("#dep_viwe").slideUp();
+					}else{
+						$("#dep_viwe").slideDown();
+					}
+				});
+			});
+		</script>-->
+	<div class="area">
+		<!--사이드영역-->
+		<div id="sidebar">
+			<div class="stit">
+				<h2>소장자료검색</h2>
+			</div>
+			<div id="sidemenu">
+				
+				<p class="tit"><a href="#empty" class="jsMMenuBtn">통합검색</a></p>
+				<ul id="jsMMenu" class="jsMMenu">
+					
+					<li id="left_100" class="on ">
+				<a href="/site/search/search00.do" >
+				통합검색</a>
+				</li>
+			
+			
+		<li id="left_101" >
+				<a href="/site/search/search01.do" >
+				단행본</a>
+				</li>
+			
+			
+		<li id="left_309" >
+				<a href="/site/search/search08.do" >
+				전자책</a>
+				</li>
+			
+			
+		<li id="left_313" >
+				<a href="/site/search/search09.do" >
+				오디오북</a>
+				</li>
+			
+			
+		<li id="left_311" >
+				<a href="/site/search/smartSearch.do?station_name=CHDSECOBOX01&menu=all&keyword=" >
+				스마트도서관</a>
+				</li>
+			
+			
+		<li id="left_102" >
+				<a href="/site/search/search02.do" >
+				연속간행물</a>
+				</li>
+			
+			
+		<li id="left_103" >
+				<a href="/site/search/search03.do" >
+				멀티미디어</a>
+				</li>
+			
+			
+		<li id="left_104" >
+				<a href="/site/search/search04.do" >
+				신착자료</a>
+				</li>
+			
+			
+		<li id="left_218" >
+				<a href="/site/search/search06.do" >
+				인기도서</a>
+				</li>
+			
+			
+		<script type="text/javascript">
+function sub3Menu(no){ //요청
+	//모두 제거
+	$('li[id^=left_]').removeClass('on').removeClass('add');
+	$('ul[id^=leftsub_]:not([id=leftsub_'+no+']').css('display', 'none');
+
+	if($('#leftsub_'+no).css('display') == 'none'){
+		$('#left_'+no).addClass('on');
+		$('#left_'+no).addClass('add');
+		$('#leftsub_'+no).css('display', '');
+		$('#leftsub_'+no).parent('div').css('display', '');
+	}else{
+		$('#left_'+no).addClass('on');
+		$('#left_'+no).removeClass('add');
+		$('#leftsub_'+no).css('display', 'none');
+		$('#leftsub_'+no).parent('div').css('display', 'none');
+
+	}
+}
+</script>
+				</ul>
+			</div>
+			
+			<style>
+			#jsFacetLeft li.on a {text-decoration:underline;color:#222;font-weight:bold;}
+			</style>
+			<div id="jsFacetLeft">
+			
+			</div>
+				
+				
+				
+		</div>
+		<!--//사이드영역-->
+			<!-- <div id="sidebar_mask"></div>-->
+			<!--컨텐츠영역-->
+			<div id="contents">
+				<!--프린트영역-->
+				<div id="print_wrap"><style>
+@media print {
+	#sidebar{position:relative;top:0px;}
+	/*컨텐츠*/	
+	#contents{width: 100vw !important;min-height: 100vh;padding:3vh 1vw 3vh 1vw;box-sizing: border-box;}
+	#cont_head{display:none;}	
+	#location{display:none;}	
+	#cont_wrap{width: 100%;margin-top:0;}
+}
+</style>
+<div id="cont_head">
+				<!-- 공유 -->
+				<div class="share">
+					<a href="javascript:;" onclick="javascript:printPage();" class="btn_print">인쇄</a>
+					<a href="javascript:;" onclick="share_bt();" onfocus="if(event .keycode==13) { share_bt(); }" class="btn_share">공유하기</a>
+					<div id="share_cont" style="display:none;">
+						<ul>
+							<li><a href="javascript:;" onclick="facebook(document.title, 'https://www.unilib.dobong.kr/site/search/search00.do?cmd_name=bookandnonbooksearch&search_type=detail&manage_code=MA%2CMB%2CMC%2CME%2CMG%2CMJ%2CMF%2CMH%2CSA%2CMD%2CSB%2CSL%2CSM%2CSN%2CSO%2CSP%2CSK%2CSQ%2CSR%2CSS%2CST%2CSU%2CSG%2CSH%2CSC&search_txt=%ED%8C%8C%EC%9D%B4%EC%8D%AC');" title="새창열림"><img src="/nanum/site/img/common/share_facebook.png" alt="페이스북" /><span>페이스북</span></a></li>
+							<li><a href="javascript:;" onclick="twitter(document.title, 'https://www.unilib.dobong.kr/site/search/search00.do?cmd_name=bookandnonbooksearch&search_type=detail&manage_code=MA%2CMB%2CMC%2CME%2CMG%2CMJ%2CMF%2CMH%2CSA%2CMD%2CSB%2CSL%2CSM%2CSN%2CSO%2CSP%2CSK%2CSQ%2CSR%2CSS%2CST%2CSU%2CSG%2CSH%2CSC&search_txt=%ED%8C%8C%EC%9D%B4%EC%8D%AC');" title="새창열림"><img src="/nanum/site/img/common/share_twitter.png" alt="트위터" /><span>X</span></a></li>
+							<li><a href="javascript:;" onclick="blog(document.title, 'https://www.unilib.dobong.kr/site/search/search00.do?cmd_name=bookandnonbooksearch&search_type=detail&manage_code=MA%2CMB%2CMC%2CME%2CMG%2CMJ%2CMF%2CMH%2CSA%2CMD%2CSB%2CSL%2CSM%2CSN%2CSO%2CSP%2CSK%2CSQ%2CSR%2CSS%2CST%2CSU%2CSG%2CSH%2CSC&search_txt=%ED%8C%8C%EC%9D%B4%EC%8D%AC');" title="새창열림"><img src="/nanum/site/img/common/share_blog.png" alt="블로그" /><span>블로그</span></a></li>
+							<li><a href="javascript:;" onclick="copy_trackback('https://www.unilib.dobong.kr/site/search/search00.do?cmd_name=bookandnonbooksearch&search_type=detail&manage_code=MA%2CMB%2CMC%2CME%2CMG%2CMJ%2CMF%2CMH%2CSA%2CMD%2CSB%2CSL%2CSM%2CSN%2CSO%2CSP%2CSK%2CSQ%2CSR%2CSS%2CST%2CSU%2CSG%2CSH%2CSC&search_txt=%ED%8C%8C%EC%9D%B4%EC%8D%AC');"><img src="/nanum/site/img/common/share_url.png" alt="링크복사" /><span>url공유</span></a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="share_window"></div>
+				<!-- //공유 -->
+				
+				<div class="stit_wrap">
+					<h3>통합검색</h3>
+					
+					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+				
+				<!-- 현재위치 -->
+				<div id="location">
+					<ul>
+						<li class="home"><a href="/main.do"><span class="blind">home</span></a></li>
+						<li><a href="/site/search/search00.do">소장자료검색</a></li>
+						<li class="now">통합검색</li>
+							</ul>
+				</div>
+				<!-- //현재위치 -->
+			</div>
+			<!--내용영역-->
+			<div id="cont_wrap">
+			
+			<div class="con_tab2 tab_b">
+				<ul class="no0">
+					</ul>
+			</div>
+			
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/nanum/ndls/common/css/common.css" rel="stylesheet" type="text/css" />
+<link href="/nanum/ndls/common/css/content.css" rel="stylesheet" type="text/css" />
+<link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet" />
+<script src="/nanum/ndls/common/js/common.js" type="text/javascript"></script>
+<script type="text/javascript" src="/nanum/ndls/common/js/jquery-jqtransform.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('.comm_sel').jqTransform();
+	});
+</script>
+<script src="/nanum/ndls/common/js/bookSearch.js"></script>
+
+					<p class="info_txt mb10"><strong>통합자료검색입니다.</strong>일반검색과 상세검색으로 필요하신 자료를 찾으실 수 있습니다.</p>
+					<!-- 탭메뉴 -->
+					<div class="ndlstab">
+						<ul>
+							<li><a class="on" href="#simple">일반검색</a></li>
+							<li><a  href="#detail">상세검색</a></li>
+						</ul>
+					</div>
+					<!--// 탭메뉴 -->
+
+					<div id="ndlsbox">
+
+						<!-- 검색하기_일반 -->
+						<form id="frm_sch" onsubmit="return searchSimple(this);" action="" method="get">
+						<input type="hidden" id="cmd_name" name="cmd_name" value="bookandnonbooksearch" value="" />
+						<input name="search_type" id="search_type" type="hidden" value="detail" />
+						<input name="manage_code" id="manage_code" type="hidden" value="MA,MB,MC,ME,MG,MJ,MF,MH,SA,MD,SB,SL,SM,SN,SO,SP,SK,SQ,SR,SS,ST,SU,SG,SH,SC" />
+						<input name="search_item_add" id="search_item_add" type="hidden" value="" />
+						<input name="search_txt_add" id="search_txt_add" type="hidden" value="파이썬" />
+						
+						<input name="use_facet" type="hidden" value="N" />
+						<input name="org_detail" type="hidden" value="" />
+						<input name="facet_manage_code" type="hidden" value="" />
+						<input name="facet_author" type="hidden" value="" />
+						<input name="facet_publisher" type="hidden" value="" />
+						<input name="facet_pub_year" type="hidden" value="" />
+						<input name="facet_subject_code" type="hidden" value="" />
+						<input name="facet_media_code" type="hidden" value="" />
+						
+							<fieldset>
+								<legend>단순 검색</legend>
+								<div class="searchbox base_search type2" >
+									<!-- 셀렉트박스 -->
+									<div class="select_box">
+											
+										
+										<span class="comm_sel comm_sel_type3">
+										<select name="search_item" title="검색형태 선택" id="search_item">
+											<option value="" >전체</option>
+											<option value="search_title" >제목</option>
+											<option value="search_author" >저자</option>
+											<option value="search_publisher" >발행처</option>
+											<option value="search_keyword" >키워드</option>
+										</select>
+										</span>
+										
+										<span class="comm_sel comm_sel_type3">
+										<select name="sh_orderby" title="정렬기준 선택" id="sh_orderby">
+											<option value="" >정렬</option>
+											<option value="TITLE;ASC" >제목 오름차순</option>
+											<option value="TITLE;DESC" >제목 내림차순</option>
+											<option value="AUTHOR;ASC" >저자 오름차순</option>
+											<option value="AUTHOR;DESC" >저자 내림차순</option>
+											<option value="PUBLISHER;ASC" >발행처 오름차순</option>
+											<option value="PUBLISHER;DESC" >발행처 내림차순</option>
+											<option value="PUB_YEAR;ASC" >발행년도 오름차순</option>
+											<option value="PUB_YEAR;DESC" >발행년도 내림차순</option>
+										</select>
+										</span>
+										
+										<span class="comm_sel comm_sel_type3">
+										<select name="subject_code" title="주제 선택" id="sh_orderby">
+											<option value="" >주제선택</option>
+
+											<option value="0" >총류</option>
+
+											<option value="1" >철학</option>
+
+											<option value="2" >종교</option>
+
+											<option value="3" >사회과학</option>
+
+											<option value="4" >순수과학</option>
+
+											<option value="5" >기술과학</option>
+
+											<option value="6" >예술</option>
+
+											<option value="7" >언어</option>
+
+											<option value="8" >문학</option>
+
+											<option value="9" >역사</option>
+
+										</select>
+										</span>	
+											
+									</div>
+									<!-- //셀렉트박스 -->
+									<!-- 검색바 -->
+									<div class="search_style">		
+										<div class="search">
+											<div class="input">
+												<label for="search_txt">주제선택 또는 검색어를 입력하세요</label>
+												<input name="search_txt" title="주제선택 또는 검색어를 입력하세요" class="withlabel" id="search_txt" type="text" maxlength="50" value="파이썬" />
+											</div>
+											<input type="submit" class="btn-search" value="검색" />						
+										</div>
+									</div>
+									<!-- //검색바 -->
+									
+									<!-- 도서관 선택 -->
+									<div class="lib_chk jsCheckBox lib_tit">
+										<p>구립도서관</p>
+										<!-- 개별도서관 -->
+										<ul class="ul_big_lib total_sch">
+											<li>
+											<!-- <li class="libTotal type2"> -->
+												<input id="sh_big" type="checkbox" value="Y" class="inp_chk default jsTot" />
+												<label for="sh_big">구립도서관 전체</label>
+											</li>
+											<li>
+												<input id="big_manage_code1" class="inp_chk default lib_code" type="checkbox" value="MA" checked />
+												<label for="big_manage_code1">도봉문화정보도서관</label>
+											</li>
+											<li>
+												<input id="big_manage_code2" class="inp_chk default lib_code" type="checkbox" value="MB" checked />
+												<label for="big_manage_code2">도봉아이나라도서관</label>
+											</li>
+											<li>
+												<input id="big_manage_code3" class="inp_chk default lib_code" type="checkbox" value="MC" checked />
+												<label for="big_manage_code3">학마을도서관</label>
+											</li>
+											<li>
+												<input id="big_manage_code4" class="inp_chk default lib_code" type="checkbox" value="ME" checked />
+												<label for="big_manage_code4">도봉기적의도서관</label>
+											</li>
+											<li>
+												<input id="big_manage_code7" class="inp_chk default lib_code" type="checkbox" value="MG" checked />
+												<label for="big_manage_code7">쌍문채움도서관</label>
+											</li>
+											<li>
+												<input id="big_manage_code9" class="inp_chk default lib_code" type="checkbox" value="MJ" checked />
+												<label for="big_manage_code9">원당마을한옥도서관</label>
+											</li>
+											<li>
+												<input id="big_manage_code6" class="inp_chk default lib_code" type="checkbox" value="MF" checked />
+												<label for="big_manage_code6">둘리도서관</label>
+											</li>
+											<li>
+												<input id="big_manage_code8" class="inp_chk default lib_code" type="checkbox" value="MH" checked />
+												<label for="big_manage_code8">김근태기념도서관</label>
+											</li>
+											
+										
+										
+										</ul>
+									</div>
+									
+									<div class="lib_chk jsCheckBox lib_tit border">
+										<p>작은도서관</p>
+										<!-- 작은도서관 -->
+										<ul class="ul_small_lib total_sch">
+											<!-- <li class="libTotal type2"> -->
+											<li class="fir">
+												<input type="checkbox" id="sh_small" value="Y" class="inp_chk default jsTot" />
+												<label for="sh_small" class="fb">작은도서관 전체</label>
+												<a href="javascript:;" class="list_bt" onclick="showSmallLib();">작은도서관 목록</a>
+											</li>
+										</ul>
+										<div id="div_small_lib2" style="margin-top:0px;display:none;">
+											<ul id="ul_small_lib2" class="total_sch" style="margin-top:0px;">
+												
+												
+												
+													
+												
+													
+												
+												
+												
+													
+												
+													
+												
+												
+												
+													
+												
+													
+												
+												
+												
+													
+												
+													
+												
+												
+												
+													
+												
+													
+												
+												
+												
+													
+												
+													
+												
+												
+												
+													
+												
+													
+												
+												
+												
+													
+												
+													
+												
+												
+												
+													
+												
+													
+													<li class="lib_small">
+														<input id="small_manage_code9" class="inp_chk default lib_code" type="checkbox" value="SA" checked=checked />
+														<label for="small_manage_code9">도봉구청 행복작은도서관</label>
+													</li>
+													
+												
+												
+												
+													
+												
+													
+													<li class="lib_small">
+														<input id="small_manage_code10" class="inp_chk default lib_code" type="checkbox" value="MD" checked=checked />
+														<label for="small_manage_code10">무수골도서관</label>
+													</li>
+													
+												
+												
+												
+													
+												
+													
+													<li class="lib_small">
+														<input id="small_manage_code11" class="inp_chk default lib_code" type="checkbox" value="SB" checked=checked />
+														<label for="small_manage_code11">지혜의등대 작은도서관</label>
+													</li>
+													
+												
+												
+												
+													
+												
+													
+													<li class="lib_small">
+														<input id="small_manage_code12" class="inp_chk default lib_code" type="checkbox" value="SL" checked=checked />
+														<label for="small_manage_code12">김수영문학도서관</label>
+													</li>
+													
+												
+												
+												
+													
+												
+													
+													<li class="lib_small">
+														<input id="small_manage_code13" class="inp_chk default lib_code" type="checkbox" value="SM" checked=checked />
+														<label for="small_manage_code13">쌍문1동 공립작은도서관</label>
+													</li>
+													
+												
+												
+												
+													
+												
+													
+													<li class="lib_small">
+														<input id="small_manage_code14" class="inp_chk default lib_code" type="checkbox" value="SN" checked=checked />
+														<label for="small_manage_code14">쌍문2동 공립작은도서관</label>
+													</li>
+													
+												
+												
+												
+													
+												
+													
+													<li class="lib_small">
+														<input id="small_manage_code15" class="inp_chk default lib_code" type="checkbox" value="SO" checked=checked />
+														<label for="small_manage_code15">쌍문3동 공립작은도서관</label>
+													</li>
+													
+												
+												
+												
+													
+												
+													
+													<li class="lib_small">
+														<input id="small_manage_code16" class="inp_chk default lib_code" type="checkbox" value="SP" checked=checked />
+														<label for="small_manage_code16">쌍문4동 공립작은도서관</label>
+													</li>
+													
+												
+												
+												
+													
+												
+													
+													<li class="lib_small">
+														<input id="small_manage_code17" class="inp_chk default lib_code" type="checkbox" value="SK" checked=checked />
+														<label for="small_manage_code17">방학2동 공립작은도서관</label>
+													</li>
+													
+												
+												
+												
+													
+												
+													
+													<li class="lib_small">
+														<input id="small_manage_code18" class="inp_chk default lib_code" type="checkbox" value="SQ" checked=checked />
+														<label for="small_manage_code18">창1동 공립작은도서관</label>
+													</li>
+													
+												
+												
+												
+													
+												
+													
+													<li class="lib_small">
+														<input id="small_manage_code19" class="inp_chk default lib_code" type="checkbox" value="SR" checked=checked />
+														<label for="small_manage_code19">창2동 공립작은도서관</label>
+													</li>
+													
+												
+												
+												
+													
+												
+													
+													<li class="lib_small">
+														<input id="small_manage_code20" class="inp_chk default lib_code" type="checkbox" value="SS" checked=checked />
+														<label for="small_manage_code20">창3동 공립작은도서관</label>
+													</li>
+													
+												
+												
+												
+													
+												
+													
+													<li class="lib_small">
+														<input id="small_manage_code21" class="inp_chk default lib_code" type="checkbox" value="ST" checked=checked />
+														<label for="small_manage_code21">창4동 공립작은도서관</label>
+													</li>
+													
+												
+												
+												
+													
+												
+													
+													<li class="lib_small">
+														<input id="small_manage_code22" class="inp_chk default lib_code" type="checkbox" value="SU" checked=checked />
+														<label for="small_manage_code22">창5동 공립작은도서관</label>
+													</li>
+													
+												
+												
+												
+													
+												
+													
+													<li class="lib_small">
+														<input id="small_manage_code23" class="inp_chk default lib_code" type="checkbox" value="SG" checked=checked />
+														<label for="small_manage_code23">도봉1동 공립작은도서관</label>
+													</li>
+													
+												
+												
+												
+													
+												
+													
+													<li class="lib_small">
+														<input id="small_manage_code24" class="inp_chk default lib_code" type="checkbox" value="SH" checked=checked />
+														<label for="small_manage_code24">도봉2동 공립작은도서관</label>
+													</li>
+													
+												
+												
+												
+													
+												
+													
+													<li class="lib_small">
+														<input id="small_manage_code25" class="inp_chk default lib_code" type="checkbox" value="SC" checked=checked />
+														<label for="small_manage_code25">북서울중학교</label>
+													</li>
+													
+												
+											</ul>
+										</div>
+									</div>
+									
+
+<script type="text/javascript">
+$(function(){
+	$(".jsCheckBox").find(":checkbox").click(function(){
+		var bObj = $(this).parents(".jsCheckBox:first");
+		if ($(this).hasClass("jsTot")){
+			bObj.find(":checkbox:not(.jsTot)").prop("checked",$(this).is(":checked"));
+		}else{
+			if(bObj.find(":checkbox:not(.jsTot):not(:checked)").length>0){
+				bObj.find(".jsTot").prop("checked",false);
+			}else{
+				bObj.find(".jsTot").prop("checked",true);	
+			}		
+		}
+	});
+	// 초기
+	$(".jsCheckBox").each(function(){
+		if($(this).find(":checkbox:not(.jsTot):not(:checked)").length>0){
+			$(this).find(".jsTot").prop("checked",false);
+		}else{
+			$(this).find(".jsTot").prop("checked",true);	
+		}
+	});
+	if (document.getElementById("frm_sch").manage_code.value==""){
+		$(".jsCheckBox").find(":checkbox").prop("checked",true);
+	}
+});
+
+function showSmallLib(){
+	$("#div_small_lib2").slideToggle('fast');
+}
+
+</script>
+									<!-- //도서관 선택 -->
+									
+									<!-- 결과내재검사 -->
+									<p class="searchwithin">
+										<input name="search_txt_add_ok" id="search_txt_add_ok" class="inp_chk default" type="checkbox" value="Y"  /> 
+										<label for="search_txt_add_ok"> 결과 내 재검색</label>
+									</p>
+									<!-- //결과내재검사 -->
+								</div>
+
+								
+							</fieldset>
+						</form>							
+						<!--// 검색하기_일반 -->
+
+						<!-- 검색하기_상세 -->
+						<form id="frm_sch2" onsubmit="return searchDetail(this);" action="" method="get">
+						<input name="detail" type="hidden" value="ok" />
+						<input type="hidden" id="cmd_name" name="cmd_name" value="bookandnonbooksearch" />
+						<input name="search_type" id="search_type" type="hidden" value="detail" />
+						
+						<input name="use_facet" type="hidden" value="N" />
+						<input name="org_detail" type="hidden" value="" />
+						<input name="facet_manage_code" type="hidden" value="" />
+						<input name="facet_author" type="hidden" value="" />
+						<input name="facet_publisher" type="hidden" value="" />
+						<input name="facet_pub_year" type="hidden" value="" />
+						<input name="facet_subject_code" type="hidden" value="" />
+						<input name="facet_media_code" type="hidden" value="" />
+						<input name="subject_code" id="detail_subject_code" type="hidden" value="" />
+						<input name="manage_code" id="detail_manage_code" type="hidden" value="MA,MB,MC,ME,MG,MJ,MF,MH,SA,MD,SB,SL,SM,SN,SO,SP,SK,SQ,SR,SS,ST,SU,SG,SH,SC" />
+						
+							<fieldset>
+								<legend>상세 검색</legend>
+
+								<div class="searchbox detail_search" id="div_detail"  style='display:none;' data-detail="">
+									<div class="section">
+										<dl>
+											<dt><label for="search_title">제목</label></dt>
+											<dd><input name="search_title" id="search_title" type="text" value="" /></dd>
+										</dl>
+
+
+										<dl>
+											<dt>도서관</dt>
+											<dd class="dobong_js jsDobong">
+												
+												<a href="javascript:;" class="selec_tit" title="도서관선택">
+													<p>도서관선택</p>
+													<span><img src="/nanum/site/img/common/arw_dobong_list.png" alt="리스트보기" /></span>
+												</a>
+												<ul class="selec_opt" style="display:none;">
+													<li><a href="javascript:;" data-value="MA,MB,MC,ME,MG,MJ,MF,MH,SA,MD,SB,SL,SM,SN,SO,SP,SK,SQ,SR,SS,ST,SU,SG,SH,SC" data-title="도서관선택" data-id="detail_manage_code" class="selected">도서관선택</a></li>
+												
+													<li><a href="javascript:;"  data-value="MA" data-title="도봉문화정보도서관" data-id="detail_manage_code" >도봉문화정보도서관</a></li>
+												
+													<li><a href="javascript:;"  data-value="MB" data-title="도봉아이나라도서관" data-id="detail_manage_code" >도봉아이나라도서관</a></li>
+												
+													<li><a href="javascript:;"  data-value="MC" data-title="학마을도서관" data-id="detail_manage_code" >학마을도서관</a></li>
+												
+													<li><a href="javascript:;"  data-value="ME" data-title="도봉기적의도서관" data-id="detail_manage_code" >도봉기적의도서관</a></li>
+												
+													<li><a href="javascript:;"  data-value="MG" data-title="쌍문채움도서관" data-id="detail_manage_code" >쌍문채움도서관</a></li>
+												
+													<li><a href="javascript:;"  data-value="MJ" data-title="원당마을한옥도서관" data-id="detail_manage_code" >원당마을한옥도서관</a></li>
+												
+													<li><a href="javascript:;"  data-value="MF" data-title="둘리도서관" data-id="detail_manage_code" >둘리도서관</a></li>
+												
+													<li><a href="javascript:;"  data-value="MH" data-title="김근태기념도서관" data-id="detail_manage_code" >김근태기념도서관</a></li>
+												
+													<li><a href="javascript:;"  data-value="SA" data-title="도봉구청 행복작은도서관" data-id="detail_manage_code" >도봉구청 행복작은도서관</a></li>
+												
+													<li><a href="javascript:;"  data-value="MD" data-title="무수골도서관" data-id="detail_manage_code" >무수골도서관</a></li>
+												
+													<li><a href="javascript:;"  data-value="SB" data-title="지혜의등대 작은도서관" data-id="detail_manage_code" >지혜의등대 작은도서관</a></li>
+												
+													<li><a href="javascript:;"  data-value="SL" data-title="김수영문학도서관" data-id="detail_manage_code" >김수영문학도서관</a></li>
+												
+													<li><a href="javascript:;"  data-value="SM" data-title="쌍문1동 공립작은도서관" data-id="detail_manage_code" >쌍문1동 공립작은도서관</a></li>
+												
+													<li><a href="javascript:;"  data-value="SN" data-title="쌍문2동 공립작은도서관" data-id="detail_manage_code" >쌍문2동 공립작은도서관</a></li>
+												
+													<li><a href="javascript:;"  data-value="SO" data-title="쌍문3동 공립작은도서관" data-id="detail_manage_code" >쌍문3동 공립작은도서관</a></li>
+												
+													<li><a href="javascript:;"  data-value="SP" data-title="쌍문4동 공립작은도서관" data-id="detail_manage_code" >쌍문4동 공립작은도서관</a></li>
+												
+													<li><a href="javascript:;"  data-value="SK" data-title="방학2동 공립작은도서관" data-id="detail_manage_code" >방학2동 공립작은도서관</a></li>
+												
+													<li><a href="javascript:;"  data-value="SQ" data-title="창1동 공립작은도서관" data-id="detail_manage_code" >창1동 공립작은도서관</a></li>
+												
+													<li><a href="javascript:;"  data-value="SR" data-title="창2동 공립작은도서관" data-id="detail_manage_code" >창2동 공립작은도서관</a></li>
+												
+													<li><a href="javascript:;"  data-value="SS" data-title="창3동 공립작은도서관" data-id="detail_manage_code" >창3동 공립작은도서관</a></li>
+												
+													<li><a href="javascript:;"  data-value="ST" data-title="창4동 공립작은도서관" data-id="detail_manage_code" >창4동 공립작은도서관</a></li>
+												
+													<li><a href="javascript:;"  data-value="SU" data-title="창5동 공립작은도서관" data-id="detail_manage_code" >창5동 공립작은도서관</a></li>
+												
+													<li><a href="javascript:;"  data-value="SG" data-title="도봉1동 공립작은도서관" data-id="detail_manage_code" >도봉1동 공립작은도서관</a></li>
+												
+													<li><a href="javascript:;"  data-value="SH" data-title="도봉2동 공립작은도서관" data-id="detail_manage_code" >도봉2동 공립작은도서관</a></li>
+												
+													<li><a href="javascript:;"  data-value="SC" data-title="북서울중학교" data-id="detail_manage_code" >북서울중학교</a></li>
+												
+												</ul>
+											</dd>
+										</dl>
+
+
+
+
+
+										<dl>
+											<dt><label for="search_author">저자</label></dt>
+											<dd><input name="search_author" id="search_author"  type="text" value="" /></dd>
+										</dl>
+										<dl>
+											<dt>주제</dt>
+											<dd class="dobong_js jsDobong">
+												
+												<a href="javascript:;" class="selec_tit" title="주제선택">
+													<p>주제선택</p>
+													<span><img src="/nanum/site/img/common/arw_dobong_list.png" alt="리스트보기" /></span>
+												</a>
+												<ul class="selec_opt" style="display:none;">
+													<li><a href="javascript:;" data-value="" data-title="주제선택" data-id="detail_subject_code">주제선택</a></li>
+													
+													<li><a href="javascript:;" data-value="0" data-title="총류" data-id="detail_subject_code" >총류</a></li>
+													
+													<li><a href="javascript:;" data-value="1" data-title="철학" data-id="detail_subject_code" >철학</a></li>
+													
+													<li><a href="javascript:;" data-value="2" data-title="종교" data-id="detail_subject_code" >종교</a></li>
+													
+													<li><a href="javascript:;" data-value="3" data-title="사회과학" data-id="detail_subject_code" >사회과학</a></li>
+													
+													<li><a href="javascript:;" data-value="4" data-title="순수과학" data-id="detail_subject_code" >순수과학</a></li>
+													
+													<li><a href="javascript:;" data-value="5" data-title="기술과학" data-id="detail_subject_code" >기술과학</a></li>
+													
+													<li><a href="javascript:;" data-value="6" data-title="예술" data-id="detail_subject_code" >예술</a></li>
+													
+													<li><a href="javascript:;" data-value="7" data-title="언어" data-id="detail_subject_code" >언어</a></li>
+													
+													<li><a href="javascript:;" data-value="8" data-title="문학" data-id="detail_subject_code" >문학</a></li>
+													
+													<li><a href="javascript:;" data-value="9" data-title="역사" data-id="detail_subject_code" >역사</a></li>
+													
+												</ul>
+											</dd>
+										</dl>
+
+										<dl>
+											<dt><label for="search_publisher">발행처</label></dt>
+											<dd><input name="search_publisher" id="search_publisher" type="text" value="" /></dd>
+										</dl>
+										<dl>
+											<dt>발행년도</dt>
+											<dd>
+												<div class="box">
+													<input name="search_year_start" title="시작년도" onblur="setNumber(this);" type="text" maxlength="4" value="" /> 
+													<span style="width:6%;text-align:center;">~</span> 
+													<input name="search_year_end" title="마지막년도" onblur="setNumber(this);" type="text" maxlength="4" value="" />
+												</div>
+											</dd>
+										</dl>
+										
+										<dl>
+											<dt><label for="search_publisher">ISBN</label></dt>
+											<dd><input type="text" name="search_isbn_issn" id="search_isbn_issn" value="" /></dd>
+										</dl>
+										<dl>
+											<dt>매체구분</dt>
+											<dd>
+												<span class="comm_sel comm_sel_type3">
+												<select id="media_code" name="media_code" title="매체구분선택" >
+													<option value="">적용안함</option>
+													<option value="PR" >인쇄자료(책자형)</option>
+													<option value="CR" >CD-ROM</option>
+													<option value="PD" >DVD</option>
+													<option value="EB" >전자책</option>
+													<option value="CD" >컴팩트디스크</option>
+													<option value="CV" >비디오CD</option>
+												</select>
+												</span>
+											</dd>
+										</dl>
+										
+										<dl>
+											<dt>정렬조건</dt>
+											<dd>
+												<span class="comm_sel comm_sel_type3">
+												<select name="sh_orderby" title="정렬기준 선택" id="sh_orderby">
+													<option value="" >정렬조건선택</option>
+													<option value="TITLE;ASC" >제목 오름차순</option>
+													<option value="TITLE;DESC" >제목 내림차순</option>
+													<option value="AUTHOR;ASC" >저자 오름차순</option>
+													<option value="AUTHOR;DESC" >저자 내림차순</option>
+													<option value="PUBLISHER;ASC" >발행처 오름차순</option>
+													<option value="PUBLISHER;DESC" >발행처 내림차순</option>
+													<option value="PUB_YEAR;ASC" >발행년도 오름차순</option>
+													<option value="PUB_YEAR;DESC" >발행년도 내림차순</option>
+												</select>
+												</span>
+											</dd>
+										</dl>
+										<dl>
+											<dt>목록갯수</dt>
+											<dd>
+												<span class="comm_sel comm_sel_type3">
+												<select name="page_cnt" id="page_cnt">
+													<option value="10">10개</option>
+													<option value="20" >20개</option>
+													<option value="30" >30개</option>
+													<option value="40" >40개</option>
+													<option value="50" >50개</option>
+												</select>
+												</span>
+											</dd>
+										</dl>
+										
+									</div>	
+									<p class="btn_w center"><input name="search_bt2" class="ndls_btn navy" id="search_bt2" type="submit" value="검색하기" /></p>
+								</div>
+							</fieldset>
+						</form>							
+						<!--// 검색하기_상세 -->
+						
+						
+						
+						
+							
+								
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="jsFacetContent" style="display:none;">
+
+	<!-- 패싯 : 매체구분 -->
+	
+	
+	<div>
+		<p>매체구분</p>
+		<ul>	
+			
+			
+			
+			
+			
+			<li ><a href="#t" onclick="javascript: fn_facet_search('facet_media_code','KM')"> 국내서단행본 (163)</a></li>
+			
+			
+			
+			
+			
+			
+			<li ><a href="#t" onclick="javascript: fn_facet_search('facet_media_code','PR')"> 인쇄자료(책자형) (41)</a></li>
+			
+			
+			
+			
+			
+			
+			<li ><a href="#t" onclick="javascript: fn_facet_search('facet_media_code','EB')"> E-BOOK (22)</a></li>
+			
+			
+		</ul>
+	</div>
+	
+	<!--// 패싯 : 매체구분 -->
+	
+	
+	<!-- 패싯 : 도서관 -->
+	
+	
+	<div>
+		<p>도서관</p>
+		<ul>	
+			
+			
+			
+			<li ><a href="#t" onclick="javascript: fn_facet_search('facet_manage_code','MA')">도봉문화정보도서관 (123)</a></li>
+			
+			
+			
+			<li ><a href="#t" onclick="javascript: fn_facet_search('facet_manage_code','MC')">학마을도서관 (36)</a></li>
+			
+			
+			
+			<li ><a href="#t" onclick="javascript: fn_facet_search('facet_manage_code','MJ')">원당마을한옥도서관 (23)</a></li>
+			
+			
+			
+			<li ><a href="#t" onclick="javascript: fn_facet_search('facet_manage_code','MG')">쌍문채움도서관 (11)</a></li>
+			
+			
+			
+			<li ><a href="#t" onclick="javascript: fn_facet_search('facet_manage_code','SC')">북서울중학교 (10)</a></li>
+			
+			
+			
+			<li ><a href="#t" onclick="javascript: fn_facet_search('facet_manage_code','MB')">도봉아이나라도서관 (5)</a></li>
+			
+			
+			
+			<li ><a href="#t" onclick="javascript: fn_facet_search('facet_manage_code','ME')">도봉기적의도서관 (4)</a></li>
+			
+			
+			
+			<li ><a href="#t" onclick="javascript: fn_facet_search('facet_manage_code','MF')">둘리도서관 (3)</a></li>
+			
+			
+			
+			<li ><a href="#t" onclick="javascript: fn_facet_search('facet_manage_code','SA')">도봉구청 행복작은도서관 (3)</a></li>
+			
+			
+			
+			<li ><a href="#t" onclick="javascript: fn_facet_search('facet_manage_code','SK')">방학2동 공립작은도서관 (2)</a></li>
+			
+			
+			
+			<li ><a href="#t" onclick="javascript: fn_facet_search('facet_manage_code','MD')">무수골도서관 (1)</a></li>
+			
+			
+			
+			<li ><a href="#t" onclick="javascript: fn_facet_search('facet_manage_code','MH')">김근태기념도서관 (1)</a></li>
+			
+			
+			
+			<li ><a href="#t" onclick="javascript: fn_facet_search('facet_manage_code','SO')">쌍문3동 공립작은도서관 (1)</a></li>
+			
+			
+			
+			<li ><a href="#t" onclick="javascript: fn_facet_search('facet_manage_code','SQ')">창1동 공립작은도서관 (1)</a></li>
+			
+			
+			
+			<li ><a href="#t" onclick="javascript: fn_facet_search('facet_manage_code','SR')">창2동 공립작은도서관 (1)</a></li>
+			
+			
+			
+			<li ><a href="#t" onclick="javascript: fn_facet_search('facet_manage_code','SU')">창5동 공립작은도서관 (1)</a></li>
+			
+		</ul>
+	</div>
+	
+	<!--// 패싯 : 도서관 -->
+	
+	
+	<!-- 패싯 : 저자 -->
+	
+	
+	<div>
+		<p>저자</p>
+		<ul>	
+			
+			
+				
+			<li ><a href="#t" onclick="javascript: fn_facet_search('facet_author','이승찬 지음')">이승찬 지음 (8)</a></li>
+			
+			
+				
+			<li ><a href="#t" onclick="javascript: fn_facet_search('facet_author','박응용 지음')">박응용 지음 (7)</a></li>
+			
+			
+				
+			<li ><a href="#t" onclick="javascript: fn_facet_search('facet_author','사이토 고키 지음 ; 개앞맵시 옮김')">사이토 고키 지음 ; 개앞맵시 옮김 (5)</a></li>
+			
+			
+				
+			<li ><a href="#t" onclick="javascript: fn_facet_search('facet_author','윤인성 지음')">윤인성 지음 (5)</a></li>
+			
+			
+				
+			<li ><a href="#t" onclick="javascript: fn_facet_search('facet_author','김석훈 지음')">김석훈 지음 (3)</a></li>
+			
+			
+				
+			<li ><a href="#t" onclick="javascript: fn_facet_search('facet_author','나동빈 지음')">나동빈 지음 (3)</a></li>
+			
+			
+				
+			<li ><a href="#t" onclick="javascript: fn_facet_search('facet_author','우재남 지음')">우재남 지음 (3)</a></li>
+			
+			
+				
+			<li ><a href="#t" onclick="javascript: fn_facet_search('facet_author','우혁, 이설아 [공]지음')">우혁, 이설아 [공]지음 (3)</a></li>
+			
+			
+				
+			<li ><a href="#t" onclick="javascript: fn_facet_search('facet_author','이승우 지음')">이승우 지음 (3)</a></li>
+			
+			
+				
+			<li ><a href="#t" onclick="javascript: fn_facet_search('facet_author','이태화 지음')">이태화 지음 (3)</a></li>
+			
+			
+				
+			<li ><a href="#t" onclick="javascript: fn_facet_search('facet_author','이호준 외 지음')">이호준 외 지음 (3)</a></li>
+			
+		</ul>
+	</div>
+	
+	<!--// 패싯 : 저자 -->
+	
+	<!-- 패싯 : 발행년도 -->
+	
+	
+	<div>
+		<p>발행년도</p>
+		<ul>	
+			
+			
+				
+			<li ><a href="#t" onclick="javascript: fn_facet_search('facet_pub_year','2019')">2019 (32)</a></li>
+			
+			
+				
+			<li ><a href="#t" onclick="javascript: fn_facet_search('facet_pub_year','2021')">2021 (31)</a></li>
+			
+			
+				
+			<li ><a href="#t" onclick="javascript: fn_facet_search('facet_pub_year','2022')">2022 (31)</a></li>
+			
+			
+				
+			<li ><a href="#t" onclick="javascript: fn_facet_search('facet_pub_year','2024')">2024 (25)</a></li>
+			
+			
+				
+			<li ><a href="#t" onclick="javascript: fn_facet_search('facet_pub_year','2018')">2018 (24)</a></li>
+			
+			
+				
+			<li ><a href="#t" onclick="javascript: fn_facet_search('facet_pub_year','2020')">2020 (23)</a></li>
+			
+			
+				
+			<li ><a href="#t" onclick="javascript: fn_facet_search('facet_pub_year','2017')">2017 (16)</a></li>
+			
+			
+				
+			<li ><a href="#t" onclick="javascript: fn_facet_search('facet_pub_year','2025')">2025 (16)</a></li>
+			
+			
+				
+			<li ><a href="#t" onclick="javascript: fn_facet_search('facet_pub_year','2023')">2023 (15)</a></li>
+			
+			
+				
+			<li ><a href="#t" onclick="javascript: fn_facet_search('facet_pub_year','2016')">2016 (8)</a></li>
+			
+			
+				
+			<li ><a href="#t" onclick="javascript: fn_facet_search('facet_pub_year','2015')">2015 (4)</a></li>
+			
+		</ul>
+	</div>
+	
+	<!--// 패싯 : 발행년도 -->
+	
+	
+	<!-- 패싯 : 주제 -->
+	
+	
+	<div>
+		<p>주제</p>
+		<ul>	
+			
+			
+			
+			<li ><a href="#t" onclick="javascript: fn_facet_search('facet_subject_code','0')">총류 (221)</a></li>
+			
+			
+			
+			<li ><a href="#t" onclick="javascript: fn_facet_search('facet_subject_code','3')">사회과학 (3)</a></li>
+			
+			
+			
+			<li ><a href="#t" onclick="javascript: fn_facet_search('facet_subject_code','1')">철학 (1)</a></li>
+			
+			
+			
+			<li ><a href="#t" onclick="javascript: fn_facet_search('facet_subject_code','5')">기술과학 (1)</a></li>
+			
+		</ul>
+	</div>
+	
+	<!--// 패싯 : 주제 -->
+
+</div>
+								
+							
+						
+
+
+
+
+
+
+
+
+
+
+
+
+
+						<!-- 검색결과 -->
+						<div class="ndls_result">
+							<div class="tp_box">
+								<div class="txt">
+									
+									"<strong class="word">파이썬</strong>"에 대하여 
+									
+									
+									<a href='#now'>전체 226</a>개가 검색되었습니다.
+										
+								</div>
+								<div class="paging">
+									
+										Page <strong>1</strong> / 23
+										
+								</div>
+							</div>
+							
+						</div>
+						<!--// 검색결과 -->
+						
+						<!-- 정보 아이콘 -->
+						<div class="cont_info_cate">
+							<!-- <ul>
+								<!-- <li><img src="/nanum/ndls/imgs/common/book_inbtn01.png" alt="책엑스모양 도서예약불가 아이콘" /> 도서예약불가</li> -->
+								<!-- <li><img src="/nanum/ndls/imgs/common/audio_icon.png" alt="오디오북아이콘" /> 오디오북</li> 
+								<li><a href="https://elib.dobong.kr" target="_blank"><img src="/nanum/ndls/imgs/common/ebook_icon.png" alt="전자책 아이콘" />전자책</a> </li>
+								<li><img src="/nanum/ndls/imgs/common/book_inbtn05.png" alt="책모양 도서예약가능 아이콘" /> 도서예약가능</li>
+								<li><img src="/nanum/ndls/imgs/common/book_inbtn02.png" alt="화살표모양 상호대차신청 아이콘" /> 상호대차신청</li>
+								<li><img src="/nanum/ndls/imgs/common/book_inbtn03.png" alt="버스모양 U-도서관 아이콘" /> U-도서관</li>
+								<li><img src="/nanum/ndls/imgs/common/book_inbtn04.png" alt="담기모양 관심도서담기 아이콘" /> 관심도서담기</li>
+							</ul> -->
+							
+							<!-- 체크 -->
+							<div class="top_check_w">
+								<input type="checkbox" id="check_all" class="chk_input inp_chk default" /><label for="check_all"></label>
+		
+			 <!-- 비로그인 -->
+				
+				
+			
+			
+		
+								<a href="/site/member/login.do?prepage=%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC" onclick="" class="chk_btn put"">관심도서 담기(전체)</a>
+								<a href="#excel" onclick="listExcel();" class="chk_btn excel">목록저장(엑셀)</a>
+								<a href="/site/mylib/mybook05.do" class="chk_btn mybook">내 관심도서</a>
+							</div>
+							<!-- //체크 -->
+						</div>
+						<!-- //정보아이콘 -->
+						
+						<!-- 검색결과리스트 -->
+						<div class="book_list">
+
+
+
+
+
+
+	
+	
+		
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		
+	
+	
+	
+		
+	
+
+	
+
+	
+	
+
+	
+	
+	
+		
+			
+		
+		
+		
+	
+	
+	
+	
+	
+		
+		
+			
+		
+	
+								
+								
+								
+	
+
+	
+	
+	
+	
+								<div class="book_area select_list">
+									
+									<div class="book_info_w">
+										<p class="check_t">
+											<input type="checkbox" id="check_list_1" value="1" class="inp_chk default" /><label for="check_list_1"></label>
+										</p>
+										<div class="book_img">
+											<div class="book">
+												<div class="thum">
+													<a title="파이썬책 자세히 보기" href="?manage_code=MA&book_type=BOOK&book_type_org=&publish_form_code=MO&species_key=142543059&prepage=%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC&reckey=142543061"><img class="book_image" src="/nanum/site/img/main/book_noimg.jpg" data-mgc="MA" data-booktype="BOOK" data-reckey="142543061" data-regno="EM0000093032" data-isbn="9788920028892" alt="파이썬" /></a>
+													
+												</div>
+											</div>
+											<p class="ribbon mark00">총류</p>
+										</div>
+										<div class="book_info" data-mec="KM" data-rk="142543059" data-brn="EM0000093032" data-isbn="9788920028892" data-yr="2018" data-mgc="MA">
+											<div class="cont">
+												<div class="tit_w type2">
+													<div class="tit">
+														<a href="?manage_code=MA&book_type=BOOK&book_type_org=&publish_form_code=MO&species_key=142543059&prepage=%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC&reckey=142543061">
+															
+															
+																
+															
+															<span class="col_MA lib_name">도봉문화</span>
+															<span class="blank">파이썬
+															</span>
+															
+															
+															
+															
+														</a>
+														
+													</div>
+													
+													<p class="book_status"><span class='activity'>대출가능</span></p>
+													
+												</div>
+												
+												<div class="cont_print">
+													<div class="cont_info">
+													
+													
+														
+														<dl>
+															<dt>저자</dt>
+															<dd>Y. Daniel Liang 지음 ; 길준민, 정재화 옮김</dd>
+														</dl>
+														<dl>
+															<dt>발행처</dt>
+															<dd>에피스테메</dd>
+														</dl>
+														
+														
+														<dl>
+															<dt>발행년</dt>
+															<dd>2018</dd>
+														</dl>
+														<dl>
+															<dt>자료위치</dt>
+															<dd>[문화정보]종합자료실</dd>
+														</dl>
+														
+														
+														<dl>
+															<dt>등록번호</dt>
+															<dd>EM0000093032</dd>
+														</dl>
+														
+														<dl>
+															<dt>청구기호</dt>
+															<dd>005.133-ㄱ644ㅍ
+															
+															
+																<!--<a onclick="placePrint('142543061', 'MA', 'BOOK', '%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC');" href="#placePrint">
+																<img style="margin-left: 5px; vertical-align: middle;" alt="인쇄" src="/nanum/ndls/imgs/common/book_print_icon.gif" /></a>-->
+															</dd>
+														</dl>
+														
+														
+														
+													</div>
+													
+													
+													<!-- 프린터 알림톡 받기 -->
+													<div class="ring">
+														<!-- <a onclick="placePrint('142543061', 'MA', 'BOOK', '%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC');" href="#placePrint"><span class="blind">프린터,알림톡받기</span></a> -->
+														<a href="javascript:;" onclick="placePrint('142543061', 'MA', 'BOOK', 'print', '%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC');" class="prints" title="출력하기">출력</a>
+														<a href="javascript:;" onclick="placePrint('142543061', 'MA', 'BOOK', 'alarm', '%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC');" class="alarm" title="알림톡받기">알림톡</a>
+													</div>
+													<!-- //프린터 알림톡 받기 -->
+													
+													
+												</div>
+												
+												<div class="gray_info">
+													<ul>
+													
+		
+		
+		
+
+		
+		
+			
+				
+				
+															
+				
+			
+		
+		
+		
+
+
+			<!-- 상호대차신청 -->
+				
+					 <!-- 비로그인 -->
+						
+						
+					
+					
+					
+				
+				<form id="frm_request_1" method="post">
+				<input name="publish_form_code" type="hidden" value="MO" />
+				<input name="manage_code" type="hidden" value="MA" />
+				<input name="book_isbn" type="hidden" value="9788920028892" />
+				<input name="book_title" type="hidden" value="파이썬" />
+				<input name="book_rk" type="hidden" value="142543059" />
+				<input name="book_regno" type="hidden" value="EM0000093032" /><!-- 필수!! -->
+				<input name="book_key" type="hidden" value="142543061" />
+				
+				</form>
+				
+
+				
+				
+
+				
+				
+
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					
+					
+					
+															<li><a href="/site/member/login.do?prepage=%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC" onclick="" class="ndls_sbtn dcol1">상호대차</a>
+															</li>
+					
+			
+
+
+			
+				<!-- U도서관 무인예약 -->
+					
+						 <!-- 비로그인 -->
+							
+							
+						
+						
+						
+					
+					
+				
+				<form id="frm_ulib_1" method="post">
+				<input name="manage_code" type="hidden" value="MA" />
+				<input name="book_title" type="hidden" value="파이썬" />
+				<input name="book_regno" type="hidden" value="EM0000093032" />
+				<input name="libcode" type="hidden" value="111041" />
+				
+				
+					<!-- 테스트 -->
+					
+					<!-- //테스트 -->
+					</form>
+
+
+					
+					
+						
+					
+					
+					
+
+					
+					
+					
+
+					
+
+					
+					
+					
+
+					
+							<li><a href="/site/member/login.do?prepage=%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC" onclick="" class="ndls_sbtn dcol2">U-도서관</a>
+							</li>
+					
+				
+			
+			
+			
+																	
+															
+															
+		
+			 <!-- 비로그인 -->
+				
+				
+			
+			
+		
+		<form id="frm_mybook_1" method="post" />
+		<input name="prepage" type="hidden" value="/site/search/search00.do?cmd_name=bookandnonbooksearch&search_type=detail&manage_code=MA%2CMB%2CMC%2CME%2CMG%2CMJ%2CMF%2CMH%2CSA%2CMD%2CSB%2CSL%2CSM%2CSN%2CSO%2CSP%2CSK%2CSQ%2CSR%2CSS%2CST%2CSU%2CSG%2CSH%2CSC&search_txt=%ED%8C%8C%EC%9D%B4%EC%8D%AC" />
+		<input name="mb_rec_key" type="hidden" value="142543061" />
+		<input name="mb_author" type="hidden" value="Y. Daniel Liang 지음 ; 길준민, 정재화 옮김" />
+		<input name="mb_publisher" type="hidden" value="에피스테메" />
+		<input name="mb_title" type="hidden" value="파이썬" />
+		<input name="mb_place_info" type="hidden" value="[문화정보]종합자료실" />
+		<input name="mb_callno_info" type="hidden" value="005.133-ㄱ644ㅍ" />
+		<input name="mb_reg_no" type="hidden" value="EM0000093032" />
+		<input name="mb_collection" type="hidden" value="BOOK" />
+		<input name="mb_mgc" type="hidden" value="MA" />
+		<input name="mb_pfc" type="hidden" value="MO" />
+		</form>
+															<li>
+															<a href="/site/member/login.do?prepage=%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC" onclick="" class="ndls_sbtn dcol3">관심도서</a>
+															</li>
+													</ul>
+												</div>
+											</div>
+											
+										</div>
+									</div>
+									
+								</div>
+							
+	
+	
+		
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		
+	
+	
+	
+		
+	
+
+	
+
+	
+	
+
+	
+	
+	
+		
+			
+		
+		
+		
+	
+	
+	
+	
+	
+		
+		
+			
+		
+	
+								
+								
+								
+	
+
+	
+	
+	
+	
+								<div class="book_area select_list">
+									
+									<div class="book_info_w">
+										<p class="check_t">
+											<input type="checkbox" id="check_list_2" value="2" class="inp_chk default" /><label for="check_list_2"></label>
+										</p>
+										<div class="book_img">
+											<div class="book">
+												<div class="thum">
+													<a title="파이썬 크래시 코스책 자세히 보기" href="?manage_code=MJ&book_type=BOOK&book_type_org=&publish_form_code=MO&species_key=364676183&prepage=%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC&reckey=364676185"><img class="book_image" src="/nanum/site/img/main/book_noimg.jpg" data-mgc="MJ" data-booktype="BOOK" data-reckey="364676185" data-regno="WD0000006744" data-isbn="9791169211277" alt="파이썬 크래시 코스" /></a>
+													
+												</div>
+											</div>
+											<p class="ribbon mark00">총류</p>
+										</div>
+										<div class="book_info" data-mec="KM" data-rk="364676183" data-brn="WD0000006744" data-isbn="9791169211277" data-yr="2023" data-mgc="MJ">
+											<div class="cont">
+												<div class="tit_w type2">
+													<div class="tit">
+														<a href="?manage_code=MJ&book_type=BOOK&book_type_org=&publish_form_code=MO&species_key=364676183&prepage=%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC&reckey=364676185">
+															
+															
+																
+															
+															<span class="col_MJ lib_name">한옥</span>
+															<span class="blank">파이썬 크래시 코스
+															</span>
+															
+															
+															
+															
+														</a>
+														
+													</div>
+													
+													<p class="book_status"><span class='activity'>대출가능</span></p>
+													
+												</div>
+												
+												<div class="cont_print">
+													<div class="cont_info">
+													
+													
+														
+														<dl>
+															<dt>저자</dt>
+															<dd>에릭 마테스 지음 ; 한선용 옮김</dd>
+														</dl>
+														<dl>
+															<dt>발행처</dt>
+															<dd>한빛미디어</dd>
+														</dl>
+														
+														
+														<dl>
+															<dt>발행년</dt>
+															<dd>2023</dd>
+														</dl>
+														<dl>
+															<dt>자료위치</dt>
+															<dd>[원당마을한옥]일반</dd>
+														</dl>
+														
+														
+														<dl>
+															<dt>등록번호</dt>
+															<dd>WD0000006744</dd>
+														</dl>
+														
+														<dl>
+															<dt>청구기호</dt>
+															<dd>일반 005.133-ㅁ342ㅍ
+															
+															
+																<!--<a onclick="placePrint('364676185', 'MJ', 'BOOK', '%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC');" href="#placePrint">
+																<img style="margin-left: 5px; vertical-align: middle;" alt="인쇄" src="/nanum/ndls/imgs/common/book_print_icon.gif" /></a>-->
+															</dd>
+														</dl>
+														
+														
+														
+													</div>
+													
+													
+													<!-- 프린터 알림톡 받기 -->
+													<div class="ring">
+														<!-- <a onclick="placePrint('364676185', 'MJ', 'BOOK', '%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC');" href="#placePrint"><span class="blind">프린터,알림톡받기</span></a> -->
+														<a href="javascript:;" onclick="placePrint('364676185', 'MJ', 'BOOK', 'print', '%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC');" class="prints" title="출력하기">출력</a>
+														<a href="javascript:;" onclick="placePrint('364676185', 'MJ', 'BOOK', 'alarm', '%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC');" class="alarm" title="알림톡받기">알림톡</a>
+													</div>
+													<!-- //프린터 알림톡 받기 -->
+													
+													
+												</div>
+												
+												<div class="gray_info">
+													<ul>
+													
+		
+		
+		
+
+		
+		
+			
+				
+				
+															
+				
+			
+		
+		
+		
+
+
+			<!-- 상호대차신청 -->
+				
+					 <!-- 비로그인 -->
+						
+						
+					
+					
+					
+				
+				<form id="frm_request_2" method="post">
+				<input name="publish_form_code" type="hidden" value="MO" />
+				<input name="manage_code" type="hidden" value="MJ" />
+				<input name="book_isbn" type="hidden" value="9791169211277" />
+				<input name="book_title" type="hidden" value="파이썬 크래시 코스" />
+				<input name="book_rk" type="hidden" value="364676183" />
+				<input name="book_regno" type="hidden" value="WD0000006744" /><!-- 필수!! -->
+				<input name="book_key" type="hidden" value="364676185" />
+				
+				</form>
+				
+
+				
+				
+
+				
+				
+
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					
+					
+					
+															<li><a href="/site/member/login.do?prepage=%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC" onclick="" class="ndls_sbtn dcol1">상호대차</a>
+															</li>
+					
+			
+
+
+			
+				<!-- U도서관 무인예약 -->
+					
+						 <!-- 비로그인 -->
+							
+							
+						
+						
+						
+					
+					
+				
+				<form id="frm_ulib_2" method="post">
+				<input name="manage_code" type="hidden" value="MJ" />
+				<input name="book_title" type="hidden" value="파이썬 크래시 코스" />
+				<input name="book_regno" type="hidden" value="WD0000006744" />
+				<input name="libcode" type="hidden" value="111524" />
+				
+				
+					<!-- 테스트 -->
+					
+					<!-- //테스트 -->
+					</form>
+
+
+					
+					
+						
+					
+					
+					
+
+					
+					
+					
+
+					
+
+					
+					
+					
+
+					
+							<li><a href="/site/member/login.do?prepage=%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC" onclick="" class="ndls_sbtn dcol2">U-도서관</a>
+							</li>
+					
+				
+			
+			
+			
+																	
+															
+															
+		
+			 <!-- 비로그인 -->
+				
+				
+			
+			
+		
+		<form id="frm_mybook_2" method="post" />
+		<input name="prepage" type="hidden" value="/site/search/search00.do?cmd_name=bookandnonbooksearch&search_type=detail&manage_code=MA%2CMB%2CMC%2CME%2CMG%2CMJ%2CMF%2CMH%2CSA%2CMD%2CSB%2CSL%2CSM%2CSN%2CSO%2CSP%2CSK%2CSQ%2CSR%2CSS%2CST%2CSU%2CSG%2CSH%2CSC&search_txt=%ED%8C%8C%EC%9D%B4%EC%8D%AC" />
+		<input name="mb_rec_key" type="hidden" value="364676185" />
+		<input name="mb_author" type="hidden" value="에릭 마테스 지음 ; 한선용 옮김" />
+		<input name="mb_publisher" type="hidden" value="한빛미디어" />
+		<input name="mb_title" type="hidden" value="파이썬 크래시 코스" />
+		<input name="mb_place_info" type="hidden" value="[원당마을한옥]일반" />
+		<input name="mb_callno_info" type="hidden" value="일반 005.133-ㅁ342ㅍ" />
+		<input name="mb_reg_no" type="hidden" value="WD0000006744" />
+		<input name="mb_collection" type="hidden" value="BOOK" />
+		<input name="mb_mgc" type="hidden" value="MJ" />
+		<input name="mb_pfc" type="hidden" value="MO" />
+		</form>
+															<li>
+															<a href="/site/member/login.do?prepage=%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC" onclick="" class="ndls_sbtn dcol3">관심도서</a>
+															</li>
+													</ul>
+												</div>
+											</div>
+											
+										</div>
+									</div>
+									
+								</div>
+							
+	
+	
+		
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		
+	
+	
+	
+		
+	
+
+	
+
+	
+	
+
+	
+	
+	
+		
+			
+		
+		
+		
+	
+	
+	
+	
+	
+		
+		
+			
+		
+	
+								
+								
+								
+	
+
+	
+	
+	
+	
+								<div class="book_area select_list">
+									
+									<div class="book_info_w">
+										<p class="check_t">
+											<input type="checkbox" id="check_list_3" value="3" class="inp_chk default" /><label for="check_list_3"></label>
+										</p>
+										<div class="book_img">
+											<div class="book">
+												<div class="thum">
+													<a title="파이썬 해킹 프로그래밍책 자세히 보기" href="?manage_code=MA&book_type=BOOK&book_type_org=&publish_form_code=MO&species_key=104077133&prepage=%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC&reckey=104077151"><img class="book_image" src="/nanum/site/img/main/book_noimg.jpg" data-mgc="MA" data-booktype="BOOK" data-reckey="104077151" data-regno="EM0000057249" data-isbn="9788960771161" alt="파이썬 해킹 프로그래밍" /></a>
+													
+												</div>
+											</div>
+											<p class="ribbon mark00">총류</p>
+										</div>
+										<div class="book_info" data-mec="KM" data-rk="104077133" data-brn="EM0000057249" data-isbn="9788960771161" data-yr="2011" data-mgc="MA">
+											<div class="cont">
+												<div class="tit_w type2">
+													<div class="tit">
+														<a href="?manage_code=MA&book_type=BOOK&book_type_org=&publish_form_code=MO&species_key=104077133&prepage=%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC&reckey=104077151">
+															
+															
+																
+															
+															<span class="col_MA lib_name">도봉문화</span>
+															<span class="blank">파이썬 해킹 프로그래밍
+															</span>
+															
+															
+															
+															
+														</a>
+														
+													</div>
+													
+													<p class="book_status"><span class='activity'>대출가능</span></p>
+													
+												</div>
+												
+												<div class="cont_print">
+													<div class="cont_info">
+													
+													
+														
+														<dl>
+															<dt>저자</dt>
+															<dd>저스틴 지이츠 지음 ; 윤근용 옮김</dd>
+														</dl>
+														<dl>
+															<dt>발행처</dt>
+															<dd>에이콘</dd>
+														</dl>
+														
+														
+														<dl>
+															<dt>발행년</dt>
+															<dd>2011</dd>
+														</dl>
+														<dl>
+															<dt>자료위치</dt>
+															<dd>[문화정보]종합자료실</dd>
+														</dl>
+														
+														
+														<dl>
+															<dt>등록번호</dt>
+															<dd>EM0000057249</dd>
+														</dl>
+														
+														<dl>
+															<dt>청구기호</dt>
+															<dd>005.133-ㅈ942ㅍ
+															
+															
+																<!--<a onclick="placePrint('104077151', 'MA', 'BOOK', '%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC');" href="#placePrint">
+																<img style="margin-left: 5px; vertical-align: middle;" alt="인쇄" src="/nanum/ndls/imgs/common/book_print_icon.gif" /></a>-->
+															</dd>
+														</dl>
+														
+														
+														
+													</div>
+													
+													
+													<!-- 프린터 알림톡 받기 -->
+													<div class="ring">
+														<!-- <a onclick="placePrint('104077151', 'MA', 'BOOK', '%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC');" href="#placePrint"><span class="blind">프린터,알림톡받기</span></a> -->
+														<a href="javascript:;" onclick="placePrint('104077151', 'MA', 'BOOK', 'print', '%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC');" class="prints" title="출력하기">출력</a>
+														<a href="javascript:;" onclick="placePrint('104077151', 'MA', 'BOOK', 'alarm', '%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC');" class="alarm" title="알림톡받기">알림톡</a>
+													</div>
+													<!-- //프린터 알림톡 받기 -->
+													
+													
+												</div>
+												
+												<div class="gray_info">
+													<ul>
+													
+		
+		
+		
+
+		
+		
+			
+				
+				
+															
+				
+			
+		
+		
+		
+
+
+			<!-- 상호대차신청 -->
+				
+					 <!-- 비로그인 -->
+						
+						
+					
+					
+					
+				
+				<form id="frm_request_3" method="post">
+				<input name="publish_form_code" type="hidden" value="MO" />
+				<input name="manage_code" type="hidden" value="MA" />
+				<input name="book_isbn" type="hidden" value="9788960771161" />
+				<input name="book_title" type="hidden" value="파이썬 해킹 프로그래밍" />
+				<input name="book_rk" type="hidden" value="104077133" />
+				<input name="book_regno" type="hidden" value="EM0000057249" /><!-- 필수!! -->
+				<input name="book_key" type="hidden" value="104077151" />
+				
+				</form>
+				
+
+				
+				
+
+				
+				
+
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					
+					
+					
+															<li><a href="/site/member/login.do?prepage=%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC" onclick="" class="ndls_sbtn dcol1">상호대차</a>
+															</li>
+					
+			
+
+
+			
+				<!-- U도서관 무인예약 -->
+					
+						 <!-- 비로그인 -->
+							
+							
+						
+						
+						
+					
+					
+				
+				<form id="frm_ulib_3" method="post">
+				<input name="manage_code" type="hidden" value="MA" />
+				<input name="book_title" type="hidden" value="파이썬 해킹 프로그래밍" />
+				<input name="book_regno" type="hidden" value="EM0000057249" />
+				<input name="libcode" type="hidden" value="111041" />
+				
+				
+					<!-- 테스트 -->
+					
+					<!-- //테스트 -->
+					</form>
+
+
+					
+					
+						
+					
+					
+					
+
+					
+					
+					
+
+					
+
+					
+					
+					
+
+					
+							<li><a href="/site/member/login.do?prepage=%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC" onclick="" class="ndls_sbtn dcol2">U-도서관</a>
+							</li>
+					
+				
+			
+			
+			
+																	
+															
+															
+		
+			 <!-- 비로그인 -->
+				
+				
+			
+			
+		
+		<form id="frm_mybook_3" method="post" />
+		<input name="prepage" type="hidden" value="/site/search/search00.do?cmd_name=bookandnonbooksearch&search_type=detail&manage_code=MA%2CMB%2CMC%2CME%2CMG%2CMJ%2CMF%2CMH%2CSA%2CMD%2CSB%2CSL%2CSM%2CSN%2CSO%2CSP%2CSK%2CSQ%2CSR%2CSS%2CST%2CSU%2CSG%2CSH%2CSC&search_txt=%ED%8C%8C%EC%9D%B4%EC%8D%AC" />
+		<input name="mb_rec_key" type="hidden" value="104077151" />
+		<input name="mb_author" type="hidden" value="저스틴 지이츠 지음 ; 윤근용 옮김" />
+		<input name="mb_publisher" type="hidden" value="에이콘" />
+		<input name="mb_title" type="hidden" value="파이썬 해킹 프로그래밍" />
+		<input name="mb_place_info" type="hidden" value="[문화정보]종합자료실" />
+		<input name="mb_callno_info" type="hidden" value="005.133-ㅈ942ㅍ" />
+		<input name="mb_reg_no" type="hidden" value="EM0000057249" />
+		<input name="mb_collection" type="hidden" value="BOOK" />
+		<input name="mb_mgc" type="hidden" value="MA" />
+		<input name="mb_pfc" type="hidden" value="MO" />
+		</form>
+															<li>
+															<a href="/site/member/login.do?prepage=%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC" onclick="" class="ndls_sbtn dcol3">관심도서</a>
+															</li>
+													</ul>
+												</div>
+											</div>
+											
+										</div>
+									</div>
+									
+								</div>
+							
+	
+	
+		
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		
+	
+	
+	
+		
+	
+
+	
+
+	
+	
+
+	
+	
+	
+		
+			
+		
+		
+		
+	
+	
+	
+	
+	
+		
+		
+			
+		
+	
+								
+								
+								
+	
+
+	
+	
+	
+	
+								<div class="book_area select_list">
+									
+									<div class="book_info_w">
+										<p class="check_t">
+											<input type="checkbox" id="check_list_4" value="4" class="inp_chk default" /><label for="check_list_4"></label>
+										</p>
+										<div class="book_img">
+											<div class="book">
+												<div class="thum">
+													<a title="파이썬 시계열 예측 분석책 자세히 보기" href="?manage_code=MA&book_type=BOOK&book_type_org=&publish_form_code=MO&species_key=396135578&prepage=%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC&reckey=396135580"><img class="book_image" src="/nanum/site/img/main/book_noimg.jpg" data-mgc="MA" data-booktype="BOOK" data-reckey="396135580" data-regno="EM0000124846" data-isbn="9791193926314" alt="파이썬 시계열 예측 분석" /></a>
+													
+												</div>
+											</div>
+											<p class="ribbon mark00">총류</p>
+										</div>
+										<div class="book_info" data-mec="KM" data-rk="396135578" data-brn="EM0000124846" data-isbn="9791193926314" data-yr="2024" data-mgc="MA">
+											<div class="cont">
+												<div class="tit_w type2">
+													<div class="tit">
+														<a href="?manage_code=MA&book_type=BOOK&book_type_org=&publish_form_code=MO&species_key=396135578&prepage=%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC&reckey=396135580">
+															
+															
+																
+															
+															<span class="col_MA lib_name">도봉문화</span>
+															<span class="blank">파이썬 시계열 예측 분석
+															</span>
+															
+															
+															
+															
+														</a>
+														
+													</div>
+													
+													<p class="book_status"><span class='activity'>대출가능</span></p>
+													
+												</div>
+												
+												<div class="cont_print">
+													<div class="cont_info">
+													
+													
+														
+														<dl>
+															<dt>저자</dt>
+															<dd>마르쿠 페이셰이루 지음 ; 동동구 옮김</dd>
+														</dl>
+														<dl>
+															<dt>발행처</dt>
+															<dd>Jpub</dd>
+														</dl>
+														
+														
+														<dl>
+															<dt>발행년</dt>
+															<dd>2024</dd>
+														</dl>
+														<dl>
+															<dt>자료위치</dt>
+															<dd>[문화정보]종합자료실</dd>
+														</dl>
+														
+														
+														<dl>
+															<dt>등록번호</dt>
+															<dd>EM0000124846</dd>
+														</dl>
+														
+														<dl>
+															<dt>청구기호</dt>
+															<dd>005.133-ㅍ35ㅍ
+															
+															
+																<!--<a onclick="placePrint('396135580', 'MA', 'BOOK', '%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC');" href="#placePrint">
+																<img style="margin-left: 5px; vertical-align: middle;" alt="인쇄" src="/nanum/ndls/imgs/common/book_print_icon.gif" /></a>-->
+															</dd>
+														</dl>
+														
+														
+														
+													</div>
+													
+													
+													<!-- 프린터 알림톡 받기 -->
+													<div class="ring">
+														<!-- <a onclick="placePrint('396135580', 'MA', 'BOOK', '%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC');" href="#placePrint"><span class="blind">프린터,알림톡받기</span></a> -->
+														<a href="javascript:;" onclick="placePrint('396135580', 'MA', 'BOOK', 'print', '%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC');" class="prints" title="출력하기">출력</a>
+														<a href="javascript:;" onclick="placePrint('396135580', 'MA', 'BOOK', 'alarm', '%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC');" class="alarm" title="알림톡받기">알림톡</a>
+													</div>
+													<!-- //프린터 알림톡 받기 -->
+													
+													
+												</div>
+												
+												<div class="gray_info">
+													<ul>
+													
+		
+		
+		
+
+		
+		
+			
+				
+				
+															
+				
+			
+		
+		
+		
+
+
+			<!-- 상호대차신청 -->
+				
+					 <!-- 비로그인 -->
+						
+						
+					
+					
+					
+				
+				<form id="frm_request_4" method="post">
+				<input name="publish_form_code" type="hidden" value="MO" />
+				<input name="manage_code" type="hidden" value="MA" />
+				<input name="book_isbn" type="hidden" value="9791193926314" />
+				<input name="book_title" type="hidden" value="파이썬 시계열 예측 분석" />
+				<input name="book_rk" type="hidden" value="396135578" />
+				<input name="book_regno" type="hidden" value="EM0000124846" /><!-- 필수!! -->
+				<input name="book_key" type="hidden" value="396135580" />
+				
+				</form>
+				
+
+				
+				
+
+				
+				
+
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					
+					
+					
+															<li><a href="/site/member/login.do?prepage=%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC" onclick="" class="ndls_sbtn dcol1">상호대차</a>
+															</li>
+					
+			
+
+
+			
+				<!-- U도서관 무인예약 -->
+					
+						 <!-- 비로그인 -->
+							
+							
+						
+						
+						
+					
+					
+				
+				<form id="frm_ulib_4" method="post">
+				<input name="manage_code" type="hidden" value="MA" />
+				<input name="book_title" type="hidden" value="파이썬 시계열 예측 분석" />
+				<input name="book_regno" type="hidden" value="EM0000124846" />
+				<input name="libcode" type="hidden" value="111041" />
+				
+				
+					<!-- 테스트 -->
+					
+					<!-- //테스트 -->
+					</form>
+
+
+					
+					
+						
+					
+					
+					
+
+					
+					
+					
+
+					
+
+					
+					
+					
+
+					
+							<li><a href="/site/member/login.do?prepage=%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC" onclick="" class="ndls_sbtn dcol2">U-도서관</a>
+							</li>
+					
+				
+			
+			
+			
+																	
+															
+															
+		
+			 <!-- 비로그인 -->
+				
+				
+			
+			
+		
+		<form id="frm_mybook_4" method="post" />
+		<input name="prepage" type="hidden" value="/site/search/search00.do?cmd_name=bookandnonbooksearch&search_type=detail&manage_code=MA%2CMB%2CMC%2CME%2CMG%2CMJ%2CMF%2CMH%2CSA%2CMD%2CSB%2CSL%2CSM%2CSN%2CSO%2CSP%2CSK%2CSQ%2CSR%2CSS%2CST%2CSU%2CSG%2CSH%2CSC&search_txt=%ED%8C%8C%EC%9D%B4%EC%8D%AC" />
+		<input name="mb_rec_key" type="hidden" value="396135580" />
+		<input name="mb_author" type="hidden" value="마르쿠 페이셰이루 지음 ; 동동구 옮김" />
+		<input name="mb_publisher" type="hidden" value="Jpub" />
+		<input name="mb_title" type="hidden" value="파이썬 시계열 예측 분석" />
+		<input name="mb_place_info" type="hidden" value="[문화정보]종합자료실" />
+		<input name="mb_callno_info" type="hidden" value="005.133-ㅍ35ㅍ" />
+		<input name="mb_reg_no" type="hidden" value="EM0000124846" />
+		<input name="mb_collection" type="hidden" value="BOOK" />
+		<input name="mb_mgc" type="hidden" value="MA" />
+		<input name="mb_pfc" type="hidden" value="MO" />
+		</form>
+															<li>
+															<a href="/site/member/login.do?prepage=%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC" onclick="" class="ndls_sbtn dcol3">관심도서</a>
+															</li>
+													</ul>
+												</div>
+											</div>
+											
+										</div>
+									</div>
+									
+								</div>
+							
+	
+	
+		
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		
+	
+	
+	
+		
+	
+
+	
+
+	
+	
+
+	
+	
+	
+		
+			
+		
+		
+		
+	
+	
+	
+	
+	
+		
+		
+			
+		
+	
+								
+								
+								
+	
+
+	
+	
+	
+	
+								<div class="book_area select_list">
+									
+									<div class="book_info_w">
+										<p class="check_t">
+											<input type="checkbox" id="check_list_5" value="5" class="inp_chk default" /><label for="check_list_5"></label>
+										</p>
+										<div class="book_img">
+											<div class="book">
+												<div class="thum">
+													<a title="파이썬 머신러닝 완벽 가이드책 자세히 보기" href="?manage_code=MA&book_type=BOOK&book_type_org=&publish_form_code=MO&species_key=164014530&prepage=%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC&reckey=164014531"><img class="book_image" src="/nanum/site/img/main/book_noimg.jpg" data-mgc="MA" data-booktype="BOOK" data-reckey="164014531" data-regno="EM0000101543" data-isbn="9791158391386" alt="파이썬 머신러닝 완벽 가이드" /></a>
+													
+												</div>
+											</div>
+											<p class="ribbon mark00">총류</p>
+										</div>
+										<div class="book_info" data-mec="KM" data-rk="164014530" data-brn="EM0000101543" data-isbn="9791158391386" data-yr="2019" data-mgc="MA">
+											<div class="cont">
+												<div class="tit_w type2">
+													<div class="tit">
+														<a href="?manage_code=MA&book_type=BOOK&book_type_org=&publish_form_code=MO&species_key=164014530&prepage=%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC&reckey=164014531">
+															
+															
+																
+															
+															<span class="col_MA lib_name">도봉문화</span>
+															<span class="blank">파이썬 머신러닝 완벽 가이드
+															</span>
+															
+															
+															
+															
+														</a>
+														
+													</div>
+													
+													<p class="book_status"><span class='activity'>대출가능</span></p>
+													
+												</div>
+												
+												<div class="cont_print">
+													<div class="cont_info">
+													
+													
+														
+														<dl>
+															<dt>저자</dt>
+															<dd>권철민 지음</dd>
+														</dl>
+														<dl>
+															<dt>발행처</dt>
+															<dd>위키북스</dd>
+														</dl>
+														
+														
+														<dl>
+															<dt>발행년</dt>
+															<dd>2019</dd>
+														</dl>
+														<dl>
+															<dt>자료위치</dt>
+															<dd>[문화정보]종합자료실</dd>
+														</dl>
+														
+														
+														<dl>
+															<dt>등록번호</dt>
+															<dd>EM0000101543</dd>
+														</dl>
+														
+														<dl>
+															<dt>청구기호</dt>
+															<dd>004.73-ㄱ537ㅍ
+															
+															
+																<!--<a onclick="placePrint('164014531', 'MA', 'BOOK', '%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC');" href="#placePrint">
+																<img style="margin-left: 5px; vertical-align: middle;" alt="인쇄" src="/nanum/ndls/imgs/common/book_print_icon.gif" /></a>-->
+															</dd>
+														</dl>
+														
+														
+														
+													</div>
+													
+													
+													<!-- 프린터 알림톡 받기 -->
+													<div class="ring">
+														<!-- <a onclick="placePrint('164014531', 'MA', 'BOOK', '%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC');" href="#placePrint"><span class="blind">프린터,알림톡받기</span></a> -->
+														<a href="javascript:;" onclick="placePrint('164014531', 'MA', 'BOOK', 'print', '%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC');" class="prints" title="출력하기">출력</a>
+														<a href="javascript:;" onclick="placePrint('164014531', 'MA', 'BOOK', 'alarm', '%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC');" class="alarm" title="알림톡받기">알림톡</a>
+													</div>
+													<!-- //프린터 알림톡 받기 -->
+													
+													
+												</div>
+												
+												<div class="gray_info">
+													<ul>
+													
+		
+		
+		
+
+		
+		
+			
+				
+				
+															
+				
+			
+		
+		
+		
+
+
+			<!-- 상호대차신청 -->
+				
+					 <!-- 비로그인 -->
+						
+						
+					
+					
+					
+				
+				<form id="frm_request_5" method="post">
+				<input name="publish_form_code" type="hidden" value="MO" />
+				<input name="manage_code" type="hidden" value="MA" />
+				<input name="book_isbn" type="hidden" value="9791158391386" />
+				<input name="book_title" type="hidden" value="파이썬 머신러닝 완벽 가이드" />
+				<input name="book_rk" type="hidden" value="164014530" />
+				<input name="book_regno" type="hidden" value="EM0000101543" /><!-- 필수!! -->
+				<input name="book_key" type="hidden" value="164014531" />
+				
+				</form>
+				
+
+				
+				
+
+				
+				
+
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					
+					
+					
+															<li><a href="/site/member/login.do?prepage=%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC" onclick="" class="ndls_sbtn dcol1">상호대차</a>
+															</li>
+					
+			
+
+
+			
+				<!-- U도서관 무인예약 -->
+					
+						 <!-- 비로그인 -->
+							
+							
+						
+						
+						
+					
+					
+				
+				<form id="frm_ulib_5" method="post">
+				<input name="manage_code" type="hidden" value="MA" />
+				<input name="book_title" type="hidden" value="파이썬 머신러닝 완벽 가이드" />
+				<input name="book_regno" type="hidden" value="EM0000101543" />
+				<input name="libcode" type="hidden" value="111041" />
+				
+				
+					<!-- 테스트 -->
+					
+					<!-- //테스트 -->
+					</form>
+
+
+					
+					
+						
+					
+					
+					
+
+					
+					
+					
+
+					
+
+					
+					
+					
+
+					
+							<li><a href="/site/member/login.do?prepage=%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC" onclick="" class="ndls_sbtn dcol2">U-도서관</a>
+							</li>
+					
+				
+			
+			
+			
+																	
+															
+															
+		
+			 <!-- 비로그인 -->
+				
+				
+			
+			
+		
+		<form id="frm_mybook_5" method="post" />
+		<input name="prepage" type="hidden" value="/site/search/search00.do?cmd_name=bookandnonbooksearch&search_type=detail&manage_code=MA%2CMB%2CMC%2CME%2CMG%2CMJ%2CMF%2CMH%2CSA%2CMD%2CSB%2CSL%2CSM%2CSN%2CSO%2CSP%2CSK%2CSQ%2CSR%2CSS%2CST%2CSU%2CSG%2CSH%2CSC&search_txt=%ED%8C%8C%EC%9D%B4%EC%8D%AC" />
+		<input name="mb_rec_key" type="hidden" value="164014531" />
+		<input name="mb_author" type="hidden" value="권철민 지음" />
+		<input name="mb_publisher" type="hidden" value="위키북스" />
+		<input name="mb_title" type="hidden" value="파이썬 머신러닝 완벽 가이드" />
+		<input name="mb_place_info" type="hidden" value="[문화정보]종합자료실" />
+		<input name="mb_callno_info" type="hidden" value="004.73-ㄱ537ㅍ" />
+		<input name="mb_reg_no" type="hidden" value="EM0000101543" />
+		<input name="mb_collection" type="hidden" value="BOOK" />
+		<input name="mb_mgc" type="hidden" value="MA" />
+		<input name="mb_pfc" type="hidden" value="MO" />
+		</form>
+															<li>
+															<a href="/site/member/login.do?prepage=%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC" onclick="" class="ndls_sbtn dcol3">관심도서</a>
+															</li>
+													</ul>
+												</div>
+											</div>
+											
+										</div>
+									</div>
+									
+								</div>
+							
+	
+	
+		
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		
+	
+	
+	
+		
+	
+
+	
+
+	
+	
+
+	
+	
+	
+		
+			
+		
+		
+		
+	
+	
+	
+	
+	
+		
+		
+			
+		
+	
+								
+								
+								
+	
+
+	
+	
+	
+	
+								<div class="book_area select_list">
+									
+									<div class="book_info_w">
+										<p class="check_t">
+											<input type="checkbox" id="check_list_6" value="6" class="inp_chk default" /><label for="check_list_6"></label>
+										</p>
+										<div class="book_img">
+											<div class="book">
+												<div class="thum">
+													<a title="파이썬으로 시작하는 컴퓨터 프로그래밍책 자세히 보기" href="?manage_code=MJ&book_type=BOOK&book_type_org=&publish_form_code=MO&species_key=302057973&prepage=%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC&reckey=302057975"><img class="book_image" src="/nanum/site/img/main/book_noimg.jpg" data-mgc="MJ" data-booktype="BOOK" data-reckey="302057975" data-regno="WD0000002316" data-isbn="9791156645948" alt="파이썬으로 시작하는 컴퓨터 프로그래밍" /></a>
+													
+												</div>
+											</div>
+											<p class="ribbon mark00">총류</p>
+										</div>
+										<div class="book_info" data-mec="KM" data-rk="302057973" data-brn="WD0000002316" data-isbn="9791156645948" data-yr="2022" data-mgc="MJ">
+											<div class="cont">
+												<div class="tit_w type2">
+													<div class="tit">
+														<a href="?manage_code=MJ&book_type=BOOK&book_type_org=&publish_form_code=MO&species_key=302057973&prepage=%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC&reckey=302057975">
+															
+															
+																
+															
+															<span class="col_MJ lib_name">한옥</span>
+															<span class="blank">파이썬으로 시작하는 컴퓨터 프로그래밍
+															</span>
+															
+															
+															
+															
+														</a>
+														
+													</div>
+													
+													<p class="book_status"><span class='activity'>대출가능</span></p>
+													
+												</div>
+												
+												<div class="cont_print">
+													<div class="cont_info">
+													
+													
+														
+														<dl>
+															<dt>저자</dt>
+															<dd>조동영 지음</dd>
+														</dl>
+														<dl>
+															<dt>발행처</dt>
+															<dd>한빛아카데미</dd>
+														</dl>
+														
+														
+														<dl>
+															<dt>발행년</dt>
+															<dd>2022</dd>
+														</dl>
+														<dl>
+															<dt>자료위치</dt>
+															<dd>[원당마을한옥]일반</dd>
+														</dl>
+														
+														
+														<dl>
+															<dt>등록번호</dt>
+															<dd>WD0000002316</dd>
+														</dl>
+														
+														<dl>
+															<dt>청구기호</dt>
+															<dd>일반 005.135-ㅈ594ㅍ
+															
+															
+																<!--<a onclick="placePrint('302057975', 'MJ', 'BOOK', '%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC');" href="#placePrint">
+																<img style="margin-left: 5px; vertical-align: middle;" alt="인쇄" src="/nanum/ndls/imgs/common/book_print_icon.gif" /></a>-->
+															</dd>
+														</dl>
+														
+														
+														
+													</div>
+													
+													
+													<!-- 프린터 알림톡 받기 -->
+													<div class="ring">
+														<!-- <a onclick="placePrint('302057975', 'MJ', 'BOOK', '%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC');" href="#placePrint"><span class="blind">프린터,알림톡받기</span></a> -->
+														<a href="javascript:;" onclick="placePrint('302057975', 'MJ', 'BOOK', 'print', '%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC');" class="prints" title="출력하기">출력</a>
+														<a href="javascript:;" onclick="placePrint('302057975', 'MJ', 'BOOK', 'alarm', '%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC');" class="alarm" title="알림톡받기">알림톡</a>
+													</div>
+													<!-- //프린터 알림톡 받기 -->
+													
+													
+												</div>
+												
+												<div class="gray_info">
+													<ul>
+													
+		
+		
+		
+
+		
+		
+			
+				
+				
+															
+				
+			
+		
+		
+		
+
+
+			<!-- 상호대차신청 -->
+				
+					 <!-- 비로그인 -->
+						
+						
+					
+					
+					
+				
+				<form id="frm_request_6" method="post">
+				<input name="publish_form_code" type="hidden" value="MO" />
+				<input name="manage_code" type="hidden" value="MJ" />
+				<input name="book_isbn" type="hidden" value="9791156645948" />
+				<input name="book_title" type="hidden" value="파이썬으로 시작하는 컴퓨터 프로그래밍" />
+				<input name="book_rk" type="hidden" value="302057973" />
+				<input name="book_regno" type="hidden" value="WD0000002316" /><!-- 필수!! -->
+				<input name="book_key" type="hidden" value="302057975" />
+				
+				</form>
+				
+
+				
+				
+
+				
+				
+
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					
+					
+					
+															<li><a href="/site/member/login.do?prepage=%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC" onclick="" class="ndls_sbtn dcol1">상호대차</a>
+															</li>
+					
+			
+
+
+			
+				<!-- U도서관 무인예약 -->
+					
+						 <!-- 비로그인 -->
+							
+							
+						
+						
+						
+					
+					
+				
+				<form id="frm_ulib_6" method="post">
+				<input name="manage_code" type="hidden" value="MJ" />
+				<input name="book_title" type="hidden" value="파이썬으로 시작하는 컴퓨터 프로그래밍" />
+				<input name="book_regno" type="hidden" value="WD0000002316" />
+				<input name="libcode" type="hidden" value="111524" />
+				
+				
+					<!-- 테스트 -->
+					
+					<!-- //테스트 -->
+					</form>
+
+
+					
+					
+						
+					
+					
+					
+
+					
+					
+					
+
+					
+
+					
+					
+					
+
+					
+							<li><a href="/site/member/login.do?prepage=%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC" onclick="" class="ndls_sbtn dcol2">U-도서관</a>
+							</li>
+					
+				
+			
+			
+			
+																	
+															
+															
+		
+			 <!-- 비로그인 -->
+				
+				
+			
+			
+		
+		<form id="frm_mybook_6" method="post" />
+		<input name="prepage" type="hidden" value="/site/search/search00.do?cmd_name=bookandnonbooksearch&search_type=detail&manage_code=MA%2CMB%2CMC%2CME%2CMG%2CMJ%2CMF%2CMH%2CSA%2CMD%2CSB%2CSL%2CSM%2CSN%2CSO%2CSP%2CSK%2CSQ%2CSR%2CSS%2CST%2CSU%2CSG%2CSH%2CSC&search_txt=%ED%8C%8C%EC%9D%B4%EC%8D%AC" />
+		<input name="mb_rec_key" type="hidden" value="302057975" />
+		<input name="mb_author" type="hidden" value="조동영 지음" />
+		<input name="mb_publisher" type="hidden" value="한빛아카데미" />
+		<input name="mb_title" type="hidden" value="파이썬으로 시작하는 컴퓨터 프로그래밍" />
+		<input name="mb_place_info" type="hidden" value="[원당마을한옥]일반" />
+		<input name="mb_callno_info" type="hidden" value="일반 005.135-ㅈ594ㅍ" />
+		<input name="mb_reg_no" type="hidden" value="WD0000002316" />
+		<input name="mb_collection" type="hidden" value="BOOK" />
+		<input name="mb_mgc" type="hidden" value="MJ" />
+		<input name="mb_pfc" type="hidden" value="MO" />
+		</form>
+															<li>
+															<a href="/site/member/login.do?prepage=%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC" onclick="" class="ndls_sbtn dcol3">관심도서</a>
+															</li>
+													</ul>
+												</div>
+											</div>
+											
+										</div>
+									</div>
+									
+								</div>
+							
+	
+	
+		
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		
+	
+	
+	
+		
+	
+
+	
+
+	
+	
+
+	
+	
+	
+		
+			
+		
+		
+		
+	
+	
+	
+	
+	
+		
+		
+			
+		
+	
+								
+								
+								
+	
+
+	
+	
+	
+	
+								<div class="book_area select_list">
+									
+									<div class="book_info_w">
+										<p class="check_t">
+											<input type="checkbox" id="check_list_7" value="7" class="inp_chk default" /><label for="check_list_7"></label>
+										</p>
+										<div class="book_img">
+											<div class="book">
+												<div class="thum">
+													<a title="파이썬 매일 코딩 : 매일 10분, 50가지 연습 문제로 키우는 파이썬 코딩 실력!책 자세히 보기" href="?manage_code=ME&book_type=BOOK&book_type_org=&publish_form_code=MO&species_key=283219682&prepage=%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC&reckey=283219683"><img class="book_image" src="/nanum/site/img/main/book_noimg.jpg" data-mgc="ME" data-booktype="BOOK" data-reckey="283219683" data-regno="KE0000010694" data-isbn="9791165217884" alt="파이썬 매일 코딩 : 매일 10분, 50가지 연습 문제로 키우는 파이썬 코딩 실력!" /></a>
+													
+												</div>
+											</div>
+											<p class="ribbon mark00">총류</p>
+										</div>
+										<div class="book_info" data-mec="PR" data-rk="283219682" data-brn="KE0000010694" data-isbn="9791165217884" data-yr="2021" data-mgc="ME">
+											<div class="cont">
+												<div class="tit_w type2">
+													<div class="tit">
+														<a href="?manage_code=ME&book_type=BOOK&book_type_org=&publish_form_code=MO&species_key=283219682&prepage=%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC&reckey=283219683">
+															
+															
+																
+															
+															<span class="col_ME lib_name">도봉기적</span>
+															<span class="blank">파이썬 매일 코딩 : 매일 10분, 50가지 연습 문제로 키우는 파이썬 코딩 실력!
+															</span>
+															
+															
+															
+															
+														</a>
+														
+													</div>
+													
+													<p class="book_status"><span class='activity'>대출가능</span></p>
+													
+												</div>
+												
+												<div class="cont_print">
+													<div class="cont_info">
+													
+													
+														
+														<dl>
+															<dt>저자</dt>
+															<dd>루벤 M. 러너 지음 ; 윤인성 옮김</dd>
+														</dl>
+														<dl>
+															<dt>발행처</dt>
+															<dd>길벗</dd>
+														</dl>
+														
+														
+														<dl>
+															<dt>발행년</dt>
+															<dd>2021</dd>
+														</dl>
+														<dl>
+															<dt>자료위치</dt>
+															<dd>[기적]성인자료실(2층)</dd>
+														</dl>
+														
+														
+														<dl>
+															<dt>등록번호</dt>
+															<dd>KE0000010694</dd>
+														</dl>
+														
+														<dl>
+															<dt>청구기호</dt>
+															<dd>005.133-ㄹ328ㅍ
+															
+															
+																<!--<a onclick="placePrint('283219683', 'ME', 'BOOK', '%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC');" href="#placePrint">
+																<img style="margin-left: 5px; vertical-align: middle;" alt="인쇄" src="/nanum/ndls/imgs/common/book_print_icon.gif" /></a>-->
+															</dd>
+														</dl>
+														
+														
+														
+													</div>
+													
+													
+													<!-- 프린터 알림톡 받기 -->
+													<div class="ring">
+														<!-- <a onclick="placePrint('283219683', 'ME', 'BOOK', '%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC');" href="#placePrint"><span class="blind">프린터,알림톡받기</span></a> -->
+														<a href="javascript:;" onclick="placePrint('283219683', 'ME', 'BOOK', 'print', '%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC');" class="prints" title="출력하기">출력</a>
+														<a href="javascript:;" onclick="placePrint('283219683', 'ME', 'BOOK', 'alarm', '%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC');" class="alarm" title="알림톡받기">알림톡</a>
+													</div>
+													<!-- //프린터 알림톡 받기 -->
+													
+													
+												</div>
+												
+												<div class="gray_info">
+													<ul>
+													
+		
+		
+		
+
+		
+		
+			
+				
+				
+															
+				
+			
+		
+		
+		
+
+
+			<!-- 상호대차신청 -->
+				
+					 <!-- 비로그인 -->
+						
+						
+					
+					
+					
+				
+				<form id="frm_request_7" method="post">
+				<input name="publish_form_code" type="hidden" value="MO" />
+				<input name="manage_code" type="hidden" value="ME" />
+				<input name="book_isbn" type="hidden" value="9791165217884" />
+				<input name="book_title" type="hidden" value="파이썬 매일 코딩 : 매일 10분, 50가지 연습 문제로 키우는 파이썬 코딩 실력!" />
+				<input name="book_rk" type="hidden" value="283219682" />
+				<input name="book_regno" type="hidden" value="KE0000010694" /><!-- 필수!! -->
+				<input name="book_key" type="hidden" value="283219683" />
+				
+				</form>
+				
+
+				
+				
+
+				
+				
+
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					
+					
+					
+															<li><a href="/site/member/login.do?prepage=%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC" onclick="" class="ndls_sbtn dcol1">상호대차</a>
+															</li>
+					
+			
+
+
+			
+				<!-- U도서관 무인예약 -->
+					
+						 <!-- 비로그인 -->
+							
+							
+						
+						
+						
+					
+					
+				
+				<form id="frm_ulib_7" method="post">
+				<input name="manage_code" type="hidden" value="ME" />
+				<input name="book_title" type="hidden" value="파이썬 매일 코딩 : 매일 10분, 50가지 연습 문제로 키우는 파이썬 코딩 실력!" />
+				<input name="book_regno" type="hidden" value="KE0000010694" />
+				<input name="libcode" type="hidden" value="111457" />
+				
+				
+					<!-- 테스트 -->
+					
+					<!-- //테스트 -->
+					</form>
+
+
+					
+					
+						
+					
+					
+					
+
+					
+					
+					
+
+					
+
+					
+					
+					
+
+					
+							<li><a href="/site/member/login.do?prepage=%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC" onclick="" class="ndls_sbtn dcol2">U-도서관</a>
+							</li>
+					
+				
+			
+			
+			
+																	
+															
+															
+		
+			 <!-- 비로그인 -->
+				
+				
+			
+			
+		
+		<form id="frm_mybook_7" method="post" />
+		<input name="prepage" type="hidden" value="/site/search/search00.do?cmd_name=bookandnonbooksearch&search_type=detail&manage_code=MA%2CMB%2CMC%2CME%2CMG%2CMJ%2CMF%2CMH%2CSA%2CMD%2CSB%2CSL%2CSM%2CSN%2CSO%2CSP%2CSK%2CSQ%2CSR%2CSS%2CST%2CSU%2CSG%2CSH%2CSC&search_txt=%ED%8C%8C%EC%9D%B4%EC%8D%AC" />
+		<input name="mb_rec_key" type="hidden" value="283219683" />
+		<input name="mb_author" type="hidden" value="루벤 M. 러너 지음 ; 윤인성 옮김" />
+		<input name="mb_publisher" type="hidden" value="길벗" />
+		<input name="mb_title" type="hidden" value="파이썬 매일 코딩 : 매일 10분, 50가지 연습 문제로 키우는 파이썬 코딩 실력!" />
+		<input name="mb_place_info" type="hidden" value="[기적]성인자료실(2층)" />
+		<input name="mb_callno_info" type="hidden" value="005.133-ㄹ328ㅍ" />
+		<input name="mb_reg_no" type="hidden" value="KE0000010694" />
+		<input name="mb_collection" type="hidden" value="BOOK" />
+		<input name="mb_mgc" type="hidden" value="ME" />
+		<input name="mb_pfc" type="hidden" value="MO" />
+		</form>
+															<li>
+															<a href="/site/member/login.do?prepage=%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC" onclick="" class="ndls_sbtn dcol3">관심도서</a>
+															</li>
+													</ul>
+												</div>
+											</div>
+											
+										</div>
+									</div>
+									
+									
+								</div>
+							
+	
+	
+		
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		
+	
+	
+	
+		
+	
+
+	
+
+	
+	
+
+	
+	
+	
+		
+			
+		
+		
+		
+	
+	
+	
+	
+	
+		
+		
+			
+		
+	
+								
+								
+								
+	
+
+	
+	
+	
+	
+								<div class="book_area select_list">
+									
+									<div class="book_info_w">
+										<p class="check_t">
+											<input type="checkbox" id="check_list_8" value="8" class="inp_chk default" /><label for="check_list_8"></label>
+										</p>
+										<div class="book_img">
+											<div class="book">
+												<div class="thum">
+													<a title="파이썬으로 배우는 게임 개발. [2], 실전편책 자세히 보기" href="?manage_code=MA&book_type=BOOK&book_type_org=&publish_form_code=MO&species_key=251928024&prepage=%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC&reckey=251928026"><img class="book_image" src="/nanum/site/img/main/book_noimg.jpg" data-mgc="MA" data-booktype="BOOK" data-reckey="251928026" data-regno="EM0000109297" data-isbn="9791190665452" alt="파이썬으로 배우는 게임 개발. [2], 실전편" /></a>
+													
+												</div>
+											</div>
+											<p class="ribbon mark00">총류</p>
+										</div>
+										<div class="book_info" data-mec="KM" data-rk="251928024" data-brn="EM0000109297" data-isbn="9791190665452" data-yr="2020" data-mgc="MA">
+											<div class="cont">
+												<div class="tit_w type2">
+													<div class="tit">
+														<a href="?manage_code=MA&book_type=BOOK&book_type_org=&publish_form_code=MO&species_key=251928024&prepage=%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC&reckey=251928026">
+															
+															
+																
+															
+															<span class="col_MA lib_name">도봉문화</span>
+															<span class="blank">파이썬으로 배우는 게임 개발. [2], 실전편
+															</span>
+															
+															
+															
+															
+														</a>
+														
+													</div>
+													
+													<p class="book_status"><span class='activity'>대출가능</span></p>
+													
+												</div>
+												
+												<div class="cont_print">
+													<div class="cont_info">
+													
+													
+														
+														<dl>
+															<dt>저자</dt>
+															<dd>히로세 츠요시 지음 ; 김연수 옮김</dd>
+														</dl>
+														<dl>
+															<dt>발행처</dt>
+															<dd>Jpub</dd>
+														</dl>
+														
+														
+														<dl>
+															<dt>발행년</dt>
+															<dd>2020</dd>
+														</dl>
+														<dl>
+															<dt>자료위치</dt>
+															<dd>[문화정보]종합자료실</dd>
+														</dl>
+														
+														
+														<dl>
+															<dt>등록번호</dt>
+															<dd>EM0000109297</dd>
+														</dl>
+														
+														<dl>
+															<dt>청구기호</dt>
+															<dd>005.133-ㅎ979ㅍ-2
+															
+															
+																<!--<a onclick="placePrint('251928026', 'MA', 'BOOK', '%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC');" href="#placePrint">
+																<img style="margin-left: 5px; vertical-align: middle;" alt="인쇄" src="/nanum/ndls/imgs/common/book_print_icon.gif" /></a>-->
+															</dd>
+														</dl>
+														
+														
+														
+													</div>
+													
+													
+													<!-- 프린터 알림톡 받기 -->
+													<div class="ring">
+														<!-- <a onclick="placePrint('251928026', 'MA', 'BOOK', '%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC');" href="#placePrint"><span class="blind">프린터,알림톡받기</span></a> -->
+														<a href="javascript:;" onclick="placePrint('251928026', 'MA', 'BOOK', 'print', '%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC');" class="prints" title="출력하기">출력</a>
+														<a href="javascript:;" onclick="placePrint('251928026', 'MA', 'BOOK', 'alarm', '%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC');" class="alarm" title="알림톡받기">알림톡</a>
+													</div>
+													<!-- //프린터 알림톡 받기 -->
+													
+													
+												</div>
+												
+												<div class="gray_info">
+													<ul>
+													
+		
+		
+		
+
+		
+		
+			
+				
+				
+															
+				
+			
+		
+		
+		
+
+
+			<!-- 상호대차신청 -->
+				
+					 <!-- 비로그인 -->
+						
+						
+					
+					
+					
+				
+				<form id="frm_request_8" method="post">
+				<input name="publish_form_code" type="hidden" value="MO" />
+				<input name="manage_code" type="hidden" value="MA" />
+				<input name="book_isbn" type="hidden" value="9791190665452" />
+				<input name="book_title" type="hidden" value="파이썬으로 배우는 게임 개발. [2], 실전편" />
+				<input name="book_rk" type="hidden" value="251928024" />
+				<input name="book_regno" type="hidden" value="EM0000109297" /><!-- 필수!! -->
+				<input name="book_key" type="hidden" value="251928026" />
+				
+				</form>
+				
+
+				
+				
+
+				
+				
+
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					
+					
+					
+															<li><a href="/site/member/login.do?prepage=%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC" onclick="" class="ndls_sbtn dcol1">상호대차</a>
+															</li>
+					
+			
+
+
+			
+				<!-- U도서관 무인예약 -->
+					
+						 <!-- 비로그인 -->
+							
+							
+						
+						
+						
+					
+					
+				
+				<form id="frm_ulib_8" method="post">
+				<input name="manage_code" type="hidden" value="MA" />
+				<input name="book_title" type="hidden" value="파이썬으로 배우는 게임 개발. [2], 실전편" />
+				<input name="book_regno" type="hidden" value="EM0000109297" />
+				<input name="libcode" type="hidden" value="111041" />
+				
+				
+					<!-- 테스트 -->
+					
+					<!-- //테스트 -->
+					</form>
+
+
+					
+					
+						
+					
+					
+					
+
+					
+					
+					
+
+					
+
+					
+					
+					
+
+					
+							<li><a href="/site/member/login.do?prepage=%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC" onclick="" class="ndls_sbtn dcol2">U-도서관</a>
+							</li>
+					
+				
+			
+			
+			
+																	
+															
+															
+		
+			 <!-- 비로그인 -->
+				
+				
+			
+			
+		
+		<form id="frm_mybook_8" method="post" />
+		<input name="prepage" type="hidden" value="/site/search/search00.do?cmd_name=bookandnonbooksearch&search_type=detail&manage_code=MA%2CMB%2CMC%2CME%2CMG%2CMJ%2CMF%2CMH%2CSA%2CMD%2CSB%2CSL%2CSM%2CSN%2CSO%2CSP%2CSK%2CSQ%2CSR%2CSS%2CST%2CSU%2CSG%2CSH%2CSC&search_txt=%ED%8C%8C%EC%9D%B4%EC%8D%AC" />
+		<input name="mb_rec_key" type="hidden" value="251928026" />
+		<input name="mb_author" type="hidden" value="히로세 츠요시 지음 ; 김연수 옮김" />
+		<input name="mb_publisher" type="hidden" value="Jpub" />
+		<input name="mb_title" type="hidden" value="파이썬으로 배우는 게임 개발. [2], 실전편" />
+		<input name="mb_place_info" type="hidden" value="[문화정보]종합자료실" />
+		<input name="mb_callno_info" type="hidden" value="005.133-ㅎ979ㅍ-2" />
+		<input name="mb_reg_no" type="hidden" value="EM0000109297" />
+		<input name="mb_collection" type="hidden" value="BOOK" />
+		<input name="mb_mgc" type="hidden" value="MA" />
+		<input name="mb_pfc" type="hidden" value="MO" />
+		</form>
+															<li>
+															<a href="/site/member/login.do?prepage=%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC" onclick="" class="ndls_sbtn dcol3">관심도서</a>
+															</li>
+													</ul>
+												</div>
+											</div>
+											
+										</div>
+									</div>
+									
+								</div>
+							
+	
+	
+		
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		
+	
+	
+	
+		
+	
+
+	
+
+	
+	
+
+	
+	
+	
+		
+			
+		
+		
+		
+	
+	
+	
+	
+	
+		
+		
+			
+		
+	
+								
+								
+								
+	
+
+	
+	
+	
+	
+								<div class="book_area select_list">
+									
+									<div class="book_info_w">
+										<p class="check_t">
+											<input type="checkbox" id="check_list_9" value="9" class="inp_chk default" /><label for="check_list_9"></label>
+										</p>
+										<div class="book_img">
+											<div class="book">
+												<div class="thum">
+													<a title="파이썬을 이용한웹크롤링과 데이터 분석책 자세히 보기" href="?manage_code=SC&book_type=BOOK&book_type_org=&publish_form_code=MO&species_key=272970226&prepage=%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC&reckey=272970228"><img class="book_image" src="/nanum/site/img/main/book_noimg.jpg" data-mgc="SC" data-booktype="BOOK" data-reckey="272970228" data-regno="AR0000027093" data-isbn="9791185578910" alt="파이썬을 이용한웹크롤링과 데이터 분석" /></a>
+													
+												</div>
+											</div>
+											<p class="ribbon mark00">총류</p>
+										</div>
+										<div class="book_info" data-mec="PR" data-rk="272970226" data-brn="AR0000027093" data-isbn="9791185578910" data-yr="2021" data-mgc="SC">
+											<div class="cont">
+												<div class="tit_w type2">
+													<div class="tit">
+														<a href="?manage_code=SC&book_type=BOOK&book_type_org=&publish_form_code=MO&species_key=272970226&prepage=%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC&reckey=272970228">
+															
+															
+															<span class="col_SMALL lib_name">북서울</span>
+															<span class="blank">파이썬을 이용한웹크롤링과 데이터 분석
+															</span>
+															
+															
+															
+															
+														</a>
+														
+													</div>
+													
+													<p class="book_status"><span class='activity'>대출가능</span></p>
+													
+												</div>
+												
+												<div class="cont_print">
+													<div class="cont_info">
+													
+													
+														
+														<dl>
+															<dt>저자</dt>
+															<dd>방진숙 ; 주진현 [공]지음</dd>
+														</dl>
+														<dl>
+															<dt>발행처</dt>
+															<dd>인피니티북스</dd>
+														</dl>
+														
+														
+														<dl>
+															<dt>발행년</dt>
+															<dd>2021</dd>
+														</dl>
+														<dl>
+															<dt>자료위치</dt>
+															<dd>도서실</dd>
+														</dl>
+														
+														
+														<dl>
+															<dt>등록번호</dt>
+															<dd>AR0000027093</dd>
+														</dl>
+														
+														<dl>
+															<dt>청구기호</dt>
+															<dd>005.74-ㅂ648ㅍ
+															
+																<!--<a onclick="placePrint('272970228', 'SC', 'BOOK', '%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC');" href="#placePrint">
+																<img style="margin-left: 5px; vertical-align: middle;" alt="인쇄" src="/nanum/ndls/imgs/common/book_print_icon.gif" /></a>-->
+															</dd>
+														</dl>
+														
+														
+														
+													</div>
+													
+													
+													<!-- 프린터 알림톡 받기 -->
+													<div class="ring">
+														<!-- <a onclick="placePrint('272970228', 'SC', 'BOOK', '%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC');" href="#placePrint"><span class="blind">프린터,알림톡받기</span></a> -->
+														<a href="javascript:;" onclick="placePrint('272970228', 'SC', 'BOOK', 'print', '%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC');" class="prints" title="출력하기">출력</a>
+														<a href="javascript:;" onclick="placePrint('272970228', 'SC', 'BOOK', 'alarm', '%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC');" class="alarm" title="알림톡받기">알림톡</a>
+													</div>
+													<!-- //프린터 알림톡 받기 -->
+													
+													
+												</div>
+												
+												<div class="gray_info">
+													<ul>
+													
+		
+		
+		
+
+		
+		
+		
+		
+
+
+			<!-- 상호대차신청 -->
+				
+					 <!-- 비로그인 -->
+						
+						
+					
+					
+					
+				
+				<form id="frm_request_9" method="post">
+				<input name="publish_form_code" type="hidden" value="MO" />
+				<input name="manage_code" type="hidden" value="SC" />
+				<input name="book_isbn" type="hidden" value="9791185578910" />
+				<input name="book_title" type="hidden" value="파이썬을 이용한웹크롤링과 데이터 분석" />
+				<input name="book_rk" type="hidden" value="272970226" />
+				<input name="book_regno" type="hidden" value="AR0000027093" /><!-- 필수!! -->
+				<input name="book_key" type="hidden" value="272970228" />
+				
+				</form>
+				
+
+				
+				
+
+				
+				
+
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					
+					
+					       
+					        
+					
+					
+					
+					
+				
+					
+					
+					
+															<li><a href="#noservice" onclick="alert('해당 자료는 서비스가 일시중단 되었습니다.');" class="ndls_sbtn dcol1">상호대차</a>
+															</li>
+					
+			
+
+
+			
+			
+			
+																	
+															
+															
+		
+			 <!-- 비로그인 -->
+				
+				
+			
+			
+		
+		<form id="frm_mybook_9" method="post" />
+		<input name="prepage" type="hidden" value="/site/search/search00.do?cmd_name=bookandnonbooksearch&search_type=detail&manage_code=MA%2CMB%2CMC%2CME%2CMG%2CMJ%2CMF%2CMH%2CSA%2CMD%2CSB%2CSL%2CSM%2CSN%2CSO%2CSP%2CSK%2CSQ%2CSR%2CSS%2CST%2CSU%2CSG%2CSH%2CSC&search_txt=%ED%8C%8C%EC%9D%B4%EC%8D%AC" />
+		<input name="mb_rec_key" type="hidden" value="272970228" />
+		<input name="mb_author" type="hidden" value="방진숙 ; 주진현 [공]지음" />
+		<input name="mb_publisher" type="hidden" value="인피니티북스" />
+		<input name="mb_title" type="hidden" value="파이썬을 이용한웹크롤링과 데이터 분석" />
+		<input name="mb_place_info" type="hidden" value="도서실" />
+		<input name="mb_callno_info" type="hidden" value="005.74-ㅂ648ㅍ" />
+		<input name="mb_reg_no" type="hidden" value="AR0000027093" />
+		<input name="mb_collection" type="hidden" value="BOOK" />
+		<input name="mb_mgc" type="hidden" value="SC" />
+		<input name="mb_pfc" type="hidden" value="MO" />
+		</form>
+															<li>
+															<a href="/site/member/login.do?prepage=%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC" onclick="" class="ndls_sbtn dcol3">관심도서</a>
+															</li>
+													</ul>
+												</div>
+											</div>
+											
+										</div>
+									</div>
+									
+									
+								</div>
+							
+	
+	
+		
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		
+	
+	
+	
+		
+	
+
+	
+
+	
+	
+
+	
+	
+	
+		
+			
+		
+		
+		
+	
+	
+	
+	
+	
+		
+		
+			
+		
+	
+								
+								
+								
+	
+
+	
+	
+	
+	
+								<div class="book_area select_list">
+									
+									<div class="book_info_w">
+										<p class="check_t">
+											<input type="checkbox" id="check_list_10" value="10" class="inp_chk default" /><label for="check_list_10"></label>
+										</p>
+										<div class="book_img">
+											<div class="book">
+												<div class="thum">
+													<a title="파이썬 생활 프로젝트 코딩 : 14일 만에 뚝딱!책 자세히 보기" href="?manage_code=MG&book_type=BOOK&book_type_org=&publish_form_code=MO&species_key=374528685&prepage=%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC&reckey=374528687"><img class="book_image" src="/nanum/site/img/main/book_noimg.jpg" data-mgc="MG" data-booktype="BOOK" data-reckey="374528687" data-regno="SEM000012666" data-isbn="9791140706006" alt="파이썬 생활 프로젝트 코딩 : 14일 만에 뚝딱!" /></a>
+													
+												</div>
+											</div>
+											<p class="ribbon mark00">총류</p>
+										</div>
+										<div class="book_info" data-mec="PR" data-rk="374528685" data-brn="SEM000012666" data-isbn="9791140706006" data-yr="2023" data-mgc="MG">
+											<div class="cont">
+												<div class="tit_w type2">
+													<div class="tit">
+														<a href="?manage_code=MG&book_type=BOOK&book_type_org=&publish_form_code=MO&species_key=374528685&prepage=%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC&reckey=374528687">
+															
+															
+																
+															
+															<span class="col_MG lib_name">쌍문채움</span>
+															<span class="blank">파이썬 생활 프로젝트 코딩 : 14일 만에 뚝딱!
+															</span>
+															
+															
+															
+															
+														</a>
+														
+													</div>
+													
+													<p class="book_status"><span class='activity'>대출가능</span></p>
+													
+												</div>
+												
+												<div class="cont_print">
+													<div class="cont_info">
+													
+													
+														
+														<dl>
+															<dt>저자</dt>
+															<dd>서승희 지음</dd>
+														</dl>
+														<dl>
+															<dt>발행처</dt>
+															<dd>길벗</dd>
+														</dl>
+														
+														
+														<dl>
+															<dt>발행년</dt>
+															<dd>2023</dd>
+														</dl>
+														<dl>
+															<dt>자료위치</dt>
+															<dd>[채움]종합자료실</dd>
+														</dl>
+														
+														
+														<dl>
+															<dt>등록번호</dt>
+															<dd>SEM000012666</dd>
+														</dl>
+														
+														<dl>
+															<dt>청구기호</dt>
+															<dd>005.133-ㅅ256ㅍ
+															
+															
+																<!--<a onclick="placePrint('374528687', 'MG', 'BOOK', '%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC');" href="#placePrint">
+																<img style="margin-left: 5px; vertical-align: middle;" alt="인쇄" src="/nanum/ndls/imgs/common/book_print_icon.gif" /></a>-->
+															</dd>
+														</dl>
+														
+														
+														
+													</div>
+													
+													
+													<!-- 프린터 알림톡 받기 -->
+													<div class="ring">
+														<!-- <a onclick="placePrint('374528687', 'MG', 'BOOK', '%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC');" href="#placePrint"><span class="blind">프린터,알림톡받기</span></a> -->
+														<a href="javascript:;" onclick="placePrint('374528687', 'MG', 'BOOK', 'print', '%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC');" class="prints" title="출력하기">출력</a>
+														<a href="javascript:;" onclick="placePrint('374528687', 'MG', 'BOOK', 'alarm', '%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC');" class="alarm" title="알림톡받기">알림톡</a>
+													</div>
+													<!-- //프린터 알림톡 받기 -->
+													
+													
+												</div>
+												
+												<div class="gray_info">
+													<ul>
+													
+		
+		
+		
+
+		
+		
+			
+				
+				
+															
+				
+			
+		
+		
+		
+
+
+			<!-- 상호대차신청 -->
+				
+					 <!-- 비로그인 -->
+						
+						
+					
+					
+					
+				
+				<form id="frm_request_10" method="post">
+				<input name="publish_form_code" type="hidden" value="MO" />
+				<input name="manage_code" type="hidden" value="MG" />
+				<input name="book_isbn" type="hidden" value="9791140706006" />
+				<input name="book_title" type="hidden" value="파이썬 생활 프로젝트 코딩 : 14일 만에 뚝딱!" />
+				<input name="book_rk" type="hidden" value="374528685" />
+				<input name="book_regno" type="hidden" value="SEM000012666" /><!-- 필수!! -->
+				<input name="book_key" type="hidden" value="374528687" />
+				
+				</form>
+				
+
+				
+				
+
+				
+				
+
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					
+					
+					
+															<li><a href="/site/member/login.do?prepage=%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC" onclick="" class="ndls_sbtn dcol1">상호대차</a>
+															</li>
+					
+			
+
+
+			
+				<!-- U도서관 무인예약 -->
+					
+						 <!-- 비로그인 -->
+							
+							
+						
+						
+						
+					
+					
+				
+				<form id="frm_ulib_10" method="post">
+				<input name="manage_code" type="hidden" value="MG" />
+				<input name="book_title" type="hidden" value="파이썬 생활 프로젝트 코딩 : 14일 만에 뚝딱!" />
+				<input name="book_regno" type="hidden" value="SEM000012666" />
+				<input name="libcode" type="hidden" value="111496" />
+				
+				
+					<!-- 테스트 -->
+					
+					<!-- //테스트 -->
+					</form>
+
+
+					
+					
+						
+					
+					
+					
+
+					
+					
+					
+
+					
+
+					
+					
+					
+
+					
+							<li><a href="/site/member/login.do?prepage=%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC" onclick="" class="ndls_sbtn dcol2">U-도서관</a>
+							</li>
+					
+				
+			
+			
+			
+																	
+															
+															
+		
+			 <!-- 비로그인 -->
+				
+				
+			
+			
+		
+		<form id="frm_mybook_10" method="post" />
+		<input name="prepage" type="hidden" value="/site/search/search00.do?cmd_name=bookandnonbooksearch&search_type=detail&manage_code=MA%2CMB%2CMC%2CME%2CMG%2CMJ%2CMF%2CMH%2CSA%2CMD%2CSB%2CSL%2CSM%2CSN%2CSO%2CSP%2CSK%2CSQ%2CSR%2CSS%2CST%2CSU%2CSG%2CSH%2CSC&search_txt=%ED%8C%8C%EC%9D%B4%EC%8D%AC" />
+		<input name="mb_rec_key" type="hidden" value="374528687" />
+		<input name="mb_author" type="hidden" value="서승희 지음" />
+		<input name="mb_publisher" type="hidden" value="길벗" />
+		<input name="mb_title" type="hidden" value="파이썬 생활 프로젝트 코딩 : 14일 만에 뚝딱!" />
+		<input name="mb_place_info" type="hidden" value="[채움]종합자료실" />
+		<input name="mb_callno_info" type="hidden" value="005.133-ㅅ256ㅍ" />
+		<input name="mb_reg_no" type="hidden" value="SEM000012666" />
+		<input name="mb_collection" type="hidden" value="BOOK" />
+		<input name="mb_mgc" type="hidden" value="MG" />
+		<input name="mb_pfc" type="hidden" value="MO" />
+		</form>
+															<li>
+															<a href="/site/member/login.do?prepage=%2Fsite%2Fsearch%2Fsearch00.do%3Fcmd_name%3Dbookandnonbooksearch%26search_type%3Ddetail%26manage_code%3DMA%252CMB%252CMC%252CME%252CMG%252CMJ%252CMF%252CMH%252CSA%252CMD%252CSB%252CSL%252CSM%252CSN%252CSO%252CSP%252CSK%252CSQ%252CSR%252CSS%252CST%252CSU%252CSG%252CSH%252CSC%26search_txt%3D%25ED%258C%258C%25EC%259D%25B4%25EC%258D%25AC" onclick="" class="ndls_sbtn dcol3">관심도서</a>
+															</li>
+													</ul>
+												</div>
+											</div>
+											
+										</div>
+									</div>
+									
+									
+								</div>
+							
+
+						</div>
+						<!--// 검색결과리스트 -->
+						
+						
+						
+						
+						<!-- 페이징 -->
+						<div class="board_paginate search_data">
+						<strong>1</strong>&nbsp;<a href='?page=2&amp;cmd_name=bookandnonbooksearch&manage_code=MA%2CMB%2CMC%2CME%2CMG%2CMJ%2CMF%2CMH%2CSA%2CMD%2CSB%2CSL%2CSM%2CSN%2CSO%2CSP%2CSK%2CSQ%2CSR%2CSS%2CST%2CSU%2CSG%2CSH%2CSC&search_txt=%ED%8C%8C%EC%9D%B4%EC%8D%AC&search_txt_add=%ED%8C%8C%EC%9D%B4%EC%8D%AC&search_txt_add_ok=&page_cnt=10&sh_orderby=' title='2페이지로' data-page='2'>2</a>&nbsp;<a href='?page=3&amp;cmd_name=bookandnonbooksearch&manage_code=MA%2CMB%2CMC%2CME%2CMG%2CMJ%2CMF%2CMH%2CSA%2CMD%2CSB%2CSL%2CSM%2CSN%2CSO%2CSP%2CSK%2CSQ%2CSR%2CSS%2CST%2CSU%2CSG%2CSH%2CSC&search_txt=%ED%8C%8C%EC%9D%B4%EC%8D%AC&search_txt_add=%ED%8C%8C%EC%9D%B4%EC%8D%AC&search_txt_add_ok=&page_cnt=10&sh_orderby=' title='3페이지로' data-page='3'>3</a>&nbsp;<a href='?page=4&amp;cmd_name=bookandnonbooksearch&manage_code=MA%2CMB%2CMC%2CME%2CMG%2CMJ%2CMF%2CMH%2CSA%2CMD%2CSB%2CSL%2CSM%2CSN%2CSO%2CSP%2CSK%2CSQ%2CSR%2CSS%2CST%2CSU%2CSG%2CSH%2CSC&search_txt=%ED%8C%8C%EC%9D%B4%EC%8D%AC&search_txt_add=%ED%8C%8C%EC%9D%B4%EC%8D%AC&search_txt_add_ok=&page_cnt=10&sh_orderby=' title='4페이지로' data-page='4'>4</a>&nbsp;<a href='?page=5&amp;cmd_name=bookandnonbooksearch&manage_code=MA%2CMB%2CMC%2CME%2CMG%2CMJ%2CMF%2CMH%2CSA%2CMD%2CSB%2CSL%2CSM%2CSN%2CSO%2CSP%2CSK%2CSQ%2CSR%2CSS%2CST%2CSU%2CSG%2CSH%2CSC&search_txt=%ED%8C%8C%EC%9D%B4%EC%8D%AC&search_txt_add=%ED%8C%8C%EC%9D%B4%EC%8D%AC&search_txt_add_ok=&page_cnt=10&sh_orderby=' title='5페이지로' data-page='5'>5</a>&nbsp;<a href='?page=6&amp;cmd_name=bookandnonbooksearch&manage_code=MA%2CMB%2CMC%2CME%2CMG%2CMJ%2CMF%2CMH%2CSA%2CMD%2CSB%2CSL%2CSM%2CSN%2CSO%2CSP%2CSK%2CSQ%2CSR%2CSS%2CST%2CSU%2CSG%2CSH%2CSC&search_txt=%ED%8C%8C%EC%9D%B4%EC%8D%AC&search_txt_add=%ED%8C%8C%EC%9D%B4%EC%8D%AC&search_txt_add_ok=&page_cnt=10&sh_orderby=' title='6페이지로' data-page='6'>6</a>&nbsp;<a href='?page=7&amp;cmd_name=bookandnonbooksearch&manage_code=MA%2CMB%2CMC%2CME%2CMG%2CMJ%2CMF%2CMH%2CSA%2CMD%2CSB%2CSL%2CSM%2CSN%2CSO%2CSP%2CSK%2CSQ%2CSR%2CSS%2CST%2CSU%2CSG%2CSH%2CSC&search_txt=%ED%8C%8C%EC%9D%B4%EC%8D%AC&search_txt_add=%ED%8C%8C%EC%9D%B4%EC%8D%AC&search_txt_add_ok=&page_cnt=10&sh_orderby=' title='7페이지로' data-page='7'>7</a>&nbsp;<a href='?page=8&amp;cmd_name=bookandnonbooksearch&manage_code=MA%2CMB%2CMC%2CME%2CMG%2CMJ%2CMF%2CMH%2CSA%2CMD%2CSB%2CSL%2CSM%2CSN%2CSO%2CSP%2CSK%2CSQ%2CSR%2CSS%2CST%2CSU%2CSG%2CSH%2CSC&search_txt=%ED%8C%8C%EC%9D%B4%EC%8D%AC&search_txt_add=%ED%8C%8C%EC%9D%B4%EC%8D%AC&search_txt_add_ok=&page_cnt=10&sh_orderby=' title='8페이지로' data-page='8'>8</a>&nbsp;<a href='?page=9&amp;cmd_name=bookandnonbooksearch&manage_code=MA%2CMB%2CMC%2CME%2CMG%2CMJ%2CMF%2CMH%2CSA%2CMD%2CSB%2CSL%2CSM%2CSN%2CSO%2CSP%2CSK%2CSQ%2CSR%2CSS%2CST%2CSU%2CSG%2CSH%2CSC&search_txt=%ED%8C%8C%EC%9D%B4%EC%8D%AC&search_txt_add=%ED%8C%8C%EC%9D%B4%EC%8D%AC&search_txt_add_ok=&page_cnt=10&sh_orderby=' title='9페이지로' data-page='9'>9</a>&nbsp;<a href='?page=10&amp;cmd_name=bookandnonbooksearch&manage_code=MA%2CMB%2CMC%2CME%2CMG%2CMJ%2CMF%2CMH%2CSA%2CMD%2CSB%2CSL%2CSM%2CSN%2CSO%2CSP%2CSK%2CSQ%2CSR%2CSS%2CST%2CSU%2CSG%2CSH%2CSC&search_txt=%ED%8C%8C%EC%9D%B4%EC%8D%AC&search_txt_add=%ED%8C%8C%EC%9D%B4%EC%8D%AC&search_txt_add_ok=&page_cnt=10&sh_orderby=' title='10페이지로' data-page='10'>10</a>&nbsp;&nbsp;<a href='?page=11&amp;cmd_name=bookandnonbooksearch&manage_code=MA%2CMB%2CMC%2CME%2CMG%2CMJ%2CMF%2CMH%2CSA%2CMD%2CSB%2CSL%2CSM%2CSN%2CSO%2CSP%2CSK%2CSQ%2CSR%2CSS%2CST%2CSU%2CSG%2CSH%2CSC&search_txt=%ED%8C%8C%EC%9D%B4%EC%8D%AC&search_txt_add=%ED%8C%8C%EC%9D%B4%EC%8D%AC&search_txt_add_ok=&page_cnt=10&sh_orderby=' title='다음' data-page='11'>다음</a>
+						</div>
+						<!--// 페이징 -->
+						
+
+<script type="text/javascript">
+//<![CDATA[
+var loop = 0;
+$(function(){
+
+	/*$("div.thum img.book_image").each(function(){
+		var obj = $(this);
+		if(obj.attr("src") == ""){
+			setBookImage(obj, obj.data("mgc"), obj.data("booktype"), obj.data("regno"));
+		}
+	});*/
+	$("div.book_info").each(function(){
+		var book_info = $(this);
+		var rk = book_info.data("rk");
+		var brn = book_info.data("brn");
+		var isbn = book_info.data("isbn");
+		var mec = book_info.data("mec");
+		var yr = book_info.data("yr");
+		var mgc = book_info.data("mgc");
+		var book_img = book_info.parent().find("img.book_image");
+		switch( mec ){
+			case "PD" : case "VD" :
+				var query = "ItemId="+isbn;
+				//query += "&yearfrom="+yr;
+				//query += "&yearto="+yr;
+				setMovieImage(book_img, query);
+				break;
+			default : 
+				setTimeout(function(){
+					setBookImage(book_img, isbn);
+				},loop*500);
+				loop++;
+				break;
+		}
+		
+	});
+	
+	if ($("#jsFacetContent").find("div").length>0){
+		$("#jsSBanner").hide();
+		$("#jsFacetLeft").html($("#jsFacetContent").html());
+	}
+	
+
+});
+
+//]]>
+</script>
+
+						
+					</div>
+
+<!-- 모듈하단 --></div>
+			<!--//내용영역-->
+		
+		
+			</div>
+				<!--//프린트영역-->
+			</div>
+			<!--//컨텐츠영역-->
+		</div>
+	</div>
+	<!--//중간영역-->
+	
+
+
+
+
+	<!--하단영역-->
+	
+
+
+
+	
+	<div id="foot">
+		<div class="foot_top">
+			
+			
+		</div>
+		<div class="fmenu">
+			<div class="wsize">
+				<ul>
+					
+						
+							<li class="mo_no"><a href="/contents.do?idx=174" class="join">회원가입</a></li>
+						
+						
+					
+					<li class="privacy"><a href="/contents.do?idx=286">개인정보처리방침</a></li>
+					<li><a href="/contents.do?idx=176">이메일 무단수집거부</a></li>
+				</ul>
+				<div class="fsite">
+					<a href="#empty" id="fsite_btn" onclick="fsite();" onfocus="if(event .keycode==13) { fsite(); }">관련사이트</a>
+					<div id="fsite_view" class="fsite_list" style="display:none;">
+						<ul>
+							<li><a href="http://www.dobong.go.kr" target="_blank" title="새창열림">도봉구청</a></li>
+							<li><a href="http://www.dbfac.or.kr" target="_blank" title="새창열림">도봉문화재단</a></li>
+							<!-- <li><a href="http://hamsokhon.dobong.go.kr" target="_blank" title="새창열림">함석헌기념관</a></li>
+							<li><a href="http://kimsuyoung.dobong.go.kr" target="_blank" title="새창열림">김수영문학관</a></li>
+							<li><a href="https://www.nl.go.kr/NL/contents/N30502000000.do" target="_blank" title="새창열기">사서에게 물어보세요</a></li>-->
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="wsize">
+			<p class="copyright">COPYRIGHT ⓒ DOBONG-GU PUBLIC LIBRARY. ALL RIGHTS RESERVED</p>
+		</div>
+	</div>
+	
+	<!-- 최상하단 이동-->
+	<div class="go-top">
+		<p class="top_btn"><a href="#wrapper">최상단 이동</a></p>
+	</div>
+	<script type="text/javascript">
+	/*Add class when scroll down*/
+	$(window).scroll(function(event){
+		var scroll = $(window).scrollTop();
+		if (scroll >= 50) {
+			$(".go-top").addClass("show");
+			$(".floating").addClass("show");
+		} else {
+			$(".go-top").removeClass("show");
+			$(".floating").removeClass("show");
+		}
+	});
+	/*Animation anchor*/
+	$('.top_btn a').click(function(){
+		$('html, body').animate({
+			scrollTop: $( $(this).attr('href') ).offset().top
+		}, 1000);
+	});
+	</script>
+	<!-- //최상하단 이동-->
+	<script>
+	function fsite(){		 
+		var objImage;
+		var objLayer;
+		try{objImage = document.getElementById("fsite_btn");}catch(err){objImage=null;}
+		try{objLayer = document.getElementById("fsite_view");}catch(err){objLayer=null;}
+	
+		if (objLayer.style.display=="none" || objLayer.style.display=="inline-block"){
+			$(objLayer).slideDown();
+			$(objImage).addClass('on');
+		}else{
+			$(objLayer).slideUp();
+			$(objImage).removeClass('on');
+		}		
+	}
+	</script>
+	
+	
+	<!--//하단영역-->
+	
+	
+
+
+</div>
+
+
+
+
+
+<!--<div id="totalmenu">
+	<div class="three col" id="open-button">
+		<div class="hamburger" id="hamburger-1">
+			<span class="line"></span>
+			<span class="line"></span>
+			<span class="line"></span>
+		</div>
+	</div>
+	<script>
+	$(document).ready(function(){
+		$(".hamburger").click(function(){
+			$(this).toggleClass("is-active");
+		});
+	});
+	</script>
+</div>-->
+
+
+</body>
+</html>

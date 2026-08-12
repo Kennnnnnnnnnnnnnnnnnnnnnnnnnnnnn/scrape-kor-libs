@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="경주시립도서관"/>
+<meta property="og:description" content="경주시립도서관"/>
+<meta property="og:url" content="https://library.gyeongju.go.kr/"/>
+<link rel="canonical" href="https://library.gyeongju.go.kr/">
+
+<title>경주시립도서관</title>
+
+<!--[if IE]>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<![endif]-->
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=0,maximum-scale=10"/>
+
+<link rel="stylesheet" type="text/css" href="/resources/common/css/fontawesome.min.css"/>
+<link rel="stylesheet" type="text/css" href="/resources/common/css/select2.min.css"/>
+<link rel="stylesheet" type="text/css" href="/resources/common/css/jquery.mmenu.css"/>
+<link rel="stylesheet" type="text/css" href="/resources/common/css/defaultCommon.css"/>
+<link rel="stylesheet" type="text/css" href="/resources/common/css/default-uilib.css"/>
+<link rel="stylesheet" type="text/css" href="/resources/common/css/login.css"/>
+<link rel="stylesheet" type="text/css" href="/resources/board/css/default.css"/>
+<link rel="stylesheet" type="text/css" href="/resources/book/css/common.css"/>
+
+<link rel="stylesheet" type="text/css" href="/resources/common/css/layout/default.css"/>
+<link rel="stylesheet" type="text/css" href="/resources/common/css/layout/main.css"/>
+<link rel="stylesheet" type="text/css" href="/resources/homepage/gyeongju/css/main.css"/>
+<link rel="stylesheet" type="text/css" href="/resources/common/css/sub_design.css"/>
+
+<!--[if lte IE 7]>
+<link rel="stylesheet" type="text/css" href="/resources/common/css/fontawesome-ie7.min.css"/>
+<![endif]-->
+<!--[if lte IE 8]>
+<link rel="stylesheet" type="text/css" href="/resources/homepage/gyeongju/css/ie.css"/>
+<![endif]-->
+
+		<link rel="stylesheet" type="text/css" href="/resources/book/search/css/default.css"/>
+
+<script>
+if (document.location.protocol == 'http:') {
+	document.location.replace(document.location.href.replace('http:', 'https:'));
+}
+</script>
+<script type="text/javascript" src="/resources/common/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="/resources/common/js/jquery-ui-1.12.0.min.js"></script>
+<script type="text/javascript" src="/resources/common/js/jquery-ui-1.12.0-datepicker.min.js"></script>
+<script type="text/javascript" src="/resources/common/js/jquery.bxslider.min.js"></script>
+<script type="text/javascript" src="/resources/common/js/jquery.mmenu.min.js"></script>
+<script type="text/javascript" src="/resources/common/js/jquery.newsticker.js"></script>
+<script type="text/javascript" src="/resources/common/js/default-lib.js"></script>
+<script type="text/javascript" src="/resources/common/js/common.js"></script>
+<script type="text/javascript" src="/resources/homepage/gyeongju/js/sub_menu.js"></script>
+<script type="text/javascript" src="/resources/homepage/gyeongju/js/common.js"></script>
+<script type="text/javascript" src="/resources/common/js/kakao.min.js"></script>
+
+
+		<script type="text/javascript" src="/resources/search/js/normalSearch.js"></script>
+		<script type="text/javascript" src="/resources/search/js/search.js"></script>
+
+<script>
+$(function(){
+	$('#header').addClass("background-white");
+	$('h1#logo > a > img').attr('src','/resources/homepage/gyeongju/img/logo-b.png');
+	$('a.last-box > img').attr('src','/resources/homepage/gyeongju/img/sitemap-btn-b.png');
+
+	$('h1.mobile-logo > a > img').attr('src','/resources/homepage/gyeongju/img/logo-b.png');
+	$('div.m-menu > a > img').attr('src','/resources/homepage/gyeongju/img/sitemap-btn-b.png');
+	$('div.m-menu2 > a > img').attr('src','/resources/homepage/gyeongju/img/mcard-icon.png');
+
+	$('a.shareBtn').on('click', function(e) {
+
+		if($('div#share_layer').css('display') == 'none') {
+			$('div#share_layer').show();
+			e.preventDefault();
+		} else {
+			$('div#share_layer').hide();
+			e.preventDefault();
+		}
+
+	});
+
+	$('a#closeshareBox').on('click', function(e) {
+		e.preventDefault();
+		$('div#share_layer').hide();
+		$('a.shareBtn').focus();
+	});
+
+	$(window).scroll(function(){
+		if($(this).scrollTop() > 0 ) {
+			$('div#share_layer').hide();
+		}
+	});
+
+	$('div.lnb > ul > li').each(function(){
+
+			//console.log($(this).children('a').attr('href'));
+
+			//$(this).addClass('s');
+			if($(this).hasClass('active')){
+				//$(this).children('a').append(_str1);
+			}else{
+				//$(this).children('a').append(_str2);
+			}
+
+			if($(this).find('li').hasClass('active')){
+					//$(this).children('a').children(_str3).remove();
+					//$(this).children('a').append(_str4);
+					$(this).addClass('active');
+			}
+
+	});
+});
+</script>
+
+
+</head>
+
+<body>
+
+	<!--건너뛰기링크-->
+	<a href="javascript:void();" class="skip-to" id="skip-to">본문 바로가기</a>
+	<!--/건너뛰기링크-->
+		
+	<div id="wrap">
+		<div id="header">
+		<nav id="menu"></nav>
+
+		<div class="tnb">
+			<div class="section">
+
+				<div class="l-util">
+					<!-- <a href="https://twitter.com/gyeongju_library" target="_blank" class="sns-link"><img src="/resources/homepage/gyeongju/img/top_sns_v2_02.png" alt="트위터"></a>
+					<span></span>
+					<a href="https://www.facebook.com/%EA%B2%BD%EC%A3%BC%EC%8B%9C%EB%A6%BD%EB%8F%84%EC%84%9C%EA%B4%80-100201021591769/" target="_blank" class="sns-link"><img src="/resources/homepage/gyeongju/img/top_sns_v2_03.png" alt="페이스북"></a>
+					<span></span> -->
+					<a href="https://www.instagram.com/gyeongju_library/" target="_blank"><img src="/resources/homepage/gyeongju/img/top_sns_v2_01.png" alt="인스타그램"></a>
+				</div>
+
+				<h1 class="mobile-logo"><a href="/"><img src="/resources/homepage/gyeongju/img/logo.png" alt="경주시립도서관"/></a></h1>
+
+								
+				<div class="mmode m-menu">
+					<a href="#menu"><img src="/resources/homepage/gyeongju/img/sitemap-btn.png" alt="메뉴" /><span class="blind">메뉴</span></a>
+				</div>
+
+				<div class="util">
+											<a href="/?page_id=account_login">로그인</a>
+						<span class="txt-bar"></span>
+						<a href="/?page_id=account_type">회원가입</a>
+											<span class="txt-bar mhide"></span>
+						<a href="/?page_id=account_sitemap" class='mhide'>사이트맵</a>
+				</div>
+
+			</div>
+		</div>
+		
+		<div class="head">
+			<div class="Gnb">
+				<h2 class="blind">주메뉴</h2>
+				<div class="section">
+					<h1 id="logo" class="web-logo"><a href="/"><img src="/resources/homepage/gyeongju/img/logo.png" alt="경주시립도서관"/></a></h1>
+
+					<!-- menu S -->
+					<div class="g-menu">
+						<ul class="gnb-menu">
+							<li class="List 1Depth menu1">
+								<a href="/?page_id=search_book"><span>자료검색</span></a>
+								<ul class="SubMenu">
+									<li class="2Depth menu_3"><a href="/?page_id=search_book" ><span>자료검색</span></a></li>
+									<li class="2Depth menu_83"><a href="/?page_id=search_nbook" ><span>신착자료검색</span></a></li>
+									<li class="2Depth"><a href="/?page_id=search_best" title="대출베스트"><span>대출베스트</span></a></li>
+									<li class="2Depth menu_91"><a href="/?page_id=search_05" ><span>희망도서신청</span></a></li>
+									<li class="2Depth menu_85"><a href="/?page_id=search_04" ><span>야간예약대출</span></a></li>
+									<li class="2Depth menu_113"><a href="/?page_id=search_oldbook" ><span>고서검색</span></a></li>
+									<li class="2Depth"><a href="/?page_id=search_recobook"><span>이달의추천도서</span></a></li>
+								</ul>
+							</li>
+							<li class="List 1Depth menu2">
+								<a href="/?page_id=culture_01" ><span>독서문화행사</span></a>
+								<ul class="SubMenu">
+									<li class="2Depth menu_24"><a href="/?page_id=culture_02&cate=1" ><span>문화강좌안내및신청</span></a></li>
+									<li class="2Depth menu_88"><a href="/?page_id=culture_02&cate=3" ><span>문화행사안내및신청</span></a></li>
+									<!-- <li class="2Depth menu_26"><a href="/?page_id=culture_03" ><span>동아리</span></a></li> -->
+									<!-- <li class="2Depth menu_79"><a href="/board/board.php?bbs_idx=16" ><span>독서회</span></a></li> -->
+									<li class="2Depth menu_79"><a href="/?page_id=culture_readingclub" title="독서회"><span>독서회</span></a></li>
+									<li class="2Depth menu_85"><a href="/?page_id=culture_bookcircle" ><span>독서동아리</span></a></li>
+									<li class="2Depth menu_80"><a href="/?page_id=culture_08" ><span>북스타트</span></a></li>
+									<li class="2Depth menu_81"><a href="/?page_id=culture_bookdotum" ><span>북돋움 책선물</span></a>
+										<ul class="SubMenu">
+											<li class="3Depth menu_1"><a href="/?page_id=culture_bookdotum"><span>북돋움 책선물 안내</span></a></li>
+											<li class="3Depth menu_2"><a href="/?page_id=culture_bookdotumreq&mode=bookdotumreqinsert"><span>북돋움 책선물 접수</span></a></li>
+											<li class="3Depth menu_3"><a href="/?page_id=culture_bookdotumreq&mode=bookdotumreqCheck"><span>북돋움 책선물 접수 확인</span></a></li>
+										</ul>
+									</li>
+									<li class="2Depth menu_82"><a href="/?page_id=culture_09" ><span>도서관 견학</span></a></li>
+									<li class="2Depth menu_82"><a href="/?page_id=culture_11" ><span>이동도서관 견학</span></a></li>
+									<li class="2Depth menu_83"><a href="/?page_id=culture_12" ><span>독후감공모</span></a></li>
+									<li class="2Depth menu_84"><a href="/?page_id=culture_10" ><span>사람책 (강사인력풀)</span></a></li>
+								</ul>
+							</li>
+							<li class="List 1Depth menu3">
+								<a href="/?page_id=digital_03" ><span>전자자료</span></a>
+								<ul class="SubMenu">
+								<li class="2Depth menu_9"><a href="/?page_id=digital_03" ><span>전자책</span></a></li>
+								<li class="2Depth menu_115"><a href="/?page_id=digital_02" ><span>오디오북</span></a></li>
+								<li class="2Depth menu_116"><a href="/?page_id=digital_09" ><span>전자잡지</span></a></li>
+								<li class="2Depth menu_117"><a href="/?page_id=digital_10" ><span>구독학술DB</span></a></li>
+								<li class="2Depth menu_109"><a href="/?page_id=digital_04" ><span>협력기관DB</span></a></li>
+								<li class="2Depth menu_102"><a href="http://jokbo.gyeongju.go.kr" target="_blank" ><span>족보자료관</span></a></li>
+								<li class="2Depth menu_103"><a href="/board/board.php?bbs_idx=8" ><span>경주옛사진</span></a></li>
+								<li class="2Depth menu_104"><a href="/?page_id=digital_08" ><span>경북도서관 전자도서관</span></a></li>
+								</ul>
+							</li>
+							<li class="List 1Depth menu4">
+								<a href="/board/board.php?bbs_idx=1" ><span>열린마당</span></a>
+								<ul class="SubMenu">
+								<li class="2Depth menu_2"><a href="/board/board.php?bbs_idx=1" ><span>공지사항</span></a></li>
+								<li class="2Depth menu_116"><a href="/board/board.php?bbs_idx=2" ><span>자주묻는질문(FAQ)</span></a></li>
+								<li class="2Depth menu_5"><a href="/board/board.php?bbs_idx=3" ><span>질문과답변</span></a></li>
+								<li class="2Depth menu_4"><a href="/board/board.php?bbs_idx=7" ><span>자유게시판</span></a></li>
+								<li class="2Depth menu_6"><a href="/?page_id=openspace_03" ><span>온라인설문조사</span></a></li>
+								</ul>
+							</li>
+							<li class="List 1Depth menu5">
+								<a href="/?page_id=guide_01" ><span>이용안내</span></a>
+								<ul class="SubMenu">
+								<li class="2Depth menu_39"><a href="/?page_id=guide_01" ><span>회원가입 안내</span></a></li>
+								<li class="2Depth menu_40"><a href="/?page_id=guide_02" ><span>이용시간 안내</span></a></li>
+								<li class="2Depth menu_44"><a href="/?page_id=guide_03" ><span>자료대출 안내</span></a></li>
+								<li class="2Depth menu_45"><a href="/?page_id=guide_bookium" ><span>책이음서비스 안내</span></a></li>
+								<li class="2Depth menu_53"><a href="/?page_id=guide_08" ><span>자료기증안내</span></a></li>
+								<li class="2Depth menu_47"><a href="/?page_id=guide_04" ><span>이동도서관 안내</span></a></li>
+								<li class="2Depth menu_50"><a href="/?page_id=guide_05" ><span>봉사활동 안내</span></a></li>
+								<li class="2Depth menu_51"><a href="/?page_id=guide_06" ><span>자료복사/출력</span></a></li>
+								<li class="2Depth menu_52"><a href="/?page_id=guide_07" ><span>연계서비스</span></a></li>
+								<!-- <li class="2Depth"><a href="/?page_id=guide_09" ><span>지역작가코너</span></a></li> -->
+								<li class="2Depth menu_86"><a href="/?page_id=guide_10" ><span>스마트도서관</span></a></li>
+								</ul>
+							</li>
+							<li class="List 1Depth menu6">
+								<a href="/?page_id=intro_01" ><span>도서관소개</span></a>
+								<ul class="SubMenu">
+								<li class="2Depth menu_39"><a href="/?page_id=intro_01" ><span>인사말</span></a></li>
+								<li class="2Depth menu_40"><a href="/?page_id=intro_02" ><span>도서관연혁</span></a></li>
+								<li class="2Depth menu_44"><a href="/?page_id=intro_03" ><span>기능및조직</span></a></li>
+								<li class="2Depth menu_47"><a href="/?page_id=intro_04" ><span>도서관별 안내</span></a></li>
+								<li class="2Depth menu_48"><a href="/?page_id=intro_schedule"><span>도서관 일정</span></a></li>
+								<li class="2Depth menu_50"><a href="/board/board.php?bbs_idx=13" ><span>도서관 홍보영상</span></a></li>
+								<li class="2Depth menu_51"><a href="/?page_id=intro_complex" ><span>경주시 복합문화도서관(가칭) 건립</span></a></li>
+								</ul>
+							</li>
+							<li class="List 1Depth menu7">
+								<a href="/?page_id=slibrary_01" ><span>작은도서관</span></a>
+								<ul class="SubMenu">
+								<!-- <li class="2Depth menu_39"><a href="/board/board.php?bbs_idx=1&manage_code=MJ" ><span>작은도서관공지사항</span></a></li> -->
+								<li class="2Depth menu_40"><a href="/?page_id=slibrary_01" ><span>작은도서관 현황</span></a></li>
+								<li class="2Depth menu_44"><a href="/?page_id=slibrary_30" ><span>설립 및 등록안내</span></a></li>
+								</ul>
+							</li>
+							
+							<li class="List 1Depth menu8">
+								<a href="/?page_id=mypage_account_modify" ><span>마이페이지</span></a>
+								<ul class="SubMenu">
+								<li class="2Depth menu_40"><a href="/?page_id=mypage_account_modify" ><span>개인정보수정</span></a></li>
+								<li class="2Depth menu_44"><a href="/?page_id=search_loan" ><span>대출조회</span></a>
+									<ul class="SubMenu">
+									<li class="3Depth menu_41"><a href="/?page_id=search_loan" ><span>대출현황</span></a></li>
+									<li class="3Depth menu_42"><a href="/?page_id=search_history" ><span>대출이력</span></a>
+									<li class="3Depth menu_43"><a href="/?page_id=search_familyloan"><span>가족회원대출현황</span></a></li>
+									<li class="3Depth menu_44"><a href="/?page_id=search_familyhistory"><span>가족회원대출이력</span></a></li>
+									<li class="3Depth menu_45"><a href="/?page_id=search_reserve" ><span>예약현황</span></a></li>
+									<li class="3Depth menu_46"><a href="/?page_id=search_bankbook" ><span>독서통장</span></a>
+									</ul>
+								</li>
+								<li class="2Depth menu_44"><a href="/?page_id=search_hbook&mode=hBookRegist" ><span>희망도서신청</span></a>
+									<ul class="SubMenu">
+									<li class="3Depth menu_40"><a href="/?page_id=search_hbook&mode=hBookRegist" ><span>희망도서신청</span></a></li>
+									<li class="3Depth menu_44"><a href="/?page_id=search_hbook" ><span>희망도서신청내역</span></a>
+									</ul>
+								</li>
+								<li class="2Depth menu_44"><a href="/?page_id=search_cart" ><span>관심도서</span></a></li>
+								<li class="2Depth menu_44"><a href="/?page_id=account_mcard"><span>모바일회원증</span></a></li>
+								<li class="2Depth menu_44"><a href="/?page_id=account_familycard"><span>모바일가족회원증</span></a></li>
+								<li class="2Depth menu_44"><a href="/?page_id=mypage_lecture" ><span>수강신청현황</span></a></li>
+								<li class="2Depth menu_44"><a href="/?page_id=account_privacy" ><span>개인정보처리방침</span></a></li>
+								<li class="2Depth menu_44"><a href="/?page_id=account_chart" ><span>도서관서비스헌장</span></a></li>
+								<li class="2Depth menu_44"><a href="/?page_id=account_email" ><span>이메일무단수집거부</span></a></li>
+								<li class="2Depth menu_44"><a href="/?page_id=account_sitemap" ><span>사이트맵</span></a></li>
+								</ul>
+							</li>
+						</ul>
+
+						<a href="/?page_id=account_sitemap" class="last-box"><img src="/resources/homepage/gyeongju/img/sitemap-btn.png" alt="사이트맵" /></a>
+
+						<div class="mmode">
+														<a href="/?page_id=account_login" class="btn1">
+								<i class="fa fa-lock"></i>
+								<span>로그인</span>
+							</a>
+							<a href="/?page_id=account_type" class="btn1">
+								<i class="fa fa-user-plus"></i>
+								<span>회원가입</span>
+							</a>
+
+							<a href="/?page_id=account_findid1" class="btn2">
+								<i class="fa fa-lock"></i>
+								<span>아이디찾기</span>
+							</a>
+							<a href="/?page_id=account_findpasswd1" class="btn2">
+								<i class="fa fa-user-plus"></i>
+								<span>비밀번호찾기</span>
+							</a>
+													</div>
+					</div>
+					<!-- menu E -->
+				</div>
+				<div class="mask">&nbsp;</div>
+			</div>
+			<div id="allbg"></div>
+		</div>
+
+	</div>
+		<div id="container" class="subpage">
+
+			<div class="sub-visual" >
+				<div class="doc-info-bg">
+					<div class="doc-info">
+						<h3>일반검색결과</h3>
+
+						<div class='loc-sns'>
+							<div class="locationArea">
+								<ol>
+									<li class="first"><a href="/"><img src="/resources/common/img/sub_home.png" alt="HOME"></a></li>
+									<li><a href="#">자료검색</a></li>
+									<li><a href="#">일반검색결과</a></li>
+								</ol>
+							</div>
+
+							<div class="shareArea">
+								<ul>
+									<li><a href="javascript:void(0);" class="sub-qrcode" keyValue="true"><img src="/resources/homepage/gyeongju/img/qr_icon.png" alt="qr코드 보기"></a></li>
+									<li><a href="#" class="shareBtn snsBtn"><img src="/resources/homepage/gyeongju/img/sns_icon.png" alt="sns 바로가기"></a>
+
+										<div id="share_layer">
+											<div class="shareAllBtns" >
+												<ul class="shareBox">
+													<li><a href="" class="sub-facebook" keyValue1="h31" keyValue2="110" keyValue3="대표도서관 역할" keyValue4="부산도서관"><img src="/resources/common/img/sns_facebook_btn.png" alt="부산도서관 페이스북 바로가기" class="shareIcon" style="padding-left:3px;padding-right:3px;margin:0"></a></li>
+
+													<li><a href="" class="sub-twitter" keyValue1="h31" keyValue2="110" keyValue3="대표도서관 역할" keyValue4="부산도서관"><img src="/resources/common/img/sns_twitter_btn.png" alt="부산도서관 트위터로 공유하기" class="shareIcon" style="padding-left:3px;padding-right:3px;margin:0"></a></li>
+
+													<li class="last"><a href="" class="sub-kakao" keyValue1="h31" keyValue2="110" keyValue3="대표도서관 역할" keyValue4="부산도서관"><img src="/resources/common/img/sns_kakaostory_btn.png" alt="부산도서관 카카오스토리 바로가기" class="shareIcon" style="padding-left:3px;padding-right:3px;margin:0"></a></li>
+
+													<li><a href="#" id="closeshareBox" class="close shareIconArea" title="닫기" ><img src="/resources/common/img/sns-close.png" alt="sns-close" class="shareIcon" style="padding-left:3px;padding-right:3px;margin:0"/></a></li>
+												</ul>
+											</div>
+										</div>
+
+									</li>
+									<li class="last"><a href="#" onclick="contentPrint();"><img src="/resources/homepage/gyeongju/img/pr_icon.png" alt="현재페이지 인쇄"></a></li>
+								</ul>
+							</div>
+
+
+							<div class="end"></div>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+
+			<div class="section subsection">
+				
+				
+  
+			<div class="lnb">
+				<h2><b>자료검색</b></h2>
+				<ul class="SubMenu">
+					<li class="active"><a href="/?page_id=search_book" title="자료검색"><span>자료검색</span></a>
+						<ul class="SubMenu">
+							<li ><a href="/?page_id=search_book"><span>일반검색</span></a></li>
+							<li ><a href="/?page_id=search_detailbook"><span>상세검색</span></a></li>
+						</ul>
+					</li>
+					<li ><a href="/?page_id=search_nbook" title="신착자료검색"><span>신착자료검색</span></a></li>
+					<li ><a href="/?page_id=search_best" title="대출베스트"><span>대출베스트</span></a></li>
+					<li ><a href="/?page_id=search_05" title="희망자료신청"><span>희망도서신청</span></a></li>
+					<li ><a href="/?page_id=search_04" title="무인예약대출"><span>야간예약대출</span></a></li>
+					<li ><a href="/?page_id=search_oldbook" title="고서검색"><span>고서검색</span></a></li>
+					<!-- <li><a href="/board/board.php?bbs_idx=15" title="도서대출신청"><span>도서대출신청</span></a></li> -->
+					<li ><a href="/?page_id=search_recobook" title="이달의추천도서"><span>이달의추천도서</span></a></li>
+				</ul>
+			</div>
+
+
+			<!-- <div class="lnb">
+				<ul class="SubMenu">
+				<li id="menu_3"><a href="/science/html.do?menu_idx=3" ><span>연혁</span></a></li>
+				<li id="menu_83"><a href="/science/html.do?menu_idx=83" ><span>올해의책</span></a></li>
+				<li id="menu_91"><a href="/science/intro/search/curation/index.do?menu_idx=91" ><span>사서컬렉션</span></a></li>
+				<li id="menu_85"><a href="/science/html.do?menu_idx=85" ><span>북스타트</span></a></li>
+				<li id="menu_86"><a href="/science/html.do?menu_idx=86" ><span>독서동아리</span></a></li>
+				<li id="menu_113"><a href="/science/html/bookPoint.do?menu_idx=113" ><span>독서포인트</span></a></li>
+				</ul>
+			</div> -->
+				<div class="content">
+					<div class="doc">
+						<div class="doc-head">
+							<div class="doc-title">
+								
+							</div>
+						</div>
+						<div class="doc-body con3" id="contentArea">
+							<div class="body">
+								<script>
+$(function() {
+	$('input#search_text').on("keydown",function(){
+		if(event.keyCode == 13) {
+			if ($('input#search_text').val() == '') 
+			{
+				event.preventDefault();
+				
+				alert('검색어를 입력해주세요');
+				$('input#search_text').focus();
+				return false;
+			}
+			else
+			{
+				$('#search-btn').click();
+			}
+		}
+	});
+
+	$('#search-btn').on('click', function(e) {
+		if ($('input#search_text').val() == '') 
+		{
+			alert('검색어를 입력해주세요');
+			$('input#search_text').focus();
+			return false;
+		}
+		
+		$('select[name="manage_code"] option:selected').each(function(index, item) {
+			var val = $(this).val();
+
+			if(val === 'MA') {
+				console.log('경주시립도서관 선택됨');
+				webSearchLog();
+			}
+		});
+		
+		$('#frm').submit();
+	});
+
+	$('select#manage_code').on('change', function() {
+		$('span.place_group').hide();
+		$('select.place_name').attr('disabled', true);
+		
+		if($(this).val() == 'MA') {
+			$('span#loc02').show();
+			$('span#loc02 select').attr('disabled', false);
+		} else if($(this).val() == 'MG') {
+			$('span#loc03').show();
+			$('span#loc03 select').attr('disabled', false);
+		} else if($(this).val() == 'MF') {
+			$('span#loc04').show();
+			$('span#loc04 select').attr('disabled', false);
+		} else if($(this).val() == 'MB') {
+			$('span#loc05').show();
+			$('span#loc05 select').attr('disabled', false);
+		} else if($(this).val() == 'MD') {
+			$('span#loc06').show();
+			$('span#loc06 select').attr('disabled', false);
+		} else if($(this).val() == 'MC') {
+			$('span#loc07').show();
+			$('span#loc07 select').attr('disabled', false);
+		} else if($(this).val() == 'MJ') {
+			$('span#loc08').show();
+			$('span#loc08 select').attr('disabled', false);
+		} else if($(this).val() == 'MK') {
+			$('span#loc09').show();
+			$('span#loc09 select').attr('disabled', false);
+		} else if($(this).val() == 'ML') {
+			$('span#loc10').show();
+			$('span#loc10 select').attr('disabled', false);
+		} else if($(this).val() == 'MM') {
+			$('span#loc11').show();
+			$('span#loc11 select').attr('disabled', false);
+		} else if($(this).val() == 'MH') {
+			$('span#loc12').show();
+			$('span#loc12 select').attr('disabled', false);
+		} else {
+			$('span#loc01').show();
+			$('span#loc01 select').attr('disabled', false);
+		}
+	});
+
+	var mgc = $("form#frm #manage_code").val();
+	if(mgc == 'MA')
+	{
+		$('span.place_group').hide();
+		$('select.place_name').attr('disabled', true);
+		$('span#loc02').show();
+		$('span#loc02 select').attr('disabled', false);
+	}
+	else if(mgc == 'MG')
+	{
+		$('span.place_group').hide();
+		$('select.place_name').attr('disabled', true);
+		$('span#loc03').show();
+		$('span#loc03 select').attr('disabled', false);
+	}
+	else if(mgc == 'MF')
+	{
+		$('span.place_group').hide();
+		$('select.place_name').attr('disabled', true);
+		$('span#loc04').show();
+		$('span#loc04 select').attr('disabled', false);
+	}
+	else if(mgc == 'MB')
+	{
+		$('span.place_group').hide();
+		$('select.place_name').attr('disabled', true);
+		$('span#loc05').show();
+		$('span#loc05 select').attr('disabled', false);
+	}
+	else if(mgc == 'MD')
+	{
+		$('span.place_group').hide();
+		$('select.place_name').attr('disabled', true);
+		$('span#loc06').show();
+		$('span#loc06 select').attr('disabled', false);
+	}
+	else if(mgc == 'MC')
+	{
+		$('span.place_group').hide();
+		$('select.place_name').attr('disabled', true);
+		$('span#loc07').show();
+		$('span#loc07 select').attr('disabled', false);
+	}
+	else if(mgc == 'MJ')
+	{
+		$('span.place_group').hide();
+		$('select.place_name').attr('disabled', true);
+		$('span#loc08').show();
+		$('span#loc08 select').attr('disabled', false);
+	}
+	else if(mgc == 'MK')
+	{
+		$('span.place_group').hide();
+		$('select.place_name').attr('disabled', true);
+		$('span#loc09').show();
+		$('span#loc09 select').attr('disabled', false);
+	}
+	else if(mgc == 'ML')
+	{
+		$('span.place_group').hide();
+		$('select.place_name').attr('disabled', true);
+		$('span#loc10').show();
+		$('span#loc10 select').attr('disabled', false);
+	}
+	else if(mgc == 'MM')
+	{
+		$('span.place_group').hide();
+		$('select.place_name').attr('disabled', true);
+		$('span#loc11').show();
+		$('span#loc11 select').attr('disabled', false);
+	}
+	else if(mgc == 'MH')
+	{
+		$('span.place_group').hide();
+		$('select.place_name').attr('disabled', true);
+		$('span#loc12').show();
+		$('span#loc12 select').attr('disabled', false);
+	}
+	else
+	{
+		$('span.place_group').hide();
+		$('select.place_name').attr('disabled', true);
+		$('span#loc01').show();
+		$('span#loc01 select').attr('disabled', false);
+	}
+});
+
+function webSearchLog()
+{
+
+	var weblogUrl = "https://data4library.kr/weblog";
+	var libKey = "4f3641a72eae11a8fe14d49892eda2bf5a2368f319d6d70ee07e42b06ab60125";
+	var libCode = "147025";
+	var searchTxt = $("#frm input#search_text").val();
+	var sessionId = "09lblpltostdp6qfo9uojuuke3"; // 현재 사용자 session ID
+
+	$.ajax({ 
+		/* 도서관의 코드 사용 */
+		url: weblogUrl,
+		jsonp : "callback",
+		responseType:'application/json',
+		data:{
+			"logType":"search",
+			"libKey": libKey,
+			"libCode": libCode,
+			"sessionId": sessionId,
+			"q":encodeURIComponent(searchTxt),		/* UTF-8로 인코딩 */
+			"returnType":"N"
+		},
+		success:function(res){
+			if( res.result.response_code == 200 ){
+				console.log("Web log 등록 완료");
+			}
+		},
+		error: function() { 
+			console.log("Web log 등록 실패 : 원인 해명 필요");
+		}
+	});
+		
+}
+</script>
+
+	<form id="cartForm" name="cartForm" action="/action/cart.php" method="post">
+	<input type="hidden" name="mode" id="mode" value="insert"/>
+	<input type="hidden" name="book_no" id="book_no" value=""/>
+	<input type="hidden" name="book_title" id="book_title" value=""/>
+	<input type="hidden" name="call_no" id="call_no" value=""/>
+	<input type="hidden" name="reg_no" id="reg_no" value=""/>
+	<input type="hidden" name="place" id="place" value=""/>
+	<input type="hidden" name="isbn" id="isbn" value=""/>
+	<input type="hidden" name="manage_code" id="manage_code" value=""/>
+	</form>
+
+	<form name="frm" id="frm" method="get" action="/">
+	<input type="hidden" name="page_id" id="page_id" value="search_booklist">
+	<input type="hidden" name="mode" id="mode" value="tBookList">
+	<input type="hidden" name="collection" value="tot_book">
+	<input type="hidden" id="search_field1" name="search_field1" value="IAL">
+	<input type="hidden" name="display_flag" id="display_flag" value="2"/>
+
+	<div class="search-wrap">
+
+		<div class="search-form">
+
+			<div class="searchform box">
+				<div class="b1">
+					<input id="search_text" name="search_txt" style="ime-mode:active; width:90%;" placeholder="검색어를 입력하세요." type="text" class="text" onfocus="PopupVirtualKeyboard.attachInput(this)" value="파친코" title="검색어 입력" />
+				</div>
+			</div>
+			<br/>
+			<div id="autoFill">
+			</div>
+					
+			<!-- 검색하기_일반 -->
+			<div class="searchbox normal_search">
+				<div class="section">
+					<dl>
+						<dt><label for="manage_code" class="title">도서관</label></dt>
+						<dd>
+							<select  name="manage_code" id="manage_code">
+								<option value=""  selected>전체도서관</option>
+								<option value="MA" >경주시립도서관</option>
+								<option value="MG" >송화도서관</option>
+								<option value="MF" >중앙도서관</option>
+								<option value="MB" >감포도서관</option>
+								<option value="MD" >칠평도서관</option>
+								<option value="MC" >단석도서관</option>
+								<option value="MJ" >양남꿈마루도서관</option>
+								<option value="MK" >문무대왕꿈마루도서관</option>
+								<option value="ML" >현곡꿈마루도서관</option>
+								<option value="MM" >화랑마을꿈마루도서관</option>
+								<option value="MH" >강동꿈마루도서관</option>
+							</select>
+						</dd>
+					</dl>
+
+					<dl>
+						<dt><label for="local" class="title">자료실</label></dt>
+						<dd>
+
+							<span class="field place_group" id="loc01">
+								<select name="local" id="local" class="place_name">
+									<option value="">전체</option>
+								</select>
+							</span>
+
+							<span class="field place_group" id="loc02" style="display: none;">
+								<select name="local" id="local" class="place_name">
+									<option value=""  selected>시립전체자료실</option>
+									<option value="A01" >[시립](2층)자료실</option>
+									<option value="A02" >[시립]참고자료실</option>
+									<option value="A03" >[시립](1층)어린이실</option>
+									<option value="A05" >[시립]서고</option>
+									<option value="A07" >[시립]향토자료실</option>
+									<option value="A08" >[시립]홈페이지</option>
+									<option value="A09" >[시립]이동도서관</option>
+									<option value="A11" >[시립]점자코너</option>
+									<option value="A18" >[시립]별관 책놀이터</option>
+									<option value="A23" >[시립](2층)자료실 DVD 코너</option>
+									<option value="S01" >[시립]스마트도서관</option>
+									<option value="S02" >[내남]스마트도서관</option>
+								</select>
+							</span>
+
+							<span class="field place_group" id="loc03" style="display: none;">
+								<select name="local" id="local" class="place_name">
+									<option value=""  selected>송화전체자료실</option>
+									<option value="G01" >[송화]일반자료실</option>
+									<option value="G02" >[송화]아동자료실</option>
+									<option value="G06" >각실부록장</option>
+								</select>
+							</span>
+
+							<span class="field place_group" id="loc04" style="display: none;">
+								<select name="local" id="local" class="place_name">
+									<option value=""  selected>중앙전체자료실</option>
+									<option value="F01" >[중앙]자료실</option>
+									<option value="F02" >[중앙]족보자료실</option>
+									<option value="F06" >[중앙]북큐레이션코너</option>
+								</select>
+							</span>
+
+							<span class="field place_group" id="loc05" style="display: none;">
+								<select name="local" id="local" class="place_name">
+									<option value=""  selected>감포전체자료실</option>
+									<option value="B01" >[감포]종합자료실</option>
+									<option value="B07" >[감포]재기증준비실</option>
+								</select>
+							</span>
+
+							<span class="field place_group" id="loc06" style="display: none;">
+								<select name="local" id="local" class="place_name">
+									<option value=""  selected>칠평전체자료실</option>
+									<option value="D01" >[칠평]일반자료실</option>
+									<option value="D02" >[칠평]어린이 자료실</option>
+									<option value="D03" >[칠평]참고자료실</option>
+								</select>
+							</span>
+
+							<span class="field place_group" id="loc07" style="display: none;">
+								<select name="local" id="local" class="place_name">
+									<option value=""  selected>단석전체자료실</option>
+									<option value="C01" >[단석]일반자료실</option>
+									<option value="C02" >[단석]아동자료실</option>
+									<option value="C03" >[단석]참고자료실</option>
+									<option value="C04" >[단석]서고</option>
+									<option value="C06" >[단석]가족열람실</option>
+								</select>
+							</span>
+
+							<span class="field place_group" id="loc08" style="display: none;">
+								<select name="local" id="local" class="place_name form-ele full" disabled="disabled">
+									<option value=""  selected>양남전체자료실</option>
+									<option value="J01" >[양남]자료실</option>
+								</select>
+							</span>
+
+							<span class="field place_group" id="loc09" style="display: none;">
+								<select name="local" id="local" class="place_name form-ele full" disabled="disabled">
+									<option value=""  selected>문무대왕전체자료실</option>
+									<option value="K01" >[문무대왕]자료실</option>
+								</select>
+							</span>
+
+							<span class="field place_group" id="loc10" style="display: none;">
+								<select name="local" id="local" class="place_name form-ele full" disabled="disabled">
+									<option value=""  selected>현곡전체자료실</option>
+									<option value="L01" >[현곡]자료실</option>
+								</select>
+							</span>
+
+							<span class="field place_group" id="loc11" style="display: none;">
+								<select name="local" id="local" class="place_name form-ele full" disabled="disabled">
+									<option value=""  selected>화랑전체자료실</option>
+									<option value="P01" >[화랑]자료실</option>
+								</select>
+							</span>
+
+							<span class="field place_group" id="loc12" style="display: none;">
+								<select name="local" id="local" class="place_name form-ele full" disabled="disabled">
+									<option value=""  selected>강동전체자료실</option>
+									<option value="H01" >[강동]자료실</option>
+								</select>
+							</span>
+
+						</dd>
+					</dl>
+<!--
+					<dl>
+						<dt><label for="msa" class="title">자료구분</label></dt>
+						<dd>
+							<select name="msa" id="msa" >
+								<option value="">전체</option>
+								<option value="M">단행</option>
+								<option value="S">연속</option>
+								<option value="A">기사</option>
+							</select>
+						</dd>
+					</dl>
+					<dl>
+						<dt><label for="formclass">자료형태</label></dt>
+						<dd>
+							<select  name="formclass" id="formclass">				    
+								<option value="" selected="selected">전체</option>
+								<option value="일반도서" >일반도서</option>
+								<option value="학위논문" >학위논문</option>
+								<option value="교과서" >교과서</option>
+								<option value="학습서" >학습서</option>
+								<option value="만화" >만화</option>
+								<option value="아동/청소년도서" >아동,청소년도서</option>
+								<option value="잡지" >잡지</option>
+								<option value="신문" >신문</option>
+								<option value="비도서" >비도서</option>
+								<option value="점자자료" >점자자료</option>
+							</select>
+						</dd>
+					</dl>
+
+					<dl>
+						<dt><label for="startyear">발행년도</label></dt>
+						<dd>
+							<div class="box">
+								<input type="text" name="startyear" maxlength="4" id="startyear" class="text-area2" title="발행년도(부터)" numberOnly="true" />
+								<span style="width:8%;text-align:center;">~</span>
+								<input type="text" name="endyear" maxlength="4" id="endyear" class="text-area2" title="발행년도(까지)" numberOnly="true" />
+							</div>
+						</dd>
+					</dl>
+
+					<dl>
+						<dt><label for="subjectCode" class="title"></label></dt>
+						<dd>
+						<!--
+							<select id="subjectCode" name="subjectCode">
+								<option value="" selected="selected">전체</option>
+								<option value="0">총류</option>
+								<option value="1">철학</option>
+								<option value="2">종교</option>
+								<option value="3">사회과학</option>
+								<option value="4">순수과학</option>
+								<option value="5">기술과학</option>
+								<option value="6">예술</option>
+								<option value="7">언어</option>
+								<option value="8">문학</option>
+								<option value="9">역사</option>
+							</select>
+						</dd>
+					</dl>
+-->
+
+					<div class="end"></div>
+				</div>
+				<p class="btn_w">
+					<a href="#" id="search-btn" class="btnNew4">검색</a>
+					<a href="/?page_id=search_book" class="btnNew4">검색초기화</a>
+					<!-- <a href="#LANGUAGEKEY" onclick="PopupVirtualKeyboard.toggle('value1','vk'); return false;" class="btnNew8">다국어입력기</a>
+					<input name="search_bt2" class="btnNew btn-warning btn-xs mT1" id="search-btn" type="submit" value="검색하기" /> -->
+				</p>
+			</div>
+			<!--// 검색하기_일반 -->
+		</div>
+
+		<!--search_result-->
+		<div id="search_result" class="search_result">
+
+			<div class="smain">
+				<div class="box">
+					<div class="search-info">
+						<div>
+							<span class="list_sg_red"><strong></strong></span> 검색 결과  Total :
+							<strong>39</strong>개 (page :
+							<strong class="list_sg_red">1</strong> / 4)
+						</div>
+					</div>
+
+					<div class="search-condition">
+
+						<div class="mode">
+							<ul>
+								<li><a href="?page_id=search_booklist&mode=tBookList&amp;book_type=&amp;search_txt=%ED%8C%8C%EC%B9%9C%EC%BD%94&amp;display=10&display_flag=2" class="btn-View imgView ">이미지형 표지형 설정</a></li>
+								<li><a href="?page_id=search_booklist&mode=tBookList&amp;book_type=&amp;search_txt=%ED%8C%8C%EC%B9%9C%EC%BD%94&amp;display=10&display_flag=1" class="btn-View listView ">목록형 표지형 설정</a></li>
+							</ul>
+						</div>
+
+						<div class="control">
+							<select id="orderByItem" name="orderByItem">
+								<option value="" selected="selected">정렬없음</option>
+								<option value="TITLE" >제목</option>
+								<option value="AUTHOR" >저자</option>
+								<option value="PUBLISHER" >출판사</option>
+								<option value="PUB_YEAR" >발행년도</option>
+							</select>
+							<select id="orderBy" name="orderBy">
+								<option value="DESC" >내림차순</option>
+								<option value="ASC" >오름차순</option>
+							</select>
+							<select id="display" name="display">
+								<option value="10" selected>10건</option>
+								<option value="20" >20건</option>
+								<option value="30" >30건</option>
+								<option value="40" >40건</option>
+								<option value="50" >50건</option>
+								<option value="100" >100건</option>
+							</select>
+							<a href="#sort" id="sort-btn" class="btn sortBtn">정렬</a>
+						</div>
+
+						<div class="end"></div>
+					</div>
+
+					
+<div id="search-results" class="search-results">
+	<div class="imageType">
+
+
+		<!-- 검색결과 루프 시작 -->
+		<div class="row">
+			<div class="thumb">
+				<a href="/?page_id=search_bookdetail&mode=bDetailView&pre_page_id=search_booklist&manageCode=MK&bookKey=10111142266&sib=9791168341500&regNo=BHM000008265">
+					<img src="https://shopping-phinf.pstatic.net/main_4467975/44679758650.20231219082932.jpg" alt="파친코 : 이민진 장편소설" onError="this.src='/resources/common/img/noImg2.png'"/>
+				</a>
+								<p class="ribbon mark08">
+					<!-- SUBJECT_CODE가 0:총류,1:철학,2:종교,3:사회과학,4:순수과학,5:기술과학,6:예술,7:언어,8:문학,9:역사 -->
+					문학				</p>
+			</div>
+			<div class="box">
+				<div class="item">
+					<div class="bif">
+
+						<a href="/?page_id=search_bookdetail&mode=bDetailView&pre_page_id=search_booklist&manageCode=MK&bookKey=10111142266&sib=9791168341500&regNo=BHM000008265" class="name">파친코 : 이민진 장편소설</a>
+						<p class="book-status-info">
+							<span>저자</span> : 이민진 지음 ; 신승미 옮김 <br class=""/>
+							<span>출판사</span> : 인플루엔셜 <br class=""/>
+							<span>발행년도</span> : 2023 <br class=""/>
+							<!-- <span>ISBN</span> : 내용없음 <br class=""/> -->
+							<span>청구기호</span> : 843.6-이38ㅍ <br class=""/>
+							<!-- <span>등록번호</span> :  <br class=""/> -->
+							<!-- <span>자료형태</span> :  <br class=""/> -->
+							<span>소장도서관</span> : 문무대왕꿈마루도서관 <br class=""/>
+							<span>자료실</span> : [문무대왕]자료실 <br class=""/>
+														<span>대출상태</span> : 
+							대출가능(비치중)																				</p>
+
+						<div class="stat">
+							<div class="stateArea">
+																<a href="#" onclick="alert('로그인 후 이용 가능합니다.');" class="btn5">관심도서 추가</a>
+																							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+			<div style="clear:both;"></div>
+		</div>
+
+
+		<!-- 검색결과 루프 시작 -->
+		<div class="row">
+			<div class="thumb">
+				<a href="/?page_id=search_bookdetail&mode=bDetailView&pre_page_id=search_booklist&manageCode=MJ&bookKey=10111134602&sib=9791168341500&regNo=AGM000009957">
+					<img src="https://shopping-phinf.pstatic.net/main_4467975/44679758650.20231219082932.jpg" alt="파친코 : 이민진 장편소설" onError="this.src='/resources/common/img/noImg2.png'"/>
+				</a>
+								<p class="ribbon mark08">
+					<!-- SUBJECT_CODE가 0:총류,1:철학,2:종교,3:사회과학,4:순수과학,5:기술과학,6:예술,7:언어,8:문학,9:역사 -->
+					문학				</p>
+			</div>
+			<div class="box">
+				<div class="item">
+					<div class="bif">
+
+						<a href="/?page_id=search_bookdetail&mode=bDetailView&pre_page_id=search_booklist&manageCode=MJ&bookKey=10111134602&sib=9791168341500&regNo=AGM000009957" class="name">파친코 : 이민진 장편소설</a>
+						<p class="book-status-info">
+							<span>저자</span> : 이민진 지음 ; 신승미 옮김 <br class=""/>
+							<span>출판사</span> : 인플루엔셜 <br class=""/>
+							<span>발행년도</span> : 2023 <br class=""/>
+							<!-- <span>ISBN</span> : 내용없음 <br class=""/> -->
+							<span>청구기호</span> : 843.6-이38ㅍ <br class=""/>
+							<!-- <span>등록번호</span> :  <br class=""/> -->
+							<!-- <span>자료형태</span> :  <br class=""/> -->
+							<span>소장도서관</span> : 양남꿈마루도서관 <br class=""/>
+							<span>자료실</span> : [양남]자료실 <br class=""/>
+														<span>대출상태</span> : 
+							대출가능(비치중)																				</p>
+
+						<div class="stat">
+							<div class="stateArea">
+																<a href="#" onclick="alert('로그인 후 이용 가능합니다.');" class="btn5">관심도서 추가</a>
+																							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+			<div style="clear:both;"></div>
+		</div>
+
+
+		<!-- 검색결과 루프 시작 -->
+		<div class="row">
+			<div class="thumb">
+				<a href="/?page_id=search_bookdetail&mode=bDetailView&pre_page_id=search_booklist&manageCode=MG&bookKey=10102990074&sib=9791188140404&regNo=GM0000067164">
+					<img src="https://bookthumb-phinf.pstatic.net/cover/140/685/14068531.jpg?type=m1&udate=20181127" alt="파친코 구슬" onError="this.src='/resources/common/img/noImg2.png'"/>
+				</a>
+								<p class="ribbon mark08">
+					<!-- SUBJECT_CODE가 0:총류,1:철학,2:종교,3:사회과학,4:순수과학,5:기술과학,6:예술,7:언어,8:문학,9:역사 -->
+					문학				</p>
+			</div>
+			<div class="box">
+				<div class="item">
+					<div class="bif">
+
+						<a href="/?page_id=search_bookdetail&mode=bDetailView&pre_page_id=search_booklist&manageCode=MG&bookKey=10102990074&sib=9791188140404&regNo=GM0000067164" class="name">파친코 구슬</a>
+						<p class="book-status-info">
+							<span>저자</span> : 엘리자 수아 뒤사팽 지음 ; 이상해 옮김 <br class=""/>
+							<span>출판사</span> : 북레시피 <br class=""/>
+							<span>발행년도</span> : 2018 <br class=""/>
+							<!-- <span>ISBN</span> : 내용없음 <br class=""/> -->
+							<span>청구기호</span> : 863-뒤52ㅍ <br class=""/>
+							<!-- <span>등록번호</span> :  <br class=""/> -->
+							<!-- <span>자료형태</span> :  <br class=""/> -->
+							<span>소장도서관</span> : 송화도서관 <br class=""/>
+							<span>자료실</span> : [송화]일반자료실 <br class=""/>
+														<span>대출상태</span> : 
+							대출가능(비치중)																				</p>
+
+						<div class="stat">
+							<div class="stateArea">
+																<a href="#" onclick="alert('로그인 후 이용 가능합니다.');" class="btn5">관심도서 추가</a>
+																							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+			<div style="clear:both;"></div>
+		</div>
+
+
+		<!-- 검색결과 루프 시작 -->
+		<div class="row">
+			<div class="thumb">
+				<a href="/?page_id=search_bookdetail&mode=bDetailView&pre_page_id=search_booklist&manageCode=MH&bookKey=10107848237&sib=9788970129815&regNo=CLM000005570">
+					<img src="https://bookthumb-phinf.pstatic.net/cover/134/282/13428208.jpg?type=m1&udate=20211119" alt="파친코 : 이민진 장편소설. 1" onError="this.src='/resources/common/img/noImg2.png'"/>
+				</a>
+								<p class="ribbon mark08">
+					<!-- SUBJECT_CODE가 0:총류,1:철학,2:종교,3:사회과학,4:순수과학,5:기술과학,6:예술,7:언어,8:문학,9:역사 -->
+					문학				</p>
+			</div>
+			<div class="box">
+				<div class="item">
+					<div class="bif">
+
+						<a href="/?page_id=search_bookdetail&mode=bDetailView&pre_page_id=search_booklist&manageCode=MH&bookKey=10107848237&sib=9788970129815&regNo=CLM000005570" class="name">파친코 : 이민진 장편소설. 1</a>
+						<p class="book-status-info">
+							<span>저자</span> : 이민진 지음 ; 이미정 옮김 <br class=""/>
+							<span>출판사</span> : 문학사상 <br class=""/>
+							<span>발행년도</span> : 2018 <br class=""/>
+							<!-- <span>ISBN</span> : 내용없음 <br class=""/> -->
+							<span>청구기호</span> : 843.6-이38ㅍ-1 <br class=""/>
+							<!-- <span>등록번호</span> :  <br class=""/> -->
+							<!-- <span>자료형태</span> :  <br class=""/> -->
+							<span>소장도서관</span> : 강동꿈마루도서관 <br class=""/>
+							<span>자료실</span> : [강동]자료실 <br class=""/>
+														<span>대출상태</span> : 
+							대출가능(비치중)																				</p>
+
+						<div class="stat">
+							<div class="stateArea">
+																<a href="#" onclick="alert('로그인 후 이용 가능합니다.');" class="btn5">관심도서 추가</a>
+																							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+			<div style="clear:both;"></div>
+		</div>
+
+
+		<!-- 검색결과 루프 시작 -->
+		<div class="row">
+			<div class="thumb">
+				<a href="/?page_id=search_bookdetail&mode=bDetailView&pre_page_id=search_booklist&manageCode=MM&bookKey=10104082838&sib=9788970129815&regNo=PM0000000963">
+					<img src="https://bookthumb-phinf.pstatic.net/cover/134/282/13428208.jpg?type=m1&udate=20211119" alt="파친코 : 이민진 장편소설. 1" onError="this.src='/resources/common/img/noImg2.png'"/>
+				</a>
+								<p class="ribbon mark08">
+					<!-- SUBJECT_CODE가 0:총류,1:철학,2:종교,3:사회과학,4:순수과학,5:기술과학,6:예술,7:언어,8:문학,9:역사 -->
+					문학				</p>
+			</div>
+			<div class="box">
+				<div class="item">
+					<div class="bif">
+
+						<a href="/?page_id=search_bookdetail&mode=bDetailView&pre_page_id=search_booklist&manageCode=MM&bookKey=10104082838&sib=9788970129815&regNo=PM0000000963" class="name">파친코 : 이민진 장편소설. 1</a>
+						<p class="book-status-info">
+							<span>저자</span> : 이민진 지음 ; 이미정 옮김 <br class=""/>
+							<span>출판사</span> : 문학사상 <br class=""/>
+							<span>발행년도</span> : 2018 <br class=""/>
+							<!-- <span>ISBN</span> : 내용없음 <br class=""/> -->
+							<span>청구기호</span> : 843.6-이38ㅍㅇ-1 <br class=""/>
+							<!-- <span>등록번호</span> :  <br class=""/> -->
+							<!-- <span>자료형태</span> :  <br class=""/> -->
+							<span>소장도서관</span> : 화랑마을꿈마루도서관 <br class=""/>
+							<span>자료실</span> : [화랑]자료실 <br class=""/>
+														<span>대출상태</span> : 
+							대출가능(비치중)																				</p>
+
+						<div class="stat">
+							<div class="stateArea">
+																<a href="#" onclick="alert('로그인 후 이용 가능합니다.');" class="btn5">관심도서 추가</a>
+																							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+			<div style="clear:both;"></div>
+		</div>
+
+
+		<!-- 검색결과 루프 시작 -->
+		<div class="row">
+			<div class="thumb">
+				<a href="/?page_id=search_bookdetail&mode=bDetailView&pre_page_id=search_booklist&manageCode=MM&bookKey=10106694470&sib=9788970129808&regNo=CPM000004150">
+					<img src="/resources/common/img/noImg2.png" alt="파친코 : 이민진 장편소설. 2" onError="this.src='/resources/common/img/noImg2.png'"/>
+				</a>
+								<p class="ribbon mark08">
+					<!-- SUBJECT_CODE가 0:총류,1:철학,2:종교,3:사회과학,4:순수과학,5:기술과학,6:예술,7:언어,8:문학,9:역사 -->
+					문학				</p>
+			</div>
+			<div class="box">
+				<div class="item">
+					<div class="bif">
+
+						<a href="/?page_id=search_bookdetail&mode=bDetailView&pre_page_id=search_booklist&manageCode=MM&bookKey=10106694470&sib=9788970129808&regNo=CPM000004150" class="name">파친코 : 이민진 장편소설. 2</a>
+						<p class="book-status-info">
+							<span>저자</span> : 이민진 지음 ; 이미정 옮김 <br class=""/>
+							<span>출판사</span> : 문학사상사 <br class=""/>
+							<span>발행년도</span> : 2018 <br class=""/>
+							<!-- <span>ISBN</span> : 내용없음 <br class=""/> -->
+							<span>청구기호</span> : 843.6-이38ㅍㅇ-2 <br class=""/>
+							<!-- <span>등록번호</span> :  <br class=""/> -->
+							<!-- <span>자료형태</span> :  <br class=""/> -->
+							<span>소장도서관</span> : 화랑마을꿈마루도서관 <br class=""/>
+							<span>자료실</span> : [화랑]자료실 <br class=""/>
+														<span>대출상태</span> : 
+							대출가능(비치중)																				</p>
+
+						<div class="stat">
+							<div class="stateArea">
+																<a href="#" onclick="alert('로그인 후 이용 가능합니다.');" class="btn5">관심도서 추가</a>
+																							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+			<div style="clear:both;"></div>
+		</div>
+
+
+		<!-- 검색결과 루프 시작 -->
+		<div class="row">
+			<div class="thumb">
+				<a href="/?page_id=search_bookdetail&mode=bDetailView&pre_page_id=search_booklist&manageCode=ML&bookKey=10108207397&sib=9791168340510&regNo=CKM000005483">
+					<img src="https://shopping-phinf.pstatic.net/main_3343571/33435716826.20220728093341.jpg" alt="파친코  : 이민진 장편소설. 1" onError="this.src='/resources/common/img/noImg2.png'"/>
+				</a>
+								<p class="ribbon mark08">
+					<!-- SUBJECT_CODE가 0:총류,1:철학,2:종교,3:사회과학,4:순수과학,5:기술과학,6:예술,7:언어,8:문학,9:역사 -->
+					문학				</p>
+			</div>
+			<div class="box">
+				<div class="item">
+					<div class="bif">
+
+						<a href="/?page_id=search_bookdetail&mode=bDetailView&pre_page_id=search_booklist&manageCode=ML&bookKey=10108207397&sib=9791168340510&regNo=CKM000005483" class="name">파친코  : 이민진 장편소설. 1</a>
+						<p class="book-status-info">
+							<span>저자</span> : 이민진 [지음]  ; 신승미 옮김 <br class=""/>
+							<span>출판사</span> : Influential <br class=""/>
+							<span>발행년도</span> : 2022 <br class=""/>
+							<!-- <span>ISBN</span> : 내용없음 <br class=""/> -->
+							<span>청구기호</span> : 843-이38ㅍㅅ-1 <br class=""/>
+							<!-- <span>등록번호</span> :  <br class=""/> -->
+							<!-- <span>자료형태</span> :  <br class=""/> -->
+							<span>소장도서관</span> : 현곡꿈마루도서관 <br class=""/>
+							<span>자료실</span> : [현곡]자료실 <br class=""/>
+														<span>대출상태</span> : 
+							대출가능(비치중)																				</p>
+
+						<div class="stat">
+							<div class="stateArea">
+																<a href="#" onclick="alert('로그인 후 이용 가능합니다.');" class="btn5">관심도서 추가</a>
+																							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+			<div style="clear:both;"></div>
+		</div>
+
+
+		<!-- 검색결과 루프 시작 -->
+		<div class="row">
+			<div class="thumb">
+				<a href="/?page_id=search_bookdetail&mode=bDetailView&pre_page_id=search_booklist&manageCode=ML&bookKey=10108207500&sib=&regNo=CKM000005484">
+					<img src="/resources/common/img/noImg2.png" alt="파친코  : 이민진 장편소설. 2" onError="this.src='/resources/common/img/noImg2.png'"/>
+				</a>
+								<p class="ribbon mark08">
+					<!-- SUBJECT_CODE가 0:총류,1:철학,2:종교,3:사회과학,4:순수과학,5:기술과학,6:예술,7:언어,8:문학,9:역사 -->
+					문학				</p>
+			</div>
+			<div class="box">
+				<div class="item">
+					<div class="bif">
+
+						<a href="/?page_id=search_bookdetail&mode=bDetailView&pre_page_id=search_booklist&manageCode=ML&bookKey=10108207500&sib=&regNo=CKM000005484" class="name">파친코  : 이민진 장편소설. 2</a>
+						<p class="book-status-info">
+							<span>저자</span> : 이민진 [지음]  ; 신승미 옮김 <br class=""/>
+							<span>출판사</span> : Influential <br class=""/>
+							<span>발행년도</span> : 2022 <br class=""/>
+							<!-- <span>ISBN</span> : 내용없음 <br class=""/> -->
+							<span>청구기호</span> : 843-이38ㅍㅅ-2 <br class=""/>
+							<!-- <span>등록번호</span> :  <br class=""/> -->
+							<!-- <span>자료형태</span> :  <br class=""/> -->
+							<span>소장도서관</span> : 현곡꿈마루도서관 <br class=""/>
+							<span>자료실</span> : [현곡]자료실 <br class=""/>
+														<span>대출상태</span> : 
+							대출가능(비치중)																				</p>
+
+						<div class="stat">
+							<div class="stateArea">
+																<a href="#" onclick="alert('로그인 후 이용 가능합니다.');" class="btn5">관심도서 추가</a>
+																							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+			<div style="clear:both;"></div>
+		</div>
+
+
+		<!-- 검색결과 루프 시작 -->
+		<div class="row">
+			<div class="thumb">
+				<a href="/?page_id=search_bookdetail&mode=bDetailView&pre_page_id=search_booklist&manageCode=MD&bookKey=10106118877&sib=9788970129815&regNo=DM0000087858">
+					<img src="https://bookthumb-phinf.pstatic.net/cover/134/282/13428208.jpg?type=m1&udate=20211119" alt="파친코 : 이민진 장편소설. 1" onError="this.src='/resources/common/img/noImg2.png'"/>
+				</a>
+								<p class="ribbon mark08">
+					<!-- SUBJECT_CODE가 0:총류,1:철학,2:종교,3:사회과학,4:순수과학,5:기술과학,6:예술,7:언어,8:문학,9:역사 -->
+					문학				</p>
+			</div>
+			<div class="box">
+				<div class="item">
+					<div class="bif">
+
+						<a href="/?page_id=search_bookdetail&mode=bDetailView&pre_page_id=search_booklist&manageCode=MD&bookKey=10106118877&sib=9788970129815&regNo=DM0000087858" class="name">파친코 : 이민진 장편소설. 1</a>
+						<p class="book-status-info">
+							<span>저자</span> : 이민진 지음 ; 이미정 옮김 <br class=""/>
+							<span>출판사</span> : 문학사상 <br class=""/>
+							<span>발행년도</span> : 2018 <br class=""/>
+							<!-- <span>ISBN</span> : 내용없음 <br class=""/> -->
+							<span>청구기호</span> : 843.6-이38ㅍㅇ-1 <br class=""/>
+							<!-- <span>등록번호</span> :  <br class=""/> -->
+							<!-- <span>자료형태</span> :  <br class=""/> -->
+							<span>소장도서관</span> : 칠평도서관 <br class=""/>
+							<span>자료실</span> : [칠평]일반자료실 <br class=""/>
+														<span>대출상태</span> : 
+							대출가능(비치중)																				</p>
+
+						<div class="stat">
+							<div class="stateArea">
+																<a href="#" onclick="alert('로그인 후 이용 가능합니다.');" class="btn5">관심도서 추가</a>
+																							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+			<div style="clear:both;"></div>
+		</div>
+
+
+		<!-- 검색결과 루프 시작 -->
+		<div class="row">
+			<div class="thumb">
+				<a href="/?page_id=search_bookdetail&mode=bDetailView&pre_page_id=search_booklist&manageCode=MG&bookKey=10106052206&sib=9788970129808&regNo=GM0000077530">
+					<img src="/resources/common/img/noImg2.png" alt="파친코 : 이민진 장편소설. 1" onError="this.src='/resources/common/img/noImg2.png'"/>
+				</a>
+								<p class="ribbon mark08">
+					<!-- SUBJECT_CODE가 0:총류,1:철학,2:종교,3:사회과학,4:순수과학,5:기술과학,6:예술,7:언어,8:문학,9:역사 -->
+					문학				</p>
+			</div>
+			<div class="box">
+				<div class="item">
+					<div class="bif">
+
+						<a href="/?page_id=search_bookdetail&mode=bDetailView&pre_page_id=search_booklist&manageCode=MG&bookKey=10106052206&sib=9788970129808&regNo=GM0000077530" class="name">파친코 : 이민진 장편소설. 1</a>
+						<p class="book-status-info">
+							<span>저자</span> : 이민진 지음 ; 이미정 옮김 <br class=""/>
+							<span>출판사</span> : 문학사상사 <br class=""/>
+							<span>발행년도</span> : 2018 <br class=""/>
+							<!-- <span>ISBN</span> : 내용없음 <br class=""/> -->
+							<span>청구기호</span> : 843.6-이38ㅍㅇ-1 <br class=""/>
+							<!-- <span>등록번호</span> :  <br class=""/> -->
+							<!-- <span>자료형태</span> :  <br class=""/> -->
+							<span>소장도서관</span> : 송화도서관 <br class=""/>
+							<span>자료실</span> : [송화]일반자료실 <br class=""/>
+														<span>대출상태</span> : 
+							대출가능(비치중)																				</p>
+
+						<div class="stat">
+							<div class="stateArea">
+																<a href="#" onclick="alert('로그인 후 이용 가능합니다.');" class="btn5">관심도서 추가</a>
+																							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+			<div style="clear:both;"></div>
+		</div>
+
+	</div>
+</div>      
+
+				</div>
+			</div>
+
+			<!--페이지번호-->
+						<div class="paginate">
+				<strong>1</strong><a href='?page_id=search_booklist&mode=tBookList&amp;book_type=&amp;search_txt=%ED%8C%8C%EC%B9%9C%EC%BD%94&amp;display=10&amp;page=2'>2</a><a href='?page_id=search_booklist&mode=tBookList&amp;book_type=&amp;search_txt=%ED%8C%8C%EC%B9%9C%EC%BD%94&amp;display=10&amp;page=3'>3</a><a href='?page_id=search_booklist&mode=tBookList&amp;book_type=&amp;search_txt=%ED%8C%8C%EC%B9%9C%EC%BD%94&amp;display=10&amp;page=4'>4</a>			</div>
+					</div>
+
+	</div>
+	</form>
+	<div id="vk"></div>							</div>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+
+			<div class="end"></div>
+
+		</div>
+
+			
+	<div id="footer">
+
+		<div class="section">
+			<div class="left-link">
+				
+				<div class="inf-box">
+						<div class="inf-txt">
+						<ul>
+							<li><a href="/?page_id=account_chart">도서관서비스헌장</a></li>
+							<li><span class="txt-bar"></span></li>
+							<li><a href="/?page_id=account_privacy"><strong>개인정보처리방침</strong></a></li>
+							<li><span class="txt-bar"></span></li>
+							<li><a href="/?page_id=account_email">이메일무단수집거부</a></li>
+							<li><span class="txt-bar"></span></li>
+							<li><a href="/?page_id=account_sitemap">사이트맵</a></li>
+						</ul>
+					</div>
+				</div>
+
+				<address class="site_address">
+					<em>[38088] 경상북도 경주시 원화로 431-12 (황성동 370)</em><br/>
+					<em><b>[전화]</b> <br class="mobileBr"/> 본관 사무실 : 054)779-8891<br class="mobileBr"/> 자료실 : 054)779-8913 <br class="mobileBr"/> 어린이실 : 054)779-8911</em><br class="mobileBr"/>
+					<em><b>[팩스]</b> <br class="mobileBr"/> 054)760-7436</em><br/>
+					<span>Copyright © 2021 Gyeongju Municipal Library, All rights reserved.</span>
+				</address>
+			</div>
+
+			<div class="right-location">
+				<span>
+					<select id="recommendSite11" class="recommendSite11" title="관련사이트">
+						<option value="">관련사이트</option>
+						<option value="http://www.gyeongju.go.kr/">경주시청</option>
+						<option value="http://www.nl.go.kr//">국립중앙도서관</option>
+						<option value="http://www.nanet.go.kr/">국회도서관</option>
+						<option value="https://www.1365.go.kr/vols/main.do">1365자원봉사센터</option>
+						<option value="https://www.gbelib.kr/od/index.do">외동공공도서관</option>
+					</select>
+					<a href="#move" class="sel-btn recommendSite11" title="새창열림">이동</a>
+				</span>
+			</div>
+		</div>
+
+
+		<div class="end"></div>
+
+		<div class="home-up">
+			<img src="/resources/homepage/gyeongju/img/m-top-btn.png" alt="위로" id="homeup">
+		</div>
+	</div>
+
+
+  
+        
+
+<form name="libtc" id="libtc" method="post">
+<input type="hidden" name="csrf_token" value="e20f248ff6c70d554df0dc8fbf4e0aa13ebc2fb157d6febb4fcaa015c2a503bb">
+<input type="hidden" name="lib_name">
+<input type="hidden" name="lib_id">
+</form>
+
+
+
+	</div>
+</body>
+</html>

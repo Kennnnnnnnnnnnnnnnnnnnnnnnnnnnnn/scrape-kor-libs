@@ -1,0 +1,675 @@
+
+======================================================
+Script[0] src='/resources/common/js/jquery-1.12.4.min.js'
+======================================================
+
+======================================================
+Script[1] src='/resources/common/js/jquery-ui-1.12.0.min.js'
+======================================================
+
+======================================================
+Script[2] src='/resources/common/js/jquery-ui-1.12.0-datepicker.min.js'
+======================================================
+
+======================================================
+Script[3] src='/resources/common/js/jquery.bxslider.min.js'
+======================================================
+
+======================================================
+Script[4] src='/resources/common/js/jquery.mmenu.min.js'
+======================================================
+
+======================================================
+Script[5] src='/resources/common/js/jquery.newsticker.js'
+======================================================
+
+======================================================
+Script[6] src='/resources/common/js/default.js'
+======================================================
+
+======================================================
+Script[7] src='/resources/common/js/common.js'
+======================================================
+
+======================================================
+Script[8] src='/resources/homepage/main/js/common.js'
+======================================================
+
+======================================================
+Script[9] src='/resources/common/js/kakao.min.js'
+======================================================
+
+======================================================
+Script[10] src='None'
+======================================================
+$(function() {
+
+	$('li#menu_5').addClass('active');
+
+	$('li#menu_9').addClass('active');
+
+	var halbaeNode = $('li#menu_5').parent().parent()[0];
+
+	if ( halbaeNode != null && halbaeNode.nodeName == 'LI' ) {
+
+		$(halbaeNode).addClass('active');
+
+	}
+
+
+
+	if (location.href.indexOf('html.do?') > -1) {
+
+ 		$('div#menuRatingDiv').load('/main/module/menuRating/index.do?menu_idx=9');
+
+	}
+
+	$(".dropdown > a.button").click(function(){
+
+		var $dropdownNav = $(this).siblings("ul");
+
+		if($dropdownNav.css("display") == "none"){
+
+			$(".dropdown > ul").hide();
+
+			$dropdownNav.show();
+
+			$(this).attr("title","도서관 바로가기(확장됨)");
+
+		}else{
+
+			$dropdownNav.hide();
+
+			$(this).attr("title","도서관 바로가기(축소됨)");
+
+		}
+
+		return false;
+
+	});
+
+	$(".dropdown > ul > li:last-child a").focusout(function(){
+
+		$(".dropdown > ul").hide();
+
+	});
+
+	$(".bestKeywordWrap").newsTicker({
+
+		itemHeight: 45,
+
+		showItems: 1,
+
+		duration: 4000,
+
+		prevButton: "#btnDwon",
+
+		nextButton: "#btnUp"
+
+	});
+
+	$('a.sessionStatusView').on('click', function(e) {
+
+		e.preventDefault();
+
+		if($('div.sessionStatusBox').css("display") == "none"){
+
+			$.ajax({
+
+				type: 'POST',
+
+				url: '/science/intro/join/getLoanInfo.do',
+
+				async: false,
+
+				dataType: 'json',
+
+				success: function(response) {
+
+					response = eval(response);
+
+					if(response.valid) {
+
+						var member = response.data;
+
+						var memberStatus = '';
+
+						if(member.user_class == '0')
+
+						{
+
+							memberStatus = '정상';
+
+						}
+
+						else if(member.user_class == '1')
+
+						{
+
+							memberStatus = '대출정지';
+
+						}
+
+						else if(member.user_class == '2')
+
+						{
+
+							memberStatus = '제적';
+
+						}
+
+						else
+
+						{
+
+							memberStatus = '탈퇴';
+
+						}
+
+
+
+						$('div.sessionStatusBox').children('p').eq(0).text(member.member_name+'님 상태 : '+ memberStatus);
+
+						$('div.sessionStatusBox').children('p').eq(1).text('통합 대출중권수 :' + member.united_loan_count);
+
+						$('div.sessionStatusBox').children('p').eq(2).text('예약중권수 : ' + member.reservation_count);
+
+						$('div.sessionStatusBox').children('p').eq(3).text('상호대차 신청도서 수 : ' + member.mutualLoanCount);
+
+					} else {
+
+						alert(response.message);
+
+					}
+
+				},
+
+				error: function(jqXHR, textStatus, errorThrown) {
+
+					alert('[' + textStatus + ']관리자에게 문의하세요. : ' + errorThrown + ', ' + jqXHR.status);
+
+				}
+
+			});
+
+			
+
+			$('div.sessionStatusBox').show();
+
+		}else{
+
+			$('div.sessionStatusBox').hide();
+
+		}
+
+		return false;
+
+	});
+
+
+
+	$('#header').removeClass("background-white");
+
+	$('.libLink').css('border-left','1px solid #e6e6e6');
+
+	$('.libLink').css('border-right','1px solid #e6e6e6');
+
+	$('.Gnb').css('border-top','1px solid #e6e6e6');
+
+	$('.Gnb').css('border-bottom','1px solid #e6e6e6');
+
+	$('.tnb').css('border-bottom','1px solid #e6e6e6');
+
+	$('.Gnb').css('background','#fff');
+
+	$('.tnb').css('background','#fff');
+
+	$('.head').css('background','#fff');
+
+	$('.main-logo').attr('src','/resources/homepage/main/img/main_logo_b.png');
+
+	$('.mainBestKeyword').css('background','rgba(0,0,0, 0.25)');
+
+	$('.keywordInput input').css('border','3px solid rgba(0,0,0, 0.5)');
+
+	$('.keywordInput input').css('background','rgba(0,0,0, 0.25)');
+
+	$('.libLink').css('display','block');
+
+});
+
+======================================================
+Script[11] src='None'
+======================================================
+$(document).ready(function() {
+
+	$('a.shareBtn').on('click', function(e) {
+
+
+
+		if($('div#share_layer').css('display') == 'none') {
+
+			$('div#share_layer').show();
+
+			e.preventDefault();
+
+		} else {
+
+			$('div#share_layer').hide();
+
+			e.preventDefault();
+
+		}
+
+
+
+	});
+
+
+
+	$('a#closeshareBox').on('click', function(e) {
+
+		e.preventDefault();
+
+		$('div#share_layer').hide();
+
+		$('a.shareBtn').focus();
+
+	});
+
+
+
+	$(window).scroll(function(){
+
+		if($(this).scrollTop() > 0 ) {
+
+			$('div#share_layer').hide();
+
+		}
+
+	});
+
+});
+
+======================================================
+Script[12] src='/resources/common/js/jqcloud.js'
+======================================================
+
+======================================================
+Script[13] src='None'
+======================================================
+$(function() {
+
+
+
+	
+
+
+
+	
+
+	$('a#unmanned-req').on('click', function(e) {
+
+		e.preventDefault();
+
+		$('form#unmannedReqForm').submit();
+
+	});
+
+
+
+	
+
+	$('a#night-req').on('click', function(e) {
+
+		e.preventDefault();
+
+		$('form#nightReqForm').submit();
+
+	});
+
+
+
+	
+
+	$('a#service-noreq').on('click', function(e) {
+
+		e.preventDefault();
+
+		alert('비대면인증 회원은 서비스 이용이 불가능 하며 전자도서관만 이용가능 합니다.');
+
+		return;
+
+	});
+
+
+
+	$('a#addStorage').on('click', function(e) {
+
+		e.preventDefault();
+
+		/* if ( doAjaxPost($('storageReqForm')) ) {
+
+
+
+		} */
+
+
+
+		window.open("/main/module/myStorage/viewStorage.do?"+serializeCustom($('#storageReqForm')), "", "width=450, height=400");
+
+	});
+
+
+
+	$('a.addDelivery').on('click', function(e) {
+
+		e.preventDefault();
+
+
+
+	});
+
+
+
+	
+
+
+
+	try {
+
+		var words = JSON.parse(''.replaceAll('tag=', '"text":"').replaceAll(', weight=', '", "weight":'));
+
+		$('#cloud').jQCloud(words, {
+
+			autoResize: true
+
+		});
+
+	} catch (e) {
+
+		// TODO: handle exception
+
+	}
+
+
+
+	if (document.referrer.indexOf('/intro/search/index.do') > -1) {
+
+		$('a#goBack').on('click', function(e) {
+
+			e.preventDefault();
+
+			history.back();
+
+		});
+
+	}
+
+
+
+	if (document.referrer.indexOf('/intro/search/indexDetail.do') > -1) {
+
+		$('a#goBack').on('click', function(e) {
+
+			e.preventDefault();
+
+			history.back();
+
+		});
+
+	}
+
+	
+
+	if (document.referrer.indexOf('/intro/search/indexAll.do') > -1) {
+
+		$('a#goBack').on('click', function(e) {
+
+			e.preventDefault();
+
+			history.back();
+
+		});
+
+	}
+
+
+
+ 	//$('div#bookReviewDiv').load('/main/module/bookReview/index.do?menu_idx=9&manage_code=&reg_no=');
+
+
+
+	$(document).on('click', '.tabMenuS a.btnGraph', function(e){
+
+		e.preventDefault();
+
+		var target = this.getAttribute('href').replace('#','');
+
+		var $box = $(this).closest('.tabS');
+
+
+
+		$(this).closest('.tabMenuS').find('li').removeClass('on');
+
+		$(this).parent('li').addClass('on');
+
+
+
+		$('.graphWrap').hide();
+
+		$("#"+target).show();
+
+	});
+
+	
+
+	var text = $('#toc').text();
+
+	text = text.replace('\n\t\t\t' , '');
+
+	text = text.replaceAll('\n' , '<br>');
+
+	$('#toc').html(text);
+
+});
+
+======================================================
+Script[14] src='https://www.google.com/jsapi'
+======================================================
+
+======================================================
+Script[15] src='None'
+======================================================
+google.load("visualization", "1", {packages:["corechart"]});
+
+			google.setOnLoadCallback(drawChart);
+
+
+
+			function drawChart() {
+
+				var data = google.visualization.arrayToDataTable([
+
+					['연령','대출']
+
+					
+
+					
+
+						,['데이터 없음', parseInt('0')]
+
+					
+
+						
+
+				]);
+
+
+
+				var options = {
+
+					animation: {startup: true, duration: 1000},
+
+					fontName: "Malgun Gothic,맑은 고딕, Verdana,Arial, '돋움', Dotum",
+
+					fontSize: '12',
+
+					legend: {position: 'none'},
+
+					//bar: {groupWidth: "20%"}, //이게 막대가로폭
+
+					bar: {groupWidth: "20%"}, //이게 막대가로폭
+
+					vAxis: {format:'###,###,###',viewWindow:{min: 0},
+
+						baselineColor: '#d4d4d4'
+
+					},
+
+					colors:['#3598db'],
+
+					pointSize: 2,
+
+					//chartArea: {left:"0px",top: "5%",right:'0px', width: "80%", height: "80%"}
+
+					chartArea: {left:"10%",top: "5%",right:'0px', width: "85%", height: "80%"}
+
+				};
+
+
+
+				function resizeAge () {
+
+					var chart = new google.visualization.ColumnChart(document.getElementById('ageBarGraph'));
+
+					chart.draw(data, options);
+
+				}
+
+				
+
+				// 구글차트 리사이징 (반응형)
+
+				
+
+				window.addEventListener("onload", resizeAge());
+
+				// window.onresize = resizeAge;	
+
+
+
+				var resizeHandler = function(){
+
+					resizeAge();
+
+					//resizeGender();
+
+					//resizeRegion();
+
+				};
+
+
+
+				$(window).resize(resizeHandler);
+
+				
+
+				
+
+			}
+
+======================================================
+Script[16] src='https://www.google.com/jsapi'
+======================================================
+
+======================================================
+Script[17] src='None'
+======================================================
+google.load("visualization", "1", {packages:["corechart"]});
+
+			google.setOnLoadCallback(drawChart);
+
+
+
+			function drawChart() {
+
+				var data = google.visualization.arrayToDataTable([
+
+					['성별','대출']
+
+					
+
+					
+
+						,['데이터 없음', parseInt('0')]
+
+					
+
+				]);
+
+
+
+				var options = {
+
+					animation: {startup: true, duration: 1000},
+
+					fontName: "Malgun Gothic,맑은 고딕, Verdana,Arial, '돋움', Dotum",
+
+					fontSize: '12',
+
+					legend: {position: 'none'},
+
+					bar: {groupWidth: "30%"},
+
+					vAxis: {format:'###,###,###',viewWindow:{min: 0},
+
+						baselineColor: '#d4d4d4'
+
+					},
+
+					hAxis: {
+
+						slantedText : 'false',
+
+						slantedTextAngle : 1,
+
+						// maxAlternation: 3,
+
+						maxTextLines: 5,
+
+						showTextEvery: 1
+
+					},
+
+					colors:['#a088e6'],
+
+					pointSize: 2,
+
+					//chartArea: {left:"0px",top: "5%",right:'0px', width: "90%", height: "80%"}
+
+					chartArea: {left:"10%",top: "5%",right:'0px', width: "85%", height: "80%"}
+
+				};
+
+
+
+				function resizeGender () {
+
+					var chart = new google.visualization.ColumnChart(document.getElementById('genderBarGraph'));
+
+					chart.draw(data, options);
+
+				}
+
+
+
+				// 구글차트 리사이징 (반응형)
+
+				 window.onload = resizeGender();
+
+				 window.onresize = resizeGender;	
+
+				window.addEventListener("onload", resizeGender());
+
+			}

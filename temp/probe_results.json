@@ -1,0 +1,2719 @@
+{
+  "수원시": {
+    "domain": "suwonlib.go.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "error": "HTTPSConnectionPool(host='suwonlib.go.kr', port=443): Max retries exceeded with url: /intro/menu/10003/program/30001/searchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)')))"
+      },
+      "jnet_B": {
+        "error": "HTTPSConnectionPool(host='suwonlib.go.kr', port=443): Max retries exceeded with url: /intro/menu/10181/program/30012/plusSearchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)')))"
+      },
+      "kolas_A": {
+        "error": "HTTPSConnectionPool(host='suwonlib.go.kr', port=443): Max retries exceeded with url: /search/searchDetail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)')))"
+      },
+      "kolas_B": {
+        "error": "HTTPSConnectionPool(host='suwonlib.go.kr', port=443): Max retries exceeded with url: /search/tot/result.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)')))"
+      },
+      "slima_A": {
+        "error": "HTTPSConnectionPool(host='suwonlib.go.kr', port=443): Max retries exceeded with url: /search/search_detail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)')))"
+      },
+      "slima_B": {
+        "error": "HTTPSConnectionPool(host='suwonlib.go.kr', port=443): Max retries exceeded with url: /search/search.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1006)')))"
+      }
+    }
+  },
+  "부천시": {
+    "domain": "bcl.go.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "status": 417,
+        "len": 1325,
+        "has_cnt": false
+      },
+      "jnet_B": {
+        "status": 417,
+        "len": 1325,
+        "has_cnt": false
+      },
+      "kolas_A": {
+        "status": 417,
+        "len": 1325,
+        "has_cnt": false
+      },
+      "kolas_B": {
+        "status": 417,
+        "len": 1325,
+        "has_cnt": false
+      },
+      "slima_A": {
+        "status": 417,
+        "len": 1325,
+        "has_cnt": false
+      },
+      "slima_B": {
+        "status": 417,
+        "len": 1325,
+        "has_cnt": false
+      }
+    }
+  },
+  "안산시": {
+    "domain": "lib.ansan.go.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "status": 200,
+        "len": 1901,
+        "has_cnt": false
+      },
+      "jnet_B": {
+        "status": 200,
+        "len": 1901,
+        "has_cnt": false
+      },
+      "kolas_A": {
+        "status": 502,
+        "len": 4463,
+        "has_cnt": false
+      },
+      "kolas_B": {
+        "status": 502,
+        "len": 4459,
+        "has_cnt": false
+      },
+      "slima_A": {
+        "status": 502,
+        "len": 4465,
+        "has_cnt": false
+      },
+      "slima_B": {
+        "status": 502,
+        "len": 4451,
+        "has_cnt": false
+      }
+    }
+  },
+  "의정부시": {
+    "domain": "uabl.go.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "error": "HTTPSConnectionPool(host='uabl.go.kr', port=443): Max retries exceeded with url: /intro/menu/10003/program/30001/searchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182460710>: Failed to resolve 'uabl.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "jnet_B": {
+        "error": "HTTPSConnectionPool(host='uabl.go.kr', port=443): Max retries exceeded with url: /intro/menu/10181/program/30012/plusSearchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182462310>: Failed to resolve 'uabl.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "kolas_A": {
+        "error": "HTTPSConnectionPool(host='uabl.go.kr', port=443): Max retries exceeded with url: /search/searchDetail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182461ED0>: Failed to resolve 'uabl.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "kolas_B": {
+        "error": "HTTPSConnectionPool(host='uabl.go.kr', port=443): Max retries exceeded with url: /search/tot/result.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824742D0>: Failed to resolve 'uabl.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "slima_A": {
+        "error": "HTTPSConnectionPool(host='uabl.go.kr', port=443): Max retries exceeded with url: /search/search_detail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182475310>: Failed to resolve 'uabl.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "slima_B": {
+        "error": "HTTPSConnectionPool(host='uabl.go.kr', port=443): Max retries exceeded with url: /search/search.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182462690>: Failed to resolve 'uabl.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      }
+    }
+  },
+  "파주시": {
+    "domain": "lib.paju.go.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "status": 404,
+        "len": 1775,
+        "has_cnt": false
+      },
+      "jnet_B": {
+        "status": 200,
+        "len": 178,
+        "has_cnt": false
+      },
+      "kolas_A": {
+        "status": 404,
+        "len": 1775,
+        "has_cnt": false
+      },
+      "kolas_B": {
+        "status": 404,
+        "len": 1775,
+        "has_cnt": false
+      },
+      "slima_A": {
+        "status": 404,
+        "len": 1775,
+        "has_cnt": false
+      },
+      "slima_B": {
+        "status": 404,
+        "len": 1775,
+        "has_cnt": false
+      }
+    }
+  },
+  "시흥시": {
+    "domain": "lib.siheung.go.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "status": 200,
+        "len": 2325,
+        "has_cnt": false
+      },
+      "jnet_B": {
+        "status": 200,
+        "len": 2325,
+        "has_cnt": false
+      },
+      "kolas_A": {
+        "status": 200,
+        "len": 2325,
+        "has_cnt": false
+      },
+      "kolas_B": {
+        "status": 200,
+        "len": 2325,
+        "has_cnt": false
+      },
+      "slima_A": {
+        "status": 200,
+        "len": 2325,
+        "has_cnt": false
+      },
+      "slima_B": {
+        "status": 200,
+        "len": 2325,
+        "has_cnt": false
+      }
+    }
+  },
+  "김포시": {
+    "domain": "lib.gimpo.go.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "error": "HTTPSConnectionPool(host='lib.gimpo.go.kr', port=443): Read timed out. (read timeout=5)"
+      },
+      "jnet_B": {
+        "error": "HTTPSConnectionPool(host='lib.gimpo.go.kr', port=443): Read timed out. (read timeout=5)"
+      },
+      "kolas_A": {
+        "error": "HTTPSConnectionPool(host='lib.gimpo.go.kr', port=443): Read timed out. (read timeout=5)"
+      },
+      "kolas_B": {
+        "error": "HTTPSConnectionPool(host='lib.gimpo.go.kr', port=443): Read timed out. (read timeout=5)"
+      },
+      "slima_A": {
+        "error": "HTTPSConnectionPool(host='lib.gimpo.go.kr', port=443): Read timed out. (read timeout=5)"
+      },
+      "slima_B": {
+        "error": "HTTPSConnectionPool(host='lib.gimpo.go.kr', port=443): Read timed out. (read timeout=5)"
+      }
+    }
+  },
+  "광명시": {
+    "domain": "gmlib.gm.go.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "status": 404,
+        "len": 638,
+        "has_cnt": false
+      },
+      "jnet_B": {
+        "status": 404,
+        "len": 638,
+        "has_cnt": false
+      },
+      "kolas_A": {
+        "status": 404,
+        "len": 638,
+        "has_cnt": false
+      },
+      "kolas_B": {
+        "status": 404,
+        "len": 638,
+        "has_cnt": false
+      },
+      "slima_A": {
+        "status": 404,
+        "len": 638,
+        "has_cnt": false
+      },
+      "slima_B": {
+        "status": 404,
+        "len": 638,
+        "has_cnt": false
+      }
+    }
+  },
+  "광주시": {
+    "domain": "lib.gjcity.go.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "status": 200,
+        "len": 419,
+        "has_cnt": false
+      },
+      "jnet_B": {
+        "status": 200,
+        "len": 423,
+        "has_cnt": false
+      },
+      "kolas_A": {
+        "status": 200,
+        "len": 391,
+        "has_cnt": false
+      },
+      "kolas_B": {
+        "status": 200,
+        "len": 389,
+        "has_cnt": false
+      },
+      "slima_A": {
+        "status": 200,
+        "len": 392,
+        "has_cnt": false
+      },
+      "slima_B": {
+        "status": 200,
+        "len": 385,
+        "has_cnt": false
+      }
+    }
+  },
+  "군포시": {
+    "domain": "gunpolib.go.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "error": "HTTPSConnectionPool(host='gunpolib.go.kr', port=443): Max retries exceeded with url: /intro/menu/10003/program/30001/searchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182460F10>: Failed to resolve 'gunpolib.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "jnet_B": {
+        "error": "HTTPSConnectionPool(host='gunpolib.go.kr', port=443): Max retries exceeded with url: /intro/menu/10181/program/30012/plusSearchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182101DD0>: Failed to resolve 'gunpolib.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "kolas_A": {
+        "error": "HTTPSConnectionPool(host='gunpolib.go.kr', port=443): Max retries exceeded with url: /search/searchDetail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182484B50>: Failed to resolve 'gunpolib.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "kolas_B": {
+        "error": "HTTPSConnectionPool(host='gunpolib.go.kr', port=443): Max retries exceeded with url: /search/tot/result.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182485AD0>: Failed to resolve 'gunpolib.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "slima_A": {
+        "error": "HTTPSConnectionPool(host='gunpolib.go.kr', port=443): Max retries exceeded with url: /search/search_detail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182486A50>: Failed to resolve 'gunpolib.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "slima_B": {
+        "error": "HTTPSConnectionPool(host='gunpolib.go.kr', port=443): Max retries exceeded with url: /search/search.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824879D0>: Failed to resolve 'gunpolib.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      }
+    }
+  },
+  "하남시": {
+    "domain": "lib.hanam.go.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "error": "HTTPSConnectionPool(host='lib.hanam.go.kr', port=443): Max retries exceeded with url: /intro/menu/10003/program/30001/searchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182494790>: Failed to resolve 'lib.hanam.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "jnet_B": {
+        "error": "HTTPSConnectionPool(host='lib.hanam.go.kr', port=443): Max retries exceeded with url: /intro/menu/10181/program/30012/plusSearchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182495CD0>: Failed to resolve 'lib.hanam.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "kolas_A": {
+        "error": "HTTPSConnectionPool(host='lib.hanam.go.kr', port=443): Max retries exceeded with url: /search/searchDetail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182103350>: Failed to resolve 'lib.hanam.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "kolas_B": {
+        "error": "HTTPSConnectionPool(host='lib.hanam.go.kr', port=443): Max retries exceeded with url: /search/tot/result.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824619D0>: Failed to resolve 'lib.hanam.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "slima_A": {
+        "error": "HTTPSConnectionPool(host='lib.hanam.go.kr', port=443): Max retries exceeded with url: /search/search_detail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182451790>: Failed to resolve 'lib.hanam.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "slima_B": {
+        "error": "HTTPSConnectionPool(host='lib.hanam.go.kr', port=443): Max retries exceeded with url: /search/search.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182485FD0>: Failed to resolve 'lib.hanam.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      }
+    }
+  },
+  "양주시": {
+    "domain": "lib.yangju.go.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "error": "HTTPSConnectionPool(host='lib.yangju.go.kr', port=443): Max retries exceeded with url: /intro/menu/10003/program/30001/searchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x0000023182451590>: Failed to establish a new connection: [WinError 10061] 대상 컴퓨터에서 연결을 거부했으므로 연결하지 못했습니다'))"
+      },
+      "jnet_B": {
+        "error": "HTTPSConnectionPool(host='lib.yangju.go.kr', port=443): Max retries exceeded with url: /intro/menu/10181/program/30012/plusSearchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x00000231824868D0>: Failed to establish a new connection: [WinError 10061] 대상 컴퓨터에서 연결을 거부했으므로 연결하지 못했습니다'))"
+      },
+      "kolas_A": {
+        "error": "HTTPSConnectionPool(host='lib.yangju.go.kr', port=443): Max retries exceeded with url: /search/searchDetail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x0000023182485210>: Failed to establish a new connection: [WinError 10061] 대상 컴퓨터에서 연결을 거부했으므로 연결하지 못했습니다'))"
+      },
+      "kolas_B": {
+        "error": "HTTPSConnectionPool(host='lib.yangju.go.kr', port=443): Max retries exceeded with url: /search/tot/result.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000002318247E610>: Failed to establish a new connection: [WinError 10061] 대상 컴퓨터에서 연결을 거부했으므로 연결하지 못했습니다'))"
+      },
+      "slima_A": {
+        "error": "HTTPSConnectionPool(host='lib.yangju.go.kr', port=443): Max retries exceeded with url: /search/search_detail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000002318247EE50>: Failed to establish a new connection: [WinError 10061] 대상 컴퓨터에서 연결을 거부했으므로 연결하지 못했습니다'))"
+      },
+      "slima_B": {
+        "error": "HTTPSConnectionPool(host='lib.yangju.go.kr', port=443): Max retries exceeded with url: /search/search.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x0000023182495310>: Failed to establish a new connection: [WinError 10061] 대상 컴퓨터에서 연결을 거부했으므로 연결하지 못했습니다'))"
+      }
+    }
+  },
+  "이천시": {
+    "domain": "icheonlib.go.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "status": 404,
+        "len": 689,
+        "has_cnt": false
+      },
+      "jnet_B": {
+        "status": 404,
+        "len": 689,
+        "has_cnt": false
+      },
+      "kolas_A": {
+        "status": 404,
+        "len": 689,
+        "has_cnt": false
+      },
+      "kolas_B": {
+        "status": 404,
+        "len": 689,
+        "has_cnt": false
+      },
+      "slima_A": {
+        "status": 404,
+        "len": 689,
+        "has_cnt": false
+      },
+      "slima_B": {
+        "status": 404,
+        "len": 689,
+        "has_cnt": false
+      }
+    }
+  },
+  "안성시": {
+    "domain": "ansengl.go.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "error": "HTTPSConnectionPool(host='ansengl.go.kr', port=443): Max retries exceeded with url: /intro/menu/10003/program/30001/searchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182476810>: Failed to resolve 'ansengl.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "jnet_B": {
+        "error": "HTTPSConnectionPool(host='ansengl.go.kr', port=443): Max retries exceeded with url: /intro/menu/10181/program/30012/plusSearchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182461A50>: Failed to resolve 'ansengl.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "kolas_A": {
+        "error": "HTTPSConnectionPool(host='ansengl.go.kr', port=443): Max retries exceeded with url: /search/searchDetail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182485C10>: Failed to resolve 'ansengl.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "kolas_B": {
+        "error": "HTTPSConnectionPool(host='ansengl.go.kr', port=443): Max retries exceeded with url: /search/tot/result.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182487150>: Failed to resolve 'ansengl.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "slima_A": {
+        "error": "HTTPSConnectionPool(host='ansengl.go.kr', port=443): Max retries exceeded with url: /search/search_detail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824972D0>: Failed to resolve 'ansengl.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "slima_B": {
+        "error": "HTTPSConnectionPool(host='ansengl.go.kr', port=443): Max retries exceeded with url: /search/search.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182495790>: Failed to resolve 'ansengl.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      }
+    }
+  },
+  "의왕시": {
+    "domain": "uwlib.go.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "error": "HTTPSConnectionPool(host='uwlib.go.kr', port=443): Max retries exceeded with url: /intro/menu/10003/program/30001/searchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182450610>: Failed to resolve 'uwlib.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "jnet_B": {
+        "error": "HTTPSConnectionPool(host='uwlib.go.kr', port=443): Max retries exceeded with url: /intro/menu/10181/program/30012/plusSearchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231821030D0>: Failed to resolve 'uwlib.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "kolas_A": {
+        "error": "HTTPSConnectionPool(host='uwlib.go.kr', port=443): Max retries exceeded with url: /search/searchDetail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824A0450>: Failed to resolve 'uwlib.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "kolas_B": {
+        "error": "HTTPSConnectionPool(host='uwlib.go.kr', port=443): Max retries exceeded with url: /search/tot/result.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824A16D0>: Failed to resolve 'uwlib.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "slima_A": {
+        "error": "HTTPSConnectionPool(host='uwlib.go.kr', port=443): Max retries exceeded with url: /search/search_detail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182487290>: Failed to resolve 'uwlib.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "slima_B": {
+        "error": "HTTPSConnectionPool(host='uwlib.go.kr', port=443): Max retries exceeded with url: /search/search.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182487510>: Failed to resolve 'uwlib.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      }
+    }
+  },
+  "여주시": {
+    "domain": "yjlib.go.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "error": "HTTPSConnectionPool(host='yjlib.go.kr', port=443): Max retries exceeded with url: /intro/menu/10003/program/30001/searchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182486690>: Failed to resolve 'yjlib.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "jnet_B": {
+        "error": "HTTPSConnectionPool(host='yjlib.go.kr', port=443): Max retries exceeded with url: /intro/menu/10181/program/30012/plusSearchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182101C90>: Failed to resolve 'yjlib.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "kolas_A": {
+        "error": "HTTPSConnectionPool(host='yjlib.go.kr', port=443): Max retries exceeded with url: /search/searchDetail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182462290>: Failed to resolve 'yjlib.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "kolas_B": {
+        "error": "HTTPSConnectionPool(host='yjlib.go.kr', port=443): Max retries exceeded with url: /search/tot/result.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182496ED0>: Failed to resolve 'yjlib.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "slima_A": {
+        "error": "HTTPSConnectionPool(host='yjlib.go.kr', port=443): Max retries exceeded with url: /search/search_detail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182495790>: Failed to resolve 'yjlib.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "slima_B": {
+        "error": "HTTPSConnectionPool(host='yjlib.go.kr', port=443): Max retries exceeded with url: /search/search.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182450590>: Failed to resolve 'yjlib.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      }
+    }
+  },
+  "동두천시": {
+    "domain": "lib.ddc.go.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "status": 200,
+        "len": 1681,
+        "has_cnt": false
+      },
+      "jnet_B": {
+        "status": 200,
+        "len": 1681,
+        "has_cnt": false
+      },
+      "kolas_A": {
+        "status": 200,
+        "len": 1681,
+        "has_cnt": false
+      },
+      "kolas_B": {
+        "status": 200,
+        "len": 1681,
+        "has_cnt": false
+      },
+      "slima_A": {
+        "status": 200,
+        "len": 1681,
+        "has_cnt": false
+      },
+      "slima_B": {
+        "status": 200,
+        "len": 1681,
+        "has_cnt": false
+      }
+    }
+  },
+  "가평군": {
+    "domain": "gplib.go.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "error": "HTTPSConnectionPool(host='gplib.go.kr', port=443): Max retries exceeded with url: /intro/menu/10003/program/30001/searchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x000002318247E490>: Failed to resolve 'gplib.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "jnet_B": {
+        "error": "HTTPSConnectionPool(host='gplib.go.kr', port=443): Max retries exceeded with url: /intro/menu/10181/program/30012/plusSearchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x000002318247DB50>: Failed to resolve 'gplib.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "kolas_A": {
+        "error": "HTTPSConnectionPool(host='gplib.go.kr', port=443): Max retries exceeded with url: /search/searchDetail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824A1D50>: Failed to resolve 'gplib.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "kolas_B": {
+        "error": "HTTPSConnectionPool(host='gplib.go.kr', port=443): Max retries exceeded with url: /search/tot/result.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182494C10>: Failed to resolve 'gplib.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "slima_A": {
+        "error": "HTTPSConnectionPool(host='gplib.go.kr', port=443): Max retries exceeded with url: /search/search_detail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182494690>: Failed to resolve 'gplib.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "slima_B": {
+        "error": "HTTPSConnectionPool(host='gplib.go.kr', port=443): Max retries exceeded with url: /search/search.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182476890>: Failed to resolve 'gplib.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      }
+    }
+  },
+  "연천군": {
+    "domain": "library.yeoncheon.go.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "status": 404,
+        "len": 1245,
+        "has_cnt": false
+      },
+      "jnet_B": {
+        "status": 404,
+        "len": 1245,
+        "has_cnt": false
+      },
+      "kolas_A": {
+        "status": 404,
+        "len": 1245,
+        "has_cnt": false
+      },
+      "kolas_B": {
+        "status": 404,
+        "len": 1245,
+        "has_cnt": false
+      },
+      "slima_A": {
+        "status": 404,
+        "len": 1245,
+        "has_cnt": false
+      },
+      "slima_B": {
+        "status": 404,
+        "len": 1245,
+        "has_cnt": false
+      }
+    }
+  },
+  "서울도서관": {
+    "domain": "lib.seoul.go.kr",
+    "working_pattern": "kolas_A",
+    "details": {
+      "jnet_A": {
+        "status": 404,
+        "len": 710,
+        "has_cnt": false
+      },
+      "jnet_B": {
+        "status": 404,
+        "len": 710,
+        "has_cnt": false
+      },
+      "kolas_A": {
+        "status": 200,
+        "len": 598125,
+        "has_cnt": true
+      }
+    }
+  },
+  "서울시교육청도서관": {
+    "domain": "lib.sen.go.kr",
+    "working_pattern": "jnet_A",
+    "details": {
+      "jnet_A": {
+        "status": 200,
+        "len": 8543,
+        "has_cnt": false
+      }
+    }
+  },
+  "강동구립도서관": {
+    "domain": "gdlibrary.or.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "error": "HTTPSConnectionPool(host='gdlibrary.or.kr', port=443): Max retries exceeded with url: /intro/menu/10003/program/30001/searchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182497750>: Failed to resolve 'gdlibrary.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "jnet_B": {
+        "error": "HTTPSConnectionPool(host='gdlibrary.or.kr', port=443): Max retries exceeded with url: /intro/menu/10181/program/30012/plusSearchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182485C90>: Failed to resolve 'gdlibrary.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "kolas_A": {
+        "error": "HTTPSConnectionPool(host='gdlibrary.or.kr', port=443): Max retries exceeded with url: /search/searchDetail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824A2310>: Failed to resolve 'gdlibrary.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "kolas_B": {
+        "error": "HTTPSConnectionPool(host='gdlibrary.or.kr', port=443): Max retries exceeded with url: /search/tot/result.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182485D90>: Failed to resolve 'gdlibrary.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "slima_A": {
+        "error": "HTTPSConnectionPool(host='gdlibrary.or.kr', port=443): Max retries exceeded with url: /search/search_detail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182494450>: Failed to resolve 'gdlibrary.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "slima_B": {
+        "error": "HTTPSConnectionPool(host='gdlibrary.or.kr', port=443): Max retries exceeded with url: /search/search.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182496ED0>: Failed to resolve 'gdlibrary.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      }
+    }
+  },
+  "강북구립도서관": {
+    "domain": "gblib.or.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "status": 404,
+        "len": 4689,
+        "has_cnt": false
+      },
+      "jnet_B": {
+        "status": 404,
+        "len": 4689,
+        "has_cnt": false
+      },
+      "kolas_A": {
+        "status": 404,
+        "len": 4689,
+        "has_cnt": false
+      },
+      "kolas_B": {
+        "status": 404,
+        "len": 4689,
+        "has_cnt": false
+      },
+      "slima_A": {
+        "status": 404,
+        "len": 4689,
+        "has_cnt": false
+      },
+      "slima_B": {
+        "status": 404,
+        "len": 4689,
+        "has_cnt": false
+      }
+    }
+  },
+  "관악구립도서관": {
+    "domain": "gwanaklib.seoul.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "error": "HTTPSConnectionPool(host='gwanaklib.seoul.kr', port=443): Max retries exceeded with url: /intro/menu/10003/program/30001/searchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182485250>: Failed to resolve 'gwanaklib.seoul.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "jnet_B": {
+        "error": "HTTPSConnectionPool(host='gwanaklib.seoul.kr', port=443): Max retries exceeded with url: /intro/menu/10181/program/30012/plusSearchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x000002318247F3D0>: Failed to resolve 'gwanaklib.seoul.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "kolas_A": {
+        "error": "HTTPSConnectionPool(host='gwanaklib.seoul.kr', port=443): Max retries exceeded with url: /search/searchDetail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x000002318248CB90>: Failed to resolve 'gwanaklib.seoul.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "kolas_B": {
+        "error": "HTTPSConnectionPool(host='gwanaklib.seoul.kr', port=443): Max retries exceeded with url: /search/tot/result.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x000002318248D690>: Failed to resolve 'gwanaklib.seoul.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "slima_A": {
+        "error": "HTTPSConnectionPool(host='gwanaklib.seoul.kr', port=443): Max retries exceeded with url: /search/search_detail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x000002318248EC10>: Failed to resolve 'gwanaklib.seoul.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "slima_B": {
+        "error": "HTTPSConnectionPool(host='gwanaklib.seoul.kr', port=443): Max retries exceeded with url: /search/search.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182475550>: Failed to resolve 'gwanaklib.seoul.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      }
+    }
+  },
+  "광진구립도서관": {
+    "domain": "gjl.or.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "error": "HTTPSConnectionPool(host='gjl.or.kr', port=443): Max retries exceeded with url: /intro/menu/10003/program/30001/searchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182495B10>: Failed to resolve 'gjl.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "jnet_B": {
+        "error": "HTTPSConnectionPool(host='gjl.or.kr', port=443): Max retries exceeded with url: /intro/menu/10181/program/30012/plusSearchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231820F3610>: Failed to resolve 'gjl.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "kolas_A": {
+        "error": "HTTPSConnectionPool(host='gjl.or.kr', port=443): Max retries exceeded with url: /search/searchDetail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x000002318248EED0>: Failed to resolve 'gjl.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "kolas_B": {
+        "error": "HTTPSConnectionPool(host='gjl.or.kr', port=443): Max retries exceeded with url: /search/tot/result.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x000002318248D150>: Failed to resolve 'gjl.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "slima_A": {
+        "error": "HTTPSConnectionPool(host='gjl.or.kr', port=443): Max retries exceeded with url: /search/search_detail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x000002318247ED10>: Failed to resolve 'gjl.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "slima_B": {
+        "error": "HTTPSConnectionPool(host='gjl.or.kr', port=443): Max retries exceeded with url: /search/search.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182463490>: Failed to resolve 'gjl.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      }
+    }
+  },
+  "구로구립도서관": {
+    "domain": "lib.guro.go.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "status": 200,
+        "len": 546,
+        "has_cnt": false
+      },
+      "jnet_B": {
+        "status": 200,
+        "len": 546,
+        "has_cnt": false
+      },
+      "kolas_A": {
+        "status": 200,
+        "len": 546,
+        "has_cnt": false
+      },
+      "kolas_B": {
+        "status": 200,
+        "len": 546,
+        "has_cnt": false
+      },
+      "slima_A": {
+        "status": 200,
+        "len": 546,
+        "has_cnt": false
+      },
+      "slima_B": {
+        "status": 200,
+        "len": 546,
+        "has_cnt": false
+      }
+    }
+  },
+  "금천구립도서관": {
+    "domain": "geumcheonlib.seoul.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "status": 404,
+        "len": 1407,
+        "has_cnt": false
+      },
+      "jnet_B": {
+        "status": 404,
+        "len": 1407,
+        "has_cnt": false
+      },
+      "kolas_A": {
+        "status": 404,
+        "len": 1407,
+        "has_cnt": false
+      },
+      "kolas_B": {
+        "status": 404,
+        "len": 1407,
+        "has_cnt": false
+      },
+      "slima_A": {
+        "status": 404,
+        "len": 1407,
+        "has_cnt": false
+      },
+      "slima_B": {
+        "status": 404,
+        "len": 1407,
+        "has_cnt": false
+      }
+    }
+  },
+  "노원구립도서관": {
+    "domain": "nowonlib.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "status": 200,
+        "len": 1504,
+        "has_cnt": false
+      },
+      "jnet_B": {
+        "status": 200,
+        "len": 1504,
+        "has_cnt": false
+      },
+      "kolas_A": {
+        "status": 404,
+        "len": 1323,
+        "has_cnt": false
+      },
+      "kolas_B": {
+        "status": 404,
+        "len": 1235,
+        "has_cnt": false
+      },
+      "slima_A": {
+        "status": 404,
+        "len": 1235,
+        "has_cnt": false
+      },
+      "slima_B": {
+        "status": 404,
+        "len": 1235,
+        "has_cnt": false
+      }
+    }
+  },
+  "도봉구립도서관": {
+    "domain": "unilib.dobong.go.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "error": "HTTPSConnectionPool(host='unilib.dobong.go.kr', port=443): Max retries exceeded with url: /intro/menu/10003/program/30001/searchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182452F50>: Failed to resolve 'unilib.dobong.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "jnet_B": {
+        "error": "HTTPSConnectionPool(host='unilib.dobong.go.kr', port=443): Max retries exceeded with url: /intro/menu/10181/program/30012/plusSearchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182496310>: Failed to resolve 'unilib.dobong.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "kolas_A": {
+        "error": "HTTPSConnectionPool(host='unilib.dobong.go.kr', port=443): Max retries exceeded with url: /search/searchDetail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182485D10>: Failed to resolve 'unilib.dobong.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "kolas_B": {
+        "error": "HTTPSConnectionPool(host='unilib.dobong.go.kr', port=443): Max retries exceeded with url: /search/tot/result.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824B3A10>: Failed to resolve 'unilib.dobong.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "slima_A": {
+        "error": "HTTPSConnectionPool(host='unilib.dobong.go.kr', port=443): Max retries exceeded with url: /search/search_detail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824A2450>: Failed to resolve 'unilib.dobong.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "slima_B": {
+        "error": "HTTPSConnectionPool(host='unilib.dobong.go.kr', port=443): Max retries exceeded with url: /search/search.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824B6B50>: Failed to resolve 'unilib.dobong.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      }
+    }
+  },
+  "동대문구립도서관": {
+    "domain": "l4u.dongdeamun.go.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "error": "HTTPSConnectionPool(host='l4u.dongdeamun.go.kr', port=443): Max retries exceeded with url: /intro/menu/10003/program/30001/searchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824A1310>: Failed to resolve 'l4u.dongdeamun.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "jnet_B": {
+        "error": "HTTPSConnectionPool(host='l4u.dongdeamun.go.kr', port=443): Max retries exceeded with url: /intro/menu/10181/program/30012/plusSearchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182497650>: Failed to resolve 'l4u.dongdeamun.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "kolas_A": {
+        "error": "HTTPSConnectionPool(host='l4u.dongdeamun.go.kr', port=443): Max retries exceeded with url: /search/searchDetail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182486590>: Failed to resolve 'l4u.dongdeamun.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "kolas_B": {
+        "error": "HTTPSConnectionPool(host='l4u.dongdeamun.go.kr', port=443): Max retries exceeded with url: /search/tot/result.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824A16D0>: Failed to resolve 'l4u.dongdeamun.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "slima_A": {
+        "error": "HTTPSConnectionPool(host='l4u.dongdeamun.go.kr', port=443): Max retries exceeded with url: /search/search_detail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824B0AD0>: Failed to resolve 'l4u.dongdeamun.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "slima_B": {
+        "error": "HTTPSConnectionPool(host='l4u.dongdeamun.go.kr', port=443): Max retries exceeded with url: /search/search.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824B0950>: Failed to resolve 'l4u.dongdeamun.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      }
+    }
+  },
+  "동작구립도서관": {
+    "domain": "dongjaklib.or.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "error": "HTTPSConnectionPool(host='dongjaklib.or.kr', port=443): Max retries exceeded with url: /intro/menu/10003/program/30001/searchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182100AD0>: Failed to resolve 'dongjaklib.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "jnet_B": {
+        "error": "HTTPSConnectionPool(host='dongjaklib.or.kr', port=443): Max retries exceeded with url: /intro/menu/10181/program/30012/plusSearchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x000002318247E650>: Failed to resolve 'dongjaklib.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "kolas_A": {
+        "error": "HTTPSConnectionPool(host='dongjaklib.or.kr', port=443): Max retries exceeded with url: /search/searchDetail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x000002318247C910>: Failed to resolve 'dongjaklib.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "kolas_B": {
+        "error": "HTTPSConnectionPool(host='dongjaklib.or.kr', port=443): Max retries exceeded with url: /search/tot/result.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182103C90>: Failed to resolve 'dongjaklib.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "slima_A": {
+        "error": "HTTPSConnectionPool(host='dongjaklib.or.kr', port=443): Max retries exceeded with url: /search/search_detail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182461ED0>: Failed to resolve 'dongjaklib.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "slima_B": {
+        "error": "HTTPSConnectionPool(host='dongjaklib.or.kr', port=443): Max retries exceeded with url: /search/search.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824B3A50>: Failed to resolve 'dongjaklib.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      }
+    }
+  },
+  "마포구립도서관": {
+    "domain": "mapolib.or.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "error": "HTTPSConnectionPool(host='mapolib.or.kr', port=443): Max retries exceeded with url: /intro/menu/10003/program/30001/searchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x000002318247E6D0>: Failed to resolve 'mapolib.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "jnet_B": {
+        "error": "HTTPSConnectionPool(host='mapolib.or.kr', port=443): Max retries exceeded with url: /intro/menu/10181/program/30012/plusSearchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824973D0>: Failed to resolve 'mapolib.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "kolas_A": {
+        "error": "HTTPSConnectionPool(host='mapolib.or.kr', port=443): Max retries exceeded with url: /search/searchDetail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x000002318248FE10>: Failed to resolve 'mapolib.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "kolas_B": {
+        "error": "HTTPSConnectionPool(host='mapolib.or.kr', port=443): Max retries exceeded with url: /search/tot/result.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824B4F10>: Failed to resolve 'mapolib.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "slima_A": {
+        "error": "HTTPSConnectionPool(host='mapolib.or.kr', port=443): Max retries exceeded with url: /search/search_detail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824754D0>: Failed to resolve 'mapolib.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "slima_B": {
+        "error": "HTTPSConnectionPool(host='mapolib.or.kr', port=443): Max retries exceeded with url: /search/search.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182497710>: Failed to resolve 'mapolib.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      }
+    }
+  },
+  "서대문구립도서관": {
+    "domain": "sdmlib.or.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "error": "HTTPSConnectionPool(host='sdmlib.or.kr', port=443): Max retries exceeded with url: /intro/menu/10003/program/30001/searchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824A2150>: Failed to resolve 'sdmlib.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "jnet_B": {
+        "error": "HTTPSConnectionPool(host='sdmlib.or.kr', port=443): Max retries exceeded with url: /intro/menu/10181/program/30012/plusSearchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182485390>: Failed to resolve 'sdmlib.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "kolas_A": {
+        "error": "HTTPSConnectionPool(host='sdmlib.or.kr', port=443): Max retries exceeded with url: /search/searchDetail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824B28D0>: Failed to resolve 'sdmlib.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "kolas_B": {
+        "error": "HTTPSConnectionPool(host='sdmlib.or.kr', port=443): Max retries exceeded with url: /search/tot/result.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182453590>: Failed to resolve 'sdmlib.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "slima_A": {
+        "error": "HTTPSConnectionPool(host='sdmlib.or.kr', port=443): Max retries exceeded with url: /search/search_detail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x000002318248CC50>: Failed to resolve 'sdmlib.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "slima_B": {
+        "error": "HTTPSConnectionPool(host='sdmlib.or.kr', port=443): Max retries exceeded with url: /search/search.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x000002318247F6D0>: Failed to resolve 'sdmlib.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      }
+    }
+  },
+  "서초구립도서관": {
+    "domain": "seocholib.or.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "status": 200,
+        "len": 1114,
+        "has_cnt": false
+      },
+      "jnet_B": {
+        "status": 200,
+        "len": 1114,
+        "has_cnt": false
+      },
+      "kolas_A": {
+        "status": 200,
+        "len": 1114,
+        "has_cnt": false
+      },
+      "kolas_B": {
+        "status": 200,
+        "len": 1114,
+        "has_cnt": false
+      },
+      "slima_A": {
+        "status": 200,
+        "len": 1114,
+        "has_cnt": false
+      },
+      "slima_B": {
+        "status": 200,
+        "len": 1114,
+        "has_cnt": false
+      }
+    }
+  },
+  "성동구립도서관": {
+    "domain": "sdlib.or.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "status": 404,
+        "len": 1083,
+        "has_cnt": false
+      },
+      "jnet_B": {
+        "status": 404,
+        "len": 1083,
+        "has_cnt": false
+      },
+      "kolas_A": {
+        "status": 404,
+        "len": 1083,
+        "has_cnt": false
+      },
+      "kolas_B": {
+        "status": 404,
+        "len": 1083,
+        "has_cnt": false
+      },
+      "slima_A": {
+        "status": 404,
+        "len": 1083,
+        "has_cnt": false
+      },
+      "slima_B": {
+        "status": 404,
+        "len": 1083,
+        "has_cnt": false
+      }
+    }
+  },
+  "성북구립도서관": {
+    "domain": "sblib.seoul.kr",
+    "working_pattern": "jnet_A",
+    "details": {
+      "jnet_A": {
+        "status": 200,
+        "len": 70721,
+        "has_cnt": false
+      }
+    }
+  },
+  "양천구립도서관": {
+    "domain": "yangcheonlib.or.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "error": "HTTPSConnectionPool(host='yangcheonlib.or.kr', port=443): Max retries exceeded with url: /intro/menu/10003/program/30001/searchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182461850>: Failed to resolve 'yangcheonlib.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "jnet_B": {
+        "error": "HTTPSConnectionPool(host='yangcheonlib.or.kr', port=443): Max retries exceeded with url: /intro/menu/10181/program/30012/plusSearchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182494F90>: Failed to resolve 'yangcheonlib.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "kolas_A": {
+        "error": "HTTPSConnectionPool(host='yangcheonlib.or.kr', port=443): Max retries exceeded with url: /search/searchDetail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x000002318248D310>: Failed to resolve 'yangcheonlib.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "kolas_B": {
+        "error": "HTTPSConnectionPool(host='yangcheonlib.or.kr', port=443): Max retries exceeded with url: /search/tot/result.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x000002318247D110>: Failed to resolve 'yangcheonlib.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "slima_A": {
+        "error": "HTTPSConnectionPool(host='yangcheonlib.or.kr', port=443): Max retries exceeded with url: /search/search_detail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824C9550>: Failed to resolve 'yangcheonlib.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "slima_B": {
+        "error": "HTTPSConnectionPool(host='yangcheonlib.or.kr', port=443): Max retries exceeded with url: /search/search.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824A2810>: Failed to resolve 'yangcheonlib.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      }
+    }
+  },
+  "영등포구립도서관": {
+    "domain": "ydplib.or.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "status": 404,
+        "len": 1377,
+        "has_cnt": false
+      },
+      "jnet_B": {
+        "status": 200,
+        "len": 180,
+        "has_cnt": false
+      },
+      "kolas_A": {
+        "status": 404,
+        "len": 1377,
+        "has_cnt": false
+      },
+      "kolas_B": {
+        "status": 404,
+        "len": 1377,
+        "has_cnt": false
+      },
+      "slima_A": {
+        "status": 404,
+        "len": 1377,
+        "has_cnt": false
+      },
+      "slima_B": {
+        "status": 404,
+        "len": 1377,
+        "has_cnt": false
+      }
+    }
+  },
+  "용산구립도서관": {
+    "domain": "yslibrary.or.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "status": 200,
+        "len": 509,
+        "has_cnt": false
+      },
+      "jnet_B": {
+        "status": 404,
+        "len": 2262,
+        "has_cnt": false
+      },
+      "kolas_A": {
+        "status": 404,
+        "len": 2262,
+        "has_cnt": false
+      },
+      "kolas_B": {
+        "status": 404,
+        "len": 2262,
+        "has_cnt": false
+      },
+      "slima_A": {
+        "status": 404,
+        "len": 2262,
+        "has_cnt": false
+      },
+      "slima_B": {
+        "status": 404,
+        "len": 2262,
+        "has_cnt": false
+      }
+    }
+  },
+  "은평구립도서관": {
+    "domain": "eplib.or.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "status": 404,
+        "len": 1238,
+        "has_cnt": false
+      },
+      "jnet_B": {
+        "status": 404,
+        "len": 1238,
+        "has_cnt": false
+      },
+      "kolas_A": {
+        "status": 404,
+        "len": 1238,
+        "has_cnt": false
+      },
+      "kolas_B": {
+        "status": 404,
+        "len": 1238,
+        "has_cnt": false
+      },
+      "slima_A": {
+        "status": 404,
+        "len": 1238,
+        "has_cnt": false
+      },
+      "slima_B": {
+        "status": 404,
+        "len": 1238,
+        "has_cnt": false
+      }
+    }
+  },
+  "종로구립도서관": {
+    "domain": "lib.jongno.go.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "status": 404,
+        "len": 330,
+        "has_cnt": false
+      },
+      "jnet_B": {
+        "status": 404,
+        "len": 334,
+        "has_cnt": false
+      },
+      "kolas_A": {
+        "status": 404,
+        "len": 302,
+        "has_cnt": false
+      },
+      "kolas_B": {
+        "status": 404,
+        "len": 300,
+        "has_cnt": false
+      },
+      "slima_A": {
+        "status": 404,
+        "len": 303,
+        "has_cnt": false
+      },
+      "slima_B": {
+        "status": 404,
+        "len": 296,
+        "has_cnt": false
+      }
+    }
+  },
+  "중구립도서관": {
+    "domain": "e-book.e-junggu.or.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "error": "HTTPSConnectionPool(host='e-book.e-junggu.or.kr', port=443): Max retries exceeded with url: /intro/menu/10003/program/30001/searchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824B0CD0>: Failed to resolve 'e-book.e-junggu.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "jnet_B": {
+        "error": "HTTPSConnectionPool(host='e-book.e-junggu.or.kr', port=443): Max retries exceeded with url: /intro/menu/10181/program/30012/plusSearchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182101110>: Failed to resolve 'e-book.e-junggu.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "kolas_A": {
+        "error": "HTTPSConnectionPool(host='e-book.e-junggu.or.kr', port=443): Max retries exceeded with url: /search/searchDetail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824A36D0>: Failed to resolve 'e-book.e-junggu.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "kolas_B": {
+        "error": "HTTPSConnectionPool(host='e-book.e-junggu.or.kr', port=443): Max retries exceeded with url: /search/tot/result.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824CB4D0>: Failed to resolve 'e-book.e-junggu.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "slima_A": {
+        "error": "HTTPSConnectionPool(host='e-book.e-junggu.or.kr', port=443): Max retries exceeded with url: /search/search_detail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824E1190>: Failed to resolve 'e-book.e-junggu.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "slima_B": {
+        "error": "HTTPSConnectionPool(host='e-book.e-junggu.or.kr', port=443): Max retries exceeded with url: /search/search.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182487090>: Failed to resolve 'e-book.e-junggu.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      }
+    }
+  },
+  "중랑구립도서관": {
+    "domain": "junglanglib.seoul.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "error": "HTTPSConnectionPool(host='junglanglib.seoul.kr', port=443): Max retries exceeded with url: /intro/menu/10003/program/30001/searchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182103050>: Failed to resolve 'junglanglib.seoul.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "jnet_B": {
+        "error": "HTTPSConnectionPool(host='junglanglib.seoul.kr', port=443): Max retries exceeded with url: /intro/menu/10181/program/30012/plusSearchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x000002318247DBD0>: Failed to resolve 'junglanglib.seoul.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "kolas_A": {
+        "error": "HTTPSConnectionPool(host='junglanglib.seoul.kr', port=443): Max retries exceeded with url: /search/searchDetail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231820F14D0>: Failed to resolve 'junglanglib.seoul.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "kolas_B": {
+        "error": "HTTPSConnectionPool(host='junglanglib.seoul.kr', port=443): Max retries exceeded with url: /search/tot/result.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824C9590>: Failed to resolve 'junglanglib.seoul.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "slima_A": {
+        "error": "HTTPSConnectionPool(host='junglanglib.seoul.kr', port=443): Max retries exceeded with url: /search/search_detail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824E0D10>: Failed to resolve 'junglanglib.seoul.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "slima_B": {
+        "error": "HTTPSConnectionPool(host='junglanglib.seoul.kr', port=443): Max retries exceeded with url: /search/search.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824B4CD0>: Failed to resolve 'junglanglib.seoul.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      }
+    }
+  },
+  "부산광역시립시민도서관": {
+    "domain": "siminlib.go.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "status": 200,
+        "len": 1092,
+        "has_cnt": false
+      },
+      "jnet_B": {
+        "status": 200,
+        "len": 1092,
+        "has_cnt": false
+      },
+      "kolas_A": {
+        "status": 200,
+        "len": 1092,
+        "has_cnt": false
+      },
+      "kolas_B": {
+        "status": 200,
+        "len": 1092,
+        "has_cnt": false
+      },
+      "slima_A": {
+        "status": 200,
+        "len": 1092,
+        "has_cnt": false
+      },
+      "slima_B": {
+        "status": 200,
+        "len": 1092,
+        "has_cnt": false
+      }
+    }
+  },
+  "해운대구립도서관": {
+    "domain": "haeundae.go.kr/library",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "status": 404,
+        "len": 1395,
+        "has_cnt": false
+      },
+      "jnet_B": {
+        "status": 404,
+        "len": 1395,
+        "has_cnt": false
+      },
+      "kolas_A": {
+        "status": 404,
+        "len": 1395,
+        "has_cnt": false
+      },
+      "kolas_B": {
+        "status": 404,
+        "len": 1395,
+        "has_cnt": false
+      },
+      "slima_A": {
+        "status": 404,
+        "len": 1395,
+        "has_cnt": false
+      },
+      "slima_B": {
+        "status": 404,
+        "len": 1395,
+        "has_cnt": false
+      }
+    }
+  },
+  "금정구립도서관": {
+    "domain": "geumjeong.go.kr/library",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "status": 404,
+        "len": 1225,
+        "has_cnt": false
+      },
+      "jnet_B": {
+        "status": 404,
+        "len": 1225,
+        "has_cnt": false
+      },
+      "kolas_A": {
+        "status": 404,
+        "len": 1225,
+        "has_cnt": false
+      },
+      "kolas_B": {
+        "status": 404,
+        "len": 1225,
+        "has_cnt": false
+      },
+      "slima_A": {
+        "status": 404,
+        "len": 1225,
+        "has_cnt": false
+      },
+      "slima_B": {
+        "status": 404,
+        "len": 1225,
+        "has_cnt": false
+      }
+    }
+  },
+  "사하구립도서관": {
+    "domain": "saha.go.kr/library",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "status": 404,
+        "len": 5383,
+        "has_cnt": false
+      },
+      "jnet_B": {
+        "status": 404,
+        "len": 5383,
+        "has_cnt": false
+      },
+      "kolas_A": {
+        "status": 404,
+        "len": 5383,
+        "has_cnt": false
+      },
+      "kolas_B": {
+        "status": 404,
+        "len": 5383,
+        "has_cnt": false
+      },
+      "slima_A": {
+        "status": 404,
+        "len": 5383,
+        "has_cnt": false
+      },
+      "slima_B": {
+        "status": 404,
+        "len": 5383,
+        "has_cnt": false
+      }
+    }
+  },
+  "대구광역시립도서관통합포털": {
+    "domain": "library.daegu.go.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "status": 404,
+        "len": 1517,
+        "has_cnt": false
+      },
+      "jnet_B": {
+        "status": 404,
+        "len": 1517,
+        "has_cnt": false
+      },
+      "kolas_A": {
+        "status": 404,
+        "len": 1517,
+        "has_cnt": false
+      },
+      "kolas_B": {
+        "status": 404,
+        "len": 1517,
+        "has_cnt": false
+      },
+      "slima_A": {
+        "status": 404,
+        "len": 1517,
+        "has_cnt": false
+      },
+      "slima_B": {
+        "status": 404,
+        "len": 1517,
+        "has_cnt": false
+      }
+    }
+  },
+  "수성구립도서관": {
+    "domain": "suseonglib.or.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "error": "HTTPSConnectionPool(host='suseonglib.or.kr', port=443): Max retries exceeded with url: /intro/menu/10003/program/30001/searchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824E1B10>: Failed to resolve 'suseonglib.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "jnet_B": {
+        "error": "HTTPSConnectionPool(host='suseonglib.or.kr', port=443): Max retries exceeded with url: /intro/menu/10181/program/30012/plusSearchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824617D0>: Failed to resolve 'suseonglib.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "kolas_A": {
+        "error": "HTTPSConnectionPool(host='suseonglib.or.kr', port=443): Max retries exceeded with url: /search/searchDetail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824B2290>: Failed to resolve 'suseonglib.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "kolas_B": {
+        "error": "HTTPSConnectionPool(host='suseonglib.or.kr', port=443): Max retries exceeded with url: /search/tot/result.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x000002318248F210>: Failed to resolve 'suseonglib.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "slima_A": {
+        "error": "HTTPSConnectionPool(host='suseonglib.or.kr', port=443): Max retries exceeded with url: /search/search_detail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x000002318248D190>: Failed to resolve 'suseonglib.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "slima_B": {
+        "error": "HTTPSConnectionPool(host='suseonglib.or.kr', port=443): Max retries exceeded with url: /search/search.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824B3D50>: Failed to resolve 'suseonglib.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      }
+    }
+  },
+  "달서구립도서관": {
+    "domain": "dalseolib.daegu.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "error": "HTTPSConnectionPool(host='dalseolib.daegu.kr', port=443): Max retries exceeded with url: /intro/menu/10003/program/30001/searchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824B1710>: Failed to resolve 'dalseolib.daegu.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "jnet_B": {
+        "error": "HTTPSConnectionPool(host='dalseolib.daegu.kr', port=443): Max retries exceeded with url: /intro/menu/10181/program/30012/plusSearchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824C8A90>: Failed to resolve 'dalseolib.daegu.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "kolas_A": {
+        "error": "HTTPSConnectionPool(host='dalseolib.daegu.kr', port=443): Max retries exceeded with url: /search/searchDetail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824A1CD0>: Failed to resolve 'dalseolib.daegu.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "kolas_B": {
+        "error": "HTTPSConnectionPool(host='dalseolib.daegu.kr', port=443): Max retries exceeded with url: /search/tot/result.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824B7990>: Failed to resolve 'dalseolib.daegu.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "slima_A": {
+        "error": "HTTPSConnectionPool(host='dalseolib.daegu.kr', port=443): Max retries exceeded with url: /search/search_detail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182463410>: Failed to resolve 'dalseolib.daegu.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "slima_B": {
+        "error": "HTTPSConnectionPool(host='dalseolib.daegu.kr', port=443): Max retries exceeded with url: /search/search.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824B2210>: Failed to resolve 'dalseolib.daegu.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      }
+    }
+  },
+  "미추홀도서관": {
+    "domain": "michuhollib.incheon.go.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "error": "HTTPSConnectionPool(host='michuhollib.incheon.go.kr', port=443): Max retries exceeded with url: /intro/menu/10003/program/30001/searchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x000002318248F510>: Failed to resolve 'michuhollib.incheon.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "jnet_B": {
+        "error": "HTTPSConnectionPool(host='michuhollib.incheon.go.kr', port=443): Max retries exceeded with url: /intro/menu/10181/program/30012/plusSearchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824B16D0>: Failed to resolve 'michuhollib.incheon.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "kolas_A": {
+        "error": "HTTPSConnectionPool(host='michuhollib.incheon.go.kr', port=443): Max retries exceeded with url: /search/searchDetail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824B2650>: Failed to resolve 'michuhollib.incheon.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "kolas_B": {
+        "error": "HTTPSConnectionPool(host='michuhollib.incheon.go.kr', port=443): Max retries exceeded with url: /search/tot/result.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182102810>: Failed to resolve 'michuhollib.incheon.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "slima_A": {
+        "error": "HTTPSConnectionPool(host='michuhollib.incheon.go.kr', port=443): Max retries exceeded with url: /search/search_detail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x000002318248DBD0>: Failed to resolve 'michuhollib.incheon.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "slima_B": {
+        "error": "HTTPSConnectionPool(host='michuhollib.incheon.go.kr', port=443): Max retries exceeded with url: /search/search.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x000002318247C910>: Failed to resolve 'michuhollib.incheon.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      }
+    }
+  },
+  "인천광역시교육청도서관": {
+    "domain": "ijlib.or.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "error": "HTTPSConnectionPool(host='ijlib.or.kr', port=443): Max retries exceeded with url: /intro/menu/10003/program/30001/searchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182463390>: Failed to resolve 'ijlib.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "jnet_B": {
+        "error": "HTTPSConnectionPool(host='ijlib.or.kr', port=443): Max retries exceeded with url: /intro/menu/10181/program/30012/plusSearchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824CB650>: Failed to resolve 'ijlib.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "kolas_A": {
+        "error": "HTTPSConnectionPool(host='ijlib.or.kr', port=443): Max retries exceeded with url: /search/searchDetail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x000002318248CE10>: Failed to resolve 'ijlib.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "kolas_B": {
+        "error": "HTTPSConnectionPool(host='ijlib.or.kr', port=443): Max retries exceeded with url: /search/tot/result.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x000002318247E410>: Failed to resolve 'ijlib.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "slima_A": {
+        "error": "HTTPSConnectionPool(host='ijlib.or.kr', port=443): Max retries exceeded with url: /search/search_detail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824B2810>: Failed to resolve 'ijlib.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "slima_B": {
+        "error": "HTTPSConnectionPool(host='ijlib.or.kr', port=443): Max retries exceeded with url: /search/search.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824B4550>: Failed to resolve 'ijlib.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      }
+    }
+  },
+  "부평구립도서관": {
+    "domain": "bppl.or.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "status": 404,
+        "len": 315,
+        "has_cnt": false
+      },
+      "jnet_B": {
+        "status": 404,
+        "len": 315,
+        "has_cnt": false
+      },
+      "kolas_A": {
+        "status": 404,
+        "len": 315,
+        "has_cnt": false
+      },
+      "kolas_B": {
+        "status": 404,
+        "len": 315,
+        "has_cnt": false
+      },
+      "slima_A": {
+        "status": 404,
+        "len": 315,
+        "has_cnt": false
+      },
+      "slima_B": {
+        "status": 404,
+        "len": 315,
+        "has_cnt": false
+      }
+    }
+  },
+  "연수구립도서관": {
+    "domain": "yslib.go.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "error": "HTTPSConnectionPool(host='yslib.go.kr', port=443): Max retries exceeded with url: /intro/menu/10003/program/30001/searchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824FD450>: Failed to resolve 'yslib.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "jnet_B": {
+        "error": "HTTPSConnectionPool(host='yslib.go.kr', port=443): Max retries exceeded with url: /intro/menu/10181/program/30012/plusSearchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x000002318248E590>: Failed to resolve 'yslib.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "kolas_A": {
+        "error": "HTTPSConnectionPool(host='yslib.go.kr', port=443): Max retries exceeded with url: /search/searchDetail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182463850>: Failed to resolve 'yslib.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "kolas_B": {
+        "error": "HTTPSConnectionPool(host='yslib.go.kr', port=443): Max retries exceeded with url: /search/tot/result.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824634D0>: Failed to resolve 'yslib.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "slima_A": {
+        "error": "HTTPSConnectionPool(host='yslib.go.kr', port=443): Max retries exceeded with url: /search/search_detail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x000002318247D310>: Failed to resolve 'yslib.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "slima_B": {
+        "error": "HTTPSConnectionPool(host='yslib.go.kr', port=443): Max retries exceeded with url: /search/search.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x000002318248FA90>: Failed to resolve 'yslib.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      }
+    }
+  },
+  "광주광역시립도서관": {
+    "domain": "citylib.gwangju.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "error": "HTTPSConnectionPool(host='citylib.gwangju.kr', port=443): Max retries exceeded with url: /intro/menu/10003/program/30001/searchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824FE390>: Failed to resolve 'citylib.gwangju.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "jnet_B": {
+        "error": "HTTPSConnectionPool(host='citylib.gwangju.kr', port=443): Max retries exceeded with url: /intro/menu/10181/program/30012/plusSearchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824B2B90>: Failed to resolve 'citylib.gwangju.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "kolas_A": {
+        "error": "HTTPSConnectionPool(host='citylib.gwangju.kr', port=443): Max retries exceeded with url: /search/searchDetail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824FE750>: Failed to resolve 'citylib.gwangju.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "kolas_B": {
+        "error": "HTTPSConnectionPool(host='citylib.gwangju.kr', port=443): Max retries exceeded with url: /search/tot/result.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824B5110>: Failed to resolve 'citylib.gwangju.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "slima_A": {
+        "error": "HTTPSConnectionPool(host='citylib.gwangju.kr', port=443): Max retries exceeded with url: /search/search_detail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182476AD0>: Failed to resolve 'citylib.gwangju.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "slima_B": {
+        "error": "HTTPSConnectionPool(host='citylib.gwangju.kr', port=443): Max retries exceeded with url: /search/search.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824E2E90>: Failed to resolve 'citylib.gwangju.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      }
+    }
+  },
+  "광산구립도서관": {
+    "domain": "lib.gwangsan.go.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "status": 200,
+        "len": 559,
+        "has_cnt": false
+      },
+      "jnet_B": {
+        "status": 200,
+        "len": 559,
+        "has_cnt": false
+      },
+      "kolas_A": {
+        "status": 200,
+        "len": 559,
+        "has_cnt": false
+      },
+      "kolas_B": {
+        "status": 200,
+        "len": 559,
+        "has_cnt": false
+      },
+      "slima_A": {
+        "status": 200,
+        "len": 559,
+        "has_cnt": false
+      },
+      "slima_B": {
+        "status": 200,
+        "len": 559,
+        "has_cnt": false
+      }
+    }
+  },
+  "남구립도서관": {
+    "domain": "lib.namgu.gwangju.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "status": 200,
+        "len": 602,
+        "has_cnt": false
+      },
+      "jnet_B": {
+        "status": 200,
+        "len": 602,
+        "has_cnt": false
+      },
+      "kolas_A": {
+        "status": 200,
+        "len": 602,
+        "has_cnt": false
+      },
+      "kolas_B": {
+        "status": 200,
+        "len": 602,
+        "has_cnt": false
+      },
+      "slima_A": {
+        "status": 200,
+        "len": 602,
+        "has_cnt": false
+      },
+      "slima_B": {
+        "status": 200,
+        "len": 602,
+        "has_cnt": false
+      }
+    }
+  },
+  "한밭도서관": {
+    "domain": "hanbatlib.daejeon.go.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "error": "HTTPSConnectionPool(host='hanbatlib.daejeon.go.kr', port=443): Max retries exceeded with url: /intro/menu/10003/program/30001/searchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x000002318248FC10>: Failed to resolve 'hanbatlib.daejeon.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "jnet_B": {
+        "error": "HTTPSConnectionPool(host='hanbatlib.daejeon.go.kr', port=443): Max retries exceeded with url: /intro/menu/10181/program/30012/plusSearchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x000002318247ED10>: Failed to resolve 'hanbatlib.daejeon.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "kolas_A": {
+        "error": "HTTPSConnectionPool(host='hanbatlib.daejeon.go.kr', port=443): Max retries exceeded with url: /search/searchDetail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824FD7D0>: Failed to resolve 'hanbatlib.daejeon.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "kolas_B": {
+        "error": "HTTPSConnectionPool(host='hanbatlib.daejeon.go.kr', port=443): Max retries exceeded with url: /search/tot/result.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182497290>: Failed to resolve 'hanbatlib.daejeon.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "slima_A": {
+        "error": "HTTPSConnectionPool(host='hanbatlib.daejeon.go.kr', port=443): Max retries exceeded with url: /search/search_detail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182497F10>: Failed to resolve 'hanbatlib.daejeon.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "slima_B": {
+        "error": "HTTPSConnectionPool(host='hanbatlib.daejeon.go.kr', port=443): Max retries exceeded with url: /search/search.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824B02D0>: Failed to resolve 'hanbatlib.daejeon.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      }
+    }
+  },
+  "서구립도서관": {
+    "domain": "geolib.or.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "error": "HTTPSConnectionPool(host='geolib.or.kr', port=443): Max retries exceeded with url: /intro/menu/10003/program/30001/searchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824CAF10>: Failed to resolve 'geolib.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "jnet_B": {
+        "error": "HTTPSConnectionPool(host='geolib.or.kr', port=443): Max retries exceeded with url: /intro/menu/10181/program/30012/plusSearchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824F9650>: Failed to resolve 'geolib.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "kolas_A": {
+        "error": "HTTPSConnectionPool(host='geolib.or.kr', port=443): Max retries exceeded with url: /search/searchDetail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824F87D0>: Failed to resolve 'geolib.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "kolas_B": {
+        "error": "HTTPSConnectionPool(host='geolib.or.kr', port=443): Max retries exceeded with url: /search/tot/result.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824B7D10>: Failed to resolve 'geolib.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "slima_A": {
+        "error": "HTTPSConnectionPool(host='geolib.or.kr', port=443): Max retries exceeded with url: /search/search_detail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824FE190>: Failed to resolve 'geolib.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "slima_B": {
+        "error": "HTTPSConnectionPool(host='geolib.or.kr', port=443): Max retries exceeded with url: /search/search.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x000002318248C610>: Failed to resolve 'geolib.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      }
+    }
+  },
+  "유성구립도서관": {
+    "domain": "yuseong.go.kr/lib",
+    "working_pattern": "jnet_A",
+    "details": {
+      "jnet_A": {
+        "status": 200,
+        "len": 5499,
+        "has_cnt": false
+      }
+    }
+  },
+  "울산도서관": {
+    "domain": "library.ulsan.go.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "status": 404,
+        "len": 8060,
+        "has_cnt": false
+      },
+      "jnet_B": {
+        "status": 404,
+        "len": 8060,
+        "has_cnt": false
+      },
+      "kolas_A": {
+        "status": 404,
+        "len": 8060,
+        "has_cnt": false
+      },
+      "kolas_B": {
+        "status": 404,
+        "len": 8060,
+        "has_cnt": false
+      },
+      "slima_A": {
+        "status": 404,
+        "len": 8060,
+        "has_cnt": false
+      },
+      "slima_B": {
+        "status": 404,
+        "len": 8060,
+        "has_cnt": false
+      }
+    }
+  },
+  "북구립도서관": {
+    "domain": "usbl.bukgu.ulsan.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "status": 404,
+        "len": 963,
+        "has_cnt": false
+      },
+      "jnet_B": {
+        "status": 404,
+        "len": 963,
+        "has_cnt": false
+      },
+      "kolas_A": {
+        "status": 404,
+        "len": 963,
+        "has_cnt": false
+      },
+      "kolas_B": {
+        "status": 404,
+        "len": 963,
+        "has_cnt": false
+      },
+      "slima_A": {
+        "status": 404,
+        "len": 963,
+        "has_cnt": false
+      },
+      "slima_B": {
+        "status": 404,
+        "len": 963,
+        "has_cnt": false
+      }
+    }
+  },
+  "울주군립도서관": {
+    "domain": "uljulib.or.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "error": "HTTPSConnectionPool(host='uljulib.or.kr', port=443): Max retries exceeded with url: /intro/menu/10003/program/30001/searchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824B6C50>: Failed to resolve 'uljulib.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "jnet_B": {
+        "error": "HTTPSConnectionPool(host='uljulib.or.kr', port=443): Max retries exceeded with url: /intro/menu/10181/program/30012/plusSearchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182462F10>: Failed to resolve 'uljulib.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "kolas_A": {
+        "error": "HTTPSConnectionPool(host='uljulib.or.kr', port=443): Max retries exceeded with url: /search/searchDetail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182103D10>: Failed to resolve 'uljulib.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "kolas_B": {
+        "error": "HTTPSConnectionPool(host='uljulib.or.kr', port=443): Max retries exceeded with url: /search/tot/result.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x000002318250A150>: Failed to resolve 'uljulib.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "slima_A": {
+        "error": "HTTPSConnectionPool(host='uljulib.or.kr', port=443): Max retries exceeded with url: /search/search_detail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x000002318247D390>: Failed to resolve 'uljulib.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "slima_B": {
+        "error": "HTTPSConnectionPool(host='uljulib.or.kr', port=443): Max retries exceeded with url: /search/search.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182495610>: Failed to resolve 'uljulib.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      }
+    }
+  },
+  "세종특별자치시립도서관": {
+    "domain": "lib.sejong.go.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "status": 404,
+        "len": 954,
+        "has_cnt": false
+      },
+      "jnet_B": {
+        "status": 404,
+        "len": 954,
+        "has_cnt": false
+      },
+      "kolas_A": {
+        "status": 404,
+        "len": 954,
+        "has_cnt": false
+      },
+      "kolas_B": {
+        "status": 404,
+        "len": 954,
+        "has_cnt": false
+      },
+      "slima_A": {
+        "status": 404,
+        "len": 954,
+        "has_cnt": false
+      },
+      "slima_B": {
+        "status": 404,
+        "len": 954,
+        "has_cnt": false
+      }
+    }
+  },
+  "강원특별자치도교육청도서관": {
+    "domain": "lib.gwe.go.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "status": 404,
+        "len": 688,
+        "has_cnt": false
+      },
+      "jnet_B": {
+        "status": 404,
+        "len": 692,
+        "has_cnt": false
+      },
+      "kolas_A": {
+        "status": 404,
+        "len": 660,
+        "has_cnt": false
+      },
+      "kolas_B": {
+        "status": 404,
+        "len": 658,
+        "has_cnt": false
+      },
+      "slima_A": {
+        "status": 404,
+        "len": 661,
+        "has_cnt": false
+      },
+      "slima_B": {
+        "status": 404,
+        "len": 654,
+        "has_cnt": false
+      }
+    }
+  },
+  "춘천시립도서관": {
+    "domain": "citylib.chuncheon.go.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "error": "HTTPSConnectionPool(host='citylib.chuncheon.go.kr', port=443): Max retries exceeded with url: /intro/menu/10003/program/30001/searchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824B2650>: Failed to resolve 'citylib.chuncheon.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "jnet_B": {
+        "error": "HTTPSConnectionPool(host='citylib.chuncheon.go.kr', port=443): Max retries exceeded with url: /intro/menu/10181/program/30012/plusSearchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824B28D0>: Failed to resolve 'citylib.chuncheon.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "kolas_A": {
+        "error": "HTTPSConnectionPool(host='citylib.chuncheon.go.kr', port=443): Max retries exceeded with url: /search/searchDetail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182495390>: Failed to resolve 'citylib.chuncheon.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "kolas_B": {
+        "error": "HTTPSConnectionPool(host='citylib.chuncheon.go.kr', port=443): Max retries exceeded with url: /search/tot/result.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824F86D0>: Failed to resolve 'citylib.chuncheon.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "slima_A": {
+        "error": "HTTPSConnectionPool(host='citylib.chuncheon.go.kr', port=443): Max retries exceeded with url: /search/search_detail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182103310>: Failed to resolve 'citylib.chuncheon.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "slima_B": {
+        "error": "HTTPSConnectionPool(host='citylib.chuncheon.go.kr', port=443): Max retries exceeded with url: /search/search.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x000002318247FA90>: Failed to resolve 'citylib.chuncheon.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      }
+    }
+  },
+  "강릉시립도서관": {
+    "domain": "gnslib.or.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "status": 404,
+        "len": 248,
+        "has_cnt": false
+      },
+      "jnet_B": {
+        "status": 404,
+        "len": 252,
+        "has_cnt": false
+      },
+      "kolas_A": {
+        "status": 404,
+        "len": 220,
+        "has_cnt": false
+      },
+      "kolas_B": {
+        "status": 404,
+        "len": 218,
+        "has_cnt": false
+      },
+      "slima_A": {
+        "status": 404,
+        "len": 221,
+        "has_cnt": false
+      },
+      "slima_B": {
+        "status": 404,
+        "len": 214,
+        "has_cnt": false
+      }
+    }
+  },
+  "원주시립도서관": {
+    "domain": "lib.wonju.go.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "status": 404,
+        "len": 708,
+        "has_cnt": false
+      },
+      "jnet_B": {
+        "status": 404,
+        "len": 712,
+        "has_cnt": false
+      },
+      "kolas_A": {
+        "status": 404,
+        "len": 680,
+        "has_cnt": false
+      },
+      "kolas_B": {
+        "status": 404,
+        "len": 678,
+        "has_cnt": false
+      },
+      "slima_A": {
+        "status": 404,
+        "len": 681,
+        "has_cnt": false
+      },
+      "slima_B": {
+        "status": 404,
+        "len": 674,
+        "has_cnt": false
+      }
+    }
+  },
+  "청주시립도서관": {
+    "domain": "library.cheongju.go.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "status": 404,
+        "len": 3777,
+        "has_cnt": false
+      },
+      "jnet_B": {
+        "status": 404,
+        "len": 3777,
+        "has_cnt": false
+      },
+      "kolas_A": {
+        "status": 404,
+        "len": 3777,
+        "has_cnt": false
+      },
+      "kolas_B": {
+        "status": 404,
+        "len": 3777,
+        "has_cnt": false
+      },
+      "slima_A": {
+        "status": 404,
+        "len": 3777,
+        "has_cnt": false
+      },
+      "slima_B": {
+        "status": 404,
+        "len": 3777,
+        "has_cnt": false
+      }
+    }
+  },
+  "충주시립도서관": {
+    "domain": "lib.chungju.go.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "status": 200,
+        "len": 162,
+        "has_cnt": false
+      },
+      "jnet_B": {
+        "status": 404,
+        "len": 1558,
+        "has_cnt": false
+      },
+      "kolas_A": {
+        "status": 404,
+        "len": 1526,
+        "has_cnt": false
+      },
+      "kolas_B": {
+        "status": 404,
+        "len": 1524,
+        "has_cnt": false
+      },
+      "slima_A": {
+        "status": 404,
+        "len": 1527,
+        "has_cnt": false
+      },
+      "slima_B": {
+        "status": 404,
+        "len": 1520,
+        "has_cnt": false
+      }
+    }
+  },
+  "제천시립도서관": {
+    "domain": "jecheon.go.kr/site/lib",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "error": "HTTPSConnectionPool(host='jecheon.go.kr', port=443): Max retries exceeded with url: /site/lib/intro/menu/10003/program/30001/searchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824C9950>: Failed to resolve 'jecheon.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "jnet_B": {
+        "error": "HTTPSConnectionPool(host='jecheon.go.kr', port=443): Max retries exceeded with url: /site/lib/intro/menu/10181/program/30012/plusSearchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824B7750>: Failed to resolve 'jecheon.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "kolas_A": {
+        "error": "HTTPSConnectionPool(host='jecheon.go.kr', port=443): Max retries exceeded with url: /site/lib/search/searchDetail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182509390>: Failed to resolve 'jecheon.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "kolas_B": {
+        "error": "HTTPSConnectionPool(host='jecheon.go.kr', port=443): Max retries exceeded with url: /site/lib/search/tot/result.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824B2210>: Failed to resolve 'jecheon.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "slima_A": {
+        "error": "HTTPSConnectionPool(host='jecheon.go.kr', port=443): Max retries exceeded with url: /site/lib/search/search_detail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824502D0>: Failed to resolve 'jecheon.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "slima_B": {
+        "error": "HTTPSConnectionPool(host='jecheon.go.kr', port=443): Max retries exceeded with url: /site/lib/search/search.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824A2CD0>: Failed to resolve 'jecheon.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      }
+    }
+  },
+  "충청남도도서관": {
+    "domain": "library.cn.go.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "error": "HTTPSConnectionPool(host='library.cn.go.kr', port=443): Max retries exceeded with url: /intro/menu/10003/program/30001/searchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x00000231824E2490>, 'Connection to library.cn.go.kr timed out. (connect timeout=5)'))"
+      },
+      "jnet_B": {
+        "error": "HTTPSConnectionPool(host='library.cn.go.kr', port=443): Max retries exceeded with url: /intro/menu/10181/program/30012/plusSearchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000023182453550>, 'Connection to library.cn.go.kr timed out. (connect timeout=5)'))"
+      },
+      "kolas_A": {
+        "error": "HTTPSConnectionPool(host='library.cn.go.kr', port=443): Max retries exceeded with url: /search/searchDetail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x00000231824B6010>, 'Connection to library.cn.go.kr timed out. (connect timeout=5)'))"
+      },
+      "kolas_B": {
+        "error": "HTTPSConnectionPool(host='library.cn.go.kr', port=443): Max retries exceeded with url: /search/tot/result.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x00000231825082D0>, 'Connection to library.cn.go.kr timed out. (connect timeout=5)'))"
+      },
+      "slima_A": {
+        "error": "HTTPSConnectionPool(host='library.cn.go.kr', port=443): Max retries exceeded with url: /search/search_detail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x00000231824B0790>, 'Connection to library.cn.go.kr timed out. (connect timeout=5)'))"
+      },
+      "slima_B": {
+        "error": "HTTPSConnectionPool(host='library.cn.go.kr', port=443): Max retries exceeded with url: /search/search.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x00000231824B7750>, 'Connection to library.cn.go.kr timed out. (connect timeout=5)'))"
+      }
+    }
+  },
+  "천안시도서관": {
+    "domain": "naru.cheonan.go.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "error": "HTTPSConnectionPool(host='naru.cheonan.go.kr', port=443): Max retries exceeded with url: /intro/menu/10003/program/30001/searchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824E31D0>: Failed to resolve 'naru.cheonan.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "jnet_B": {
+        "error": "HTTPSConnectionPool(host='naru.cheonan.go.kr', port=443): Max retries exceeded with url: /intro/menu/10181/program/30012/plusSearchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824D5150>: Failed to resolve 'naru.cheonan.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "kolas_A": {
+        "error": "HTTPSConnectionPool(host='naru.cheonan.go.kr', port=443): Max retries exceeded with url: /search/searchDetail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824A0BD0>: Failed to resolve 'naru.cheonan.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "kolas_B": {
+        "error": "HTTPSConnectionPool(host='naru.cheonan.go.kr', port=443): Max retries exceeded with url: /search/tot/result.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824B7510>: Failed to resolve 'naru.cheonan.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "slima_A": {
+        "error": "HTTPSConnectionPool(host='naru.cheonan.go.kr', port=443): Max retries exceeded with url: /search/search_detail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x000002318250B550>: Failed to resolve 'naru.cheonan.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "slima_B": {
+        "error": "HTTPSConnectionPool(host='naru.cheonan.go.kr', port=443): Max retries exceeded with url: /search/search.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824B2C50>: Failed to resolve 'naru.cheonan.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      }
+    }
+  },
+  "아산시립도서관": {
+    "domain": "ascl.asan.go.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "status": 404,
+        "len": 795,
+        "has_cnt": false
+      },
+      "jnet_B": {
+        "status": 404,
+        "len": 795,
+        "has_cnt": false
+      },
+      "kolas_A": {
+        "status": 404,
+        "len": 795,
+        "has_cnt": false
+      },
+      "kolas_B": {
+        "status": 404,
+        "len": 795,
+        "has_cnt": false
+      },
+      "slima_A": {
+        "status": 404,
+        "len": 795,
+        "has_cnt": false
+      },
+      "slima_B": {
+        "status": 404,
+        "len": 795,
+        "has_cnt": false
+      }
+    }
+  },
+  "논산시립도서관": {
+    "domain": "lib.nonsan.go.kr",
+    "working_pattern": "jnet_A",
+    "details": {
+      "jnet_A": {
+        "status": 200,
+        "len": 5001,
+        "has_cnt": false
+      }
+    }
+  },
+  "전북도서관": {
+    "domain": "library.jeonbuk.go.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "status": 200,
+        "len": 310,
+        "has_cnt": false
+      },
+      "jnet_B": {
+        "status": 200,
+        "len": 310,
+        "has_cnt": false
+      },
+      "kolas_A": {
+        "status": 200,
+        "len": 310,
+        "has_cnt": false
+      },
+      "kolas_B": {
+        "status": 200,
+        "len": 310,
+        "has_cnt": false
+      },
+      "slima_A": {
+        "status": 200,
+        "len": 310,
+        "has_cnt": false
+      },
+      "slima_B": {
+        "status": 200,
+        "len": 310,
+        "has_cnt": false
+      }
+    }
+  },
+  "전주시립도서관": {
+    "domain": "lib.jeonju.go.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "status": 200,
+        "len": 195,
+        "has_cnt": false
+      },
+      "jnet_B": {
+        "status": 200,
+        "len": 195,
+        "has_cnt": false
+      },
+      "kolas_A": {
+        "status": 200,
+        "len": 195,
+        "has_cnt": false
+      },
+      "kolas_B": {
+        "status": 200,
+        "len": 195,
+        "has_cnt": false
+      },
+      "slima_A": {
+        "status": 200,
+        "len": 195,
+        "has_cnt": false
+      },
+      "slima_B": {
+        "status": 200,
+        "len": 195,
+        "has_cnt": false
+      }
+    }
+  },
+  "군산시립도서관": {
+    "domain": "lib.gunsan.go.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "status": 200,
+        "len": 120,
+        "has_cnt": false
+      },
+      "jnet_B": {
+        "status": 400,
+        "len": 1414,
+        "has_cnt": false
+      },
+      "kolas_A": {
+        "status": 400,
+        "len": 1414,
+        "has_cnt": false
+      },
+      "kolas_B": {
+        "status": 400,
+        "len": 1414,
+        "has_cnt": false
+      },
+      "slima_A": {
+        "status": 400,
+        "len": 1414,
+        "has_cnt": false
+      },
+      "slima_B": {
+        "status": 400,
+        "len": 1414,
+        "has_cnt": false
+      }
+    }
+  },
+  "익산시립도서관": {
+    "domain": "lib.iksan.go.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "status": 404,
+        "len": 954,
+        "has_cnt": false
+      },
+      "jnet_B": {
+        "status": 404,
+        "len": 954,
+        "has_cnt": false
+      },
+      "kolas_A": {
+        "status": 404,
+        "len": 954,
+        "has_cnt": false
+      },
+      "kolas_B": {
+        "status": 404,
+        "len": 954,
+        "has_cnt": false
+      },
+      "slima_A": {
+        "status": 404,
+        "len": 954,
+        "has_cnt": false
+      },
+      "slima_B": {
+        "status": 404,
+        "len": 954,
+        "has_cnt": false
+      }
+    }
+  },
+  "전라남도립도서관": {
+    "domain": "lib.jeonnam.go.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "status": 404,
+        "len": 196,
+        "has_cnt": false
+      },
+      "jnet_B": {
+        "status": 404,
+        "len": 196,
+        "has_cnt": false
+      },
+      "kolas_A": {
+        "status": 404,
+        "len": 196,
+        "has_cnt": false
+      },
+      "kolas_B": {
+        "status": 404,
+        "len": 196,
+        "has_cnt": false
+      },
+      "slima_A": {
+        "status": 404,
+        "len": 196,
+        "has_cnt": false
+      },
+      "slima_B": {
+        "status": 404,
+        "len": 196,
+        "has_cnt": false
+      }
+    }
+  },
+  "목포시립도서관": {
+    "domain": "mokpolib.or.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "status": 404,
+        "len": 352,
+        "has_cnt": false
+      },
+      "jnet_B": {
+        "status": 404,
+        "len": 356,
+        "has_cnt": false
+      },
+      "kolas_A": {
+        "status": 404,
+        "len": 324,
+        "has_cnt": false
+      },
+      "kolas_B": {
+        "status": 404,
+        "len": 322,
+        "has_cnt": false
+      },
+      "slima_A": {
+        "status": 404,
+        "len": 325,
+        "has_cnt": false
+      },
+      "slima_B": {
+        "status": 404,
+        "len": 318,
+        "has_cnt": false
+      }
+    }
+  },
+  "여수시립도서관": {
+    "domain": "yslib.yeosu.go.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "status": 404,
+        "len": 1021,
+        "has_cnt": false
+      },
+      "jnet_B": {
+        "status": 404,
+        "len": 1021,
+        "has_cnt": false
+      },
+      "kolas_A": {
+        "status": 404,
+        "len": 1021,
+        "has_cnt": false
+      },
+      "kolas_B": {
+        "status": 404,
+        "len": 1021,
+        "has_cnt": false
+      },
+      "slima_A": {
+        "status": 404,
+        "len": 1021,
+        "has_cnt": false
+      },
+      "slima_B": {
+        "status": 404,
+        "len": 1021,
+        "has_cnt": false
+      }
+    }
+  },
+  "순천시립도서관": {
+    "domain": "library.suncheon.go.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "status": 404,
+        "len": 1707,
+        "has_cnt": false
+      },
+      "jnet_B": {
+        "status": 404,
+        "len": 1707,
+        "has_cnt": false
+      },
+      "kolas_A": {
+        "status": 404,
+        "len": 1707,
+        "has_cnt": false
+      },
+      "kolas_B": {
+        "status": 404,
+        "len": 1707,
+        "has_cnt": false
+      },
+      "slima_A": {
+        "status": 404,
+        "len": 1707,
+        "has_cnt": false
+      },
+      "slima_B": {
+        "status": 404,
+        "len": 1707,
+        "has_cnt": false
+      }
+    }
+  },
+  "경상북도교육청대표도서관": {
+    "domain": "gbelib.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "status": 404,
+        "len": 1573,
+        "has_cnt": false
+      },
+      "jnet_B": {
+        "status": 404,
+        "len": 1573,
+        "has_cnt": false
+      },
+      "kolas_A": {
+        "status": 404,
+        "len": 1573,
+        "has_cnt": false
+      },
+      "kolas_B": {
+        "status": 404,
+        "len": 1573,
+        "has_cnt": false
+      },
+      "slima_A": {
+        "status": 404,
+        "len": 1573,
+        "has_cnt": false
+      },
+      "slima_B": {
+        "status": 404,
+        "len": 1573,
+        "has_cnt": false
+      }
+    }
+  },
+  "포항시립도서관": {
+    "domain": "phlib.pohang.go.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "status": 302,
+        "len": 0,
+        "has_cnt": false
+      },
+      "jnet_B": {
+        "status": 302,
+        "len": 0,
+        "has_cnt": false
+      },
+      "kolas_A": {
+        "status": 404,
+        "len": 1575,
+        "has_cnt": false
+      },
+      "kolas_B": {
+        "status": 404,
+        "len": 1575,
+        "has_cnt": false
+      },
+      "slima_A": {
+        "status": 404,
+        "len": 1575,
+        "has_cnt": false
+      },
+      "slima_B": {
+        "status": 404,
+        "len": 1575,
+        "has_cnt": false
+      }
+    }
+  },
+  "구미시립도서관": {
+    "domain": "lib.gumi.go.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "status": 404,
+        "len": 61,
+        "has_cnt": false
+      },
+      "jnet_B": {
+        "status": 404,
+        "len": 61,
+        "has_cnt": false
+      },
+      "kolas_A": {
+        "status": 404,
+        "len": 61,
+        "has_cnt": false
+      },
+      "kolas_B": {
+        "status": 404,
+        "len": 61,
+        "has_cnt": false
+      },
+      "slima_A": {
+        "status": 404,
+        "len": 61,
+        "has_cnt": false
+      },
+      "slima_B": {
+        "status": 404,
+        "len": 61,
+        "has_cnt": false
+      }
+    }
+  },
+  "경주시립도서관": {
+    "domain": "gjl.gyeongju.go.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "error": "HTTPSConnectionPool(host='gjl.gyeongju.go.kr', port=443): Max retries exceeded with url: /intro/menu/10003/program/30001/searchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x000002318248F7D0>: Failed to resolve 'gjl.gyeongju.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "jnet_B": {
+        "error": "HTTPSConnectionPool(host='gjl.gyeongju.go.kr', port=443): Max retries exceeded with url: /intro/menu/10181/program/30012/plusSearchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824A3590>: Failed to resolve 'gjl.gyeongju.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "kolas_A": {
+        "error": "HTTPSConnectionPool(host='gjl.gyeongju.go.kr', port=443): Max retries exceeded with url: /search/searchDetail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182518490>: Failed to resolve 'gjl.gyeongju.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "kolas_B": {
+        "error": "HTTPSConnectionPool(host='gjl.gyeongju.go.kr', port=443): Max retries exceeded with url: /search/tot/result.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824D6B90>: Failed to resolve 'gjl.gyeongju.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "slima_A": {
+        "error": "HTTPSConnectionPool(host='gjl.gyeongju.go.kr', port=443): Max retries exceeded with url: /search/search_detail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824B7A10>: Failed to resolve 'gjl.gyeongju.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "slima_B": {
+        "error": "HTTPSConnectionPool(host='gjl.gyeongju.go.kr', port=443): Max retries exceeded with url: /search/search.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182497710>: Failed to resolve 'gjl.gyeongju.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      }
+    }
+  },
+  "경상남도대표도서관": {
+    "domain": "gnlib.or.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "error": "HTTPSConnectionPool(host='gnlib.or.kr', port=443): Max retries exceeded with url: /intro/menu/10003/program/30001/searchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824B2F10>: Failed to resolve 'gnlib.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "jnet_B": {
+        "error": "HTTPSConnectionPool(host='gnlib.or.kr', port=443): Max retries exceeded with url: /intro/menu/10181/program/30012/plusSearchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x000002318250BE50>: Failed to resolve 'gnlib.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "kolas_A": {
+        "error": "HTTPSConnectionPool(host='gnlib.or.kr', port=443): Max retries exceeded with url: /search/searchDetail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824D6CD0>: Failed to resolve 'gnlib.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "kolas_B": {
+        "error": "HTTPSConnectionPool(host='gnlib.or.kr', port=443): Max retries exceeded with url: /search/tot/result.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824A0D50>: Failed to resolve 'gnlib.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "slima_A": {
+        "error": "HTTPSConnectionPool(host='gnlib.or.kr', port=443): Max retries exceeded with url: /search/search_detail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824D5FD0>: Failed to resolve 'gnlib.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "slima_B": {
+        "error": "HTTPSConnectionPool(host='gnlib.or.kr', port=443): Max retries exceeded with url: /search/search.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824CB4D0>: Failed to resolve 'gnlib.or.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      }
+    }
+  },
+  "창원시립도서관": {
+    "domain": "cwlib.changwon.go.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "error": "HTTPSConnectionPool(host='cwlib.changwon.go.kr', port=443): Max retries exceeded with url: /intro/menu/10003/program/30001/searchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x0000023182460390>: Failed to resolve 'cwlib.changwon.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "jnet_B": {
+        "error": "HTTPSConnectionPool(host='cwlib.changwon.go.kr', port=443): Max retries exceeded with url: /intro/menu/10181/program/30012/plusSearchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824D7A10>: Failed to resolve 'cwlib.changwon.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "kolas_A": {
+        "error": "HTTPSConnectionPool(host='cwlib.changwon.go.kr', port=443): Max retries exceeded with url: /search/searchDetail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824E2B10>: Failed to resolve 'cwlib.changwon.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "kolas_B": {
+        "error": "HTTPSConnectionPool(host='cwlib.changwon.go.kr', port=443): Max retries exceeded with url: /search/tot/result.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x000002318247E010>: Failed to resolve 'cwlib.changwon.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "slima_A": {
+        "error": "HTTPSConnectionPool(host='cwlib.changwon.go.kr', port=443): Max retries exceeded with url: /search/search_detail.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231825082D0>: Failed to resolve 'cwlib.changwon.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      },
+      "slima_B": {
+        "error": "HTTPSConnectionPool(host='cwlib.changwon.go.kr', port=443): Max retries exceeded with url: /search/search.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&q=%ED%8C%8C%EC%9D%B4%EC%8D%AC (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x00000231824D7410>: Failed to resolve 'cwlib.changwon.go.kr' ([Errno 11001] getaddrinfo failed)\"))"
+      }
+    }
+  },
+  "김해시립도서관": {
+    "domain": "lib.gimhae.go.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "status": 404,
+        "len": 951,
+        "has_cnt": false
+      },
+      "jnet_B": {
+        "status": 404,
+        "len": 951,
+        "has_cnt": false
+      },
+      "kolas_A": {
+        "status": 404,
+        "len": 951,
+        "has_cnt": false
+      },
+      "kolas_B": {
+        "status": 404,
+        "len": 951,
+        "has_cnt": false
+      },
+      "slima_A": {
+        "status": 404,
+        "len": 951,
+        "has_cnt": false
+      },
+      "slima_B": {
+        "status": 404,
+        "len": 951,
+        "has_cnt": false
+      }
+    }
+  },
+  "진주시립도서관": {
+    "domain": "lib.jinju.go.kr",
+    "working_pattern": null,
+    "details": {
+      "jnet_A": {
+        "status": 205,
+        "len": 401,
+        "has_cnt": false
+      },
+      "jnet_B": {
+        "status": 205,
+        "len": 401,
+        "has_cnt": false
+      },
+      "kolas_A": {
+        "status": 205,
+        "len": 401,
+        "has_cnt": false
+      },
+      "kolas_B": {
+        "status": 205,
+        "len": 401,
+        "has_cnt": false
+      },
+      "slima_A": {
+        "status": 205,
+        "len": 401,
+        "has_cnt": false
+      },
+      "slima_B": {
+        "status": 205,
+        "len": 401,
+        "has_cnt": false
+      }
+    }
+  }
+}

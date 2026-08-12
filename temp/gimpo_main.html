@@ -1,0 +1,1727 @@
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=2.0, minimum-scale=1.0, user-scalable=yes" />
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+    <link rel="stylesheet" type="text/css" href="/common/css/font.css" />
+	<!--[if lt IE 9]><link rel="stylesheet" type="text/css" href="/common/css/font_ie8.css" /><![endif]-->
+    <link rel="stylesheet" type="text/css" href="/site/lib/css/main.css?ver2604" />
+    <!--[if lt IE 9]><script src="/common/js/html5.js"></script><![endif]-->
+    <script src="/common/js/jquery-1.12.4.min.js"></script>
+    <script src="/common/js/jquery.screen.min.js"></script>
+    <script src="/common/js/jquery.menu.min.js"></script>
+	<script src="/common/js/jquery.customForm.min.js"></script>
+	<script src="/common/js/jquery.jscrollpane.min.js"></script>
+	<script src="/common/js/jquery.rwdImageMaps.js"></script>
+	<script src="/common/js/slick.min.js"></script>
+	<script src="/common/js/slick.extensions.min.js"></script>
+    <script src="/common/js/layout.js"></script>
+    <script src="/site/lib/js/main.js?ver2604"></script>
+    <title>김포시도서관</title>
+</head>
+<body id="main" class="lib">
+<script>
+    if (location.protocol !== 'https:') {
+        location.replace('https://' + location.host + location.pathname + location.search + location.hash);
+    }
+
+	function fn_bookSearch() {
+		var manageCode = $("#manageCode").val();
+		var searchKrwd = $("#searchKrwd").val();
+		if(manageCode == "JG") {
+			$("#key").val("2780");
+			$("#bookSearchForm").attr("action","https://www.gimpo.go.kr/janggi/bookSearchList.do");
+		} else if(manageCode == "MA") {
+			$("#key").val("2848");
+			$("#bookSearchForm").attr("action","https://www.gimpo.go.kr/jungbong/bookSearchList.do");
+		} else if(manageCode == "YG") {
+			$("#key").val("2916");
+			$("#bookSearchForm").attr("action","https://www.gimpo.go.kr/yanggok/bookSearchList.do");
+		} else if(manageCode == "TJ") {
+			$("#key").val("3120");
+			$("#bookSearchForm").attr("action","https://www.gimpo.go.kr/tongjin/bookSearchList.do");
+		} else if(manageCode == "PM") {
+			$("#key").val("3052");
+			$("#bookSearchForm").attr("action","https://www.gimpo.go.kr/pungmu/bookSearchList.do");
+		} else if(manageCode == "MS") {
+			$("#key").val("6994");
+			$("#bookSearchForm").attr("action","https://www.gimpo.go.kr/masan/bookSearchList.do");
+		} else if(manageCode == "GC") {
+			$("#key").val("2984");
+			$("#bookSearchForm").attr("action","https://www.gimpo.go.kr/gochon/bookSearchList.do");
+		} else if(manageCode == "MD") {
+			$("#key").val("11488");
+			$("#bookSearchForm").attr("action","https://www.gimpo.go.kr/modam/bookSearchList.do");
+		}  else {
+			$("#key").val("11488");
+			$("#bookSearchForm").attr("action","https://www.gimpo.go.kr/modam/bookSearchList.do?allCheck=ALL");
+		}
+
+		return true;
+	}
+</script>
+<div id="wrapper">
+	<header id="header">
+		<div class="accessibility">
+			<a href="#container">본문 바로가기</a>
+		</div>
+		<div class="wrap clearfix">
+			<div class="logo">
+				<h1>
+					<img src="/site/lib/images/main/intro_logo.jpg" alt="김포시립도서관 GIMPO CITY LIBRARY">
+					<span class="logo_title">김포시도서관</span>
+				</h1>
+			</div>
+			<div class="search">
+				<h2 class="skip">통합검색</h2>
+				<div class="search_content">
+						<form name="bookSearchForm" id="bookSearchForm" method="POST" action="./bookSearchList.do" onsubmit="return fn_bookSearch();">
+						<fieldset>
+							<legend>검색하기</legend>
+							<span class="custom_form select search_form">
+							<span class="custom_text search_text">&nbsp;</span>
+							<input type="hidden" name="rep" id="rep" value="1">
+							<input type="hidden" name="key" id="key" value="1">
+							<select name="manageCode" id="manageCode" class="custom_item" title="검색 유형">
+								<option value="BR,DK,GC,GR,HS,JG,MA,MS,PM,TJ,YG,YY,MD">전체도서관</option>
+								<option value="JG">장기도서관</option>
+								<option value="MA">중봉도서관<em class="fc_red">(휴관)</em></option>
+								<option value="YG">양곡도서관</option>
+								<option value="GC">고촌도서관</option>
+								<option value="PM">풍무도서관</option>
+								<option value="MS">마산도서관</option>
+								<option value="TJ">통진도서관</option>	
+								<option value="MD">모담도서관</option>								
+							</select>
+							</span>					  
+							<input type="search" name="searchKrwd" class="search_keyword" placeholder="검색어를 입력하세요" title="검색어"/>
+							<span class="search_submit"><input type="submit" value="검색" /></span>
+						</fieldset>
+					</form>
+				</div>
+			</div>
+		</div>
+	</header>
+	<!-- //header -->
+	<main id="container">
+		<section class="family">
+			<div class="wrap">
+				<h2 class="skip">도서관 안내</h2>
+				<div class="family_text">
+					<span class="family_text_wrap">도서관을 <strong>클릭</strong>하면 해당 <strong>도서관 홈페이지</strong>로 이동합니다.</span>
+				</div>
+				<div class="clearfix">
+					<div class="family_site">
+						<ul class="clearfix">
+							<li class="family_item family_item9">
+								<a href="https://www.gimpo.go.kr/modam/index.do">
+									<div class="family_logo">
+										<h3>모담도서관</h3>
+									</div>
+									<div class="family_call">
+										<span class="call">031-5186-3950</span>
+									</div>
+									<div class="m_family_name"><h3>모담도서관</h3></div>
+								</a>
+							</li>
+							<li class="family_item family_item6">
+								<a href="https://www.gimpo.go.kr/tongjin/index.do">
+									<div class="family_logo">
+										<h3>통진도서관</h3>
+									</div>
+									<div class="family_call">
+										<span class="call">031-5186-4980</span>
+									</div>
+									<div class="m_family_name"><h3>통진도서관</h3></div>
+								</a>
+							</li>
+							<li class="family_item family_item3">
+								<a href="https://www.gimpo.go.kr/yanggok/index.do">
+									<div class="family_logo">
+										<h3>양곡도서관</h3>
+									</div>
+									<div class="family_call">
+										<span class="call">031-5186-4830</span>
+									</div>
+									<div class="m_family_name"><h3>양곡도서관</h3></div>
+								</a>
+							</li>
+							<li class="family_item family_item4">
+								<a href="https://www.gimpo.go.kr/gochon/index.do">
+									<div class="family_logo">
+										<h3>고촌도서관</h3>
+										
+									</div>
+									<div class="family_call">
+										<span class="call">031-5186-4850</span>
+									</div>
+									<div class="m_family_name"><h3>고촌도서관</h3></div>
+								</a>
+							</li>
+							<li class="family_item family_item1">
+								<a href="https://www.gimpo.go.kr/janggi/index.do">
+									<div class="family_logo">
+										<h3>장기도서관</h3>
+										
+									</div>
+									<div class="family_call">
+										<span class="call">031-5186-4680</span>
+									</div>
+									<div class="m_family_name"><h3>장기도서관</h3></div>
+								</a>
+							</li>
+							<li class="family_item family_item5">
+								<a href="https://www.gimpo.go.kr/pungmu/index.do">
+									<div class="family_logo">
+										<h3>풍무도서관</h3>
+										
+									</div>
+									<div class="family_call">
+										<span class="call">031-5186-4870</span>
+									</div>
+									<div class="m_family_name"><h3>풍무도서관</h3></div>
+								</a>
+							</li>
+							<li class="family_item family_item7">
+								<a href="https://www.gimpo.go.kr/masan/index.do">
+									<div class="family_logo">
+										<h3>마산도서관</h3>
+										
+									</div>
+									<div class="family_call">
+										<span class="call">031-5186-4890</span>
+									</div>
+									<div class="m_family_name"><h3>마산도서관</h3></div>
+								</a>
+							</li>
+							<li class="family_item family_item2">
+								<a href="https://www.gimpo.go.kr/jungbong/index.do">
+									<div class="family_logo">
+										<h3>중봉도서관 <span class="em_b_red">(휴관)</span></h3>
+									</div>
+									<div class="family_call">
+										<!-- <span class="call">031-5186-4800</span>
+										<span class="em_b_red">※ 2025년 재개관 예정</span> -->
+										-
+									</div>
+									<div class="m_family_name"><h3>중봉도서관<span class="em_b_red">(휴관)</span></h3></div>
+								</a>
+							</li>
+							<!-- <li class="family_item family_kd">
+								<a href="https://korearf.kpipa.or.kr/sym/mnu/mpm/EgovMainMenuHome.do">
+									<div class="family_logo">
+										<h3><em style="letter-spacing:-1px;">대한민국 독서대전</em></h3>
+									</div>
+									<div class="family_call">
+										<span class="call">031-5186-4659</span>
+										<span class="em_b_red">※ 2025년 재개관 예정</span>
+									</div>
+									<div class="m_family_name"><h3>대한민국 독서대전</h3></div>
+								</a>
+							</li> -->
+							<!--<li class="family_item family_item8">
+								<a href="/janggi/cyberLbrry.do?key=2775">
+									<h3>사이버도서관</h3>
+									<p>바로가기</p>
+								</a>								
+							</li>-->
+						</ul>
+					</div>
+					<div class="family_mini_site">
+						<ul class="clearfix">
+							<li class="family_mini_item family_mini_item1">
+								<a href="/modam/cyberLbrry.do?key=11472"><h3>사이버도서관</h3></a>
+								<p>-</p>
+							</li>
+							<li class="family_mini_item family_mini_item1">
+								<a href="/janggi/contents.do?key=2755"><h3>누리봄 작은도서관</h3></a>
+								<p>031-5186-4888</p>
+							</li>
+							<li class="family_mini_item family_mini_item2">
+								<a href="/janggi/contents.do?key=2755"><h3>대곶 작은도서관</h3></a>
+								<!--<span class="holiday_label">휴관</span>--> <!-- 휴관일 -->
+								<p>031-5186-4838</p>
+							</li>
+							<li class="family_mini_item family_mini_item3">
+								<a href="/janggi/contents.do?key=2755"><h3>구래 작은도서관</h3></a>
+								<p>031-5186-4837</p>
+							</li>
+							<li class="family_mini_item family_mini_item4">
+								<!-- <a href="http://61.32.63.237:9525/" target="_blank" title="새창 바로가기"> -->
+								<a href="/janggi/contents.do?key=2755">
+								<h3>하성 작은도서관</h3>
+								
+								<p>031-5186-4889</p>
+							</a>
+							</li><li class="family_mini_item family_mini_item4">
+								<a href="/janggi/contents.do?key=2755"><h3>김포만화도서관</h3></a>
+								
+								<p>031-5186-4836</p>
+							</li>
+							<li class="family_mini_item family_mini_item4">
+								<a href="/janggi/contents.do?key=2755"><h3>향산 작은도서관</h3></a>
+								<p>031-5186-4835</p>
+							</li>
+							<!-- 
+							<li class="family_mini_item family_mini_item3">
+								<a href="/janggi/cyberLbrry.do?key=2775"><h3>사이버도서관</h3></a>
+								<p>바로가기</p>
+							</li>
+							 -->
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="board">
+			<h2 class="skip">게시판</h2>
+			<div class="wrap">
+				<div class="tab_menu text_center">
+					<div class="tab_wrap">
+						<ul>
+							<li class="news active">
+								<button type="button" class="tab_button">공지사항</button>
+								<div class="tab_content">
+									<div class="tab_content_wrap">
+										<div class="tab_content_list">
+											<!--
+												* 도서관별 내부 div 요소 클래스 다릅니다. 가장최신글 1개만 가져오고 영역 고정.
+												1. 장기 tab_content_item1
+												2. 중봉 tab_content_item2
+												3. 양곡 tab_content_item3
+												4. 고촌 tab_content_item4
+												5. 풍무 tab_content_item5
+												6. 통진 tab_content_item6
+
+												* 더보기는 해당 도서관 게시판 리스트로 이동합니다.
+											 -->
+
+											<div class="tab_content_item">
+												<div class="tab_content_item1">
+														
+													
+													<a href="/janggi/selectBbsNttView.do?bbsNo=32&amp;key=2801&amp;nttNo=985123" class="tab_content_link">
+														<span class="lib_label">장기</span>
+														<div class="tab_content_subject">장기도서관 시민 작가 공간 「AI시대, 마음을 묻다」 전시 ...</div>
+														
+														
+														<time datetime="2026-08-06">2026-08-06</time>
+													</a>
+													
+													<a href="/janggi/selectBbsNttList.do?bbsNo=32&key=2801" class="tab_content_more">더보기</a>
+												</div>
+											</div>
+											<!-- //장기도서관 -->
+
+											<!-- <div class="tab_content_item">
+												<div class="tab_content_item2">
+														
+													
+													<a href="/jungbong/selectBbsNttView.do?bbsNo=36&amp;key=2869&amp;nttNo=713485" class="tab_content_link">
+														<span class="lib_label">중봉</span>
+														<div class="tab_content_subject">김포시시립도서관 관내 상호대차 서비스 일시 중지 알림_2...</div>
+														
+														
+														<time datetime="2022-12-27">2022-12-27</time>
+													</a>
+													
+													<a href="/jungbong/selectBbsNttList.do?bbsNo=36&key=2869" class="tab_content_more">더보기</a>
+												</div>
+											</div> -->
+											<!-- //중봉도서관 -->
+
+											<div class="tab_content_item">
+												<div class="tab_content_item6">
+														
+													
+													<a href="/tongjin/selectBbsNttView.do?bbsNo=34&amp;key=3141&amp;nttNo=985055" class="tab_content_link">
+														<span class="lib_label">통진</span>
+														<div class="tab_content_subject">[알림] 김포시 대표 홈페이지 일부 서비스 일시 중단 안내[...</div>
+														
+														
+														<time datetime="2026-08-06">2026-08-06</time>
+													</a>
+													
+													<a href="/tongjin/selectBbsNttList.do?bbsNo=34&key=3141" class="tab_content_more">더보기</a>
+												</div>
+											</div>
+											<!-- //통진도서관 -->
+
+											<div class="tab_content_item">
+												<div class="tab_content_item3">
+														
+													
+													<a href="/yanggok/selectBbsNttView.do?bbsNo=36&amp;key=2937&amp;nttNo=985056" class="tab_content_link">
+														<span class="lib_label">양곡</span>
+														<div class="tab_content_subject">[알림] 김포시 대표 홈페이지 일부 서비스 일시 중단 안내[...</div>
+														
+														
+														<time datetime="2026-08-06">2026-08-06</time>
+													</a>
+													
+													<a href="/yanggok/selectBbsNttList.do?bbsNo=35&key=2937" class="tab_content_more">더보기</a>
+												</div>
+											</div>
+											<!-- //양곡도서관 -->
+
+											<div class="tab_content_item">
+												<div class="tab_content_item4">
+														
+													
+													<a href="/gochon/selectBbsNttView.do?bbsNo=33&amp;key=3005&amp;nttNo=985127" class="tab_content_link">
+														<span class="lib_label">고촌</span>
+														<div class="tab_content_subject">2026년 고촌도서관 영어 특화  『리딩 레벨 진단의 날』  운...</div>
+														
+														
+														<time datetime="2026-08-06">2026-08-06</time>
+													</a>
+													
+													<a href="/gochon/selectBbsNttList.do?bbsNo=33&key=3005" class="tab_content_more">더보기</a>
+												</div>
+											</div>
+											<!-- //고촌도서관 -->
+
+											<div class="tab_content_item">
+												<div class="tab_content_item5">
+														
+													
+													<a href="/pungmu/selectBbsNttView.do?bbsNo=31&amp;key=3073&amp;nttNo=985059" class="tab_content_link">
+														<span class="lib_label">풍무</span>
+														<div class="tab_content_subject">[알림] 김포시 대표 홈페이지 일부 서비스 일시 중단 안내[...</div>
+														
+														
+														<time datetime="2026-08-06">2026-08-06</time>
+													</a>
+													
+													<a href="/pungmu/selectBbsNttList.do?bbsNo=31&key=3073" class="tab_content_more">더보기</a>
+												</div>
+											</div>
+											<!-- //풍무도서관 -->
+
+												
+											
+											<div class="tab_content_item">
+												<div class="tab_content_item7">
+													
+													<a href="/masan/selectBbsNttView.do?bbsNo=1524&amp;key=6990&amp;nttNo=985054" class="tab_content_link">
+														<span class="lib_label">마산</span>
+														<div class="tab_content_subject">[알림] 김포시 대표 홈페이지 일부 서비스 일시 중단 안내[...</div>
+														
+														
+														<time datetime="2026-08-06">2026-08-06</time>
+													</a>
+													
+													<a href="/masan/selectBbsNttList.do?bbsNo=1524&key=6990" class="tab_content_more">더보기</a>
+												</div>
+											</div>
+											
+											<!-- //마산도서관 -->
+											
+											<!-- 모담도서관 -->
+												
+											
+											<div class="tab_content_item">
+												<div class="tab_content_item7">
+													
+													<a href="/modam/selectBbsNttView.do?bbsNo=2549&amp;key=11503&amp;nttNo=985057" class="tab_content_link">
+														<span class="lib_label">모담</span>
+														<div class="tab_content_subject">[알림] 김포시 대표 홈페이지 일부 서비스 일시 중단 안내[...</div>
+														
+														
+														<time datetime="2026-08-06">2026-08-06</time>
+													</a>
+													
+													<a href="/modam/selectBbsNttList.do?bbsNo=2549&key=11503" class="tab_content_more">더보기</a>
+												</div>
+											</div>
+											
+											<!-- //모담도도서관 -->											
+										</div>
+
+										<div class="tab_content_control">
+											<button type="button" class="tab_content_prev">이전</button>
+											<button type="button" class="tab_content_next">다음</button>
+										</div>
+									</div>
+									<!-- //tab_content_wrap -->
+								</div>
+							</li>
+							<li class="event">
+								<button type="button" class="tab_button">문화행사</button>
+								<div class="tab_content">
+									<div class="tab_content_wrap">
+										<div class="tab_content_list">
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+												
+													
+													
+													
+												
+												
+												
+												
+												
+												
+															
+																								
+											
+											<div class="tab_content_item">
+												<div class="tab_content_item1">
+
+													<a href="/janggi/sub.do?key=2794" class="tab_content_link">
+														<span class="lib_label">장기</span>
+														<div class="tab_content_subject">휴관일</div>
+														<time datetime="2019-06-02">2026-08-07</time>
+													</a>
+													<a href="/janggi/sub.do?key=2794" class="tab_content_more">더보기</a>
+												</div>
+											</div>
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+												
+												
+												
+													
+																										
+													
+												
+												
+												
+												
+															
+																								
+											
+											<div class="tab_content_item">
+												<div class="tab_content_item3">
+
+													<a href="/yanggok/sub.do?key=2930" class="tab_content_link">
+														<span class="lib_label">양곡</span>
+														<div class="tab_content_subject">휴관일</div>
+														<time datetime="2019-06-02">2026-08-07</time>
+													</a>
+													<a href="/yanggok/sub.do?key=2930" class="tab_content_more">더보기</a>
+												</div>
+											</div>
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+												
+												
+												
+												
+													
+																										
+													
+												
+												
+												
+															
+																								
+											
+											<div class="tab_content_item">
+												<div class="tab_content_item4">
+
+													<a href="/gochon/sub.do?key=2998" class="tab_content_link">
+														<span class="lib_label">고촌</span>
+														<div class="tab_content_subject">휴관일</div>
+														<time datetime="2019-06-02">2026-08-07</time>
+													</a>
+													<a href="/gochon/sub.do?key=2998" class="tab_content_more">더보기</a>
+												</div>
+											</div>
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+												
+												
+												
+												
+												
+													
+													
+													
+												
+												
+															
+																								
+											
+											<div class="tab_content_item">
+												<div class="tab_content_item5">
+
+													<a href="/pungmu/sub.do?key=3066" class="tab_content_link">
+														<span class="lib_label">풍무</span>
+														<div class="tab_content_subject">나도 유튜브 크리에이터(2회)</div>
+														<time datetime="2019-06-02">2026-08-07</time>
+													</a>
+													<a href="/pungmu/sub.do?key=3066" class="tab_content_more">더보기</a>
+												</div>
+											</div>
+											
+											
+											
+											
+											
+											
+											
+												
+												
+												
+												
+												
+													
+													
+													
+												
+												
+															
+																								
+											
+											<div class="tab_content_item">
+												<div class="tab_content_item5">
+
+													<a href="/pungmu/sub.do?key=3066" class="tab_content_link">
+														<span class="lib_label">풍무</span>
+														<div class="tab_content_subject">여름 독서교실 <떠나자 역사여행>(3회)</div>
+														<time datetime="2019-06-02">2026-08-07</time>
+													</a>
+													<a href="/pungmu/sub.do?key=3066" class="tab_content_more">더보기</a>
+												</div>
+											</div>
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+														
+										</div>
+
+										<div class="tab_content_control">
+											<button type="button" class="tab_content_prev">이전</button>
+											<button type="button" class="tab_content_next">다음</button>
+										</div>
+									</div>
+									<!-- //tab_content_wrap -->
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="book">
+			<div class="wrap">
+				<h2><img src="/site/lib/images/main/intro_book_title.png" alt="추천! BOOK"></h2>
+				<div class="clearfix">
+					<div class="book_catalogue">
+						<div class="book_catalogue_image">
+							<img src="../../DATA/dummy_lib_intro_book.jpg" alt="소식 담아 가">
+							<span class="book_catalogue_number">Vol.2</span>
+						</div>
+						<div class="book_catalogue_link">
+							<a href="/janggi/selectBbsNttView.do?key=2806&id=&&bbsNo=476&nttNo=92170&searchCtgry=&searchCnd=all&searchKrwd=&pageIndex=1&integrDeptCode=">도서관 소식지 보기</a>
+						</div>
+					</div>
+					<div class="tab_menu">
+						<div class="tab_wrap">
+							<ul class="tab_list">
+								<li class="active">
+									<button type="button" class="tab_button"><span class="tab_title">전체</span></button>
+									<div class="tab_content">
+										<div class="book_track">
+											<ul class="clearfix">
+
+													
+												
+												
+													
+													
+													
+													
+													
+													
+													
+												
+												<li class="book_item">
+													<a href="/pungmu/selectBbsNttList.do?bbsNo=315&key=3062&searchCtgry=">
+														<div class="book_image">
+															
+																
+																	<img src="/DATA/bbs/315/dcb5d5a4-c471-453d-b8f2-75ccae20f58a.jpg" alt="한 점 그림으로 읽는 경제">
+																
+																
+															
+														</div>
+														<div class="book_title ellipsis">한 점 그림으로 읽는 경제</div>
+													</a>
+												</li>
+												
+												
+													
+													
+													
+													
+													
+													
+													
+												
+												<li class="book_item">
+													<a href="/pungmu/selectBbsNttList.do?bbsNo=315&key=3062&searchCtgry=">
+														<div class="book_image">
+															
+																
+																	<img src="/DATA/bbs/315/116fb44e-ad22-45d6-9491-7da629b3a187.jpg" alt="이호선의 가족 상담소">
+																
+																
+															
+														</div>
+														<div class="book_title ellipsis">이호선의 가족 상담소</div>
+													</a>
+												</li>
+												
+												
+													
+													
+													
+													
+													
+													
+													
+												
+												<li class="book_item">
+													<a href="/pungmu/selectBbsNttList.do?bbsNo=315&key=3062&searchCtgry=">
+														<div class="book_image">
+															
+																
+																	<img src="/DATA/bbs/315/733931b0-12b1-46c0-abd4-6b429d4beb20.jpg" alt="시체는 거짓말하지 않는다">
+																
+																
+															
+														</div>
+														<div class="book_title ellipsis">시체는 거짓말하지 않는다</div>
+													</a>
+												</li>
+												
+												
+													
+													
+													
+													
+													
+													
+													
+												
+												<li class="book_item">
+													<a href="/pungmu/selectBbsNttList.do?bbsNo=315&key=3062&searchCtgry=">
+														<div class="book_image">
+															
+																
+																	<img src="/DATA/bbs/315/326d0fd3-9d66-4e7e-b9ab-6ed7f23ae372.jpg" alt="그 해 푸른 벚나무">
+																
+																
+															
+														</div>
+														<div class="book_title ellipsis">그 해 푸른 벚나무</div>
+													</a>
+												</li>
+												
+												
+													
+													
+													
+													
+													
+													
+													
+												
+												<li class="book_item">
+													<a href="/pungmu/selectBbsNttList.do?bbsNo=315&key=3062&searchCtgry=">
+														<div class="book_image">
+															
+																
+																	<img src="/DATA/bbs/315/73bfd47b-c7de-415e-96c8-08874e60b1e7.jpg" alt="그 산이 정말 거기 있었을까">
+																
+																
+															
+														</div>
+														<div class="book_title ellipsis">그 산이 정말 거기 있었을까</div>
+													</a>
+												</li>
+												
+													
+												
+
+											</ul>
+										</div>
+									</div>
+								</li>
+								<li>
+									<button type="button" class="tab_button"><span class="tab_title">성인</span></button>
+									<div class="tab_content">
+										<div class="book_track">
+											<ul class="clearfix">
+												<li class="book_item">
+													<a href="#n">
+														<div class="book_image">
+															<img src="../../DATA/dummy_lib_intro_book5.jpg" alt="누군가 나를 지켜보고 있어. 책표지" />
+														</div>
+														<div class="book_title ellipsis">누군가 나를 지켜보고 있어</div>
+													</a>
+												</li>
+												<li class="book_item">
+													<a href="#n">
+														<div class="book_image">
+															<img src="../../DATA/dummy_lib_intro_book4.jpg" alt="세상 끝에 있는 너에게. 책표지" />
+														</div>
+														<div class="book_title ellipsis">세상 끝에 있는 너에게</div>
+													</a>
+												</li>
+												<li class="book_item">
+													<a href="#n">
+														<div class="book_image">
+															<img src="../../DATA/dummy_lib_intro_book5.jpg" alt="누군가 나를 지켜보고 있어. 책표지" />
+														</div>
+														<div class="book_title ellipsis">누군가 나를 지켜보고 있어</div>
+													</a>
+												</li>
+												<li class="book_item">
+													<a href="#n">
+														<div class="book_image">
+															<img src="../../DATA/dummy_lib_intro_book5.jpg" alt="누군가 나를 지켜보고 있어. 책표지" />
+														</div>
+														<div class="book_title ellipsis">누군가 나를 지켜보고 있어</div>
+													</a>
+												</li>
+												<li class="book_item">
+													<a href="#n">
+														<div class="book_image">
+															<img src="../../DATA/dummy_lib_intro_book5.jpg" alt="누군가 나를 지켜보고 있어. 책표지" />
+														</div>
+														<div class="book_title ellipsis">누군가 나를 지켜보고 있어</div>
+													</a>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</li>
+								<li>
+                                    <button type="button" class="tab_button"><span class="tab_title">아동</span></button>
+									<div class="tab_content">
+										<div class="book_track">
+											<ul class="clearfix">
+												<li class="book_item">
+													<a href="#n">
+														<div class="book_image">
+															<img src="../../DATA/dummy_lib_intro_book3.jpg" alt="누군가 나를 지켜보고 있어. 책표지" />
+														</div>
+														<div class="book_title ellipsis">누군가 나를 지켜보고 있어</div>
+													</a>
+												</li>
+												<li class="book_item">
+													<a href="#n">
+														<div class="book_image">
+															<img src="../../DATA/dummy_lib_intro_book2.jpg" alt="세상 끝에 있는 너에게. 책표지" />
+														</div>
+														<div class="book_title ellipsis">세상 끝에 있는 너에게</div>
+													</a>
+												</li>
+												<li class="book_item">
+													<a href="#n">
+														<div class="book_image">
+															<img src="../../DATA/noimg_w420.jpg" alt="No Image" />
+														</div>
+														<div class="book_title ellipsis">누군가 나를 지켜보고 있어</div>
+													</a>
+												</li>
+												<li class="book_item">
+													<a href="#n">
+														<div class="book_image">
+															<img src="../../DATA/dummy_lib_intro_book5.jpg" alt="누군가 나를 지켜보고 있어. 책표지" />
+														</div>
+														<div class="book_title ellipsis">누군가 나를 지켜보고 있어</div>
+													</a>
+												</li>
+												<li class="book_item">
+													<a href="#n">
+														<div class="book_image">
+															<img src="../../DATA/dummy_lib_intro_book5.jpg" alt="누군가 나를 지켜보고 있어. 책표지" />
+														</div>
+														<div class="book_title ellipsis">누군가 나를 지켜보고 있어</div>
+													</a>
+												</li>
+												<li class="book_item">
+													<a href="#n">
+														<div class="book_image">
+															<img src="../../DATA/dummy_lib_intro_book5.jpg" alt="누군가 나를 지켜보고 있어. 책표지" />
+														</div>
+														<div class="book_title ellipsis">누군가 나를 지켜보고 있어</div>
+													</a>
+												</li>
+												<li class="book_item">
+													<a href="#n">
+														<div class="book_image">
+															<img src="../../DATA/dummy_lib_intro_book5.jpg" alt="누군가 나를 지켜보고 있어. 책표지" />
+														</div>
+														<div class="book_title ellipsis">누군가 나를 지켜보고 있어</div>
+													</a>
+												</li>
+												<li class="book_item">
+													<a href="#n">
+														<div class="book_image">
+															<img src="../../DATA/dummy_lib_intro_book5.jpg" alt="누군가 나를 지켜보고 있어. 책표지" />
+														</div>
+														<div class="book_title ellipsis">누군가 나를 지켜보고 있어</div>
+													</a>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="guide">
+			<div class="wrap">
+				<h2><img src="/site/lib/images/main/intro_guide_title.png" alt="도서관 특화안내"></h2>
+				<div class="clearfix">
+					<div class="guide_map">
+						<img src="/site/lib/images/main/intro_guide_map.png" alt="김포시 도서관(통진, 양곡, 장기, 중봉, 풍무, 고촌, 마산, 모담), 작은도서관(대곶, 구래, 누리봄, 하성) 지도입니다.(작은도서관(누리봄 작은도서관) 안내)" usemap="#guide_map" width="437" height="372">
+						<map name="guide_map">
+							<area shape="rect" alt="" title="모담도서관 안내" coords="204,178 ,254,222" href="#guide_item1">
+							<area shape="rect" alt="" title="통진도서관 안내" coords="85,114,149,169" href="#guide_item3">
+							<area shape="rect" alt="" title="양곡도서관 안내" coords="126,175,190,230" href="#guide_item2">
+							<area shape="rect" alt="" title="중봉도서관 안내" coords="209,274,293,309" href="#guide_item4">
+							<area shape="rect" alt="" title="풍무도서관 안내" coords="273,314,337,370 " href="#guide_item5">
+							<area shape="rect" alt="" title="고촌도서관 안내" coords="353,309,434,344" href="#guide_item6">
+							<area shape="rect" alt="" title="작은도서관(대곶 작은도서관) 안내" coords="29,226 ,97,253 " href="#guide_item7">
+							<area shape="rect" alt="" title="작은도서관(구래 작은도서관) 안내" coords="88,248,142,286" href="#guide_item8">
+							<area shape="rect" alt="" title="장기도서관 안내" coords="215,222,303,257" href="#guide_item9">
+							<area shape="rect" alt="" title="작은도서관(누리봄 작은도서관) 안내" coords="300,250,342,298" href="#guide_item10"><!--306,277,375,304 / 309,300,302,254,344,250,350,275-->
+							<area shape="rect" alt="" title="작은도서관(하성작은도서관) 안내" coords="163,9,214,55" href="#guide_item11">
+							<area shape="rect" alt="" title="마산도서관 안내" coords="141,259,205,320" href="#guide_item12">
+							<area shape="rect" alt="" title="만화도서관 안내" coords="343,344,398,370" href="#guide_item13">
+                            <area shape="rect" alt="" title="작은도서관(향산 작은도서관) 안내" coords="381,286,318,315" href="#guide_item14">
+						</map>
+					</div>
+					<!-- //guide_map -->
+
+					<div class="guide_list">
+					<div id="guide_item1" class="guide_item guide_item1 active">
+						<div class="guide_content">
+							<h3>모담 도서관</h3>
+							<div class="guide_text">모담도서관은 김포의 문화예술 거점 도서관으로, 다양한 예술 분야의 장서와 체험형 프로그램을 통해 시민의 예술 감수성을 높이고 창작의 기회를 제공합니다. 시각예술, 공연, 음악 등 문화예술 프로그램과 전문 장서 제공을 통해 세대 간 소통과 지역문화 활성화를 선도하고 있습니다.</div>
+							<ul class="guide_info">
+								<li class="guide_info_item address"><span class="guide_info_title">주소:</span>경기도 김포시 모담공원로118(운양동)</li>
+								<!-- <li class="guide_info_item holiday"><span class="guide_info_title">휴관일:</span>매주 토·일요일 / 법정공휴일</li> -->
+							</ul>
+						</div>
+					</div>
+					<div id="guide_item2" class="guide_item guide_item2">
+						<div class="guide_content">
+							<h3>양곡도서관 독립운동<br>(독립운동코너 운영)</h3>
+							<div class="guide_text">양곡도서관은 3.1만세운동이 일어난 지역에 위치하고 있어 독립운동을 특화로 운영하고 있습니다. 독립운동 관련 독서프로그램을 운영하며 특화자료도 계속 수집하고 있습니다. 우리 지역의 역사적 유산을 지역주민들과 공유하며 자긍심을 높일 수 있도록 노력하겠습니다.</div>
+							<ul class="guide_info">
+								<li class="guide_info_item address"><span class="guide_info_title">주소:</span>경기도 김포시 양곡4로197번길 40</li>
+								<!-- <li class="guide_info_item holiday"><span class="guide_info_title">휴관일:</span>매주 일요일. 월요일 / 법정공휴일(일요일 제외)</li> -->
+							</ul>
+						</div>
+					</div>
+					<div id="guide_item3" class="guide_item guide_item3">
+						<div class="guide_content">
+							<h3>통진도서관 농업,<br> 생태ㆍ환경<br>(특화자료실 운영)</h3>
+							<div class="guide_text">통진도서관은 농촌 지역의 특성을 반영하여 “농업”을 특화로 운영하고 있습니다. 농업자료실, 시민협의체, 농업 특화사업 운영으로 지역주민에게 농업정보를 제공하고, 나아가 주민들과 함께 소통하고 성장하는 도서관을 지향하고 있습니다.</div>
+							<ul class="guide_info">
+								<li class="guide_info_item address"><span class="guide_info_title">주소:</span>경기도 김포시 통진읍 조강로 132</li>
+								<!-- <li class="guide_info_item holiday"><span class="guide_info_title">휴관일:</span>매주 일요일. 월요일 / 법정공휴일(일요일 제외)</li> -->
+							</ul>
+						</div>
+					</div>
+					<div id="guide_item4" class="guide_item guide_item4">
+						<div class="guide_content">
+							<h3><span class="em_b_red">(휴관)</span>중봉도서관 생태·환경, 향토자료(특화자료코너)</h3>
+							<div class="guide_text">중봉도서관은 김포시에서 가장 오래된 역사와 전통을 지닌 공공도서관입니다. 생태, 향토 특화 자료를 비롯한 37만여 권의 장서를 보유하고 있습니다. 시민 책 돌려 읽기 운동, 시민 독서감상문 공모, 다양한 주제의 독서·문화 프로그램 운영으로 구도심 문화 접점의 대표기관 역할을 수행하고 있습니다.</div>
+							<ul class="guide_info">
+								<li class="guide_info_item address"><span class="guide_info_title">주소:</span>경기도 김포시 봉화로130번길 26(북변동)</li>
+								<!-- <li class="guide_info_item holiday"><span class="guide_info_title">휴관일:</span>매주 일요일. 월요일 / 법정공휴일(일요일 제외)</li> -->
+							</ul>
+						</div>
+					</div>
+					<div id="guide_item5" class="guide_item guide_item5">
+						<div class="guide_content">
+							<h3>풍무도서관 <br>메이커스페이스(3D프린터)</h3>
+							<div class="guide_text">풍무도서관은 3D프린터를 활용한 창작 활동 공간인 메이커스페이스를 특화로 하는 공공도서관으로, 4차산업혁명 시대에 발맞추어 시민들과 함께 미래를 설계하고 꿈꾸는 도서관입니다.</div>
+							<ul class="guide_info">
+								<li class="guide_info_item address"><span class="guide_info_title">주소:</span>경기도 김포시 풍무로146번길 101</li>
+								<!-- <li class="guide_info_item holiday"><span class="guide_info_title">휴관일:</span>매주 일요일. 월요일 / 법정공휴일(일요일 제외)</li> -->
+							</ul>
+						</div>
+					</div>
+					<div id="guide_item6" class="guide_item guide_item6">
+						<div class="guide_content">
+							<h3>고촌도서관 영어<br>(스마트영어도서관 운영)</h3>
+							<div class="guide_text">고촌도서관은 국제사회로 나아가는 세계의 흐름에 맞추어 핵심적으로 통용되고있는 영어를 도서관 특화 주제로 하여, 영어원서특화자료코너, 다양한 영어 관련 강좌, 스마트영어독서프로그램을 시민을 대상으로 운영 및 제공하고 있습니다.</div>
+							<ul class="guide_info">
+								<li class="guide_info_item address"><span class="guide_info_title">주소:</span>경기도 김포시 고촌읍 장차로 14</li>
+								<!-- <li class="guide_info_item holiday"><span class="guide_info_title">휴관일:</span>매주 금요일 / 법정공휴일(일요일 제외)</li> -->
+							</ul>
+						</div>
+					</div>
+					<div id="guide_item7" class="guide_item guide_item7">
+						<div class="guide_content">
+							<h3>대곶 작은도서관</h3>
+							<div class="guide_text"></div>
+							<ul class="guide_info">
+								<li class="guide_info_item address"><span class="guide_info_title">주소:</span>경기도 김포시 대곶면 율생로 83-23(대곶문화복지센터 내 3층)</li>
+								<!-- <li class="guide_info_item holiday"><span class="guide_info_title">휴관일:</span>매주 토·일요일 / 법정공휴일</li> -->
+							</ul>
+						</div>
+					</div>
+					<div id="guide_item8" class="guide_item guide_item7">
+						<div class="guide_content">
+							<h3>구래 작은도서관</h3>
+							<div class="guide_text"></div>
+							<ul class="guide_info">
+								<li class="guide_info_item address"><span class="guide_info_title">주소:</span>경기도 김포시 김포한강9로115번길 25(구래주민자치센터 2층)</li>
+								<!-- <li class="guide_info_item holiday"><span class="guide_info_title">휴관일:</span>매주 토·일요일 / 법정공휴일</li> -->
+							</ul>
+						</div>
+					</div>
+					<div id="guide_item9" class="guide_item guide_item8">
+                        <div class="guide_content">
+							<h3>장기도서관 청소년<br>(청소년자료실)</h3>
+							<div class="guide_text">장기도서관은 미래를 여는 도서관을 지향하며 혁신의 주체인 "청소년"을 특화로 운영하고 있습니다. 청소년자료실, 청소년 운영위원회, 청소년 독서·문화 프로그램의 운영으로 청소년의 지식과 정서 함양에 기여하고 있습니다. </div>
+							<ul class="guide_info">
+								<li class="guide_info_item address"><span class="guide_info_title">주소:</span>경기도 김포시 김포한강2로 42(장기동)</li>
+								<!-- <li class="guide_info_item holiday"><span class="guide_info_title">휴관일:</span>매주 일요일. 월요일 / 법정공휴일(일요일 제외)</li> -->
+							</ul>
+						</div>
+					</div>
+					<div id="guide_item10" class="guide_item guide_item7">
+						<div class="guide_content">
+							<h3>누리봄 작은도서관</h3>
+							<div class="guide_text"></div>
+							<ul class="guide_info">
+								<li class="guide_info_item address"><span class="guide_info_title">주소:</span>경기도 김포시 김포대로 926번길 14(북변어린이집 2층)</li>
+								<!-- <li class="guide_info_item holiday"><span class="guide_info_title">휴관일:</span>매주 토·일요일 / 법정공휴일</li> -->
+							</ul>
+						</div>
+					</div>
+					<div id="guide_item11" class="guide_item guide_item7">
+						<div class="guide_content">
+							<h3>하성작은도서관</h3>
+							<div class="guide_text"></div>
+							<ul class="guide_info">
+								<li class="guide_info_item address"><span class="guide_info_title">주소:</span>김포시 하성면 애기봉로 806번길 68-13 2층</li>
+								<!-- <li class="guide_info_item holiday"><span class="guide_info_title">휴관일:</span>매주 토·일요일 / 법정공휴일</li> -->
+							</ul>
+						</div>
+					</div>
+					<div id="guide_item12" class="guide_item guide_item12">
+						<div class="guide_content">
+							<h3>마산도서관<span style="font-size:17px;"></h3>
+							<div class="guide_text">마산도서관의 특화 주제는 여행으로 우리가 가보고 싶은 여행지에 대한 정보를 전달하기 위해 다양한 여행분야 장소를 제공하고 관련 문화프로그램을 운영하여 방문하는 시민들에게 여행지에 대한 정보 공유와 여행에 대한 흥미를 높이기 위해 노력하고 있습니다.</div>
+							<ul class="guide_info">
+								<li class="guide_info_item address"><span class="guide_info_title">주소:</span>김포시 김포한강7로22번길 174-6(마산동)</li>
+								<!-- <li class="guide_info_item holiday"><span class="guide_info_title">휴관일:</span>매주 토·일요일 / 법정공휴일</li> -->
+							</ul>
+						</div>
+					</div>
+					<div id="guide_item13" class="guide_item guide_item7">
+						<div class="guide_content">
+							<h3>김포만화도서관(만화)</h3>
+							<div class="guide_text">김포만화도서관은 김포 최초의 만화도서관으로 다양한 만화 문화의 서비스를 제공하고, 끔과 낭만, 희망이 넘치는 만화 속 세상에서 지역 주민들과 함께 소통하는 문화공간입니다.</div>
+							<ul class="guide_info">
+								<li class="guide_info_item address"><span class="guide_info_title">주소:</span>경기도 김포시 고촌읍 수기로 63, 1층</li>
+								<!-- <li class="guide_info_item holiday"><span class="guide_info_title">휴관일:</span>매주 토·일요일 / 법정공휴일</li> -->
+							</ul>
+						</div>
+					</div>
+                    <div id="guide_item14" class="guide_item guide_item7">
+						<div class="guide_content">
+							<h3>향산작은도서관</h3>
+							<div class="guide_text"></div>
+							<ul class="guide_info">
+								<li class="guide_info_item address"><span class="guide_info_title">주소:</span>경기도 김포시 고촌읍 상미로 23(향산전통근린공원 1층)</li>
+								<!-- <li class="guide_info_item holiday"><span class="guide_info_title">휴관일:</span>매주 토·일요일 / 법정공휴일</li> -->
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!-- //guide_list -->
+				</div>
+			</div>
+		</section>
+	</main>
+	<!-- //container -->
+	
+
+
+
+
+<footer id="footer">
+
+
+
+	
+
+
+
+
+
+
+
+<!-- //footer_banner는 메인만 존재 -->
+
+
+
+
+
+<div class="footer_site">
+	<div class="wrap">
+		<ul class="site_list clearfix">
+			<li class="site_item">
+				<button type="button">시민</button>
+				<div class="site_list">
+					<ul>
+					 						<li><a href="/portal/contents.do?key=1256"  target="_blank" title="새창">김포사용설명서</a></li>
+						<li><a href="/portal/contents.do?key=1012"  target="_blank" title="새창">민원실안내</a></li>
+						<li><a href="http://www.minwon.go.kr/main?a=AA020InfoMainApp"  target="_blank" title="새창">인터넷민원(정부24)</a></li>
+						<li><a href="/portal/selectBbsNttList.do?bbsNo=303&key=2677"  target="_blank" title="새창">민원편람/서식</a></li>
+						<li><a href="/portal/contents.do?key=1169"  target="_blank" title="새창">민원상담(국민신문고)</a></li>
+						<li><a href="http://www.elis.go.kr/"  target="_blank" title="새창">자치법규</a></li>
+						<li><a href="https://www.wetax.go.kr/"  target="_blank" title="새창">인터넷지방세</a></li>
+						<li><a href="/portal/selectBbsNttList.do?bbsNo=288&amp;key=1007"  target="_blank" title="새창">시험정보</a></li>
+						<li><a href="/gimpojob/index.do"  target="_blank" title="새창">통합일자리정보</a></li>
+						<li><a href="/portal/contents.do?key=1078"  target="_blank" title="새창">주정차민원</a></li>
+						<li><a href="/portal/busInfoList.do?key=1473&amp;rep=1&amp;trnsprtStle=A"  target="_blank" title="새창">버스정보</a></li>
+					</ul>
+				</div>
+			</li>
+			<li class="site_item">
+				<button type="button">사업자</button>
+				<div class="site_list">
+					<ul>
+						<li><a href="/portal/selectBbsNttList.do?bbsNo=295&amp;key=1115"  target="_blank" title="새창">예산정보</a></li>
+						<li><a href="http://biz.gimpo.go.kr/first/index_first_gimpo.htm"  target="_blank" title="새창">맞춤형 입찰정보시스템</a></li>
+						<li><a href="/portal/ContractList.do?key=1131&amp;PRIVATE_CTRT_YN=N"  target="_blank" title="새창">계약정보 공개</a></li>
+						<li><a href="https://eminwon.gimpo.go.kr/"  target="_blank" title="새창">민원처리과정 공개</a></li>
+						<li><a href="/portal/contents.do?key=2675"  target="_blank" title="새창">부동산자율점검</a></li>
+						<li><a href="/portal/selectBbsNttList.do?bbsNo=0&amp;key=1302"  target="_blank" title="새창">관내기업현황</a></li>
+						<li><a href="/portal/contents.do?key=1308"  target="_blank" title="새창">산업단지</a></li>
+						<li><a href="/portal/contents.do?key=7619"  target="_blank" title="새창">2035도시 기본계획</a></li>
+						<li><a href="/portal/contents.do?key=7622"  target="_blank" title="새창">도시경관</a></li>
+						<li><a href="https://www.gimpo.go.kr/u/46152"  target="_blank" title="새창">옥외광고물</a></li>
+					</ul>
+				</div>
+			</li>
+			<li class="site_item">
+				<button type="button">관광객</button>
+				<div class="site_list">
+					<ul>
+						<li><a href="/culture/contents.do?key=7477"  target="_blank" title="새창">김포여행코스</a></li>
+						<li><a href="/culture/selectTourCntntsWebList.do?key=6806&ctgry=2"  target="_blank" title="새창">관광명소</a></li>
+						<li><a href="/culture/selectTourCntntsWebList.do?key=6807&ctgry=3"  target="_blank" title="새창">문화유산</a></li>
+						<li><a href="/culture/selectTourCntntsWebList.do?key=6808&ctgry=4"  target="_blank" title="새창">축제행사</a></li>
+						<li><a href="/culture/selectTourCntntsWebList.do?key=6867&ctgry=18"  target="_blank" title="새창">김포맛집</a></li>
+						<li><a href="/culture/selectTourCntntsWebList.do?key=6871&ctgry=23"  target="_blank" title="새창">김포숙박</a></li>
+						<li><a href="/culture/contents.do?key=6860"  target="_blank" title="새창">문화관광해설사</a></li>
+						<li><a href="/culture/addNtcnReqstView.do?key=6815&ntcnSe=4"  target="_blank" title="새창">관광책자 신청</a></li>
+					</ul>
+				</div>
+			</li>
+			<li class="site_item">
+				<button type="button">직속기관/사업소</button>
+				<div class="site_list">
+					<ul>
+						<li><a href="https://gimpocouncil.go.kr/"  target="_blank" title="새창">김포시의회</a></li>
+						<li><a href="/news/index.do"  target="_blank" title="새창">김포시 뉴스포털</a></li>
+						<li><a href="/culture/index.do"  target="_blank" title="새창">문화관광</a></li>
+						<li><a href="/reserve/index.do"  target="_blank" title="새창">통합예약</a></li>
+						<li><a href="/learning/index.do"  target="_blank" title="새창">평생학습</a></li>
+						<li><a href="/health/index.do"  target="_blank" title="새창">보건소</a></li>
+						<li><a href="/agri/index.do"  target="_blank" title="새창">농업기술센터</a></li>
+						<li><a href="/water/index.do"  target="_blank" title="새창">맑은물사업본부</a></li>
+						<li><a href="/lib/index.do"  target="_blank" title="새창">시립도서관</a></li>
+						<li><a href="https://www.gimpo.go.kr/modam/index.do"  target="_blank" title="새창">모담도서관</a></li>
+						<li><a href="/tongjin/index.do"  target="_blank" title="새창">통진도서관</a></li>
+						<li><a href="/yanggok/index.do"  target="_blank" title="새창">양곡도서관</a></li>
+						<li><a href="/gochon/index.do"  target="_blank" title="새창">고촌도서관</a></li>
+						<li><a href="/janggi/index.do"  target="_blank" title="새창">장기도서관</a></li>
+						<li><a href="/pungmu/index.do"  target="_blank" title="새창">풍무도서관</a></li>
+						<li><a href="/masan/index.do"  target="_blank" title="새창">마산도서관</a></li>
+						<li><a href="/jungbong/index.do"  target="_blank" title="새창">중봉도서관</a></li>
+					</ul>
+				</div>
+			</li>
+			<li class="site_item">
+				<button type="button">읍면동</button>
+				<div class="site_list">
+					<ul>
+						<li><a href="/portal/contents.do?key=1591"  target="_blank" title="새창">전체</a></li>
+						<li><a href="/portal/contents.do?key=3237"  target="_blank" title="새창">통진읍</a></li>
+						<li><a href="/portal/contents.do?key=3221"  target="_blank" title="새창">고촌읍</a></li>
+						<li><a href="/portal/contents.do?key=3253"  target="_blank" title="새창">양촌읍</a></li>
+						<li><a href="/portal/contents.do?key=3285"  target="_blank" title="새창">대곶면</a></li>
+						<li><a href="/portal/contents.do?key=3269"  target="_blank" title="새창">월곶면</a></li>
+						<li><a href="/portal/contents.do?key=3301"  target="_blank" title="새창">하성면</a></li>
+						<li><a href="/portal/contents.do?key=3317"  target="_blank" title="새창">김포본동</a></li>
+						<li><a href="/portal/contents.do?key=3381"  target="_blank" title="새창">장기본동</a></li>
+						<li><a href="/portal/contents.do?key=3333"  target="_blank" title="새창">사우동</a></li>
+						<li><a href="/portal/contents.do?key=3397"  target="_blank" title="새창">풍무동</a></li>
+						<li><a href="/portal/contents.do?key=3349"  target="_blank" title="새창">장기동</a></li>
+						<li><a href="/portal/contents.do?key=3413"  target="_blank" title="새창">구래동</a></li>
+						<li><a href="/portal/contents.do?key=3877"  target="_self" title="새창">마산동</a></li>
+						<li><a href="/portal/contents.do?key=3365"  target="_blank" title="새창">운양동</a></li>
+					</ul>
+				</div>
+			</li>
+			<li class="site_item">
+				<button type="button">유관기관</button>
+				<div class="site_list">
+					<ul>
+						<li><a href="http://www.ggv.or.kr/"  target="_blank" title="새창">김포산업단지관리공단</a></li>
+						<li><a href="http://www.gpchildcare.or.kr"  target="_blank" title="새창">김포시육아종합지원센터</a></li>
+						<li><a href="https://ccfsm.foodnara.go.kr/gimpo/"  target="_blank" title="새창">김포시어린이급식관리지원센터</a></li>
+						<li><a href="https://www.guc.or.kr"  target="_blank" title="새창">김포도시공사</a></li>
+						<li><a href="http://bestgcf.or.kr/"  target="_blank" title="새창">김포복지재단</a></li>
+						<li><a href="https://www.gcf.or.kr"  target="_blank" title="새창">김포문화재단</a></li>
+						<li><a href="http://www.fgy.or.kr/"  target="_blank" title="새창">김포청소년재단</a></li>
+						<li><a href="http://gimpomunhwa.or.kr/index.do"  target="_blank" title="새창">김포문화원</a></li>
+						<li><a href="http://www.gimposports.or.kr/"  target="_blank" title="새창">김포시 체육회</a></li>
+						<li><a href="http://www.gimpo1365.or.kr/"  target="_blank" title="새창">김포시 자원봉사센터</a></li>
+						<li><a href="https://gimpocci.net/"  target="_blank" title="새창">김포상공회의소</a></li>
+						<li><a href="https://www.gopa.or.kr"  target="_blank" title="새창">김포산업진흥원</a></li>
+						<li><a href="https://www.gimpofc.com"  target="_blank" title="새창">김포fc</a></li>
+					</ul>
+				</div>
+			</li>
+		</ul>
+	</div>
+</div>
+<div class="footer_content">
+	<div class="wrap">
+		
+
+		<div class="footer_call">
+			<strong>김포시 민원 콜센터</strong>
+			<mark>031-980-2114</mark>
+		</div>
+				
+		<div class="footer_nav">
+			
+
+
+
+
+
+
+
+
+
+			
+			
+			<ul >
+				<li ><a  href="/portal/sub.do?key=3512" title="새창" target="_blank">개인정보처리방침</a></li>
+				
+				<li ><a  href="/portal/sub.do?key=3507" title="새창" target="_blank">홈페이지 개선의견</a></li>
+				<li ><a  href="/portal/sub.do?key=3511" title="새창" target="_blank">저작권 정책</a></li>
+				<li ><a  href="/portal/sub.do?key=3510" title="새창" target="_blank">뷰어다운로드</a></li>
+				<!-- <li  ><a   href="#">찾아오시는 길</a></li>
+				<li  ><a   href="#">배너모음</a></li> -->
+			</ul>
+		</div>
+		<div class="footer_info">
+			<address>
+				<span class="address">주소 : 김포시립도서관 10123 경기도 김포시 김포한강2로 42(장기동)</span><br>
+				<span class="tel">대표전화 : 031-5186-4680</span>
+				<span class="fax">FAX : 031-5186-4689</span>
+			</address>
+			<p>ⓒ GIMPO CITY All Rights Reserved</p>
+				
+		</div>
+	</div>
+</div>
+</footer>
+<!-- //footer -->
+
+
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script>
+	Kakao.init('f8c269953f42de5862c78e4124fbe8cc');
+</script>
+
+
+
+
+
+
+
+</div>
+</body>
+</html>
+

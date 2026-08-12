@@ -1,0 +1,898 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>자료검색 - 자료정보·검색 -  광명시도서관</title>
+<meta name="naver-site-verification" content="fa8d9cb0698b9a07df48f9cb22e6a427e5845108"/>
+<meta name="subject" content="광명시도서관 홈페이지">
+<meta name="description" content="광명시도서관 홈페이지입니다.">
+<meta name="keywords" content="광명시도서관">
+<meta name="copyright" content="광명시도서관">
+<META http-equiv="Expires" content="-1">
+<META http-equiv="Pragma" content="no-cache">
+<META http-equiv="Cache-Control" content="No-Cache">
+
+<meta name="apple-mobile-web-app-capable" content="no">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="광명시도서관">
+<meta property="og:description" content="광명시도서관">
+<meta property="og:image" content="">
+<meta property="og:url" content="">
+
+
+<link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
+<link rel="shortcut icon" href="../appicon/favicon.ico?v=2">
+
+<link rel="stylesheet" href="./css/fullpage.css" />
+<link rel="stylesheet" href="./css/common.css?v=20260807">
+<link rel="stylesheet" href="./css/layout.css?v=20260807">
+<link rel="stylesheet" href="./css/mobile.css?v=20260807" media="screen and (max-width:767px)">
+<link rel="stylesheet" href="./css/tablet.css?v=20260807" media="screen and (min-width:768px) and (max-width:1199px)">
+<link rel="stylesheet" href="./css/desktop.css?v=20260807" media="screen and (min-width:1200px)">
+<link rel="stylesheet" href="./css/jquery-ui.min.css">
+<link rel="stylesheet" href="./css/swiper.css">
+<link rel="stylesheet" href="./css/slick.css">
+<link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css">
+
+<script src="../js/jquery-1.10.1.min.js"></script>
+<script src="../js/jquery-ui.min.js"></script>
+<script src="../js/jquery.cookie.js"></script>
+<script src="../js/jquery.animate.min.js"></script>
+<script src="../js/ajax.js"></script>
+<script src="js/jquery.bxslider.js"></script>
+<script src="../js/modernizr.min.js"></script>
+<script src="../js/placeholder.js"></script>
+<script src="../js/default.js"></script>
+<script src="js/default.js?v=2026080708>"></script>
+<script src="js/jquery.cycle2.js"></script>
+<script src="js/swiper.min.js"></script>
+<script src="js/slick.min.js?v=20260807>""></script>
+<script>
+function setCookie( name, value, expiredays ) {
+	var todayDate = new Date();
+		todayDate.setDate( todayDate.getDate() + expiredays );
+		document.cookie = name + "=" + escape( value ) + "; path=/; expires=" + todayDate.toGMTString() + ";"
+	}
+
+function closeWin() {
+	if ( document.notice_form.chkbox.checked ){
+		setCookie( "maindiv", "done" , 1 );
+	}
+	document.all['divpop'].style.visibility = "hidden";
+}
+</script>
+<script>
+//<![CDATA[
+	function wjContentsLink(type){
+		if(confirm('로그인 후 이용가능 합니다. \n로그인 페이지로 이동하시겠습니까?')) location.href="./index.php?g_page=member&m_page=member01&returnUrl=L2Zyb250L2luZGV4LnBocD9nX3BhZ2U9c2VhcmNoJm1fcGFnZT1zZWFyY2gwMSZzZWFyY2hXb3JkPSVFRCU4QyU4QyVFQyU5RCVCNCVFQyU4RCVBQw==";
+		return false;
+		window.open('../contentsSso.php?type=' + type, '_blank', 'noopener');
+	}
+//]]>
+</script>
+
+<script>
+</script>
+
+<script>
+$(function() {
+	$("#dkleft .depth1").click(function(){
+		$(this).siblings().removeClass("sel");
+		$(".depth2").slideUp();
+		if(!$(this).removeClass("sel").next().is(":visible"))
+		{
+			$(this).addClass("sel");
+			$(this).next().slideDown();
+		}
+	});
+	dkitsnap.start("dkleft","Wrap");
+});
+window.onload = function() {
+	var token = '520acc36fb0bf273bc707a1a4ca02e6a9b31852a';
+	var forms = document.getElementsByTagName('form');
+	for(var i=0;i<forms.length;i++) {
+		var form = forms[i];
+		if(!form.method) continue;
+		if(form.method.toLowerCase() != 'post') continue;
+		if(form.querySelector('input[name="WD_CSRF_TOKEN"]')) continue;
+		var input = document.createElement('input');
+		input.type = 'hidden';
+		input.name = 'WD_CSRF_TOKEN';
+		input.value = token;
+		form.appendChild(input);
+	}
+};
+
+</script>
+
+
+<script>
+//컨텐츠 SSO 로그인
+function wjContentsSso(form)
+{
+	alert("로그인필요한 서비스 입니다. 로그인을 해주세요.");
+	return;
+	
+	$form = $("<form/>").attr({action:"../contentsSso.php?part=" + form,target:"_blank", id:"ssoForm", method:'POST'});
+	$(document.body).append($form);
+	$form.submit();
+}
+
+
+function wjUserMod(_url){
+	alert('로그인을 해주세요'); 
+	return false;
+}
+</script></head>
+<body>
+<form method="get" name="contentsSso" action="../contentsSso.php" target="_blank">
+<input type="hidden" name="_target" value="">
+</form>
+
+<!-- 팝업창 -->
+<!-- // 팝업창 -->
+
+<div id="skipBtnWrap">
+	<a href="#design">본문 바로가기</a>
+</div>
+
+
+<script>
+//<![CDATA[
+	$(function()  {
+		$('.popupbar').bxSlider({
+			mode:'horizontal',
+			speed:200,
+			autoHover:true,
+			controls:true,
+			auto:true,
+			autoControls:false,
+			pager:true
+		});
+	});
+//]]>
+</script>
+<div id="popupbar">
+	<div class="popupbar">
+
+		<div class="slide">
+			<div class="holidays">
+				<h3>오늘은 _META_TITLE_ 휴관일입니다.</h3>
+				<div class="close">
+				<form method="post" action="./inc/cookie.php">
+					<input type="hidden" value="" name="url">
+					<input value="today" name="today" type="hidden">
+					<button type="submit">X 오늘 더 이상 보이지 않기</button>
+				</form>
+				</div>
+			</div>
+		</div>
+				<div class="slide">
+			<div class="holidays">
+				<h3>오늘은 _META_TITLE_ 휴관일입니다.</h3>
+				<div class="close">
+				<form method="post" action="./inc/cookie.php">
+					<input type="hidden" value="" name="url">
+					<input value="today" name="today" type="hidden">
+					<button type="submit">X 오늘 더 이상 보이지 않기</button>
+				</form>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	<i class="b1"></i>
+	<i class="b2"></i>
+</div>
+
+
+<!--#Wrap-->
+<div id="Wrap">
+	<header id="header">
+		<div class="header">
+			<h1><a href="./">광명시도서관 Gwangmyeong Municipal Library</a></h1>
+			<div class="h_right">
+				<nav class="menu_wrap">
+					<button class="btn btn-menu mocate"><i class="fa fa-bars"></i></button>
+					<div id="gnb">
+						<h2 class="skip">주 메뉴</h2>
+												<div class="gnb">
+							<ul class="depth1">
+																<li class="g1 "><a href="./index.php?g_page=intro&amp;m_page=intro01_03" class="m1" >도서관안내<em></em></a>
+																			<ul class="depth2">
+																					<li><a href="./index.php?g_page=intro&amp;m_page=intro01_03">도서관발자취</a></li>
+																					<li><a href="./index.php?g_page=intro&amp;m_page=intro02_01_03">도서관 현황</a></li>
+																					<li><a href="./index.php?g_page=intro&amp;m_page=intro09_01_03">이용안내</a></li>
+																					<li><a href="./index.php?g_page=intro&amp;m_page=intro04_01_03">실별안내</a></li>
+																					<li><a href="./index.php?g_page=intro&amp;m_page=intro05_03">편의시설안내</a></li>
+																					<li><a href="./index.php?g_page=intro&amp;m_page=intro06">찾아오시는길</a></li>
+																					<li><a href="./index.php?g_page=intro&amp;m_page=intro08_04">작은도서관</a></li>
+																					<li><a href="./index.php?g_page=intro&amp;m_page=intro10">스마트도서관</a></li>
+																				</ul>
+																</li>
+																<li class="g2  sel"><a href="./index.php?g_page=search&amp;m_page=search01" class="m1" >자료정보·검색<em></em></a>
+																			<ul class="depth2">
+																					<li><a href="./index.php?g_page=search&amp;m_page=search01">자료검색</a></li>
+																					<li><a href="./index.php?g_page=search&amp;m_page=search02">새로들어온책</a></li>
+																					<li><a href="./index.php?g_page=search&amp;m_page=search03">스마트도서관 검색</a></li>
+																					<li><a href="./index.php?g_page=search&amp;m_page=search08">전자도서관</a></li>
+																					<li><a href="./index.php?g_page=search&amp;m_page=search06">광명시도서관 대출베스트</a></li>
+																					<li><a href="./index.php?g_page=search&amp;m_page=search07">전국도서관 대출베스트</a></li>
+																					<li><a href="./index.php?g_page=search&amp;m_page=search09">정기간행물 목록</a></li>
+																				</ul>
+																</li>
+																<li class="g3 "><a href="./index.php?g_page=event&amp;m_page=event01" class="m1" >문화행사<em></em></a>
+																			<ul class="depth2">
+																					<li><a href="./index.php?g_page=event&amp;m_page=event01">이달의 도서관</a></li>
+																					<li><a href="./index.php?g_page=event&amp;m_page=event02">문화행사게시판</a></li>
+																					<li><a href="./index.php?g_page=event&amp;m_page=event14">문화행사 신청</a></li>
+																					<li><a href="./index.php?g_page=event&amp;m_page=event15">책축제</a></li>
+																					<li><a href="./index.php?g_page=event&amp;m_page=event16">광명시민 「책 한 권」 함께 읽기</a></li>
+																					<li><a href="https://gmlib.gm.go.kr/marathon/gmlib/index.php" target='_blank' rel='noopener noreferrer'  title='새창' >광명시 독서마라톤 대회</a></li>
+																					<li><a href="https://saram.gm.go.kr/" target='_blank' rel='noopener noreferrer'  title='새창' >광명시 사람책도서관</a></li>
+																				</ul>
+																</li>
+																<li class="g4 "><a href="./index.php?g_page=service&amp;m_page=service01" class="m1" >이용자서비스<em></em></a>
+																			<ul class="depth2">
+																					<li><a href="./index.php?g_page=service&amp;m_page=service01">상호대차서비스</a></li>
+																					<li><a href="./index.php?g_page=service&amp;m_page=service10">책이음서비스</a></li>
+																					<li><a href="./index.php?g_page=service&amp;m_page=service13">대출·반납</a></li>
+																					<li><a href="./index.php?g_page=service&amp;m_page=service02">희망도서신청</a></li>
+																					<li><a href="./index.php?g_page=test&inc=baro_login" target='_blank' rel='noopener noreferrer'  title='새창' >지역서점바로대출</a></li>
+																					<li><a href="./index.php?g_page=service&amp;m_page=service14">대출편의서비스</a></li>
+																					<li><a href="./index.php?g_page=service&amp;m_page=service15">북스타트</a></li>
+																				</ul>
+																</li>
+																<li class="g5 "><a href="./index.php?g_page=open&amp;m_page=open01" class="m1" >열린공간<em></em></a>
+																			<ul class="depth2">
+																					<li><a href="./index.php?g_page=open&amp;m_page=open01">공지사항</a></li>
+																					<li><a href="./index.php?g_page=open&amp;m_page=open02">열린소리함</a></li>
+																					<li><a href="./index.php?g_page=open&amp;m_page=open03">참여마당</a></li>
+																					<li><a href="./index.php?g_page=open&amp;m_page=open06_03">동아리 안내</a></li>
+																					<li><a href="./index.php?g_page=open&amp;m_page=open04">설문조사</a></li>
+																				</ul>
+																</li>
+																<li class="g6 "><a href="./index.php?g_page=mypage&amp;m_page=mypage01" class="m1" >나의 도서관<em></em></a>
+																			<ul class="depth2">
+																					<li><a href="./index.php?g_page=mypage&amp;m_page=mypage01">내서재</a></li>
+																					<li><a href="./index.php?g_page=mypage&amp;m_page=mypage02">문화행사 신청내역</a></li>
+																					<li><a href="./index.php?g_page=mypage&amp;m_page=mypage03">희망도서 신청내역</a></li>
+																					<li><a href="./index.php?g_page=mypage&m_page=mypage05&appPart=culture">책축제 신청내역</a></li>
+																					<li><a href="/dls_lu/member/index.php?act=joinAct&step=userJoin">기본정보</a></li>
+																				</ul>
+																</li>
+															</ul>
+						</div>
+						<div class="nav_bg"></div>
+					</div>
+				</nav>
+				<div class="etc_wp">
+					<div class="etc_btn">
+						<ul>
+													<li class="etc_select"><a href="#" title="하위메뉴 있음">로그인</a>
+								<ul>
+									<li class="etc01"><a href="./index.php?g_page=member&m_page=member01&returnUrl=L2Zyb250L2luZGV4LnBocD9nX3BhZ2U9c2VhcmNoJm1fcGFnZT1zZWFyY2gwMSZzZWFyY2hXb3JkPSVFRCU4QyU4QyVFQyU5RCVCNCVFQyU4RCVBQw==">로그인</a><li>
+									<li class="etc02"><a href="/dls_lu/">회원가입</a></li>
+								</ul>
+							</li>
+												</ul>
+					</div>
+					<button class="search">검색하기</button>
+					<script>
+						function wjSearchCheckH(f)
+						{
+							if(!f.searchWord.value){
+								alert('검색어를 적어주세요.'); f.searchWord.focus(); return false;
+							}
+						}
+					</script>
+					<div id="topSearchWp">
+						<form method="get" name="searchForm_h" action="./index.php" onsubmit="return wjSearchCheckH(this);">
+						<input type="hidden" name="g_page" value="search">
+						<input type="hidden" name="m_page" value="search01">
+							<fieldset>
+								<label for="topSearch" class="label_st">자료검색</label>
+								<input id="topSearch" type="text" name="searchWord" placeholder="검색어를 입력해주세요" onfocus="this.value='';this.className='box'" onblur="if (this.value.length==0) {this.className='box';}" title="검색어를 입력해주세요">
+								<button type="submit" class="btn_search">검색하기</button>
+							</fieldset>
+							<a href="#" class="close">검색창 닫기</a>
+						</form>
+					</div>
+					<a href="./index.php?g_page=etc&m_page=etc01" class="sitemap">사이트맵</a>
+				</div>
+			</div>
+		</div>
+	</header>
+	<div id="allbg"></div>
+<div id="contain">
+		<div id="subVisual">
+		<div class="sub_visual visual_search">
+			<div class="visual">
+
+	<p class="sub_slogan">책 속에서 만나는 <strong>즐거운 오늘, 빛나는 미래</strong></p>
+	<script>
+		function bookmarksite(title,url) {
+		   // Internet Explorer
+		   if(document.all)
+		   {
+			   window.external.AddFavorite(url, title);
+		   }
+		   // Google Chrome
+		   else if(window.chrome){
+			  alert("Ctrl+D키를 누르시면 즐겨찾기에 추가하실 수 있습니다.");
+		   }
+		   // Firefox
+		   else if (window.sidebar) // firefox
+		   {
+			   window.sidebar.addPanel(title, url, "");
+		   }
+		   // Opera
+		   else if(window.opera && window.print)
+		   { // opera
+			  var elem = document.createElement('a');
+			  elem.setAttribute('href',url);
+			  elem.setAttribute('title',title);
+			  elem.setAttribute('rel','sidebar');
+			  elem.click();
+		   }
+		}
+		$(function() {
+			$('.share_sns').click(function(){
+				var state = $('#share-lay').css('display');
+				if(state == 'none'){
+					$('#share-lay').slideDown();
+					$('.sb_quick .no02 > a').addClass('on');
+				}else{
+					$('#share-lay').slideUp();
+					$('.sb_quick .no02 > a').removeClass('on');
+				}
+			});
+		});
+		function onShareSns(kind){
+			var openWindow = window.open("about:blank");
+			if(kind == "fb"){
+				openWindow.location.href="http://www.facebook.com/sharer/sharer.php?u="+$(location).attr('href');
+			}else if(kind == "tw"){
+				openWindow.location.href="https://twitter.com/intent/tweet?url="+$(location).attr('href');
+			}else if(kind == "blog"){
+				openWindow.location.href="http://blog.naver.com/openapi/share?url="+$(location).attr('href');
+			}else{
+				alert("공유에 실패하였습니다.\n관리자에게 문의하세요.");
+			}
+		}
+	</script>
+
+	
+</div><!-- // .visual -->
+
+		</div>
+	</div>
+
+
+	<div class="contain">
+		<div id="aside">
+			<div class="search">
+	<h2>자료정보·검색</h2>
+	<ul>
+		<li class="side2m1 sel">
+
+		<a href="./index.php?g_page=search&amp;m_page=search01">자료검색</a>
+
+				</li>
+			<li class="side2m2 ">
+
+		<a href="./index.php?g_page=search&amp;m_page=search02">새로들어온책</a>
+
+				</li>
+			<li class="side2m3 ">
+
+		<a href="./index.php?g_page=search&amp;m_page=search03">스마트도서관 검색</a>
+
+				</li>
+			<li class="side2m4 ">
+
+		<a href="./index.php?g_page=search&amp;m_page=search08">전자도서관</a>
+
+					<ul class="side3m">
+							<li class="side4m1">
+				<a href="./index.php?g_page=search&amp;m_page=search08">전자책</a>
+				</li>
+								<li class="side4m2">
+				<a href="./index.php?g_page=search&amp;m_page=search08_04">오디오북</a>
+				</li>
+								<li class="side4m3">
+				<a href="./index.php?g_page=search&amp;m_page=search08_12">전자잡지</a>
+				</li>
+								<li class="side4m4">
+				<a href="./index.php?g_page=search&amp;m_page=search08_09"title = '새창 열림' onclick='wjContentsLink("dbpia"); return false;'>학회지 DB</a>
+				</li>
+								<li class="side4m5">
+				<a href="./index.php?g_page=search&amp;m_page=search08_11"title = '새창 열림' onclick='wjContentsLink("booksimple"); return false;'>도서요약</a>
+				</li>
+								
+			</ul>
+				</li>
+			<li class="side2m5 ">
+
+		<a href="./index.php?g_page=search&amp;m_page=search06">광명시도서관 대출베스트</a>
+
+				</li>
+			<li class="side2m6 ">
+
+		<a href="./index.php?g_page=search&amp;m_page=search07">전국도서관 대출베스트</a>
+
+				</li>
+			<li class="side2m7 ">
+
+		<a href="./index.php?g_page=search&amp;m_page=search09">정기간행물 목록</a>
+
+		</li>		</ul>
+
+
+</div>		</div>
+
+		<div class="subtit_area">
+			<h1>자료검색</h1>
+
+			<div class="web_locator"><span class="home">홈</span>
+				<span class="wdepth">자료정보·검색</span>
+				<span class="wdepth">자료검색</span>
+							</div>
+		</div>
+
+		<div id="design">
+			<div id="content">
+
+				<div class="search">
+
+
+
+
+<iframe width="100%" height="841" title="통합검색" class="dls_main" id="searchFrame" src="../dls_le/index.php?mod=wdDataSearch&act=searchIList&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC" style="border: currentColor; border-image: none; width: 100%;"></iframe>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+		<!-- footer_section -->
+		<div id="s_foot_section">
+			<div class="sFooter">
+
+				<div class="f_menu">
+					<div class="in">
+						<ul>
+							<li><a href="https://www.gm.go.kr/pt/guide/pinfopolicy/PTMN910.jsp" target="_blank" title="새창 열림">개인정보처리방침</a></li>
+							<li><a href="https://www.gm.go.kr/pt/guide/pinfopolicy/PTMN911.jsp" target="_blank" title="새창 열림">영상처리기기운영방침</a></li>
+							<li><a href="./index.php?g_page=intro&m_page=intro06">도서관오시는길</a></li>
+							<!--<li><a href="./index.php?g_page=etc&m_page=etc06">도서관둘러보기</a></li>-->
+							<li><a href="./index.php?g_page=etc&m_page=etc04_03">이용자서비스헌장</a></li>
+							<!--<li><a href="">디지털도서관</a></li>-->
+						</ul>
+					</div>
+				</div>
+
+				<div class="f_info">
+					<div class="in">
+						<p class="f_logo"><img src="./img/f_logo.png" alt="광명시도서관 Gwangmyeong Municipal Library"><a href="http://webwatch.or.kr/" target="_blank" title="새창 열림" class="wa_mark"><img src="./img/WA_Mark.png?v=5" alt="과학기술정보통신부 WA(WEB접근성) 품질인증 마크, 웹와치(WebWatch) 2026.06.16 ~ 2027.06.15"></a></p>
+						<div class="in_wrap">
+							<ul>
+								<li><strong class="lib_name">하안도서관</strong><span class="addr">경기도 광명시 철망산로 46</span><span class="tel">Tel. 02-2680-2871</span><span class="fax">Fax. 02-2680-2877</span></li>
+								<li><strong class="lib_name">광명도서관</strong><span class="addr">경기도 광명시 원광명안로 48</span><span class="tel">Tel.  02-2680-6541</span><span class="fax">Fax. 02-2680-6531</span></li>
+								<li><strong class="lib_name">철산도서관</strong><span class="addr">경기도 광명시 철산로 56</span><span class="tel">Tel. 02-2680-6820</span><span class="fax">Fax. 02-2680-6826</span></li>
+							</ul>
+							<ul>
+								<li><strong class="lib_name">소하도서관</strong><span class="addr">경기도 광명시 소하일로 7</span><span class="tel">Tel. 02-2680-0900</span><span class="fax">Fax. 02-2680-2877</span></li>
+								<li><strong class="lib_name">충현도서관</strong><span class="addr">경기도 광명시 충현로42번길 19</span><span class="tel">Tel. 02-2680-6111</span><span class="fax">Fax. 02-2680-2877</span></li>
+								<li><strong class="lib_name">연서도서관</strong><span class="addr">경기도 광명시 연서일로 10</span><span class="tel">Tel. 02-2680-6630</span><span class="fax">Fax. 02-2680-6640</span></li>
+							</ul>
+						</div>
+						<p class="copyright">Copyright ⓒ 광명시도서관. All rights reserved.</p>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<!-- //footer_section -->
+
+		<div id="gotop"><a href="#hCheon">TOP</a></div>
+	</div>
+
+	<div id='dkleft' class='dkleft'>
+		<div class="lefttit">
+						<button onclick="location.href='./index.php?g_page=member&m_page=member01&returnUrl=L2Zyb250L2luZGV4LnBocD9nX3BhZ2U9c2VhcmNoJm1fcGFnZT1zZWFyY2gwMSZzZWFyY2hXb3JkPSVFRCU4QyU4QyVFQyU5RCVCNCVFQyU4RCVBQw=='"><i class="fa fa-unlock-alt"></i>LOGIN</button>
+					</div>
+		<div class="select">
+						<div style="background:#eee;padding-top: 60px;padding-left:15px;"><a href="/dls_lu/" class="join"><i class="fa fa-user-o"></i>회원가입</a> <a href="../dls_lu/member/index.php?act=joinAct&step=idSearch" class="idpw">아이디/비밀번호 찾기</a></div>
+									<a class="depth1">도서관안내<i class="rightico fa fa-angle-down"></i></a>
+						<ul class="depth2">
+								<li><a href="./index.php?g_page=intro&amp;m_page=intro01_03">도서관발자취</a>
+					<!-- depth 3 -->
+									</li>
+					<!-- depth 3 -->
+								<li><a href="./index.php?g_page=intro&amp;m_page=intro02_01_03">도서관 현황</a>
+					<!-- depth 3 -->
+										<ul class="depth3">
+												<li><a href="./index.php?g_page=intro&amp;m_page=intro02_01_08">조직 안내 및 전화번호</a></li>
+												<li><a href="./index.php?g_page=intro&amp;m_page=intro02_04">장서현황</a></li>
+												<li><a href="./index.php?g_page=intro&amp;m_page=intro02_03_03">시설현황</a></li>
+											</ul>
+									</li>
+					<!-- depth 3 -->
+								<li><a href="./index.php?g_page=intro&amp;m_page=intro09_01_03">이용안내</a>
+					<!-- depth 3 -->
+										<ul class="depth3">
+												<li><a href="./index.php?g_page=intro&amp;m_page=intro09_01_03">자료대출 및 반납</a></li>
+												<li><a href="./index.php?g_page=intro&amp;m_page=intro09_02_03">이용시간 및 휴관일</a></li>
+												<li><a href="./index.php?g_page=intro&amp;m_page=intro09_04">회원가입</a></li>
+											</ul>
+									</li>
+					<!-- depth 3 -->
+								<li><a href="./index.php?g_page=intro&amp;m_page=intro04_01_03">실별안내</a>
+					<!-- depth 3 -->
+										<ul class="depth3">
+												<li><a href="./index.php?g_page=intro&amp;m_page=intro04_01_03">자료실안내</a></li>
+												<li><a href="./index.php?g_page=intro&amp;m_page=intro04_03">메이커스페이스 안내</a></li>
+												<li><a href="./index.php?g_page=intro&amp;m_page=intro04_02_03">열람실안내</a></li>
+											</ul>
+									</li>
+					<!-- depth 3 -->
+								<li><a href="./index.php?g_page=intro&amp;m_page=intro05_03">편의시설안내</a>
+					<!-- depth 3 -->
+									</li>
+					<!-- depth 3 -->
+								<li><a href="./index.php?g_page=intro&amp;m_page=intro06">찾아오시는길</a>
+					<!-- depth 3 -->
+										<ul class="depth3">
+												<li><a href="./index.php?g_page=intro&amp;m_page=intro06">공공도서관</a></li>
+												<li><a href="./index.php?g_page=intro&amp;m_page=intro06_02">작은도서관</a></li>
+											</ul>
+									</li>
+					<!-- depth 3 -->
+								<li><a href="./index.php?g_page=intro&amp;m_page=intro08_04">작은도서관</a>
+					<!-- depth 3 -->
+										<ul class="depth3">
+												<li><a href="./index.php?g_page=intro&amp;m_page=intro08_04">등록 변경 폐관</a></li>
+												<li><a href="./index.php?g_page=intro&amp;m_page=intro08">공립 작은도서관</a></li>
+												<li><a href="./index.php?g_page=intro&amp;m_page=intro08_02">사립 작은도서관</a></li>
+											</ul>
+									</li>
+					<!-- depth 3 -->
+								<li><a href="./index.php?g_page=intro&amp;m_page=intro10">스마트도서관</a>
+					<!-- depth 3 -->
+										<ul class="depth3">
+											</ul>
+									</li>
+					<!-- depth 3 -->
+							</ul>
+									<a class="depth1">자료정보·검색<i class="rightico fa fa-angle-down"></i></a>
+						<ul class="depth2">
+								<li><a href="./index.php?g_page=search&amp;m_page=search01">자료검색</a>
+					<!-- depth 3 -->
+										<ul class="depth3">
+											</ul>
+									</li>
+					<!-- depth 3 -->
+								<li><a href="./index.php?g_page=search&amp;m_page=search02">새로들어온책</a>
+					<!-- depth 3 -->
+										<ul class="depth3">
+											</ul>
+									</li>
+					<!-- depth 3 -->
+								<li><a href="./index.php?g_page=search&amp;m_page=search03">스마트도서관 검색</a>
+					<!-- depth 3 -->
+										<ul class="depth3">
+											</ul>
+									</li>
+					<!-- depth 3 -->
+								<li><a href="./index.php?g_page=search&amp;m_page=search08">전자도서관</a>
+					<!-- depth 3 -->
+										<ul class="depth3">
+												<li><a href="./index.php?g_page=search&amp;m_page=search08">전자책</a></li>
+												<li><a href="./index.php?g_page=search&amp;m_page=search08_04">오디오북</a></li>
+												<li><a href="./index.php?g_page=search&amp;m_page=search08_12">전자잡지</a></li>
+												<li><a href="./index.php?g_page=search&amp;m_page=search08_09">학회지 DB</a></li>
+												<li><a href="./index.php?g_page=search&amp;m_page=search08_11">도서요약</a></li>
+											</ul>
+									</li>
+					<!-- depth 3 -->
+								<li><a href="./index.php?g_page=search&amp;m_page=search06">광명시도서관 대출베스트</a>
+					<!-- depth 3 -->
+										<ul class="depth3">
+											</ul>
+									</li>
+					<!-- depth 3 -->
+								<li><a href="./index.php?g_page=search&amp;m_page=search07">전국도서관 대출베스트</a>
+					<!-- depth 3 -->
+										<ul class="depth3">
+											</ul>
+									</li>
+					<!-- depth 3 -->
+								<li><a href="./index.php?g_page=search&amp;m_page=search09">정기간행물 목록</a>
+					<!-- depth 3 -->
+									</li>
+					<!-- depth 3 -->
+							</ul>
+									<a class="depth1">문화행사<i class="rightico fa fa-angle-down"></i></a>
+						<ul class="depth2">
+								<li><a href="./index.php?g_page=event&amp;m_page=event01">이달의 도서관</a>
+					<!-- depth 3 -->
+										<ul class="depth3">
+											</ul>
+									</li>
+					<!-- depth 3 -->
+								<li><a href="./index.php?g_page=event&amp;m_page=event02">문화행사게시판</a>
+					<!-- depth 3 -->
+										<ul class="depth3">
+											</ul>
+									</li>
+					<!-- depth 3 -->
+								<li><a href="./index.php?g_page=event&amp;m_page=event14">문화행사 신청</a>
+					<!-- depth 3 -->
+										<ul class="depth3">
+											</ul>
+									</li>
+					<!-- depth 3 -->
+								<li><a href="./index.php?g_page=event&amp;m_page=event15">책축제</a>
+					<!-- depth 3 -->
+										<ul class="depth3">
+												<li><a href="./index.php?g_page=event&amp;m_page=event15">책축제 소개</a></li>
+												<li><a href="./index.php?g_page=event&amp;m_page=event15_07">공지사항</a></li>
+												<li><a href="./index.php?g_page=event&amp;m_page=event15_02">책축제 참여신청</a></li>
+											</ul>
+									</li>
+					<!-- depth 3 -->
+								<li><a href="./index.php?g_page=event&amp;m_page=event16">광명시민 「책 한 권」 함께 읽기</a>
+					<!-- depth 3 -->
+										<ul class="depth3">
+												<li><a href="./index.php?g_page=event&amp;m_page=event16">광명시민 「책 한 권」 함께 읽기</a></li>
+												<li><a href="./index.php?g_page=event&amp;m_page=event16_06">올해의 책 후보도서 추천</a></li>
+												<li><a href="./index.php?g_page=event&amp;m_page=event16_04">올해의 책 독서릴레이 신청</a></li>
+												<li><a href="./index.php?g_page=event&amp;m_page=event16_02">올해의 책 읽고 소감 나누기</a></li>
+												<li><a href="./index.php?g_page=event&amp;m_page=event16_07">올해의 책 소감 내역 (2022-2025)</a></li>
+											</ul>
+									</li>
+					<!-- depth 3 -->
+								<li><a href="https://gmlib.gm.go.kr/marathon/gmlib/index.php" target='_blank' rel='noopener noreferrer'  title='새창' >광명시 독서마라톤 대회</a>
+					<!-- depth 3 -->
+										<ul class="depth3">
+											</ul>
+									</li>
+					<!-- depth 3 -->
+								<li><a href="https://saram.gm.go.kr/" target='_blank' rel='noopener noreferrer'  title='새창' >광명시 사람책도서관</a>
+					<!-- depth 3 -->
+										<ul class="depth3">
+											</ul>
+									</li>
+					<!-- depth 3 -->
+							</ul>
+									<a class="depth1">이용자서비스<i class="rightico fa fa-angle-down"></i></a>
+						<ul class="depth2">
+								<li><a href="./index.php?g_page=service&amp;m_page=service01">상호대차서비스</a>
+					<!-- depth 3 -->
+										<ul class="depth3">
+											</ul>
+									</li>
+					<!-- depth 3 -->
+								<li><a href="./index.php?g_page=service&amp;m_page=service10">책이음서비스</a>
+					<!-- depth 3 -->
+										<ul class="depth3">
+											</ul>
+									</li>
+					<!-- depth 3 -->
+								<li><a href="./index.php?g_page=service&amp;m_page=service13">대출·반납</a>
+					<!-- depth 3 -->
+										<ul class="depth3">
+												<li><a href="./index.php?g_page=service&amp;m_page=service13">관외대출도서예약</a></li>
+												<li><a href="./index.php?g_page=service&amp;m_page=service13_02">무인대출예약</a></li>
+											</ul>
+									</li>
+					<!-- depth 3 -->
+								<li><a href="./index.php?g_page=service&amp;m_page=service02">희망도서신청</a>
+					<!-- depth 3 -->
+									</li>
+					<!-- depth 3 -->
+								<li><a href="./index.php?g_page=test&inc=baro_login" target='_blank' rel='noopener noreferrer'  title='새창' >지역서점바로대출</a>
+					<!-- depth 3 -->
+										<ul class="depth3">
+											</ul>
+									</li>
+					<!-- depth 3 -->
+								<li><a href="./index.php?g_page=service&amp;m_page=service14">대출편의서비스</a>
+					<!-- depth 3 -->
+										<ul class="depth3">
+												<li><a href="./index.php?g_page=service&amp;m_page=service14">책바다서비스</a></li>
+												<li><a href="./index.php?g_page=service&amp;m_page=service14_02">내생애첫도서관서비스</a></li>
+												<li><a href="./index.php?g_page=service&amp;m_page=service14_03">두루두루서비스</a></li>
+												<li><a href="./index.php?g_page=service&amp;m_page=service14_05">책나래서비스</a></li>
+											</ul>
+									</li>
+					<!-- depth 3 -->
+								<li><a href="./index.php?g_page=service&amp;m_page=service15">북스타트</a>
+					<!-- depth 3 -->
+										<ul class="depth3">
+											</ul>
+									</li>
+					<!-- depth 3 -->
+							</ul>
+									<a class="depth1">열린공간<i class="rightico fa fa-angle-down"></i></a>
+						<ul class="depth2">
+								<li><a href="./index.php?g_page=open&amp;m_page=open01">공지사항</a>
+					<!-- depth 3 -->
+										<ul class="depth3">
+											</ul>
+									</li>
+					<!-- depth 3 -->
+								<li><a href="./index.php?g_page=open&amp;m_page=open02">열린소리함</a>
+					<!-- depth 3 -->
+										<ul class="depth3">
+											</ul>
+									</li>
+					<!-- depth 3 -->
+								<li><a href="./index.php?g_page=open&amp;m_page=open03">참여마당</a>
+					<!-- depth 3 -->
+										<ul class="depth3">
+												<li><a href="./index.php?g_page=open&amp;m_page=open03">견학안내</a></li>
+												<li><a href="./index.php?g_page=open&amp;m_page=open03_02">자원봉사안내</a></li>
+												<li><a href="./index.php?g_page=open&amp;m_page=open03_03_03">시설이용신청</a></li>
+												<li><a href="./index.php?g_page=open&amp;m_page=open03_04">도서기증</a></li>
+											</ul>
+									</li>
+					<!-- depth 3 -->
+								<li><a href="./index.php?g_page=open&amp;m_page=open06_03">동아리 안내</a>
+					<!-- depth 3 -->
+									</li>
+					<!-- depth 3 -->
+								<li><a href="./index.php?g_page=open&amp;m_page=open04">설문조사</a>
+					<!-- depth 3 -->
+										<ul class="depth3">
+											</ul>
+									</li>
+					<!-- depth 3 -->
+							</ul>
+									<a class="depth1">나의 도서관<i class="rightico fa fa-angle-down"></i></a>
+						<ul class="depth2">
+								<li><a href="./index.php?g_page=mypage&amp;m_page=mypage01">내서재</a>
+					<!-- depth 3 -->
+										<ul class="depth3">
+											</ul>
+									</li>
+					<!-- depth 3 -->
+								<li><a href="./index.php?g_page=mypage&amp;m_page=mypage02">문화행사 신청내역</a>
+					<!-- depth 3 -->
+										<ul class="depth3">
+											</ul>
+									</li>
+					<!-- depth 3 -->
+								<li><a href="./index.php?g_page=mypage&amp;m_page=mypage03">희망도서 신청내역</a>
+					<!-- depth 3 -->
+										<ul class="depth3">
+											</ul>
+									</li>
+					<!-- depth 3 -->
+								<li><a href="./index.php?g_page=mypage&m_page=mypage05&appPart=culture">책축제 신청내역</a>
+					<!-- depth 3 -->
+										<ul class="depth3">
+											</ul>
+									</li>
+					<!-- depth 3 -->
+								<li><a href="/dls_lu/member/index.php?act=joinAct&step=userJoin">기본정보</a>
+					<!-- depth 3 -->
+										<ul class="depth3">
+											</ul>
+									</li>
+					<!-- depth 3 -->
+							</ul>
+								</div>
+	</div>
+
+
+
+
+
+
+<script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
+<script type="text/javascript">
+//http
+if(!wcs_add) var wcs_add = {};
+wcs_add["wa"] = "49d38b722f0184";
+if(window.wcs) {
+wcs_do();
+}
+</script>
+
+<script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
+<script type="text/javascript">
+//https
+if(!wcs_add) var wcs_add = {};
+wcs_add["wa"] = "7eba74e06c9e54";
+if(window.wcs) {
+wcs_do();
+}
+</script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SDVC4LKFFJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SDVC4LKFFJ');
+</script>
+
+<!--<script>
+jQuery(function($){
+	// List Tab Navigation
+	var $tab_list = $('.tab.list');
+	$tab_list.removeClass('jx').find('ul ul').hide();
+	$tab_list.find('li li.active').parents('li').addClass('active');
+	$tab_list.find('li.active>ul').show();
+	$tab_list.each(function(){
+		var $this = $(this);
+		$this.height($this.find('li.active>ul').height()+210);
+	});
+	function listTabMenuToggle(event){
+		var $this = $(this);
+		$this.next('ul').show().parent('li').addClass('active').siblings('li').removeClass('active').find('>ul').hide();
+		$this.closest('.tab.list').height($this.next('ul').height()+210);
+		if($this.attr('href') === '#'){
+			return false;
+		}
+	}
+	$tab_list.find('>ul>li>a').click(listTabMenuToggle).focus(listTabMenuToggle);
+});
+</script>-->
+
+<script>
+$(document).ready(function(){
+
+	$('ul.tabs li').click(function(){
+		var tab_id = $(this).attr('data-tab');
+
+		$('ul.tabs li').removeClass('current');
+		$('.tab-content').removeClass('current');
+
+		$(this).addClass('current');
+		$("#"+tab_id).addClass('current');
+	})
+
+})
+</script>
+
+<script>
+	$(function() {
+		$('ul.subtab li').click(function() {
+			var activeTab = $(this).attr('data-tab');
+			$('ul.subtab li').removeClass('current');
+			$('.tabcon').removeClass('current');
+			$(this).addClass('current');
+			$('#' + activeTab).addClass('current');
+		})
+	});
+</script>
+
+<script>
+$(function() {
+	$('#mBook h2 a').on('click', function() {
+		$('#mBook > div').removeClass('tab_on');
+		$(this).parents('div').addClass('tab_on');
+		return false;
+	});
+
+
+	setTimeout(function() {
+		$('.lib_guide').show();
+		console.log('Loading');
+	}, 500);
+
+
+});
+</script>

@@ -1,0 +1,487 @@
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko" dir="ltr">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta http-equiv="Content-Script-Type" content="text/javascript" />
+		<meta http-equiv="Content-Style-Type" content="text/css" />
+		<meta name="robots" content="index, follow"/>
+		<meta name="language" content="ko"/>
+		<meta name="distribution" content="global"/>
+		<meta name="classification" content="internet"/>
+		<meta name="copyright" content="copyrights 2013 Bucheon City Library"/>
+		<meta name="author" content="부천시립도서관"/>
+		<meta name="title" content="부천시립도서관"/>
+		<meta name="subject" content="부천시립도서관"/>
+		<meta name="keywords" content="부천시립도서관, 자료검색, 도서관이용, 신청&참여, 책읽는도시부천, 도서관소식, 도서관안내, 이용안내"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+		
+		<title>부천시도서관</title>
+		
+		<link rel="stylesheet" href="/intro/css/layout.css"/>
+		<link rel="stylesheet" href="/intro/css/reset.css"/>
+		
+		<script src="/intro/js/jquery-1.11.3.min.js"></script>
+		<script src="/intro/js/template.js"></script>
+		<script type="text/javascript" src="/remote/interface/basicBoardServiceSite.js"></script>
+		<script type="text/javascript" src="/remote/engine.js"></script>
+		<script type="text/javascript" src="/remote/util.js"></script>
+		
+		<script>
+			var userid = "";
+			var username = "";
+			var userType = "";
+			var usermemberid = "";
+			
+			//sso로그인 토큰 값
+			var pni_token ='null';
+			var alpasq_redirect ='null';
+			
+			$(document).ready(function() {
+				//알파스큐 url 존재 시 
+				if(alpasq_redirect.indexOf('alpasq.bcl.go.kr') > -1){
+					var addParam ="";
+					if(!(pni_token == '' || pni_token == 'null')){
+						addParam = "&pni_token="+pni_token;
+					}
+					//팝업으로 알파스큐 이동
+					location.href = alpasq_redirect+addParam;
+					
+				}
+				$("input[name='aSearchword']").keydown(function(e) {
+					if (e.keyCode == 13) {
+						fn_search();
+					}
+				});
+			});
+			
+			$(document).on({
+				click: function(e){
+					var sLink ="";
+					if(e.target.nodeName == "SPAN" || e.target.nodeName == "I"){
+						sLink = e.target.parentElement.toString();// SPAN : 모바일에서 span 상위태그  a link 찾음 , I : i 태그
+					}else{
+						sLink = e.target.toString();
+					}
+					if(sLink.indexOf('alpasq.bcl.go.kr') > -1){
+						if(!(pni_token == '' || pni_token == 'null')){
+							e.preventDefault();
+							window.open(sLink+"&pni_token=null", "alpasq");
+						}
+					}
+				}
+			});
+			
+			
+			//검색어 입력
+			function fn_search() {
+				var aSearchword = $.trim($("#aSearchword").val());
+				if(aSearchword == ''){
+					alert("검색어를 입력해주세요..");
+					return;
+				}
+				var link = "https://alpasq.bcl.go.kr/sso/bcl?route=SEARCH&keyword="+encodeURI(aSearchword);
+				if(!(pni_token == '' || pni_token =='null')){
+					link = link+"&pni_token="+pni_token;	
+				}
+				
+			    var openNewWindow = window.open("about:blank","alpasq");
+			    openNewWindow.location.href =link;
+			}
+			
+			function chgLibrary(vCategory, gubun1, gubun2){
+				var onlyYn = "";
+				var boardtypeid = "26";
+				
+				if(gubun1 == '2'){
+					boardtypeid = "286";
+				}
+				if(vCategory == ""){
+					$("#owl-news0"+gubun1).show();//전체 보이기
+					$("#owl-news0"+gubun2).hide();//선택 도서관 숨기기
+				}else{
+					onlyYn = "Y";
+					$("#owl-news0"+gubun1).hide();//전체 숨기기
+					$("#owl-news0"+gubun2).show();//선택 도서관 보이기
+					
+					basicBoardServiceSite.getBoardSimpleList("", boardtypeid, "4", "1", onlyYn,vCategory,function(data){
+						var boardList = data.boardlist;
+						var addHtml = "";
+						var boardid = "";
+						var createdon = "";
+						var boardtitle = "";
+						var boardisnoticeyn = "";
+						var boardcategory = "";
+						var reservegroupid = "";
+						
+						if(boardList.length != null && boardList.length > 0){
+							addHtml += '<div class="book-board">';
+							addHtml += '<ul>';
+							for(var i = 0; i < boardList.length; i++){
+								boardid = boardList[i].boardid;
+								createdon = boardList[i].createdon;
+								boardtitle = boardList[i].boardtitle;
+								boardisnoticeyn = boardList[i].boardisnoticeyn;
+								boardcategory = boardList[i].boardcategory;
+								reservegroupid = boardList[i].reservegroupid;
+								addHtml += '<li>';
+								addHtml += '<a href="/site/program/board/basicboard/view?boardtypeid=' + boardtypeid + '&amp;menuid=01900500100100'+gubun1+'&amp;boardid=' + boardid +'">';
+								if(boardisnoticeyn == 'Y'){
+									addHtml += '<span class="lib_cls_box99">공지</span>';
+								}else if(boardisnoticeyn != 'Y'){
+									if(boardtypeid == "26"){
+										addHtml += '<span class="lib_cls_box'+reservegroupid+'">'+boardcategory+'</span>';
+									}else{
+										addHtml += '<span class="lib_cls_box18">공립작은</span>';
+									}
+								}
+								addHtml += '<p class="txt">' + boardtitle.substr(0,40) + '</p>';
+								addHtml += '<span class="date">' + createdon.substr(0,10) + '</span>';
+								addHtml += '</a>';
+								addHtml += '</li>';
+							}
+							addHtml += '</ul>';
+							addHtml += '</div>';
+						}else{
+							addHtml += '<div class="book-board"><ul><li class="empty"><strong class="txt">"등록된 소식글이 없습니다."</strong></li></ul></div>';
+						}
+						$("#owl-news0"+gubun2).html(addHtml);
+					});
+				}
+			}
+			
+		</script>
+		
+
+
+		<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-PQ9DNQNEJ6"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			gtag('config', 'G-PQ9DNQNEJ6');
+		</script>
+
+	</head>
+	<body>
+		<div class="wrap">
+			<!-- top_notice -->
+			
+			<section id="top_notice" class="on" style="background:#43b257">
+				<div class="inner" id="ncookie019">
+	 				<div class="blind">
+	 					<p>부천시 도서관</p>
+	 					<span>그린(green)운동 오늘도 에코백 내일도 텀블러</span>
+	 				</div>
+	 				
+	 				<div class="img_area">
+	 					<!-- 두개일때
+	 					<div class="img_area col2">
+ 						<a class="half1" href="/site/program/board/basicboard/view?boardtypeid=26&menuid=019005001001001&boardid=95225">
+	 						<img src="/files/web19_new/images/layout/img_top_banner260326_1.png" alt="상단배너 이미지">
+	 					</a>
+	 					<a class="half2" href="/site/program/board/basicboard/view?menuid=019005001001001&pagesize=15&boardtypeid=26&boardid=95276">
+	 						<img src="/files/web19_new/images/layout/img_top_banner260326_2.png" alt="상단배너 이미지">
+						</a> -->
+					
+						<a  href="/site/program/board/basicboard/view?menuid=019005001001001&pagesize=15&boardtypeid=26&boardid=95096">
+	 						<img src="/files/web19_new/images/layout/img_top_banner260317.png" alt="상단배너 이미지">
+	 					</a>
+						
+ 					
+	 				</div>
+	 				<div class="action">
+	 					<label for="chk_today" class="chk_today"><input type="checkbox" id="chk_today"><span class="txt"  style="color: #333">오늘 하루 보지 않기</span></label>
+	 					<button type="button" class="btn_topmost_close" onclick="closeWin('019');"><span><em class="blind">알림닫기</em></span></button>
+	 				</div>
+	 			</div>
+			</section>
+			
+			<!-- //top_notice -->
+			<div id="container">
+				<header>
+					<h1>부천시립도서관</h1>
+					<p class="noti"><span>부천시립도서관은 크게 2개의 홈페이지로 구성되어 있습니다.</span></p>
+				</header>
+				<div id="contents">
+					<article class="mc-service-box">
+						<div class="library-box">
+						  <h2 class="mtit">부천시립도서관 홈페이지</h2>
+							<div class="service-links">
+								<strong class="tit">주요서비스</strong>
+								<ul class="list">
+									<li><a href="/site/reservation/lecture/lectureList?menuid=019003001001002&submode=lecture" target="_blank" title="새창으로 열림">독서문화프로그램</a></li>
+									<li><a href="/site/homepage/menu/viewMenu?menuid=019002004" target="_blank" title="새창으로 열림">이용안내</a></li>
+									<li><a href="/site/program/board/basicboard/list?boardtypeid=52&menuid=019004002003" target="_blank" title="새창으로 열림">부천의책</a></li>
+									<li><a href="/site/homepage/menu/viewMenu?menuid=019001003001" target="_blank" title="새창으로 열림">상호대차</a></li>
+								</ul>
+							</div>
+						  <a href="/site/main/index019" class="btn_go" target="_blank" title="새창으로 열림">홈페이지 바로가기</a>
+						</div>
+						<div class="search-box">
+						  <h2 class="mtit">자료검색 홈페이지</h2>
+						  	<div class="srch_box">
+								<fieldset>
+									<legend>검색 양식</legend>
+									<div class="srch_area">
+										<strong class="stit" onkeydown="fn_search();">도서검색</strong>
+										<input type="text" class="input_ty" placeholder="검색어를 입력해주세요" title="검색어를 입력해주세요" id="aSearchword" name="aSearchword"/>
+										<button type="button" class="btn_srch" onclick="fn_search();"><span><em>검색</em></span></button>
+									</div>
+								</fieldset>
+							</div>
+							<div class="service-links">
+								<strong class="tit">주요서비스</strong>
+								<ul class="list">
+										<li><a href="https://alpasq.bcl.go.kr/sso/bcl?route=MY" target="_blank" title="새창으로 열림">내서재</a></li>
+										<li><a href="https://alpasq.bcl.go.kr/sso/bcl?route=" target="_blank" title="새창으로 열림">도서검색</a></li>
+										<li><a href="https://alpasq.bcl.go.kr/sso/bcl?route=HOPE_APPLY" target="_blank" title="새창으로 열림">희망자료신청</a></li>
+										<li><a href="https://alpasq.bcl.go.kr/sso/bcl?route=EBOOK" target="_blank" title="새창으로 열림" style="text-align: center;">전자책·전자잡지<br>오디오북·대체자료</a></li>
+								</ul>
+							</div>
+						  <a href="https://alpasq.bcl.go.kr/sso/bcl?route=" class="btn_go" target="_blank" title="새창으로 열림">홈페이지 바로가기</a>
+						</div>
+					</article><!-- //주요서비스 -->
+					<article class="mc-lb-box">
+						<h2 class="mtit">도서관 소식</h2>
+						<div class="library-news">
+							<div class="tab-menu tab-nav">
+								<ul>
+									<li class="on"><a href="#tab_con01" id="tab_news01">시립</a></li><!-- 활성화 class="on" -->
+									<li><a href="#tab_con02" id="tab_news02">공립작은</a></li>
+								</ul>
+							</div>
+							<div class="tab-con on" id="tab_con01">
+								<div class="library-news-sel">
+									<select title="도서관소식 선택" onchange="chgLibrary(this.value,'1','1_');">
+										<option value="">전체</option>
+											
+											<option value="시립">시립</option>
+										
+											<option value="심곡">심곡</option>
+										
+											<option value="원미">원미</option>
+										
+											<option value="북부">북부</option>
+										
+											<option value="꿈빛">꿈빛</option>
+										
+											<option value="책마루">책마루</option>
+										
+											<option value="한울빛">한울빛</option>
+										
+											<option value="꿈여울">꿈여울</option>
+										
+											<option value="상동">상동</option>
+										
+											<option value="송내">송내</option>
+										
+											<option value="도당">도당</option>
+										
+											<option value="오정">오정</option>
+										
+											<option value="동화">동화</option>
+										
+											<option value="역곡">역곡</option>
+										
+											<option value="별빛마루">별빛마루</option>
+										
+											<option value="수주">수주</option>
+										
+									</select>
+								</div>
+								<div id="owl-news01">
+									<div class="book-board">
+										
+											<ul>
+												
+													
+													<li>
+														<a href="/site/program/board/basicboard/view?boardtypeid=26&amp;menuid=019005001001001&amp;boardid=95993">
+															<span class="lib_cls_box99">공지</span>
+															<p class="txt">[상동] 도서관 그린 자원봉사자 모집(8월)</p>
+															<span class="date">2026-07-24</span>
+														</a>
+													</li>
+												
+													
+													<li>
+														<a href="/site/program/board/basicboard/view?boardtypeid=26&amp;menuid=019005001001001&amp;boardid=95886">
+															<span class="lib_cls_box99">공지</span>
+															<p class="txt">혹서기 상호대차서비스 일시중지 안내</p>
+															<span class="date">2026-07-09</span>
+														</a>
+													</li>
+												
+													
+													<li>
+														<a href="/site/program/board/basicboard/view?boardtypeid=26&amp;menuid=019005001001001&amp;boardid=95589">
+															<span class="lib_cls_box99">공지</span>
+															<p class="txt">[수주] 어린이 천 권 읽기 챌린지 운영 안내(수량 추가)</p>
+															<span class="date">2026-05-26</span>
+														</a>
+													</li>
+												
+													
+													<li>
+														<a href="/site/program/board/basicboard/view?boardtypeid=26&amp;menuid=019005001001001&amp;boardid=95096">
+															<span class="lib_cls_box99">공지</span>
+															<p class="txt">부천시 도서관 그린(Green) 운동 추진 안내 </p>
+															<span class="date">2026-03-03</span>
+														</a>
+													</li>
+												
+											</ul>
+										
+										
+									</div>
+								</div>
+								<div id="owl-news01_" style="display:none;"></div>
+								<a href="/site/program/board/basicboard/list?boardtypeid=26&amp;menuid=019005001001001" class="btn-more"><em class="blind">시립 도서관 소식</em>더보기</a>
+							</div>
+							<div class="tab-con" id="tab_con02">
+								<div class="library-news-sel">
+									<select title="도서관소식 선택" onchange="chgLibrary(this.value,'2','2_');">
+										<option value="">전체</option>
+										
+											<option value="시립">시립</option>
+										
+											<option value="도란도란">도란도란</option>
+										
+											<option value="복사꽃필무렵">복사꽃필무렵</option>
+										
+											<option value="꿈꾸는새싹">꿈꾸는새싹</option>
+										
+											<option value="아름드리">아름드리</option>
+										
+											<option value="약대 신나는가족">약대 신나는가족</option>
+										
+											<option value="햇살이가득한">햇살이가득한</option>
+										
+											<option value="행복한">행복한</option>
+										
+											<option value="사랑나무가족">사랑나무가족</option>
+										
+											<option value="소새울가족">소새울가족</option>
+										
+											<option value="민들레홀씨">민들레홀씨</option>
+										
+											<option value="시온열린">시온열린</option>
+										
+											<option value="상동역 칙칙폭폭">상동역 칙칙폭폭</option>
+										
+											<option value="글마루">글마루</option>
+										
+											<option value="숲속">숲속</option>
+										
+											<option value="진말책향기">진말책향기</option>
+										
+											<option value="신중동역 칙칙폭폭">신중동역 칙칙폭폭</option>
+										
+											<option value="시정담벼락">시정담벼락</option>
+										
+											<option value="상동어울마당">상동어울마당</option>
+										
+											<option value="사립작은">사립작은</option>
+										
+									</select>
+								</div>
+								<div id="owl-news02">
+									<div class="book-board">
+										
+											<ul>
+												
+													<li>
+														<a href="/site/program/board/basicboard/view?boardtypeid=286&amp;menuid=019005001001002&amp;boardid=95515">
+															<span class="lib_cls_box99">공지</span>
+															<p class="txt">[약대신나는] 외부 도서 반납함 위치 변경 안내 </p>
+															<span class="date">2026-05-11</span>
+														</a>
+													</li>
+												
+													<li>
+														<a href="/site/program/board/basicboard/view?boardtypeid=286&amp;menuid=019005001001002&amp;boardid=96111">
+															<span class="lib_cls_box18">공립작은</span>
+															<p class="txt">[진말책향기] 초등3~5학년 &lt;슬기로운 게임생활&gt; 모집 안내</p>
+															<span class="date">2026-08-06</span>
+														</a>
+													</li>
+												
+													<li>
+														<a href="/site/program/board/basicboard/view?boardtypeid=286&amp;menuid=019005001001002&amp;boardid=96105">
+															<span class="lib_cls_box18">공립작은</span>
+															<p class="txt">[지혜의숲] 2026 길위의 인문학 &lt;다시 쓰이다-가곡으로 리사이클링하는 나의 삶&gt; 모집 안내</p>
+															<span class="date">2026-08-06</span>
+														</a>
+													</li>
+												
+													<li>
+														<a href="/site/program/board/basicboard/view?boardtypeid=286&amp;menuid=019005001001002&amp;boardid=96095">
+															<span class="lib_cls_box18">공립작은</span>
+															<p class="txt">[아름드리] 8월 그림책 원화전시 &lt;꽁꽁꽁 댕댕&gt;</p>
+															<span class="date">2026-08-05</span>
+														</a>
+													</li>
+												
+											</ul>
+										
+										
+									</div>
+								</div>
+								<div id="owl-news02_" style="display:none;"></div>
+								<a href="/site/program/board/basicboard/list?boardtypeid=286&amp;menuid=019005001001002" class="btn-more"><em class="blind">공립작은 도서관 소식</em>더보기</a>
+							</div>
+						</div>
+					</article><!-- //도서관 소식 -->
+				</div>
+			</div>
+		</div>
+		
+		<script>
+		getCookie2('top_notice');
+		function getCookie2(popupid) {
+			cookiedata = document.cookie;
+			 var checkcookie = popupid+"=done";
+			 if (cookiedata.indexOf(checkcookie) > -1){
+				 $("#top_notice").hide();
+			 } else {
+				 $("#top_notice").show();
+			 }
+		}
+		function setCookie( name, value, expirehours ) {
+			if($("input:checkbox[id='chk_today']").is(":checked") == true){
+				var todayDate = new Date();
+				todayDate.setHours( todayDate.getHours() + expirehours );
+			  	document.cookie = name + "=" + escape( value ) + "; path=/; expires=" + todayDate.toGMTString() + ";";
+			}
+		}
+		function closeWin(popupid) {
+			setCookie("ncookie"+popupid, "done" , 24 );	
+			$("#ncookie"+popupid).hide();
+		 }
+		getCookie('019');
+	  	function getCookie(popupid) {
+			 cookiedata = document.cookie;
+			 var checkcookie = popupid+"=done";
+			 if (cookiedata.indexOf(checkcookie) > -1){
+				 $("#ncookie"+popupid).hide();
+			 } else {
+				 $("#ncookie"+popupid).show();
+			 }
+  		}
+		</script>
+	</body>
+</html>

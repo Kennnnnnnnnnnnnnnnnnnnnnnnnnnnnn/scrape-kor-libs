@@ -1,0 +1,4084 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+<meta name="author" content="파주시도서관">
+<meta name="description" content="파주시립도서관 정보 및 도서검색 제공">
+<meta name="generator" content="jnet co. ltd.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="파주시도서관">
+<meta property="og:description" content="파주시도서관 정보 및 도서검색 제공">
+<meta property="og:image" content="/include/image/common/ico_sns_favicon.png">
+<meta property="og:url" content="https://lib.paju.go.kr/intro/index.do">
+<link rel="canonical" href="https://lib.paju.go.kr/intro/index.do">
+<title>파주시도서관 인트로</title>
+<link rel="shortcut icon" href="/include/image/common/ico_sns_favicon.png">
+<link rel="stylesheet" type="text/css" href="/include/css/intro/intro.css?ver=221212" />
+<script type="text/javascript" src="/include/js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="/include/js/gnb.js"></script>
+<script type="text/javascript" src="/include/js/common.js"></script>
+<script type="text/javascript">
+	function fnSecheduleMonth(searchMonth) {
+		$("#scheduleWrap").load("/intro/main/calendar.do?searchMonth=" + searchMonth );
+	}
+	function fnSecheduleDay(searchDay) {
+		document.location.href = "/intro/calendar.do?searchYmd=" + searchYmd;
+	}
+</script>
+</head>
+<script language="javascript">
+	function setCookie(name,value,expirehours){
+		var todayDate = new Date();
+		todayDate.setHours(todayDate.getHours() + expirehours);
+		document.cookie = name + "=" + escape(value) + ";path=/; expires=" + todayDate.toGMTString() + ";"
+	}
+
+	function closeWin1a(){
+		document.getElementById('popup1a').style.display = "none";
+	}
+	function todaycloseWin1a(){
+		setCookie("ncookie1a","done",24);
+		document.getElementById('popup1a').style.display = "none";
+	}
+
+/*	function closeWin1b(){
+		document.getElementById('popup1b').style.display = "none";
+	}
+	function todaycloseWin1b(){
+		setCookie("ncookie1b","done",24);
+		document.getElementById('popup1b').style.display = "none";
+	}
+*/
+</script>
+
+<style type="text/css">
+#popup1a {position:absolute; left:50%; top:50%; z-index:99997; width:570px; transform:translate(-50%, -50%);}
+#popup1b {position:absolute; left:40px; top:380px; z-index:99997; width:550px;}
+.popup .popImg {float:left; margin:0; padding:0; line-height:0;}
+.popup .close {float:left;width:100%; background-color:#3d3d3d; padding-bottom:8px;}
+.popup .close_l {float:left;}
+.popup .close_r {float:right;}
+
+@media screen and (max-width:768px){
+	#popup1a {left:50%; width:90%;}
+}
+</style>
+
+<div id="popup1a" class="popup">
+	<div class="popImg"><img src="/include/image/intro/popup_260204_re.jpg" alt="리브로피아 관련 문제" width="100%" border="0"></div>
+	<div class="close">
+		<div class="close_l"><a href="#" onclick="todaycloseWin1a();"><img src="/include/image/intro/today_close.gif" border="0" name="chkbox" value="checkbox"></a></div>
+		<div class="close_r"><a href="#" onclick="closeWin1a();"><img src="/include/image/intro/close.gif" border="0"></a></div>
+	</div>
+</div>
+<!--
+<div id="popup1b" class="popup">
+	<div class="popImg"><a href="https://lib.paju.go.kr/hblib/menu/10848/contents/40025/contents.do" target="_blank"><img src="/include/image/intro/popup_210310.jpg" alt="영어전자책 구독 서비스" width="100%" border="0"></a></div>
+	<div class="close">
+		<div class="close_l"><a href="#" onclick="todaycloseWin1b();"><img src="/include/image/intro/today_close.gif" border="0" name="chkbox" value="checkbox"></a></div>
+		<div class="close_r"><a href="#" onclick="closeWin1b();"><img src="/include/image/intro/close.gif" border="0"></a></div>
+	</div>
+</div-->
+
+<script language="JavaScript">
+	cookiedata = document.cookie;
+
+	if ( cookiedata.indexOf("ncookie1a=done") < 0 ){
+	document.getElementById('popup1a').style.display = "block";
+		} else {
+		document.getElementById('popup1a').style.display = "none";
+	}
+
+
+	cookiedata = document.cookie;
+	var d_now = new Date();
+
+	/* popup1 */
+	var sdate= new Date("2026/02/04 09:00:00");
+	var edate= new Date("2026/02/05 23:59:59");
+	if(d_now >= sdate && d_now <= edate && cookiedata.indexOf("ncookie1a=done") < 0){
+		document.getElementById('popup1a').style.display = "block";
+	} else {
+		document.getElementById('popup1a').style.display = "none";
+	}
+
+
+
+
+
+/*	if ( cookiedata.indexOf("ncookie1b=done") < 0 ){
+	document.getElementById('popup1b').style.display = "block";
+		} else {
+		document.getElementById('popup1b').style.display = "none";
+	}
+*/
+</script>
+<!-- 레이어팝업 -->
+
+<body>
+<!-- skip -->
+<ul class="skip">
+	<li><a href="#contents">본문 바로가기</a></li>
+	<li><a href="#gnb">주메뉴 바로가기</a></li>
+</ul>
+<!-- skip -->
+<!-- wrap -->
+<div id="wrap" class="main">
+	<div id="visual">
+		<header id="header">
+			<h1 class="emp4">파주시도서관</h1>
+			<p class="desc emp4 mobileHide">파주시도서관 목록입니다. 도서관을 <strong class="themeFC">클릭</strong>하시면 해당도서관의 홈페이지로 이동합니다.</p>
+			<!-- 검색영역 -->
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<form name="topSearchForm" id="topSearchForm" method="get"><input type="hidden" name="csSignature" value="SA36ZE/FvK91IHCpSe0kEQ==" />
+
+	<input type="hidden" name="searchType" value="SIMPLE">
+	<input type="hidden" name="searchCategory" value="ALL">
+
+	
+			<input type="hidden" name="searchLibrary" value="ALL" />
+		
+
+	<fieldset>
+		<legend class="blind">통합검색 영역</legend>
+		<div id="searchBox" class="searchBoxWrap">
+			
+					<h2 class="emp4">통합검색</h2>
+				
+			<div class="searchBox themeBD">
+				<label for="topSearchKey" class="blind">검색유형 선택</label>
+				<select name="searchKey" id="topSearchKey" class="searchSelect">
+					<option value="ALL" selected="selected">전체</option>
+					<option value="TITLE">서명</option>
+					<option value="AUTHOR">저자</option>
+					<option value="PUBLISHER">출판사</option>
+					<option value="KEYWORD">키워드</option>
+				</select>
+				<div class="keywordInput">
+					<label for="topSearchKeyword" class="blind">검색어 입력</label>
+					<input type="text" title="검색어 입력" id="topSearchKeyword" name="searchKeyword" autocomplete="off">
+				</div>
+				<a href="#search" id="topSearchBtn" title="검색" class="btnSearch"><span class="blind">검색</span></a>
+			</div>
+		</div>
+	</fieldset>
+</form>
+<script type="text/javascript">
+	$(document).ready(function(e) {
+		$("#topSearchKeyword").keypress(function (e){
+			if((e.keyCode || e.which) == 13){
+				fnTopSearch();
+				e.preventDefault();
+			}
+		});
+		$("#topSearchBtn").click(fnTopSearch);
+	});
+
+	function fnTopSearch() {
+		var form = document.topSearchForm;
+		if(isEmpty(form.searchKeyword.value)){
+				alert("검색어를 입력하세요.")
+				form.searchKeyword.focus();
+				return false;
+		}
+		form.action="/jalib/plusSearchResultList.do"
+		form.submit();
+	}
+</script>
+
+
+			<!-- //검색영역 -->
+			<div class="mainGoMarathon"><a href="/marathon/index.do"><img src="/include/image/common/goMarathon.png" alt="파주시독서마라톤 바로가기"></a></div>
+		</header>
+		<!-- 도서관 바로가기 -->
+		<div class="libZone">
+			<h3 class="blind">도서관 바로가기</h3>
+			<a href="#prev" title="이전 도서관 목록 보기" class="btnSlidePrev"><span class="blind">이전 도서관 목록 보기</span></a>
+			<a href="#next" title="다음 도서관 목록 보기" class="btnSlideNext"><span class="blind">다음 도서관 목록 보기</span></a>
+			<div class="pagerWrap">
+				<div class="pp-controls"></div>
+			</div>
+			
+
+
+<ul class="libList thumb">
+		
+			
+				<li>
+					<ul class="slide">
+			
+				
+					<li class="jalib">
+						<a href="/jalib/index.do">
+							<h5 class="tit">중앙도서관</h5>
+							<p class="info">
+								경기 파주시 쇠재로 33<br>
+								031-940-5661
+							</p>
+							
+						</a>
+					</li>
+				
+			
+		
+			
+				
+					<li class="ghlib">
+						<a href="/ghlib/index.do">
+							<h5 class="tit">교하도서관</h5>
+							<p class="info">
+								경기 파주시 숲속노을로 256<br>
+								031-940-5153
+							</p>
+							
+								<span class="holyday">휴관일</span>
+							
+						</a>
+					</li>
+				
+			
+		
+			
+				
+					<li class="mslib">
+						<a href="/mslib/index.do">
+							<h5 class="tit">문산도서관</h5>
+							<p class="info">
+								경기 파주시 문산읍 방촌로 1671<br>
+								031-820-7250
+							</p>
+							
+								<span class="holyday">휴관일</span>
+							
+						</a>
+					</li>
+				
+			
+		
+			
+				
+					<li class="grlib">
+						<a href="/grlib/index.do">
+							<h5 class="tit">가람도서관</h5>
+							<p class="info">
+								경기 파주시 가람로116번길 170<br>
+								031-949-2552
+							</p>
+							
+						</a>
+					</li>
+				
+			
+		
+			
+				
+					<li class="gclib">
+						<a href="/gclib/index.do">
+							<h5 class="tit">금촌도서관</h5>
+							<p class="info">
+								경기 파주시 시민회관길 40<br>
+								031-940-4381
+							</p>
+							
+								<span class="holyday">휴관일</span>
+							
+						</a>
+					</li>
+				
+			
+		
+			
+				
+					<li class="hslib">
+						<a href="/hslib/index.do">
+							<h5 class="tit">해솔도서관</h5>
+							<p class="info">
+								경기 파주시 해솔로 34<br>
+								031-940-5140
+							</p>
+							
+								<span class="holyday">휴관일</span>
+							
+						</a>
+					</li>
+				
+			
+		
+			
+				
+					<li class="jrlib">
+						<a href="/jrlib/index.do">
+							<h5 class="tit">조리도서관</h5>
+							<p class="info">
+								경기 파주시 조리읍 내산길 29<br>
+								031-944-2945
+							</p>
+							
+						</a>
+					</li>
+				
+			
+		
+			
+				
+					<li class="hblib">
+						<a href="/hblib/index.do">
+							<h5 class="tit">한빛도서관</h5>
+							<p class="info">
+								경기 파주시 와석순환로 94<br>
+								031-940-5777
+							</p>
+							
+						</a>
+					</li>
+				
+			
+		
+			
+				
+					<li class="mplib">
+						<a href="/mplib/index.do">
+							<h5 class="tit">물푸레도서관</h5>
+							<p class="info">
+								경기 파주시 청석로 360<br>
+								031-944-5951
+							</p>
+							
+						</a>
+					</li>
+				
+			
+					</ul>
+				</li>
+			
+		
+			
+				<li>
+					<ul class="slide">
+			
+				
+					<li class="bwlib">
+						<a href="/bwlib/index.do">
+							<h5 class="tit">법원도서관</h5>
+							<p class="info">
+								경기 파주시 법원읍 사임당로 947<br>
+								031-940-4193
+							</p>
+							
+						</a>
+					</li>
+				
+			
+		
+			
+				
+					<li class="thlib">
+						<a href="/thlib/index.do">
+							<h5 class="tit">탄현도서관</h5>
+							<p class="info">
+								경기 파주시 탄현면 방촌로649번길 24-7 (탄현면 행정복지센터)<br>
+								031-940-8457
+							</p>
+							
+						</a>
+					</li>
+				
+			
+		
+			
+				
+					<li class="gclib3">
+						<a href="/gclib3/index.do">
+							<h5 class="tit">금촌3동솔빛도서관</h5>
+							<p class="info">
+								경기 파주시 시청로 194 (금촌3동 행정복지센터)<br>
+								031-944-8211
+							</p>
+							
+						</a>
+					</li>
+				
+			
+		
+			
+				
+					<li class="jslib">
+						<a href="/jslib/index.do">
+							<h5 class="tit">적성도서관</h5>
+							<p class="info">
+								경기 파주시 적성면 청송로 1013 (적성면 행정복지센터)<br>
+								031-940-8552
+							</p>
+							
+								<span class="holyday">휴관일</span>
+							
+						</a>
+					</li>
+				
+			
+		
+			
+				
+					<li class="pplib">
+						<a href="/pplib/index.do">
+							<h5 class="tit">파평도서관</h5>
+							<p class="info">
+								경기 파주시 파평면 청송로 189-21<br>
+								031-940-5990
+							</p>
+							
+						</a>
+					</li>
+				
+			
+		
+			
+				
+					<li class="hulib">
+						<a href="/hulib/index.do">
+							<h5 class="tit">한울도서관</h5>
+							<p class="info">
+								경기도 파주시 교하로 239(동패동)<br>
+								031-940-5007
+							</p>
+							
+								<span class="holyday">휴관일</span>
+							
+						</a>
+					</li>
+				
+			
+		
+			
+				
+					<li class="wllib">
+						<a href="/wllib/index.do">
+							<h5 class="tit">월롱도서관</h5>
+							<p class="info">
+								경기 파주시 월롱면 엘지로 17 월롱면 행정복지센터<br>
+								031-940-8570
+							</p>
+							
+						</a>
+					</li>
+				
+			
+		
+			
+				
+					<li class="srlib">
+						<a href="/srlib/index.do">
+							<h5 class="tit">술이홀도서관</h5>
+							<p class="info">
+								경기도 파주시 파주읍 술이홀로 295, 3층<br>
+								031-940-5082
+							</p>
+							
+						</a>
+					</li>
+				
+			
+		
+			
+				
+					<li class="gtlib">
+						<a href="/gtlib/index.do">
+							<h5 class="tit">광탄도서관</h5>
+							<p class="info">
+								경기도 파주시 광탄면 심궁로 23<br>
+								031-940-5825
+							</p>
+							
+						</a>
+					</li>
+				
+			
+					</ul>
+				</li>
+			
+		
+			
+				<li>
+					<ul class="slide">
+			
+				
+			
+		
+		<li class="small">
+		      <a href="https://lib.paju.go.kr/jalib/menu/10013/contents/40006/contents.do">
+				<h5 class="tit">작은도서관</h5>
+				<p class="info">
+					파주시 공립작은도서관·사립작은도서관 바로가기<br>
+				</p>
+			</a>
+		</li>
+
+</ul>
+
+		</div>
+		<!-- //도서관 바로가기 -->
+	</div>
+	<div id="container" class="main">
+		<div id="contents" class="contentArea">
+			<div id="section1" class="sectionGroup">
+				
+
+
+
+<ul class="tab">
+	<li><a href="#noticeWrap">공지사항</a></li>
+	<li><a href="#programWrap">프로그램</a></li>
+</ul>
+<!-- 공지사항 -->
+<div id="noticeWrap" class="boardListWrap">
+	<div class="controlGroup">
+		<p class="nowpage"></p>
+		<a href="#prev" title="이전 이미지 보기" class="btnSlidePrev"><span class="blind">이전 도서관 보기</span></a>
+		<a href="#next" title="다음 이미지 보기" class="btnSlideNext"><span class="blind">다음 도서관 보기</span></a>
+	</div>
+	<ul class="boardList list">
+		
+			<li>
+				
+						<a href="/jalib/20001/bbsPostDetail.do?postIdx=80723" class="jalib">
+							<i class="ico lib jalib">전체</i>
+							<h5 class="tit">&#034;시민 독서실태 및 인식조사&#034;  당첨자 발표</h5>
+							<div class="desc">시민 독서실태 조사에 참여해 주셔서 감사합니다.&nbsp; 설문조사는 6. 4.~6.14.(11일간) 진행되었고, 총 응답자는 2,546명입니다.&nbsp; 1등 1명(30만원권), 2등 1명(20만원권), 3등 1명(10만원권), 장려상 80명(5천원권) 선정하였습니다.&nbsp; 상품권은 8. 5.(수) 12:30 해당자에 한해 모바일 전송 예정입니다.&nbsp; 붙임 엑셀파일과 pdf파일 내용은 동일하니 확인 편하신 방법대로 보시면 됩니다.&nbsp; 다시한번 참여해 주셔서 감사합니다.&nbsp; &nbsp;(_._)^^ &nbsp;</div>
+							<p class="date">2026.08.05</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/mslib/20001/bbsPostDetail.do?postIdx=80700" class="mslib">
+							<i class="ico lib mslib">문산</i>
+							<h5 class="tit">문산도서관 전기차충전시설 운영개시 알림</h5>
+							<div class="desc">안녕하세요. 문산도서관입니다.&nbsp;
+<br> 
+<br> 2026. 8. 3.(월)부터 전기차충전기설 운영이 개시되었으니 많은 이용바랍니다~
+<br> &nbsp;
+<br> ※ 일반차량이 주차하거나, 충전 후 지속주차시 과태료가 부과될 수 있으니 주의해 주시기 바랍니다.&nbsp;
+<br></div>
+							<p class="date">2026.08.03</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/hulib/20001/bbsPostDetail.do?postIdx=80401" class="hulib">
+							<i class="ico lib hulib">한울</i>
+							<h5 class="tit">한울도서관 휴관 연장 안내(26. 5. 18. ~ 8. 30.)</h5>
+							<div class="desc">[파주시 교하도서관 공고 제2026-7호]
+<br> 한울도서관 리모델링 공사에 따른 임시휴관일 연장 공고
+<br> 
+<br> 운정3동 임시청사 이전에 따른 도서관 전용공간 복구 및 쾌적한 도서관 서비스 환경 조성을 위한
+<br> 한울도서관 리모델링 공사의 일정 지연 및 추가 공사에 따라 아래와 같이 임시휴관을 연장하오니 시민 여러분의 너른 양해를 부탁드리며,&nbsp;도서관 이용에 참고하여 주시기 바랍니다.&nbsp;
+<br> 
+<br> 
+<br> ○ 휴관기간 : (당초) 2026. 5. 18. (월) ~ 8. 2. (일)
+<br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;(변경) 2026. 5. 18. (월) ~ 8. 30.(일)
+<br> 
+<br> ○ 연장사유 : 한울도서관 리모델링 지연 및 추가 공사
+<br> 
+<br> ○ 중단사항 : 도서관 출입 불가, 도서관 서비스 일체(도서 대출·열람·예약·희망·책배달 서비스 등)
+<br> 
+<br> ○ 도서반납 : 한울도서관 외부반납함 이용, 파주시 타 도서관 반납 가능
+<br> 
+<br> ○ 재개관일: 2026. 8. 31.(월)&nbsp;
+<br> 
+<br> ○&nbsp;문 의 처: ☎031-940-5007
+<br></div>
+							<p class="date">2026.07.16</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/jalib/20001/bbsPostDetail.do?postIdx=80280" class="jalib">
+							<i class="ico lib jalib">중앙</i>
+							<h5 class="tit">[중앙] 5층 카페 에스쁘아 휴무 안내 (7/16 목요일)</h5>
+							<div class="desc">중앙도서관 5층 카페 에스쁘아&nbsp;내부 사정으로
+<br> 2026년 7월 16일(목) 운영하지 않습니다.
+<br> 이용에 참고해주시기 바랍니다.
+<br> 
+<br></div>
+							<p class="date">2026.07.09</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/ghlib/20001/bbsPostDetail.do?postIdx=79320" class="ghlib">
+							<i class="ico lib ghlib">교하</i>
+							<h5 class="tit">[교하 | 특화 북페어] &lt;2026 스몰테이블&gt; 서포터즈(자원봉사자) 모집*기간연장(~6/14 까지)</h5>
+							<div class="desc"><br> 
+<br> 교하도서관 출판인쇄 특화사업&nbsp; | 특화 북페어
+<br> 2026 스몰테이블 서포터즈 모집 안내
+<br> 
+<br> 교하도서관 북페어 운영을 함께할 자원봉사자를 모집합니다.
+<br> 2026년 4회를 맞이하는 교하도서관 북페어 &lt;2026 스몰테이블&gt;에는 창작자, 출판사, 서점 66팀이 함께합니다.
+<br> 평소 교하도서관 행사를 좋아하고 사랑하는 시민분들의 많은 참여와 관심 부탁드려요!
+<br> 
+<br> &nbsp; ▪️ 모집기간: 2026. 5. 28.(목) ~ 6. 14.(일)(2주간)
+<br> &nbsp; ▪️ 모집대상: 북페어 운영 자원활동가, 성인 대상
+<br> &nbsp; ▪️ 모집인원: 플로어 매니저는 2일 모두 활동 가능한 경우에만 참여가능     구분   모집분야   인원   활동내용   활동기간     1   플로어 매니저   4명   층별 부스 관리 운영 총괄   7.4.(토) ~7.5.(일)     2   플로어 서포터   8명   층별 부스 관리 지원/ 공연 및 강연 지원     3   미디어 서포터   2명   행사사진 및 영상 촬영지원     4   디스플레이 서포터   4명   북페어 운영 전일 행사장 설치 지원   7.3.(금)     
+<br> &nbsp; ▪️ 활동기간: 2026. 7. 3.(금) ~ 7. 5.(일) 09:00~18:00
+<br> &nbsp; ▪️ 활동인증: 1365 자원봉사포털을 통한 활동시간 인증처리
+<br> &nbsp; ▪️ 사전모임: 모집완료 후 6월 중 협의 조정
+<br> &nbsp; &nbsp; &nbsp; - 대상/장소: 성인, 서포터즈 활동신청자 최대 18명 / 교하도서관 2층 문화강연실
+<br> &nbsp; &nbsp; &nbsp; - 내 &nbsp; &nbsp;용: 북페어 세부 운영 내용 소개, 자원활동가 활동 교육 등
+<br> 
+<br> 아래 구글폼으로 신청하시면 활동 확정 후 개별연락 드립니다.&nbsp;
+<br> &nbsp; ▪️ 신청하기: http...</div>
+							<p class="date">2026.05.28</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/gclib/20001/bbsPostDetail.do?postIdx=79200" class="gclib">
+							<i class="ico lib gclib">금촌</i>
+							<h5 class="tit">제9회 전국동시지방선거 투표소 설치에 따른 금촌도서관 운영시간 단축 공고</h5>
+							<div class="desc">제9회 전국동시지방선거 투표소 설치에 따른 금촌도서관 운영시간 단축 공고
+<br> 
+<br> 파주시 금촌도서관은 2026년 6월 3일&nbsp;실시되는 제9회 전국동시지방선거 관련,&nbsp;&nbsp;투표소 설치 등 원활한 선거업무 추진을 위하여 선거 전일 아래와 같이 운영시간을 단축하여 운영하오니 시민 여러분의 넓은 양해를 부탁드립니다.  
+<br> □ 운영시간 단축 개요 ○ 대상시설: 금촌도서관 ○ 단축운영일 : 2026년 6월 2일(화) ○ 운영시간
+<br> - 변경 전 : 09:00~18:00
+<br> - 변경 후 :&nbsp;09:00~16:00 (2시간 단축) ○ 단축사유
+<br> - 제9회 전국동시지방선거 투표소 설치 및 선거사무원 교육 진행 ○ 중단사항
+<br> - 도서 대출 및 자료실 이용 불가
+<br> - 도서 반납은 외부 무인반납함 이용 ○ 문의처: 금촌도서관 (☎ 031-940-4381) &nbsp;</div>
+							<p class="date">2026.05.27</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/grlib/20001/bbsPostDetail.do?postIdx=78300" class="grlib">
+							<i class="ico lib grlib">가람</i>
+							<h5 class="tit">[가람] 컬렉션버스킹 &lt;골목을 바꾸는 작은 가게들 : 가람로21번길을 읽다&gt; 운영 안내 (5. 19. ~ 6. 7.)</h5>
+							<div class="desc"><br> *본 홍보물은 미리캔버스에서 제작되었습니다.
+<br> 
+<br> [컬렉션버스킹] 골목을 바꾸는 작은 가게들 : 가람로21번길을 읽다
+<br> 
+<br> 가람도서관과 부엉이책장이 가람로21번길 일대에서 컬렉션버스킹을 운영합니다. 2026년 5월 19일(화)부터 6월 7일(일)까지,
+<br> 가람로21번길에 위치한 6개 참여 가게에서 다양한 주제의 도서 전시를 만나보실 수 있습니다.
+<br> &nbsp; ■ 컬렉션버스킹이란?
+<br> 도서관이 삶터 곳곳으로 찾아가 ‘컬렉션’으로 말을 거는 팝업도서관 전시 프로젝트 입니다.
+<br> &nbsp; ■ 참여 가게
+<br> 카페 라브리 / 스타분식 / 어먼스플라워 / 촉촉베이커리 / 카츠휘 / 콰이어트라이트
+<br> &nbsp; ■ 주요 내용
+<br> [컬렉션 전시] 이야기와 컬렉션
+<br> - 가람도서관 1층 로비가 동네 이야기를 펼쳐놓은 전시장으로 변신합니다.
+<br> - 6개의 동네 가게에서 사장님과 함께 꾸민 도서 컬렉션을 만나보세요. 책 대출도 가능합니다.
+<br> 
+<br> [이벤트] 컬렉션버스킹 참여가게 투어
+<br> - 컬렉션버스킹 참여 가게에서 도장판 수령 후, 6개 가게를 돌며 도장을 모으세요.
+<br> - 6개 도장을 모은 엽서를 가람도서관 1층 어린이자료실에 보여주면 이벤트 참여가 가능합니다(6/4부터 선착순 참여 가능)
+<br> &nbsp; *컬렉션버스킹 기간 내 상시 운영
+<br> 
+<br> [공연1] 시가 머문 자리, 음악이 흐르다
+<br> 일시 | 5. 29.(금) 19:30-21:00
+<br> 장소 | 카페 라브리(가람로21번길 5-15)
+<br> 진행 | 최지인 시인, 전유동 싱어송라이터
+<br> 내용 | 저서 낭독 및 신작 시 발표, 시와 기타 연주와 노래
+<br> ► 공연정보바로가기
+<br> 
+<br> [공연2] 재즈가 머무는 오후
+<br> 일시 | 5. 31.(일) 16:00-17:00
+<br> 장소 | 촉촉베이커리(가람로21번길 47)
+<br> 연주 | 파주문화예술포럼 재즈...</div>
+							<p class="date">2026.05.03</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/jrlib/20001/bbsPostDetail.do?postIdx=77860" class="jrlib">
+							<i class="ico lib jrlib">조리</i>
+							<h5 class="tit">[조리] 5월 동화랑 놀자! 가상체험동화 신청 안내(4/28~)</h5>
+							<div class="desc"><br> 
+<br> &nbsp;2026년 5월 동화랑 놀자! 가상체험동화 신청 안내&nbsp;
+<br> 
+<br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;동화구연가와 함께 하는 VR 이야기 체험
+<br> &nbsp; &nbsp; 큰 화면 속 동화나라&nbsp;주인공이 된 나의 모습을 보며 손동작을 하면
+<br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;과일도 딸 수 있고 집도 지을 수 있어요!
+<br> 
+<br> 동&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;화&nbsp;&nbsp;[전래동화] 콩쥐팥쥐, [전래동화] 혹부리 영감님과 아기 도깨비
+<br> 대&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;상&nbsp;&nbsp;5~8세 어린이 6~7명 (19~22년생)
+<br> 일&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;시&nbsp;&nbsp;5/9, 5/16, 5/23, 5/30 매주 토요일
+<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[1타임] 오전 10:30~11:00
+<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2타임] 오전 11:10~11:40
+<br> 장&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;소&nbsp;&nbsp;2층 어린이자료실 이야기방
+<br> 신청기간&nbsp;&nbsp;4/28(화) 오전 9:00~
+<br> 신청방법&nbsp;&nbsp;홈페이지&gt; 로그인&gt; 프로그램&gt; 체험동화&gt; 이용신청&gt; 5월&nbsp;👉🏻바로가기 (클릭)✨
+<br> 유의사항&nbsp;&nbsp;5세 미만, 9세 이상 어린이는 참가할 수 없습...</div>
+							<p class="date">2026.04.21</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/gtlib/20001/bbsPostDetail.do?postIdx=75500" class="gtlib">
+							<i class="ico lib gtlib">광탄</i>
+							<h5 class="tit">2026 광탄도서관 어린이 견학 안내</h5>
+							<div class="desc">&lt;광탄도서관 어린이실 견학 안내&gt;
+<br> 
+<br> ○ 신청대상/인원
+<br> - 파주시 관내 어린이집 · 유치원 / 초등학교 단체
+<br> 
+<br> ○ 운영시간
+<br> &nbsp;- 매주 수, 목요일 10:30 ~ 11:30, 하루 1팀 이용&nbsp;&nbsp;
+<br> &nbsp;- 견학프로그램 : 미취학&nbsp;- 수(60분)&nbsp;
+<br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;초등학생 -&nbsp;금(45분)
+<br> &nbsp; &nbsp;(방학기간 중 단체방문 제한) ○ 프로그램 내용
+<br> &nbsp;-&nbsp; 미취학&nbsp;- 수(60분)&nbsp;: 도서관 이용안내, 사서와 함께 그림책 읽기, 이야기할머니와의 만남, 자유열람 등
+<br> &nbsp;- 초등학생 -&nbsp;금(45분) : 독후활동, 자유열람 등 ○ 신청방법
+<br> - 견학예정일 전월 첫째주 화요일 09:00 ~&nbsp;&nbsp;광탄도서관 홈페이지 선착순 접수
+<br> &nbsp; &nbsp;※ 3월 시범 운영 기간 접수기간 2026. 2. 24. (화) 09:00 ~&nbsp;
+<br> - 홈페이지 로그인 → [프로그램] → [견학신청]&nbsp;→ [현황조회/신청] → 날짜선택 → 신청서(공지사항-&gt; 2026 광탄도서관 어린이 견학 안내)&nbsp;작성 후 이메일&nbsp;제출
+<br> - 이메일 : kimins@korea.kr&nbsp;
+<br> - 담당자 확인 후 확정 안내 예정
+<br> &nbsp; ※ 견학 및 단체 열람 신청 시 더 많은 기관들에게 골고루 혜택을 드리고자 참여 횟수가 제한될 수 있습니다. ○ 유의사항
+<br> &nbsp;- 유아(단체) 견학 시 반드시 인솔교사가 동반해야만 합니다.
+<br> &nbsp;- 단체 이용 시 다른 이용자에게 방해가 되지 않도록 지도 바랍니다.
+<br> &nbsp;- 자료 훼손...</div>
+							<p class="date">2026.02.19</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/hslib/20001/bbsPostDetail.do?postIdx=74880" class="hslib">
+							<i class="ico lib hslib">해솔</i>
+							<h5 class="tit">[해솔] 2025년 초등교과연계도서목록 자료집 이용 만족도 설문조사</h5>
+							<div class="desc">2025년 초등교과연계도서목록 자료집 만족도 설문조사를 실시합니다.
+<br> 향후 더욱 개선된 자료집 개발과 서비스 제공을 위해 참고자료로 활용되오니
+<br> 바쁘시더라도 자료집을 수령하신 분들의 적극적인 참여 바랍니다.
+<br> 
+<br> 설문조사 기간 : 2.3.(화) ~ 2.8.(일)
+<br> 
+<br> 설문조사 참여 링크 :&nbsp;https://naver.me/FqIbmejn
+<br> 
+<br> 문의 : 031.940.5142</div>
+							<p class="date">2026.02.03</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/hblib/20001/bbsPostDetail.do?postIdx=73560" class="hblib">
+							<i class="ico lib hblib">한빛</i>
+							<h5 class="tit">기나긴 겨울, 집에서 즐기는 영어 독서 ‘오버드라이브’</h5>
+							<div class="desc">❄️기나긴 겨울방학과 휴가 기간,
+<br> &nbsp; &nbsp; 도서관에 방문하지 않아도 집에서 편안하게 영어 독서를 즐겨보세요.
+<br> &nbsp; ❄️파주시민이라면 누구나 이용할 수 있는
+<br> &nbsp; &nbsp; 영어전자책 구독 서비스 ‘오버드라이브’를 통해
+<br> &nbsp; &nbsp; 영어 전자책과 오디오북을 언제 어디서나 만나볼 수 있습니다.
+<br> &nbsp; ❄️온라인 로그인만으로 간편하게 이용 가능하며,
+<br> &nbsp; &nbsp; 다양한 영어 콘텐츠로 즐거운 독서 시간을 경험해 보세요.
+<br> 
+<br> ✨자세한 사용방법은 아래 포스터와&nbsp;'영어전자책 이용안내('클릭'&nbsp;바로가기)'를 확인하세요!
+<br> &nbsp;</div>
+							<p class="date">2026.01.07</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/mplib/20001/bbsPostDetail.do?postIdx=73260" class="mplib">
+							<i class="ico lib mplib">물푸레</i>
+							<h5 class="tit">파주시 위탁도서관 통합 인스타그램 이벤트 &lt;도서관, 함께 시즌2&gt; 당첨자 발표</h5>
+							<div class="desc"><br> 
+<br> 파주시 위탁도서관 통합 인스타그램 이벤트 &lt;도서관, 함께 시즌2&gt; 당첨자 발표&nbsp;
+<br> 이벤트 참여에 감사드리며, 당첨을 진심으로 축하드립니다.🎉
+<br> 
+<br> ★&nbsp;당첨선물: 파주시 지역서점 상품권 1만원권&nbsp;★
+<br> 
+<br> 🎁 선물 수령 안내
+<br> 🔹 수령 도서관: 댓글에 남겨주신 도서관
+<br> &nbsp; &nbsp; ※ 수령 도서관 변경은 어려운 점 양해 부탁드립니다.
+<br> 🔹 수령 기간: 2026년 1월 2일(금) ~ 1월 31일(토) 오후 6시까지
+<br> &nbsp; &nbsp; ※ 각 도서관 휴관일 확인 후 방문 부탁드립니다.
+<br> 🔹 수령 시 DM 화면을 제시해 주시기 바랍니다.
+<br> 
+<br> 📚 도서관별 수령 장소 및 문의처
+<br> ▶ 가람도서관: 1층 어린이자료실 (031-949-2552)
+<br> ▶ 물푸레도서관: 1층 데스크 (031-944-5951)
+<br> ▶ 조리도서관: 2층 어린이자료실 (031-944-2945)
+<br> ▶ 솔빛도서관: 1층 어린이자료실 (031-944-8211)
+<br> ▶ 무지개작은도서관: (031-941-2958)
+<br> 
+<br> 차기 이벤트에도 많은 관심 부탁드립니다. 감사합니다.
+<br> 
+<br> * 파주시 가람, 조리, 솔빛, 물푸레, 금촌무지개작은도서관, 부엉이책장을 느티나무재단에서 위탁운영합니다.</div>
+							<p class="date">2025.12.31</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/gclib3/20001/bbsPostDetail.do?postIdx=73220" class="gclib3">
+							<i class="ico lib gclib3">솔빛</i>
+							<h5 class="tit">파주시 위탁도서관 통합 인스타그램 이벤트 &lt;도서관, 함께 시즌2&gt; 당첨자 발표</h5>
+							<div class="desc"><br> 파주시 위탁도서관 통합 인스타그램 이벤트 &lt;도서관, 함께 시즌2&gt; 당첨자 발표&nbsp;
+<br> 이벤트 참여에 감사드리며, 당첨을 진심으로 축하드립니다.🎉
+<br> 
+<br> ★ 당첨선물: 파주시 지역서점 상품권 1만원권 ★
+<br> 
+<br> 🎁 선물 수령 안내
+<br> 🔹 수령 도서관: 댓글에 남겨주신 도서관
+<br> &nbsp; &nbsp; ※ 수령 도서관 변경은 어려운 점 양해 부탁드립니다.
+<br> 🔹 수령 기간: 2026년 1월 2일(금) ~ 1월 31일(토) 오후 6시까지
+<br> &nbsp; &nbsp; ※ 각 도서관 휴관일 확인 후 방문 부탁드립니다.
+<br> 🔹 수령 시 DM 화면을 제시해 주시기 바랍니다.
+<br> 
+<br> 📚 도서관별 수령 장소 및 문의처
+<br> ▶ 가람도서관: 1층 어린이자료실 (031-949-2552)
+<br> ▶ 물푸레도서관: 1층 데스크 (031-944-5951)
+<br> ▶ 조리도서관: 2층 어린이자료실 (031-944-2945)
+<br> ▶ 솔빛도서관: 1층 어린이자료실 (031-944-8211)
+<br> ▶ 무지개작은도서관: (031-941-2958)
+<br> 
+<br> 차기 이벤트에도 많은 관심 부탁드립니다. 감사합니다.
+<br> 
+<br> * 파주시 가람, 조리, 솔빛, 물푸레, 금촌무지개작은도서관, 부엉이책장을 느티나무재단에서 위탁운영합니다.</div>
+							<p class="date">2025.12.30</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/jslib/20001/bbsPostDetail.do?postIdx=72141" class="jslib">
+							<i class="ico lib jslib">적성</i>
+							<h5 class="tit">2025년 적성도서관 희망도서 구입 종료 안내 (11/26 신청마감)</h5>
+							<div class="desc">2025년 적성도서관 희망도서 구입이 종료됨을 안내드립니다.
+<br> 
+<br> ○ 신청마감일 :&nbsp;2025년 11월 26일 (수) 18시
+<br> ○ 문의 : 031-940-8558
+<br> 
+<br> 신청마감일 이후 신청된 희망도서는 일괄 취소처리되며, 2026년 희망도서 구입 시작 날짜는 예산이 확정된 후 재공지할 예정입니다.
+<br> 
+<br> 취소된 도서 구입을 희망하시는 분은 2026년 희망도서 구입 기간에 재신청해 주시기 바랍니다.
+<br> 
+<br> 내년에도 좋은 도서를 구입할 수 있도록 노력하겠습니다.&nbsp;감사합니다.</div>
+							<p class="date">2025.11.24</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/bwlib/20001/bbsPostDetail.do?postIdx=71200" class="bwlib">
+							<i class="ico lib bwlib">법원</i>
+							<h5 class="tit">[법원] 2025년 법원도서관 희망도서 구입 종료 안내</h5>
+							<div class="desc">●&nbsp;법원도서관 희망도서 구입 종료 안내
+<br> ● 신청 마감일 : 2025. 11. 10.(월) 18:00&nbsp;
+<br> 
+<br> 2025년 법원도서관 희망도서 서비스가 종료됨을 알려드립니다.
+<br> 11.10.(월)까지 신청하신 도서만 구입, 제공되며 이후 신청하신 도서는 일괄 취소처리 됩니다.
+<br> 2026년 희망도서 서비스 재개 일정은 2026년 연초에 공지될 예정입니다.
+<br> 법원도서관 희망도서 서비스를 이용해주심에 감사드리며, 앞으로도 많은 관심을 부탁드립니다.
+<br> &nbsp;</div>
+							<p class="date">2025.10.28</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/pplib/20001/bbsPostDetail.do?postIdx=71080" class="pplib">
+							<i class="ico lib pplib">파평</i>
+							<h5 class="tit">2025년 파평도서관 희망도서 신청 마감 알림</h5>
+							<div class="desc">2025년 도서구입 예산이 소진되어 파평도서관 희망도서 신청이 10월 31일(금)부로 종료됨을 알려드립니다.
+<br> 
+<br> ○ 신청마감일 : 2025년 10월 31일(금) 18:00시
+<br> ○ 문의 : 파평도서관 희망도서 담당 &nbsp;☎ 031-940-5990
+<br> 
+<br> 2025년 10월 31일 18:00시 이후 신청하신 희망도서는 2026년 원활한 도서 구입을 위해 모두 일괄 취소처리됨을 양해해주시기 바랍니다.
+<br> 아울러, 2026년 희망도서 구입 시작 날짜는 예산이 확정된 후 재공지할 예정이오니, 이후 올라오는 공지사항을 확인해 주시기 바랍니다.
+<br> 
+<br> 희망도서 구입을 비롯한 파평도서관의 프로그램에 꾸준한 관심을 보여주신 여러분께 이 자리를 빌려 감사의 말씀을 올리며 이용자분들의 수준높은 독서활동을 뒷받침할 수 있도록 노력을 아끼지 않겠습니다.</div>
+							<p class="date">2025.10.24</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/wllib/20001/bbsPostDetail.do?postIdx=69821" class="wllib">
+							<i class="ico lib wllib">월롱</i>
+							<h5 class="tit">[월롱] 2025 월롱도서관 희망도서 신청 종료(~9/30) 알림</h5>
+							<div class="desc">2025년 도서구입 예산이 소진되어 월롱도서관 희망도서 신청이 9월 30일(화)부로 종료됨을 알려드립니다.
+<br> 
+<br> ○ 신청마감일 : 2025년 9월 30일(화) 18:00시
+<br> ○ 문의 : 월롱도서관 희망도서 담당 &nbsp;☎ 031-940-8563
+<br> 
+<br> 2025년 9월 30일 18:00시 이후 신청하신 희망도서는 2026년 원활한 도서 구입을 위해 모두 일괄 취소처리됨을 양해해주시기 바랍니다.
+<br> 아울러, 2026년 희망도서 구입 시작 날짜는 예산이 확정된 후 재공지할 예정이오니, 이후 올라오는 공지사항을 확인해 주시기 바랍니다.
+<br> 
+<br> 희망도서 구입을 비롯한 월롱도서관의 프로그램에 꾸준한 관심을 보여주신 여러분께 이 자리를 빌려 감사의 말씀을 올리며 이용자분들의 수준높은 독서활동을 뒷받침할 수 있도록 노력을 아끼지 않겠습니다.</div>
+							<p class="date">2025.09.26</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/srlib/20001/bbsPostDetail.do?postIdx=69561" class="srlib">
+							<i class="ico lib srlib">술이홀</i>
+							<h5 class="tit">2025년 술이홀도서관 희망도서 서비스 종료 안내</h5>
+							<div class="desc">[2025년 술이홀도서관 희망도서 서비스 종료 안내]
+<br> 
+<br> ● 신청 마감일 : 2025. 9. 30. (화) 18:00 ●
+<br> 
+<br> 2025년 술이홀도서관 희망도서 서비스가 종료됨을 알려드립니다.
+<br> 
+<br> 9.30.(화)까지 신청하신 도서만 구입, 제공되며 이후 신청하신 도서는 일괄 취소처리 됩니다.
+<br> 
+<br> 2026년 희망도서 서비스 재개 일정은 2026년 연초 홈페이지에 공지될 예정입니다.
+<br> 
+<br> 한 해동안 술이홀도서관 희망도서 서비스를 이용해주신 분들께 감사의 말씀을 드리며, 내년에도 보다 좋은 도서를 구입할 수 있도록 노력하겠습니다. 감사합니다.</div>
+							<p class="date">2025.09.19</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/thlib/20001/bbsPostDetail.do?postIdx=68640" class="thlib">
+							<i class="ico lib thlib">탄현</i>
+							<h5 class="tit">[탄현] 2025년 탄현도서관 희망도서 서비스 종료 안내</h5>
+							<div class="desc">[2025년 탄현도서관 희망도서 서비스 종료 안내]
+<br> 
+<br> 2025년 탄현도서관 희망도서 서비스가 종료되었음을 알려드립니다.
+<br> 
+<br> 8.21.(목)까지 신청한 자료만 구입, 제공되며 이후 신청하신 자료는 일괄 취소처리 됩니다.
+<br> 
+<br> 2026년 희망도서 서비스 재개 일정은 2026년 연초 홈페이지에 공지될 예정입니다.
+<br> 
+<br> 한 해동안 탄현도서관 희망도서 서비스를 이용해주셔서 감사합니다.</div>
+							<p class="date">2025.08.28</p>
+						</a>
+					
+			</li>
+		
+		
+	</ul>
+	<p class="more"><a href="/jalib/20001/bbsPostList.do?manageCd=ALL" title="공지사항 더보기"><img src="/include/image/common/btn_totalmenu.png" alt="더보기"></a></p>
+</div>
+<!-- //공지사항 -->
+<!-- 프로그램 -->
+<div id="programWrap" class="boardListWrap">
+	<div class="controlGroup">
+		<p class="nowpage"></p>
+		<a href="#prev" title="이전 이미지 보기" class="btnSlidePrev"><span class="blind">이전 도서관 보기</span></a>
+		<a href="#next" title="다음 이미지 보기" class="btnSlideNext"><span class="blind">다음 도서관 보기</span></a>
+	</div>
+	<ul class="boardList list">
+		
+			<li>
+				
+						<a href="/jalib/lectureDetail.do?lectureIdx=54508" class="jalib">
+							<i class="ico lib jalib">중앙</i>
+							<h5 class="tit">[중앙] [컬렉션 연계강좌] 향기로 걷는 미술관</h5>
+							<div class="desc"><br> 미술관은 눈으로만 감상하는 곳일까요?
+<br> 
+<br> 이번에는 향기와 함께 감상해보세요.
+<br> 
+<br> 서양미술을 향기로 만나고,
+<br> 빈센트 반 고흐의 작품을
+<br> 나만의 향수로 완성하는 시간
+<br> 
+<br> *:･ﾟ예술을 오감으로 경험하는 특별한 미술관에 여러분을 초대합니다.*:･ﾟ
+<br> 
+<br> 일 시_ 9. 12.(토)/9. 19.(토) 10:00 ~ 12:00 (2차시)
+<br> 대 상_ 성인 25명
+<br> 장 소_ 중앙도서관 401(4층)
+<br> 강 사_ 최새롭(공방「셀리마드」대표, 조향사)
+<br> 신 청_ 8. 11.(화) 09:00 ~ 도서관 홈페이지
+<br> 문 의_031-940-5655
+<br> 
+<br> ※ 프로그램의 연계성을 위해 2차시는 1차시 수강자에 한하여 운영됩니다.
+<br> ※ 33가지 향료를 직접 시향하고 조합하여, 직접 만든 향수(30ml) 1병을 완성하여 가져갈 수 있습니다.
+<br> ※ 향수 제작 재료는 총 25명분이 준비되므로, 2차시까지 모두 참여 가능하신 경우에만 신청해주세요.
+<br> 
+<br> 
+<br> *이번 강연은 4층 자료실 컬렉션〈'아트인컬처'가 묻고, 책이 답하다〉와 함께합니다.
+<br> 『아트인컬처』가 던진 질문에 책으로 답해보는 미술·예술 관련 도서도 함께 둘러보세요.
+<br> ▶ 컬렉션 보러가기 :&nbsp;사서의 컬렉션 : 중앙도서관
+<br> 
+<br> 
+<br> *포스터의 일부는 AI로 제작되었습니다.</div>
+							<p class="date">2026-09-12~2026-09-19</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/mslib/lectureDetail.do?lectureIdx=54507" class="mslib">
+							<i class="ico lib mslib">문산</i>
+							<h5 class="tit">우리 마을의 기억을 걷다 Ⅰ : 문향의 시작, 우리 마을의 지성을 만나다</h5>
+							<div class="desc"><br> 📚━━━━━━━━━━━━━━━━━━━━📚
+<br> 우리 마을의 기억을 걷다 Ⅰ
+<br> 문향의 시작, 우리마을의 지성을 만나다 ✔ 우리마을의 역사와 문화가 궁금한 시민
+<br> ✔ 율곡 이이, 우계 성혼, 구봉 송익필의 삶을 만나보고 싶은 시민
+<br> ✔ 지역을 인문학으로 새롭게 이해하고 싶은 시민 📖 조선시대 파주를 대표하는 세 지식인의 삶과 학문을 통해,
+<br> 우리마을이 품고 있는 문향의 역사와 문화적 가치를 함께 살펴보는 시간입니다. 📚━━━━━━━━━━━━━━━━━━━━📚
+<br> &nbsp; 📝 프로그램 개요 일시 2026. 9. 1.(화) ~ 9. 15.(화) 매주 화요일 10:00~12:00 / 총 3회
+<br> 장소 문산도서관 1층 베이스캠프
+<br> 대상 파주시민 30명
+<br> 강사 서현경 문학박사
+<br> · 연세대학교 문학박사
+<br> · 한국고전번역원 한국교점위원 접수 2026. 8. 11.(화) ~ 홈페이지 및 전화 선착순
+<br> 문의 문산도서관 (031-820-7235)
+<br> &nbsp; 📝 이런 분께 추천합니다 ✔ 우리마을의 역사와 문화를 깊이 이해하고 싶은 분
+<br> ✔ 조선시대 선비들의 삶과 철학이 궁금한 분
+<br> ✔ 지역을 새로운 시각으로 바라보고 싶은 분
+<br> &nbsp;  🌿 그리고 이어지는 『우리 마을의 기억을 걷다 Ⅱ』 문향의 시대를 지나, 전쟁과 분단은 우리마을을 어떻게 바꾸었을까요?
+<br> 9월 15일과 22일,&nbsp;밤고지마을에 남겨진 기억을 따라 평화의 의미를 함께 걸어갑니다.
+<br> 『 우리 마을의 기억을 걷다 시즌 2 』를 기대해주세요.</div>
+							<p class="date">2026-09-01~2026-09-15</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/hblib/lectureDetail.do?lectureIdx=54506" class="hblib">
+							<i class="ico lib hblib">한빛</i>
+							<h5 class="tit">[한빛도서관x공유학교] 영어랑 책이랑</h5>
+							<div class="desc"><br> 
+<br> [한빛도서관x공유학교] 영어랑 책이랑 2026년 공유학교 신청은 파주 교육지원청의 꿈함성 공유학교 사이트를 통해 진행되며,
+<br> 신청 인원 초과시 추첨으로 참여 가능 여부가 결정됩니다.
+<br> &nbsp; &nbsp;일 시&nbsp; 9. 10. ~ 12. 3.(매주 목요일, 12회) 15:30~17:00
+<br> 
+<br> &nbsp;대 상&nbsp;&nbsp;파주시 주소지 초등 3~4학년 15명(또는 동일 연령)
+<br> 
+<br> &nbsp;장 소&nbsp; 한빛도서관 2층 문화교육실
+<br> 
+<br> &nbsp;강 사&nbsp;&nbsp;김진국(영어독서지도사)
+<br> 
+<br> &nbsp;내 용&nbsp;&nbsp;매주 새로운 영어그림책 스토리텔링과&nbsp;다양한 활동을 통해&nbsp;&nbsp;"영어랑 책이랑" 친해지는 시간
+<br> 
+<br> &nbsp;신 청&nbsp; 8. 5.(수) ~ 8. 16.(일) 16:00 까지 파주 교육지원청의 공유학교 사이트&nbsp;신청&nbsp;&nbsp;신청페이지 바로가기(클릭)&nbsp;
+<br> 
+<br> ※ 기타 안내사항
+<br> ○ 프로그램별 참여 확정 학생 : 개별 문자 전송 및 안내 예정
+<br> ○ 80%이상 출석시 학교생활기록부 기재
+<br> &nbsp; ※ 문의: 파주교육지원청 지역교육협력팀 ☎031-940-7223 /&nbsp;한빛도서관 ☎031-940-5735
+<br> &nbsp;
+<br> 
+<br> 신청 바로가기(파주 꿈함성 공유학교 신청페이지로 연결)
+<br> 신청 바로가기(파주 꿈함성 공유학교 신청페이지로 연결)
+<br> 신청 바로가기(파주 꿈함성 공유학교 신청페이지로 연결)
+<br> &nbsp;</div>
+							<p class="date">2026-09-10~2026-12-03</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/grlib/lectureDetail.do?lectureIdx=54487" class="grlib">
+							<i class="ico lib grlib">가람</i>
+							<h5 class="tit">[독서클럽] 용돈, 어떻게 쓰면 좋을까?</h5>
+							<div class="desc"><br> 
+<br> [독서클럽] &nbsp;용돈, 어떻게 쓰면 좋을까?&nbsp;
+<br> 
+<br> 사서 선생님과 함께 책을 읽고 용돈 이야기를 나눠요!
+<br> 
+<br> [일시] 9. 3.(목), 9. 10.(목) 16:00~17:30(총2차시)
+<br> [장소] 2층 문화강연실
+<br> [대상] 초등 4~5학년 8명
+<br> [도서] 『용돈 몰아주기 내기 어때?』이수용 저자
+<br> [신청] 8. 18.(화)~ 홈페이지 접수
+<br> ※ 2차시 모두 참여해야 합니다.
+<br> ※ 도서는 함께 읽을 예정입니다.
+<br> &nbsp;    회 사 일 자 내 용 진 행   1 9. 3.(목) 용돈은 왜 필요할까요? 함께 생각해요. 담당사서   2 9. 10.(목) 돈의 가치와 소비를 함께 알아봐요 담당사서   3 9. 12.(토) 작가님과 함께 나만의 돈 습관을 만들어 봐요. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;* 독서클럽 친구들 필수 참석  이수용 작가&nbsp;</div>
+							<p class="date">2026-09-03~2026-09-10</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/grlib/lectureDetail.do?lectureIdx=54466" class="grlib">
+							<i class="ico lib grlib">전체</i>
+							<h5 class="tit">[가람][추가모집] 홀로서기 리허설 : 청년을 위한 독립 길잡이</h5>
+							<div class="desc"><br> &nbsp;*본 제작물은 2026 길위의인문학 운영 목적으로 제작되었습니다.
+<br> 
+<br> [2026 길위의인문학]&nbsp;홀로서기 리허설 : 청년을 위한 독립 길잡이
+<br> [날짜]&nbsp;2026. 7. 22. ~ 9. 19. 매주 수요일 (총 10회)
+<br> [시간]&nbsp;19:30~21:30
+<br> *9. 19.(토)는 파주시청년공간GP1939에서 14:30-17:00 운영
+<br> [장소]&nbsp;2층 문화강연실
+<br> [대상]&nbsp;20-30대 청년 20명 (추가모집 3명)
+<br> [내용]&nbsp;주체적인 삶의 첫걸음을 준비하는 청년을 위한 독립 리허설
+<br> [주최]&nbsp;문화체육관광부
+<br> [주관]&nbsp;한국문화예술교육진흥원, 한국도서관협회, 가람도서관
+<br> [신청]&nbsp;8. 7.(금)~ 선착순 홈페이지 접수
+<br> &nbsp;    회차 일시 강사 주제     1 7.22.(수) 19:30~21:30 에린남&nbsp;(『취향 탐구 생활』 작가) 나는 무엇을 좋아하는 사람인가   2 7.29.(수) 19:30~21:30 에린남&nbsp;(『취향 탐구 생활』 작가) 취향으로 읽는 나   3 8.5.(수) 19:30~21:30 백주훈
+<br> (전세사기 피해예방 아카데미 전문교육단 강사) 삶의 공간을 선택한다는 것   4 8.12.(수) 19:30~21:30 박재완&nbsp;(㈜두산건설 사내노무사) 노동과 권리에 대한 이해   5 8.19.(수) 19:30~21:30 방성운&nbsp;(㈜사람과교육 대표이사) 나를 사회에 표현하는 방법   6 8.26.(수) 19:30~21:30 방성운&nbsp;(㈜사람과교육 대표이사) 함께 일하는 삶의 태도   7 9.2.(수) 19:30~21:30 한희재&nbsp;(『월급으로 1억 만들기』 작가) 돈의 흐름과 삶의 선택   8 9.9.(수) 19:30~21:30 한희재&nbsp;(『월급으로 1억 만들기』 작가) 미래를 설계하는 투자 관점   9 9.16....</div>
+							<p class="date">2026-08-12~2026-09-19</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/jalib/lectureDetail.do?lectureIdx=54446" class="jalib">
+							<i class="ico lib jalib">중앙</i>
+							<h5 class="tit">[장비활용교육] 레이저 조각기 기초 </h5>
+							<div class="desc"><br> &nbsp; [기초반 세부 내용]     회차   제목   내용 및 주요 재료     1   레이저와 레이저커터의 이해   레이저의 기본 개념과 특성 이해, 기초설계 실습, 반지 디자인 연습     9.3     2   평면과 타이포 디자인   이름을 넣은 열쇠고리나 목걸이 디자인하고 커팅하기     9.10     3   인그레이빙 디자인   인그레이빙(각인) 기법 활용 책 도장을 만들기. 이미지를 벡터로 &nbsp;활용하는 팁 배우기     9.17     4   입체 디자인 : 수직 결합   평면으로 입체를 구성하는 방법 배우기     10.1     5   입체 디자인 : 도면 제작   수치를 계산하여 설계하고, 조립(꿰매기) 과정으로 가죽 카드 지갑을 만든다     10.8     6   입체 디자인 : 상자 제작   평면으로 입체를 구성하여 연필꽂이나 캔들 홀더를 만든다     10.15     &nbsp; [심화반 사전 안내]
+<br> 기간 : 10.29.~12.04.(격주 목/ 4회) 19:00~21:00
+<br> 신청 : 10. 6.(화)~ 홈페이지
+<br> * 심화반은 설계를 미리 직접 해와서 당일에는 강사님과 함께 제작 실습하는 방식으로 진행됩니다.&nbsp;
+<br> * 심화반은 본인이 만들고 싶은 작품에 따라 직접 재료를 준비해오셔야 합니다. (개인 노트북 지참/ 태블릿 불가)     회차   제목   내용 및 주요 재료     1   모빌 제작   아크릴, 펠트 등 원하는 재료를 결합하여 모빌을 디자인해 제작     10.29     2   보드게임 만들기   체스, 칠교, 퍼즐, 오목 등 원하는 게임을 설계하고 제작     11.12     3   파우치 제작   가죽, 펠트 등 원하는 재료로 가방이나 파우치를 설계하여 제작     11.26     4   자유 주제   각자 제작하고 싶은 작품의 구상안을 설계하여 재료를 가공하고, 오류를 검증 및 수정하여 제작 진행     12.10     &nbsp;</div>
+							<p class="date">2026-09-03~2026-10-15</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/jalib/lectureDetail.do?lectureIdx=54429" class="jalib">
+							<i class="ico lib jalib">중앙</i>
+							<h5 class="tit">[안녕, 이웃 숲] 중고의류교환 &#039;21%파티&#039; </h5>
+							<div class="desc"><br> 
+<br> [안녕, 이웃 숲] 중고의류교환&nbsp;21%파티
+<br> 일시&nbsp;9. 6.(일) 13:00~17:00
+<br> 장소&nbsp;5층 스토리앤 입구
+<br> 내용 타인에게 권할 수 있는 깨끗한 성인 중고 의류(상하의, 모자 등 소품 -신발 제외-)&nbsp;1인&nbsp;3점 이내 교환.&nbsp;
+<br> 
+<br> 사놓고 안 입는 옷 평균비율 21% (다시입다연구소 설문조사 2020)
+<br> - 안 입는 옷을 서로 바꿔 입어 옷의 생명을 이어나가요.
+<br> - 사고 팔지 않고 교환하는 건강한 의류 소비 방식이예요.
+<br> - 의생활 속 제로웨이스트를 실천해요.
+<br> - 파티 후 남은 옷은 비영리 단체에 기부하여 소중하게 나눠요.
+<br> 
+<br> &lt;참가 방법&gt;
+<br> ①&nbsp;8.18.~ 파주중앙도서관 홈페이지 사전신청
+<br> ② 친구에게 권할만큼 깨끗하고 상태가 좋은, 안 입는 옷 또는 패션아이템 준비하기(1인 최대3벌, 세탁 필수!)
+<br> ③ 파티에 가져온 아이템 수량 만큼 교환티켓을 받아 원하는 옷으로 교환
+<br> * 참여전 [2022 방통위 방송대상 수상작] 옷을 위한 지구는 없다'를 보고 오시기&nbsp;바랍니다.
+<br> [2022 방송대상 대상🏆] 오늘 당신이 버린 옷, 어디로 갔을까? 우리 옷들이 바다 건너 거대한 무덤이 되다 | 옷을 위한 지구는 없다 | KBS 20210701 방송
+<br> 
+<br> &lt;참가 아이템&gt;
+<br> 성인 남녀 상,하의 &amp; 패션 잡화 (가방, 모자, 악세사리 등)
+<br> 신발을 제외한 패션 아이템 모두 가능합니다.
+<br> 
+<br> 옷을 가져갈 가방을 준비해주세요.
+<br> 남성 의류가 부족해요. 남성분들의 적극적인 참여를 환영합니다.&nbsp;
+<br> 
+<br> 
+<br> 안녕 이웃 숲 다른 행사 보기&nbsp;</div>
+							<p class="date">2026-09-06~2026-09-06</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/jalib/lectureDetail.do?lectureIdx=54428" class="jalib">
+							<i class="ico lib jalib">중앙</i>
+							<h5 class="tit">[안녕, 이웃 숲] 산호의 파주21%파티 이야기</h5>
+							<div class="desc"><br> 
+<br> [안녕, 이웃 숲] 산호의 파주21%파티 이야기
+<br> 일시&nbsp;9. 6.(일) 13:00~14:30
+<br> 장소&nbsp;5층&nbsp;502
+<br> 대상 청소년~성인 12명
+<br> 강사 김상희 (환경활동가, 환경교육강사 )
+<br> 내용 다시입다연구소의 중고 의류 교환 행사를 나도 열 수 있다고?&nbsp;파주에서&nbsp;21%파티 운영 경험과 패스트 패션 산업의 문제점을 함께 들어봅니다.
+<br> 신청 8.18. (화)~ 파주중앙도서관 홈페이지&nbsp;
+<br> &nbsp;</div>
+							<p class="date">2026-09-06~2026-09-06</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/jalib/lectureDetail.do?lectureIdx=54427" class="jalib">
+							<i class="ico lib jalib">중앙</i>
+							<h5 class="tit">[안녕, 이웃 숲] 폐현수막으로 에코백 만들기 (2회차:14-17시)</h5>
+							<div class="desc"><br> 
+<br> &nbsp; [안녕, 이웃 숲: 자원순환의날 기념]&nbsp; &nbsp;폐현수막으로 에코백 만들기 일시 9. 6.(일) 14:00~17:00 (2회차)
+<br> &nbsp; &nbsp; &nbsp;&nbsp;*1회차 10-13시는 다른 페이지에서 신청 장소 5층 스토리앤 창작테이블 대상 회차별 성인 5별&nbsp; 강사 천가지공방 이영화,&nbsp;정서현 내용 재봉틀을 이용해 가방을 두 개 만들어요. 한 개는 도서관 대여용 가방으로 기부해주세요. 신청 8.18. (화)~파주중앙도서관 홈페이지
+<br> 
+<br> * 천가지공방에서 친환경 폐현수막을 미리 재단해주시고,&nbsp;재봉틀 5개를 대여합니다.&nbsp;
+<br> * 3시간동안 진행되는 프로그램이며, 참여 인원이 매우 적으므로 신청 후 불참하시게 되는 경우 반드시 사전 연락을 주시기 바랍니다. (031-940-5656)
+<br> 
+<br> 당일 폐기도서 및 과년도(2024) 잡지 배부, 중고의류교환행사 21%파티, 환경활동가의 강연이&nbsp;함께 열립니다.&nbsp;
+<br> 많은 참여 바랍니다.&nbsp;
+<br> 
+<br> 다른 행사 세부내용 확인하기&nbsp; 
+<br> 
+<br> &nbsp;</div>
+							<p class="date">2026-09-06~2026-09-06</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/jalib/lectureDetail.do?lectureIdx=54426" class="jalib">
+							<i class="ico lib jalib">중앙</i>
+							<h5 class="tit">[안녕, 이웃 숲] 폐현수막으로 에코백 만들기 (1회차:10-13시)</h5>
+							<div class="desc"><br> &nbsp; [안녕, 이웃 숲: 자원순환의날 기념]&nbsp; &nbsp;폐현수막으로 에코백 만들기 일시 9. 6.(일) 10:00~13:00 (1회)
+<br> &nbsp; &nbsp; &nbsp;&nbsp;*2회 14-17시는 다른 페이지에서 신청 장소 5층 스토리앤 창작테이블 대상 회차별 성인 5별&nbsp; 강사 천가지공방 이영화,&nbsp;정서현 내용 재봉틀을 이용해 가방을 두 개 만들어요. 한 개는 도서관 대여용 가방으로 기부해주세요. 신청 8.18. (화)~파주중앙도서관 홈페이지
+<br> 
+<br> * 천가지공방에서 친환경 폐현수막을 미리 재단해주시고,&nbsp;재봉틀 5개를 대여합니다.&nbsp;
+<br> * 3시간동안 진행되는 프로그램이며, 참여 인원이 매우 적으므로 신청 후 불참하시게 되는 경우 반드시 사전 연락을 주시기 바랍니다. (031-940-5656)
+<br> 
+<br> 당일 폐기도서 및 과년도(2024) 잡지 배부, 중고의류교환행사 21%파티, 환경활동가의 강연이&nbsp;함께 열립니다.&nbsp;
+<br> 많은 참여 바랍니다.&nbsp;
+<br> 
+<br> 다른 행사 세부내용 확인하기&nbsp; 
+<br> 
+<br> &nbsp;</div>
+							<p class="date">2026-09-06~2026-09-06</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/mslib/lectureDetail.do?lectureIdx=54406" class="mslib">
+							<i class="ico lib mslib">문산</i>
+							<h5 class="tit">[가족체험존] 책보따리 DAY(8월)</h5>
+							<div class="desc">[평화책장 연계 프로그램]
+<br> 가족체험존 - 책보따리 DAY
+<br> 
+<br> 매월 셋째주 일요일
+<br> 평화책장&nbsp;속 책보따리를&nbsp;자유롭게 즐기는 셀프 체험존!
+<br> 가족은 물론 친구와도 함께 참여할 수 있어요.
+<br> 
+<br> 일시&nbsp;2026. 8. 16(일) 14:00~16:00
+<br> 장소&nbsp;문산도서관 1층 루트2
+<br> 참여방법&nbsp;현장에서 입장 후 자유롭게 체험
+<br> &nbsp;※이 체험존은 무인으로 운영되는 자율 체험 공간이에요.&nbsp;
+<br> &nbsp;    코너명 이용방법   책보따리 체험 평화책장 속 책보따리&nbsp;6종 중 하나를&nbsp;골라&nbsp;열어보고,&nbsp;책과 놀이를&nbsp;나누며 즐겨요.   평화그림책 이야기 매월 사서가 선정한 평화그림책 한 권을 읽고 독후활동지를&nbsp;자유롭게 활용해 봐요.   평화컬러링존 색연필을 이용해 내가 상상하는 평화를 마음껏 그려봐요.    
+<br> 
+<br> 
+<br> 
+<br> 
+<br> ✨ 책보따리란?&nbsp;&nbsp;
+<br> 평화 그림책을 읽고 이야기 나누며, 놀이와 활동을 함께 체험할 수 있는 꾸러미입니다.
+<br> 문산도서관 1층 캠프1의 '평화책장'에서 보따리를 만나볼 수 있어요.
+<br> 만든 사람들&nbsp; 평화보리 동아리, 문산도서관, 평화를품은집 평화도서관
+<br> *책보따리 체험은 보다 원활한 활동을 위해 초등 3학년 이상(성인 포함) 참여를 권장해요.
+<br> 
+<br> 📖8월의 평화그림책
+<br> 「아이언맨」
+<br> 티보 베라르 글/비올레트 르 장드르 그림,&nbsp;안녕로빈(2024)
+<br> "다른 생명체들과 관계 맺는 법을 배우는 것만이&nbsp;생존할 수 있는 길이라는 것을 이야기하려 합니다."
+<br> *본 활동지는 안녕로빈 출판사 블로그에서 제공하였습니다.
+<br> &nbsp;</div>
+							<p class="date">2026-08-16~2026-08-16</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/mslib/lectureDetail.do?lectureIdx=54386" class="mslib">
+							<i class="ico lib mslib">문산</i>
+							<h5 class="tit">문산도서관 뜨개동아리와 함께하는 &lt;뜨개캠프&gt;</h5>
+							<div class="desc">문산도서관의 뜨개 동아리인 &lt;뜨캐캠프&gt;와 함께하는 프로그램입니다.&nbsp;
+<br> 
+<br> 당초, 8월 8일(토)에 진행할 예정이었으나, 뜨개동아리 회원들의 일정상 어려움으로
+<br> 
+<br> 8월 22일(토) 에 진행하게 되었습니다.&nbsp;
+<br> 
+<br> 참여를 원하시는 분들의 너그러운 양해 바라며,&nbsp; 신청은 홈페이지를 통해 접수하시면 됩니다.&nbsp;
+<br> 
+<br> &nbsp;참가비는 별도로 없으며, 당일 기존에 뜨개를 하신분들은 평소에 뜨던 재료들을&nbsp;
+<br> &nbsp;&nbsp;
+<br> &nbsp;가지고 오셔서 같이 뜨셔도 됩니다. ^^
+<br> 
+<br> &nbsp;</div>
+							<p class="date">2026-08-22~2026-08-22</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/grlib/lectureDetail.do?lectureIdx=54366" class="grlib">
+							<i class="ico lib grlib">가람</i>
+							<h5 class="tit">[가람] 찾아가는 전세사기 피해 예방 아카데미</h5>
+							<div class="desc"><br> 
+<br> [기관협력] 찾아가는 전세사기 피해 예방 아카데미
+<br> 
+<br> 일시 :&nbsp;8. 29(토)&nbsp;14:00~16:00
+<br> 장소 : 2층 스페이스G
+<br> 대상 : 성인(40대 이상) 30명
+<br> 내용 :&nbsp;부동산 기초용어, 피해사례를 배우며 찾아가는 주거 안정성
+<br> 강사 : 김의섭(공인중개사 /&nbsp;경기도청&nbsp;『전세사기 피해&nbsp;예방 아카데미』 전문 교육단)
+<br> 신청 : 8. 11(화)~ 홈페이
+<br> 문의 : 종합자료실 031-949-2552
+<br> &nbsp;</div>
+							<p class="date">2026-08-29~2026-08-29</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/jalib/lectureDetail.do?lectureIdx=54347" class="jalib">
+							<i class="ico lib jalib">전체</i>
+							<h5 class="tit">[중앙] [안녕, 이웃 숲2] 자원순환으로 숲을 지켜요 </h5>
+							<div class="desc"><br> 
+<br> 매년 9월 6일은 자원순환의 날입니다.&nbsp;
+<br> 파주중앙도서관에서 기후위기 시대를 함께 살아가는 우리가 환경에 대해 생각해보고, 환경을 위해 실천할 수 있는 시간을 마련했습니다.
+<br> 자원순환의 날 : 환경부와 한국폐기물협회 공동으로 매년 9월 6일을 지구환경 보호와 자원 재활용의 중요성을 알리기 위해 제정한 날
+<br> 
+<br> 프로그램별 별도 신청페이지에서 8월 18일(화)부터 신청 접수할 예정입니다.&nbsp;
+<br> (신청 클릭) 부분을 클릭하시면 각 프로그램 신청 페이지로 이동합니다.&nbsp;
+<br> &nbsp; 1)&nbsp;&nbsp;폐현수막으로 에코백 만들기
+<br> 일시 9. 6.(일) 10:00~13:00 (1회)/ 14:00~17:00 (2회)
+<br> 장소 5층 스토리앤 창작테이블
+<br> 대상 회차별 성인 5별&nbsp;
+<br> 강사 천가지공방 이영화,&nbsp;정서현
+<br> 내용 재봉틀을 이용해 가방을 두 개 만들어요. 한 개는 도서관 대여용 가방으로 기부해주세요.
+<br> 신청 8.18. (화)~파주중앙도서관 홈페이지&nbsp; &nbsp;&nbsp;(1회차 신청 클릭)&nbsp; &nbsp; &nbsp;&nbsp;(2회차 신청 클릭)
+<br> 
+<br> 2)&nbsp;산호의 파주21%파티 이야기 
+<br> 일시 9. 6.(일) 13:00~14:30 
+<br> 장소 5층 502
+<br> 대상 청소년~성인 12명
+<br> 강사 김상희 (환경활동가, 환경교육강사 )
+<br> 내용 다시입다연구소의 중고 의류 교환 행사를 나도 열 수 있다고? 파주에서 21%파티 운영 경험과 패스트 패션 산업의 문제점을 함께 들어봅니다.
+<br> 신청 8.18. (화)~ 파주중앙도서관 홈페이지 (신청 클릭)
+<br> 
+<br> 3)&nbsp;중앙도서관 폐기도서 및 과년도(2024) 잡지 이용자 나눔 행사
+<br> 기간 9. 6.(일)~9. 12.(토) 10:00~18:00 
+<br> 장소 5층 스토리앤
+<br> ※...</div>
+							<p class="date">2026-09-06~2026-09-06</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/thlib/lectureDetail.do?lectureIdx=54346" class="thlib">
+							<i class="ico lib thlib">전체</i>
+							<h5 class="tit">[탄현 | 독후활동] 여름에는 시원한 게 좋아!</h5>
+							<div class="desc">8월 어린이 컬렉션 대표도서 『용궁 공주와 수박빙수』를 함께 읽고, 🍨반짝이 쉐이커🍨를 만들어 보아요!
+<br> 
+<br> ✅ 일 시: 2026. 8. 22.(토) 15:00 ~ 16:00
+<br> ✅ 장 소: 탄현도서관 자료실
+<br> ✅ 대 상: 어린이 6 ~ 7세 10명
+<br> ✅ 진 행: 사서 김자영
+<br> ✅ 내 용: 다 같이 그림책을 읽고, 쉐이커 만들기
+<br> 
+<br></div>
+							<p class="date">2026-08-22~2026-08-22</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/gclib3/lectureDetail.do?lectureIdx=54327" class="gclib3">
+							<i class="ico lib gclib3">솔빛</i>
+							<h5 class="tit">[금촌무지개] &lt;그 여름, 우리가 쉬었던 바다 – 바다와 길, 삶을 돌아보다&gt;</h5>
+							<div class="desc"><br> 
+<br> 2026 파주시 작은도서관 지역강사연계사업&nbsp;×&nbsp;금촌무지개작은도서관
+<br> 
+<br> &lt;그 여름, 우리가 쉬었던 바다 – 바다와 길, 삶을 돌아보다&gt;🐚🪸
+<br> 
+<br> 🌊저마다 다른 빛과 모양을 가진 ‘씨글라스(Sea Glass)’를 아시나요?
+<br> 
+<br> 씨글라스는 바닷가에 남겨진 유리 조각이
+<br> 오랜 시간 파도와 바람을 만나 둥글고 부드러운 모습으로 다시 태어난,
+<br> 반짝이는 돌입니다.✨
+<br> 
+<br> 이번 프로그램은 📖그림책 『바당, 길을 걷다』를 함께 읽으며
+<br> 바다가 그리는 풍경과 떠오르는 추억, 그리고 전하는 쉼을 느끼고,
+<br> 씨글라스 모빌에 기억과 감정을 담아 나만의 이야기를 만들어가는 시간입니다.💙
+<br> 
+<br> 📅 일시 8. 25.(화) 10:30~12:00
+<br> 📍 장소 금촌무지개작은도서관 (금촌역 1번출구 안쪽)
+<br> 👥 대상 성인 10명
+<br> 🐬 강사 김수정(‘책 읽는 새싹’ 대표)
+<br> 📝 신청 8. 6.(목)~ ※ 홈페이지·방문·전화 접수(941-2958)</div>
+							<p class="date">2026-08-25~2026-08-25</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/grlib/lectureDetail.do?lectureIdx=54326" class="grlib">
+							<i class="ico lib grlib">가람</i>
+							<h5 class="tit">[도서관 속 음악관] 리스닝큐레이터 레가토와 함께하는 클래식 감상회</h5>
+							<div class="desc"><br> 
+<br> [도서관 속 음악관] 리스닝큐레이터 레가토와 함께하는&nbsp;클래식 감상회
+<br> 
+<br> '좋은음악'을 설명하는 강의가 아니라,&nbsp;
+<br> 한 곡의 음악이 우리 안에 어떻게 머물고 오래 남는지를&nbsp;
+<br> 함께 경험하는 클래식 감상 시간입니다.&nbsp;
+<br> 
+<br> 마음을 여는 음악으로 시작해&nbsp;
+<br> 숨결과 노래, 침묵과 여운을 따라&nbsp;
+<br> 음악이 마음에 머무는 순간을 만나봅니다.&nbsp;
+<br> 
+<br> 일시 | 26. 8. 26.(수) 10:30~12:00
+<br> 장소 | 스페이스G
+<br> 대상 | 성인 20명
+<br> 강사 | 정윤주 (리스닝 큐레이터)
+<br> 감상 | 모차르트, 바흐와 그리그 작품
+<br> 신청 | 8.11.(화)~ 홈페이지 
+<br> *노쇼(No-show) 안내
+<br> 
+<br> 많은 이용자분들께서 도서관 공연(음악연주회 등) 프로그램을 이용하실 수 있도록
+<br> 사전 신청 후 불참(No-show)에 대한 안내를 드립니다.
+<br> 
+<br> 사전 신청 후 별도의 취소 연락 없이&nbsp;참여하지 않을 경우,&nbsp;
+<br> 다음 공연 프로그램 신청 시 일정 기간 참여에 제한이 있을 수 있습니다.&nbsp;
+<br> 
+<br> 부득이하게 참석이 어려우신 경우에는
+<br> 다른 이용자분들을 위해&nbsp;프로그램 전일까지&nbsp;취소 또는 연락해 주시기를 부탁드립니다.
+<br> 
+<br> -------------------------
+<br> [도서관 속 음악관]은
+<br> 매월 마지막 주 수요일 '문화가 있는 날'에 열리는 정기 음악프로그램입니다.
+<br> 음악동아리와 지역 음악가가 참여하는 작은연주회부터 음악을 주제로 한 영상 상영, 북토크 등 다양한 구성으로 진행되며,
+<br> 일상 속에서 음악의 깊이와 즐거움을 만나는 특별한 시간으로 찾아갑니다.
+<br> &nbsp;</div>
+							<p class="date">2026-08-26~2026-08-26</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/jalib/lectureDetail.do?lectureIdx=54306" class="jalib">
+							<i class="ico lib jalib">중앙</i>
+							<h5 class="tit">[중앙][북스타트] 아가랑 책한잔(8월)</h5>
+							<div class="desc">[2026년 8월] 북스타트 연계 프로그램
+<br> &lt;아가랑 책한잔&gt;
+<br> 
+<br> 일시 : 8월 18일 (화) 11:00~11:40&nbsp;
+<br> 장소 : 1층 어린이자료실 101호 (학습만화방)
+<br> 대상 : 0~36개월 영유아와 양육자 6가구
+<br> 진행 : 북스타트 동아리 &lt;책에 빠진 사람들&gt;, 어린이자료실 담당 사서
+<br> 내용 : (하나 둘 셋) 숫자 그림책 읽기, 동요에 맞춘 율동 몸놀이
+<br> 신청 : 8. 7.(금)부터 선착순
+<br> 
+<br> 아기와 함께 즐거운 책놀이는 어떠신가요?
+<br> 매월 다른 주제로 선정된 그림책을 읽어주고 책놀이를 함께하며 아기와 소통하고,
+<br> 동료 양육자들과 서로의 육아 고충부터 노하우까지 함께 나누는 즐거운 책모임 시간에 여러분을 초대합니다.
+<br> 
+<br> 
+<br> &nbsp;</div>
+							<p class="date">2026-08-18~2026-08-18</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/jalib/lectureDetail.do?lectureIdx=54286" class="jalib">
+							<i class="ico lib jalib">중앙</i>
+							<h5 class="tit">[중앙]독서마라톤x상주작가 &lt;책으로 만나는 작가&gt; 8월 </h5>
+							<div class="desc">[독서마라톤 X 문학상주작가 지원사업] 책으로 만나는 작가
+<br> &nbsp; 독서마라톤 참여자와 시민 여러분의 독서 경험을 더욱 풍성하게 만들기 위해&nbsp;「책으로 만나는 작가」 프로그램을 소개합니다.&nbsp; ‘이달의 도서’를 읽고 독서마라톤 감상평을 작성하면 페이지 수를&nbsp;2배로 인정받는 특별 혜택을 받을 수 있으며,
+<br> 매월 셋째 주에는 상주작가와 함께 책에 대해 깊이 이야기 나누는&nbsp;독서토론 프로그램에도 참여할 수 있습니다. 
+<br> 
+<br> 
+<br> 
+<br> &nbsp;  📖 독서마라톤 더블 혜택 &nbsp; &nbsp;•&nbsp; 매월 선정된 ‘이달의 도서’ 읽기
+<br> &nbsp; &nbsp;•&nbsp; 독서마라톤 감상평 작성 시 페이지 수(1P=1m) 2배 적립
+<br> &nbsp; &nbsp;•&nbsp; 월 1인 1권 한정
+<br> &nbsp; &nbsp; &nbsp;*&nbsp;독서마라톤 페이지 수 2배 적립은 담당자가 독서기록일지(감상평) 작성 여부와 대상 도서를 확인한 후 수동으로 반영됩니다. 반영까지 일정 기간 소요될 수 있습니다. &nbsp;
+<br> &nbsp; 💬 상주작가와 마주 앉아 책 이야기 &nbsp;&nbsp;&nbsp;•&nbsp; 매월 셋째 주 수요일 운영
+<br> &nbsp; &nbsp;•&nbsp; 문학상주작가와 함께 ‘이달의 도서’를 읽고 자유로운 독서토론 진행
+<br> &nbsp; &nbsp;•&nbsp; 작품에 대한 생각과 감상을 나누며 독서의 폭을 넓히는 시간  📚 8월 이달의 도서 &nbsp; &nbsp;•&nbsp; 『잃어버린 건 없는지 잊은 건 아닌지』(이꽃님&nbsp;글/이끌)&nbsp;★ 8월 토론도서
+<br> &nbsp;&nbsp;&nbsp;•&nbsp; 『할매』(황석영&nbsp;글/창비) 🗓 8월 독서토론 안내 &nbsp; &nbsp;•&nbsp; 일시 : 2026. 8. 19.(수) 10:00~12:00
+<br> &nbsp;&nbsp;&nbsp;•...</div>
+							<p class="date">2026-08-19~2026-08-19</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/ghlib/lectureDetail.do?lectureIdx=54247" class="ghlib">
+							<i class="ico lib ghlib">전체</i>
+							<h5 class="tit">[교하 | 동네책방 북시그널] &lt;사적인서점&gt; 시그널데이</h5>
+							<div class="desc"><br> 
+<br> 2026년 교하도서관 출판인쇄 특화사업 | 지역서점 협력 프로그램
+<br> 동네책방 북시그널Book signal
+<br> 동네책방에서 발견하는 나의 독서취향
+<br> 
+<br> 세번째 시그널데이 &lt;사적인서점&gt;
+<br> 일시&nbsp; 2026. 8. 20.(목) 19:00-20:30
+<br> 장소&nbsp; 사적인서점(돌곶이길 180-38)
+<br> 대상&nbsp; 파주시민 누구나, 성인 15명 내외
+<br> 진행&nbsp; 정지혜(작가, &lt;사적인서점&gt;운영자)
+<br> 신청&nbsp; 8. 4.(화) ~ 교하도서관 홈페이지, 전화(940-5153), 방문
+<br> 내용&nbsp; 책처방서점 &lt;사적인서점&gt;의 정지혜 작가가 들려주는&nbsp;사적인 서점의 시작과 지난 10년간의 서점 운영 이야기
+<br> 
+<br> *[행사 참여 신청]을 클릭해 구글링크로 신청해주세요
+<br> [행사 참여 신청]
+<br> 
+<br> 
+<br> 
+<br> 
+<br> 
+<br> 
+<br> 
+<br> 사적인서점 북시그널 바로가기 *아래 이미지 또는 URL을 클릭하시면 북시그널 페이지로 연결됩니다.
+<br> &nbsp;https://b.tkbell.co.kr/tkboard/woi/1287998/o0M2AbkyCm.do?pageSeq=2478527
+<br></div>
+							<p class="date">2026-08-20~2026-08-20</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/ghlib/lectureDetail.do?lectureIdx=54246" class="ghlib">
+							<i class="ico lib ghlib">교하</i>
+							<h5 class="tit">[교하 | 왓츠인마이북] &lt;돈의 열두 가지 얼굴&gt; 류상철 작가와의 만남</h5>
+							<div class="desc"><br> 
+<br> 2026년 교하도서관 출판인쇄 특화사업 | 출판사 연계 저자와의 만남
+<br> 왓츠 인 마이 북&nbsp;What's in my book
+<br> '저자가 소개하는 내 책의 모든 것'을 주제로 2026년 새로운 책을 출간한 출판사와 함께 운영하는 저자와의 만남 사업입니다.
+<br> 
+<br> 
+<br> &lt;돈의 열두 가지 얼굴&gt; 류상철 작가와의 만남
+<br> 일시&nbsp; &nbsp;8. 29.(토) 15:00-16:30
+<br> 장소&nbsp; &nbsp;교하도서관 3층 소극장
+<br> 대상&nbsp; &nbsp;성인 누구나, 50명
+<br> 초청&nbsp; &nbsp;류상철(경제학자, 전 한국은행 국장)
+<br> &nbsp; &nbsp; *특별게스트 박종호(글로벌 금융 실무 전문가)
+<br> &nbsp; &nbsp; *특별게스트 정태관(금융사 IT시스템 및 AI 개발자)
+<br> 신청&nbsp; &nbsp;8. 4.(화) ~ 안내데스크 전화(940-5153),&nbsp;방문, 홈페이지
+<br> 내용&nbsp; &nbsp;한국은행에서 36년간 재직한 경제학자 류상철이 돈의 속성 열두가지에 대해 이야기하는 시간
+<br> 
+<br> 
+<br> 
+<br> 주제도서&nbsp; 돈의 열두 가지 얼굴
+<br> 
+<br> 숫자 빼고 얘기하는 돈에 대한 ‘진짜’ 철학
+<br> 매일 아침 스마트폰을 켜면 빨간색과 파란색으로 칠해진 숫자가 눈에 들어온다. 주식 앱, 코인 앱, 예금 잔액, 카드값 알림이 기분을 흔든다. 숫자가 오르면 잠깐 안도하고, 내려가면 이유를 찾느라 마음이 급하다.
+<br> 거래의 수단이던 돈이 행복의 자리를 대신하려 든다. 그런데 우리는 정말 돈을 알고 있는가? 숫자가 지배하는 세상에서 우리는 돈의 주인인가, 아니면 숫자를 지키는 경호원인가. 『돈의 열두 가지 얼굴』은 불편하지만 피할 수 없는 이 질문에 답한다.
+<br> 
+<br> 늦게 시작된 질문
+<br> 『돈의 열두 가지 얼굴』의 시작은 한국은행에서 36년간 일한 경제...</div>
+							<p class="date">2026-08-29~2026-08-29</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/jalib/lectureDetail.do?lectureIdx=54226" class="jalib">
+							<i class="ico lib jalib">중앙</i>
+							<h5 class="tit">[지역연계X광탄고] 그림책과 함께하는 환경교육</h5>
+							<div class="desc"><br> &nbsp; &nbsp;     [지역연계] 그림책과 함께하는 환경교육 일시 8. 28. (금) 13:30~15:30 장소 5층 스토리&amp; 창작테이블 대상 6세 이상~초등2학년 20명 진행 광탄고등학교 비즈쿨동아리  내용 지속가능한 미래를 위해서 현재와 미래에 어떤 노력이 필요할까요? ESG와 환경 이야기를 나누며 그림책 &lt;달 샤베트&gt;를 읽고 만들기 놀이해요. 신청 8. 4. (화)~ 홈페이지      &nbsp;</div>
+							<p class="date">2026-08-28~2026-08-28</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/ghlib/lectureDetail.do?lectureIdx=54208" class="ghlib">
+							<i class="ico lib ghlib">전체</i>
+							<h5 class="tit">(1차시신청)함께 읽은 책, 함께 쓴 시</h5>
+							<div class="desc">파주에 살고 있는 이주배경 가족을 위한 독서프로그램으로
+<br> 언어와 문화가 달라도 책과 예술로 교감할 수 있음을 체험하는 수업입니다.
+<br> -본 화면은: 1차시&nbsp; 9월 6일 신청화면입니다.
+<br> 1차시 수업은 이승연작가님의 그림책 수평선으로를 함께 읽고 수평선 그리기 활동을 합니다. *운영시간 변경안내
+<br> 도서관 소식지PLAY에서 변경된&nbsp; 일요일 15:00~17:00에 진행됩니다. 
+<br></div>
+							<p class="date">2026-09-06~2026-09-06</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/ghlib/lectureDetail.do?lectureIdx=54207" class="ghlib">
+							<i class="ico lib ghlib">전체</i>
+							<h5 class="tit">[교하]함께 읽은 책, 함께 쓴 시(전과정-다문화 이민배경가족만 신청)</h5>
+							<div class="desc">파주에 살고 있는 이주배경 가족을 위한 독서프로그램으로
+<br> 언어와 문화가 달라도 책과 예술로 교감할 수 있음을 체험하는 수업입니다.
+<br> -본 화면은: 3차시 전과정 신청화면입니다.
+<br> *운영시간 변경안내
+<br> 도서관 소식지PLAY와 다른 일요일 15:00~17:00에 진행됩니다.
+<br> 
+<br></div>
+							<p class="date">2026-09-06~2026-09-20</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/ghlib/lectureDetail.do?lectureIdx=54206" class="ghlib">
+							<i class="ico lib ghlib">전체</i>
+							<h5 class="tit">[교하] &#039;우리는 멸종하지 않는다&#039; 유병록 시인과의 만남</h5>
+							<div class="desc">최지인 시인과 함께하는&nbsp;'시인과 만나는 시집 한 권 읽기' 수업은
+<br> 6주간 상주작가 최지인 시인님과&nbsp;유병록 시인의 시집&nbsp;
+<br> &nbsp;'우리는 멸종하지 않는다'을 함께 읽고&nbsp;유병록 작가님을 만나는 수업입니다.
+<br> 마지막 시간인 '작가와의 만남'은&nbsp;시집 한 권 읽기&nbsp;미참여 시민도 신청할 수 있습니다.
+<br></div>
+							<p class="date">2026-08-22~2026-08-22</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/ghlib/lectureDetail.do?lectureIdx=54188" class="ghlib">
+							<i class="ico lib ghlib">전체</i>
+							<h5 class="tit">[교하 | 오픈동아리] 최지인 시인과 함께 하는 독서동아리(교하살롱)</h5>
+							<div class="desc">교하살롱 오픈동아리 행사는 사전 글쓰기가 과제로 있습니다.
+<br> 주제도서 『문맹』(아고타 크리스토프, 한겨레, 2018)을 읽고 가진 인사이트(insight)를 기반으로 쓰신 글을 제출해 주세요.
+<br> -글 제출 일정: 8월27일(목)18시까지
+<br> -보낼 곳 :&nbsp;forest7@korea.kr
+<br> 
+<br> &nbsp;</div>
+							<p class="date">2026-08-31~2026-08-31</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/ghlib/lectureDetail.do?lectureIdx=54187" class="ghlib">
+							<i class="ico lib ghlib">전체</i>
+							<h5 class="tit"> [교하 | 오픈동아리] 최지인 시인과 함께 하는 독서동아리(내책만세)</h5>
+							<div class="desc"></div>
+							<p class="date">2026-08-25~2026-08-25</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/ghlib/lectureDetail.do?lectureIdx=54186" class="ghlib">
+							<i class="ico lib ghlib">교하</i>
+							<h5 class="tit">[동아리 명화극장]알포인트, 워터 보이즈, 사랑과 슬픔의 볼레로</h5>
+							<div class="desc">8월 휴가기간중 도서관을 이용하는 시민들을 위하여 영화상영을 3회로 늘려진행합니다.
+<br> 8월&nbsp; &nbsp;3일 알포인트(15세 이상 관람)
+<br> 8월 10일 워터보이즈(전체관람가)
+<br> 8월 24일(15세 이상 관람)
+<br> 
+<br></div>
+							<p class="date">2026-08-03~2026-08-24</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/jalib/lectureDetail.do?lectureIdx=54169" class="jalib">
+							<i class="ico lib jalib">중앙</i>
+							<h5 class="tit">[메이커스 에코 컬렉션 워크숍 3] 재사용기 선스틱 (선스틱 리필)</h5>
+							<div class="desc"><br> &nbsp; [메이커스 에코 컬렉션: 워크숍③] 재사용기 선스틱  일시 9. 9. (수) 10:00~12:00
+<br> 장소 5층 스토리&amp; 
+<br> 대상 성인 10명
+<br> 강사 정명희(해양시민과학센터 파란 감사/수리상점 곰손 운영자)
+<br> 내용 산호초를 파괴하는 화학물질이 없는 무기자차 선크림. 논나노(non-nano) 처리된 리프세이프(Reef-safe) 제품을 골라주세요. 환경보호와 자원순환을 위해 함께 만들고 리필해보세요.
+<br> * 담아갈&nbsp;용기(다 쓴 선스틱, 립밤, 작은 크림통)를 씻지 말고 가져오세요. 함께 만들고 담아드립니다. 신청 8. 19. (수)~ 홈페이지 접수
+<br> 
+<br> 
+<br> * 비치코밍(바다유리 수거) 캠페인 참여시 중앙도서관에서 제작한 플라스틱 병뚜껑 새활용 자석을 드립니다.
+<br> 자세한 내용 확인하기&nbsp; 
+<br> *[메이커스 에코 컬렉션] 바다의 안부를 물어요 살펴보기</div>
+							<p class="date">2026-09-09~2026-09-09</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/gtlib/lectureDetail.do?lectureIdx=54168" class="gtlib">
+							<i class="ico lib gtlib">광탄</i>
+							<h5 class="tit"> [광탄도서관 메이커스페이스] 창작한데이DAY - DTG프린터로 헌옷, 헌에코백 열전사하기</h5>
+							<div class="desc">※&nbsp;개인 옷 또는 에코백을 준비물로 지참해주세요. (에코백은 A4사이즈 이상, 너무 두껍지 않은 천가방)
+<br> 
+<br> 
+<br> [광탄도서관 메이커스페이스] 창작한데이DAY -&nbsp;DTG프린터로 헌옷, 헌에코백 열전사하기
+<br> 일시 8. 29. (토) 10:00 ~ 12:00
+<br> 장소 3층 창작실
+<br> 대상 파주시민 누구나 5명(컴퓨터 미사용자 보호자 필참)
+<br> 신청 광탄도서관 홈페이지 접수(선착순 마감)
+<br> 내용 DTG프린터를 활용하여 헌옷 또는 헌에코백에 열전사하여 업사이클링하기
+<br> 문의 031-940-5827</div>
+							<p class="date">2026-08-29~2026-08-29</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/gtlib/lectureDetail.do?lectureIdx=54167" class="gtlib">
+							<i class="ico lib gtlib">광탄</i>
+							<h5 class="tit">[광탄도서관 메이커스페이스] 창작한데이DAY - 내 옷, 내 에코백 컴퓨터자수 리폼으로 재활용한 DAY</h5>
+							<div class="desc">※&nbsp;개인 옷 또는 에코백을 준비물로 지참해주세요. (에코백은 A4사이즈 이상, 너무 두껍지 않은 천가방)
+<br> 
+<br> 
+<br> 
+<br> [광탄도서관 메이커스페이스] 창작한데이DAY- 내 옷, 내 에코백 자수 리폼하여 업사이클링 한 DAY
+<br> 일시 8. 27. (목) 10:00~12:00
+<br> 장소 3층 창작실
+<br> 대상 파주시민 누구나 3명 (11세 이하 보호자 동반 필수)
+<br> 신청 광탄도서관 홈페이지 접수(선착순 마감)
+<br> 내용 개인 옷 또는 에코백에 원하는 레터링 또는 이미지를 자수하여 새롭게 재활용하기
+<br> 문의 031-940-5827</div>
+							<p class="date">2026-08-27~2026-08-27</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/gtlib/lectureDetail.do?lectureIdx=54166" class="gtlib">
+							<i class="ico lib gtlib">광탄</i>
+							<h5 class="tit">[광탄도서관 메이커스페이스] 창작한데이DAY - 리소그라프로 나만의 아트포스터 만들기</h5>
+							<div class="desc"><br> 
+<br> [광탄도서관] 창작한데이DAY - 나만의 아트포스터 만든 DAY
+<br> 일시 8. 13. (목)&nbsp;10:00~12:00
+<br> 장소 광탄도서관 3층 창작실
+<br> 대상 파주시민 누구나 5명
+<br> 신청 광탄도서관 홈페이지 접수(선착순 마감)
+<br> 내용 리소그라프 기초 이론 및 나만의 아트포스터 체험한 DAY
+<br> 문의 031-940-5827</div>
+							<p class="date">2026-08-13~2026-08-13</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/grlib/lectureDetail.do?lectureIdx=54147" class="grlib">
+							<i class="ico lib grlib">가람</i>
+							<h5 class="tit">[8월 목요책놀이] 책이랑 놀자</h5>
+							<div class="desc">[목요책놀이] 책이랑 놀자&nbsp;
+<br> 
+<br> 5~8세 친구들에게 책과 놀이를 함께 즐길 수 있게 해주는 책이랑 놀자!
+<br> 생생한 그림책 낭독과 책놀이가 궁금하시다면 놀러오세요~
+<br> 책이랑 놀자는 매주 목요일 오후 4시 30분에 진행됩니다.
+<br> 
+<br> 8월 6일 물속 친구들 색칠하기 (함께 읽을 책: &lt;여름 낚시&gt;, &lt;세상이 물고기로 변했어요&gt;)
+<br> 8월 13일 사서 선생님의 생생한 그림책 이야기
+<br> 8월 20일 숲속 친구들 색칠하기 (함께 읽을 책: &lt;숲속 재봉사의 옷장&gt;, &lt;여름, 숲&gt;)
+<br> 8월 27일 이야기 할머니의 신비로운 옛 이야기
+<br> * 함께 읽을 책은 더 재밌는 책으로 변경될 수 있습니다.
+<br> 
+<br> 사전신청없이 자료실에서 바로 참여하는 프로그램입니다 :)
+<br> 
+<br> 
+<br> &nbsp;</div>
+							<p class="date">2026-08-06~2026-08-27</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/jalib/lectureDetail.do?lectureIdx=54146" class="jalib">
+							<i class="ico lib jalib">중앙</i>
+							<h5 class="tit">[중앙] 김선미 작가와의 만남 &lt;사춘기 아이와 부모 함께 살아남는 법&gt;</h5>
+							<div class="desc">[생활레시피 컬렉션 연계강연] 김선미&nbsp;작가와의 만남
+<br> 사춘기 아이와 부모 함께 살아남는 법
+<br> 
+<br> 사춘기 자녀로 인해 헤매고 계신 부모님들을 위한
+<br> 김선미 작가님의 유쾌한 조언을 들어봅니다.
+<br> 
+<br> ○&nbsp;일시&nbsp;: 8/28(금) 19~21시
+<br> ○&nbsp;장소&nbsp;: 중앙도서관 5층 501
+<br> ○&nbsp;대상&nbsp;: 성인 50명
+<br> ○&nbsp;신청&nbsp;: 8/4(화)부터 도서관 홈페이지 선착순 접수
+<br> ○&nbsp;문의&nbsp;: 중앙도서관 커뮤니티실 / 031-940-5653
+<br> 
+<br></div>
+							<p class="date">2026-08-28~2026-08-28</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/mslib/lectureDetail.do?lectureIdx=54128" class="mslib">
+							<i class="ico lib mslib">문산</i>
+							<h5 class="tit">비(悲)옥한  땅의 생명들 - 서부 민통선 생태계 이야기</h5>
+							<div class="desc">[평화 특화전시 연계 생태 강연]
+<br> 비(悲)옥한&nbsp;땅의&nbsp;생명들
+<br> - 서부 민통선 생태계 이야기
+<br> 
+<br> 멸종위기종부터 습지까지 살아 숨쉬는 생물다양성의 보고.
+<br> 전쟁이 남긴 땅, 서부 민간인출입통제구역의 생태계 이야기를 만나보세요.
+<br> 
+<br> 📍행사개요
+<br> - 일시:&nbsp;2026. 8. 22.(토) 14:00~16:00
+<br> - 장소:&nbsp;문산도서관 1층 루트2
+<br> - 대상:&nbsp;성인 25명
+<br> - 강사: 김경훈(자연탐구소 소장)
+<br> - 신청: 2026. 8. 1. (토)~ 홈페이지 접수
+<br> - 문의: 평화특화사서(031-820-7240)
+<br> 
+<br></div>
+							<p class="date">2026-08-22~2026-08-22</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/mslib/lectureDetail.do?lectureIdx=54127" class="mslib">
+							<i class="ico lib mslib">문산</i>
+							<h5 class="tit">우리동네 당동 공원 생태 관찰</h5>
+							<div class="desc">[평화 특화전시 연계 어린이 생태프로그램]
+<br> 우리동네 당동 공원 생태 관찰
+<br> - 작은 것들의 세계 -&nbsp;
+<br> 
+<br> 작은 풀잎 하나, 꽃잎 하나에도 신기한 세계가 숨어 있다는 것 알고 있나요? 🌿🔍
+<br> 여름방학을 맞아 문산도서관 앞 당동근린공원에서 특별한 생태 탐험이 열려요!
+<br> 생태 전문가와 함께 공원을 살펴보고, 직접 채집한 식물을 현미경으로 들여다보면서 작은 생태 속에 숨겨진 놀라운 세계를 발견해보세요.
+<br> 
+<br> 📍행사개요
+<br> - 일시:&nbsp;2026. 8. 12.(수) 10:00~11:30
+<br> - 장소:&nbsp;문산도서관 1층 루트2
+<br> - 대상:&nbsp;초등학생 3~6학년 20명
+<br> - 강사: 김경훈(자연탐구소 소장), 유은화(생태전문가)
+<br> - 신청: 2026. 8. 1. (토)~ 홈페이지 접수
+<br> - 문의: 평화특화사서(031-820-7240)
+<br> 
+<br> 📍프로그램
+<br> ❶ 생태 전문가의 해설을 들으며&nbsp;문산도서관 앞&nbsp;당동근린공원을 관찰하기
+<br> ❷&nbsp;공원에서&nbsp;꽃과 식물 채집하기
+<br> ❸&nbsp;현미경을 이용해 채집한 식물을 들여다보기
+<br> 
+<br> ※우천 및 폭염 등&nbsp;기상 상황에 따라 실내 프로그램으로 변경될 수 있습니다.
+<br> 
+<br></div>
+							<p class="date">2026-08-12~2026-08-12</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/mslib/lectureDetail.do?lectureIdx=54126" class="mslib">
+							<i class="ico lib mslib">문산</i>
+							<h5 class="tit">[특화전시] 우연히 피어난 것들 - 전쟁이 남긴 또 다른 풍경</h5>
+							<div class="desc">[문산도서관 평화 특화전시]
+<br> 우연히 피어난 것들
+<br> - 전쟁이 남긴 또 다른 풍경
+<br> 
+<br> &nbsp;파주 민통선 지역은 전쟁의 흔적과 자연의 시간이 겹겹이 쌓여온 장소다. 임진강을 따라 하천과 습지, 농경지와 산림이 이어지고, 철새가 오가는 길과 토종 식생이 남아 있는 접경의 풍경이 지금도 유지되어 왔다. 사람이 만든 선은 땅 위에 남아 있지만, 물과 바람과 계절은 그 선을 의식하지 않고 흐른다.
+<br> 
+<br> &nbsp;《우연히 피어난 것들》은 그 사이에서 ‘우연히’ 살아남고 드러난 것들을 세 작가의 시선으로 담아낸 전시다.&nbsp;
+<br> &nbsp;DMZ 문화예술공간 통의 〈비옥한 땅에 핀 꽃〉은 민통선에서 채집한 동식물을 액침과 표본 형태로 재구성해, 눈에 잘 보이지 않던 생명의 흔적을 가까이에서 마주하게 한다. 폴린 선희 최의 〈우연적 자연〉은 일제강점기부터 오늘에 이르기까지 이 땅의 자연이 우연히 형성되고 지켜져 온 역사를 서사적으로 보여준다. 대성동에 거주하는 박세운의 〈경계를 넘어 II〉는 접경의 일상과 자연의 흐름을 포착해, 사람이 만든 선과 무관하게 지속되는 풍경을 담담히 기록한다.
+<br> 
+<br> 
+<br> 
+<br> 📍 전시 정보
+<br> • 전시기간: 2026. 8. 1. (토)&nbsp; – 8. 30. (일)
+<br> • 운영시간: 평일 9:00–22:00, 주말 9:00–18:00&nbsp;&nbsp;*매주 금요일 휴관
+<br> • 전시장소: 문산도서관 1층 탐사1, 복도
+<br> • 참여작가: 폴린 선희 최, 박세운, 박준식, DMZ 문화예술공간 통
+<br> • 관람료: 무료
+<br> 
+<br> 기획&nbsp;I DMZ 문화예술공간 통&nbsp; &nbsp;&nbsp;주최&nbsp;I 문산도서관
+<br> 
+<br> 📍 작가소개
+<br> 폴린 선희 최(Pauline Sunhee Choi)
+<br> 폴린 선희 최는 한국에서 태어나 1960년대 캐나다로 이주한 뒤, 현재 프랑스 파리를 기반으로...</div>
+							<p class="date">2026-08-01~2026-08-30</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/grlib/lectureDetail.do?lectureIdx=54106" class="grlib">
+							<i class="ico lib grlib">가람</i>
+							<h5 class="tit">[음악감상강연] 쇼팽 &amp; 리스트, 건반 위의 두 영혼</h5>
+							<div class="desc"><br> 
+<br> 2026년 도서관 문화예술 동아리 활동 지원 사업 - 가람도서관 음악감상동아리 지음(G음) 주관행사 5
+<br> 
+<br> 쇼팽 &amp; 리스트, 건반 위의 두 영혼&nbsp;
+<br> 
+<br> 정반대의 색깔을 지닌 낭만주의 두 천재 피아니스트, 쇼팽과 리스트의 우정과 음악적 영감
+<br> 타향에서 조국을 향한 그들의 사랑과 정체성을 피아니스트의 해설과 연주 &amp; 명반 감상으로 만나봅니다.&nbsp;
+<br> 
+<br> 일시 | 8. 12.(수) 19:30
+<br> 장소 | 2층 스페이스G
+<br> 대상 | 청소년 이상&nbsp;
+<br> 강사 | 최민경 피아니스트 (연주자, 교육자, 연남동 '피아니스트의 방' 운영)
+<br> 신청 | 홈페이지 신청&nbsp;
+<br> &nbsp; 클래식과 국악을 아우르는 폭넓은 음악감상을하는 가람도서관 음악동아리 G음은&nbsp;
+<br> 매달 둘째.넷째 수요일 7시~9시 진행하고 있습니다.
+<br> 
+<br> 문의) 음악담당사서 031-949-2552
+<br> 
+<br> &nbsp;</div>
+							<p class="date">2026-08-12~2026-08-12</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/mslib/lectureDetail.do?lectureIdx=54086" class="mslib">
+							<i class="ico lib mslib">문산</i>
+							<h5 class="tit">홍한별 번역가 초청 강연 &lt;번역의 장면들&gt;</h5>
+							<div class="desc"><br> [강연]&nbsp;번역의 장면들
+<br> 
+<br> 우리가 일상적으로 접하면서도 어떤 일인지 잘 생각해 보지 않았던 번역.
+<br> 번역이 어떤 일인지 구체적인 사례를 들어 이야기해 보고, 번역에 관해 생각해 보지 않았던 면들을 떠올려 보려고 합니다.
+<br> 번역이란 무엇인가에 대한 근본적인 질문을 시작으로, 시대와 기술 변화에 따라 달라지는 양상, 번역의 가능성과 한계, 문학과 번역의 관계 등을 폭넓게 다룰 예정입니다.
+<br> 
+<br> 📍강의개요
+<br> - 일시: 2026. 8. 23.(일) 14:00~16:00
+<br> - 장소: 문산도서관 1층 루트2
+<br> - 대상: 성인 30명
+<br> - 강사: 홍한별(프리랜서 출판번역가, 한국외대 강사)
+<br> &nbsp; &nbsp;· 역서 『이처럼 사소한 것들』, 『클라라와 태양』, 『밀크맨』, 『달빛 마신 소녀』등 다수
+<br> &nbsp; &nbsp;· 저서&nbsp;『흰 고래의 흼에 대하여』,&nbsp;『아무튼, 사전』등
+<br> - 신청: 8. 1.(토)~ 도서관 홈페이지
+<br> - 문의: 담당사서(031-820-7242)</div>
+							<p class="date">2026-08-23~2026-08-23</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/mplib/lectureDetail.do?lectureIdx=54066" class="mplib">
+							<i class="ico lib mplib">물푸레</i>
+							<h5 class="tit">[물푸레 아트 시어터] 연극 &lt;오셀로&gt; [영상 상영]</h5>
+							<div class="desc"><br> 
+<br> [SAC ON SCREEN] 물푸레 아트 시어터
+<br> 연극 &lt; 오셀로&gt;&nbsp;
+<br> 
+<br> 셰익스피어 4대 비극 '오셀로'
+<br> 인간의 본성과 진실에 대한 고찰을 세밀한 시선으로 그려낸 연극 공연
+<br> 
+<br> ㅇ 일시 : 2026. 08. 19.(수) 10:00 ~ 12:20 (상영시간 140분)
+<br> ㅇ 장소 : 문화강연실(2층)
+<br> ㅇ 내용 :&nbsp; 예술의전당에서 했던 연극 '오셀로'의 영상&nbsp;[실제 공연이 아닌 공연영상을 관람하는 프로그램입니다]&nbsp;
+<br> ㅇ 대상 : 성인 15명
+<br> ㅇ 신청 : 8.1.~ 홈페이지 접수</div>
+							<p class="date">2026-08-19~2026-08-19</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/ghlib/lectureDetail.do?lectureIdx=54046" class="ghlib">
+							<i class="ico lib ghlib">교하</i>
+							<h5 class="tit">[교하] 청소년디지털프로그램 &lt;VR로 만나는 새로운 세계&gt; (모집연장)</h5>
+							<div class="desc">&nbsp;※프로그램 신청시 이틀 모두 참석 가능한 학생만 신청 가능합니다※&nbsp;
+<br> &nbsp;- 모집정원: 8명(4명 모집완료, 4명 추가모집)
+<br> 
+<br> 🔽신청 전 확인 사항🔽&nbsp;
+<br> ✅이틀 모두 참석 가능한 분들만 신청해 주세요.
+<br> ✅2층 라운지네모 자료실 내 디지털교육실에서 진행되는 프로그램입니다.&nbsp;
+<br> ✅소규모 인원이 VR 기기 착용 후 참여하는 프로그램입니다. (안전사고를 대비하고, 원활한 진행을 위해 소규모로 진행)
+<br> ✅자세한 프로그램 내용은 하단 표 이미지를 참고해 주세요.
+<br> 
+<br> 
+<br> 
+<br> 🔽프로그램 세부내용🔽
+<br> 
+<br> &nbsp;</div>
+							<p class="date">2026-08-08~2026-08-09</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/hblib/lectureDetail.do?lectureIdx=54026" class="hblib">
+							<i class="ico lib hblib">한빛</i>
+							<h5 class="tit">[영어책 읽어주는 도서관] English Story Time</h5>
+							<div class="desc">[책 읽어주는 도서관] English Story Time
+<br> 
+<br> 청소년 자원봉사단과 함께하는 「책 읽어주는 도서관, English Story Time」이&nbsp;새롭게 찾아옵니다!
+<br> 
+<br> 새롭게 구성된 청소년 자원봉사단과 영어그림책을 함께 읽고,
+<br> 노래와 율동, 간단한 독후활동을 통해 영어와 책을 즐겁게 만날 수 있는 시간을 마련했습니다.
+<br> 
+<br> 영어를 배우는 시간이 아닌, 영어그림책을 함께 즐기며 독서의 즐거움을 나누는 시간!
+<br> 유아와 초등 저학년 어린이들의 많은 참여를 바랍니다.
+<br> &nbsp; 운영 안내&nbsp;  대상 : 유아 및 초등 저학년 10명 일시 : 매월 둘째·넷째 토요일 오전 11시  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;※ 8월 운영일: 8월 8일(토), 8월 22일(토)  장소 : 한빛도서관 1층 어린이책나라 이야기방 신청 : 현장 선착순 참여 문의 : ☎031-940-5735  ※ 도서관 행사 및 봉사자 운영 상황에 따라 운영 일정이 변경될 수 있습니다. 자세한 일정은 도서관 홈페이지를 참고해 주세요.
+<br> &nbsp;</div>
+							<p class="date">2026-08-08~2026-08-22</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/jrlib/lectureDetail.do?lectureIdx=54006" class="jrlib">
+							<i class="ico lib jrlib">조리</i>
+							<h5 class="tit">[조리][가족음악회] 위아츠와 다 함께 얼쑤!</h5>
+							<div class="desc"><br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;*미리캔버스에서 제작된 이미지입니다.
+<br> 
+<br> [가족음악회] 위아츠와 다 함께 얼쑤!
+<br> 
+<br> ◯ 일 시 : 2026. 8. 28.(금) 19:00~20:00
+<br> ◯ 대 상 : 누구나 100명
+<br> ◯ 장&nbsp;소 :&nbsp;3층 문화강연실
+<br> ◯&nbsp;내 용 : 국악 연주를 중심으로 마술쇼, 버나놀이 등 다양한 볼거리로 국악을 보다 쉽고 생동감 있게 만날 수 있는 공연
+<br> ◯ 신 청 : 8월 11일(화)~ 홈페이지 접수 (※1인당 최대 2명까지 신청가능)
+<br> ◯ 공 연 : 위아츠
+<br> ◯&nbsp;주 관 : 경기아트센터
+<br> ◯&nbsp;문 의 : 031-944-2945(내선번호 1)
+<br> &nbsp;</div>
+							<p class="date">2026-08-28~2026-08-28</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/grlib/lectureDetail.do?lectureIdx=53987" class="grlib">
+							<i class="ico lib grlib">가람</i>
+							<h5 class="tit">[가람] 도서관에서 킥오프!(2)</h5>
+							<div class="desc"><br> 
+<br> 파주 프런티어 FC X 가람도서관
+<br> 도서관 전시 사진 찍고
+<br> 8~9월 홈경기 50% 할인 받자!
+<br> 
+<br> 행사기간 8.1.(토)~8.31.(월)
+<br> 참여방법&nbsp; 인스타그램 스토리 업로드, 파주 프런티어 FC 계정 태그 필수
+<br> 혜택&nbsp; 스토리 인증 시 리그램 및 50% 할인 코드 제공 예정
+<br> &nbsp;</div>
+							<p class="date">2026-08-01~2026-08-31</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/grlib/lectureDetail.do?lectureIdx=53986" class="grlib">
+							<i class="ico lib grlib">가람</i>
+							<h5 class="tit">[가람] 도서관에서 킥오프!(1)</h5>
+							<div class="desc"><br> 
+<br> 파주 프런티어 FC X 가람도서관
+<br> 도서관에서 킥오프!
+<br> 
+<br> 행사기간&nbsp; 7.28.(화)~8.30.(일)
+<br> 전시장소&nbsp; 가람도서관 1층 로비
+<br> 행사내용&nbsp; 행시기간 내 스포츠관련 도서 대출 후 응모권 제출하면 추첨을 통해 상품을 드립니다.
+<br> 
+<br> ※ 응모권은 행사기간 내 중복 참여 가능(단, 7일 1회)
+<br> ※ 상품: 파주 프런티어 FC 경기 티켓(블루존) 50% 할인권 2매 제공 (20명)
+<br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;다산북스 Who시리즈 이강인, 메시, 손흥민, 음바페 도서 중 1권 (20명)
+<br> ※ 추첨일: 9월 1일(화)
+<br> ※ 대출 및 응모권은 각 자료실에서 진행됩니다.</div>
+							<p class="date">2026-07-28~2026-08-30</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/gclib3/lectureDetail.do?lectureIdx=53966" class="gclib3">
+							<i class="ico lib gclib3">전체</i>
+							<h5 class="tit">[솔빛] 2026년 여름방학 &lt;솔빛별빛 어린이 책놀이터&gt;</h5>
+							<div class="desc">&nbsp;2026 여름방학 솔빛별빛 어린이 책놀이터&nbsp;
+<br> 
+<br> [프로그램 안내]
+<br> 기간 : 2026. 7. 25.(토) ~ 8. 16.(일)
+<br> 장소 : 1층 어린이자료실
+<br> 대상 : 어린이 누구나
+<br> 참여 : 현장 방문 참여
+<br> 내용 : 청소년 자원봉사동아리 &lt;솔빛별빛&gt;이 생각하고
+<br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;직접 만들어낸 책놀이 프로그램
+<br> 
+<br> [놀이방법 안내]
+<br> ① 도서관 방문
+<br> ② 책놀이터에서 그림책 한 권 골라 읽기
+<br> ③ 활동지 "책을 읽었어요" 쓰고 그리기
+<br> ④ 사서 선생님에서 책놀이 재료 받기</div>
+							<p class="date">2026-07-25~2026-08-16</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/jalib/lectureDetail.do?lectureIdx=53947" class="jalib">
+							<i class="ico lib jalib">전체</i>
+							<h5 class="tit">[중앙][지역연계X에코온] 함께 Green 시민학교</h5>
+							<div class="desc"><br> &nbsp; [지역연계] 함께 Green 시민학교 기간 8. 18. ~ 8. 21. (화,수,목,금) 14:00~15:30 장소 5층 스토리&amp; 창작테이블 대상 성인 20명 강사 전미래, 송은진 주최 파주시환경교육센터 에코온 내용 기후환경과 자원순환, 탄소순환 등을 그림책, 보드게임, 워크숍으로 이해하고 체험하기 (압화 부채 및 바질 커피박 화분 만들기 포함) 신청 7. 31 (금)~ 홈페이지
+<br> 
+<br> 문의 031-940-5656 스토리앤 담당 사서&nbsp;
+<br> 
+<br> *본 프로그램은 파주시환경센터 에코온의 "2026 파주시 찾아가는 환경교육"으로 진행됩니다.&nbsp;
+<br> 
+<br> &nbsp; &nbsp;</div>
+							<p class="date">2026-08-18~2026-08-21</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/jalib/lectureDetail.do?lectureIdx=53946" class="jalib">
+							<i class="ico lib jalib">중앙</i>
+							<h5 class="tit">[어린이 메이커 캠프] 전자 회로 소꿉놀이 </h5>
+							<div class="desc"><br> &nbsp; [어린이 메이커 캠프] 전자 회로 소꿉놀이 기간 8. 11. ~ 8. 13. (화,수,목) 14:00~15:30 장소 5층 스토리&amp; 창작테이블 대상 초등 1, 2학년 12명  강사 박지은 (릴리쿰) 내용 익숙한 재료로 놀이하며 전기와 전자의 원리를 배우고, 전기 회로가 들어간 작품을 만들어 봅니다. &nbsp;     1회   화   쪼물딱쪼물딱 전기회로   클레이로 전기 원리 이해하기     2회   수   반짝반짝 전기회로   자석 스위치로 곤충모형 만들기     3회   목   빼액빼액 전기회로   쓰러지면 울리는 알람(부저) 만들기     신청 7. 31 (금)~ 홈페이지  문의 031-940-5656 스토리앤 담당사서&nbsp;
+<br> 
+<br> *소식지에 오타가 있었습니다. &lt;전화회로 소꿉놀이&gt; 를 &lt;전자회로 소꿉놀이&gt;로 정정합니다.&nbsp;
+<br> 
+<br> 
+<br> 
+<br> *9월부터 11월까지 한 달에 한 번씩(셋째 주 수/목) 저학년/고학년용 어린이 메이커 프로그램이 있습니다.&nbsp;
+<br> - 9월 주제: 마이크로비트
+<br> - 10월 주제: 전자회로
+<br> - 11월 주제: 3D펜
+<br> &nbsp; [한 달에 한 번 어린이 메이킹] 게임을 만들자 기간 9. ~ 11. 매월 셋째 주 수/목 (*요일별 운영시간 상이) 강사 박윤진, 심은실, 고경복, 김지선 &nbsp;     일시   대상   내용     9. 16.(수) 15:00~17:00   초1~3학년 10명   마이크로 비트로 룰렛 게임 만들기     9. 17.(목) 16:00~18:00   초4~6학년 10명   마이크로 비트로 레트로 아케이드 게임 만들기     신청 9. 1. (화)~ 홈페이지 &nbsp;</div>
+							<p class="date">2026-08-11~2026-08-13</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/ghlib/lectureDetail.do?lectureIdx=53926" class="ghlib">
+							<i class="ico lib ghlib">전체</i>
+							<h5 class="tit">[교하 | 왓츠인마이북] &lt;백범 강산에 눕다&gt; 임순만 작가와의 만남 【백범 김구 탄생 150주년 기념】</h5>
+							<div class="desc"><br> 
+<br> 2026년 교하도서관 출판인쇄 특화사업 | 출판사 연계 저자와의 만남
+<br> 왓츠 인 마이 북 What's in my book
+<br> '저자가 소개하는 내 책의 모든 것'을 주제로 2026년 새로운 책을 출간한 출판사와 함께 운영하는 저자와의 만남 사업입니다.
+<br> 
+<br> 
+<br> 백범 김구 탄생 150주년 기념 &lt;백범 강산에 눕다&gt; 임순만 작가와의 만남 일시&nbsp; &nbsp;2026. 8. 11.(화) 19:00~20:30&nbsp; &nbsp;&nbsp;
+<br> 대상&nbsp; &nbsp;성인 누구나, 50명
+<br> 장소&nbsp; &nbsp;교하도서관 3층 소극장&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+<br> 초청&nbsp; &nbsp;임순만(소설가, 언론인)
+<br> 신청&nbsp; &nbsp;7. 28.(화) ~ 안내데스크 전화(940-5153), 방문, 홈페이지
+<br> 내용&nbsp; &nbsp;언론인 출신 소설가 임순만 작가가 10여년에 걸쳐 집필한 소설을 통해 독립운동가였던 백범 김구 선생의 일생을&nbsp;재조명하는 시간
+<br> 
+<br> 
+<br> 초청작가 | 임순만 (소설가, 언론인)
+<br> 국민일보 편집인을 거쳐, 편집국장, 논설실장, 종교국장을 지냈다.
+<br> 저서로 문학저널 『임순만 기자의 문학이야기』 『상상력의 마술』, 장편소설 『백 년간의 잠』이 있다.
+<br> 
+<br> 
+<br> 소설로 복원한 백범 김구의 ‘진짜’ 삶
+<br> 
+<br> 대한민국 국민이라면 누구나 백범 김구라는 이름과 그의 명언 몇 마디는 알고 있다. 그러나 그가 ‘어떤 사람’이었는지, 격동의 시대 한복판에서 무엇을 선택하고 무엇을 포기했는지에 대해서는 충분히 알지 못한다.
+<br> 
+<br> 올해로 창사 50주년을 맞은 한길사는 백범 김구 선생 탄신 150주년과 2026년 유네스코 올해의 인물로 선정된 백범을 기념해 ...</div>
+							<p class="date">2026-08-11~2026-08-11</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/hblib/lectureDetail.do?lectureIdx=53907" class="hblib">
+							<i class="ico lib hblib">한빛</i>
+							<h5 class="tit">[한빛]AI단편영화 제작과정(중부대x경기도 앵커사업)</h5>
+							<div class="desc"><br> 
+<br> 중부대학교와 경기도가 함께하는 과정 소개로 이번 과정은 영화 제작을 배우고, 동시에 AI를 활용해 자신만의 영상과 영화를 직접 만들어 볼 수 있는 특별한 프로그램입니다. ​ 수강생 전원이 각자의 이야기를 바탕으로 자신만의 AI 영상 또는 AI 단편영화를 직접 제작하게 됩니다. 다시 말해, 누군가의 작품에 참여하는 것이 아니라 자신의 아이디어를 자신의 작품으로 완성하는 과정입니다. ​영화를 만들고 싶었지만 촬영 장비나 인력, 예산의 한계 때문에 도전하지 못했던 분들, AI 영상 제작에 관심이 있는 분들, 그리고 자신만의 이야기를 영상으로 표현해 보고 싶은 분들에게 좋은 기회가 될 것입니다. ​ 아래 공지사항을 꼭 확인해 주시기 바라며, 나만의 AI 영상·영화 만들기에 관심 있는 분들의 많은 신청 바랍니다. 감사합니다. ​창작에 필요한 데이터 비용도 무료로 제공합니다. 5분 내외, 5분 이내의 작품을 만듭니다. --------------------------------------------------------------------------------------------------------------------------------- 「AI 단편영화 제작과정」 무료강의 수강생 공개 모집 ​ 교육장소 : 한빛도서관 2층 강의실&nbsp;
+<br> (주차장이 협소하여 대중교통을 권해드리며, 만차 시 인근 공영주차장&lt;운정1주차장, 유료&gt;을 이용해 주시기 바랍니다)&nbsp;
+<br> ​ 안녕하십니까? 중부대학교와 경기도가 함께 진행하는 앵커사업「AI 단편영화 제작과정」 무료강의 수강생을 공개 모집합니다. (선착순) ​이번 교육은 단순한 체험 강의가 아닌, 실제로 한 편의 AI 단편영화를 완성하는 프로젝트형 교육입니다. ​ ■ 교육 특징 2개월(8주, 주1회): 영화 영상을 배우고 시나리오, 콘티뉴이티, 화면 연결의 법칙, 편집 실습을 배우는 과정 ​1개월(4주, 주1회) : Ai 집중 과정AI 시나리오 작성, 이미지 생성, 영상 생성...</div>
+							<p class="date">2026-07-31~2026-11-13</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/ghlib/lectureDetail.do?lectureIdx=53906" class="ghlib">
+							<i class="ico lib ghlib">전체</i>
+							<h5 class="tit">[교하]젠지세대 100% 당첨 이벤트</h5>
+							<div class="desc"><br> 디지털 네이티브 젠지세대를 위한 힙한 독후감 쓰기 이벤트
+<br> 줄거리 느낌식의 독후감 쓰기에서 벗어나 개성있고 창의적인 글쓰기 &lt; 독후감 게임&gt; 시즌2가 돌아왔습니다!
+<br> 시즌 2 테마는&nbsp;AI와 덕질하기로,&nbsp;미션을 수행해서 제출해주신 모든분께 행운이 팡팡!!
+<br> 참여 대상 :&nbsp; 젠지세대(14세~29세) 
+<br> ★참여방법★ 1. 교하도서관 2층 라운지 네모 자료실에서 뽑기 캡슐에서 랜덤 미션 받기(책 속&nbsp; 좋았던 장면을 AI와 티키타카 하기, 책 속 장면 AI 활용해서 이미지로 그리기, 책 분위기에 어울리는 OST 만들기&nbsp; 등)
+<br> 2. 부여받은 미션으로 8월 16일(일)까지 자신이 좋아하는 책을 읽고 독후감을 작성해서 구글폼으로 제출(https://forms.gle/wcYdAKCLrn1ZKw6r6)
+<br> &nbsp; *&nbsp;서명, 저자, 출판사, 부여받은 미션을 독후감과 함께 제출&nbsp;
+<br> &nbsp; * 담당사서의 확인 후 독후감은 온라인 작품집에 공유: 바로가기 클릭&gt;&gt;&gt;독후감게임 온라인 작품집 | 밴드
+<br> 4. 미션을 성실하게 수행해주신 모든분들께 참여 인센티브 : 지역서점이용권(1만원) 증정
+<br> 5. 독후감 제출시 재참여 가능. 캡슐뽑기안에 산리오, 포켓몬스터 다양한 캐릭터 지우개를 수집해 보세요!(단 지역서점이용권 1만원권은&nbsp; 1회만 증정)
+<br> &nbsp; ☆&nbsp;권수 제한 없이 읽을 수 있는 전자책(구독형)을 읽고 독후감 게임에 참여하는것도 좋은 방법!!☆ 링크▶▶▶▶전자책(구독형) : 교하도서관
+<br> &nbsp;</div>
+							<p class="date">2026-07-25~2026-08-16</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/grlib/lectureDetail.do?lectureIdx=53886" class="grlib">
+							<i class="ico lib grlib">전체</i>
+							<h5 class="tit">[가람] 권윤덕 작가와의 만남</h5>
+							<div class="desc"><br> 
+<br> 평화와 생명을 이야기하는
+<br> 권윤덕 작가와의 만남
+<br> 
+<br> 일시&nbsp; 2026. 8. 14.(금) 19:30~21:00
+<br> 장소&nbsp; 2층 스페이스G
+<br> 대상&nbsp; 고등학생 이상
+<br> 강사&nbsp; 권윤덕 작가 (저서 '꽃할머니', '나무도장', '만희네꽃밭'등 다수)
+<br> 내용&nbsp; &lt;꽃할머니&gt; 1인극 공연 및 권윤덕 작가의 작품세계와 신간이야기
+<br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;*강연 후 사인회 예정
+<br> 신청&nbsp; 7.28.(화)~ 홈페이지 접수</div>
+							<p class="date">2026-08-14~2026-08-14</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/hblib/lectureDetail.do?lectureIdx=53866" class="hblib">
+							<i class="ico lib hblib">한빛</i>
+							<h5 class="tit">[한빛] 가족 소통 프로그램 (불타는 소통 패밀리데이) </h5>
+							<div class="desc">[한빛도서관 가족소통 프로그램]&nbsp;
+<br> 
+<br> ㅁ불타는 소통 패밀리 데이ㅁ&nbsp;
+<br> 
+<br> 파주시 중독관리통합지원센터에서 진행하는 가족소통 프로그램입니다.
+<br> 현재 나의 스마트폰 생활을 점검하고 가족끼리 재미있는 체험 활동을 즐겨보세요!&nbsp;
+<br> 
+<br> *프로그램 내용*&nbsp;
+<br> 1차(8/22) :&nbsp; 스마트폰 의존도 점검하기&nbsp;
+<br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;가족이 함께 과자집 만들기&nbsp;
+<br> 2차(8/29) :&nbsp; 우리가족 스마트폰 규칙 정하기&nbsp;
+<br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;마음 힐링 테라피(토피어리 함께 만들기)
+<br> 
+<br> ※ 총 2회차 프로그램입니다. 모두 참석 가능하신분만 신청해주세요.&nbsp;
+<br> 
+<br> 일시 2026.8.22.(토)/ 8.29.(토) 10:00~12:00
+<br> 장소 2층문화교육실
+<br> 대상 초등학생 자녀가 있는 가족 (※보호자 1명만 동반해도 참여 가능)&nbsp;
+<br> 진행 서미선, 이정희(파주시중독관리통합지원센터 사회복지사)&nbsp;
+<br> 신청 2026.7.29.(수) 9:00~ 홈페이지
+<br> 
+<br> 
+<br> 
+<br> &nbsp;</div>
+							<p class="date">2026-08-22~2026-08-29</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/hslib/lectureDetail.do?lectureIdx=53846" class="hslib">
+							<i class="ico lib hslib">해솔</i>
+							<h5 class="tit">[해솔 지혜학교] 우리는 모두 관계 속에서 성장한다</h5>
+							<div class="desc">우리는 모두 관계 속에서 성장한다
+<br> 
+<br> 아이의 내면을 이해하는 지도를 펼쳐 볼 시간
+<br> 
+<br> &nbsp;일시&nbsp;&nbsp;8. 26. ~ 11. 11.(매주 수, 총12차시) 14:00~17:00
+<br> &nbsp;장소&nbsp;&nbsp;1층 소극장
+<br> &nbsp;대상&nbsp;&nbsp;성인 30명(※가능한 12차시 전과정 참석 가능하신분)
+<br> &nbsp;강사&nbsp;&nbsp;김성곤(&lt;완벽한 부모가 아이를 망친다&gt; 저)
+<br> &nbsp;내용&nbsp;&nbsp;부모와 아이의 성숙한 공감 관계 성립을 위해 아이의 감정과 행동을 이해하는
+<br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 시각을 넓히고, 부모의 양육 태도와 감정을 돌아보며, 실질적인 공감과 방향을
+<br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 찾아가는 프로그램
+<br> &nbsp;접수&nbsp;&nbsp;8.3.(월) 09:00~ 홈페이지 선착순접수&nbsp;
+<br> &nbsp;주최/주관&nbsp;&nbsp;문화체육관광부/한국문화예술교육진흥원, 한국도서관협회, 해솔도서관
+<br> 
+<br> &nbsp;</div>
+							<p class="date">2026-08-26~2026-11-11</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/jalib/lectureDetail.do?lectureIdx=53827" class="jalib">
+							<i class="ico lib jalib">전체</i>
+							<h5 class="tit">[중앙] 여름독서교실 「두근두근 나의 꿈 찾기」</h5>
+							<div class="desc">친구들의 숨은 재능을 스스로 발견하고,&nbsp;
+<br> 직업 체험을 통해 진로 탐색이 즐거운 여정임을 경험할 수 있도록
+<br> 직업을 주제로하는 여름독서교실을 마련했습니다.
+<br> 
+<br> 다양한 직업을 알아보고 나의 강점을 탐색하여 나의 미래를 꿈꿀 수 있는
+<br> 알찬 시간이 되었으면 합니다.
+<br> 
+<br> 일시&nbsp; 8. 11.(화) ~ 8. 13.(목) 10:00 ~ 12:00
+<br> 장소&nbsp; 중앙도서관 4층 401호
+<br> 대상 초등학교 4~6학년 어린이
+<br> 진행 어린이자료실 사서, 김원배 작가, 최기웅 강사
+<br> 문의 031-940-5666
+<br> 
+<br> * 1, 2차시 참여한 어린이만 3차시 참여 가능합니다.
+<br> * 3차시 모두 참여할 수 있는 어린이만 신청해주세요.
+<br> 
+<br></div>
+							<p class="date">2026-08-11~2026-08-13</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/mplib/lectureDetail.do?lectureIdx=53826" class="mplib">
+							<i class="ico lib mplib">물푸레</i>
+							<h5 class="tit">[물푸레X한길책박물관] 장미 화관에 담긴 이야기 :찬란한 유산, 성경책</h5>
+							<div class="desc"><br> *본 홍보물은 미리캔버스에서 제작되었습니다.
+<br> 
+<br> 
+<br> &nbsp;지역연계 X 한길책박물관&nbsp;&nbsp;&nbsp;장미 화관에 담긴 이야기 :찬란한 유산, 성경책&nbsp;🌹📙
+<br> 성경이 담고 있는 문화와 예술의 이야기를 배우고, 나만의 묵주팔찌를 만들어 보아요! （＾∀＾●）ﾉｼ
+<br> 
+<br> ⚪&nbsp;일시: 8.21. (금), 16:00~17:00
+<br> ⚪&nbsp;장소: 2층 문화강연실
+<br> ⚪&nbsp;대상: 초등 3~6학년 15명
+<br> ⚪&nbsp;강사: 도연재(한길책박물관 교육강사)
+<br> ⚪&nbsp;신청: 8.4.(화)~ 홈페이지 접수&nbsp;
+<br> 
+<br> 
+<br> * 프로그램 신청 시 1명씩 신청해주시기 바랍니다. (꼭 2자녀 신청 시 각각 신청하세요)
+<br> * 본 교육프로그램은 경기도 2026 박물관·미술관 지원사업으로 운영됩니다.</div>
+							<p class="date">2026-08-21~2026-08-21</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/mslib/lectureDetail.do?lectureIdx=53806" class="mslib">
+							<i class="ico lib mslib">문산</i>
+							<h5 class="tit">[가족 평화프로그램] 우리가 꿈꾸는 평화세상</h5>
+							<div class="desc">[문산도서관Ⅹ파주시문산종합사회복지관]
+<br> 우리가&nbsp;꿈꾸는 평화세상
+<br> 
+<br> 
+<br> 
+<br> 평화활동가와 함께하는 평화·통일 교육!
+<br> 우리 곁의 마을과 한국전쟁 이야기를 듣고, 가족과 함께 활동하며 평화를 배우고 나눠요.
+<br> 
+<br> 📍행사개요
+<br> - 일시:&nbsp;2026. 8. 8. (토) 14:00~15:30
+<br> - 장소:&nbsp;문산도서관 1층 루트2
+<br> - 대상:&nbsp;초등 3학년 이상 자녀 포함 가족 6팀
+<br> - 강사: 파주시문산종합사회복지관 평화활동가
+<br> - 신청: 2026. 7. 25. (토)~ 홈페이지 접수
+<br> - 문의: 평화특화사서(031-820-7240)
+<br> 
+<br> 📍프로그램
+<br> ✔️ 평화책 읽기 - '동파할아버지 집으로&nbsp;오는 길&nbsp;50년'&nbsp;전쟁이야기
+<br> ✔️ 평화마루 게임 - 보드게임으로 평화의 생각을 정리하고 실천하기
+<br> ✔️ 해마루촌 도미노 게임 - 우리가 완성하는 해마루촌 마을
+<br> ※해마루촌 도미노 게임은 운영 상황에 따라 변경 또는 미진행될 수 있습니다.
+<br> &nbsp;</div>
+							<p class="date">2026-08-08~2026-08-08</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/thlib/lectureDetail.do?lectureIdx=53786" class="thlib">
+							<i class="ico lib thlib">탄현</i>
+							<h5 class="tit">[탄현 | 절기행사] 해 따라 놀자, 입추 ~ 잠자리 편지</h5>
+							<div class="desc">가을의 시작을 알리는 입추! 벼가 익어가고 잠자리가 날아다니는 가을의 시작을 느껴보아요.🍂🍂
+<br> 
+<br> ✅ 일 시: 2026. 8. 8.(토) 14:00 ~ 16:00
+<br> ✅ 장 소: 탄현면 행정복지센터 2층 다목적 강당
+<br> ✅ 대 상: 어린이 동반 가족 30명
+<br> ✅ 진 행: 작가 한기현(『잠자리 편지』 저자)
+<br> ✅ 내 용: 잠자리 편지 1인극 관람 후 소원 잠자리 만들기
+<br> 
+<br> 
+<br> &nbsp;</div>
+							<p class="date">2026-08-08~2026-08-08</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/srlib/lectureDetail.do?lectureIdx=53767" class="srlib">
+							<i class="ico lib srlib">전체</i>
+							<h5 class="tit">[술이홀 | 여름독서교실] 여름숲 구조대</h5>
+							<div class="desc">술이홀도서관 여름 독서교실
+<br> &lt;여름숲 구조대&gt;
+<br> 
+<br> 1. 일 &nbsp;시 : 2026. 8. 7.(금), 8.8.(토) 10:00~12:00
+<br> 2. 대 &nbsp;상 : 초등 2~4학년 15명
+<br> 3. 장 &nbsp;소 : 술이홀도서관 다목적실 (파주읍 행정복지센터 3층)&nbsp;
+<br> 4. 강&nbsp; 사 : 오현준 사서, 조은진 강사(보드랑놀자 대표)
+<br> 5.&nbsp;접 &nbsp;수 : 2026. 7. 22.(수) 9:00 ~ 홈페이지, 데스크, 전화 선착순
+<br> 6. 문 &nbsp;의 : 031-940-5085(술이홀도서관)
+<br> 7. 내&nbsp; 용 : 기후위기 그림책 같이 읽기 및 독후활동
+<br> &nbsp;    날짜 내용 진행   8.7.
+<br> (금) - 도서관 이용교육
+<br> - 「풀밭에 숨은 보물 찾기」 함께 읽기
+<br> - 독후활동 : 나만의 여름숲 그리기, 기후위기 퀴즈 오현준 사서   8.8.
+<br> (토) - 「얼음산 빙수가게」 함께 읽기
+<br> - 환경 보드게임 함께 하기
+<br> - 수생식물 꾸미기 활동
+<br> - 복습 퀴즈 조은진 강사    &nbsp; &nbsp;* 부득이한 사정으로 불참시, 사전에(최소 4시간 전) 031-940-5085로 연락주시기 바랍니다.
+<br> &nbsp;* 연락없이 불참하실 경우, 향후 술이홀도서관 프로그램 신청에 패널티가 발생하실 수 있습니다.
+<br> 
+<br> 
+<br></div>
+							<p class="date">2026-08-07~2026-08-08</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/wllib/lectureDetail.do?lectureIdx=53766" class="wllib">
+							<i class="ico lib wllib">월롱</i>
+							<h5 class="tit">[월롱] 여름독서교실 &lt;프로젝트 파브르&gt;</h5>
+							<div class="desc">&gt;&gt;월롱도서관 여름독서교실 '프로젝트 파브르'&lt;&lt;
+<br> 
+<br> &nbsp;&nbsp;- 일시 : 2026. 8. 11. (화) ~ 8. 12. (수) 10:00~12:00&nbsp;
+<br> &nbsp;&nbsp;- 대상 : 초등학교 3~5학년 20명&nbsp;
+<br> &nbsp;&nbsp;- 장소 : 월롱도서관 2층 문화교실, 문산천
+<br> &nbsp;&nbsp;- 진행 : 이탁기 박사(인천대학교), 강미자 사서(월롱도서관)
+<br> &nbsp;&nbsp;- 내용 : 마을에서 흔하게 서식하는 곤충을 채집, 관찰, 기록해보며 책에서 얻은 지식과 직접 체험한 정보를 연결해 보자
+<br> &nbsp;&nbsp;- 접수 : 2026. 7. 22. (수) 9:00 ~ 온라인, 데스크 선착순 마감
+<br> &nbsp; - 주목!&nbsp; 온라인(파주시민 누구나) 15명/ 데스크(월롱주민 우선, 전화 또는 직접방문) 5명 모집합니다
+<br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 참가자는 반드시 곤충과 관련한 책을 1권 이상 읽고 첫수업에 가지고 참석하시기 바랍니다
+<br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2일동안 모두 참석이 가능한 경우에 신청해 주세요
+<br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 대기자는 취소 인원이 있을 시 개별 연락드리겠습니다.&nbsp;
+<br> &nbsp;     날&nbsp; 짜   시&nbsp; 간   내&nbsp; 용   진&nbsp; 행     &nbsp;&nbsp;2026.8.11.(화)&nbsp;&nbsp;   &nbsp; &nbsp;10:00~12:00&nbsp; &nbsp;&nbsp;   &nbsp; &lt; 출석확인 및 아이스브레이킹 &gt;
+<br> &nbsp; &nbsp;- 자기 소개 및 내가 읽은 곤충책 자랑&nbsp;&nbsp; &nb...</div>
+							<p class="date">2026-08-11~2026-08-12</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/hblib/lectureDetail.do?lectureIdx=53747" class="hblib">
+							<i class="ico lib hblib">한빛</i>
+							<h5 class="tit">[한빛] ★별도신청링크★ AI 뉴스 스튜디오: 우리가 만드는 포용 뉴스 (초등 5~6학년)</h5>
+							<div class="desc">※ 신청은&nbsp;아래 "신청 바로가기"링크를 통해서만 가능합니다.&nbsp;
+<br> 신청 바로가기&nbsp;
+<br> ** 중복 신청 방지를 위해 도서관 홈페이지에는 접수 방법이 '현장접수'로 표기됩니다. 실제 신청은 별도 신청 패아자를 통해서만 가능합니다.
+<br> 
+<br> ※ 신청 페이지에서는 실시간 잔여 인원이 표시되지 않습니다. 현재 확인 시점(2026. 8. 4. 9:00) 기준 신청자는 18명이며, 정원은 20명(대기 3명)입니다. 신청 시점에 따라 조기 마감될 수 있습니다.
+<br> 
+<br> 
+<br> AI 뉴스 스튜디오: 우리가 만드는 포용 뉴스&nbsp;(초등 5~6학년)
+<br> 
+<br> AI 기자가 되어 뉴스를 만들어 볼까요?
+<br> 생성형 AI로 뉴스를 만들고, 상처 주는 말을 따뜻한 말로 바꾸며 모두가 함께하는 포용의 가치를 배워봅니다.
+<br> 직접 기획하고 제작한 뉴스로&nbsp;세상을 조금 더 따뜻하게 바꿔보세요!
+<br> 
+<br> 일시 │&nbsp;2026. 8. 12.(수) ~ 8. 13.(목) 14:00~17:00
+<br> 대상 │&nbsp;초등 5~6학년 20명
+<br> 내용 │ 생성형 AI로 뉴스를 제작하며 포용적 표현과 디지털 시민성을 배우는 미디어 프로젝트
+<br> 진행 │ 이서연(정보활용교육 강사)
+<br> 장소 │&nbsp;한빛도서관 2층 문화교육실
+<br> 신청 │ 7. 29.(수) 09:00 ~&nbsp;도서관 홈페이지 &gt; 별도 신청 링크 선착순 접수
+<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;※ 2일 모두 참석 가능한 경우에만 신청해 주시기 바랍니다.&nbsp;
+<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;※ 본 프로그램은 모집 정원에 맞춰 교구와 교재를 준비합니다. 취소자가 발생할 경...</div>
+							<p class="date">2026-08-12~2026-08-13</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/hblib/lectureDetail.do?lectureIdx=53746" class="hblib">
+							<i class="ico lib hblib">한빛</i>
+							<h5 class="tit">[한빛] AI 마법학교: 우당탕탕 동화 제작소 (초등 3~4학년)</h5>
+							<div class="desc">AI 마법학교: 우당탕탕 동화 제작소 (초등 3~4학년)
+<br> 
+<br> AI와 함께 떠나는 여름방학 마법 여행!
+<br> 내가 그린 그림이 살아 움직이고, 내가 상상한 이야기가 동화가 된다면?
+<br> AI 그림, 음악, 목소리 만들기부터&nbsp;나만의 디지털 동화 제작까지!
+<br> 꼬마 마법사가 되어 상상을 현실로 만들어 보세요.
+<br> 
+<br> ** 프로그램 신청 전 확인해 주세요. **
+<br> 프로그램 참여를 위해서는 어린이 본인 명의의 구글 계정이 필요합니다.&nbsp;
+<br> 부모님 계정을 사용할 경우, 로그인 및 인증 과정에서 보호자의 확인이 필요할 수 있습니다. 원활한 수업 진행을 위해 어린이 본인 계정 사용을 권장드립니다.
+<br> 
+<br> 일시 │&nbsp;2026. 8. 5.(수) ~ 8. 7.(금) 14:00~17:00
+<br> 대상 │&nbsp;초등 3~4학년 20명
+<br> 내용 │ AI와 함께 그림·음악·캐릭터를 만들고 나만의 디지털 동화를 완성하는 창작 프로그램
+<br> 진행 │ 유혜경(정보활용교육 강사)
+<br> 장소 │&nbsp;한빛도서관 2층 문화교육실
+<br> 신청 │ 7. 22.(수) 09:00 ~&nbsp;도서관 홈페이지 선착순 접수 **비고란에 학년을 기입해주세요.
+<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;※ 3일 모두 참석 가능한 경우에만 신청해 주시기 바랍니다. 
+<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;※ 본 프로그램은 모집 정원에 맞춰 교구와 교재를 준비합니다. 취소자가 발생할 경우 대기자에게 순차적으로 연락드리겠습니다.
+<br> 지원 │ 한국과학창의재단
+<br> 문의 │ 031-940-5787
+<br> 
+<br></div>
+							<p class="date">2026-08-05~2026-08-07</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/jalib/lectureDetail.do?lectureIdx=53726" class="jalib">
+							<i class="ico lib jalib">중앙</i>
+							<h5 class="tit">[중앙] (도서관 음악회) 한여름 국악 한마당</h5>
+							<div class="desc">파주문화예술포럼이 주관하고&nbsp;
+<br> 경기도· 경기문화의 날이 함께하는
+<br> 도서관하우스콘서트 5 !!
+<br> 
+<br> 국악과 재즈가 어우러진 퓨전 음악 공연이
+<br> 한여름, 중앙도서관에서 펼쳐집니다.
+<br> 
+<br> 가족과 함께 도서관에서 책도 읽고,
+<br> 멋진 국악 공연도 감상하며
+<br> 시원하고 특별한 시간을 보내세요.
+<br> 
+<br> 일시 26. 8. 8.(토) 15:00~
+<br> 장소 중앙도서관 5층 501호
+<br> 대상 파주시민 70명
+<br> &nbsp; &nbsp; &nbsp;&nbsp; (나이제한 없음, 단 취학 전 아동은 보호자 동반)
+<br> 공연진행&nbsp; 설이랑
+<br> 내용 국악과 재즈가 결합된 퓨전음악공연
+<br> 
+<br> 
+<br> 
+<br> 
+<br> &nbsp;</div>
+							<p class="date">2026-08-08~2026-08-08</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/hslib/lectureDetail.do?lectureIdx=53707" class="hslib">
+							<i class="ico lib hslib">해솔</i>
+							<h5 class="tit">[해솔 여름방학놀이터 특별판] 친환경 업사이클 한글키링 만들기</h5>
+							<div class="desc">[해솔도서관 교육·가족 특화사업] 
+<br> [해솔 여름방학 놀이터 특별판]
+<br> 친환경 업사이클 병뚜껑 한글키링 만들기 
+<br> 일시: 2026. 8. 13.(목) 10~12시
+<br> 장소: 해솔도서관 1층 소극장
+<br> 대상: 초등 1~3학년 20명
+<br> 내용: 환경교육 후 플라스틱 병뚜껑 업사이클 한글키링 만들기(재료비 무료)
+<br> 신청: 2026. 8. 3.(월) 9시~ 선착순 접수
+<br> 
+<br> 
+<br> ※&nbsp;본 게시물은 미리캔버스를 통해 제작되었습니다.&nbsp;&nbsp;</div>
+							<p class="date">2026-08-13~2026-08-13</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/ghlib/lectureDetail.do?lectureIdx=53706" class="ghlib">
+							<i class="ico lib ghlib">전체</i>
+							<h5 class="tit">[교하]어쩌다 풍류시인 : 길위의 인문학</h5>
+							<div class="desc">교하도서관에서 길위의 인문학을 개최합니다. 16세기 선비들이 누각과 정자에서 풍경을 즐기며 지었던 시를(누정제영) 현대적 관점에서 재해석하고
+<br> 나만의 시를 지어 실제 시집(ISBN)을 발간해보는 특별한 기회에 참여해 보세요! &nbsp;     회차   프로그램 주제   교육내용   일시 및 장소   강사명   진행방식     1   풍류(風流), 삶의 멋을 깨우다   풍류란 무엇인가?  옛 선비들의 '갓생' 살기와 풍류 이해하기   8월 12일(수) 10:00~12:00 2층 문화강연실   박종우   강의     2   정자 위에서 마주한 풍경: 누정제영(樓亭題詠)   누정(樓亭)에 앉아 바라본 세상:  16세기 선비들이 정자에서 시를 쓴 이유   8월 19일(수) 10:00~12:00 2층 문화강연실   박종우   강의     &nbsp; &nbsp; 3 &nbsp;   화석정, 율곡의 마음을 읽다   율곡 이이가 사랑한 화석정 이야기:  시에 담긴 의미와 미학적 가치 탐구   8월 26일(수) 10:00~12:00 2층 문화강연실   박종우   강의     4   내 마음의 정자를 찾아서   오늘날의 '정자'는 어디인가?  일상의 풍경을 시적 장소로 변용하는 법   9월 2일(수) 10:00~12:00 2층 문화강연실   김상혁   강의     5   첫 번째 붓질:  시 쓰기 실습   낯선 시선으로 일상의 풍경 바라보기:  감각적인 단어 떠올리기와 첫 시 쓰기   9월 9일(수) 10:00~12:00 2층 문화강연실   김상혁   체험     6   목소리로 빚는 시(詩)   내가 쓴 시 낭독회 서로의 시를 읽어주고 감상의 결 나누기   9월 16일(수) 10:00~12:00 2층 문화강연실   김상혁   워크숍     7   임진강 물길 따라 풍류 기행   화석정의 고전적 정취와  리비교라는 역사의 다리를 건너  오두산 전망대 까지:  감성을 체험하고 시상 메모   9월 23일(수) 10:00~16:00 화석정, 오두산 통일전망대,  리비교  ...</div>
+							<p class="date">2026-08-12~2026-10-28</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/hblib/lectureDetail.do?lectureIdx=53686" class="hblib">
+							<i class="ico lib hblib">한빛</i>
+							<h5 class="tit">[유아 영어+미술] Story Time &amp; Drawing(8월)🎨</h5>
+							<div class="desc">[유아 영어+미술] Story Time &amp; Drawing(8월)🎨
+<br> &nbsp; &nbsp;일 시&nbsp;&nbsp;&nbsp;8. 8.(토) 15:00~15:50&nbsp;&nbsp; &nbsp;대 상&nbsp;&nbsp;&nbsp;유아 6~7세 15명(2020-2021년생)&nbsp; *혼자 50분 수업 참여 가능한 어린이만 신청해 주세요. &nbsp;장 소&nbsp;&nbsp;&nbsp;2층 문화교육실 &nbsp;강 사&nbsp;&nbsp;&nbsp;김상아[일러스트레이터, (전)외국인학교 등 미술 강사] &nbsp;내 용&nbsp;&nbsp;&nbsp;영어그림책 『Pete the Cat Screams for Ice Cream!』함께 읽고,&nbsp;아이스크림콘 그리기 활동 &nbsp;신 청&nbsp; &nbsp;8. 1.(토) 09:00 ~ 도서관 누리집 선착순
+<br> &nbsp; &nbsp; &nbsp;🖌️&nbsp;월 1회 토요일 운영되며, 매월 초 도서관 누리집 선착순 모집합니다.
+<br> &nbsp; &nbsp;🖌️&nbsp;신청 시, 참여자명에&nbsp;어린이 이름과&nbsp;나이를 기재해 주시기 바랍니다.
+<br> &nbsp; &nbsp;🖌️&nbsp;물감, 마커, 파스텔 등 다양한 미술도구 사용합니다. 편안한 복장 착용해주세요. 
+<br> 🎨 참여 어린이 인원만큼 재료가 준비되는 수업입니다.
+<br> 🎨 신청이 완료된 이후&nbsp;참여가 불가능하게 되면, 대기자를 위해 최소 2일전 꼭 취소해주세요!
+<br> 🎨&nbsp;당일 취소하는 경우, 다음&nbsp;프로그램 참여에 제한이 있을 수 있으니 불참시&nbsp;미리 취소 꼭 지켜주세요 :)
+<br> 
+<br></div>
+							<p class="date">2026-08-08~2026-08-08</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/jrlib/lectureDetail.do?lectureIdx=53666" class="jrlib">
+							<i class="ico lib jrlib">조리</i>
+							<h5 class="tit">[조리 북스타트] 도로록~ 눈이 움직이는 종이인형 만들기_8월</h5>
+							<div class="desc">조리도서관 북스타트 8월 프로그램 안내
+<br> 
+<br> ♪ 아장아장 책걸음마 시작해요 ♪
+<br> 
+<br> 8월 활동은&nbsp;〈도로록~ 눈이 움직이는 종이인형 만들기〉 입니다!
+<br> 
+<br> 그림책 『백 개의 꽃씨와 쥐』를 함께 읽고, 
+<br> 도로록~ 👀&nbsp;눈이 움직이는 쥐돌이🐭와 멍멍이🐶를 만들어봐요~
+<br> 
+<br> 🌼&nbsp;기간 : 2026. 8. 1.(토)&nbsp;~ 소진 시까지
+<br> 🌼&nbsp;대상 : 0세~만 7세 어린이 및 보호자 10명 (1인 1개)
+<br> 🌼&nbsp;내용 : 종이인형 키트 제공
+<br> 🌼&nbsp;주제도서 : 『백 개의 꽃씨와 쥐』 (이조호 지음, 사계절, 2023)
+<br> 🌼&nbsp;신청방법&nbsp;: 도서관 방문 → 2층 어린이자료실 데스크 서명 후 수령&nbsp;※ 선착순 배포
+<br> 
+<br> 아이와 함께하는 아장아장 책놀이&nbsp;지금 바로 도서관에서 만나보세요!&nbsp;
+<br> 
+<br></div>
+							<p class="date">2026-08-01~2026-08-30</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/hslib/lectureDetail.do?lectureIdx=53646" class="hslib">
+							<i class="ico lib hslib">해솔</i>
+							<h5 class="tit">[해솔]여름독서교실- 책 타고 떠나는 세계 여행  &#034;책과 함께 세계를 만나요!&#034;</h5>
+							<div class="desc">2026 해솔도서관 여름 독서교실 드디어 시작합니다!
+<br> &nbsp; &nbsp; &nbsp;&nbsp;책 타고 떠나는 세계 여행&nbsp; "책과 함께 세계를 만나요!"
+<br> 
+<br> &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;이번&nbsp;해솔도서관 여름독서교실에는&nbsp;
+<br> &nbsp; &nbsp; &nbsp;『랜드마크 지구여행 1, 2』를 쓰신 김춘희 작가님과
+<br> &nbsp; &nbsp; &nbsp; &nbsp;우리가 사는 곳을 비롯해&nbsp;세계 여러나라의 지리와 랜드마크에 대해 알아보고&nbsp;
+<br> &nbsp; &nbsp; &nbsp; &nbsp;일본과 대만, 인도네시아의 그림책을 통해 그들의 문화와 전통 놀이를 경험하는
+<br> &nbsp; &nbsp; &nbsp; &nbsp;재밌고 알찬 시간이 준비되어 있습니다.&nbsp;
+<br> &nbsp;&nbsp;
+<br> 자, 그럼 책 타고 여행할 준비 되셨나요?
+<br> 친구들과 함께 책을 통해 활동을 통해 새로운 세상을 경험하며&nbsp;
+<br> 21세기 세계 시민의 문화 다양성을 키우고 무더위를 날려버릴 즐거운 시간을 보내보아요!
+<br> ※ 4차시 모두 참여 가능한 친구들만 신청가능합니다!&nbsp;(신청할 때 학년을 꼭 적어주세요!)&nbsp;&nbsp;     차시   내용     &nbsp; &nbsp; 1차시 8/10(월)   [랜드마크 지구여행1, 2]  주제도서 소개 및 세계와 우리나라 지리, 랜드마크 알아보기/ 랜드마크 블록 키링, 우리 마을 랜드마크 엽서 만들기      &nbsp; &nbsp; 2차시 8/11(화)   [주먹밥이 데굴데굴]  책과 애니메이션을 통해 한국과 일본의 쌀 비교 및 일본 오니기리의 역사와 특징 알아보기/ 클레이로 주먹밥 만들기     &nbsp; &nbsp;3차시 8/12(수)   [경극이 사라진 날] 그림책을 통해 대만 전통 예술 경극의 역사와 특징 알아보기/ 나만의 경극 가면 만들기     &nbsp;...</div>
+							<p class="date">2026-08-10~2026-08-13</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/hblib/lectureDetail.do?lectureIdx=53626" class="hblib">
+							<i class="ico lib hblib">전체</i>
+							<h5 class="tit">[한빛 I 지혜학교]전시와 소장품으로 만나는 현대미술</h5>
+							<div class="desc">전시와 소장품으로 만나는 현대미술
+<br> 
+<br> "쉽게 시작하지만, 깊이 있게 배우는 현대미술 12차시 집중과정"
+<br> 
+<br> &nbsp;일시&nbsp;&nbsp;8. 18. ~ 11. 10.(매주 화, 총12차시) 09:30~12:30
+<br> &nbsp;장소&nbsp;&nbsp;2층 문화교육실
+<br> &nbsp;대상&nbsp;&nbsp;예술에 관심있는 성인 20명(※ 12차시 전과정 참석 가능하신분)
+<br> &nbsp;강사&nbsp;&nbsp;안소영(서양미술사 강사)
+<br> &nbsp;내용&nbsp;&nbsp;입체주의부터 동시대미술까지 전시와 작품을 통해 만나며,
+<br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;낯선 작품 앞에서도 스스로 질문하고 감상하는 안목 키우기
+<br> &nbsp; &nbsp; &nbsp; ※ 참여자들은 최소 1회 발표의 자리가 있습니다.
+<br> &nbsp;접수&nbsp;&nbsp;8.1.(토) 09:00~ 홈페이지 선착순접수&nbsp;
+<br> &nbsp;주최/주관&nbsp;&nbsp;문화체육관광부/한국문화예술교육진흥원, 한국도서관협회, 한빛도서관
+<br> 
+<br> 
+<br></div>
+							<p class="date">2026-08-18~2026-11-10</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/mslib/lectureDetail.do?lectureIdx=53606" class="mslib">
+							<i class="ico lib mslib">문산</i>
+							<h5 class="tit">[문산도서관X한길책박물관] 찬란한 유산, 성경책</h5>
+							<div class="desc">프로그램 운영시간이 10시로 변경되었습니다(기존 10시30분 &gt; 변경 10시)
+<br> 
+<br> ROSARIUM
+<br> 한길책박물관과 함께하는 특별한 전시연계 프로그램! 
+<br> 찬란한 유산, 성경책✨
+<br> – 역사 속 성경책을 만나고, 나만의 소망 묵주 팔찌 만들기 – 한길책박물관과 함께&nbsp;성경책이 지닌 문화적·역사적 가치를 탐구하는 시간을 마련했습니다.
+<br> 종교적 의미를 넘어 타이포그래피와 장정 예술로서 성경책이 인류 문화사에 남긴 발자취를 살펴보고, 작은 구슬에 나만의 소망을 담아 세상에 하나뿐인 '묵주 팔찌'를 만들어보는 체험형 강연입니다.
+<br> 
+<br>  ✅ 운영개요
+<br> 📍 일시: 2026. 8. 8.(토) 10:00~11:0
+<br> 📍 장소: 문산도서관 1층 루트2
+<br> 📍 대상: 초등학교 3~6학년 20명
+<br> 📍 강사: 도연재(한길책박물관 소속)
+<br> 📍 내용: 성경책의 역사와 문화적 의미 학습 및 묵주 팔찌 만들기 체험 
+<br> ✅ 신청안내
+<br> 📍 접수기간: 2026. 7. 20.(월) ~ 선착순 마감
+<br> 📍 신청방법: 문산도서관 홈페이지 온라인 접수
+<br> 📍 참가비: 무료 (한길책박물관 지원 프로그램)
+<br> &nbsp; ✅ 프로그램 구성   [박물관 소개] 인사 및 사업 프로그램 안내   [성경책의 문화적 의미] 찬란한 인류의 유산, 타이포그래피와 장정 예술 탐구   [묵주의 의미] 작은 구슬에 담긴 기도와 가치 배우기   [체험 활동] 나만의 소망이 담긴 묵주 팔찌 만들기
+<br> &nbsp;   
+<br> 
+<br> 
+<br> &nbsp;</div>
+							<p class="date">2026-08-08~2026-08-08</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/jalib/lectureDetail.do?lectureIdx=53587" class="jalib">
+							<i class="ico lib jalib">중앙</i>
+							<h5 class="tit">제8기 사진교실</h5>
+							<div class="desc">[문화강좌] 제8기 사진 교실
+<br> 
+<br> 이론부터 실습까지 다양한 사진 기술을 배울 수 있는 사진 교실을 운영합니다.
+<br> 
+<br> 기간 : 2026년 8월 7일 ~ 11월 27일 (총4개월 과정) *11월 30일 수료
+<br> 일시 : 매주 금요일 오전 10시 ~ 12시
+<br> 장소 : 중앙도서관 4층 401호
+<br> 대상 : 사진에 관심있는 시민 누구나 25명 (※DSLR 카메라 필수 지참)
+<br> 강사 : 조용석(병두) 사진작가
+<br> 문의 : 031-940-5655
+<br> 
+<br> 
+<br></div>
+							<p class="date">2026-08-07~2026-11-27</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/hslib/lectureDetail.do?lectureIdx=53547" class="hslib">
+							<i class="ico lib hslib">해솔</i>
+							<h5 class="tit">[해솔] 프로그램지원 자원봉사자 모집(여름방학놀이터)</h5>
+							<div class="desc">자원봉사활동 참여 신청하기(클릭)
+<br> 
+<br> 해솔도서관 교육·가족 특화사업 중 해솔 여름방학놀이터 프로그램 운영을 도와주실 자원봉사 활동가를 모집합니다.
+<br> 1365 자원봉사포털에 사전 가입 해주시고, 학생의 경우 나이스 연계 관련 문의사항은 학교에 확인 바랍니다.
+<br> 
+<br> 화/수/목 오전 10시~12시, 오후 2시~5시 활동이 있으며
+<br> 일부 날짜, 일부 시간만 참여도 가능합니다.
+<br> 7.24.(금)까지 접수하고 7.25.(토) 개별 연락드립니다.
+<br> 
+<br> 문의: 해솔 특화 담당자 사무실 031-940-5142
+<br> (주말 문의시 해솔도서관 대표번호 031-940-5140)
+<br> 
+<br> 
+<br> ※&nbsp;본 게시물은 미리캔버스를 통해 제작되었습니다.&nbsp;&nbsp;</div>
+							<p class="date">2026-08-04~2026-08-13</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/mslib/lectureDetail.do?lectureIdx=53506" class="mslib">
+							<i class="ico lib mslib">문산</i>
+							<h5 class="tit">[길위의인문학] 돌보는 자들의 지구 - 에코페미니즘·생태·돌봄의 인문학</h5>
+							<div class="desc">[2026 길 위의 인문학]
+<br> 🌍돌보는 자들의 지구
+<br> - 에코페미니즘·생태·돌봄의 인문학
+<br> 
+<br> 혹시 기후위기 앞에서 막막하고 불안한 마음을 혼자 감당하고 계신가요?
+<br> 이제 기후위기는 우리의 밥상과 관계, 삶의 방식과 연결된 문제이기도 합니다.
+<br> ‘돌보는 자들의 지구’는 자연과 여성, 돌봄과 생태의 연결고리를 살펴보는 에코페미니즘(생태여성주의)&nbsp;인문학 프로그램입니다.
+<br> 10인의 여성 연구자와 예술가가 들려주는 다양한 목소리를 통해, 기후위기를 새로운 시선으로 바라보고 일상 속 실천의 가능성을 찾아보세요!
+<br> 
+<br> *참여자 파악을 위해 1계정당 1명 신청이 가능합니다.
+<br> *비고란에 탐방 참여 가능 여부를 적어주세요! (예: 탐방 참여 / 탐방 불참)
+<br> 
+<br> 
+<br> 
+<br> 📍운영개요
+<br> - 기간: 2026. 8. 5.~ 10. 14. 매주(수) 19:00~21:00 / 총10회
+<br> - 대상: 성인 25명
+<br> - 장소: 문산도서관 1층 루트2
+<br> - 신청방법: 7. 15.(수) 9:00~ 문산도서관 홈페이지 선착순 접수(회원가입 필요)
+<br> - 문의: 평화특화사서(031-820-7240)
+<br> 
+<br> 
+<br> 📍프로그램
+<br> 🌿PART Ⅰ. 에코페미니즘 기초강좌
+<br> ✔에코페미니즘이 무엇인지, 어떻게 시작되었는지 차근히 살펴보는 입문 과정입니다.&nbsp;
+<br> [1강] 8.5.(수)
+<br> 별 먼지에서 돌봄으로: 우주진화사로 여는 에코페미니즘
+<br> 138억 년 우주진화사의 시선으로 탐색하는 에코페미니즘 세계관
+<br> 강사 I 장이정규(한국생태심리연구소 소장)
+<br> 
+<br> [2강] 8.12.(수)
+<br> 에코페미니즘 운동의 역사
+<br> 경제성장 중심의 자본주의가 자연과 여성을 착취해 온 구조를 짚으며 에코페미니즘 운동의 역사 돌아보기
+<br> 강사 I 이윤숙(이화여대 사회학과 박사과정)
+<br> 
+<br...</div>
+							<p class="date">2026-08-05~2026-10-14</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/jalib/lectureDetail.do?lectureIdx=53471" class="jalib">
+							<i class="ico lib jalib">중앙</i>
+							<h5 class="tit">[중앙] 어린이독서탐험대 15기(5학년~6학년 대상)</h5>
+							<div class="desc">멘토와 또래가 함께 매주 책을 읽으며, 책과 관련된 어휘와 내용을 공유하고
+<br> 책을 더욱 깊이 있게 이해할 수 있는 시간을 갖어보아요!!
+<br> 
+<br> 일시 │&nbsp;2026.8.5. ~ 9.9. 매주 수요일 16:00~17:00&nbsp;(총 6차시)
+<br> 대상 │&nbsp;초등 5~6학년&nbsp;6명&nbsp;
+<br> 내용 │ 친구들과 같이&nbsp; 고른 책을 함께 소리내어 읽기
+<br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 모르는 단어나 표현의 의미를 함께 공부하며 익히기
+<br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 느낀 점이나 생각을 나누기
+<br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;* 어린이도서연구회 추천도서와&nbsp; 초등교과연계도서 등 사서가 선정한 도서 중에서
+<br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 아이들의 의견을 반영하여 다수결로 결정
+<br> 진행 │ 어린이자료실 담당 사서
+<br> 장소 │ 중앙도서관 4층 402호
+<br> 신청 │ 2026.7.10.(화) ~ 홈페이지 선착순 접수
+<br> 문의 │ 031-940-5666 (어린이자료실 담당자)
+<br> 
+<br> 결석 또는 중도 하차 없이 6차시를 모두 참석할 수 있는 어린이들의 참여를 기다립니다.
+<br> 
+<br> 
+<br> &nbsp;</div>
+							<p class="date">2026-08-05~2026-09-09</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/jalib/lectureDetail.do?lectureIdx=53470" class="jalib">
+							<i class="ico lib jalib">중앙</i>
+							<h5 class="tit">[중앙] 어린이독서탐험대 15기 (3학년~4학년 대상)</h5>
+							<div class="desc">멘토와 또래가 함께 매주 책을 읽으며, 책과 관련된 어휘와 내용을 공유하고
+<br> 책을 더욱 깊이 있게 이해할 수 있는 시간을 갖어보아요!!
+<br> 
+<br> 일시 │&nbsp;2026.8.6. ~ 9.10. 매주 목요일 16:00~17:00&nbsp;(총 6차시)
+<br> 대상 │&nbsp;초등 3~4학년&nbsp;6명&nbsp;
+<br> 내용 │ 친구들과 같이&nbsp; 고른 책을 함께 소리내어 읽기
+<br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 모르는 단어나 표현의 의미를 함께 공부하며 익히기
+<br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 느낀 점이나 생각을 나누기
+<br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;* 어린이도서연구회 추천도서와&nbsp; 초등교과연계도서 등 사서가 선정한 도서 중에서
+<br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 아이들의 의견을 반영하여 다수결로 결정
+<br> 진행 │ 유제님 멘토(작가)
+<br> 장소 │ 중앙도서관 4층 402호
+<br> 신청 │ 2026.7.10.(화) ~ 홈페이지 선착순 접수
+<br> 문의 │ 031-940-5666 (어린이자료실 담당자)
+<br> 
+<br> 결석 또는 중도 하차 없이 6차시를 모두 참석할 수 있는 어린이들의 참여를 기다립니다.
+<br> 
+<br> 
+<br> &nbsp;</div>
+							<p class="date">2026-08-06~2026-09-10</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/jalib/lectureDetail.do?lectureIdx=53469" class="jalib">
+							<i class="ico lib jalib">중앙</i>
+							<h5 class="tit">[중앙] 어린이독서탐험대 15기(1학년~2학년 대상)</h5>
+							<div class="desc">멘토와 또래가 함께 매주 책을 읽으며, 책과 관련된 어휘와 내용을 공유하고
+<br> 책을 더욱 깊이 있게 이해할 수 있는 시간을 갖어보아요!!
+<br> 
+<br> 일시 │&nbsp;2026.8.4. ~ 9.8. 매주 화요일 16:00~17:00&nbsp;(총 6차시)
+<br> 대상 │&nbsp;초등 1~2학년&nbsp;6명&nbsp;
+<br> 내용 │ 친구들과 같이&nbsp; 고른 책을 함께 소리내어 읽기
+<br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 모르는 단어나 표현의 의미를 함께 공부하며 익히기
+<br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 느낀 점이나 생각을 나누기
+<br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;* 어린이도서연구회 추천도서와&nbsp; 초등교과연계도서 등 사서가 선정한 도서 중에서
+<br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 아이들의 의견을 반영하여 다수결로 결정
+<br> 진행 │ 박진미 멘토(어린이도서연구회)
+<br> 장소 │ 중앙도서관 4층 402호
+<br> 신청 │ 2026.7.10.(화) ~ 홈페이지 선착순 접수
+<br> 문의 │ 031-940-5666 (어린이자료실 담당자)
+<br> 
+<br> 결석 또는 중도 하차 없이 6차시를 모두 참석할 수 있는 어린이들의 참여를 기다립니다.
+<br> 
+<br> 
+<br> &nbsp;</div>
+							<p class="date">2026-08-04~2026-09-08</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/jalib/lectureDetail.do?lectureIdx=53466" class="jalib">
+							<i class="ico lib jalib">중앙</i>
+							<h5 class="tit">[메이커스 에코 컬렉션 연계 이벤트] 비치코밍 바다유리 모집</h5>
+							<div class="desc"><br> 
+<br> 
+<br> 
+<br> 위의 QR코드 방법으로 참여하지 않고 개별활동으로 참여하셔도 좋습니다.&nbsp;
+<br> 해변정화 활동 시 안전에 주의해주세요.&nbsp;</div>
+							<p class="date">2026-07-11~2026-08-30</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/mplib/lectureDetail.do?lectureIdx=53407" class="mplib">
+							<i class="ico lib mplib">물푸레</i>
+							<h5 class="tit">[물푸레ㅣ책 읽어주는 도서관] 시간 변경 안내</h5>
+							<div class="desc"><br> 
+<br> [책 읽어주는 도서관]&nbsp;시간 변경 안내
+<br> 
+<br> 매월 둘째, 넷째 주 목/토요일에 진행되었던 책 읽어주는 도서관의 시간이 8월부터 변경됩니다.
+<br> 
+<br> 변경전: 16:00 -&gt; 변경 후: 16:30
+<br> 변경 월: 8월부터 적용
+<br> 
+<br> 일정에 참고 부탁드립니다.</div>
+							<p class="date">2026-08-13~2026-08-13</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/grlib/lectureDetail.do?lectureIdx=53366" class="grlib">
+							<i class="ico lib grlib">가람</i>
+							<h5 class="tit">[도서관 속 음악관] 여름 특별 상영회</h5>
+							<div class="desc"><br> 
+<br> [도서관 속 음악관] 여름 특별 상영회
+<br> 
+<br> 여름을 맞아 도서관에서 즐기는 특별한 클래식 여행!
+<br> 무더위를 잊게 하는 시원한 공간에서 최고의 공연을 감상하세요.
+<br> 7월 마지막 주부터 4주간,&nbsp; 블루레이의 선명한 화질로 생생한 공연 실황을 만납니다.
+<br> 
+<br> [일시] 7월 4주 ~ 8월 3주 (수) 오전 10시 / 상영 시작후 10분 부터는 입장제한
+<br> [장소] 스페이스G
+<br> [대상] 초등4학년 이상 누구나 (초등저학년 보호자 동반 가능)
+<br> [신청] 현장 참여 (20명)&nbsp;
+<br> *현장접수: 상영회 20분 전부터~ 선착순 (어린이 우선 좌석 배정)
+<br> 
+<br> [상영작]
+<br> 7/29(수) 2025 빈 필하모닉 여름음악회 (연주실황)
+<br> 8/5(수) 빌리 엘리어트 (뮤지컬 실황)
+<br> 8/12(수) 발레 돈키호테 &nbsp;(2023 코벤트가든 로열 발레 실황)
+<br> 8/29(수) 오페라 나비부인 &nbsp;(2024 로열 오페라 실황)
+<br> 
+<br> *상영공간 이용안내*
+<br> 상영회를 진행하는 스페이스G는 음악연주를 위한 공연장으로,&nbsp;
+<br> 뚜껑이 있는 물(다른음료 X) 외의 다른 식음료는 반입이 제한됩니다.&nbsp;
+<br> 이용에 참고 부탁드립니다!
+<br> &nbsp;</div>
+							<p class="date">2026-07-29~2026-08-19</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/jrlib/lectureDetail.do?lectureIdx=53346" class="jrlib">
+							<i class="ico lib jrlib">조리</i>
+							<h5 class="tit">[조리 인문생활] 우리 동네 한의사와 함께 건강한 노후생활 만들기</h5>
+							<div class="desc">중장년을 지나 느린 노화를 꿈꾸며
+<br> 
+<br> 중장년 이후 내 몸의 균형을 유지하는 한의학 이야기,&nbsp;
+<br> 느린 노화와 기혈 순환을 위한&nbsp;일상 속 혈자리 마사지,
+<br> 그리고 더위에 지친 몸을 달래 줄 한방차 체험 등
+<br> &nbsp;
+<br> 일상 속 내 몸과 마음에 도움이 되는 시간을 준비했습니다.
+<br> 
+<br> 무더위 속에 시원한 도서관에서 지친 몸과 마음을 챙기는 시간을 가져보세요.
+<br> 
+<br></div>
+							<p class="date">2026-08-13~2026-08-13</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/mplib/lectureDetail.do?lectureIdx=53290" class="mplib">
+							<i class="ico lib mplib">물푸레</i>
+							<h5 class="tit">[물푸레 | 어린이 로봇과학특강] 움직이는 로봇친구, 내가 만든다!</h5>
+							<div class="desc"><br> 
+<br> &nbsp;어린이 로봇과학특강&nbsp;&nbsp; 움직이는 로봇친구, 내가 만든다! ⚙🤖🦾🦿
+<br> 조립부터 작동까지, 나만의 로봇을 완성하며 창의력과 사고력을 키워보아요&nbsp;
+<br> 
+<br> ⚪ 일 &nbsp; &nbsp;시: 2026. 8. 5.(수) ~ 9. 16.(수) 7차시 16:00~17:20
+<br> ⚪&nbsp;장 &nbsp; &nbsp;소: 2층 문화강연실
+<br> ⚪ 대 &nbsp; &nbsp;상: 초등3-6학년 7명
+<br> ⚪&nbsp;강 &nbsp; &nbsp;사: 오수정(경기도평생교육진흥원)
+<br> ⚪&nbsp;신 &nbsp; &nbsp;청: 7. 21. (화) ~ 홈페이지 선착순
+<br> 
+<br> ※※7차시 모두 참여해야 합니다.
+<br> ※※프로그램 신청 시 1명씩 신청해주시기 바랍니다. (2자녀 신청 시 각각 신청)
+<br> ※※비고란에 !!반드시!!&nbsp;참여 어린이의 학년을 입력해주세요!!! 미입력 시 개별연락 없이 취소됩니다!!!</div>
+							<p class="date">2026-08-05~2026-09-16</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/jrlib/lectureDetail.do?lectureIdx=53287" class="jrlib">
+							<i class="ico lib jrlib">조리</i>
+							<h5 class="tit">[조리] 그림책 읽고 인형극 만들기 &lt;손끝으로&gt;</h5>
+							<div class="desc">도서관 이용교육부터 인형극 공연까지,
+<br> 봉일천고등학교 특수학급 친구들과 함께
+<br> 그림책 문해력 향상과 사회성 증진을 목표로 11차시 운영합니다.&nbsp;
+<br> 
+<br> 🎭국립장애인도서관「2026년 장애인 독서문화 프로그램」선정사업✨
+<br> ※ 본 프로그램은 조리도서관과 봉일천고등학교 특수학급 연계 프로그램으로, 별도의 일반 모집은 진행하지 않습니다.
+<br> 
+<br> 📅 프로그램 안내
+<br> 
+<br> 행사명 : 그림책 읽고 인형극 만들기 &lt;손끝으로&gt;
+<br> 일자 : 2026. 7. 15. ~ 10. 23. (총 11회차)
+<br> 장소 : 조리도서관, 봉일천고등학교 특수학급, 공연예술박물관
+<br> 대상 : 봉일천고등학교 특수학급 발달장애청소년 12명
+<br> 
+<br> 🌟 이런 활동을 함께해요!
+<br> 🏫 사서 선생님과 함께하는 도서관 이용 교육 &amp; 매 차시 그림책 낭독
+<br> 🎨 캐릭터의 개성을 살려 나만의 인형 제작 &amp; 채색하기
+<br> 💬 우리들의 눈높이에 맞춘 우리말 대본 만들기
+<br> 🏛️ 파주 공연예술박물관 견학 및 생생한 탐방 체험
+<br> 👶 관내 어린이집 아동들을 초청해 펼치는 꿈의 미니 인형극 공연
+<br> 
+<br> 
+<br> 
+<br> 📞 문의 : 조리도서관 어린이자료실 (031-944-2945 내선2)
+<br> 
+<br> #조리도서관 #슈퍼거북 #국립장애인도서관</div>
+							<p class="date">2026-07-15~2026-10-23</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/ghlib/lectureDetail.do?lectureIdx=53167" class="ghlib">
+							<i class="ico lib ghlib">교하</i>
+							<h5 class="tit">[교하] 청소년디지털프로그램 &lt;VR로 만나는 새로운 세계&gt; </h5>
+							<div class="desc">&nbsp;※프로그램 신청시 이틀 모두 참석 가능한 학생만 신청 가능합니다※&nbsp;
+<br> 
+<br> 🔽신청 전 확인 사항🔽&nbsp;
+<br> ✅이틀 모두 참석 가능한 분들만 신청해 주세요.
+<br> ✅2층 라운지네모 자료실 내 디지털교육실에서 진행되는 프로그램입니다.&nbsp;
+<br> ✅소규모 인원이 VR 기기 착용 후 참여하는 프로그램입니다. (안전사고를 대비하고, 원활한 진행을 위해 소규모로 진행)
+<br> ✅자세한 프로그램 내용은 하단 표 이미지를 참고해 주세요.
+<br> 
+<br> 
+<br> 
+<br> 🔽프로그램 세부내용🔽
+<br> 
+<br> 
+<br> 
+<br> 
+<br> 
+<br> &nbsp;</div>
+							<p class="date">2026-08-08~2026-08-09</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/gtlib/lectureDetail.do?lectureIdx=53149" class="gtlib">
+							<i class="ico lib gtlib">광탄</i>
+							<h5 class="tit">[광탄ㅣ여름독서교실] 이야기가 있는 코딩 - 시간수호대 : 나만의 시간관리 프로그램 만들기</h5>
+							<div class="desc">[광탄도서관] 여름독서교실
+<br> 이야기가 있는 코딩 
+<br> 시간수호대 : 나만의 시간관리 프로그램 만들기
+<br> 
+<br> 국립어린이청소년도서관이 주관하는 AI 융합 수업으로 AI와 코딩을 활용해 나만의 디지털 작품을 만들어보는 창작 수업입니다
+<br> 도서를 읽고 사서 선생님과 독후 활동 후, 코딩 실습을 하는 시간으로 구성되어 있습니다
+<br> 이야기 속 '시간 수호대가 되어 상상력과 디지털 역량을 함께 키워보세요!
+<br> 
+<br> 일시:&nbsp;8/1 토, 8/8 토, 8/22 토, 8/29 토 14:00~16:30 (총4회)
+<br> 장소: 광탄도서관 3층 창작실
+<br> 대상: 초등학생 4~6학년 10명
+<br> 내용:&nbsp;「시간을 모으는 생쥐」 도서&nbsp;읽고 독후활동(30분), 코딩활동(120분)으로 나만의 시간관리 프로그램을 만들어요!
+<br> 신청: 파주시도서관 홈페이지 선착순 접수&nbsp;
+<br> 
+<br> • 4회차 모두 참석 가능한 학생만 신청해주세요
+<br> • 수업 전, 「시간을 모으는 생쥐」 소중애, 열림원어린이, 2025. 도서를 개별적으로 읽고 와주세요(도서 제공 불가)
+<br> • 참가비 무료 , 노트북 제공 (개인노트북 사용 가능)
+<br> • 간식 제공
+<br> • 프로그램 운영 중 활동 사진 및 영상 촬영이 있을 수 있습니다
+<br> 
+<br></div>
+							<p class="date">2026-08-01~2026-08-29</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/ghlib/lectureDetail.do?lectureIdx=53147" class="ghlib">
+							<i class="ico lib ghlib">교하</i>
+							<h5 class="tit">구강 검진? 구간(舊刊) 검진!</h5>
+							<div class="desc">[교하도서관] 구강 검진? 구간 검진!
+<br> 
+<br> "이 빠진 책이 있어요", "이 썩은 책이 있어요"
+<br> 상태가 좋지 않은 책을 찾아주세요
+<br> 
+<br> '이런 책을 찾습니다'
+<br> - 빈 권차가 있는 책
+<br> - 찢어진 책
+<br> - 낙서된 책
+<br> - 페이지가 빠진 책 등
+<br> 
+<br> 발견 시 각 자료실 데스크로 알려주세요.
+<br> 새로 구입한 책이 도착하면 가장 먼저 대출해드립니다.
+<br> 
+<br> 1차: (접수) 2026. 7. 1. ~ 7. 30. / (구입 및 비치) 2026. 8. 1. ~ 8. 31.
+<br> 2차: (접수) 2026. 8. 1. ~ 8. 31. / (구입 및 비치) 2026. 9. 1. ~ 9. 30.
+<br> 
+<br> 
+<br> 장소:&nbsp;문헌정보1·2실, 어린이자료실, 라운지ㅁ(네모)
+<br> 대상: 도서관 이용자 누구나
+<br> 내용: 권차가 누락된 책 또는 파손, 오염된 도서를 찾아 각 자료실 데스크로 알려주세요. 구입한 새 책이 도착하면 가장 먼저 대출해드립니다.</div>
+							<p class="date">2026-07-01~2026-08-31</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/jalib/lectureDetail.do?lectureIdx=53127" class="jalib">
+							<i class="ico lib jalib">중앙</i>
+							<h5 class="tit">[지역연계] 창의체험나눔센터 씨드업 (9기) 어린이 토요 프로그램 운영 및 자원봉사모집 안내 </h5>
+							<div class="desc"><br> 
+<br> 9기 (9월 5일~12월 5일) 참여자 모집은 8기 수료식날인 7월 11일 토요일 오전11시부터 12시 현장 접수로 진행됩니다.
+<br> 프로그램 참여는 무료이며, 소정의 재료비가 있습니다.&nbsp;
+<br> 
+<br> 프로그램 진행 보조 자원봉사자를 모집하고 있습니다. 장기적으로 참여 가능한 분은 1365자원봉사포털에서 씨드업을 검색해주세요. (자원봉사 신청하기)</div>
+							<p class="date">2026-09-05~2026-12-05</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/jalib/lectureDetail.do?lectureIdx=53126" class="jalib">
+							<i class="ico lib jalib">중앙</i>
+							<h5 class="tit">[중앙][장비활용교육] 3D프린터 기초 </h5>
+							<div class="desc"><br> &nbsp; [장비활용교육] 3D프린터 기초 기간 7. 25.~9. 5. (매주 토/ 6회) 10:00~12:00
+<br> 장소 5층 502 
+<br> 대상 2014년생 이상~성인 15명&nbsp;
+<br> 강사 박영민 (와이테크 대표)
+<br> 내용 3D프린터 구조와 이해, 틴커캐드와 퓨전360의 기본 기능을 알아보고 출력 실습을 해봅니다.
+<br> 신청 7. 4. (토)~ 홈페이지 접수
+<br> 
+<br> * 개인 노트북 반드시 지참해주세요.(태블릿 불가)
+<br> * 컴퓨터 활용 경험이 없거나 적은&nbsp;경우 참여할 수 없습니다.&nbsp; &nbsp;</div>
+							<p class="date">2026-07-25~2026-09-05</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/jalib/lectureDetail.do?lectureIdx=53086" class="jalib">
+							<i class="ico lib jalib">전체</i>
+							<h5 class="tit">[중앙] [메이커스 에코 컬렉션] 바다의 안부를 물어요 : 연계 북토크 및 워크숍 안내</h5>
+							<div class="desc"><br>  [메이커스 에코 컬렉션] 바다의 안부를 물어요
+<br> 파주중앙도서관 5층 스토리앤의 도서와 실물을 함께 컬렉션하여 전시하는 코너 '메이커스 에코 (Maker's Eco-Echo)'는 친환경에 대한 관심과 실천을 사회적 메아리로 연계시킬 수 있는 정보를 제공하고 연계 프로그램을 기획 제공합니다.&nbsp;
+<br> 2026년 7월부터 9월까지 주제는 &lt;바다의 안부를 물어요&gt;로, 해수 온도 상승과 바다 환경 오염의 심각성을 알아보고, 해양 보호활동을 소개합니다. 연계 프로그램으로 북토크와 워크숍 3종을 준비하였으니 많은 관심과 참여 바랍니다.&nbsp;
+<br> &nbsp; * 아래 프로그램&nbsp;선택 시 상세 페이지로 이동합니다.
+<br> 
+<br> [메이커스 에코 컬렉션 연계 북토크]&nbsp;&lt;우리가 바다에 버린 모든 것&gt; 서서재 번역가&nbsp;(6.30. 접수 시작)
+<br> 
+<br> [메이커스 에코 컬렉션: 워크숍①] 바다조개 마크라메 (7.4. 접수 시작)
+<br> 
+<br> [메이커스 에코 컬렉션: 워크숍②] 산호 뜨개 (7.15. 접수 시작)  [메이커스 에코 컬렉션: 워크숍③] 재사용기 선스틱 (9.9. 강좌 / 8.19 접수 시작/ 7.31.&nbsp;게시 예정)
+<br> 
+<br> [메이커스 에코 컬렉션: 이벤트] 비치코밍 바다유리 모집 (7.11~8.30)&nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; 
+<br> &nbsp;</div>
+							<p class="date">2026-07-22~2026-09-09</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/jrlib/lectureDetail.do?lectureIdx=53006" class="jrlib">
+							<i class="ico lib jrlib">조리</i>
+							<h5 class="tit">[조리][여름방학 정보활용교육] 별자리에서 그리스 로마 신화까지</h5>
+							<div class="desc">(2026.8.4.기준 정원 20명 /&nbsp; 신청 19명(현장+홈페이지) / 참여확정 인원 외 취소자 발생으로 1명 추가 접수합니다)
+<br> (2026.7.23.기준 정원 20명 /&nbsp; 신청 20명(현장+홈페이지) / 대기자 접수 진행합니다. )
+<br> 
+<br> ✨ 신나는 여름방학, 그리스 로마 신화와 별자리에 대해 알아보고 별자리를 실크스크린에 찍어보자! ✨
+<br> 
+<br> 📅 일시 | 2026. 8. 6.(목) ~ 8. 8.(토) 14:00 ~ 15:30 (총 3회)
+<br> 📍 장소 | 조리도서관 3층 문화강연실
+<br> 👥 대상 | 초등 3학년 ~ 6학년 (선착순 20명)
+<br> 📝 신청 | 7월 14일(화)부터 홈페이지, 전화, 방문 접수
+<br> ※3차시 모두 참여할 수 있는 분 신청해주세요.
+<br> 
+<br> 1️⃣차시: 도서관 정보활용교육(담당사서)
+<br> 2️⃣차시: 그리스 로마 신화 영웅과 별자리 이야기 (김춘희 작가님)
+<br> 3️⃣차시:별자리 실크스크린 체험(롤러팩토리)
+<br> 
+<br> &nbsp;이런 어린이에게 추천해요!&nbsp;
+<br> 
+<br> ✔️ 사서와 친해지고 싶은 어린이
+<br> ✔️ 그리스 로마 신화와 별자리를 좋아하는 어린이
+<br> ✔️ 진짜 필요한 정보를 똑똑하게 찾아내고 싶은 어린이
+<br> ✔️ 실크스크린으로 세상에 딱 하나뿐인 나만의 에코백을 만들고 싶은 어린이
+<br> 
+<br> 
+<br> 
+<br> 
+<br> 📞 문의: 조리도서관 어린이자료실 031-944-2945 내선2
+<br> 
+<br> #조리도서관 #여름방학특강 #정보활용교육</div>
+							<p class="date">2026-08-06~2026-08-08</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/grlib/lectureDetail.do?lectureIdx=52986" class="grlib">
+							<i class="ico lib grlib">가람</i>
+							<h5 class="tit">[가람][길위의인문학] 홀로서기 리허설 : 청년을 위한 독립 길잡이</h5>
+							<div class="desc"><br> &nbsp;*본 제작물은 2026 길위의인문학 운영 목적으로 제작되었습니다.
+<br> 
+<br> [2026 길위의인문학]&nbsp;홀로서기 리허설 : 청년을 위한 독립 길잡이
+<br> [날짜]&nbsp;2026. 7. 22. ~ 9. 19. 매주 수요일 (총 10회)
+<br> [시간]&nbsp;19:30~21:30
+<br> *9. 19.(토)는 파주시청년공간GP1939에서 14:30-17:00 운영
+<br> [장소]&nbsp;2층 문화강연실
+<br> [대상]&nbsp;20-30대 청년 20명
+<br> [내용]&nbsp;주체적인 삶의 첫걸음을 준비하는 청년을 위한 독립 리허설
+<br> [주최]&nbsp;문화체육관광부
+<br> [주관]&nbsp;한국문화예술교육진흥원, 한국도서관협회, 가람도서관
+<br> [신청]&nbsp;6. 30.(화)~ 선착순 홈페이지 접수
+<br> &nbsp;    회차 일시 강사 주제     1 7.22.(수) 19:30~21:30 에린남&nbsp;(『취향 탐구 생활』 작가) 나는 무엇을 좋아하는 사람인가   2 7.29.(수) 19:30~21:30 에린남&nbsp;(『취향 탐구 생활』 작가) 취향으로 읽는 나   3 8.5.(수) 19:30~21:30 백주훈
+<br> (전세사기 피해예방 아카데미 전문교육단 강사) 삶의 공간을 선택한다는 것   4 8.12.(수) 19:30~21:30 박재완&nbsp;(㈜두산건설 사내노무사) 노동과 권리에 대한 이해   5 8.19.(수) 19:30~21:30 방성운&nbsp;(㈜사람과교육 대표이사) 나를 사회에 표현하는 방법   6 8.26.(수) 19:30~21:30 방성운&nbsp;(㈜사람과교육 대표이사) 함께 일하는 삶의 태도   7 9.2.(수) 19:30~21:30 한희재&nbsp;(『월급으로 1억 만들기』 작가) 돈의 흐름과 삶의 선택   8 9.9.(수) 19:30~21:30 한희재&nbsp;(『월급으로 1억 만들기』 작가) 미래를 설계하는 투자 관점   9 9.16.(수) 19:30...</div>
+							<p class="date">2026-07-22~2026-09-19</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/gclib3/lectureDetail.do?lectureIdx=52946" class="gclib3">
+							<i class="ico lib gclib3">솔빛</i>
+							<h5 class="tit">[솔빛][로봇과학특강] 나만의 움직이는 로봇친구 만들기</h5>
+							<div class="desc">[로봇과학특강]&nbsp;나만의 움직이는 로봇친구 만들기 강아지로봇 몽이, 물개로봇 토토 , 개구리 로봇 크록. . . 나만의 움직이는 귀여운 로봇친구를 만들어 봐요! 🍀일시: 7. 14. ~ 9. 8.&nbsp;매주&nbsp;(화)&nbsp;(7. 28.&nbsp;제외) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;16:00~17:20 (총&nbsp;8회) 🍀장소: 2층 문화교실 🍀대상: 초등&nbsp;3~5학년, 7명 🍀강사: 오수정&nbsp;(경기도 도민강사) 🍀주관: 경기도평생교육진흥원 🍀내용: 로봇 교구를 이용하여 나만의 움직이는 로봇친구 만들기 🍀신청: 7. 1. (수)~&nbsp;※홈페이지,&nbsp;전화,&nbsp;방문
+<br> 
+<br> ** 신청시 학년을 써 주세요!
+<br> 
+<br></div>
+							<p class="date">2026-07-14~2026-09-08</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/jrlib/lectureDetail.do?lectureIdx=52926" class="jrlib">
+							<i class="ico lib jrlib">조리</i>
+							<h5 class="tit">[조리+그림책공작소] 진짜 알이조아를 찾습니다!_7-8월</h5>
+							<div class="desc"><br> 
+<br> 진짜 알이조아를 찾습니다! 이벤트를 진행합니다!!
+<br> 
+<br> 여름 방학을 맞아 조리그림책공작소 속 '알쏭달콤 퀴즈'가 조금 특별해집니다.
+<br> 『꽁꽁꽁 캠핑』을 읽고 퀴즈의 정답을 맞춰,
+<br> 별이조아, 달이조아, 물이조아가 숨긴 진짜 알이조아를 찾아주세요~
+<br> 
+<br> ○ 기간 : 2026.07.01.(수) ~ 08.30.(일)
+<br> ○ 대상 : 어린이 누구나
+<br> ○ 장소 : 조리도서관 2층 어린이자료실
+<br> ○ 신청 : 현장접수
+<br> ○ 방법 : 1)&nbsp;『꽁꽁꽁 캠핑』을 읽는다
+<br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2) 데스크에서 퀴즈 막대를 뽑는다
+<br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 3) 퀴즈를 풀고 정답을 맞춘 후 코인을 받는다 ※ 틀린 경우, 1)부터 다시 시작!
+<br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 4) 코인을 뽑기 머신에 넣고 진짜 알이조아를 뽑는다
+<br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; → 가짜 조아(별이, 달이, 물이조아)를 뽑으면 막대사탕을
+<br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 진짜 알이조아를 뽑으면 초코 알이조아를 받는다
+<br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 단, 진짜 알이조아는 5개뿐이다!!
+<br> &nbsp;
+<br> ★ 1일 1회 도전할 수 있어요~</div>
+							<p class="date">2026-07-01~2026-08-30</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/jrlib/lectureDetail.do?lectureIdx=52906" class="jrlib">
+							<i class="ico lib jrlib">조리</i>
+							<h5 class="tit">[조리+그림책공작소] 이놈, 모기! 다 잡아 볼까? 키트 수령_7-8월</h5>
+							<div class="desc">&nbsp;
+<br> 
+<br> 
+<br> 
+<br> 7-8월 조리그림책 공작소 주제는 "여름, 읽고 만들고 즐기자!" 입니다.
+<br> &nbsp; &nbsp; &nbsp; &nbsp;
+<br> 여름의 최대의 적, 모기! 😱
+<br> 유쾌한 그림책 『모기 잡는 책』을 읽고, 나만의 모기 잡이 키트를 만들어 보세요.
+<br> 여름철 해충을 물리치는 작은 영웅&nbsp;🦸‍♂️이 되어,&nbsp;우리 가족의 쾌적한 여름을 지켜봅시다! 
+<br> 
+<br> 🦟 일&nbsp; &nbsp; &nbsp;시 : 2026. 7. 1. (수)~ 소진시까지
+<br> 🦟 대&nbsp; &nbsp; &nbsp;상 : 어린이 20명, 1인 1개, 어린이 직접 수령&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
+<br> 🦟 내&nbsp; &nbsp; &nbsp;용 : 모기 잡기 키트 만들기 + 익충과 해충에 대해 알아보기
+<br> 🦟 주제도서 : 「모기 잡는 책」 진경 지음 / 고래뱃속 / 2019
+<br> 🦟 신청방법 : 조리도서관 방문, 2층 어린이자료실 데스크에서 서명 후 수령&nbsp; ※ 선착순 배포
+<br> 
+<br> 올여름, 책도 읽고 만들기도 하며 즐겁게 곤충 친구들을 만나보세요!</div>
+							<p class="date">2026-07-01~2026-08-30</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/mslib/lectureDetail.do?lectureIdx=52886" class="mslib">
+							<i class="ico lib mslib">문산</i>
+							<h5 class="tit">[문학상주작가] 글쓰기강좌 &lt;일상 수집가의 에세이 쓰기&gt;</h5>
+							<div class="desc">[2026년 문학상주작가 지원사업]
+<br> 글쓰기 강좌
+<br> 일상 수집가의 에세이 쓰기✍
+<br> 
+<br> "수집한 관찰의 재료들을 한 편의 에세이로 빚는 시간"
+<br> 일상을 수집하는 관찰자들이 상주작가와 함께 한 단계 더 깊이있는 글쓰기를 경험합니다.
+<br> 나만의 목소리로 완성된 에세이를 써내는 사람이 되어보세요.
+<br> 
+<br> *10회차에 걸쳐 한 편 이상의 에세이를 완성합니다.
+<br> *수강생들의 완성된 에세이를 엮어 소장용 전자책(pdf)으로 만들어 나눌 예정입니다.
+<br> *도서관 주차장 이용안내(1시간 무료 후 유료)&nbsp;https://buly.kr/Ezl1ftL
+<br> 
+<br> 
+<br> 📍행사안내
+<br> - 운영기간 : 2026. 7. 14.~9. 15. 매주(화) 10:00~12:00 / 총10회
+<br> - 장소 : 문산도서관 1층 루트2
+<br> - 대상 : 성인 20명
+<br> - 강사 : 신주희(상주작가)
+<br> - 신청방법 : 2026. 6. 30. (화)~ 도서관 홈페이지 접수
+<br> 
+<br> 📍세부내용    회차 날짜 주제 내용   1 7.14 다정한 일상 수집가 글쓰기 문진표를 통한 에세이 워밍업
+<br> 자소전 쓰기   2 7.21 내 마음 엑스레이 에세이 MBTI
+<br> 내 성향에 맞는 자소전 톤 수정   3 7.28 글 도구상자. 1 주제와 구성 중심 도구상자 적용
+<br> 자소전 합평   4 8.4 전지적 사물 시점 묘사적 글쓰기
+<br> 사진에세이 초고   5 8.11 글 도구상자. 2 문장 쓰기 중심 도구상자 적용
+<br> 사진에세이 초고 수정   6 8.18 닮음과 담음 나만의 밑줄 문장 만들기
+<br> 사진에세이 합평, 발표   7 8.25 생생한 현장 쓰기 동시대 에세이 감상
+<br> 인터뷰 에세이 완성   8 9.1 캐릭터 줌인 줌아웃 캐릭터·대사 중심 글쓰기
+<br> 인터뷰 에세이 수정   9 9.8 아름다운 작가의 말 출간 과정 체험
+<br> 최종수정 및 사진촬영 ...</div>
+							<p class="date">2026-07-14~2026-09-15</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/grlib/lectureDetail.do?lectureIdx=52826" class="grlib">
+							<i class="ico lib grlib">가람</i>
+							<h5 class="tit">[이벤트] 풍덩! 수박수영장</h5>
+							<div class="desc"><br> 
+<br> &nbsp;[이벤트] 풍덩! 수박수영장
+<br> 
+<br> ❍ 일 &nbsp;시 :&nbsp; 2026. 7. 21.(화) ~ 8. 16.(일)
+<br> ❍ 대 &nbsp;상 :&nbsp; 누구나, 선착순 80명
+<br> ❍ 장 &nbsp;소 :&nbsp; 1층 어린이자료실
+<br> ❍ 내 &nbsp;용 :&nbsp; 수박 또는 여름 놀이 관련 도서를 읽고 수박수영장 만들기
+<br> ※ 1인 1회 참여가능
+<br> ※ 준비된 재료 소진 시 조기 마감
+<br> 
+<br> ❍ 진행방법
+<br> ① 어린이열람실 내 수박 또는 여름 놀이 관련 도서 읽기
+<br> ② 1층 데스크에서 독서 확인 후 수박수영장 만들기 키트 수령
+<br> ③ 자기만의 수박수영장 만들기 체험
+<br> ※ 작은 자석이 포함되어 있어 보호자의 주의가 필요함</div>
+							<p class="date">2026-07-21~2026-08-16</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/jalib/lectureDetail.do?lectureIdx=52746" class="jalib">
+							<i class="ico lib jalib">중앙</i>
+							<h5 class="tit">[중앙도서관 지혜학교] AI와 인간의 경계에서 : 소설과 영화로 읽는 포스트휴머니즘</h5>
+							<div class="desc">[중앙도서관 지혜학교] AI와 인간의 경계에서 : 소설과 영화로 읽는 포스트휴머니즘
+<br> 
+<br> &nbsp;기간&nbsp;&nbsp;7. 9. ~ 10. 29. 매주 (목) 18:30~21:30 *총14차시
+<br> &nbsp;장소&nbsp; 중앙도서관 501(5층)
+<br> &nbsp;대상&nbsp;&nbsp;성인 25명
+<br> &nbsp;강사&nbsp;&nbsp;권미숙(동서울대학교 강사)
+<br> &nbsp;내용&nbsp;&nbsp;6편의 문학과 영화를 살펴보며, AI시대를 비판적으로 성찰하고 미래 공존의 지혜를 모색하는 인문학 강의
+<br> &nbsp;후원&nbsp;&nbsp;문화체육관광부/한국문화예술위원회/한국도서관협회
+<br> 
+<br> 
+<br> 
+<br> &nbsp;</div>
+							<p class="date">2026-07-09~2026-10-29</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/jalib/lectureDetail.do?lectureIdx=52726" class="jalib">
+							<i class="ico lib jalib">중앙</i>
+							<h5 class="tit">[상주작가x독서마라톤] 읽고 쓴 기록, 한 권의 책</h5>
+							<div class="desc">[문학상주작가 지원사업X 독서마라톤] 읽고 쓴 기록, 한 권의 책&nbsp;
+<br> 
+<br> 책을 읽고 끝내는 독서가 아닌, 읽은 책에 대한 생각과 감상을 한 권의 책으로 만들어 보는 특별한 시간입니다.
+<br> 
+<br> 문학상주작가 지원사업과 독서마라톤이 함께하는 이번 프로그램에서는 서평을 쓰고, 함께 읽고 나누며 합평하는 과정을 거쳐 자신만의 책을 직접 제작합니다.
+<br> 책 읽기의 즐거움을 기록으로 남기고 싶은 분들의 많은 관심과 참여를 바랍니다.
+<br> 
+<br> 일정 7.7.~9.22. 매주(화) 10:00 ~ 12:00 (총12차시)
+<br> 대상 성인 15명 * 독서마라톤 참여자 우선 참여 기회 제공
+<br> 장소 중앙도서관 401(4층)
+<br> 강사 장경선(상주작가), 쑥(&lt;느슨한 균형&gt;저자)
+<br> 내용 서평쓰기 및 합평(1~8차시), 책 만들기(9~12차시)    1차시 서평이란? 장경선   2~8차시 서평쓰기 및 합평 장경선   9차시 책 디자인 레퍼런스 서치 및 기획 쑥   10차시 책 제작 쑥   11차시 책 제작 마무리 쑥   12차시 출간기념 후속모임 장경선    
+<br> * 6차시 이상 참여하신 분들에 한해&nbsp; '책 만들기' 강좌에 참여하실 수 있습니다.
+<br> * 책 만들기 시간에는 개인 노트북이 필요합니다. &nbsp; 
+<br> 
+<br> &nbsp;</div>
+							<p class="date">2026-07-07~2026-09-22</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/mslib/lectureDetail.do?lectureIdx=52707" class="mslib">
+							<i class="ico lib mslib">문산</i>
+							<h5 class="tit">[문학상주작가] 문장채집단 &lt;오독오독&gt; 독서모임</h5>
+							<div class="desc">[2026년 문학상주작가 지원사업]
+<br> 독서모임
+<br> 문장채집단 &lt;오독오독&gt;
+<br> 
+<br> 오독(誤讀)의 자유가 완전히 허용되는 자리,
+<br> 오독오독 씹고 맛보는 문학적 독서모임.&nbsp;
+<br> &lt;오독오독&gt;은 매회 하나의 테마를 중심으로 각자 자유롭게 가져온 문장과 감상을 나누는&nbsp;독서모임입니다.
+<br> 엉뚱하게 읽어도 좋고, 나만의 방식으로 읽어도 좋습니다.&nbsp;
+<br> 문학상주작가 신주희가 길잡이로 함께합니다.
+<br> 
+<br> *7~9월까지 11회차 모임에 꾸준히 참여할 수 있는 분들만 신청해주세요!
+<br> 
+<br> 
+<br> 📍행사안내
+<br> - 기간 : 2026. 7. 2. ~ 9. 10. 매주(목) 10:00~11:30 / 총11회
+<br> - 장소 : 문산도서관 1층 탐사1
+<br> - 대상 : 성인 10명
+<br> - 길잡이 : 신주희(상주작가)
+<br> - 내용 : 매회 하나의 테마를 중심으로 각자 가져온 문장과 감상을 나누는 독서모임
+<br> 
+<br> 📍세부내용    회차 날짜 주제 내용   1 7. 2 관찰 관찰자의 시선이 담긴 공감의 문장들   2 7. 9 감각 몸으로 읽히는 문장에 대하여   3 7. 16 공포 읽다가 서늘해지는 문장들   4 7. 23 균열 생활의 작은 균열을 응시하는 시선에 관해   5 7. 30 회복 지친 우리에게 힘이 되는 속삭임   6 8. 6 경계 내가 모르던 세계   7 8. 13 침묵 말하지 않아서 더 선명해지는 것   8 8. 20 시간 과거와 현재, 미래에 관하여   9 8. 27 자아 내가 쓴 것 같은, 내가 쓸 것 같은 문장들   10 9. 3 거리 흥미로운 인물들의 관계와 그 거리에 대해   11 9. 10 평화 세상에 전하고 싶은 메시지    
+<br> 
+<br> 
+<br> 
+<br> 
+<br> 주최&nbsp;문화체육관광부&nbsp; &nbsp;주관&nbsp;한국문화예술위원회&nbsp; &nbsp;후원&nbsp;국민체육진흥공...</div>
+							<p class="date">2026-07-02~2026-09-10</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/ghlib/lectureDetail.do?lectureIdx=52666" class="ghlib">
+							<i class="ico lib ghlib">교하</i>
+							<h5 class="tit">[교하] 지혜학교 &lt;문학에 선율을, 음악에 서사를: 문학과 음악의 2중주&gt; </h5>
+							<div class="desc"><br> &nbsp; &nbsp;     회차   프로그램 주제   교육내용   일시 및 장소   진행방식     1   셰익스피어 
+<br> &lt;한여름 밤의 꿈&gt;과 멘델스존의 연극부수음악   현실과 환상의 경계를 넘나드는 셰익스피어의 ‘한여름 밤 세계’를 멘델스존의 음악을 통해 생생하게 느껴봅니다.   7월 7일(화) 10:00~13:00 2층 문화강연실 &nbsp;   강의 및 감상, 토론     2   셰익스피어 
+<br> &lt;로미오와 줄리엣&gt;과 프로코피예프 발레음악   로미오와 줄리엣을 둘러싼 사회적 갈등과 비극적 사랑이 어떻게 춤과 음악으로 증폭되는지 살펴봅니다.    7월 14일(화) 10:00~13:00 2층 문화강연실 &nbsp;   강의 및 감상, 토론     3   보마르셰의 피가로 3부작과 모차르트 
+<br> &lt;피가로의 결혼&gt;   18세기 프랑스 시대상을 반영한 풍자 드라마가 어떻게 모차르트 오페라의 재치 넘치는 앙상블과 유머로 펼쳐지는지 탐구합니다.   7월 21일(화) 10:00~13:00
+<br> 2층 문화강연실   강의 및 감상, 토론     4   괴테의 청년문학 &lt;젊은 베르테르의 고뇌&gt;와 마스네의 &lt;베르테르&gt;   괴테의 질풍노도 문학에 담긴 베르테르의 사랑과 절망을 마스네의 서정적 오페라에서 경험해 봅니다.   7월 28일(화) 10:00~13:00 2층 문화강연실 &nbsp;   강의 및 감상, 토론     5   가스통 르루와 앤드류 웨버의 뮤지컬 
+<br> &lt;오페라의 유령&gt;   치밀한 추리 소설의 골격 위에 웅장한 오페라적 선율을 입혀, 문학적 공포를 탐미적 판타지의 경지로 끌어올린 뮤지컬 &lt;오페라의 유령&gt;을 만납니다.   8월 4일(화) 10:00~13:00
+<br> 2층 문화강연실 &nbsp; &nbsp;   강의 및 감상, 토론     6   워크숍 1: “문학의 음악화” - 하나의 원작
+<br> 두 개의 선율   하나의 문학 원작이 서로 다른 음악...</div>
+							<p class="date">2026-07-07~2026-09-22</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/ghlib/lectureDetail.do?lectureIdx=52646" class="ghlib">
+							<i class="ico lib ghlib">교하</i>
+							<h5 class="tit">[교하]최지인 시인의 외국인 이주민을 위한 &#039;소리 내어 함께 읽기&#039;</h5>
+							<div class="desc">최지인 시인의 외국인 이주민을 위한
+<br> '소리 내어 함께 읽기'
+<br> 일시&nbsp; &nbsp;매주 월요일 10:00~12:00&nbsp; &nbsp; &nbsp;
+<br> 장소&nbsp; 교하도서관 2층 라운지 네모 안)&nbsp; 상주작가실&nbsp; &nbsp;
+<br> 대상&nbsp; &nbsp;파주시 거주 외국인 이주민
+<br> 신청&nbsp; 구글 링크&nbsp; &nbsp;&nbsp;https://docs.google.com/forms/d/1PNFjC1AACz3QWDIj3n1v1t-uoKmxoCaNhj2Q5hFZr_8/edit
+<br> 문의&nbsp; 031- 940-5169
+<br> 
+<br> 선주민과 이주민이 함께 시를 읽고 쓰는 모임입니다.
+<br> 문학을 통해 서로의 마음과 일상을 나누고, 자신의 생각과 감정을 한글로 표현해봅니다.
+<br> 를 처음 접하는 분도, 글쓰기가 익숙하지 않은 분도 편하게 참여할 수 있습니다
+<br> 
+<br></div>
+							<p class="date">2026-06-15~2026-11-30</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/mplib/lectureDetail.do?lectureIdx=52286" class="mplib">
+							<i class="ico lib mplib">물푸레</i>
+							<h5 class="tit">[물푸레 | 2026년 길 위의 인문학] 이야기를 읽다, 가족을 잇다: 우리 가족 낭독극 프로젝트</h5>
+							<div class="desc"><br> 
+<br> &nbsp;[2026년 길 위의 인문학]&nbsp;
+<br> 이야기를 읽다, 가족을 잇다:우리 가족 낭독극 프로젝트&nbsp;
+<br> 
+<br> -가족과 함께 특별한 추억을 만들고 싶은 분
+<br> -책을 읽는 것을 넘어 지접 표현하고 체험해 보고 싶은 분
+<br> -무대를 함께 완성하며 가족 간 협력과 성취감을 느끼고 싶은 분
+<br> 
+<br> 🔎&nbsp;일&nbsp;&nbsp;시:&nbsp;6. 27.~9. 12. 11:00~13:00, 매주(토) 11회
+<br> 🔎&nbsp;장&nbsp;&nbsp;소:&nbsp;&nbsp;2층 문화강연실
+<br> 🔎&nbsp;대&nbsp;&nbsp;상:&nbsp;&nbsp;10가족(초등학생 이상 권장이나 유아도 가능합니다)
+<br> 🔎 신&nbsp;&nbsp;청:&nbsp; 6. 2.(화)~ 홈페이지, 방문, 전화(031-944-5951)&nbsp;</div>
+							<p class="date">2026-06-27~2026-09-12</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/ghlib/lectureDetail.do?lectureIdx=52246" class="ghlib">
+							<i class="ico lib ghlib">교하</i>
+							<h5 class="tit">[50+시니어]연극, 이야기 꽃 피우다 </h5>
+							<div class="desc"></div>
+							<p class="date">2026-07-07~2026-09-08</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/ghlib/lectureDetail.do?lectureIdx=52168" class="ghlib">
+							<i class="ico lib ghlib">교하</i>
+							<h5 class="tit">[교하]주말반)최지인 시인과 함께하는  &#039;시인과 만나는 시집 한 권 읽기&#039;</h5>
+							<div class="desc">지금 화면은 주말반 신청 화면입니다.
+<br> 
+<br> [문학상주작가] 최지인 시인과 함께하는 '시인과 만나는 시집 한 권 읽기'
+<br> 
+<br> 6주간 상주작가 최지인 시인님과 유병록 시인의 시집
+<br> &nbsp;'우리는 멸종하지 않는다'을 함께 읽고&nbsp; 8.22. (토) 유병록 작가님을 만납니다.
+<br> 
+<br> 진행 최지인시인
+<br> 대상 성인 누구나 10인
+<br> 일시&nbsp;평일반&nbsp;7.6. ~ 8. 10.(월) 13:00~15:00
+<br> &nbsp; &nbsp; &nbsp; &nbsp;주말반&nbsp; 7.4. ~ 8.&nbsp; 8. (토) 13:00~15:00
+<br> &nbsp; &nbsp; &nbsp; &nbsp;작가초청일 8.22.(토)&nbsp; 13:00~15:00
+<br> 
+<br> 장소 상주작가실
+<br> &nbsp; &nbsp; &nbsp; &nbsp; 작가초청일 2층 문화강연실
+<br></div>
+							<p class="date">2026-07-04~2026-08-22</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/ghlib/lectureDetail.do?lectureIdx=52167" class="ghlib">
+							<i class="ico lib ghlib">교하</i>
+							<h5 class="tit">[교하]평일반)최지인 시인과 함께하는 &#039;시인과 만나는 시집 한 권 읽기&#039;</h5>
+							<div class="desc">지금 화면은 평일반 신청 화면입니다.
+<br> 
+<br> [문학상주작가] 최지인 시인과 함께하는 '시인과 만나는 시집 한 권 읽기'
+<br> 
+<br> 6주간 상주작가 최지인 시인님과 유병록 시인의 시집
+<br> &nbsp;'우리는 멸종하지 않는다'을 함께 읽고&nbsp; 8.22. (토) 유병록 작가님을 만납니다.
+<br> 
+<br> 진행 최지인시인
+<br> 대상 성인 누구나 10인
+<br> 일시 평일반&nbsp;7.6. ~ 8. 10.(월) 13:00~15:00
+<br> &nbsp; &nbsp; &nbsp; &nbsp;주말반&nbsp; 7.4. ~ 8.&nbsp; 8. (토) 13:00~15:00
+<br> &nbsp; &nbsp; &nbsp; &nbsp;작가초청일 8.22.(토)&nbsp; 13:00~15:00
+<br> 
+<br> 장소 상주작가실
+<br> &nbsp; &nbsp; &nbsp; &nbsp; 작가초청일 2층 문화강연실
+<br> 
+<br></div>
+							<p class="date">2026-07-06~2026-08-22</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/ghlib/lectureDetail.do?lectureIdx=52066" class="ghlib">
+							<i class="ico lib ghlib">교하</i>
+							<h5 class="tit">[교하 I 디지털프로그램] &#039;생성형 AI 어렵지 않아&#039; - 2강 생성형 AI로 만드는 콘텐츠 창작</h5>
+							<div class="desc">&nbsp; 이 화면은 &lt;2강 생성형 AI로 만드는 콘텐츠 창작&gt; 신청 화면입니다&nbsp;&nbsp;
+<br> ※1강 신청하신 분들도 2강 신청 가능합니다※ 
+<br> 🔽신청 전 확인 사항🔽&nbsp;
+<br> ✅5차시 모두 참석 가능한 분들만 신청해 주세요&nbsp;
+<br> ✅프로그램 진행 요일과 시간 확인 부탁드립니다. (1강과 다름)&nbsp;
+<br> ✅노트북은 기본적으로 제공해 드리나&nbsp;개인 노트북 사용하실 분들은&nbsp;신청 시 비고에&nbsp;"사용함"으로 작성 부탁드립니다.&nbsp;
+<br> ✅2강은&nbsp;생성형 AI를 통해 콘텐츠를 직접 제작해 보는 성격의 프로그램이니 신청 시 참고 부탁드립니다.&nbsp;
+<br> 
+<br></div>
+							<p class="date">2026-07-11~2026-08-08</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/gclib3/lectureDetail.do?lectureIdx=51906" class="gclib3">
+							<i class="ico lib gclib3">솔빛</i>
+							<h5 class="tit">[금촌무지개] &lt;2026 금촌무지개 작은독서탐험대&gt; 작은도서관 협력프로그램</h5>
+							<div class="desc"><br> 
+<br> 작은도서관 협력프로그램
+<br> 🌈&lt;2026 금촌무지개 작은독서탐험대&gt;
+<br> 
+<br> 그림책에서 글책으로 한 걸음!📚
+<br> 어린이도서연구회와 함께하는 책 읽어주기 프로그램
+<br> 글책의 재미와 독서의 즐거움을 맛보는 시간!✨
+<br> 
+<br> 기간: 6.20.~8.8. 매주 (토) 10:30~11:30 (총 8회)
+<br> 장소: 금촌무지개작은도서관 (금촌역 1번출구)
+<br> 대상: 초등 1~4학년 10명
+<br> 신청: 5. 27 (수)~ ※홈페이지·방문·전화 접수 (941-2958)</div>
+							<p class="date">2026-06-20~2026-08-08</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/mslib/lectureDetail.do?lectureIdx=51606" class="mslib">
+							<i class="ico lib mslib">문산</i>
+							<h5 class="tit">[문학상주작가] 온라인 연재 &lt;서가 관찰록&gt;</h5>
+							<div class="desc">[문산도서관ⅹ2026년 문학상주작가 지원사업] 
+<br> 온라인 연재 '서가 관찰록;錄'
+<br> 
+<br> 문산도서관 서가에는 누군가의 손길을 기다리며 조용히 숨 쉬는 책들이 있습니다.
+<br> 읽힌 책도, 잊힌 책도, 끝까지 읽히지 못한 책도 저마다의 시간을 품은 채로요.
+<br> 그 곁엔 책을 빌리고, 때로는 한참을 망설이다 돌려주는 사람들의 이야기도 함께 있습니다.&nbsp;
+<br> 
+<br> '서가 관찰록'은 그 책들 곁에 머물며, 서가 안에서 살아가는 작은 생태계를 관찰하고 기록한 이야기입니다.&nbsp;
+<br> 신주희 작가의 따뜻한 글이 격주 목요일 여러분을 찾아갑니다.
+<br> 
+<br> 
+<br> 
+<br> 📚 연재안내
+<br> - 연재기간 : 2026. 5. 14.~10. 25. 매월 2·4째주(목) 업로드 / 총12회
+<br> - 운영매체: 문산도서관 인스타그램 @paju_mslib
+<br> - 글: 신주희(상주작가) &nbsp;    회차 발행 제목 인스타그램   1 5. 14. 벽돌책의 진심 링크   2 5. 28. 마녀는 대출중 링크   3 6. 11. 연체 인간의 이해 링크   4 6. 25. 밑줄과 (나쁜) 생각 링크   5 7. 9 모든 어른에게 가장 오래된 책 링크   6 7. 23. 인생의 베이스캠프 링크   7 8. 13. &nbsp; &nbsp;   8 8. 27. &nbsp; &nbsp;   9 9. 10. &nbsp; &nbsp;   10 9. 24. &nbsp; &nbsp;   11 10. 8. &nbsp; &nbsp;   12 10. 22. &nbsp; &nbsp;    
+<br> 
+<br> 
+<br> 
+<br> 주최&nbsp;문화체육관광부&nbsp; &nbsp;주관&nbsp;한국문화예술위원회&nbsp; &nbsp;후원&nbsp;국민체육진흥공단&nbsp; &nbsp;시행&nbsp;문산도서관</div>
+							<p class="date">2026-05-14~2026-10-22</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/gtlib/lectureDetail.do?lectureIdx=51246" class="gtlib">
+							<i class="ico lib gtlib">광탄</i>
+							<h5 class="tit">[광탄][도서관문화예술동아리지원사업] &lt;나를 만나는 리소워크숍&gt;</h5>
+							<div class="desc"><br> 
+<br> [도서관 문화예술 동아리 지원사업]
+<br> 나를 만나는 리소워크숍
+<br> 
+<br> 일정 5/19 ~ 10/13&nbsp; 13:00~15:00&nbsp; 매달 (화) 월 1회
+<br> 장소 3층 창작실
+<br> 대상 파주시민 6명&nbsp;&nbsp;(6회차 모두 참여 가능한 분만 신청바랍니다)
+<br> 진행 이연옥(스튜디오 프링크 대표)
+<br> 신청 5. 1.(금)~ ※ 홈페이지
+<br> 
+<br> 내용 
+<br> 2026 도서관문화예술동아리 지원사업의 일환으로, 광탄도서관 리소그라프 동아리 그리소(The 리소) 회원 및 일반 시민이 함께 리소그라프를 통해 나의 세계를 확장하고, 리소그라프 출판물을 만들어보는 시간
+<br> &nbsp;    세부날짜 내용   5. 19.(화) 리소그라프의 원리   6. 9.(화) 리소 아트포스터 만들기   7. 21.(화) 핸드바인딩 알아보기   8. 18.(화) 레이어 작업 및 출판물 만들기   9. 8.(화) 레이어 작업 및 출판물 만들기   10. 13.(화) 출판물 완성 및 발표    
+<br> 문의 031-940-5827
+<br> 
+<br> &nbsp;</div>
+							<p class="date">2026-05-19~2026-10-13</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/mslib/lectureDetail.do?lectureIdx=51086" class="mslib">
+							<i class="ico lib mslib">문산</i>
+							<h5 class="tit">언니, 오빠와 함께 읽는 영어그림책</h5>
+							<div class="desc">* 여름방학 기간 중에는 운영을 중단합니다. 8월22일에 만나요~!
+<br> 
+<br> 
+<br> 
+<br> 일 시&nbsp;2026. 5. 9.~ 매주(토) 11:00~11:30 ※방학 기간(1월~2월 / 7월~8월 / 시험기간(6.20, 6.27, 12.5, 12.12) 제외
+<br> 장 소&nbsp;문산도서관 2층 어린이실
+<br> 대 상&nbsp;5세-10세 어린이
+<br> 신 청&nbsp;현장접수(매주 토요일 11시 2층 어린이실 유아존으로 모여주세요!)
+<br> 내 용&nbsp;문산수억고등학교 학생들의 봉사로 어린이들을 대상으로 영어그림책을 읽어주고 간단한 독후 활동 진행합니다
+<br> &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;미리 신청하지 않아도 자유롭게 참여할 수 있습니다 *시범운영 후 운영방법이 변경될 수 있습니다
+<br> 문 의&nbsp;031-820-7236</div>
+							<p class="date">2026-05-09~2026-11-28</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/jalib/lectureDetail.do?lectureIdx=49506" class="jalib">
+							<i class="ico lib jalib">중앙</i>
+							<h5 class="tit">[파주문예대학] 제12기 수강생 모집</h5>
+							<div class="desc">2026&nbsp;파주문예대학 제12기&nbsp;수강생 모집 파주 시민의 정서 함양과 향토 문학 발전을 위해 파주시 중앙도서관이 후원하고&nbsp;(사)한국문인협회 파주지부가 주관하는
+<br> 파주문예대학 제12기&nbsp;수강생을 다음과 같이 모집합니다.
+<br> 
+<br> ❍&nbsp;지원자격&nbsp;:&nbsp;문예창작을 희망하는 파주 시민(30명 선착순)
+<br> ❍&nbsp;강좌내용&nbsp;:&nbsp;문학이론과 창작 중심
+<br> ❍&nbsp;지도강사&nbsp;: 정수남(시,수필,소설)
+<br> ❍&nbsp;모집기간&nbsp;: 2026. 3.&nbsp;~ 선착순마감.&nbsp;
+<br> ❍&nbsp;접수방법 및 문의사항&nbsp;
+<br> &nbsp;- 전화 및 문자접수(010-2172-2714/010-4741-8240)
+<br> ❍&nbsp;강의기간 및 시간&nbsp;: 2026. 4. 3(금) ~ 9. 11(금) 방학없음
+<br> ❍&nbsp;강의시간 및 장소
+<br> •&nbsp;강의 시간&nbsp;:&nbsp;매주 금요일&nbsp;19시~20시 30분(1시간 30분)
+<br> •&nbsp;장소&nbsp;:&nbsp;파주중앙도서관&nbsp;4층 401
+<br> ※&nbsp;개강식&nbsp;: 2026. 4. 3.(금)&nbsp;19시(파주중앙도서관 5층 501)&nbsp;
+<br> ❍&nbsp;수 강 료&nbsp;:&nbsp;무료(교육자료비 5만원 자부담)
+<br> 
+<br> ❏&nbsp;수강생 유의사항 및 특전
+<br> -&nbsp;접수된 서류는 일체 반환하지 않습니다.&nbsp;
+<br> -&nbsp;출석률&nbsp;70%이상자에게 수료증을 드립니다.
+<br> -&nbsp;졸업작품집에 참여한 수료생은&nbsp;(사)한국문인협회 파주지부 준회원 입회자격을 부여합니다.
+<br> 
+<br> (사)한국문인협회 파주지부 부설 파주문예대학
+<br> 
+<br></div>
+							<p class="date">2026-04-03~2026-09-11</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/gclib3/lectureDetail.do?lectureIdx=49146" class="gclib3">
+							<i class="ico lib gclib3">솔빛</i>
+							<h5 class="tit">[솔빛] 성인독서동아리 「금촌살롱」 신규회원 모집</h5>
+							<div class="desc">🎉솔빛도서관 성인 독서동아리「금촌살롱」신규회원을 모집합니다.🎉
+<br> 
+<br> 📖 독서를 통한 세대간의 소통을 취지로&nbsp;
+<br> 어린이·청소년·성인도서를 번갈아가며 읽고 있습니다.
+<br> 인식의 지평을 넓히고 싶은 분들을 초대합니다.💕
+<br> 
+<br> ✨일 시 :&nbsp; 3. 31.(화) 10~12시 / 매월 마지막주 화요일
+<br> ✨장 소 : 솔빛도서관 2층 문화교실
+<br> ✨대 상 : 성인 누구나
+<br> ✨내 용 : 선정된 주제도서를 사전에 읽고 온 후 이야기 나누기
+<br> ✨도 서 : 3월 주제도서 「인간실격」&nbsp;
+<br> ✨신 청:&nbsp; 솔빛도서관 홈페이지, 방문, 전화 📞944-8211
+<br> 
+<br> 
+<br> 
+<br> &nbsp;</div>
+							<p class="date">2026-03-31~2026-12-31</p>
+						</a>
+					
+			</li>
+		
+			<li>
+				
+						<a href="/ghlib/lectureDetail.do?lectureIdx=48846" class="ghlib">
+							<i class="ico lib ghlib">교하</i>
+							<h5 class="tit">[지역연계] 찾아가는 새일센터 (2-5시/로비/현장방문)</h5>
+							<div class="desc">취업을 희망하는 여성들에게&nbsp;취업정보 및&nbsp;
+<br> 직업교육 정보를 안내하고,&nbsp;
+<br> 직업상담 서비스를 제공합니다
+<br> ✔ 상담 진행 일시&nbsp;
+<br> &nbsp;_짝수달 두번째 수요일 14:00~17:00
+<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(2. 11. / 4.8 / 6.10. / 8.12 / 10.14 / 12.9. )
+<br> ✔ 상담장소
+<br> &nbsp;_교하도서관 1층 로비(안내데스크 옆)
+<br> ✔ 상담진행
+<br> &nbsp;_파주여성새로일하기센터&nbsp;상담사 
+<br></div>
+							<p class="date">2026-02-11~2026-12-09</p>
+						</a>
+					
+			</li>
+		
+		
+	</ul>
+	<p class="more"><a href="/jalib/lectureList.do?manageCd=ALL" title="프로그램 더보기"><img src="/include/image/common/btn_totalmenu.png" alt="더보기"></a></p>
+</div>
+<!-- //프로그램 -->
+			</div>
+			<div id="section2">
+				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+
+	$.ajaxSetup({cache:false});
+
+	$(function(){
+		fnLoadSchedule(1,'jalib');
+		$("#libTabselect").change(function(){
+			var $this = $(this);
+			var value = $this.val();
+			if(value != "") fnLoadSchedule($this.index()-1,value);
+		})
+	});
+
+
+	// 스케줄 로딩
+	function fnLoadSchedule(num, searchSiteCd) {
+		$("#libTabselect + .tab").children().eq(num-1).addClass("on").siblings().removeClass("on");
+		var $contWrap = $(".libTabCont");
+		//도서관명이 긴 경우 자간 조절
+		$contWrap.removeClass("letterSpace");
+		if(searchSiteCd == "hclib" || searchSiteCd == "gclib3"){
+			$contWrap.addClass("letterSpace");
+		}
+		if(isEmpty(searchSiteCd)){
+			alert("도서관을 선택해주세요");
+			return;
+		}
+		$("#recomBook").load("/intro/main/introRecommendBook.do?siteCd=" + searchSiteCd + "&recommendYear=2026&recommendMm=08" );
+		$("#schedule").load("/intro/main/introSchedule.do?siteCd=" + searchSiteCd + "&searchMonth=2026-08" );
+	}
+</script>
+<div class="sectionGroup">
+	<div class="libTabWrap">
+		<h4 class="blind">도서관 선택 영역</h4>
+		<select name="libTabSelect" id="libTabselect" class="mobileShow form-ele" title="도서관 선택">
+			<option value="">파주시도서관 선택</option>
+			<option value="jalib">중앙도서관</option>
+			<option value="ghlib">교하도서관</option>
+			<option value="mslib">문산도서관</option>
+			<option value="grlib">가람도서관</option>
+			<option value="gclib">금촌도서관</option>
+			<option value="hslib">해솔도서관</option>
+			<option value="jrlib">조리도서관</option>
+			<option value="hblib">한빛도서관</option>
+			<option value="mplib">물푸레도서관</option>
+			<option value="bwlib">법원도서관</option>
+			<option value="thlib">탄현도서관</option>
+			<option value="gclib3">금촌3동솔빛도서관</option>
+			<option value="jslib">적성도서관</option>
+			<option value="pplib">파평도서관</option>
+			<option value="hulib">한울도서관</option>
+			<option value="wllib">월롱도서관</option>
+			<option value="srlib">술이홀도서관</option>
+			<option value="gtlib">광탄도서관</option>
+		</select>
+		<ul class="tab mobileHide">
+			<li><a href="#" onclick="javascript:fnLoadSchedule(1,'jalib'); return false;" title="도서관 추천도서/일정 불러오기">중앙</a></li>
+			<li><a href="#" onclick="javascript:fnLoadSchedule(2,'ghlib'); return false;" title="도서관 추천도서/일정 불러오기">교하</a></li>
+			<li><a href="#" onclick="javascript:fnLoadSchedule(3,'mslib'); return false;" title="도서관 추천도서/일정 불러오기">문산</a></li>
+			<li><a href="#" onclick="javascript:fnLoadSchedule(4,'grlib'); return false;" title="도서관 추천도서/일정 불러오기">가람</a></li>
+			<li><a href="#" onclick="javascript:fnLoadSchedule(5,'gclib'); return false;" title="도서관 추천도서/일정 불러오기">금촌</a></li>
+			<li><a href="#" onclick="javascript:fnLoadSchedule(6,'hslib'); return false;" title="도서관 추천도서/일정 불러오기">해솔</a></li>
+			<li><a href="#" onclick="javascript:fnLoadSchedule(7,'jrlib'); return false;" title="도서관 추천도서/일정 불러오기">조리</a></li>
+			<li><a href="#" onclick="javascript:fnLoadSchedule(8,'hblib'); return false;" title="도서관 추천도서/일정 불러오기">한빛</a></li>
+			<li><a href="#" onclick="javascript:fnLoadSchedule(9,'mplib'); return false;" title="도서관 추천도서/일정 불러오기">물푸레</a></li>
+			<li><a href="#" onclick="javascript:fnLoadSchedule(10,'bwlib'); return false;" title="도서관 추천도서/일정 불러오기">법원</a></li>
+			<li><a href="#" onclick="javascript:fnLoadSchedule(11,'thlib'); return false;" title="도서관 추천도서/일정 불러오기">탄현</a></li>
+			<li><a href="#" onclick="javascript:fnLoadSchedule(12,'gclib3'); return false;" title="도서관 추천도서/일정 불러오기">금촌3동솔빛</a></li>
+			<li><a href="#" onclick="javascript:fnLoadSchedule(13,'jslib'); return false;" title="도서관 추천도서/일정 불러오기">적성</a></li>
+			<!-- <li><a href="#" onclick="javascript:fnLoadSchedule(14,'hclib'); return false;" title="도서관 추천도서/일정 불러오기">행복어린이</a></li> -->
+			<li><a href="#" onclick="javascript:fnLoadSchedule(14,'pplib'); return false;" title="도서관 추천도서/일정 불러오기">파평</a></li>
+			<li><a href="#" onclick="javascript:fnLoadSchedule(15,'hulib'); return false;" title="도서관 추천도서/일정 불러오기">한울</a></li>
+			<li><a href="#" onclick="javascript:fnLoadSchedule(16,'wllib'); return false;" title="도서관 추천도서/일정 불러오기">월롱</a></li>
+			<li><a href="#" onclick="javascript:fnLoadSchedule(17,'srlib'); return false;" title="도서관 추천도서/일정 불러오기">술이홀</a></li>
+			<li><a href="#" onclick="javascript:fnLoadSchedule(18,'gtlib'); return false;" title="도서관 추천도서/일정 불러오기">광탄</a></li>
+		</ul>
+	</div>
+	<div class="libTabCont">
+		<div class="recomBook" id="recomBook"></div>
+		<div class="schedule" id="schedule"></div>
+	</div>
+</div>
+			</div>
+		</div>
+		<!-- //contents -->
+	</div>
+	<!-- footer -->
+	<footer id="footer">
+		<div class="footerInner clearfix">
+			<ul class="fnb clearfix">
+				<li><a href="/jalib/menu/10124/contents/40226/contents.do">이용약관</a></li>
+				<li><a href="/jalib/menu/10123/contents/41103/contents.do" class="point">개인정보처리방침</a></li>
+			</ul>
+			<!-- 관련기관 바로가기 -->
+			<div class="relateSite mobileHide">
+				<select name="relateSite" id="relateSite" title="도서관 바로가기 선택">
+					<option value="">관련기관 바로가기</option>
+					<option value="http://www.paju.go.kr/ ">파주시청</option>
+					<option value="http://www.pajucouncil.go.kr/">파주시의회</option>
+					<option value="https://lll.paju.go.kr/">파주시 평생교육포털</option>
+					<option value="http://www.ggpolice.go.kr/pj/">파주경찰서</option>
+					<option value="https://bookcity.or.kr/">파주북시티</option>
+					<option value="https://www.pajuutc.or.kr/">파주도시관광공사</option>
+				</select>
+				<a href="#go" id="btnRelateSite" class="btn input themeBtn">이동</a>
+			</div>
+			<script type="text/javascript">
+				$(function(){
+					$("#btnRelateSite").click(function(){
+						var url = $("#relateSite").val();
+						if(!$("#relateSite").val()){
+							alert("관련기관을 선택하세요.");
+							$("#relateSite").focus();
+						}else{
+							window.open(url,"_blank");
+						}
+						return false;
+					});
+				});
+			</script>
+			<!-- //관련기관 바로가기 -->
+			<div class="fAdd">
+				<address>
+					<strong class="name">파주시 도서관</strong>
+					<ul class="info">
+						<li>(우)10917 경기도 파주시 쇠재로 33(금촌동)</li>
+						<li>T 031-940-5661</li>
+						<li>F 031-940-5649</li>
+					</ul>
+				</address>
+				<cite>copyright 2018(c) paju city library. All rights reserved.</cite>
+			</div>
+		</div>
+		<div><p id="post-result"></p></div>
+	</footer>
+	<!-- //footer -->
+</div>
+<!-- //wrap -->
+<script type="text/javascript" src="/include/js/jquery.tab.js"></script>
+<script type="text/javascript" src="/include/js/jquery.slider.js"></script>
+<script type="text/javascript">
+window.onload = function(){
+	if($("#wrap").width() >= 1000){
+		//pc
+		$(".libList").slider({
+			wrapper : ".libZone",
+			setTime : 5000,
+			animationTime : 500,
+			tabSlideSelector : "libList > li"
+		});
+		$(".boardList").each(function(){
+			$(this).slider({
+				listTypeChange : true,
+				listType : "list",
+				listPageLength : 8,
+				usePager : false,
+				usePlay : false,
+				numbering : true,
+				slideWrapSelector : "boardList",
+				autoStart : false
+			});
+		});
+	}else {
+		//mobile
+		$(".libList").slider({
+			wrapper : ".libZone",
+			setTime : 5000,
+			animationTime : 500,
+			usePlay : false,
+			autoStart : false,
+			tabSlideSelector : "libList > li"
+		});
+		$(".boardList").each(function(){
+			$(this).slider({
+				listTypeChange : true,
+				listType : "list",
+				listPageLength : 5,
+				usePager : false,
+				usePlay : false,
+				numbering : true,
+				slideWrapSelector : "boardList",
+				autoStart : false
+			});
+		});
+	}
+	$("#section1 .tab").tabList({tabContSelector:false});
+}
+</script>
+
+<!-- 파주시 관리 -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-55133790-10"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-55133790-10');
+</script>
+
+<!-- 중앙도서관 자체 -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-131513150-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-131513150-1');
+</script>
+</body>
+</html>

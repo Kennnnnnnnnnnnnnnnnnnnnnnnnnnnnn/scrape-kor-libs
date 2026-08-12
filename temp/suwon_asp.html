@@ -1,0 +1,723 @@
+
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>  
+	
+<script>
+$(document).ready(function(){
+	let sendData = "ssoAppId=out-suwon-lib";   //ë³ìê°ì ë´ìì¤
+	$.ajax({
+		type:'get',   //post ë°©ìì¼ë¡ ì ì¡
+		url:'https://www.suwon.go.kr/passni/jsp/ssoTokenChecker.jsp',   //ë°ì´í°ë¥¼ ë³´ë¼ ì£¼ì
+		data:sendData,   //ìì ë³ìì ë´ê¸´ ë°ì´í°ë¥¼ ì ì¡í´ì¤ë¤.
+		dataType: 'jsonp',   //html íì¼ íìì¼ë¡ ê°ì ë´ìì¨ë¤.
+		success : function(data){   //íì¼ ì£¼ê³ ë°ê¸°ê° ì±ê³µíì ê²½ì°. data ë³ì ìì ê°ì ë´ìì¨ë¤.
+			token_ck = data.pni_token;
+			if( token_ck == "")
+			{
+			}
+			else
+			{
+				location.href = "/member/login_04.asp?folder_code=sk";
+			}
+		}
+	});
+});
+
+</script>
+
+
+
+
+
+<!doctype html>
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ëìê´ì¬ìì</title>
+<meta name="title" content="ëìê´ì¬ìì"/>
+<meta name="author" content="ëìê´ì¬ìì"/>
+<meta name="keywords" content="ëìê´ì¬ìì, ììì"/>
+
+<!-- ë¤ì´ë² ì¬ì´í¸ ì°ê´ì±ë 20260806-->
+<span itemscope="" itemtype="http://schema.org/Organization">
+<link itemprop="url" href="https://www.suwonlib.go.kr/">
+<a itemprop="sameAs" href="https://blog.naver.com/suwon_library"></a>
+<a itemprop="sameAs" href="https://www.instagram.com/suwon_lib/"></a>
+</span>
+
+
+<!-- css -->
+
+<link rel="stylesheet" type="text/css" href="/intro/ssc/jquery.bxslider.css" />
+<link rel="stylesheet" type="text/css" href="/intro/ssc/intro.css?v=1.0" />
+
+<!-- js -->
+<script type="text/javascript" src="/P_js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="/P_js/jquery.bxslider.js"></script>
+<script type="text/javascript" src="/P_js/js_intro.js"></script>
+<script type="text/javascript" src="/P_js/jquery.easing.1.3.js"></script>
+<script type="text/javascript" src="/P_js/gnb.js"></script>
+<script type="text/javascript" src="/P_js/mt_navi/modernizr.custom.js"></script>
+<script type="text/javascript" src="/P_js/mt_navi/pushy.min.js"></script>
+<script>
+	
+function view_list(str1,str2)
+{
+	var con1 = document.getElementById("lib_list_01"); 
+	var con2 = document.getElementById("lib_list_02"); 
+	var con3 = document.getElementById("lib_list_03"); 
+	var con4 = document.getElementById("lib_list_04"); 
+	
+	if(str1 == 1)
+	{
+		con1.style.display = 'block';
+		con2.style.display = 'none';
+		con3.style.display = 'none';
+		con4.style.display = 'none';
+	}
+
+	if(str1 == 2)
+	{
+		con1.style.display = 'none';
+		con2.style.display = 'block';
+		con3.style.display = 'none';
+		con4.style.display = 'none';
+	}
+
+	if(str1 == 3)
+	{
+		con1.style.display = 'none';
+		con2.style.display = 'none';
+		con3.style.display = 'block';
+		con4.style.display = 'none';
+	}
+
+	if(str1 == 4)
+	{
+		con1.style.display = 'none';
+		con2.style.display = 'none';
+		con3.style.display = 'none';
+		con4.style.display = 'block';
+	}
+	
+	$("#lib_list_title").text(str2); 
+}
+
+function goLink()
+{
+	if(gofamily1.site1.value == "")
+	{
+		return false;
+	}
+	else
+	{
+		gofamily1.action = gofamily1.site1.value;
+	}
+}
+
+
+function ss_list(str)
+{
+	ssfrm.keyfield.value = str;
+	ssfrm.submit();
+}
+
+</script>
+
+
+<!-- íì ë -->
+<script type="text/javascript">
+function middle_search() 
+{
+	
+	if (document.seek.searchWord.value=="ëìê²ìëª" || document.seek.searchWord.value=="") 
+	{
+		alert("ê²ìì´ë¥¼ ìë ¥í´ì£¼ì¸ì.");
+		document.seek.searchWord.value=''; 
+		document.seek.searchWord.focus();
+		return false;
+	}
+
+}
+
+</script>	
+<script>
+	document.addEventListener("DOMContentLoaded", function() {
+    // ì´ê¸° ë²í¼ê³¼ ë ì´ì´ ìì ê°ì ¸ì¤ê¸°
+    var openBtn = document.getElementById("openBtn");
+    var popupLayer = document.getElementById("popupLayer");
+
+    // ë«ê¸° ë²í¼ ê°ì ¸ì¤ê¸°
+    var closeBtn = document.getElementById("closeBtn");
+
+    // ì´ê¸° ë²í¼ í´ë¦­ ì íì ë ì´ì´ ë³´ì´ê¸°
+    openBtn.addEventListener("click", function() {
+        popupLayer.style.display = "block";
+    });
+
+    // ë«ê¸° ë²í¼ í´ë¦­ ì íì ë ì´ì´ ë«ê¸°
+    closeBtn.addEventListener("click", function() {
+        popupLayer.style.display = "none";
+    });
+
+    // íì ë ì´ì´ ì¸ë¶ í´ë¦­ ì ë«ê¸°
+    window.addEventListener("click", function(event) {
+        if (event.target == popupLayer) {
+            popupLayer.style.display = "none";
+        }
+    });
+});
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // ë«ê¸° ë²í¼ ê°ì ¸ì¤ê¸°
+    var closeBtn = document.getElementById("closeBtn");
+
+    // ë«ê¸° ë²í¼ í´ë¦­ ì íì ë ì´ì´ ë«ê¸°
+    closeBtn.addEventListener("click", function() {
+        document.getElementById("popupLayer").style.display = "none";
+    });
+
+    // ì´ë¯¸ì§ ë§¤íë ìì­ í´ë¦­ ì ë§í¬ë¡ ì´ë
+    var areas = document.querySelectorAll("map[name='image-map'] area");
+    areas.forEach(function(area) {
+        area.addEventListener("click", function(event) {
+            event.preventDefault(); // ê¸°ë³¸ ëì(ë§í¬ ì´ë) ë§ê¸°
+            var href = this.getAttribute("href");
+            if (href) {
+                window.open(href, "_blank"); // ì ì°½ìì ë§í¬ ì´ê¸°
+            }
+        });
+    });
+
+    // ì´ë¯¸ì§ í¬ê¸°ì ë°ë¼ ìì­ í¬ê¸° ì¡°ì 
+    window.addEventListener("resize", function() {
+        adjustMapAreas();
+    });
+
+    function adjustMapAreas() {
+        var mapImage = document.getElementById("mapImage");
+        var imageMap = document.getElementById("image-map");
+
+        var widthRatio = mapImage.width / mapImage.naturalWidth;
+        var heightRatio = mapImage.height / mapImage.naturalHeight;
+
+        areas.forEach(function(area) {
+            var coords = area.getAttribute("coords").split(",");
+            var newCoords = [];
+            for (var i = 0; i < coords.length; i++) {
+                if (i % 2 === 0) {
+                    newCoords.push(Math.round(coords[i] * widthRatio));
+                } else {
+                    newCoords.push(Math.round(coords[i] * heightRatio));
+                }
+            }
+            area.setAttribute("coords", newCoords.join(","));
+        });
+    }
+
+    // íì´ì§ ë¡ë ì ì´ê¸° ì¡°ì 
+    adjustMapAreas();
+});
+</script>
+
+
+<!-- layer popup start -->
+<script type="text/javascript">
+	function notice_getCookie(name){
+		var nameOfCookie = name + "=";
+		var x = 0;
+		while(x <= document.cookie.length){
+			var y = ( x + nameOfCookie.length);
+			if(document.cookie.substring(x,y) == nameOfCookie){
+				if((endOfCookie = document.cookie.indexOf(";",y)) == -1)
+					endOfCookie = document.cookie.length;
+					return unescape(document.cookie.substring(y, endOfCookie));
+				}
+				x = document.cookie.indexOf(" ",x) + 1;
+				if(x == 0)
+				break;
+			}
+			return "";     
+		}
+</script>
+<!-- ### AUserKey :  --> 
+<!--layer_popup-->
+
+<div class="con_wrap">
+  <div class="container">
+    <div class="logo_wrap">
+      <a href="/"><img src="/intro/gmi/logo.png" alt="ì©ì¸ì íìíìµê´ ë¡ê³ "></a>
+    </div>
+    <div class="title_wrap">
+      <a href="/"><img src="/intro/gmi/title_img_260806.png" alt="ì©ì¸ì íìíìµê´ ë¡ê³ "></a>
+    </div>
+    <div id="search_new">
+       <form name="seek"  method="post" action="https://mob.suwonlib.go.kr/search" target="_blank" onSubmit="return middle_search();">
+	   <input type="hidden" name="login" value="N" / >
+       <fieldset>
+       <input type="text" class="inputText" name="searchWord" id="searchWord" title="ëì ê²ì" placeholder="ëì ê²ì" onfocus="this.placeholder = ''" onblur="this.placeholder = 'ëì ê²ì'" />
+       <input type="image" src="/intro/gmi/search_intro.png" alt="ê²ì2" class="search_btn">
+       </fieldset>
+       </form>
+	   <form name="ssfrm"  method="post" action="/intro/slib_search.asp">
+	   <input type="hidden" name="keyfield">
+	   </form>
+     </div>
+
+	
+
+    <div class="map_wrap">
+      <div class="lib_list">
+        <div class="top_box">
+          <span class="lib_btn library_b">ê³µê³µ</span>
+          <span class="number">25</span>
+        </div>
+        <div class="bottom_box">
+          <span class="lib_btn library_g">ìì</span>
+          <span class="number">134</span>
+        </div>
+     
+        
+      </div>
+      <div class="map_left">
+        <div class="smallmap2">
+    
+          <div class="j_01">
+            <p class="title_01">ì¥ìêµ¬</p>
+            <div class="btn_link">
+              <a href="#lib_list_01" onclick="view_list('1','ì¥ìêµ¬ ê³µê³µ ëìê´');" class="private_01">4</a>
+              <a href="#lib_list_01" onclick="ss_list('ì¥ìêµ¬');" class="private_02">25</a>
+            </div>
+          </div>
+        <div class="y_02">
+              <p class="title_02">ìíµêµ¬</p>
+              <div class="btn_link">
+                <a href="#lib_list_04" onclick="view_list('4','ìíµêµ¬ ê³µê³µ ëìê´');" class="private_01">9</a>
+                <a href="#lib_list_04" onclick="ss_list('ìíµêµ¬');" class="private_02">37</a>
+              </div>
+          </div>
+        <div class="p_03">
+              <p class="title_03">íë¬êµ¬</p>
+              <div class="btn_link">
+                <a href="#lib_list_03" onclick="view_list('2','íë¬êµ¬ ê³µê³µ ëìê´');" class="private_01">6</a>
+                <a href="#lib_list_03" onclick="ss_list('íë¬êµ¬');" class="private_02">21</a>
+              </div>
+          </div>
+        <div class="k_04">
+              <p class="title_04">ê¶ì êµ¬</p>
+              <div class="btn_link">
+                <a href="#lib_list_03" onclick="view_list('3','ê¶ì êµ¬ ê³µê³µ ëìê´');" class="private_01">6</a>
+                <a href="#lib_list_03" onclick="ss_list('ê¶ì êµ¬');" class="private_02">51</a>
+              </div>
+          </div>
+      </div>
+      <!-- ë²í¼ -->
+      <button id="openBtn">ììì ëìê´ íëì ë³´ê¸°</button>
+    
+      <!-- íì ë ì´ì´ -->
+      <div id="popupLayer" class="popup-layer">
+        <div class="popup-content">
+          <span id="closeBtn" class="close-btn">&times;</span>
+        
+          <div class="map">
+		  	<div class="img_box">	
+			  <img src="/intro/gmi/map_img.jpg" alt="ì°½ë£¡ëìê´" style=""></div>
+            <div id="intor_map_outer">
+              <div id="popup_map">
+              <div id="lm2">
+                <div id="lm2ul">
+                <div id="btn1" class="link_a purple">
+                  <a href="/buk/" target="_blank" title="ìì°½ì´ë">
+                    <p>ë¶ììëìê´</p>              
+                  </a>
+                  </div>
+                <div id="btn2" class="link_a purple">
+                  <a href="/sk/" target="_blank" title="ìì°½ì´ë">
+                    <p>ì ê²½ëìê´</p>                  
+                  </a>
+                </div> 
+                <div id="btn3" class="link_a purple">
+                  <a href="/seo/" target="_blank" title="ìì°½ì´ë">
+                    <p>ìììëìê´</p>
+                  </a>
+                  </div>
+                <div id="btn4" class="link_a purple">
+                  <a href="/ct/" target="_blank" title="ìì°½ì´ë">
+                    <p>ì¤ìëìê´</p>
+                  </a>
+                </div>
+                <div id="btn5" class="link_a purple">
+                  <a href="/yt/" target="_blank" title="ìì°½ì´ë">
+                    <p>ìíµëìê´</p>
+                  </a>
+                </div>
+                <div id="btn6" class="link_a purple">
+                  <a href="/tm/" target="_blank" title="ìì°½ì´ë">
+                    <p>íì¥ë§ë£¨ëìê´</p>
+                  </a>
+                </div>
+                <div id="btn7" class="link_a s_b">
+                  <a href="/swlove/" target="_blank" title="ìì°½ì´ë">
+                    <p>ì¬ëìëìê´</p>
+                  </a>
+                </div>
+                
+                <div id="btn8" class="link_a s_b">
+                  <a href="/hwahong/" target="_blank" title="ìì°½ì´ë">
+                    <p>ííì´ë¦°ì´ëìê´</p>
+                  </a>
+                </div>
+                <div id="btn9" class="link_a s_b">
+                  <a href="/sycc/" target="_blank" title="ìì°½ì´ë">
+                    <p>íìë¦ëìê´</p>
+                  </a>
+                </div>
+                <div id="btn10" class="link_a s_b">
+                  <a href="/bandal/" target="_blank" title="ìì°½ì´ë">
+                    <p>ë°ë¬ì´ë¦°ì´ëìê´</p>
+                  </a>
+                </div>
+                <div id="btn11" class="link_a s_b">
+                  <a href="/swhope/" target="_blank" title="ìì°½ì´ë">
+                    <p>í¬ë§ìëìê´</p>
+                  </a>
+                </div>
+                <div id="btn12" class="link_a s_b">
+                  <a href="/skid/" target="_blank" title="ìì°½ì´ë">
+                    <p>ì¬ê¸°ìì´ë¦°ì´ëìê´</p>
+                  </a>
+                </div>
+                <div id="btn13" class="link_a s_b">
+                  <a href="/bkid/" target="_blank" title="ìì°½ì´ë">
+                    <p>ë°ë¥¸ìì´ë¦°ì´ëìê´</p>
+                  </a>
+                </div>
+                <div id="btn14" class="link_a s_b">
+                  <a href="/jkid/" target="_blank" title="ìì°½ì´ë">
+                    <p>ì§íìì´ë¦°ì´ëìê´</p>
+                  </a>
+                </div>
+                <div id="btn15" class="link_a s_b">
+                  <a href="https://lib.goe.go.kr/gg" target="_blank" title="ìì°½ì´ë">
+                    <p>ê²½ê¸°ì¤ìêµì¡ëìê´</p>
+                  </a>
+                </div>
+                <div id="btn16" class="link_a s_b">
+                  <a href="https://lib.goe.go.kr/gglec/index.do" target="_blank" title="ìì°½ì´ë">
+                    <p>ê²½ê¸°íìêµì¡íìµê´</p>
+                  </a>
+                </div>
+                <div id="btn17" class="link_a purple">
+                  <a href="/gh/" target="_blank">
+                    <p>ê´êµíì¬ëìê´</p>                  
+                  </a>
+                </div>
+                <div id="btn18" class="link_a purple">
+                  <a href="/dcg/" target="_blank" title="ìì°½ì´ë">
+                    <p>ëì¶ê³¨ëìê´</p>
+                  </a>
+                </div>
+                <div id="btn19" class="link_a purple">
+                  <a href="/iw/" target="_blank" title="ìì°½ì´ë">
+                    <p>ì¼ìëìê´</p>
+                  </a>
+                </div>
+                <div id="btn20" class="link_a purple">
+                  <a href="/hd/" target="_blank" title="ìì°½ì´ë">
+                    <p>íìë¤ì°ëìê´</p>
+                  </a>
+                </div>
+                <div id="btn21" class="link_a purple">
+                  <a href="/hms/" target="_blank" title="ìì°½ì´ë">
+                    <p>í¸ë§¤ì¤ëìê´</p>
+                  </a>
+                </div>
+                <div id="btn22" class="link_a purple">
+                  <a href="/bdn/" target="_blank" title="ìì°½ì´ë">
+                    <p>ë²ëë´ëìê´</p>
+                  </a>
+                </div>
+                <div id="btn23" class="link_a purple">
+                  <a href="/hl/" target="_blank" title="ìì°½ì´ë">
+                    <p>íë¦¼ëìê´</p>
+                  </a>
+                </div>
+                <div id="btn24" class="link_a purple">
+                  <a href="/cy/" target="_blank" title="ìì°½ì´ë">
+                    <p>ì°½ë£¡ëìê´</p>
+                  </a>
+                </div>
+                <div id="btn25" class="link_a purple">
+                  <a href="/gps/" target="_blank" title="ìì°½ì´ë">
+                    <p>ê´êµí¸ë¥¸ì²ëìê´</p>
+                  </a>
+                </div>
+                <div id="btn26" class="link_a purple">
+                  <a href="/myu/" target="_blank" title="ìì°½ì´ë">
+                    <p>ë§¤ì¬ì¸ëìê´</p>
+                  </a>
+                </div>
+                <div id="btn27" class="link_a purple">
+                  <a href="/mpgb/" target="_blank" title="ìì°½ì´ë">
+                    <p>ë§í¬ê¸ë¹ëìê´</p>
+                  </a>
+                </div>
+                </div>
+              </div> 	
+              </div>
+              </div>
+            </div>
+        </div>
+      </div>
+      </div>
+
+      <!--ê³µê³µ ëìê´-->
+      <div class="map_right">
+        <div class="map_title">
+          <h3 class="lib_title" id="lib_list_title">ì¥ìêµ¬ ê³µê³µ ëìê´</h3>
+          <div class="search">
+            <em class="operation">ì´ìì¼</em>
+            <em class="close">í´ê´ì¼</em>
+          </div>
+        </div>
+        
+
+<!-- ì¥ì -->
+<div class="map_contents" id="lib_list_01" style="display: block;">
+<ul>
+<li><a href="https://www.suwonlib.go.kr/buk/" target="_blank" title="ìì°½ì´ë¦¼"><div class="list_box"><h4>ë¶ììëìê´</h4><p>ê²½ê¸°ë ììì ì¥ìêµ¬ ë§ìë¡ 65</p></div></a></li>
+<li><a href="https://www.suwonlib.go.kr/dcg/" target="_blank" title="ìì°½ì´ë¦¼"><div class="list_box"><h4>ëì¶ê³¨ëìê´</h4><p>ê²½ê¸°ë ììì ì¥ìêµ¬ ìì¼ë¡ 164</p></div></a></li>
+<li><a href="https://www.suwonlib.go.kr/iw/" target="_blank" title="ìì°½ì´ë¦¼"><div class="list_box"><h4>ì¼ìëìê´</h4><p>ê²½ê¸°ë ììì ì¥ìêµ¬ ì¼ìì²ë¡ 77</p></div></a></li>
+<li><a href="https://www.suwonlib.go.kr/skid/" target="_blank" title="ìì°½ì´ë¦¼"><div class="list_box"><h4>ì¬ê¸°ìì´ë¦°ì´ëìê´</h4><p>ê²½ê¸°ë ììì ì¥ìêµ¬ ì¡ì ë¡ 9</p></div></a></li>
+<!-- <li><a href="https://lib.goe.go.kr/gg/" target="_blank" title="ìì°½ì´ë¦¼"><div class="list_box"><h4>ê²½ê¸°ì¤ìêµì¡ëìê´</h4><p>ê²½ê¸° ììì ì¥ìêµ¬ ì¡°ìë¡ 18</p></div></a></li> -->
+</ul>
+</div>
+
+
+
+<!-- íë¬ -->
+<div class="map_contents" id="lib_list_02" style="display: none;">
+<ul>
+<li><a href="https://www.suwonlib.go.kr/sk/" target="_blank" title="ìì°½ì´ë¦¼"><div class="list_box"><h4>ì ê²½ëìê´</h4><p>ê²½ê¸°ë ììì íë¬êµ¬ ì íë¡23ë²ê¸¸ 68</p></div></a></li>
+<li><a href="https://www.suwonlib.go.kr/ct/" target="_blank" title="ìì°½ì´ë¦¼"><div class="list_box"><h4>ì¤ìëìê´</h4><p>ê²½ê¸°ë ììì íë¬êµ¬ íë¬ì°ë¡ 318</p></div></a></li>
+<li><a href="https://www.suwonlib.go.kr/cy/" target="_blank" title="ìì°½ì´ë¦¼"><div class="list_box"><h4>ì°½ë£¡ëìê´</h4><p>ê²½ê¸°ë ììì íë¬êµ¬ ìëì»µë¡ 381ë²ê¸¸ 36</p></div></a></li>
+<li><a href="https://www.suwonlib.go.kr/hd/" target="_blank" title="ìì°½ì´ë¦¼"><div class="list_box"><h4>íìë¤ì°ëìê´</h4><p>ê²½ê¸°ë ììì íë¬êµ¬ íìë¡ 68ë²ê¸¸ 7-35</p></div></a></li>
+<li><a href="https://www.suwonlib.go.kr/sycc/" target="_blank" title="ìì°½ì´ë¦¼"><div class="list_box"><h4>íìë¦ëìê´</h4><p>ê²½ê¸°ë ììì íë¬êµ¬ ê¶ê´ë¡ 293</p></div></a></li>
+<li><a href="https://www.suwonlib.go.kr/hwahong/" target="_blank" title="ìì°½ì´ë¦¼"><div class="list_box"><h4>ííì´ë¦°ì´ëìê´</h4><p>ê²½ê¸°ë ììì íë¬êµ¬ ììì²ë¡ 361</p></div></a></li>
+</ul>
+</div>
+
+
+
+<!-- ê¶ì  -->
+<div class="map_contents" id="lib_list_03" style="display: none;">
+<ul>
+<li><a href="https://www.suwonlib.go.kr/hms/" target="_blank" title="ìì°½ì´ë¦¼"><div class="list_box"><h4>í¸ë§¤ì¤ëìê´</h4><p>ê²½ê¸°ë ììì ê¶ì êµ¬ ì¹ ë³´ë¡ 169</p></div></a></li>
+<li><a href="https://www.suwonlib.go.kr/seo/" target="_blank" title="ìì°½ì´ë¦¼"><div class="list_box"><h4>ìììëìê´</h4><p>ê²½ê¸°ë ììì ê¶ì êµ¬ íëë¡57ë²ê¸¸ 35</p></div></a></li>
+<li><a href="https://www.suwonlib.go.kr/hl/" target="_blank" title="ìì°½ì´ë¦¼"><div class="list_box"><h4>íë¦¼ëìê´</h4><p>ê²½ê¸°ë ììì ê¶ì êµ¬ ëììë¡25ë²ê¸¸ 32-110</p></div></a></li>
+<li><a href="https://www.suwonlib.go.kr/bdn/" target="_blank" title="ìì°½ì´ë¦¼"><div class="list_box"><h4>ë²ëë´ëìê´</h4><p>ê²½ê¸°ë ììì ê¶ì êµ¬ ì¸ê¶ë¡ 94ë²ê¸¸ 29</p></div></a></li>
+<li><a href="https://www.suwonlib.go.kr/jkid/" target="_blank" title="ìì°½ì´ë¦¼"><div class="list_box"><h4>ì§íìì´ë¦°ì´ëìê´</h4><p>ê²½ê¸°ë ììì ê¶ì êµ¬ ëíìì²ë¡ 818</p></div></a></li>
+<li><a href="https://www.suwonlib.go.kr/swhope/" target="_blank" title="ìì°½ì´ë¦¼"><div class="list_box"><h4>í¬ë§ìëìê´</h4><p>ê²½ê¸°ë ììì ê¶ì êµ¬ ë§¤ì¡ê³ ìë¡ 620</p></div></a></li>
+<!-- <li><a href="https://lib.goe.go.kr/gglec/index.do" target="_blank" title="ìì°½ì´ë¦¼"><div class="list_box"><h4>ê²½ê¸°íìêµì¡íìµê´</h4><p>ê²½ê¸°ë ììì ê¶ì êµ¬ ê¶ì¤ë¡ 55 </p></div></a></li> -->
+</ul>
+</div>
+
+<!-- ìíµ -->
+<div class="map_contents" id="lib_list_04" style="display: none;">
+<ul>
+<li><a href="https://www.suwonlib.go.kr/gh/" target="_blank" title="ìì°½ì´ë¦¼"><div class="list_box"><h4>ê´êµíì¬ëìê´</h4><p>ê²½ê¸°ë ììì ìíµêµ¬ ëíë¡ 88</p></div></a></li>
+<li class="close"><a href="https://www.suwonlib.go.kr/yt/" target="_blank" title="ìì°½ì´ë¦¼"><div class="list_box"><h4>ìíµëìê´</h4><p>ê²½ê¸°ë ììì ìíµêµ¬ ì²­ëªë¡ 151</p></div></a></li>
+<li><a href="https://www.suwonlib.go.kr/tm/" target="_blank" title="ìì°½ì´ë¦¼"><div class="list_box"><h4>íì¥ë§ë£¨ëìê´</h4><p>ê²½ê¸°ë ììì ìíµêµ¬ íì¥ë¡ 46</p></div></a></li>
+<li><a href="https://www.suwonlib.go.kr/gps/" target="_blank" title="ìì°½ì´ë¦¼"><div class="list_box"><h4>ê´êµí¸ë¥¸ì²ëìê´</h4><p>ê²½ê¸°ë ììì ìíµêµ¬ ê´êµí¸ìë¡ 131</p></div></a></li>
+<li><a href="https://www.suwonlib.go.kr/myu/" target="_blank" title="ìì°½ì´ë¦¼"><div class="list_box"><h4>ë§¤ì¬ì¸ëìê´</h4><p>ê²½ê¸°ë ììì ìíµêµ¬ í¨ìë¡ 415</p></div></a></li>
+<li><a href="https://www.suwonlib.go.kr/mpgb/" target="_blank" title="ìì°½ì´ë¦¼"><div class="list_box"><h4>ë§í¬ê¸ë¹ëìê´</h4><p>ê²½ê¸°ë ììì ìíµêµ¬ ë§í¬ë¡ 100</p></div></a></li>
+<li class="close"><a href="https://www.suwonlib.go.kr/bkid/" target="_blank" title="ìì°½ì´ë¦¼"><div class="list_box"><h4>ë°ë¥¸ìì´ë¦°ì´ëìê´</h4><p>ê²½ê¸°ë ììì ìíµêµ¬ ë§¤ë´ë¡ 10</p></div></a></li>
+<li><a href="https://www.suwonlib.go.kr/bandal/" target="_blank" title="ìì°½ì´ë¦¼"><div class="list_box"><h4>ë°ë¬ì´ë¦°ì´ëìê´</h4><p>ê²½ê¸°ë ììì ìíµêµ¬ ë°ë¬ë¡ 45</p></div></a></li>
+<li><a href="https://www.suwonlib.go.kr/swlove/" target="_blank" title="ìì°½ì´ë¦¼"><div class="list_box"><h4>ì¬ëìëìê´</h4><p>ê²½ê¸°ë ììì ìíµêµ¬ ì°½ë£¡ëë¡ 255</p></div></a></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+
+      </div>
+
+
+      <!--ììëìê´-->
+      <!--<div class="map_right lib_small">
+        <div class="map_title">
+          <h3 class="lib_title">ì¥ìêµ¬ ìì ëìê´</h3>
+          <div class="search">
+            <em class="operation">ì´ìì¼</em>
+            <em class="close">í´ê´ì¼</em>
+          </div>
+        </div>
+        <div class="map_contents">
+          <ul class="lib_small">
+            <li><a href="">í¥ê¸°ìììëìê´</a></li>
+            <li><a href="">íë³µëë¬´ ììëìê´</a></li>
+            <li><a href="">í¸ë¥´ì§ì¤ëìëí¬ë ê¸í° ììëìê´</a></li>
+            <li><a href="">íì¥ëìë§ìë¬¸ê³ </a></li>
+            <li><a href="">ì¡°ì2ëìë§ìë¬¸ê³ </a></li>
+            <li><a href="">ì¡°ì1ëìë§ìë¬¸ê³ </a></li>
+            <li><a href="">í¥ê¸°ìììëìê´</a></li>
+            <li><a href="">íë³µëë¬´ ììëìê´</a></li>
+            <li><a href="">í¸ë¥´ì§ì¤ëìëí¬ë ê¸í° ììëìê´</a></li>
+            <li><a href="">íì¥ëìë§ìë¬¸ê³ </a></li>
+            <li><a href="">ì¡°ì2ëìë§ìë¬¸ê³ </a></li>
+          </ul>
+        </div>
+      </div>-->
+      
+    </div>
+
+
+
+    <div class="box_icon">
+      <ul>
+	  <li>
+          <a href="/intro/guide04.asp" target="_blank">
+            <div class="ico_img">
+              <img src="/intro/gmi/ico_06.png" alt="">
+            </div>
+            <div class="ico_txt">í´ê´ì¼ìë´</div>
+          </a>
+        </li>
+		<li>
+          <a href="https://mob.suwonlib.go.kr/" target="_blank">
+            <div class="ico_img">
+              <img src="/intro/gmi/ico_08.png" alt="" style="width:67px;">
+            </div>
+            <div class="ico_txt">ëìê´ëª¨ë°ì¼</div>
+          </a>
+        </li>
+        <li>
+          <a href="/intro/history.asp" target="_blank">
+            <div class="ico_img">
+              <img src="/intro/gmi/ico_01.png" alt="">
+            </div>
+            <div class="ico_txt">ëìê´ ìê°</div>
+          </a>
+        </li>
+        <li>
+          <a href="/intro/guide.asp" target="_blank">
+            <div class="ico_img">
+              <img src="/intro/gmi/ico_02.png" alt="">
+            </div>
+            <div class="ico_txt">ì´ì©ìë´</div>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.suwonlib.go.kr/inc/sso_login_s.asp?returnUrl=/lecture/lectureList.do" target="_blank">
+            <div class="ico_img">
+              <img src="/intro/gmi/ico_03.png" alt="">
+            </div>
+            <div class="ico_txt">ëìë¬¸ííë¡ê·¸ë¨</div>
+          </a>
+        </li>
+		 <li>
+          <a href="https://home.library.kr/post-user/page/main" target="_blank">
+            <div class="ico_img">
+              <img src="/intro/gmi/ico_07_0.png" alt="">
+            </div>
+            <div class="ico_txt">ì±ë°°ë¬ìë¹ì¤</div>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.suwonlib.go.kr/inc/sso_login_s.asp?returnUrl=/camping/campingApplySimple.do" target="_blank">
+            <div class="ico_img">
+              <img src="/intro/gmi/ico_04.png" alt="">
+            </div>
+            <div class="ico_txt">í¸ë¥¸ì² ì±ë°</div>
+          </a>
+        </li>
+        <li>
+          <a href="/intro/slib_main.asp" target="_blank">
+            <div class="ico_img">
+              <img src="/intro/gmi/ico_05.png" alt="">
+            </div>
+            <div class="ico_txt">ììëìê´ìë´</div>
+          </a>
+        </li>
+        
+      </ul>
+    </div>
+
+  
+  </div>
+  <div id="footer">
+    <div class="linkWarp">
+      <div class="resWidth">
+        <div class="fTop">
+          <ul>
+            <li><a href="http://www.suwon.go.kr/sw-www/sw-www_09/sw-www_09_01.jsp" class="f_txt" target="_blank">ê°ì¸ì ë³´ì²ë¦¬ë°©ì¹¨</a></li>
+            <li><a href="/intro/license.asp" target="_blank">ííì´ì§ì´ì©ì½ê´</a></li>
+          </ul>
+        </div>
+        <div class="select_set">
+            <div class="select-wrap">
+              <form method="post" target="_blank" name="gofamily1">
+			  <select id="site1" name="site1" title="íìë ì°êµ¬">
+				<option value="">ëìê´ ë°ë¡ê°ê¸°</option>
+				<option value="https://www.suwonlib.go.kr/sk/">ì ê²½ëìê´</option>
+				<option value="https://www.suwonlib.go.kr/ct/">ì¤ìëìê´</option>
+				<option value="https://www.suwonlib.go.kr/cy/">ì°½ë£¡ëìê´</option>
+				<option value="https://www.suwonlib.go.kr/hd/">íìë¤ì°ëìê´</option>
+				<option value="https://www.suwonlib.go.kr/hms/">í¸ë§¤ì¤ëìê´</option>
+				<option value="https://www.suwonlib.go.kr/seo/">ìììëìê´</option>
+				<option value="https://www.suwonlib.go.kr/hl/">íë¦¼ëìê´</option>
+				<option value="https://www.suwonlib.go.kr/bdn/">ë²ëë´ëìê´</option>
+				<option value="https://www.suwonlib.go.kr/buk/">ë¶ììëìê´</option>
+				<option value="https://www.suwonlib.go.kr/dcg/">ëì¶ê³¨ëìê´</option>
+				<option value="https://www.suwonlib.go.kr/iw/">ì¼ìëìê´</option>
+				<option value="https://www.suwonlib.go.kr/gh/">ê´êµíì¬ëìê´</option>
+				<!--<option value="https://www.suwonlib.go.kr/yt/">ìíµëìê´</option>-->
+				<option value="https://www.suwonlib.go.kr/tm/">íì¥ë§ë£¨ëìê´</option>
+				<option value="https://www.suwonlib.go.kr/gps/">ê´êµí¸ë¥¸ì²ëìê´</option>
+				<option value="https://www.suwonlib.go.kr/myu/">ë§¤ì¬ì¸ëìê´</option>
+				<option value="https://www.suwonlib.go.kr/mpgb/">ë§í¬ê¸ë¹ëìê´</option>
+				<option value="https://www.suwonlib.go.kr/skid/">ì¬ê¸°ìì´ë¦°ì´ëìê´</option>
+				<option value="https://www.suwonlib.go.kr/jkid/">ì§íìì´ë¦°ì´ëìê´</option>
+				<option value="https://www.suwonlib.go.kr/bkid/">ë°ë¥¸ìì´ë¦°ì´ëìê´</option>
+				<option value="https://www.suwonlib.go.kr/sycc/">íìë¦ëìê´</option>
+				<option value="https://www.suwonlib.go.kr/bandal/">ë°ë¬ì´ë¦°ì´ëìê´</option>
+				<option value="https://www.suwonlib.go.kr/swlove/">ì¬ëìëìê´</option>
+				<option value="https://www.suwonlib.go.kr/swhope/">í¬ë§ìëìê´</option>
+				<option value="https://www.suwonlib.go.kr/hwahong/">ííì´ë¦°ì´ëìê´</option>                        
+              </select>
+              <button class="site1-btn" onclick="return goLink();" title="ìì°½ì´ë¦¼">Go</button>
+			  </form>
+            </div>
+            
+        </div>
+      </div>
+    </div>
+        <div class="address">
+          <div class="footer_f">
+            <ul>
+              <li><span>16258</span>ê²½ê¸°ë ììì íë¬êµ¬ ì íë¡23ë²ê¸¸68(ì íë)</li>
+              <li>ì í : 031-5191-1251 / 1899-3300 </li>
+              <li>í©ì¤ : 031-369-2041</li>
+            </ul>
+            <p class="copyRight">COPYRIGHT BY ììì ëìê´ì¬ìì ALL RIGHT RESERVED.</p>
+          </div>
+          <div class="link_icon">
+            <ul>
+			  <li><a href="https://blog.naver.com/suwon_library" target="_blank"></a></li>
+              <li><a href="https://www.facebook.com/suwonlib" target="_blank"></a></li>
+              <li><a href="https://www.instagram.com/suwon_lib/" target="_blank"></a></li>
+            </ul>
+          </div>
+        </div>
+  </div>
+</div>
+
+</head>
+</html>

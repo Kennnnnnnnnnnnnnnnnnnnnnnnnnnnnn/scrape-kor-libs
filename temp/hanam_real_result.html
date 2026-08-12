@@ -1,0 +1,1702 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+<meta name="generator" content="jnet co. ltd.">
+
+	<title>자료검색결과</title>
+	
+<link rel="stylesheet" href="/kolaseek/include/css/jquery-ui.css" type="text/css">
+<link rel="stylesheet" href="/kolaseek/include/css/jquery.modalLink.css" type="text/css">
+<link rel="stylesheet" href="/kolaseek/include/css/kolaseek.css" type="text/css">
+<!--[if lt IE 9]>
+<link rel="stylesheet" type="text/css" href="/kolaseek/include/css/ie8.css">
+<![endif]-->
+<script type="text/javascript" src="/kolaseek/include/js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="/kolaseek/include/js/jquery-ui-draggable.min.js"></script>
+<script type="text/javascript" src="/kolaseek/include/js/jquery.alphanum.js"></script>
+<script type="text/javascript" src="/kolaseek/include/js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="/kolaseek/include/js/jquery.ui.datepicker-ko.js"></script>
+<script type="text/javascript" src="/kolaseek/include/js/jquery.modalLink.js"></script>
+<script type="text/javascript" src="/kolaseek/include/js/jQuery.stringify.js"></script>
+<script type="text/javascript" src="/kolaseek/include/js/iframeResizer.contentWindow.min.js"></script>
+<script type="text/javascript" src="/kolaseek/include/js/ie8.polyfils.min.js"></script>
+<script type="text/javascript" src="/kolaseek/include/js/loadingoverlay.min.js"></script>
+<script type="text/javascript" src="/kolaseek/include/js/tabAutoWidth.js"></script>
+<script type="text/javascript" src="/kolaseek/include/js/common.js"></script>
+<script type="text/javascript">
+	var $ctx = "/kolaseek";
+</script>
+
+	<link rel="stylesheet" href="/kolaseek/include/css/multilang.css" type="text/css">
+	<script type="text/javascript" src="/kolaseek/include/js/multilang.js"></script>
+	<script type="text/javascript" src="/kolaseek/include/js/autocom.js"></script>
+	<script type="text/javascript">
+	$(function(){
+		$("#searchForm #searchKey").change(fnChangeSearchKey).change();
+		$("#searchForm #searchKeyword").keypress(fnSearchEnter);
+		$("#searchBtn").click(fnSearch);
+		$("#reSearchLibraryBtn").click(fnReSearchLibrary);
+		$("#searchForm input[name=reSearchYn]").click(fnReSearchYn);
+		
+			$("#searchForm input[name=searchLibrary]").click(fnSearchLibraryAll);
+			$("#searchForm input[name=searchLibraryArr]").click(fnSearchLibraryChange);
+		
+		
+		$("#imageViewBtn").click(fnImageView);
+		$("#textViewBtn").click(fnTextView);
+		$("#addBasketBatchBtn").click(fnAddBasketBatchProc);
+		$("#exportTextBookBtn").click(fnExportTextBook);
+		$("#exportExcelBookBtn").click(fnExportExcelBook);
+		$("#searchForm select[name=searchSort]").change(fnSearchSortChange);
+		$("#sortBtn").click(fnSort);
+		$("#checkAll").click(fnCheckAll);
+		var offset = $("input[type=text][name=searchKeyword]").offset();
+		$(".multiLangBox").css("top", offset.top + 6).css("left", offset.left - 1);
+		$(".languageContents ul li a").on("click", fnInputMultiLang);
+		fnAutoComplete();
+	});
+
+	function fnInputMultiLang(){
+		var form = document.searchForm;
+		form.searchKeyword.value = form.searchKeyword.value + $(this).text().trim();
+		return false;
+	}
+
+	function fnAutoComplete(){
+		var options = {
+			isSelectSubmit : true
+			, suggestRequestUrl : $ctx + "/searchApi/plusAjaxAutoCompleteList.do"
+			, submitForm : "#searchForm"
+			, submitUrl : $ctx + "/search/plusSearchResultList.do"
+		};
+
+		$.autoComplete("#searchForm #searchKeyword", "#atcBox", "#atcList", "#atcShowBtn", "#atcCloseBtn", "#atcToggleBtn", options);
+	}
+
+	function fnChangeSearchKey() {
+		$(".searchSelect label").text($("#searchForm #searchKey option:selected").text());
+	}
+
+	function fnSearchPopularWord(popularWord){
+		var form = document.searchForm;
+		form.searchKeyword.value = popularWord;
+		form.reSearchYn.value = "N";
+		form.action="/kolaseek/search/plusSearchResultList.do"
+		fnLoadingOverlaySubmit(form);
+	}
+
+	function fnSearch(){
+		var form = document.searchForm;
+		var form2 = document.paramForm;
+		if(isEmpty(form.searchKeyword.value)){
+			alert("검색어를 입력하세요.");
+			return false;
+		}
+		if(form.reSearchYn.checked){
+			form.searchType.value = form2.searchType.value;
+		}else{
+			form.searchType.value = "SIMPLE";
+		}
+		form.action="/kolaseek/search/plusSearchResultList.do"
+		fnLoadingOverlaySubmit(form);
+		return false;
+	}
+
+	function fnReSearchYn(){
+		var form = document.searchForm;
+		var form2 = document.paramForm;
+		if(form.reSearchYn.checked){
+			form.searchKey.value = "ALL";
+			form.searchKeyword.value = "";
+		}else{
+			if(isEmpty(form2.searchKey.value)){
+				form.searchKey.value = "ALL";
+			}else{
+				form.searchKey.value = form2.searchKey.value;
+			}
+			form.searchKey.value = form2.searchKey.value;
+			form.searchKeyword.value = form2.searchKeyword.value;
+		}
+		fnChangeSearchKey();
+	}
+
+	
+		function fnSearchLibraryAll(){
+			var form = document.searchForm;
+			if(form.searchLibrary.checked){
+				$("#searchForm input[name=searchLibraryArr]").prop("checked", true);
+			}else{
+				$("#searchForm input[name=searchLibraryArr]").prop("checked", false);
+			}
+		}
+
+		function fnSearchLibraryChange(){
+			var form = document.searchForm;
+			if($("#searchForm input[name=searchLibraryArr]").size() == $("#searchForm input[name=searchLibraryArr]:checked").size()){
+				form.searchLibrary.checked = true;
+			}else{
+				form.searchLibrary.checked = false;
+			}
+		}
+
+		function fnReSearchLibrary(){
+			var form = document.paramForm;
+			var form2 = document.searchForm;
+
+			if(form2.searchLibrary.checked){
+				form.searchLibrary.value = "ALL";
+				$("#paramForm input[name=searchLibraryArr]").remove();
+			}else{
+				form.searchLibrary.value = "";
+				$("#paramForm input[name=searchLibraryArr]").remove();
+				$("#searchForm input[name=searchLibraryArr]:checked").each(function(){
+					$("#paramForm").append("<input type=\"hidden\" name=\"searchLibraryArr\" value=\"" + $(this).val() + "\">")
+				});
+			}
+
+			form.currentPageNo.value = 1;
+			form.action = "/kolaseek/search/plusSearchResultList.do";
+			fnLoadingOverlaySubmit(form);
+			return false;
+		}
+	
+
+	
+
+	function fnSearchCategory(searchCategory){
+		var form = document.paramForm;
+		form.currentPageNo.value = 1;
+		form.searchCategory.value = searchCategory;
+	    form.action = "/kolaseek/search/plusSearchResultList.do";
+		fnLoadingOverlaySubmit(form);
+	}
+
+	function fnSort(){
+		var form = document.paramForm;
+		form.currentPageNo.value = 1;
+		form.searchSort.value = document.searchForm.searchSort.value;
+		form.searchOrder.value = document.searchForm.searchOrder.value;
+		form.searchRecordCount.value = document.searchForm.searchRecordCount.value;
+	    form.action = "/kolaseek/search/plusSearchResultList.do";
+		fnLoadingOverlaySubmit(form);
+	    return false;
+	}
+
+	function fnImageView(){
+		var form = document.paramForm;
+		form.viewStatus.value = "IMAGE";
+		form.action="/kolaseek/search/plusSearchResultList.do";
+		fnLoadingOverlaySubmit(form);
+		return false;
+	}
+
+	function fnTextView(){
+		var form = document.paramForm;
+		form.viewStatus.value = "TEXT";
+		form.action="/kolaseek/search/plusSearchResultList.do";
+		fnLoadingOverlaySubmit(form);
+		return false;
+	}
+
+	function fnList(currentPageNo){
+		var form = document.paramForm;
+	    form.currentPageNo.value = currentPageNo;
+	    form.action = "/kolaseek/search/plusSearchResultList.do";
+		fnLoadingOverlaySubmit(form);
+	}
+
+	function fnSearchSortChange(){
+		switch($(this).val()){
+			case "SIMILAR":
+				$("#searchForm select[name=searchOrder]").hide();
+				break;
+			default:
+				$("#searchForm select[name=searchOrder]").show();
+			break;
+		}
+	}
+
+	function fnSearchDetailView(recKey, bookKey, publishFormCode){
+		var form = document.paramForm;
+		form.recKey.value = recKey;
+		form.bookKey.value = bookKey;
+		form.publishFormCode.value = publishFormCode;
+		form.action = "/kolaseek/search/plusSearchDetailView.do";
+		fnLoadingOverlaySubmit(form);
+	}
+
+	function fn_SSOEbookHanamLib() {
+	    
+			
+			
+	        
+				alert('로그인 후 이용가능합니다.');
+			
+		
+	}
+
+	function aspservice_01() {
+		var member_id = '';
+
+		var filter = "win16|win32|win64|mac";
+
+		if(member_id == ""){
+			alert('로그인 후 이용가능합니다.');
+			return;
+		} else {
+			if(navigator.platform){
+				if(0 > filter.indexOf(navigator.platform.toLowerCase())){
+					window.open("http://m.asp.audien.com/mpoc/web/main.htm?paId=81913b1e3c8aa5a1158e&userId=",'audien_pop', 'width=950, height=670,scrollbars=yes,resizable=yes');
+					$("#emaginTxt").show();
+
+				} else {
+					window.open("https://aspservice.audien.com/inticube/front/NeoAspMain.do?paId=81913b1e3c8aa5a1158e&userId=",'audien_pop', 'width=950, height=670,scrollbars=yes,resizable=yes');
+				}
+			}
+		}
+	}
+	</script>
+</head>
+<body class="body">
+<!-- 전체 wrap -->
+<div id="wrap" class="ifrWrap">
+	<!--Real Contents Start-->
+	
+	<form id="paramForm" name="paramForm" method="post">
+		<input type="hidden" name="searchType" value="SIMPLE">
+		<input type="hidden" name="searchCategory" value="ALL">
+		<input type="hidden" name="searchKey" value="ALL">
+		<input type="hidden" name="searchKey1" value="">
+		<input type="hidden" name="searchKey2" value="">
+		<input type="hidden" name="searchKey3" value="">
+		<input type="hidden" name="searchKey4" value="">
+		<input type="hidden" name="searchKey5" value="">
+		<input type="hidden" name="searchKeyword" value="파이썬">
+		<input type="hidden" name="searchKeyword1" value="">
+		<input type="hidden" name="searchKeyword2" value="">
+		<input type="hidden" name="searchKeyword3" value="">
+		<input type="hidden" name="searchKeyword4" value="">
+		<input type="hidden" name="searchKeyword5" value="">
+		<input type="hidden" name="searchOperator1" value="">
+		<input type="hidden" name="searchOperator2" value="">
+		<input type="hidden" name="searchOperator3" value="">
+		<input type="hidden" name="searchOperator4" value="">
+		<input type="hidden" name="searchOperator5" value="">
+		<input type="hidden" name="searchPublishStartYear" value="">
+		<input type="hidden" name="searchPublishEndYear" value="">
+		<input type="hidden" name="searchSeparateShelfCode" value="">
+		<input type="hidden" name="searchLibrary" value="">
+		
+		
+		<input type="hidden" name="searchRoom" value="">
+		<input type="hidden" name="searchKdc" value="">
+		<input type="hidden" name="searchSort" value="SIMILAR">
+		<input type="hidden" name="searchOrder" value="DESC">
+		<input type="hidden" name="searchRecordCount" value="10">
+		<input type="hidden" name="currentPageNo" value="1">
+		<input type="hidden" name="viewStatus" value="IMAGE">
+		<input type="hidden" name="preSearchKey" value="ALL">
+		<input type="hidden" name="preSearchKeyword" value="파이썬">
+		<input type="hidden" name="reSearchYn" value="N">
+		
+		<input type="hidden" name="recKey">
+		<input type="hidden" name="bookKey">
+		<input type="hidden" name="publishFormCode">
+	</form>
+
+	<form id="searchForm" name="searchForm" method="post">
+		<input type="hidden" name="searchType" value="SIMPLE"/>
+		<input type="hidden" name="searchCategory" value="ALL">
+		<input type="hidden" name="searchKey1" value="">
+		<input type="hidden" name="searchKey2" value="">
+		<input type="hidden" name="searchKey3" value="">
+		<input type="hidden" name="searchKey4" value="">
+		<input type="hidden" name="searchKey5" value="">
+		<input type="hidden" name="searchKeyword1" value="">
+		<input type="hidden" name="searchKeyword2" value="">
+		<input type="hidden" name="searchKeyword3" value="">
+		<input type="hidden" name="searchKeyword4" value="">
+		<input type="hidden" name="searchKeyword5" value="">
+		<input type="hidden" name="searchOperator1" value="">
+		<input type="hidden" name="searchOperator2" value="">
+		<input type="hidden" name="searchOperator3" value="">
+		<input type="hidden" name="searchOperator4" value="">
+		<input type="hidden" name="searchOperator5" value="">
+		<input type="hidden" name="searchPublishStartYear" value="">
+		<input type="hidden" name="searchPublishEndYear" value="">
+		<input type="hidden" name="searchSeparateShelfCode" value="">
+		<input type="hidden" name="searchRoom" value="">
+		<input type="hidden" name="searchKdc" value="">
+		<input type="hidden" name="searchLibrary" value="">
+		<input type="hidden" name="currentPageNo" value="1"/>
+		<input type="hidden" name="viewStatus" value="IMAGE">
+		<input type="hidden" name="preSearchKey" value="ALL">
+		<input type="hidden" name="preSearchKeyword" value="파이썬">
+		
+	<!-- keyword search form -->
+	<div class="keywordSearch mb15">
+		<!-- 인기검색어 -->
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<div class="popKwd">
+			<strong class="tit"><img src="/kolaseek/include/image/common/icon_keyword.png" alt=""> 인기자료</strong>
+			
+				<a href="#link" onclick="javascript:fnSearchPopularWord('흔한남매'); return false;">흔한남매</a>
+			
+				<a href="#link" onclick="javascript:fnSearchPopularWord('히가시노게이고'); return false;">히가시노게이고</a>
+			
+				<a href="#link" onclick="javascript:fnSearchPopularWord('그리스로마신화'); return false;">그리스로마신화</a>
+			
+				<a href="#link" onclick="javascript:fnSearchPopularWord('동물'); return false;">동물</a>
+			
+				<a href="#link" onclick="javascript:fnSearchPopularWord('오디세이아'); return false;">오디세이아</a>
+			
+				<a href="#link" onclick="javascript:fnSearchPopularWord('마법천자문'); return false;">마법천자문</a>
+			
+				<a href="#link" onclick="javascript:fnSearchPopularWord('삼국지'); return false;">삼국지</a>
+			
+		</div>
+		<!-- 인기검색어 끝 -->
+		<div class="searchForm">
+			
+			<div class="searchInput">
+				<div class="keywordBox">
+					<div class="searchSelect">
+						<label for="searchKey">전체</label>
+						<select id="searchKey" name="searchKey" title="검색 선택">
+							<option value="ALL" selected="selected">전체</option>
+							
+								
+								
+									<option value="TITLE" >서명</option>
+								
+							
+							<option value="AUTHOR" >저자</option>
+							<option value="PUBLISHER" >발행자</option>
+							<option value="KEYWORD" >키워드</option>
+						</select>
+					</div>
+					<div class="keywordInput">
+						<label for="searchKeyword" class="blind">검색어 입력</label>
+						<input type="text" id="searchKeyword" name="searchKeyword" autocomplete="off" value="파이썬" placeholder="검색어 입력">
+					</div>
+					<div class="btnSubmit"><a href="#btn" id="searchBtn">검색</a></div>
+				</div>
+				<p class="reSearch mt05">
+					<label for="reSearchYn"><input type="checkbox" id="reSearchYn" name="reSearchYn" value="Y"> 결과내재검색</label>
+				</p>
+			</div>
+			<!-- 자동완성 박스 -->
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			<a href="#atcList" id="atcShowBtn" title="자동완성 열기" class="btn_autoword"><img alt="자동완성 펼치기" src="/kolaseek/include/image/button/btn_autoword.png"></a>
+			<div class="atcBox atcHide" id="atcBox">
+				<ul id="atcList">
+				</ul>
+				<div class="atcFoot">
+					<span><a href="#btn" class="on" id="atcToggleBtn">자동완성 끄기</a></span>
+					<span style="display:none"><a href="#btn" class="on" id="atcCloseBtn">자동완성 닫기</a></span>
+				</div>
+			</div>
+
+			<!-- 자동완성 박스 끝 -->
+			<!-- 다국어입력기 -->
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			<div class="mlang webShow"><a href="#btn" id="multiLangBtn"><img src="/kolaseek/include/image/common/icon_mlang.png" alt=""> 다국어입력기</a></div>
+			<div class="multiLangBox" style="display:none;">
+				<div class="multiLang">
+					<ul class="language">
+						<li><a class="selected" href="#none">히라가나</a></li>
+						<li><a href="#none">가타카나</a></li>
+						<li><a href="#none">한글고어</a></li>
+						<li><a href="#none">그리스문자</a></li>
+						<li><a href="#none">괄호기호</a></li>
+						<li><a href="#none">학술기호</a></li>
+						<li><a href="#none">기술기호</a></li>
+						<li><a href="#none">라틴문자</a></li>
+						<li><a href="#none">러시아문자</a></li>
+						<li><a href="#none">단위기호</a></li>
+						<li><a href="#none">일반기호</a></li>
+						<li><a href="#none">로마자</a></li>
+						<li><a href="#none">첨자기호</a></li>
+					</ul>
+					<!-- 히라가나 -->
+					<div class="languageContents" style="display: block;">
+						<ul>
+							<li><a href="#">あ</a></li>
+							<li><a href="#">ぁ</a></li>
+							<li><a href="#">か</a></li>
+							<li><a href="#">が</a></li>
+							<li><a href="#">さ</a></li>
+							<li><a href="#">ざ</a></li>
+							<li><a href="#">た</a></li>
+							<li><a href="#">だ</a></li>
+							<li><a href="#">な</a></li>
+							<li><a href="#">は</a></li>
+							<li><a href="#">ば</a></li>
+							<li><a href="#">ぱ</a></li>
+							<li><a href="#">ま</a></li>
+							<li><a href="#">や</a></li>
+							<li><a href="#">ゃ</a></li>
+							<li><a href="#">ら</a></li>
+							<li><a href="#">わ</a></li>
+							<li><a href="#">ゎ</a></li>
+							<li><a href="#">ん</a></li>
+						</ul>
+						<ul>
+							<li><a href="#">い</a></li>
+							<li><a href="#">ぃ</a></li>
+							<li><a href="#">き</a></li>
+							<li><a href="#">ぎ</a></li>
+							<li><a href="#">し</a></li>
+							<li><a href="#">じ</a></li>
+							<li><a href="#">ち</a></li>
+							<li><a href="#">ぢ</a></li>
+							<li><a href="#">に</a></li>
+							<li><a href="#">ひ</a></li>
+							<li><a href="#">び</a></li>
+							<li><a href="#">ぴ</a></li>
+							<li><a href="#">み</a></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li><a href="#">り</a></li>
+						</ul>
+						<ul>
+							<li><a href="#">う</a></li>
+							<li><a href="#">ぅ</a></li>
+							<li><a href="#">く</a></li>
+							<li><a href="#">ぐ</a></li>
+							<li><a href="#">す</a></li>
+							<li><a href="#">ず</a></li>
+							<li><a href="#">つ</a></li>
+							<li><a href="#">づ</a></li>
+							<li><a href="#">っ</a></li>
+							<li><a href="#">ぬ</a></li>
+							<li><a href="#">ふ</a></li>
+							<li><a href="#">ぶ</a></li>
+							<li><a href="#">ぷ</a></li>
+							<li><a href="#">む</a></li>
+							<li><a href="#">ゆ</a></li>
+							<li><a href="#">ゅ</a></li>
+							<li><a href="#">る</a></li>
+						</ul>
+						<ul>
+							<li><a href="#">え</a></li>
+							<li><a href="#">ぇ</a></li>
+							<li><a href="#">け</a></li>
+							<li><a href="#">げ</a></li>
+							<li><a href="#">せ</a></li>
+							<li><a href="#">ぜ</a></li>
+							<li><a href="#">て</a></li>
+							<li><a href="#">で</a></li>
+							<li><a href="#">ね</a></li>
+							<li><a href="#">へ</a></li>
+							<li><a href="#">べ</a></li>
+							<li><a href="#">ぺ</a></li>
+							<li><a href="#">め</a></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li><a href="#">れ</a></li>
+						</ul>
+						<ul>
+							<li><a href="#">お</a></li>
+							<li><a href="#">ぉ</a></li>
+							<li><a href="#">こ</a></li>
+							<li><a href="#">ご</a></li>
+							<li><a href="#">そ</a></li>
+							<li><a href="#">ぞ</a></li>
+							<li><a href="#">と</a></li>
+							<li><a href="#">ど</a></li>
+							<li><a href="#">の</a></li>
+							<li><a href="#">ほ</a></li>
+							<li><a href="#">ぼ</a></li>
+							<li><a href="#">ぽ</a></li>
+							<li><a href="#">も</a></li>
+							<li><a href="#">よ</a></li>
+							<li><a href="#">ょ</a></li>
+							<li><a href="#">ろ</a></li>
+							<li><a href="#">を</a></li>
+						</ul>
+					</div>
+					<!-- //히라가나 -->
+					<!-- 가타카나 -->
+					<div class="languageContents" style="display: none;">
+						<ul>
+							<li><a href="#">ア</a></li>
+							<li><a href="#">ァ</a></li>
+							<li><a href="#">カ</a></li>
+							<li><a href="#">ガ</a></li>
+							<li><a href="#">サ</a></li>
+							<li><a href="#">ザ</a></li>
+							<li><a href="#">タ</a></li>
+							<li><a href="#">ダ</a></li>
+							<li><a href="#">ナ</a></li>
+							<li><a href="#">ハ</a></li>
+							<li><a href="#">バ</a></li>
+							<li><a href="#">パ</a></li>
+							<li><a href="#">マ</a></li>
+							<li><a href="#">ヤ</a></li>
+							<li><a href="#">ャ</a></li>
+							<li><a href="#">ラ</a></li>
+							<li><a href="#">ワ</a></li>
+							<li><a href="#">ヮ</a></li>
+							<li><a href="#">ン</a></li>
+						</ul>
+						<ul>
+							<li><a href="#">イ</a></li>
+							<li><a href="#">ィ</a></li>
+							<li><a href="#">キ</a></li>
+							<li><a href="#">ギ</a></li>
+							<li><a href="#">シ</a></li>
+							<li><a href="#">ジ</a></li>
+							<li><a href="#">チ</a></li>
+							<li><a href="#">ヂ</a></li>
+							<li><a href="#">ニ</a></li>
+							<li><a href="#">ヒ</a></li>
+							<li><a href="#">ビ</a></li>
+							<li><a href="#">ピ</a></li>
+							<li><a href="#">ミ</a></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li><a href="#">リ</a></li>
+						</ul>
+						<ul>
+							<li><a href="#">ウ</a></li>
+							<li><a href="#">ゥ</a></li>
+							<li><a href="#">ク</a></li>
+							<li><a href="#">グ</a></li>
+							<li><a href="#">ス</a></li>
+							<li><a href="#">ズ</a></li>
+							<li><a href="#">ツ</a></li>
+							<li><a href="#">ヅ</a></li>
+							<li><a href="#">ッ</a></li>
+							<li><a href="#">ヌ</a></li>
+							<li><a href="#">フ</a></li>
+							<li><a href="#">ブ</a></li>
+							<li><a href="#">プ</a></li>
+							<li><a href="#">ム</a></li>
+							<li><a href="#">ユ</a></li>
+							<li><a href="#">ュ</a></li>
+							<li><a href="#">ル</a></li>
+						</ul>
+						<ul>
+							<li><a href="#">エ</a></li>
+							<li><a href="#">ェ</a></li>
+							<li><a href="#">ケ</a></li>
+							<li><a href="#">ゲ</a></li>
+							<li><a href="#">セ</a></li>
+							<li><a href="#">ゼ</a></li>
+							<li><a href="#">テ</a></li>
+							<li><a href="#">デ</a></li>
+							<li><a href="#">ネ</a></li>
+							<li><a href="#">ヘ</a></li>
+							<li><a href="#">ベ</a></li>
+							<li><a href="#">ペ</a></li>
+							<li><a href="#">メ</a></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li><a href="#">レ</a></li>
+						</ul>
+						<ul>
+							<li><a href="#">オ</a></li>
+							<li><a href="#">ォ</a></li>
+							<li><a href="#">コ</a></li>
+							<li><a href="#">ゴ</a></li>
+							<li><a href="#">ソ</a></li>
+							<li><a href="#">ゾ</a></li>
+							<li><a href="#">ト</a></li>
+							<li><a href="#">ド</a></li>
+							<li><a href="#">ノ</a></li>
+							<li><a href="#">ホ</a></li>
+							<li><a href="#">ボ</a></li>
+							<li><a href="#">ポ</a></li>
+							<li><a href="#">モ</a></li>
+							<li><a href="#">ヨ</a></li>
+							<li><a href="#">ョ</a></li>
+							<li><a href="#">ロ</a></li>
+							<li><a href="#">ヲ</a></li>
+							<li><a href="#">―</a></li>
+						</ul>
+					</div>
+					<!-- //가타카나 -->
+					<!-- 한글고어 -->
+					<div class="languageContents" style="display: none;">
+						<ul>
+							<li><a href="#">ㅥ</a></li>
+							<li><a href="#">ㅦ</a></li>
+							<li><a href="#">ㅧ</a></li>
+							<li><a href="#">ㅨ</a></li>
+							<li><a href="#">ㅩ</a></li>
+							<li><a href="#">ㅪ</a></li>
+							<li><a href="#">ㅫ</a></li>
+							<li><a href="#">ㅬ</a></li>
+							<li><a href="#">ㅭ</a></li>
+							<li><a href="#">ㅮ</a></li>
+							<li><a href="#">ㅯ</a></li>
+							<li><a href="#">ㅰ</a></li>
+							<li><a href="#">ㅱ</a></li>
+							<li><a href="#">ㅲ</a></li>
+							<li><a href="#">ㅳ</a></li>
+							<li><a href="#">ㅴ</a></li>
+							<li><a href="#">ㅵ</a></li>
+							<li><a href="#">ㅶ</a></li>
+							<li><a href="#">ㅷ</a></li>
+							<li><a href="#">ㅸ</a></li>
+							<li><a href="#">ㅹ</a></li>
+							<li><a href="#">ㅺ</a></li>
+							<li><a href="#">ㅻ</a></li>
+							<li><a href="#">ㅼ</a></li>
+							<li><a href="#">ㅽ</a></li>
+							<li><a href="#">ㅾ</a></li>
+							<li><a href="#">ㅿ</a></li>
+							<li><a href="#">ㆀ</a></li>
+							<li><a href="#">ㆁ</a></li>
+							<li><a href="#">ㆂ</a></li>
+							<li><a href="#">ㆃ</a></li>
+							<li><a href="#">ㆄ</a></li>
+							<li><a href="#">ㆅ</a></li>
+							<li><a href="#">ㆆ</a></li>
+							<li><a href="#">ㆇ</a></li>
+							<li><a href="#">ㆈ</a></li>
+							<li><a href="#">ㆉ</a></li>
+							<li><a href="#">ㆊ</a></li>
+							<li><a href="#">ㆋ</a></li>
+							<li><a href="#">ㆌ</a></li>
+							<li><a href="#">ㆍ</a></li>
+							<li><a href="#">ㆎ</a></li>
+						</ul>
+					</div>
+					<!-- //한글고어 -->
+					<!-- 그리스문자 -->
+					<div class="languageContents" style="display: none;">
+						<ul>
+							<li><a href="#">Α</a></li>
+							<li><a href="#">Β</a></li>
+							<li><a href="#">Γ</a></li>
+							<li><a href="#">Δ</a></li>
+							<li><a href="#">Ε</a></li>
+							<li><a href="#">Ζ</a></li>
+							<li><a href="#">Η</a></li>
+							<li><a href="#">Θ</a></li>
+							<li><a href="#">Ι</a></li>
+							<li><a href="#">Κ</a></li>
+							<li><a href="#">Λ</a></li>
+							<li><a href="#">Μ</a></li>
+							<li><a href="#">Ν</a></li>
+							<li><a href="#">Ξ</a></li>
+							<li><a href="#">Ο</a></li>
+							<li><a href="#">Π</a></li>
+							<li><a href="#">Ρ</a></li>
+							<li><a href="#">Σ</a></li>
+							<li><a href="#">Τ</a></li>
+							<li><a href="#">Υ</a></li>
+							<li><a href="#">Φ</a></li>
+							<li><a href="#">Χ</a></li>
+							<li><a href="#">Ψ</a></li>
+							<li><a href="#">Ω</a></li>
+							<li><a href="#">α</a></li>
+							<li><a href="#">β</a></li>
+							<li><a href="#">γ</a></li>
+							<li><a href="#">δ</a></li>
+							<li><a href="#">ε</a></li>
+							<li><a href="#">ζ</a></li>
+							<li><a href="#">η</a></li>
+							<li><a href="#">θ</a></li>
+							<li><a href="#">ι</a></li>
+							<li><a href="#">κ</a></li>
+							<li><a href="#">λ</a></li>
+							<li><a href="#">μ</a></li>
+							<li><a href="#">ν</a></li>
+							<li><a href="#">ξ</a></li>
+							<li><a href="#">ο</a></li>
+							<li><a href="#">π</a></li>
+							<li><a href="#">ρ</a></li>
+							<li><a href="#">σ</a></li>
+							<li><a href="#">τ</a></li>
+							<li><a href="#">υ</a></li>
+							<li><a href="#">φ</a></li>
+							<li><a href="#">χ</a></li>
+							<li><a href="#">ψ</a></li>
+							<li><a href="#">ω</a></li>
+						</ul>
+					</div>
+					<!-- //그리스문자 -->
+					<!-- 괄호기호 -->
+					<div class="languageContents" style="display: none;">
+						<ul>
+							<li><a href="#">‘</a></li>
+							<li><a href="#">’</a></li>
+							<li><a href="#">“</a></li>
+							<li><a href="#">”</a></li>
+							<li><a href="#">〔</a></li>
+							<li><a href="#">〕</a></li>
+							<li><a href="#">〈</a></li>
+							<li><a href="#">〉</a></li>
+							<li><a href="#">「</a></li>
+							<li><a href="#">」</a></li>
+							<li><a href="#">『</a></li>
+							<li><a href="#">』</a></li>
+							<li><a href="#">【</a></li>
+							<li><a href="#">】</a></li>
+							<li><a href="#">＂</a></li>
+							<li><a href="#">（</a></li>
+							<li><a href="#">）</a></li>
+							<li><a href="#">［</a></li>
+							<li><a href="#">］</a></li>
+							<li><a href="#">｛</a></li>
+							<li><a href="#">｝</a></li>
+						</ul>
+					</div>
+					<!-- //괄호기호 -->
+					<!-- 학술기호 -->
+					<div class="languageContents" style="display: none;">
+						<ul>
+							<li><a href="#">±</a></li>
+							<li><a href="#">×</a></li>
+							<li><a href="#">÷</a></li>
+							<li><a href="#">≠</a></li>
+							<li><a href="#">≤</a></li>
+							<li><a href="#">≥</a></li>
+							<li><a href="#">∞</a></li>
+							<li><a href="#">∴</a></li>
+							<li><a href="#">♂</a></li>
+							<li><a href="#">♀</a></li>
+							<li><a href="#">∠</a></li>
+							<li><a href="#">⊥</a></li>
+							<li><a href="#">⌒</a></li>
+							<li><a href="#">∂</a></li>
+							<li><a href="#">∇</a></li>
+							<li><a href="#">≡</a></li>
+							<li><a href="#">≒</a></li>
+							<li><a href="#">≪</a></li>
+							<li><a href="#">≫</a></li>
+							<li><a href="#">√</a></li>
+							<li><a href="#">∽</a></li>
+							<li><a href="#">∝</a></li>
+							<li><a href="#">∵</a></li>
+							<li><a href="#">∫</a></li>
+							<li><a href="#">∬</a></li>
+							<li><a href="#">∈</a></li>
+							<li><a href="#">∋</a></li>
+							<li><a href="#">⊆</a></li>
+							<li><a href="#">⊇</a></li>
+							<li><a href="#">⊂</a></li>
+							<li><a href="#">⊃</a></li>
+							<li><a href="#">∪</a></li>
+							<li><a href="#">∩</a></li>
+							<li><a href="#">∧</a></li>
+							<li><a href="#">∨</a></li>
+							<li><a href="#">￢</a></li>
+							<li><a href="#">⇒</a></li>
+							<li><a href="#">⇔</a></li>
+							<li><a href="#">∀</a></li>
+							<li><a href="#">∃</a></li>
+							<li><a href="#">∮</a></li>
+							<li><a href="#">∑</a></li>
+							<li><a href="#">∏</a></li>
+							<li><a href="#">＋</a></li>
+							<li><a href="#">－</a></li>
+							<li><a href="#">＜</a></li>
+							<li><a href="#">＝</a></li>
+							<li><a href="#">＞</a></li>
+						</ul>
+					</div>
+					<!-- //학술기호 -->
+					<!-- 기술기호 -->
+					<div class="languageContents" style="display: none;">
+						<ul>
+							<li><a href="#">、</a></li>
+							<li><a href="#">。</a></li>
+							<li><a href="#">·</a></li>
+							<li><a href="#">‥</a></li>
+							<li><a href="#">…</a></li>
+							<li><a href="#">¨</a></li>
+							<li><a href="#">〃</a></li>
+							<li><a href="#">­</a></li>
+							<li><a href="#">―</a></li>
+							<li><a href="#">∥</a></li>
+							<li><a href="#">＼</a></li>
+							<li><a href="#">∼</a></li>
+							<li><a href="#">´</a></li>
+							<li><a href="#">～</a></li>
+							<li><a href="#">ˇ</a></li>
+							<li><a href="#">˘</a></li>
+							<li><a href="#">˝</a></li>
+							<li><a href="#">˚</a></li>
+							<li><a href="#">˙</a></li>
+							<li><a href="#">¸</a></li>
+							<li><a href="#">˛</a></li>
+							<li><a href="#">¡</a></li>
+							<li><a href="#">¿</a></li>
+							<li><a href="#">ː</a></li>
+							<li><a href="#">！</a></li>
+							<li><a href="#">＇</a></li>
+							<li><a href="#">，</a></li>
+							<li><a href="#">．</a></li>
+							<li><a href="#">／</a></li>
+							<li><a href="#">：</a></li>
+							<li><a href="#">；</a></li>
+							<li><a href="#">？</a></li>
+							<li><a href="#">＾</a></li>
+							<li><a href="#">＿</a></li>
+							<li><a href="#">｀</a></li>
+							<li><a href="#">｜</a></li>
+							<li><a href="#">￣</a></li>
+						</ul>
+					</div>
+					<!-- //기술기호 -->
+					<!-- 라틴문자 -->
+					<div class="languageContents" style="display: none;">
+						<ul>
+							<li><a href="#">Æ</a></li>
+							<li><a href="#">Ð</a></li>
+							<li><a href="#">Ħ</a></li>
+							<li><a href="#">ĲvĿ</a></li>
+							<li><a href="#">Ł</a></li>
+							<li><a href="#">Ø</a></li>
+							<li><a href="#">Œ</a></li>
+							<li><a href="#">Þ</a></li>
+							<li><a href="#">Ŧ</a></li>
+							<li><a href="#">Ŋ</a></li>
+							<li><a href="#">æ</a></li>
+							<li><a href="#">đ</a></li>
+							<li><a href="#">ð</a></li>
+							<li><a href="#">ħ</a></li>
+							<li><a href="#">ı</a></li>
+							<li><a href="#">ĳ</a></li>
+							<li><a href="#">ĸ</a></li>
+							<li><a href="#">ŀ</a></li>
+							<li><a href="#">ł</a></li>
+							<li><a href="#">ø</a></li>
+							<li><a href="#">œ</a></li>
+							<li><a href="#">ß</a></li>
+							<li><a href="#">þ</a></li>
+							<li><a href="#">ŧ</a></li>
+							<li><a href="#">ŋ</a></li>
+							<li><a href="#">ŉ</a></li>
+						</ul>
+					</div>
+					<!-- //라틴문자 -->
+					<!-- 러시아문자 -->
+					<div class="languageContents" style="display: none;">
+						<ul>
+							<li><a href="#">А</a></li>
+							<li><a href="#">Б</a></li>
+							<li><a href="#">В</a></li>
+							<li><a href="#">Г</a></li>
+							<li><a href="#">Д</a></li>
+							<li><a href="#">Е</a></li>
+							<li><a href="#">Ё</a></li>
+							<li><a href="#">Ж</a></li>
+							<li><a href="#">З</a></li>
+							<li><a href="#">И</a></li>
+							<li><a href="#">Й</a></li>
+							<li><a href="#">К</a></li>
+							<li><a href="#">Л</a></li>
+							<li><a href="#">М</a></li>
+							<li><a href="#">Н</a></li>
+							<li><a href="#">О</a></li>
+							<li><a href="#">П</a></li>
+							<li><a href="#">Р</a></li>
+							<li><a href="#">С</a></li>
+							<li><a href="#">Т</a></li>
+							<li><a href="#">У</a></li>
+							<li><a href="#">Ф</a></li>
+							<li><a href="#">Х</a></li>
+							<li><a href="#">Ц</a></li>
+							<li><a href="#">Ч</a></li>
+							<li><a href="#">Ш</a></li>
+							<li><a href="#">Щ</a></li>
+							<li><a href="#">Ъ</a></li>
+							<li><a href="#">Ы</a></li>
+							<li><a href="#">Ь</a></li>
+							<li><a href="#">Э</a></li>
+							<li><a href="#">Ю</a></li>
+							<li><a href="#">Я</a></li>
+							<li><a href="#">а</a></li>
+							<li><a href="#">б</a></li>
+							<li><a href="#">в</a></li>
+							<li><a href="#">г</a></li>
+							<li><a href="#">д</a></li>
+							<li><a href="#">е</a></li>
+							<li><a href="#">ё</a></li>
+							<li><a href="#">ж</a></li>
+							<li><a href="#">з</a></li>
+							<li><a href="#">и</a></li>
+							<li><a href="#">й</a></li>
+							<li><a href="#">к</a></li>
+							<li><a href="#">л</a></li>
+							<li><a href="#">м</a></li>
+							<li><a href="#">н</a></li>
+							<li><a href="#">о</a></li>
+							<li><a href="#">п</a></li>
+							<li><a href="#">р</a></li>
+							<li><a href="#">с</a></li>
+							<li><a href="#">т</a></li>
+							<li><a href="#">у</a></li>
+							<li><a href="#">ф</a></li>
+							<li><a href="#">х</a></li>
+							<li><a href="#">ц</a></li>
+							<li><a href="#">ч</a></li>
+							<li><a href="#">ш</a></li>
+							<li><a href="#">щ</a></li>
+							<li><a href="#">ъ</a></li>
+							<li><a href="#">ы</a></li>
+							<li><a href="#">ь</a></li>
+							<li><a href="#">э</a></li>
+							<li><a href="#">ю</a></li>
+							<li><a href="#">я</a></li>
+						</ul>
+					</div>
+					<!-- //러시아문자 -->
+					<!-- 단위기호 -->
+					<div class="languageContents" style="display: none;">
+						<ul>
+							<li><a href="#">′</a></li>
+							<li><a href="#">″</a></li>
+							<li><a href="#">℃</a></li>
+							<li><a href="#">Å</a></li>
+							<li><a href="#">￠</a></li>
+							<li><a href="#">￡</a></li>
+							<li><a href="#">￥</a></li>
+							<li><a href="#">¤</a></li>
+							<li><a href="#">℉</a></li>
+							<li><a href="#">‰</a></li>
+							<li><a href="#">＄</a></li>
+							<li><a href="#">％</a></li>
+							<li><a href="#">Ｆ</a></li>
+							<li><a href="#">￦</a></li>
+							<li><a href="#">㎕</a></li>
+							<li><a href="#">㎖</a></li>
+							<li><a href="#">㎗</a></li>
+							<li><a href="#">ℓ</a></li>
+							<li><a href="#">㎘</a></li>
+							<li><a href="#">㏄</a></li>
+							<li><a href="#">㎣</a></li>
+							<li><a href="#">㎤</a></li>
+							<li><a href="#">㎥</a></li>
+							<li><a href="#">㎦</a></li>
+							<li><a href="#">㎙</a></li>
+							<li><a href="#">㎚</a></li>
+							<li><a href="#">㎛</a></li>
+							<li><a href="#">㎜</a></li>
+							<li><a href="#">㎝</a></li>
+							<li><a href="#">㎞</a></li>
+							<li><a href="#">㎟</a></li>
+							<li><a href="#">㎠</a></li>
+							<li><a href="#">㎡</a></li>
+							<li><a href="#">㎢</a></li>
+							<li><a href="#">㏊</a></li>
+							<li><a href="#">㎍</a></li>
+							<li><a href="#">㎎</a></li>
+							<li><a href="#">㎏</a></li>
+							<li><a href="#">㏏</a></li>
+							<li><a href="#">㎈</a></li>
+							<li><a href="#">㎉</a></li>
+							<li><a href="#">㏈</a></li>
+							<li><a href="#">㎧</a></li>
+							<li><a href="#">㎨</a></li>
+							<li><a href="#">㎰</a></li>
+							<li><a href="#">㎱</a></li>
+							<li><a href="#">㎲</a></li>
+							<li><a href="#">㎳</a></li>
+							<li><a href="#">㎴</a></li>
+							<li><a href="#">㎵</a></li>
+							<li><a href="#">㎶</a></li>
+							<li><a href="#">㎷</a></li>
+							<li><a href="#">㎸</a></li>
+							<li><a href="#">㎹</a></li>
+							<li><a href="#">㎀</a></li>
+							<li><a href="#">㎁</a></li>
+							<li><a href="#">㎂</a></li>
+							<li><a href="#">㎃</a></li>
+							<li><a href="#">㎄</a></li>
+							<li><a href="#">㎺</a></li>
+							<li><a href="#">㎻</a></li>
+							<li><a href="#">㎽</a></li>
+							<li><a href="#">㎾</a></li>
+							<li><a href="#">㎿</a></li>
+							<li><a href="#">㎐</a></li>
+							<li><a href="#">㎑</a></li>
+							<li><a href="#">㎒</a></li>
+							<li><a href="#">㎓</a></li>
+							<li><a href="#">㎔</a></li>
+							<li><a href="#">Ω</a></li>
+							<li><a href="#">㏀</a></li>
+							<li><a href="#">㏁</a></li>
+							<li><a href="#">㎊</a></li>
+							<li><a href="#">㎋</a></li>
+							<li><a href="#">㎌</a></li>
+							<li><a href="#">㏖</a></li>
+							<li><a href="#">㏅</a></li>
+							<li><a href="#">㎭</a></li>
+							<li><a href="#">㎮</a></li>
+							<li><a href="#">㎯</a></li>
+							<li><a href="#">㏛</a></li>
+							<li><a href="#">㎩</a></li>
+							<li><a href="#">㎪</a></li>
+							<li><a href="#">㎫</a></li>
+							<li><a href="#">㎬</a></li>
+							<li><a href="#">㏝</a></li>
+							<li><a href="#">㏐</a></li>
+							<li><a href="#">㏓</a></li>
+							<li><a href="#">㏃</a></li>
+							<li><a href="#">㏉</a></li>
+							<li><a href="#">㏜</a></li>
+							<li><a href="#">㏆</a></li>
+						</ul>
+					</div>
+					<!-- //단위기호 -->
+					<!-- 일반기호 -->
+					<div class="languageContents" style="display: none;">
+						<ul>
+							<li><a href="#">§</a></li>
+							<li><a href="#">※</a></li>
+							<li><a href="#">☆</a></li>
+							<li><a href="#">★</a></li>
+							<li><a href="#">○</a></li>
+							<li><a href="#">●</a></li>
+							<li><a href="#">◎</a></li>
+							<li><a href="#">◇</a></li>
+							<li><a href="#">◆</a></li>
+							<li><a href="#">□</a></li>
+							<li><a href="#">■</a></li>
+							<li><a href="#">△</a></li>
+							<li><a href="#">▽</a></li>
+							<li><a href="#">→</a></li>
+							<li><a href="#">←</a></li>
+							<li><a href="#">↑</a></li>
+							<li><a href="#">↓</a></li>
+							<li><a href="#">↔</a></li>
+							<li><a href="#">〓</a></li>
+							<li><a href="#">◁</a></li>
+							<li><a href="#">◀</a></li>
+							<li><a href="#">▷</a></li>
+							<li><a href="#">▶</a></li>
+							<li><a href="#">♤</a></li>
+							<li><a href="#">♠</a></li>
+							<li><a href="#">♡</a></li>
+							<li><a href="#">♥</a></li>
+							<li><a href="#">♧</a></li>
+							<li><a href="#">♣</a></li>
+							<li><a href="#">⊙</a></li>
+							<li><a href="#">◈</a></li>
+							<li><a href="#">▣</a></li>
+							<li><a href="#">◐</a></li>
+							<li><a href="#">◑</a></li>
+							<li><a href="#">▒</a></li>
+							<li><a href="#">▤</a></li>
+							<li><a href="#">▥</a></li>
+							<li><a href="#">▨</a></li>
+							<li><a href="#">▧</a></li>
+							<li><a href="#">▦</a></li>
+							<li><a href="#">▩</a></li>
+							<li><a href="#">♨</a></li>
+							<li><a href="#">☏</a></li>
+							<li><a href="#">☎</a></li>
+							<li><a href="#">☜</a></li>
+							<li><a href="#">☞</a></li>
+							<li><a href="#">¶</a></li>
+							<li><a href="#">†</a></li>
+							<li><a href="#">‡</a></li>
+							<li><a href="#">↕</a></li>
+							<li><a href="#">↗</a></li>
+							<li><a href="#">↙</a></li>
+							<li><a href="#">↖</a></li>
+							<li><a href="#">↘</a></li>
+							<li><a href="#">♭</a></li>
+							<li><a href="#">♩</a></li>
+							<li><a href="#">♪</a></li>
+							<li><a href="#">♬</a></li>
+							<li><a href="#">㉿</a></li>
+							<li><a href="#">㈜</a></li>
+							<li><a href="#">№</a></li>
+							<li><a href="#">㏇</a></li>
+							<li><a href="#">™</a></li>
+							<li><a href="#">㏂</a></li>
+							<li><a href="#">㏘</a></li>
+							<li><a href="#">℡</a></li>
+							<li><a href="#">＃</a></li>
+							<li><a href="#">＆</a></li>
+							<li><a href="#">＊</a></li>
+							<li><a href="#">＠</a></li>
+							<li><a href="#">ª</a></li>
+							<li><a href="#">º</a></li>
+						</ul>
+					</div>
+					<!-- //일반기호 -->
+					<!-- 로마자 -->
+					<div class="languageContents" style="display: none;">
+						<ul>
+							<li><a href="#">ⅰ</a></li>
+							<li><a href="#">ⅱ</a></li>
+							<li><a href="#">ⅲ</a></li>
+							<li><a href="#">ⅳ</a></li>
+							<li><a href="#">ⅴ</a></li>
+							<li><a href="#">ⅵ</a></li>
+							<li><a href="#">ⅶ</a></li>
+							<li><a href="#">ⅷ</a></li>
+							<li><a href="#">ⅸ</a></li>
+							<li><a href="#">ⅹ</a></li>
+							<li><a href="#">Ⅰ</a></li>
+							<li><a href="#">Ⅱ</a></li>
+							<li><a href="#">Ⅲ</a></li>
+							<li><a href="#">Ⅳ</a></li>
+							<li><a href="#">Ⅴ</a></li>
+							<li><a href="#">Ⅵ</a></li>
+							<li><a href="#">Ⅶ</a></li>
+							<li><a href="#">Ⅷ</a></li>
+							<li><a href="#">Ⅸ</a></li>
+							<li><a href="#">Ⅹ</a></li>
+						</ul>
+					</div>
+					<!-- //로마자 -->
+					<!-- 첨자기호 -->
+					<div class="languageContents" style="display: none;">
+						<ul>
+							<li><a href="#">½</a></li>
+							<li><a href="#">⅓</a></li>
+							<li><a href="#">⅔</a></li>
+							<li><a href="#">¼</a></li>
+							<li><a href="#">¾</a></li>
+							<li><a href="#">⅛</a></li>
+							<li><a href="#">⅜</a></li>
+							<li><a href="#">⅝</a></li>
+							<li><a href="#">⅞</a></li>
+							<li><a href="#">¹</a></li>
+							<li><a href="#">²</a></li>
+							<li><a href="#">³</a></li>
+							<li><a href="#">⁴</a></li>
+							<li><a href="#">ⁿ</a></li>
+							<li><a href="#">₁</a></li>
+							<li><a href="#">₂</a></li>
+							<li><a href="#">₃</a></li>
+							<li><a href="#">₄</a></li>
+						</ul>
+					</div>
+					<!-- //첨자기호 -->
+				</div>
+				<p class="multiLangBox_close">
+					<a href="#none">닫기</a>
+				</p>
+			</div>
+			<!-- //다국어 입력기 -->
+		</div>
+		<div class="searchSide">
+			<div class="btnArea fl">
+				<a href="/kolaseek/search/plusSearchDetail.do">상세검색</a>
+				<!-- <a href="/kolaseek/plus/search/plusSearchKdc.do">주제검색</a> -->
+			</div>
+		</div>
+	</div>
+	<!-- //keyword search form -->
+	<!-- 도서관선택 -->
+	<div class="searchCheckBox mb20">
+		
+			<div>
+				<h4 class="tit">도서관 선택</h4>
+				<ul class="searchCheckList clearfix">
+					<li class="total2">
+						<input type="checkbox" id="searchLibrary" name="searchLibrary" value="ALL"  class="chkStyle">
+						<label for="searchLibrary">전체선택</label>
+						<span class="tblBtn themeBtn"><a href="#btn" id="reSearchLibraryBtn">적용</a></span>
+					</li>
+					
+						<li>
+							<input type="checkbox" id="searchLibraryArr1" name="searchLibraryArr" value="MB"
+								
+									
+									
+									
+										
+									
+								
+							class="chkStyle">
+							<label for="searchLibraryArr1">
+								나룰도서관(<span class="themeFC">126</span>)
+							</label>
+						</li>
+					
+						<li>
+							<input type="checkbox" id="searchLibraryArr2" name="searchLibraryArr" value="MA"
+								
+									
+									
+									
+										
+									
+								
+							class="chkStyle">
+							<label for="searchLibraryArr2">
+								신장도서관(<span class="themeFC">73</span>)
+							</label>
+						</li>
+					
+						<li>
+							<input type="checkbox" id="searchLibraryArr3" name="searchLibraryArr" value="MC"
+								
+									
+									
+									
+										
+									
+								
+							class="chkStyle">
+							<label for="searchLibraryArr3">
+								덕풍도서관(<span class="themeFC">9</span>)
+							</label>
+						</li>
+					
+						<li>
+							<input type="checkbox" id="searchLibraryArr4" name="searchLibraryArr" value="MD"
+								
+									
+									
+									
+										
+									
+								
+							class="chkStyle">
+							<label for="searchLibraryArr4">
+								세미도서관(<span class="themeFC">6</span>)
+							</label>
+						</li>
+					
+						<li>
+							<input type="checkbox" id="searchLibraryArr5" name="searchLibraryArr" value="ME"
+								
+									
+									
+									
+										
+									
+								
+							class="chkStyle">
+							<label for="searchLibraryArr5">
+								디지털도서관(<span class="themeFC">17</span>)
+							</label>
+						</li>
+					
+						<li>
+							<input type="checkbox" id="searchLibraryArr6" name="searchLibraryArr" value="MS"
+								
+									
+									
+									
+										
+									
+								
+							class="chkStyle">
+							<label for="searchLibraryArr6">
+								미사도서관(<span class="themeFC">145</span>)
+							</label>
+						</li>
+					
+						<li>
+							<input type="checkbox" id="searchLibraryArr7" name="searchLibraryArr" value="MF"
+								
+									
+									
+									
+										
+									
+								
+							class="chkStyle">
+							<label for="searchLibraryArr7">
+								위례도서관(<span class="themeFC">62</span>)
+							</label>
+						</li>
+					
+						<li>
+							<input type="checkbox" id="searchLibraryArr8" name="searchLibraryArr" value="IG"
+								
+									
+									
+									
+										
+									
+								
+							class="chkStyle">
+							<label for="searchLibraryArr8">
+								일가도서관(<span class="themeFC">25</span>)
+							</label>
+						</li>
+					
+						<li>
+							<input type="checkbox" id="searchLibraryArr9" name="searchLibraryArr" value="MG"
+								
+									
+									
+									
+										
+									
+								
+							class="chkStyle">
+							<label for="searchLibraryArr9">
+								어울림작은도서관(<span class="themeFC">0</span>)
+							</label>
+						</li>
+					
+						<li>
+							<input type="checkbox" id="searchLibraryArr10" name="searchLibraryArr" value="MH"
+								
+									
+									
+									
+										
+									
+								
+							class="chkStyle">
+							<label for="searchLibraryArr10">
+								덕풍스포츠작은도서관(<span class="themeFC">4</span>)
+							</label>
+						</li>
+					
+						<li>
+							<input type="checkbox" id="searchLibraryArr11" name="searchLibraryArr" value="MI"
+								
+									
+									
+									
+										
+									
+								
+							class="chkStyle">
+							<label for="searchLibraryArr11">
+								감일도서관(<span class="themeFC">74</span>)
+							</label>
+						</li>
+					
+				</ul>
+			</div>
+		
+		
+	</div>
+	<!-- // 도서관선택 -->
+	<!-- 검색어 하이라이트 클래스 : searcKwd -->
+	<p class="htitle stitle">
+		
+		
+			
+				
+					
+					
+						
+							
+							
+							
+							
+							
+						
+					
+				
+			
+			
+			
+		
+		요청한 검색어 <strong class="searcKwd themeColor">&#039;전체:파이썬&#039;</strong>에 대한 <span class="themeFC">자료 검색 결과</span>이며 총 <span class="themeFC">0건</span>이 검색되었습니다.
+	</p>
+	<!-- search result -->
+	<ul class="emp1 mb20">
+	    <li>※ 소속 자료실이 "이동도서관(나룰도서관대출불가)"인 자료는 나룰도서관에서 대출/예약이 불가능합니다.</li>
+		<li>※ 이동도서관 자료는 해당 요일 및 시간별 운영장소에서만 대출이 가능하오니 이 점 양해바랍니다. 운영장소는 공지사항을 참고해주시기 바랍니다.</li>
+		<li>※ 전자책 및 오디오북은 [도서관자료]-[전자도서관] 메뉴를 통해서 이용하실 수 있습니다.</li>
+	</ul>
+	<!-- tab area -->
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<div class="resultTop">
+		<div class="ttabWrap">
+			
+			
+			
+			
+			
+			<ul class="tabMenu autoTab clearfix">
+				<li class="choiced"><a href="#link" onclick="javascript:fnSearchCategory('ALL'); return false;">전체<span>(0)</span></a></li>
+				<li ><a href="#link" onclick="javascript:fnSearchCategory('BOOK'); return false;">단행본<span>(0)</span></a></li>
+				<li ><a href="#link" onclick="javascript:fnSearchCategory('SERIAL'); return false;">연속간행물<span>(0)</span></a></li>
+				<li ><a href="#link" onclick="javascript:fnSearchCategory('NONBOOK'); return false;">비도서<span>(0)</span></a></li>
+			</ul>
+		</div>
+	</div>
+
+	<!-- //tab area -->
+	<!-- result Filter -->
+	<div class="resultFilter clearfix">
+		<div class="sort">
+			<select name="searchSort" id="searchSort" class="resultSelect" title="정렬방식 선택">
+				<option value="SIMILAR" selected="selected">정확도순</option>
+				<option value="KEY" >등록일</option>
+				<option value="TITLE" >서명</option>
+				<option value="AUTHOR" >저자</option>
+				<option value="PUBLISHER" >발행자</option>
+				<option value="PUBLISHYEAR" >발행년도</option>
+			</select>
+			<select name="searchOrder" id="searchOrder" class="resultSelect" title="정렬순서 선택" style="display:none">
+				<option value="DESC" selected="selected">내림차순</option>
+				<option value="ASC" >오름차순</option>
+			</select>
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			<select name="searchRecordCount" id="searchRecordCount" class="resultSelect" title="출력 건수 선택">
+				
+					<option value="10" selected="selected">10건</option>
+				
+					<option value="20" >20건</option>
+				
+					<option value="30" >30건</option>
+				
+					<option value="40" >40건</option>
+				
+					<option value="50" >50건</option>
+				
+			</select>
+			<a href="#btn" id="sortBtn" class="btnGo">확인</a>
+		</div>
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<div class="mode">
+			<span class="btnToggle">
+				<a href="#btn" title="표지형으로 보기" id="imageViewBtn" class="btnTogImage choiced"><span class="blind">목록형</span></a>
+				<a href="#btn" title="목록형으로 보기" id="textViewBtn" class="btnTogText "><span class="blind">표지형</span></a>
+			</span>
+		</div>
+	</div>
+	<!-- //result Filter -->
+	<!-- list head -->
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<div class="resultHead">
+		<div class="btnArea">
+			
+			<span class="chk"><input type="checkbox" name="checkAll" id="checkAll" value="Y" title="전체 목록 선택"></span>
+			
+				<span class="button btn_function1"><a href="#btn" id="addBasketBatchBtn">관심자료담기</a></span>
+			
+			<span class="button btn_function7 webShow"><a href="#btn" id="exportTextBookBtn">텍스트목록저장</a></span>
+			<span class="button btn_function8 webShow"><a href="#btn" id="exportExcelBookBtn">엑셀목록저장</a></span>
+			
+				<span class="button btn_function2 go"><a href="/kolaseek/mylibrary/basket/basketList.do" onclick="javascript:fnLoadingOverlayRedirect(this.href);">관심자료보기</a></span>
+			
+		</div>
+	</div>
+
+	<!-- //list head -->
+	<!-- result list -->
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<ul class="resultList imageType imageType">
+		
+			
+			
+				<li class="message">
+					검색된 자료가 없습니다.
+				</li>
+			
+		
+	</ul>
+	<!-- //result list -->
+	</form>
+	<!-- 페이징 -->
+	<div class="pagingWrap">
+		
+		<p class="paging">
+</p>
+	</div>
+	<!-- //페이징 -->
+	<!-- //search result -->
+	<!-- End Of the Real Contents-->
+</div>
+</body>
+</html>

@@ -1,0 +1,4215 @@
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta name="naver-site-verification" content="9fd5a19163991252f2a7c0c45342d75c353d35c5" />
+        <meta name="google-site-verification" content="1Wos_ybrIr84aMzyIdMHwBADKyJK8rm9IzcHKrSmgfU" />
+		<meta name="description" content="수원시도서관 모바일" />
+        <meta name="apple-mobile-web-app-title" content="수원시도서관 모바일" />
+        <title>수원시도서관 모바일</title>
+
+        
+        <!-- CSS -->
+        <script type="text/javascript" src="/javascript/common/swiper-bundle.min.js"></script>
+        <link href="/css/swiper-bundle.min.css" rel="stylesheet" type="text/css" />
+        <link href="/css/common.css" rel="stylesheet" type="text/css" />
+        <link href="/css/kdotCloudHompage_2022.css" rel="stylesheet" type="text/css" />
+        <link href="/css/main.css" rel="stylesheet" type="text/css" />
+        <link href="/css/suwon.css" rel="stylesheet" type="text/css" />
+        <link rel="manifest" href="/pwa/manifest.json" />
+        <!-- SCRIPT -->
+        <script type="text/javascript" src="/javascript/jquery.min.js"></script>
+        <script type="text/javascript" src="/javascript/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="/javascript/jquery-1.10.2.js"></script>
+        <script type="text/javascript" src="/javascript/jquery-ui-1.10.4.custom.js"></script>
+        <script type="text/javascript" src="/javascript/common/cloudhomepage.ajax.js"></script>
+        <script type="text/javascript" src="/javascript/common/cloudhomepage.common.js"></script>
+        <script type="text/javascript" src="/javascript/common/cloudhomepage.dialog.js"></script>
+        <script type="text/javascript" src="/javascript/common/cloudhomepage.message.js"></script>
+        <script type="text/javascript" src="/javascript/common/cloudhomepage.validation.js"></script>
+        <script type="text/javascript" src="/javascript/common/cloudhomepage.mobile.js"></script>
+        <script type="text/javascript" src="/javascript/common/cloudhomepage.paging.js"></script>
+        <script type="text/javascript" src="/javascript/common/cloudhomepage.menu_260211.js"></script>
+        <script type="text/javascript" src="/javascript/design.js"></script>
+        
+        <!-- FAVICON -->
+        <link rel="shortcut icon" href="/images/favi/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/images/favi/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="96x96" href="/images/favi/favicon-96x96.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/images/favi/favicon-16x16.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/pwa/fav_180.png" />
+        <link rel="apple-touch-icon" sizes="167x167" href="/pwa/fav_167.png" />
+        <link rel="apple-touch-icon" sizes="152x152" href="/pwa/fav_152.png" />
+        <link rel="apple-touch-icon" sizes="120x120" href="/pwa/fav_120.png" />
+
+        <script>
+            let deferredPrompt;
+
+            // 플랫폼 구분 함수
+            function isAndroid() {
+                return /Android/i.test(navigator.userAgent);
+            }
+            function isIOS() {
+                return /iPhone|iPad|iPod/i.test(navigator.userAgent);
+            }
+            // 안드로이드 PWA 설치 여부 확인 함수
+            function isAndroidPwaInstalled() {
+                return window.matchMedia('(display-mode: standalone)').matches;
+            }
+
+            // iOS PWA 설치 여부 확인 함수
+            function isIosPwaInstalled() {
+                return window.navigator.standalone === true;
+            }
+
+            // beforeinstallprompt 이벤트 처리 (Android용)
+            window.addEventListener('beforeinstallprompt', (e) => {
+
+                if (!isAndroid()) return;
+                e.preventDefault();
+                deferredPrompt = e
+
+                // Android용 모달 띄우기
+                if (shouldShowModal()) {
+                    document.querySelector('.pwa-wrap.center').style.display = 'block';
+                    document.querySelector('.pwa-wrap:not(.center)').style.display = 'none';
+                }
+                if(isAndroidPwaInstalled()){
+                    return;
+                }
+
+                // "설치없이 앱으로 열기" 버튼 클릭 시 PWA 설치 프롬프트
+                document.getElementById('installBtn').addEventListener('click', () => {
+                    if (deferredPrompt) {
+                        deferredPrompt.prompt();
+                        deferredPrompt.userChoice.then((choiceResult) => {
+                            // 선택 후 모달 숨기기
+                            document.getElementById('pwaAndroidPop').style.display = 'none';
+                            deferredPrompt = null;
+                        });
+                    }
+                });
+
+            });
+
+            // iOS용 별도 안내 모달 띄우기 (beforeinstallprompt 지원하지 않음)
+            window.addEventListener('load', () => {
+                if (isInAppBrowser()) {
+                    showGuideModal();
+                } else if (isIOS()) {
+                    if (isIosPwaInstalled()) {
+                        document.querySelector('.pwa-wrap:not(.center)').style.display = 'none';
+                        console.log("iOS PWA 이미 설치됨, 안내 중지");
+                    } else {
+                        // iOS용 모달만 띄우기
+                        document.querySelector('.pwa-wrap.center').style.display = 'none';
+                        document.querySelector('.pwa-wrap:not(.center)').style.display = 'block';
+
+                        // iOS 닫기 버튼 클릭 시 모달 숨기기
+                        document.querySelector('.pwa-wrap .close').addEventListener('click', () => {
+                            document.querySelector('.pwa-wrap:not(.center)').style.display = 'none';
+                        });
+                    }
+                }
+            });
+
+            function isInAppBrowser() {
+                const ua = navigator.userAgent.toLowerCase();
+
+                function isNull (data) {
+                    return (data === undefined || data === null) ? true : false;
+                }
+
+                return (
+                    ua.includes("fban") || // Facebook
+                    ua.includes("fbav") ||
+                    ua.includes("messenger") ||
+                    ua.includes("instagram") ||
+                    ua.includes("kakaotalk") ||
+                    ua.includes("kakaowork") ||
+                    ua.includes("naverworks") ||
+                    /line\/\d+/i.test(ua) ||
+                    ua.includes("toss") ||
+                    (ua.includes("naver") && ua.includes("inapp")) ||
+                    (ua.includes("daum") && ua.includes("inapp")) ||
+                    ua.includes("telegram") ||
+                    ua.includes("whatsapp") ||
+                    ua.includes("tiktok") ||
+                    ua.includes("weibo") ||
+                    ua.includes("twitter") ||
+                    ua.includes("linkedin") ||
+                    ua.includes("snapchat") ||
+                    ua.includes("pinterest") ||
+                    ua.includes("reddit") ||
+                    ua.includes("discord") ||
+                    ua.includes("skype") ||
+                    ua.includes("telegram") || // 백업 감지
+                    (typeof window.TelegramWebviewProxy !== "undefined" && typeof window.TelegramWebviewProxy !== "null") ||
+                    !isNull(window.TelegramWebviewProxy) // 주요 감지
+                );
+            }
+
+            function showGuideModal() {
+                $("#inAppModal").addClass("block").addClass("on")
+            }
+            function openExternalBtn() {
+                const url = window.location.href;
+
+                if (/Android/i.test(navigator.userAgent)) {
+                    const cleanUrl = url.replace(/^https?:\/\//, '');
+                    const intentUrl = "intent://" + cleanUrl + "#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=" + encodeURIComponent(url) + ";end;";
+                    window.location.href = intentUrl;
+                } else {
+                    window.location.href = "kakaotalk://web/openExternal?url=" + encodeURIComponent(url);
+                }
+            }
+
+
+
+
+
+            const MODAL_STORAGE_KEY = 'pwaSkipDate';
+
+            // 현재 날짜 문자열 (예: 2025-10-20)
+            function getTodayString() {
+                const now = new Date();
+                return now.toISOString().slice(0, 10);
+            }
+
+            // 모달 숨기기 함수
+            function hidePwaAndroidPop() {
+                document.getElementById('pwaAndroidPop').style.display = 'none';
+            }
+
+            // 모달 보여주기 여부 판단
+            function shouldShowModal() {
+                const skipDate = localStorage.getItem(MODAL_STORAGE_KEY);
+                return skipDate !== getTodayString();
+            }
+
+            // 버튼 클릭 시 처리
+            function todayClose() {
+                localStorage.setItem(MODAL_STORAGE_KEY, getTodayString());
+                hidePwaAndroidPop();
+                deferredPrompt = null;
+            }
+
+        </script>
+    </head>
+    <body>
+        <a href="#container" class="skip">본문으로 바로가기</a> <!-- 웹접근성용 본문바로가기 -->
+        <div id="wrap" class="sub">
+    		<input type="hidden" id="ctx" value="">
+
+            <header class="header">
+                
+
+
+
+
+
+<script type="text/javascript">
+let CARD_PW_CRYPTION_YN = "N";
+
+/**
+ * openUserCardPop : 이용증 팝업 오픈
+ *
+ * @date 2022.02.25
+ * @author kjm
+ * @param  
+ * @return 
+ */
+function openUserCardPop(userKey) {
+	if("" == null || "" == "" || "" == "2"){
+		openWebUserChkPop();
+		return false;
+	}
+	if(isNullCheck(userKey)){
+		alert("로그인 후 이용이 가능합니다.");
+		openLoginPop();
+	} else {
+	    CloudDialog('barcodePop', 1, function () {
+			getUserBarcode();
+			getCardCnt();
+			getUserCardFamilyInfo();
+			$("#familyLoginPop").removeClass('on');
+			$("#userCardPop").addClass('on');
+			$("#pwInput").val("");
+			$("#changePwBtn").removeClass('off');
+			$("#pwInputArea").removeClass('on');
+		});
+	}
+   	
+}
+
+/**
+ * getUserBarcode : 이용증 정보 조회
+ *
+ * @date 2022.02.25
+ * @author kjm
+ * @param  
+ * @return 
+ */
+function getUserBarcode(){
+	$.ajax({
+		url: getContextPath() + "/barcode/get/user", 
+		type: "post",
+		context:document.ready,
+		success: function(data){
+			if(isNullCheck(data.SRC)){
+				$("#userCardBarcode").html("<p>회원증을 발급한 이용자가 아닙니다.</p>");
+				$("#userCardNo").hide();
+			} else {
+    			$("#userCardBarcode").html("<img id=\"userCardBarcode\" alt=\""+data.SRC+"\" src=\""+data.SRC+"\" style=\"height: 15mm;width: 65mm;\"'>");
+    			$("#userCardNo").show();
+        		$("#userCardNo").html(data.USER_NUMBER);
+			}
+
+			CARD_PW_CRYPTION_YN = data.CARD_PW_CRYPTION_YN;
+
+    		$("#userCardName").html(data.USER_NAME);
+    	}
+	});
+}
+
+function getCardCnt() {
+	commonAjaxRequest({
+		method: 'post',
+		url: getContextPath() + '/myLibrary/loanStatus/get/mycnt',
+		params: {
+			"manage_code": getManageCode()
+		},
+		success: function(data) {
+			const cntInfo = data.LIN_CNT_INFO;
+			$("#cardLoanCnt").empty().html(cntInfo.LOAN_CNT ?? 0 + "권");
+			$("#cardResCnt").empty().html(cntInfo.RESERVE_CNT ?? 0 + "권");
+
+			$("#cardLoanStauts").empty().html(cntInfo.USER_STATUS ?? "-");
+			if(cntInfo.USER_STATUS) {
+				if (cntInfo.USER_STATUS !== "정상") {
+					$("#cardLoanStautsText").empty().html(cntInfo.USER_STATUS + " 회원 입니다.");
+				}
+				if(!isNullCheck(cntInfo.USER_LOAN_STOP_END)){
+					$("#cardLoanStopText").empty().html("대출정지일 : " + cntInfo.USER_LOAN_STOP_END);
+				}
+			} else {
+				$("#cardLoanStautsText").empty().html("준회원 입니다.");
+			}
+		},
+	});
+}
+
+function getUserCardFamilyInfo() {
+	$.ajax({
+		url : getContextPath() + "/myLibrary/loanStatus/get/familyInfoList",
+		method: "GET",
+		success: function(data) {
+
+			let login_user_key = "";
+			$("#cardFamilyList").empty();
+			let makeHtml = "";
+			for (let i = 0; i < data.FAMILY_INFO_LIST.FAMILY_INFO.length; i++) {
+				let family = data.FAMILY_INFO_LIST.FAMILY_INFO[i];
+				let familyLoginId = family.USER_ID ?? "";
+				if(login_user_key == family.USER_KEY){
+					makeHtml += "<li class=\"on\"><button type=\"button\" onclick=\"familyLogin('"+ familyLoginId +"','"+family.USER_KEY+"','"+family.NAME+"');\"><span>" + family.NAME + "</span></button></li>";
+				} else {
+					makeHtml += "<li><button type=\"button\" onclick=\"familyLogin('" + familyLoginId + "','" + family.USER_KEY +"','"+family.NAME+"');\"><span>" + family.NAME + "</span></button></li>";
+				}
+			}
+			$("#cardFamilyList").empty().html(makeHtml);
+		},
+	})
+}
+
+function familyLogin(userId, userKey, userName){
+	let login_user_key = "";
+	if(isNullCheck(userId)){
+		alert("아이디가 없는 회원은 로그인 전환 기능을 사용할 수 없습니다.");
+		return;
+	}
+	if(userKey === login_user_key){
+		alert("현재 로그인한 회원입니다.");
+		$("#familyLoginPop").removeClass('on');
+		$("#userCardPop").addClass('on');
+		return;
+	}
+	commonAjaxRequest({
+		method: 'post',
+		url: getContextPath() + '/login/familyLogin',
+		params: {
+			"id": userId,
+			"user_key": userKey,
+			"user_name": userName
+		},
+		success: function(data) {
+			if(data.FAMILY_LOGIN === "OK"){
+				sessionStorage.setItem("openFamilyModal", "Y");
+				window.location.reload();
+			} else {
+				let message = data.MESSAGE;
+
+				if(message == "undefined") {
+					alert("가족회원 로그인 중 오류가 발생하였습니다.");
+				} else if(message == "AGREE_RE" || message == "AGREE_NEW") {
+					openSuwonFamilyAgreeInfoPop();
+				} else {
+					alert(message);
+				}
+			}
+		},
+	});
+};
+
+
+function clickChangePwBtn(){
+	if("" == null || "" == "" || "" == "2"){
+		openWebUserChkPop();
+		return false;
+	}
+	$("#changePwBtn").addClass('off');
+	$("#pwInputArea").addClass('on');
+};
+
+function changeLoanPw(){
+	if ($("#pwInput").val().length < 1) {
+		alert("회원증 비밀번호를 입력해 주세요.");
+		$("#pwInput").focus();
+		return;
+	}
+
+	if($("#pwInput").val() != "" && $("#pwInput").val().length < 4){
+		alert("회원증 비밀번호가 4자리 이상이어야 합니다.");
+		$("#pwInput").focus();
+		return false;
+	}
+
+
+	if (CARD_PW_CRYPTION_YN == "Y") {
+		pwd = sha256_digest($("#pwInput").val());
+	} else {
+		pwd = $("#pwInput").val();
+	}
+	commonAjaxRequest({
+		url : getContextPath() + "/usercard/pwchange",
+		params : {new_card_password : pwd},
+		loadingBar : true,
+		success : function(data) {
+			$("#pwInput").val("");
+			$("#changePwBtn").removeClass('off');
+			$("#pwInputArea").removeClass('on');
+			if(data.result === "OK"){
+				alert("회원증 비밀번호가 변경되었습니다.");
+			} else {
+				alert("회원증 비밀번호 변경을 실패하였습니다.");
+			}
+
+		},
+		error : function(data) {
+			getFailMessage("회원증 비밀번호 변경", data);
+		}
+	});
+};
+
+const changeArea = document.querySelector('.mobile .main-content .change');
+function openFamilyLoginPop(){
+	$("#familyLoginPop").addClass('on');
+	$("#userCardPop").removeClass('on');
+}
+</script>
+
+ <div class="jsDiv suwon" id="barcodePop">
+    <div class="jsDivInner mobile">
+        <div class="jsDivContentArea">
+
+            <div class="jsDivContent">
+				<div class="main-content top on" id="userCardPop">
+					<div class="barcode-area">
+						<div class="barcodeArea" id="userCardBarcode"></div>
+						<span class="barcode" id="userCardNo"> </span>
+					</div>
+					<p class="title">모바일 회원증</p>
+					<div class="bar-code">
+						<span class="name" id="userCardName"></span>
+						<ul class="laonInfo">
+							<li>
+								<span>대출 : </span>
+								<span id="cardLoanCnt">0권</span>
+							</li>
+							<li>
+								<span>예약 : </span>
+								<span id="cardResCnt">0권</span>
+							</li>
+							<li>
+								<span>상태 : </span>
+								<span id="cardLoanStauts">정상</span>
+							</li>
+						</ul>
+
+					</div>
+					<p class="checkText">
+						<span id="cardLoanStautsText">대출가능 회원 입니다.</span>
+						<span id="cardLoanStopText" class="stoptext"></span>
+					</p>
+					<div class="btn-wrap">
+						<button type="button" class="btn logout" onclick="clickLogout();">
+							<span>로그아웃</span>
+						</button>
+						<button type="button" class="btn change" onclick="openFamilyLoginPop();">
+							<span>가족회원</span>
+						</button>
+					</div>
+					<div class="changePw" id="changePw">
+						<button type="button" id="changePwBtn" onclick="clickChangePwBtn();">
+							<span>대출비밀번호 변경</span>
+						</button>
+						<div class="pwInputArea" id="pwInputArea">
+							<input type="password" maxlength="4" id="pwInput">
+							<button type="button" id="pwChangeBtn" onclick="changeLoanPw();">
+								<span>변경</span>
+							</button>
+						</div>
+					</div>
+				</div>
+				<!-- 가족 회원증 [S] -->
+				<div class="main-content">
+					<p class="title">가족 회원증</p>
+					<div class="bar-code">
+						<span class="name"></span>
+						<div class="barcode-area">
+							<span class="barcode"></span>
+						</div>
+					</div>
+					<div class="btn-wrap">
+						<button type="button" class="btn change">
+							<span>가족회원증</span>
+						</button>
+					</div>
+				</div>
+				<!-- 가족 회원증 [E] -->
+				<div class="select-content" id="familyLoginPop">
+					<p class="title">가족 회원증</p>
+					<ul id="cardFamilyList">
+
+					</ul>
+				</div>
+				<button type="button" class="close btnJsDivClose">
+					<span class="sr-only">닫기</span>
+				</button>
+			</div>
+
+		</div>
+	</div>
+ </div>
+
+<script>
+const globalManageCode = ``;
+
+const login_id = "";
+const login_user_no = "";
+const login_name = "";
+const login_key = "";
+const login_scccard_no = "";
+const login_memberClass = "";
+const login_user_handPhone = "";
+const USER_LOAN_STOP_END = "";
+
+const urlParams = new URLSearchParams(window.location.search);
+const showLoginModal = urlParams.get('showLoginModal');
+const showLoginReturnUrl = urlParams.get('returnUrl');
+const agreeResult = urlParams.get('ssoresult');
+const agreeId = urlParams.get('ssochkid');
+const agreeKey = urlParams.get('ssochkkey');
+
+$(document).ready(function() {
+	initHeader();
+	if (showLoginModal === 'true' && ("" == null || "" == "")){
+		openLoginPop();
+	}
+
+	if((agreeResult == "AGREE_RE" || agreeResult == "AGREE_NEW") && isNullCheck(agreeId) && isNullCheck(agreeKey)) {
+		openSuwonAgreeInfoPop(message, agreeKey);
+	} else if(agreeResult == "no") {
+		alert("도서관 회원으로 가입되지 않은 상태입니다.");
+	}
+
+	writeMenu();
+});
+function initHeader(){
+	let user_key = ""
+	let user_name = ""
+
+	const openFamilyModal = sessionStorage.getItem("openFamilyModal");
+
+	if (openFamilyModal === "Y") {
+		openUserCardPop(user_key);
+		sessionStorage.removeItem("openFamilyModal");
+	}
+
+	$("#openBarcodeBtn").click(function() {
+		openUserCardPop(user_key);
+	});
+	if(user_key) {
+		$(".btn_login").hide();
+		$(".btn_join").hide();
+		$(".btn_logout").show();
+		$(".btn_modify").show();
+		$(".btn_library").show();
+		$(".barcodeOpen").addClass("show");
+		$(".link_area").removeClass("show");
+
+
+		$("#userName").text(user_name);
+
+		if (login_user_no == null || login_user_no == "" || login_memberClass == "2") {
+			$("#myLibMoBtn").hide();
+			$("#openBarcodeBtn").hide();
+			$("#webUserLink").show();
+		} else {
+			$("#openBarcodeBtn").show();
+			$("#webUserLink").hide();
+		}
+
+		//대출증 조회
+		// getUserBarcode();
+	}else{
+		$(".btn_login").show();
+		$(".btn_join").show();
+		$(".btn_logout").hide();
+		$(".btn_modify").hide();
+		$(".btn_library").hide();
+		$(".barcodeOpen").removeClass("show");
+		$(".link_area").addClass("show");
+		$("#openBarcodeBtn").hide();
+		$("#webUserLink").hide();
+		$("#myLibMoBtn").hide();
+	}
+}
+
+
+    /**
+     * getManageCode :  도서관별 url 접근 한 경우 접근한 도서관 부호 리턴 
+     *
+     * @date 2022.02.08
+     * @author kjm
+     * @param 
+     * @return  urlManageCode
+     */
+    function getManageCode() {
+		return "";
+    }
+	function clickLogout() {
+
+		let functionName = "로그아웃";
+		$.ajax({
+			url: getContextPath() + "/login/userLogout",
+			type: "post",
+			context:document.ready
+		}).done(function(data) {
+			deleteCookie("autoLoginUserKey");
+			insertFunctionLog(functionName);
+
+			goMenuPage('main');
+
+
+		}).error(function() {
+			alert("로그아웃 중 오류가 발생했습니다.");
+		});
+	}
+function logoutCallBack() {
+
+	let functionName = "로그아웃";
+	$.ajax({
+		url: getContextPath() + "/login/userLogout",
+		type: "post",
+		context:document.ready
+	}).done(function(data) {
+		$(".btn_login").show();
+		$(".btn_join").show();
+		$(".btn_logout").hide();
+		$(".btn_modify").hide();
+		$(".btn_library").hide();
+		$(".barcodeOpen").removeClass("show");
+		$(".link_area").addClass("show");
+		$("#webUserLink").hide();
+		$("#myLibMoBtn").hide();
+		$("#userName").text("");
+
+		deleteCookie("autoLoginUserKey");
+		insertFunctionLog(functionName);
+		setTimeout(function() {
+			const url = "https://www.suwonlib.go.kr/sk/member/onlineRegularMember.asp";
+			window.open(url, "_blank");
+		}, 300);
+
+	}).error(function() {
+		alert("로그아웃 중 오류가 발생했습니다.");
+	});
+}
+    function logout() { 
+    	$.ajax({
+    		url: getContextPath() + "/login/userLogout", 
+    		type: "post",
+    		context:document.ready
+    	}).done(function(data) {
+        	
+    		goMenuPage('main');
+    		
+    	}).error(function() {
+    		alert("로그아웃 중 오류가 발생했습니다.");
+    	});
+    }
+    
+    /**
+     * getStaffCheck : 로그인 이용자 직원 여부 체크
+     *
+     * @date 2022.02.28
+     * @author kjm
+     * @param 
+     * @return 직원인경우 "Y"   
+     */
+    function getStaffCheck(){
+		return "";
+    }
+    
+    /**
+     * getLillStaffCheck : 로그인 이용자 상호대차 사용 직원 여부 체크
+     *
+     * @date 2022.03.22
+     * @author kjm
+     * @param 
+     * @return 상호대차 사용 직급 직원인경우 "Y"   
+     */
+    function getLillStaffCheck(){
+		return "";
+    }
+    
+    function getLillServiceName(){
+		return isNullCheck("") ? "상호대차" : "";
+    }
+    
+    function getDeliveryServiceName(){
+		return isNullCheck("") ? "배달" : "";
+    }
+
+	function getBookDetail(isbn, bookKey){
+		let goMenuUrl = "";
+		let urlMangage = getManageCode();
+
+		if(!isNullCheck(urlMangage)){
+			goMenuUrl = getContextPath() + "/detail/"+urlMangage+"/"+isbn+"/"+bookKey;
+		} else {
+			goMenuUrl = getContextPath() + "/detail/"+isbn+"/"+bookKey;
+		}
+		let frm = document.createElement("form");
+		frm.setAttribute("method","POST");
+		frm.setAttribute("action",goMenuUrl);
+		document.body.appendChild(frm);
+		frm.submit();
+	}
+	function deleteCookie(name) {
+		document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+	}
+
+	$(document).on('click', '.memberLinkArea .btn_login', function() {
+		$('header').removeClass('mobileNavOn');
+		$('#menuArea li').removeClass('on');
+	});
+
+	function openJoinLibPop(type){
+		if (type == '2') {
+			// 로그인 모달
+			document.getElementById('loginPop').style.zIndex = 1000;
+			// 회원가입 모달
+			document.getElementById('joinLibPop').style.zIndex = 1001;
+			CloudDialog('joinLibPop', 1);
+		} else {
+			CloudDialog('joinLibPop', 1);
+		}
+	}
+</script>
+<style>
+	#joinLibPop .selectlib .select-list li a::after {
+		background: none !important;
+	}
+</style>
+<div class="headerTop">
+    <div class="inner">
+		<div class="topLinkArea">
+			<a href="https://www.suwonlib.go.kr/" class="link_btn" target="_blank">도서관 사업소</a>
+			
+		</div>
+		<div class="memberLinkArea">
+			<a href="#login" class="btn_login" onclick="openLoginPop(); return false;" >로그인</a>
+			<a href="#logout" class="btn_logout" onclick="clickLogout();">로그아웃</a>
+			<a href="#join" class="btn_join" onclick="openJoinLibPop(); return false;">회원가입</a>
+			<a href="#modify" class="btn_modify" onclick="goMenuPage('/myLibrary/loanStatus'); return false;" ><strong id="userName">회원</strong>님</a><!--로그인 후 노출-->
+			<a href="#mylib" class="btn_library" onclick="goMenuPage('/myLibrary/loanStatus'); return false;" >내서재</a>
+		</div>
+   	</div>
+</div> <!-- // 상단영역 -->
+<nav class="nav" id="menuNav"><!-- class값 navOn 추가 시 펼쳐짐-->
+	<div class="inner">
+		
+		<div class="mobileHeader">
+			
+			<div class="link_area show">
+				<a href="#login" class="btn_login" onclick="openLoginPop(); return false;" >로그인</a>
+				<a href="#join" class="btn_join" onclick="openJoinLibPop(); return false;">회원가입</a>
+				
+			</div>
+			<button class="barcodeOpen mb" id="openBarcodeBtn">
+				<span>모바일<br>회원증</span>
+			</button>
+			<a href="" class="barcodeOpen" id="webUserLink" onclick="logoutCallBack(); return false;" style="display: none;">
+				<span>정회원 신청</span>
+			</a>
+			<a href="#mylib" class="btn_library" onclick="goMenuPage('/myLibrary/loanStatus'); return false;" id="myLibMoBtn"><span class="sr-only">내서재</span></a>
+		</div>
+		
+		<div class="totalMenu">
+			<button class="btnNavOpen" id="menuOpenBtn">메뉴열기
+				<span></span>
+				<span></span>
+				<span></span>			
+			</button>
+		</div>
+		<h1 class="h1"><a href="#main" onclick="goMenuPage('main'); return false;"><img src="/images/suwon/logo_new.png" alt="수원시 도서관"></a></h1>
+		
+	    <ul id="menuArea" class="menuArea">
+		    <li class="on"><a href="#" onclick="return false;"><span>자료검색</span></a>
+		    	<ul>
+		            <li><a href="#search" onclick="goMenuPage('/search'); return false;">자료검색</a></li>
+					<li><a href="http://web.gglib.flybookscreen.kr/" target="_blank">AI도서추천(북카페)</a></li>
+		        </ul>
+		    </li>
+		    <li><a href="#"><span>큐레이션</span></a><!-- class값 navOn 추가 시 펼쳐짐-->
+		        <ul>
+		            <li><a href="#arrival" onclick="goMenuPage('/curation/arrival'); return false;">신간도서</a></li>
+		            <li><a href="#best" onclick="goMenuPage('/curation/best'); return false;">인기도서</a></li>
+		            <li><a href="#recommend" onclick="goMenuPage('/curation/recommend'); return false;">추천도서</a></li>
+		        </ul>
+		    </li>
+			<li><a href="#"><span>공지사항</span></a>
+		    	<ul>
+		            <li><a href="#notice" onclick="goMenuPage('/notice'); return false;">공지사항</a></li>
+		        </ul>
+		    </li>
+		    <li><a href="#"><span>도서관소개</span></a>
+		        <ul>	
+		            <li><a href="#/curation/recommend" onclick="goMenuPage('/libIntro/introduction'); return false;">이용안내</a></li>
+		        </ul>
+		    </li>
+		    <li><a href="#"><span>나의도서관</span></a>
+		        <ul>
+		            <li><a href="#loanStatus" onclick="goMenuPage('/myLibrary/loanStatus'); return false;">대출현황</a></li>
+		            <li><a href="#history" onclick="goMenuPage('/myLibrary/history'); return false;">대출이력</a></li>
+		            <li><a href="#hopeBooks" onclick="goMenuPage('/myLibrary/hopeBooks'); return false;">희망도서</a></li>
+		            <li><a href="#reserve" onclick="goMenuPage('/myLibrary/reserveList'); return false;">예약목록</a></li>
+					<li><a href="#reserve" onclick="goMenuPage('/myLibrary/unmannedReserveList'); return false;">책나루(무인예약)</a></li>
+					<li><a href="#myBookCase" onclick="goMenuPage('/myLibrary/myBookCase'); return false;">내책장</a></li>
+		            <li><a href="#delivery" onclick="goDeliveryPage('/myLibrary/delivery'); return false;">배달이력</a></li>
+		        </ul>
+		    </li>
+	    </ul>
+		<div class="totalMenu">
+    		<button class="btnNavClose" id="menuCloseBtn">메뉴닫기    		
+				<span></span>
+				<span></span>
+				<span></span>
+    		</button>
+    	</div>
+    	
+    </div>
+</nav><!-- // 네비영역 -->
+
+<div class="jsDiv suwon on" style="display: none; " id="joinLibPop">
+	<div class="jsDivInner small">
+		<article class="jsDivContentWrap color-cell">
+			<header>
+				<h3 class="title">도서관선택</h3>
+				<button type="button" class="jsDivClose btnJsDivClose">
+					<span class="sr-only">닫기</span>
+				</button>
+			</header>
+			<div class="jsDivContentArea">
+				<div class="jsDivContent noscroll">
+					<div class="selectlib">
+						<ul class="select-list">
+							<li>
+								<a href="https://www.suwonlib.go.kr/sk/member/join_sw.asp" target="_blank">
+									<span>선경</span>
+								</a>
+							</li>
+							<li>
+								<a href="https://www.suwonlib.go.kr/ct/member/join_sw.asp" target="_blank">
+									<span>중앙</span>
+								</a>
+							</li>
+							<li>
+								<a href="https://www.suwonlib.go.kr/cy/member/join_sw.asp" target="_blank">
+									<span>창룡</span>
+								</a>
+							</li>
+							<li>
+								<a href="https://www.suwonlib.go.kr/hd/member/join_sw.asp" target="_blank">
+									<span>화서다산</span>
+								</a>
+							</li>
+							<li>
+								<a href="https://www.suwonlib.go.kr/hms/member/join_sw.asp" target="_blank">
+									<span>호매실</span>
+								</a>
+							</li>
+							<li>
+								<a href="https://www.suwonlib.go.kr/seo/member/join_sw.asp" target="_blank">
+									<span>서수원</span>
+								</a>
+							</li>
+							<li>
+								<a href="https://www.suwonlib.go.kr/hl/member/join_sw.asp" target="_blank">
+									<span>한림</span>
+								</a>
+							</li>
+							<li>
+								<a href="https://www.suwonlib.go.kr/bdn/member/join_sw.asp" target="_blank">
+									<span>버드내</span>
+								</a>
+							</li>
+							<li>
+								<a href="https://www.suwonlib.go.kr/buk/member/join_sw.asp" target="_blank">
+									<span>북수원</span>
+								</a>
+							</li>
+							<li>
+								<a href="https://www.suwonlib.go.kr/dcg/member/join_sw.asp" target="_blank">
+									<span>대추골</span>
+								</a>
+							</li>
+							<li>
+								<a href="https://www.suwonlib.go.kr/iw/member/join_sw.asp" target="_blank">
+									<span>일월</span>
+								</a>
+							</li>
+							<li>
+								<a href="https://www.suwonlib.go.kr/gh/member/join_sw.asp" target="_blank">
+									<span>광교홍재</span>
+								</a>
+							</li>
+							<li>
+								<a href="https://www.suwonlib.go.kr/yt/yt.asp" target="_blank"> <!-- 신축에 따른 임시휴관중 임시링크 나중에 변경 예정 -->
+									<span>영통</span>
+								</a>
+							</li>
+							<li>
+								<a href="https://www.suwonlib.go.kr/tm/member/join_sw.asp" target="_blank">
+									<span>태장마루</span>
+								</a>
+							</li>
+							<li>
+								<a href="https://www.suwonlib.go.kr/gps/member/join_sw.asp" target="_blank">
+									<span>광교푸른숲</span>
+								</a>
+							</li>
+							<li>
+								<a href="https://www.suwonlib.go.kr/myu/member/join_sw.asp" target="_blank">
+									<span>매여울</span>
+								</a>
+							</li>
+							<li>
+								<a href="https://www.suwonlib.go.kr/mpgb/member/join_sw.asp" target="_blank">
+									<span>망포글빛</span>
+								</a>
+							</li>
+							<li>
+								<a href="https://www.suwonlib.go.kr/skid/member/join_sw.asp" target="_blank">
+									<span>슬기샘어린이</span>
+								</a>
+							</li>
+							<li>
+								<a href="https://www.suwonlib.go.kr/bkid/member/join_sw.asp" target="_blank">
+									<span>바른샘어린이</span>
+								</a>
+							</li>
+							<li>
+								<a href="https://www.suwonlib.go.kr/jkid/member/join_sw.asp" target="_blank">
+									<span>지혜샘어린이</span>
+								</a>
+							</li>
+							<li>
+								<a href="https://www.suwonlib.go.kr/sycc/member/join_sw.asp" target="_blank">
+									<span>한아름</span>
+								</a>
+							</li>
+							<li>
+								<a href="https://www.suwonlib.go.kr/bandal/member/join_sw.asp" target="_blank">
+									<span>반달어린이</span>
+								</a>
+							</li>
+							<li>
+								<a href="https://www.suwonlib.go.kr/swlove/member/join_sw.asp" target="_blank">
+									<span>사랑샘</span>
+								</a>
+							</li>
+							<li>
+								<a href="https://www.suwonlib.go.kr/swhope/member/join_sw.asp" target="_blank">
+									<span>희망샘</span>
+								</a>
+							</li>
+							<li>
+								<a href="https://www.suwonlib.go.kr/hwahong/member/join_sw.asp " target="_blank">
+									<span>화홍어린이</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</article>
+	</div>
+</div>
+
+            </header>
+
+            <section class="container" id="container">
+                
+
+
+
+<script type="text/javascript" src="/javascript/views/search/searchNew260211.js"></script>
+<script type="text/javascript" src="/javascript/views/common/keyword/keyword.search.js"></script>
+<script type="text/javascript" src="/javascript/views/common/alimtalk/alimtalk.js"></script>
+<script type="text/javascript">
+
+    let presetMaxDepth = null; // 1 | 2 | 3 (KCID 길이에서 결정)
+    let defUrlManageCode = getManageCode();
+    let globalSearchWords = "파이썬";
+    let globalSearchLib = "";
+    let globalSearchType = "";
+    let globalSearchKCID = "";
+    let globalSearchHistoryChk = "";
+    let globalIsSearchType = "";
+    let globalSearchParam = '';
+    let globalSearchKdcValue = null;
+    let globalClassType = null;
+    let depthValue = { d1: null, d2: null, d3: null, active: false };
+    let searchYN = false;  // 뎁스 매핑 완료 후 검색을 실행할지 여부
+    let popStateChk = false;
+    let initCalled = false;
+    let currentRequestId = 0;
+    // // 뒤로/앞으로 가기
+    window.addEventListener('popstate', function (){
+        if(!globalSearchParam){
+            globalSearchParam=getQueryParamsAsJson();
+            globalSearchParamJson = getQueryParamsAsJson();
+            globalSearchHistoryChk = "Y"
+        }
+
+        initParam();
+        setSearchCallParams();
+    });
+    function getQueryParamsAsJson() {
+        var params = {};
+        var queryString = decodeURIComponent(window.location.search.substring(1));
+        var regex = /([^&=]+)=([^&]*)/g;
+        var match;
+
+        while (match = regex.exec(queryString)) {
+            params[match[1]] = match[2];
+        }
+        return params;
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        init();
+        // 모바일 화면이면
+        if (window.innerWidth <= 768) {
+            const normalLibDiv = document.getElementById('normalLibraries');
+            if (normalLibDiv) {
+                // 1. 클래스 변경
+                normalLibDiv.classList.remove('open');
+                normalLibDiv.classList.add('close');
+
+                // 2. 버튼 표시 전환
+                const openBtn = document.getElementById('openLibList');
+                const closeBtn = document.getElementById('closeLibList');
+
+                if (openBtn) openBtn.classList.remove('hidden'); // 펼치기 버튼 보이기
+                if (closeBtn) closeBtn.classList.add('hidden');   // 닫기 버튼 숨기기
+            }
+        }
+
+        const debouncedAutocomplete = debounce(function(e) {
+            const text = $(e.target).val().trim();
+
+            if (text.length < 2) {
+                return;
+            }
+
+            getAutocomplete(text);
+        }, 300);
+        $('#searchTxt').on('input', debouncedAutocomplete);
+
+        $(document).on('click touchend', function(e) {
+            if ($(e.target).closest('.autocomplete-list').length === 0) {
+                $('.autocomplete-list').hide();
+            }
+        });
+    });
+
+    function getAutocomplete(text) {
+        const requestId = ++currentRequestId;
+
+        $.ajax({
+            url: getContextPath() + "/book/autocomplete",  // 실제 서버 URL
+            type: "post",
+            data: { search_txt: text },
+            success: function(data) {
+                // 최신 요청만 결과 표시 (중복/취소된 요청 무시)
+                if (requestId === currentRequestId) {
+                    displayResults(data);
+                }
+            },
+            error: function() {
+                console.error('자동완성 조회 실패');
+            }
+        });
+    }
+
+    function displayResults(data) {
+        const $list = $('.autocomplete-list');
+        const $listWrap = $('.autocomplete-list > .list-area');
+        const $listClose = $('.autocomplete-list .flexRight button');
+
+
+        $listWrap.empty();
+
+        $listClose.click(function (){
+            $list.hide();
+        });
+
+        if (!data || data.length === 0) {
+            $list.hide();
+            return;
+        }
+
+        data.slice(0, 5).forEach(function(item) {
+            const $item = $('<li class="autocomplete-item" style="cursor: pointer;"></li>').text(item).on('click touchend', function(e) {
+                    e.preventDefault();
+                    $('#searchTxt').val(item);
+                    $list.hide();
+                    searchKeyword(item);
+                });
+            $listWrap.append($item);
+        });
+
+        setTimeout(function () {
+            let totalHeight = 0;
+
+            $listWrap.find('.autocomplete-item').each(function () {
+                totalHeight += $(this).outerHeight(true);
+            });
+            $listWrap.css({'max-height': totalHeight + 'px',});
+
+            const $listCloseWrap = $('.autocomplete-list .flexRight')
+            const listCloseHeight = $listCloseWrap.outerHeight(true);
+            const listHeight = $listWrap.outerHeight(true);
+
+
+            $list.css({'height': listHeight + listCloseHeight + 'px',});
+        }, 0);
+
+
+
+
+
+        $list.show();
+
+
+
+    }
+
+    function debounce(fn, delay) {
+        let timer;
+        return function(...args) {
+            const context = this;
+            clearTimeout(timer);
+            timer = setTimeout(function() {
+                fn.apply(context, args);
+            }, delay);
+        };
+    }
+
+</script>
+<article class="subTop">
+</article>
+<!-- 검색영역 -->
+<article class="subContent">
+    <div class="inner">
+        <div class="searchTop">
+            <div class="search_tit_wrap">
+                <h4>원하는 도서관에서 자료를 검색해 보세요.</h4>
+                <dl class="search_popular" id="searchPopular" style="display:none">
+                    <dt>인기검색어</dt>
+                </dl>
+            </div> <!-- // search_tit_wrap -->
+
+            <ul class="search_tab clfix" id="selectTypeTab">
+                <li class="on" tab-type="normal"><button id="normalBtn">일반검색</button></li>
+                <li tab-type="detail"><button id="detailBtn">상세검색</button></li>
+            </ul>
+
+            <div class="search_con_wrap">
+                <!-- 일반검색 -->
+                <div class="search_normal_wrap" id="normalSearch">
+                   <div class="search_area">
+                        <label for="searchTxt" class="label_none">검색어를입력하세요</label>
+                       <input type="text" class="input_txt" id="searchTxt"/>
+                       <div class="autocomplete-list">
+                           <div class="list-area"></div>
+                           <div class="flexRight">
+                               <button type="button">
+                                   <span>닫기</span>
+                               </button>
+                           </div>
+                       </div>
+                       <button class="btn btn_search" id="normalSearchBtn">검색</button>
+                   </div> <!-- // search_area -->
+
+                   <div class="search_lib_select open" id="normalLibraries">
+                       <ul>
+                           <li class="check all">
+                                <input type="checkbox" name="library" id="normalLib_ALL" value="ALL"/>
+                                <label for="normalLib_ALL">전체선택</label>
+                           </li>
+                       </ul>
+                       <div class="btn_lib_list"> <!-- 펼치면 도서관 리스트가 더 보여지고 닫힘버튼 으로 전환 -->
+                           <button class="lib_open hidden" id="openLibList">펼치기</button>
+                           <button class="lib_close" id="closeLibList">닫기</button>
+                       </div>
+                   </div> <!-- // search_lib_select -->
+                </div> <!-- // search_normal -->
+
+                <!-- 상세검색-->
+                <div class="search_detail_wrap" id="detailSearch" style="display: none">
+                    <table class="table">
+                        <caption>상세검색</caption>
+                        <colgroup>
+                            <col width="15%" class="colw30">
+                            <col width="85%">
+                        </colgroup>
+                        <tr>
+                            <th><label for="detailLibraries">도서관선택</label></th>
+                            <td>
+                                <ul class="select_detail_library open" id="detailLibraries">
+                                    <li>
+                                        <input type="checkbox" name="library" id="detailLib_ALL" value="ALL"/>
+                                        <label for="detailLib_ALL">전체선택</label>
+                                    </li>
+                                </ul>
+                                <div class="btn_lib_list"> <!-- 펼치면 도서관 리스트가 더 보여지고 닫힘버튼 으로 전환 -->
+                                    <button class="lib_open hidden" id="openDetailLibList">펼치기</button>
+                                    <button class="lib_close" id="closeDetailLibList">닫기</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr id="searchTitleTr">
+                            <th><label for="searchTitle">제목</label></th>
+                            <td><input type="text" class="input_txt width70" id="searchTitle"></td>
+                        </tr>
+                        <tr id="searchAuthorTr">
+                            <th><label for="searchAuthor">저자</label></th>
+                            <td><input type="text" class="input_txt width70" id="searchAuthor"></td>
+                        </tr>
+                        <tr id="searchPublisherTr">
+                            <th><label for="searchPublisher">발행처</label></th>
+                            <td><input type="text" class="input_txt width70" id="searchPublisher"></td> 
+                        </tr>
+                        <tr id="searchIsbnTr">
+                            <th><label for="searchIsbn">ISBN</label></th>
+                            <td><input type="text" class="input_txt width70" id="searchIsbn"></td>
+                        </tr>
+                        <tr id="searchPubYearStartTr">
+                            <th><label for="searchPubYearStart">발행년</label></th>
+                            <td>
+                                <div class="align">
+                                    <input type="text" class="input_txt" id="searchPubYearStart"><label for="searchPubYearStart">~</label>
+                                    
+                                    <input type="text" class="input_txt" id="searchPubYearEnd">
+                                    <label for="searchPubYearEnd" class="sr-only">까지</label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr id="searchShelfTr">
+                            <th><label for="searchShelf">자료실</label></th>
+                            <td>
+                                <select name="searchShelf" id="searchShelf" class="select_txt">
+                                    <option value="">전체</option>
+                                    <option value='A01'> [선경]어린이자료실</option> <option value='A02'> [선경]종합자료실</option> <option value='A03'> [선경]복본도서</option> <option value='A04'> [선경]디지털자료실</option> <option value='A05'> [선경]정기간행물실</option> <option value='A06'> [선경]향토자료실</option> <option value='A07'> [선경]정리자료실</option> <option value='A08'> [선경]인권자료실</option> <option value='A09'> [선경]제1서고(일반)-데스크 문의</option> <option value='A10'> [선경]제3서고-데스크 문의</option> <option value='A11'> [선경]제2서고-데스크 문의</option> <option value='A12'> [선경]제1서고(어린이)-데스크 문의</option> <option value='A13'> [선경]전자도서관</option> <option value='A14'> [선경]수원학자료실</option> <option value='A15'> [선경]이관도서</option> <option value='A16'> [선경]꿈을담은책가방</option> <option value='A17'> [선경]DVD자료</option> <option value='B01'> [중앙]종합실</option> <option value='B02'> [중앙]아동실</option> <option value='B03'> [중앙]종합실 정기간행물코너</option> <option value='B04'> [중앙]순회문고(동광원)</option> <option value='B05'> [중앙]디지털자료실</option> <option value='B06'> [중앙]행사전시용</option> <option value='B07'> [중앙]순회문고(경동원)</option> <option value='B08'> [중앙]순회문고(효행원)</option> <option value='B09'> [중앙]보존서고</option> <option value='B10'> [중앙]독서회</option> <option value='B11'> [중앙]순회문고(복지관)</option> <option value='B12'> [중앙]순회문고(공부방)</option> <option value='B13'> [중앙]제적</option> <option value='B14'> [중앙]훼손</option> <option value='B15'> [중앙]분실</option> <option value='B16'> [중앙]선경보존서고</option> <option value='B20'> [중앙]복본도서</option> <option value='B21'> [중앙]꿈을담은책가방</option> <option value='B22'> [중앙]DVD자료</option> <option value='C01'> [영통]종합자료실</option> <option value='C02'> [영통]외국도서코너</option> <option value='C03'> [영통]디지털코너</option> <option value='C05'> [영통]보존서고-데스크 문의</option> <option value='C07'> [영통]어린이자료실</option> <option value='C08'> [영통]보존서고(어)-데스크 문의</option> <option value='C09'> [영통]제적</option> <option value='C13'> [영통]홍재보존서고</option> <option value='CY1'> [창룡]어린이자료실</option> <option value='CY2'> [창룡]종합자료실</option> <option value='CY3'> [창룡]보존서고</option> <option value='CY4'> [창룡]꿈을담은책가방</option> <option value='CY5'> [창룡]수서정리실</option> <option value='CY6'> [창룡]DVD자료</option> <option value='D01'> [슬기샘]1층아기둥지</option> <option value='D02'> [슬기샘]1층옹달샘</option> <option value='D03'> [슬기샘]2층두레샘</option> <option value='D04'> [슬기샘]3층트윈웨이브</option> <option value='D05'> [슬기샘]서고</option> <option value='D06'> [슬기샘]제적자료실</option> <option value='D07'> [슬기샘]1층더책</option> <option value='D08'> [슬기샘]DVD</option> <option value='DL1'> 임광문고</option> <option value='DL2'> 숙지서점</option> <option value='DL3'> 교문서적</option> <option value='DL4'> 장안문고</option> <option value='DL5'> 경기서적(호매실점)</option> <option value='DL6'> 골드북서수원점</option> <option value='DL7'> 상지문고</option> <option value='DL8'> 바울서점</option> <option value='DL9'> 경기서적(천천점)</option> <option value='DLA'> 앉으나서나책사랑서점</option> <option value='DLB'> 율전문고</option> <option value='DLC'> 에듀문고</option> <option value='DLD'> 리틀존영통문고</option> <option value='DLE'> 망포문고</option> <option value='DLF'> 성문서림</option> <option value='DLG'> 이레문고</option> <option value='DLH'> 진학서점</option> <option value='DLI'> 제일서적</option> <option value='DLJ'> 이상문고</option> <option value='DLK'> 세종서림</option> <option value='DLL'> 정자서점</option> <option value='DLM'> 일신서점</option> <option value='DLN'> 북앤조이서점</option> <option value='DLO'> 여름서가</option> <option value='DLP'> 책방마음이음</option> <option value='DLS'> 낯설여관</option> <option value='DLU'> 그런의미에서</option> <option value='E01'> [바른샘]1층아기둥지</option> <option value='E02'> [바른샘]1층옹달샘</option> <option value='E03'> [바른샘]2층두레샘</option> <option value='E04'> [바른샘]3층가족자료실</option> <option value='E05'> [바른샘]제적자료실</option> <option value='E06'> [바른샘]보존서고</option> <option value='E07'> [바른샘]1층더책</option> <option value='E08'> [바른샘]DVD</option> <option value='F01'> [지혜샘]1층아기둥지</option> <option value='F02'> [지혜샘]1층옹달샘</option> <option value='F03'> [지혜샘]2층두레샘</option> <option value='F04'> [지혜샘]3층가족자료실</option> <option value='F05'> [지혜샘]어울림터</option> <option value='F06'> [지혜샘]보존서고</option> <option value='F07'> [지혜샘]1층옹달샘신기방기그림책세상</option> <option value='F08'> [지혜샘]DVD</option> <option value='G01'> [서수원]종합자료실</option> <option value='G02'> [서수원]어린이자료실</option> <option value='G03'> [서수원]디지털자료실</option> <option value='G04'> [서수원]정리실(대출불가)</option> <option value='G05'> [서수원]서고(일반)-데스크 문의</option> <option value='G06'> [서수원]복본도서</option> <option value='G07'> [서수원]서고(어린이)-데스크 문의</option> <option value='G08'> [서수원]제적자료</option> <option value='G09'> [서수원]DVD자료</option> <option value='H01'> [북수원]종합자료실</option> <option value='H02'> [북수원]어린이자료실</option> <option value='H03'> [북수원]디지털자료실</option> <option value='H04'> [북수원]보존자료실</option> <option value='H05'> [북수원]수정도서</option> <option value='H06'> [북수원]제적자료</option> <option value='H07'> [북수원]복본도서_대추골이관</option> <option value='H08'> [북수원]특화자료실</option> <option value='H09'> [북수원]정기간행물실</option> <option value='I01'> [태장마루]어린이자료실</option> <option value='I02'> [태장마루]문헌정보자료실</option> <option value='I03'> [태장마루]보존서고</option> <option value='I04'> [태장마루]수서실</option> <option value='I05'> [태장마루]제적자료</option> <option value='J01'> [시민사회]자료관</option> <option value='J02'> [시민사회]담쟁이 북카페</option> <option value='J03'> [시민사회]사료보존실</option> <option value='J04'> [시민사회]보존서고</option> <option value='K01'> [한아름]청소년자료실</option> <option value='K02'> [한아름]아동자료실</option> <option value='K03'> [한아름]대출대</option> <option value='K05'> [한아름]아동자료실 유아용</option> <option value='K06'> [한아름]아동자료실 초등저학년용</option> <option value='K07'> [한아름]아동자료실 초등고학년용</option> <option value='K08'> [한아름]기타자료실</option> <option value='L01'> [햇살]일반도서</option> <option value='L02'> [햇살]청소년도서</option> <option value='L03'> [햇살]어린이도서실</option> <option value='L04'> [햇살]대출대</option> <option value='M01'> [반달]반달도서관</option> <option value='M02'> [반달]언어치료실</option> <option value='M03'> [반달]통합학교</option> <option value='M04'> [반달]사랑의 학교</option> <option value='M05'> [반달]놀이실</option> <option value='M06'> [반달]기타자료실</option> <option value='N01'> [사랑샘]사랑샘도서관</option> <option value='O01'> [희망샘]희망샘</option> <option value='O02'> [희망샘]깊은샘</option> <option value='O03'> [희망샘]희망샘(참고)</option> <option value='O04'> [희망샘]제적실</option> <option value='O05'> [희망샘]희망샘(보존)</option> <option value='P01'> [화홍]화홍어린이도서관</option> <option value='Q01'> [행정]자료실</option> <option value='S01'> [서호가족]어린이자료실</option> <option value='S02'> [일월도서관 이관]</option> <option value='SA1'> [인도래]일반자료실</option> <option value='SA2'> [인도래]아기둥지방</option> <option value='SB1'> [화서]종합자료실</option> <option value='SB2'> [화서]어린이자료실</option> <option value='SB3'> [화서]보존서고</option> <option value='SB4'> [화서]수서실</option> <option value='SB5'> [화서]꿈을담은책가방</option> <option value='SB6'> 보존서고2 - 데스크문의</option> <option value='SC1'> [푸른숲]종합자료실</option> <option value='SC2'> [푸른숲]어린이자료실</option> <option value='SC3'> [푸른숲]보존서고</option> <option value='SC4'> [푸른숲]유아자료실</option> <option value='SC5'> [푸른숲]수서실</option> <option value='SC6'> [푸른숲]종합자료실 내 정기간행물코너</option> <option value='SD1'> [매여울]2층종합자료실</option> <option value='SD2'> [매여울]정기간행물실</option> <option value='SD3'> [매여울]1층어린이자료실</option> <option value='SD4'> [매여울]1층유아자료실</option> <option value='SD5'> [매여울]보존서고</option> <option value='SE1'> [망포글빛]종합자료실</option> <option value='SE2'> [망포글빛]어린이자료실</option> <option value='SE3'> [망포글빛]유아자료실</option> <option value='SE4'> [망포글빛]보존서고</option> <option value='SE5'> [망포글빛]글빛홀</option> <option value='SE6'> [망포글빛]망포땅콩도서관</option> <option value='SE7'> [망포글빛]광교땅콩도서관</option> <option value='SE8'> [망포글빛]제적자료</option> <option value='T01'> [대추골]제1자료실</option> <option value='T02'> [대추골]제2자료실</option> <option value='T03'> [대추골]어린이자료실</option> <option value='T04'> [대추골]아기둥지방</option> <option value='T05'> [대추골]보존서고(종합자료실)</option> <option value='T06'> [대추골]보존서고(어린이실)</option> <option value='T07'> [대추골]제적</option> <option value='U01'> [한림]어린이자료실</option> <option value='U02'> [한림]종합자료실</option> <option value='U03'> [한림]수서실</option> <option value='U04'> [한림]제적자료</option> <option value='W01'> [버드내]어린이자료실</option> <option value='W02'> [버드내]종합자료실</option> <option value='W03'> [버드내]수서정리실</option> <option value='W04'> [버드내]건강정보실</option> <option value='W05'> [버드내]제적자료</option> <option value='X01'> [광교홍재]어린이자료실</option> <option value='X02'> [광교홍재]제1자료실</option> <option value='X03'> [광교홍재]제2자료실</option> <option value='X04'> [광교홍재]디자인자료실</option> <option value='X05'> [광교홍재]보존서고</option> <option value='X06'> [광교홍재]망포땅콩도서관</option> <option value='X07'> [광교홍재]수서실(어린이서고용)</option> <option value='X08'> [광교홍재]장서점검</option> <option value='X09'> [광교홍재]제적자료</option> <option value='X10'> 정기간행물실</option> <option value='Y01'> [호매실]어린이자료실</option> <option value='Y02'> [호매실]종합자료실</option> <option value='Y03'> [호매실]아기둥지</option> <option value='Y04'> [호매실]서고</option> <option value='Y05'> [호매실]정기간행물실</option> <option value='Y06'> [호매실]아기둥지(특화)</option> <option value='Y07'> [호매실]영아자료코너</option> <option value='Y08'> [호매실]제적자료</option> <option value='Z01'> [일월]종합자료실</option> <option value='Z02'> [일월]어린이자료실</option> <option value='Z03'> [일월]수서실</option> <option value='Z04'> [일월]보존서고</option> <option value='자료실구분'> 자료실구분</option> 
+                                </select>
+                            </td>
+                        </tr>
+                        <tr id="searchRegNoTr">
+                            <th><label for="searchRegNo">등록번호</label></th>
+                            <td><input type="text" class="input_txt width70" id="searchRegNo"></td>
+                        </tr>
+                        <tr id="searchKeywordTr">
+                            <th><label for="searchKeyword">키워드</label></th>
+                            <td><input type="text" class="input_txt width70" id="searchKeyword"></td>
+                        </tr>
+                        <tr id="searchKDCTr">
+                            <th><label for="searchKeyword">한국십진<br class="mobile">분류</label></th>
+                            <td>
+                                <select id="kdc" class="select_txt" onchange="getKDCList(this.value,'select', 'division');">
+                                    <option value="">전체</option>
+                                    <option value="0">총류</option>
+                                    <option value="1">철학</option>
+                                    <option value="2">종교</option>
+                                    <option value="3">사회과학</option>
+                                    <option value="4">자연과학</option>
+                                    <option value="5">기술과학</option>
+                                    <option value="6">예술</option>
+                                    <option value="7">언어</option>
+                                    <option value="8">문학</option>
+                                    <option value="9">역사</option>
+                                </select>
+                                <select id="kdcDivision" class="select_txt" style="display: none" onchange="getKDCList(this.value,'select', 'section');">
+                                </select>
+                                <select id="kdcSection" class="select_txt" style="display: none">
+                                </select>
+                            </td>
+                        </tr>
+                        <tr id="searchCategoryTr">
+                            <th><label for="searchKeyword">카테고리<br class="mobile">분류</label></th>
+                            <td>
+                                <select id="categoryDepth1" class="select_txt" onchange="getCategoryType2(this.value);">
+                                </select>
+                                <select id="categoryDepth2" class="select_txt" onchange="getCategoryType3(this.value);">
+                                </select>
+                                <select id="categoryDepth3" class="select_txt">
+                                </select>
+                            </td>
+                        </tr>
+
+                        <input type="hidden" id="kCid" name="kCid">
+                        <input type="hidden" id="kdcValue" name="kdcValue">
+
+                    </table>
+
+                    <ul class="btn_area">
+                        <li><button id="refreshBtn">초기화</button></li>
+                        <li><button id="detailSearchBtn">검색</button></li>
+                    </ul>
+                </div> <!-- // search_detail_wrap -->
+
+            </div><!-- //search_con_wrap -->
+
+        </div> <!-- // searchTop -->
+
+
+        <div class="searchContent">
+            <ul class="search_date_tab" id="selectKindTab">
+                <li class="on" tab-kind="book"><button id="searchBookBtn"><span>단행본</span><span class="count" id="bookCnt"></span></button></li>
+                <li tab-kind="serial"><button id="searchSerialBtn"><span>연속간행물</span><span class="count" id="serialCnt"></span></button></li>
+                <li tab-kind="nonbook"><button id="searchNonBookBtn"><span>비도서</span><span class="count" id="nonbookCnt"></span></button></li>
+                <li tab-kind="ebook"><button id="searchEbookBtn"><span>전자책</span><span class="count" id="ebookCnt"></span></button></li>
+            </ul> <!-- // search_date_tab -->
+
+            <!-- facet_wrap -->
+            
+
+<script id="template-facet-count-item" type="text/template">
+    <span class="search_facet_num facetCount">({FACET_COUNT})</span>
+</script>
+<script id="template-limits-item" type="text/template">
+    <div class="limits">
+     	<h4>제한항목</h4>
+     	<ul>
+           {LIMIT_CONTENTS}
+        </ul>
+    </div>
+</script>
+<script id="template-facet-item" type="text/template">
+    <dl class="facet_author">
+        <dt class="on"><h5>저자</h5></dt>
+        {AUTHOR_FACET_DATA}
+    </dl>
+    <dl class="facet_issuer">
+        <dt class="on"><h5>발행자</h5></dt>
+        {PUBLISHER_FACET_DATA}
+    </dl>
+    <dl class="facet_year">
+        <dt class="on"><h5>발행년</h5></dt>
+        {PUB_YEAR_FACET_DATA}
+    </dl>
+    <dl class="facet_subject">
+        <dt class="on"><h5>주제별분류</h5></dt>
+        {SUBJECT_FACET_DATA}
+    </dl>
+    <dl class="facet_media">
+        <dt class="on"><h5>매체구분</h5></dt>
+        {MEDIA_FACET_DATA}
+    </dl>
+
+	
+
+
+
+
+
+</script>
+<div class="facet_wrap" id="facetDiv">
+</div><!-- // facet_wrap -->
+
+            <div class="searchCon">
+
+                <div class="rsearch_top">
+                    <p class="info_txt" id="searchMeta"></p>
+                    <ul class="rsearch_area">
+                        <li>
+                            <label for="selectSort" class="label_none">순서보기</label>
+                            <select class="select_item" name="sort" id="selectSort" onchange="search(true, true);">
+                                <option value="0" selected>정확순</option>
+                                <option value="1">최신순</option>
+                                <option value="2">제목순</option>
+                            </select>
+                        </li>
+
+                        <li>
+                            <label for="selectDisplay" class="label_none">건수보기</label>
+                            <select class="select_item" name="display" id="selectDisplay" onchange="search(true, true);">
+                                <option value="10" selected>10건</option>
+                                <option value="20">20건</option>
+                                <option value="30">30건</option>
+                                <option value="40">40건</option>
+                                <option value="50">50건</option>
+                            </select>
+                        </li>
+                        <li>
+                            <label for="innerSearchTxt" class="label_none">결과내재검색을입력하세요</label>
+                            <input type="text" class="input_txt" id="innerSearchTxt">
+                            <input type="hidden" id="isSearchType">
+                            <input type="hidden" id="isInnerChk" value="false">
+                        </li>
+                        <li><button id="innerSearchBtn">결과 내 재검색</button></li>
+                    </ul>
+                </div> <!-- // rsearch_top -->
+
+                <div class="searchResult_con" id="searchResultDiv">
+                    <div class="search_no_result" id="noResultDiv">
+                        <p>검색된 도서내역이 없습니다.</p>
+                    </div>
+                    <!-- 도서에 관한 리스트내용 -->
+                    
+
+<script type="text/javascript">
+
+</script>
+
+<!-- 도서 템플렛 -->
+<script id="template-book-item" type="text/template">
+    <li>
+        <div class="sR_con clfix">
+            <span class="sR_img">
+                {IMAGE}
+            </span>
+
+            <div class="sR_txt">
+                <div class="lib-title">
+                    <i class="lib_type {LIB_TYPE_CLASS}">{LIB_NAME}</i>
+                    {FAVORITE_BUTTON} <!-- 찜버튼 -->
+                </div>
+                <!-- 검색한 텍스트에 하이라이팅효과 -->
+
+                    <h5 class="tit">{TITLE_INFO}</h5>
+
+                 <div class="desc bookDesc">
+                    <div class="desc-01">
+                        {AUTHOR_INFO} <!-- 저자 -->
+                        {PUBLISHER}  <!-- 발행자 -->
+                        {PUBLISH_YEAR}  <!-- 발행년 -->
+                    </div>
+                    <div class="desc-02">
+                        {SHELF_LOC_CODE}  <!-- 자료실 -->
+                        {CALL_NO}  <!-- 청구기호 -->
+                        {REG_NO}  <!-- 등록번호 -->
+                    </div>
+                    <div class="desc-03">
+                        {ISBN}  <!-- ISBN -->
+                        {APPENDIX_INFO}  <!-- 부록정보 -->
+                    </div>
+                    <div class="desc-04">
+                        {SERIES_INFO}  <!-- 총서명 / 총서번호 -->
+                        {KEYWORD}  <!-- 키워드 -->
+                    </div>
+
+                </div> <!-- // desc -->
+
+
+
+
+            </div> <!-- // sR_txt -->
+            <div class="state">
+                <!-- 대출과 예약여부는 대출가능, 불가능, 예약가능, 예약불가능 으로 추출 -->
+                {LOAN_STATUS}
+
+                
+                
+                
+            </div>
+        </div>
+        </div> <!-- // sR_con -->
+
+
+
+
+
+         <div class="btn_sR_wrap searchBookWrap"><!-- 250922 기존소스 -->
+            {BUTTONS}
+        </div>
+
+    
+
+        <div class="bookHaveList" id="bookHaveList_{LIB_BOOK_KEY}" style="display: none;">
+            <div class="checkLibList">
+                <div class="checkLibTop">
+                    <span class="title">소장도서관</span>
+                    <span class="count" id="chkLibListCount_{LIB_BOOK_KEY}">0</span>
+                    <div class="btn_lib_list"> <!-- 펼치면 도서관 리스트가 더 보여지고 닫힘버튼 으로 전환 -->
+                        <button class="lib_open" id="openLibList_{LIB_BOOK_KEY}" onclick="libOpenClose('{LIB_BOOK_KEY}', 'open')">펼치기</button>
+                        <button class="lib_close hidden" id="closeLibList_{LIB_BOOK_KEY}" onclick="libOpenClose('{LIB_BOOK_KEY}', 'close')">닫기</button>
+                    </div>
+                </div>
+                
+                <div class="checkWrap hidden" id="chkLibList_{LIB_BOOK_KEY}">
+                </div>
+            </div>
+            <div class="havingLibList" id="chkLibBookList_{LIB_BOOK_KEY}">
+            </div>
+        </div>
+    </li>
+
+</script>
+
+
+<script>
+    $(document).ready(function () {
+        $(".searchBookWrap button.addInfo").click(function () {
+            $(this).toggleClass("on");
+            $(this).closest(".searchBookWrap").next(".bookHaveList").toggleClass("on");
+        });
+    });
+
+    function libOpenClose(book_key, type) {
+        $("#libOpenBtn_" + book_key).parent().hide();
+        if(type == "open"){
+            $("#closeLibList_" + book_key).removeClass("hidden");
+            $("#openLibList_" + book_key).addClass("hidden");
+            $("#chkLibList_" + book_key).removeClass("hidden");
+            if($(window).width() < 768){
+                $("#libOpenBtn_" + book_key).parent().show();
+                $("#chkLibList_" + book_key).find(":not(.more)").removeClass("hidden");
+            } else {
+                $("#chkLibList_" + book_key).find(".check").removeClass("hidden");
+            }
+        } else {
+            $("#openLibList_" + book_key).removeClass("hidden");
+            $("#closeLibList_" + book_key).addClass("hidden");
+            $("#chkLibList_" + book_key).find(".check").addClass("hidden");
+            $("#chkLibList_" + book_key).addClass("hidden");
+        }
+    }
+</script>
+
+<!-- 도서에 관한 리스트내용 -->
+<ul class="sR_list sR_list_book" id="bookList">
+
+</ul> <!-- // sR_list -->
+
+
+                    <!-- 비도서에 관한 리스트내용 -->
+                    
+
+<!-- 도서 템플렛 -->
+<script id="template-nonbook-item" type="text/template">
+    <li>
+        <div class="sR_con clfix">
+            <span class="sR_img">
+                <img src="{IMAGE}" alt="검색자료이미지">
+            </span>
+
+            <div class="sR_txt">
+                <i class="lib_type {LIB_TYPE_CLASS}">{LIB_NAME}</i>
+                <h5 class="tit">{TITLE_INFO}</h5>
+                
+
+                <div class="desc bookDesc"><!-- 250922 추가소스 (단행본 동일) -->
+                    <div class="desc-01">
+                        {AUTHOR_INFO}<!-- 저자 -->
+                        {PUBLISHER} <!-- 발행자 -->
+                        {PUBLISH_YEAR} <!-- 발행년 -->
+                    </div>
+                    <div class="desc-02">
+                        {SHELF_LOC_CODE} <!-- 자료실 -->
+                        {CALL_NO} <!-- 청구기호 -->
+                        {REG_NO} <!-- 등록번호 -->
+                    </div>
+                    <div class="desc-03">
+                        {ISBN}  <!-- ISBN -->
+                        {APPENDIX_INFO}  <!-- 부록정보 -->
+                    </div>
+                    <div class="desc-04">
+                        {KEYWORD}<!-- 키워드 -->
+                    </div>
+                </div> <!-- // desc -->
+            </div> <!-- // sR_txt -->
+        </div> <!-- // sR_con -->
+
+        <div class="state">
+            <!-- 대출과 예약여부는 대출가능, 불가능, 예약가능, 예약불가능 으로 추출 -->
+                {LOAN_STATUS}
+        </div>
+        </div>
+
+
+
+
+
+       <div class="btn_sR_wrap searchBookWrap">
+             {BUTTONS}
+        </div>
+        <div class="bookHaveList" id="bookHaveList_{LIB_BOOK_KEY}" style="display: none;">
+            <div class="checkLibList">
+                <div class="checkLibTop">
+                    <span class="title">소장도서관</span>
+                    <span class="count" id="chkLibListCount_{LIB_BOOK_KEY}">0</span>
+                    <div class="btn_lib_list"> <!-- 펼치면 도서관 리스트가 더 보여지고 닫힘버튼 으로 전환 -->
+                        <button class="lib_open" id="openLibList_{LIB_BOOK_KEY}" onclick="libOpenClose('{LIB_BOOK_KEY}', 'open')">펼치기</button>
+                        <button class="lib_close hidden" id="closeLibList_{LIB_BOOK_KEY}" onclick="libOpenClose('{LIB_BOOK_KEY}', 'close')">닫기</button>
+                    </div>
+                </div>
+
+                <div class="checkWrap hidden" id="chkLibList_{LIB_BOOK_KEY}">
+                </div>
+            </div>
+            <div class="havingLibList" id="chkLibBookList_{LIB_BOOK_KEY}">
+            </div>
+        </div>
+    </li>
+</script>
+<ul class="sR_list sR_list_nobook" id="nonBookList">
+</ul> <!-- // sR_list -->
+
+                    <!-- 연속간행물에 관한 리스트내용 -->
+                    
+
+<script id="template-serial-item" type="text/template">
+    <li>
+        <div class="sR_con clfix">
+            <span class="sR_img">
+                <img src="{IMAGE}" alt="검색자료이미지">
+            </span>
+
+            <div class="sR_txt">
+                <i class="lib_type {LIB_TYPE_CLASS}">{LIB_NAME}</i>
+                <h5 class="tit">{TITLE_INFO}</h5>
+                <div class="desc serialDesc">
+                    {AUTHOR_INFO} <!-- 저자 -->
+                    {PUBLISHER} <!-- 발행자 -->
+                    {PUBLISH_YEAR} <!-- 발행년 -->
+                    {VOL_TITLE} <!-- 최신권호  -->
+                    {SHELF_LOC_CODE} <!-- 자료실 -->
+                    {ISSN} <!-- ISSN -->
+                </div> <!-- // desc -->
+            </div> <!-- // sR_txt -->
+        </div> <!-- // sR_con -->
+
+        <!-- 대출과 예약여부는 대출가능, 불가능, 예약가능, 예약불가능 으로 추출 -->
+        
+
+
+
+
+
+        <div class="btn_sR_wrap searchSerialWrap">
+            {MORE_SERIES_BTN}
+        </div>
+        <!-- // btn_sR_wrap -->
+    </li>
+
+</script>
+
+<ul class="sR_list sR_list_publication" id="serialList">
+</ul> <!-- // sR_list -->
+
+                    
+
+<!-- 도서 템플렛 -->
+<script type="text/javascript">
+    function goEBookLink(barcode) {
+        console.log("login_scccard_no : " + login_scccard_no);
+        const ebookLoginId = !isNullCheck(login_id) ? login_id : login_scccard_no;
+
+        if("" == null || "" == "" || "" == "2"){
+            openWebUserChkPop();
+            return false;
+        }
+
+        if (isNullCheck(barcode)) {
+            alert("전자책 URL 정보가 없습니다.");
+            return false;
+        }
+
+        if (barcode.startsWith("http://w.asp.audien.com") || barcode.startsWith("https://wasp.audien.com")) {
+            let audienUrl = new URL(barcode);
+            audienUrl.searchParams.set("userId", ebookLoginId);
+
+            window.open(audienUrl.toString());
+            return false;
+        }
+
+        if (barcode.startsWith("https://ebook.suwonlib.go.kr")) {
+            window.open(barcode);
+        } else if (barcode.startsWith("http")) {
+            const match = barcode.match(/barcode=(\d+)/);
+            if (!match) {
+                alert("전자책 URL 정보가 올바르지 않습니다.");
+                return false;
+            }
+
+            let ebookUrl = "https://ebook.suwonlib.go.kr/elibrary-front/frontapi/mmbrLnkg.ink"
+                + "?param_1=" + encodeURIComponent(ebookLoginId)
+                + "&param_3="
+                + "&libraryCode=20086"
+                + "&barcode=" + match[1];
+
+            window.open(ebookUrl);
+        } else {
+            let ebookUrl = "https://ebook.suwonlib.go.kr/elibrary-front/frontapi/mmbrLnkg.ink"
+                + "?param_1=" + encodeURIComponent(ebookLoginId)
+                + "&param_3="
+                + "&libraryCode=20086"
+                + "&barcode=" + barcode;
+
+            window.open(ebookUrl);
+        }
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    }
+</script>
+<script id="template-ebook-item" type="text/template">
+    <li>
+        <div class="sR_con clfix">
+            <span class="sR_img">
+                <img src="{IMAGE}" alt="검색자료이미지">
+            </span>
+
+            <div class="sR_txt">
+                <i class="lib_type {LIB_TYPE_CLASS}">{LIB_NAME}</i>
+                <h5 class="tit">{TITLE_INFO}</h5>
+                <div class="desc ebookDesc"><!-- 기존소스 -->
+                    <div class="desc-01">
+                        {AUTHOR_INFO} <!-- 저자 -->
+                        {PUBLISHER} <!-- 발행자 -->
+                        {PUBLISH_YEAR} <!-- 발행년 -->
+                        {KEYWORD} <!-- 키워드 -->
+                    </div>
+                </div>
+  
+            </div> <!-- // sR_txt -->
+        </div> <!-- // sR_con -->
+
+
+
+
+
+        <div class="btn_sR_wrap searchEBookWrap">
+             {BUTTONS}
+        </div> <!-- // btn_sR_wrap -->
+    </li>
+</script>
+<ul class="sR_list sR_list_nobook" id="eBookList">
+</ul> <!-- // sR_list -->
+
+
+                    <div class="paging_wrap">
+                        <ul class="paging" id="paging"></ul>
+                        <input type="hidden" id="pageno" value="1"/>
+                    </div> <!-- // paging_wrap -->
+                </div> <!-- // searchResult_con -->
+            </div> <!-- // searchCon -->
+        </div> <!-- // searchContent -->
+    </div> <!-- // inner -->
+
+     <!-- 팝업창 -->
+    
+
+
+<script type="text/javascript" src="/javascript/views/search/moreSerial.js"></script>
+<script type="text/javascript">
+
+</script>
+
+ <!-- 다른권호보기팝업 -->
+ <div class="jsDiv suwon" id="moreSeriesPopupDiv">
+    <div class="jsDivInner bookSeries">
+        <article class="jsDivContentWrap color-cell">
+            <header>
+                <h3 class="title">다른권호더보기</h3>
+                <button class="jsDivClose btnJsDivClose" id="menuCloseBtn">
+				    <span class="sr-only">닫기</span>
+                </button>
+            </header>
+
+            <div class="jsDivContent">
+                <div class="bookSeriesWrap" id="bookSeriesDiv">
+                    <ul class="bookSeriesContent clfix">
+                        <li>
+                            <div class="bS_con">
+                                <span class="bS_img">
+                                    <img src="/images/sub/book_noimg.png" alt="다른권호더보기이미지">
+                                </span>
+
+                                <div class="bS_txt">
+                                    <i class="lib_type" id="moreSerialLibName"></i>
+                                    <h5 class="tit" datatype="title"></h5>
+                                    <div class="desc">
+                                        <dl>
+                                            <dt>ISSN</dt>
+                                            <dd datatype="issn"></dd>
+                                        </dl>
+                                        <dl>
+                                            <dt>자료실</dt>
+                                            <dd datatype="place"></dd>
+                                        </dl>
+                                        <dl>
+                                            <dt>발행상태</dt>
+                                            <dd datatype="pubFreq"></dd>
+                                        </dl>
+                                        <dl>
+                                            <dt>자료유형</dt>
+                                            <dd datatype="media"></dd>
+                                        </dl>
+                                        <dl>
+                                            <dt>형태사항</dt>
+                                            <dd datatype="mat"></dd>
+                                        </dl>
+                                        <dl>
+                                            <dt>책소개</dt>
+                                            <dd datatype="description"></dd>
+                                        </dl>
+                                    </div>  <!-- // desc -->
+                                </div>  <!-- // bS_txt -->
+                            </div>  <!-- // bS_con -->
+                        </li>
+                    </ul> <!-- // bookSeriesContent -->
+
+                    <div class="tbl_scroll mt10">
+                        <table class="table02">
+                            <caption>다른권호정보</caption>
+                            <thead>
+                                <tr>
+                                    <th>번호</th>
+                                    <th>권호</th>
+                                    <th>부차적권호</th>
+
+                                </tr>
+                            </thead>
+                            <tbody id="bookSeriesListTbody">
+
+                            </tbody>
+                        </table>
+                    </div> <!-- // tbl_scroll -->
+                </div> <!-- // bookSeriesWrap -->
+            </div>  <!-- // jsDivContent -->
+        </article>
+    </div>
+</div>
+    
+
+
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript" src="/javascript/common/d3/d3.js"></script>
+<script type="text/javascript" src="/javascript/common/d3/d3.layout.cloud.js"></script>
+<script type="text/javascript" src="/javascript/jquery.number.min.js"></script>
+<script type="text/javascript" src="/javascript/views/common/data4Lib/data4Lib.js"></script>
+<script type="text/javascript">
+    google.load("visualization", "1", {packages:["corechart"], "callback": drawChartYear});
+</script>
+
+<!-- 도서이용분석 -->
+ <div class="jsDiv" id="data4LibDiv">
+    <div class="jsDivInner data4LibInner">
+        <article class="jsDivContentWrap color-cell"> <!-- inner-cell 클래스값 추가시, width:50% / color-cell 클래스값 추가시 헤더컬러형 팝업 -->
+
+            <header>
+                <h3 class="title">도서이용분석</h3>
+                <button class="jsDivClose btnJsDivClose" id="menuCloseBtn">닫기
+				    <span></span>
+                    <span></span>
+                </button><!-- btnJsDivClose 클래스값 삭제시 접근성 포커스 가지않음 -->
+            </header>
+
+            <div class="jsDivContent">
+               <div class="sub_container">
+                    <div class="book_view_title">
+                       <span id="data4lib_bookname"></span>
+                    </div>
+
+                    <div class="add_book">
+                        <div class="book_tbl clfix">
+                            <div class="book_box"><img src="" alt="도서이미지"></div>
+                            <div class="book_tbl_r">
+                            <table id="bookInfo" class="views_tbl mgb_30 table02">
+                            <caption>도서정보</caption>
+                                <colgroup>
+                                    <col width="25%">
+                                    <col width="25%">
+                                    <col width="25%">
+                                    <col width="25%">
+                                </colgroup>
+                                <tbody>
+                                    <tr>
+                                        <th class="center_td">저자정보</th>
+                                        <td class="br_none left_td" colspan="3"><p id="data4lib_authors">-</p></td>
+                                    </tr>
+                                    <tr>
+                                        <th class="center_td">출판사</th>
+                                        <td class="br_none left_td" colspan="3"><p id="data4lib_pub">-</p></td>
+                                    </tr>
+                                    <tr>
+                                        <th class="center_td">책소개</th>
+                                        <td class="br_none left_td book_intro" colspan="3"><p id="data4lib_desc">-</p></td>
+                                    </tr>
+                                    <tr>
+                                        <th class="center_td">출판연도</th>
+                                        <td class="br_none left_td"><p id="data4lib_pubYear">-</p></td>
+                                        <th class="center_td">ISBN</th>
+                                        <td class="br_none left_td"><p id="data4lib_isbn">-</p></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            </div>
+                        </div>
+                    </div>
+                        <h3 class="h3_title" id="chart_title">대출 추이</h3>
+                        <div class="data_graph_box hide_contents" id="chart_graph" style="display:none;">
+                             <h3 class="title_h3">Chart</h3>
+                             <p class="mt10">대출량과 대출순위 통계는 매월초 재집계되며, 참여도서관의 증가 등에 의해 대출량과 순위는 달라질 수 있습니다.
+                             </p>
+                             <div class="chart_height">
+                                 <div id="chartYear" class="chart"></div>
+                             </div>
+                         </div>
+
+                         <div class="data_graph_box mgb_30 hide_contents" id="chart_table" style="display:none;">
+                             <h3 class="title_h3">Data</h3>
+                            <div class="tbl_scroll">
+                                <table id="chart_data" class="views_tbl table02 tblWidth">
+                                    <colgroup>
+                                        <col style="width:25%;"/>
+                                        <col style="width:15%;"/>
+                                        <col style="width:10%;"/>
+                                        <col style="width:25%;"/>
+                                        <col style="width:15%;"/>
+                                        <col style="width:10%;"/>
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th>대출연월</th>
+                                            <th>대출건수</th>
+                                            <th>대출순위</th>
+                                            <th class="add_line">대출연월</th>
+                                            <th>대출건수</th>
+                                            <th class="br_none">대출순위</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <h3 class="h3_title" id="word_title">주요 키워드</h3>
+                        <div class="data_graph_box mgb_30 hide_contents" id="word_graph" style="display:none;">
+                           <div style="height: 250px;">
+                               <div id="wordCloud" class="chart"></div>
+                           </div>
+                        </div>
+
+                        <h3 class="h3_title" id="loanGrp_title">다대출 이용자 그룹</h3>
+                        <div class="mgb_20 hide_contents" id="loanGrp_comm" style="display:none;">
+                            <span id="loan_comm">최근 30일동안 대출을 가장 많이 한 연령 및 성별을 제공합니다.</span>
+                        </div>
+                        <div class="tbl_scroll">
+                            <table id="loanGrp" class="views_tbl mgb_30 hide_contents table02 tblWidth" style="display:none;">
+                                <colgroup>
+                                    <col style="width:20%;"/>
+                                    <col style="width:20%;"/>
+                                    <col style="width:20%;"/>
+                                    <col style="width:20%;"/>
+                                </colgroup>
+                                <thead>
+                                    <tr>
+                                        <th>연령</th>
+                                        <th>성별</th>
+                                        <th>대출건수</th>
+                                        <th class="br_none">순위</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+
+
+                        <h3 class="h3_title" id="recTitle">함께 대출된 도서</h3>
+                        <div class="mgb_20 hide_contents" id="recSubTitle"  style="display:none;">
+                            <span>최근 36개월동안 동시 대출 도서 정보를  제공합니다.</span>
+                        </div>
+                        <div class="tbl_scroll">
+                            <table id="tableArea" class="views_tbl hide_contents table02 tblWidth"  style="display:none; margin-top:10px;">
+                                <colgroup>
+                                    <col style="width: 5%;"/>
+                                    <col style="width: 65%;"/>
+                                    <col style="width: 13%;"/>
+                                    <col style="width: 5%;"/>
+                                    <col style="width: 12%;"/>
+                                </colgroup>
+                                <thead>
+                                    <tr>
+                                        <th>순위</th>
+                                        <th>서명 <br>저자정보 | 출판사 | 출판연도</th>
+                                        <th>ISBN</th>
+                                        <th>Vol</th>
+                                        <th class="br_none">동시 대출<br/>빈도</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="data4lib_src_info">
+                            <span>* 상기 정보는 도서관정보나루(http://www.data4library.kr) 에서 제공하는 데이터입니다. </span>
+                        </div>
+                </div><!-- End: sub_container -->
+            </div>
+
+            <footer class="btnArea">
+
+            </footer>
+        </article>
+    </div>
+ </div>
+
+    
+
+<script type="text/javascript">
+
+/**
+ * openReservePop : 예약 팝업 오픈
+ *
+ * @date 2022.02.18
+ * @author KDH
+ * @param  bookKey 책키, closeFn 팝업 닫힐시 함수
+ * @return 
+ */
+function openReservePop(bookKey, closeFn) {
+    if("" == null || "" == "" || "" == "2"){
+        openWebUserChkPop();
+        return false;
+    }
+
+	if(isNullCheck(bookKey) || isNullCheck(closeFn)){
+		alert("필수값 입력 안됨.");
+		return false;
+	}
+	getBookReverseInfo(bookKey, closeFn);
+}
+
+/**
+ * getBookInfo : 예약자료 정보 조회
+ *
+ * @date 2022.02.18
+ * @author KDH
+ * @param  bookKey 책키, closeFn 팝업 닫힐시 함수
+ * @return 
+ */
+function getBookReverseInfo(bookKey, closeFn){
+	 
+	commonAjaxRequest({
+		url : getContextPath() + "/bookreserve/getbookinfo",
+		method : "post",
+		params : {book_key : bookKey},
+		success : function(data) {
+			if(isNullCheck(data.USER_KEY)){
+				alert("로그인 후 신청이 가능합니다.");
+				return false;
+			}else if(isNullCheck(data.USER_NO) || "" == "2"){
+				alert("준회원은 예약을 할 수 없습니다.\n정회원등록(회원증발급)이후 신청이 가능합니다.");
+				return false;
+			}
+			
+			// 한줄서기일때
+			if(!isNullCheck(data.LOANABLE_COPY_CNT)){
+				if(0 < Number(data.LOANABLE_COPY_CNT)){
+					if(1 == Number(data.LOANABLE_COPY_CNT)){
+						if(!confirm("자료가 비치중인 상태입니다. 그래도 예약하시겠습니까?")) {
+							return false;
+						}
+					}else{
+						if(!confirm("동일한 자료 중 비치중인 상태의 자료가 존재합니다.그래도 예약하시겠습니까?")) {
+							return false;
+						}
+					}
+				}
+			}
+			
+			commonAjaxRequest({
+				url : getContextPath()+'/bookreserve/reservecheck',
+				params : {
+							user_key : data.USER_KEY,
+							book_key : bookKey,
+							book_type : data.BOOK_TYPE
+						},
+				method : "post",
+				success : function(data2){
+					if(Number(data2.RESERVE_CODE) > 0){
+						//예약 팝업 열기
+				        CloudDialog('reserveReqDiv', 1, initReservePop2 , closeFn);
+						$("#reserve_title2").html(data.TITLE_INFO);
+				        $("#reserve_authors2").html(data.AUTHOR);
+				    	$("#reserve_pub2").html(data.PUBLISHER);
+				    	$("#reserve_isbn").html(data.ISBN);
+				    	$("#reserve_regno").html(data.REG_NO);
+				    	if(!isNullCheck(data.REG_NO)){
+				    		$("#reserve_callno").html(data.CALL_NO);
+				    	}
+				    	if(!isNullCheck(data.RETURN_PLAN_DATE)){
+				    		$("#reserve_returnplandate").html(data.RETURN_PLAN_DATE);
+				    	}
+
+						$("#addReserveBookKey").val(bookKey);
+						$("#addReserveBookType").val(data.BOOK_TYPE);
+						$("#addReserveUserKey").val(data.USER_KEY);
+		       		
+			       	} else if(Number(data2.RESERVE_CODE) == -100){
+			        	alert("예약 기능을 지원 하지 않습니다.");
+			       	} else if(Number(data2.RESERVE_CODE) == -101){
+			    		alert("대출정지기간에는 예약 신청을 신청 하실 수 없습니다.");
+			       	} else if(Number(data2.RESERVE_CODE) == -102){
+			   			alert("약관 재 동의 후에 이용 가능 합니다.");
+			       	} else if(Number(data2.RESERVE_CODE) == -103){
+			        	alert("이미 예약 혹은 대출하신 도서입니다.");
+			       	} else if(Number(data2.RESERVE_CODE) == -104){
+			        	alert("예약 가능 권수를 초과하였습니다.");
+			       	} else if(Number(data2.RESERVE_CODE) == -105){
+			        	alert("허용 가능한 예약 인원이 초과 하였습니다.");	
+			       	} else if(Number(data2.RESERVE_CODE) == -106){
+			   			alert("본인인증이 필요합니다.\n본인인증 후 이용가능합니다.");
+			       	} else if(Number(data2.RESERVE_CODE) == -108){
+			       		alert("약관 동의 대상 입니다.");
+			       	} else if(Number(data2.RESERVE_CODE) == -109){
+			   			alert("자관 예약가능 권수를 초과하였습니다.");
+			       	} else if(Number(data2.RESERVE_CODE) == -110){
+			   			alert("통합 예약가능 권수를 초과하였습니다.");
+			       	} else if(Number(data2.RESERVE_CODE) == -111){
+			       		alert("책이음 대출정지여부 확인에 실패하였습니다.");
+			       	} else if(Number(data2.RESERVE_CODE) == -112){
+			   			alert("책이음 대출정지 상태입니다.\n예약 신청을 신청 하실 수 없습니다.");
+			       	} else if(Number(data2.RESERVE_CODE) == -113){
+			   			alert("예약취소제한적용기간동안\n예약취소제한갯수를 초과하여 예약 하실 수 없습니다.");
+			       	} else if(Number(data2.RESERVE_CODE) == -114){
+			   			alert("해당 도서 재대출제한 만료 전입니다.");
+			       	} else if(Number(data2.RESERVE_CODE) == -115){
+			   			alert("회원증 분실상태에서는 예약할 수 없습니다.");
+			       	} else if(Number(data2.RESERVE_CODE) == -120){
+                        alert("이번달 예약 가능 권수를 초과하였습니다.");
+                    }
+				},
+		        error:function(err){
+		            if (err) {
+		                console.error(err);
+		            }
+		        },
+		        loadingBar : true
+			});
+		},
+		error : function(data) {
+			console.error(err);
+		},
+		loadingBar : true
+	});
+}
+
+/**
+ * initReservePop : 예약 팝업 정보 창 초기화
+ *
+ * @date 2022.02.18
+ * @author KDH
+ * @param
+ * @return 
+ */
+function initReservePop2(){
+	$("#reserve_title").html("-");
+    $("#reserve_authors").html("-");
+	$("#reserve_pub").html("-");
+	$("#reserve_isbn").html("-");
+	$("#reserve_regno").html("-");
+	$("#reserve_callno").html("-");
+	$("#reserve_returnplandate").html("-");
+	$("#addReserveBookKey").val("");
+	$("#addReserveBookType").val("");
+	$("#addReserveUserKey").val("");
+}
+
+/**
+ * requestReserve : 예약 신청 
+ *
+ * @date 2022.02.18
+ * @author KDH
+ * @param
+ * @return 
+ */
+function requestReserve(){
+	let functionName = "예약하기";
+	 $.ajax({
+		url : getContextPath()+'/bookreserve/bookreserve',
+		data : {
+					user_key : $("#addReserveUserKey").val(),
+					book_key : $("#addReserveBookKey").val(),
+					book_type : $("#addReserveBookType").val()
+				},
+		method : "post",
+		success : function(data){
+            if (data.RESULT == "OK") {
+                alert("예약되었습니다.");
+                $("#addReserveCloseBtn").trigger('click');
+
+                try {
+                    insertFunctionLog(functionName);
+                } catch (e) {
+                    console.error("insertFunctionLog error:", e);
+                }
+            } else {
+                alert("예약에 실패 하였습니다.");
+            }
+		},
+        error:function(err){
+            if (err) {
+                console.error(err);
+            }
+        },
+        loadingBar : true
+	});
+
+}
+</script>
+<style>
+
+</style>
+
+ <!-- 예약 -->
+ <div class="jsDiv suwon" id="reserveReqDiv">
+    <div class="jsDivInner normal">
+        <article class="jsDivContentWrap color-cell">
+            <header>
+                <h3 class="title">예약신청</h3>
+                <button class="jsDivClose btnJsDivClose" id="addReserveCloseBtn">
+                    <span class="sr-only">닫기</span>
+                </button><!-- btnJsDivClose 클래스값 삭제시 접근성 포커스 가지않음 -->
+            </header>
+            <div class="jsDivContentArea">
+                <div class="jsDivContent">
+                <h5 class="h5_tit">신청 도서 정보</h5>
+                <div class="book_tbl clfix">
+                    <div class="book_tbl_r tbl_scroll book_tbl_pop">
+                        <table id="bookInfo" class="views_tbl mgb_30 table02">
+                            <colgroup>
+                                <col width="25%">
+                                <col width="25%">
+                                <col width="25%">
+                                <col width="25%">
+                            </colgroup>
+                            <tbody>
+                                <tr>
+                                    <th class="center_td">서명</th>
+                                    <td class="br_none left_td" colspan="3" id="reserve_title2"></td>
+                                </tr>
+                                <tr>
+                                    <th class="center_td">저자정보</th>
+                                    <td class="br_none left_td" colspan="3"><p id="reserve_authors2"></p></td>
+                                </tr>
+                                <tr>
+                                    <th class="center_td">출판사</th>
+                                    <td class="br_none left_td" colspan="3"><p id="reserve_pub2"></p></td>
+                                </tr>
+                                <tr>
+                                    <th class="center_td">ISBN</th>
+                                    <td class="br_none left_td" colspan="3"><p id="reserve_isbn"></p></td>
+                                </tr>
+                                <tr>
+                                    <th class="center_td">등록번호</th>
+                                    <td class="br_none left_td" colspan="3"><p id="reserve_regno"></p></td>
+                                </tr>
+                                <tr>
+                                    <th class="center_td">청구기호</th>
+                                    <td class="br_none left_td" colspan="3"><p id="reserve_callno"></p></td>
+                                </tr>
+                                <tr>
+                                    <th class="center_td">반납예정일</th>
+                                    <td class="br_none left_td" colspan="3"><p id="reserve_returnplandate"></p></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <input id="addReserveBookKey" name="reserve_book_key" type="hidden" value="" class="input_txt"/>
+                        <input id="addReserveBookType" name="reserve_book_type" type="hidden" value="" class="input_txt"/>
+                        <input id="addReserveUserKey" name="reserve_user_key" type="hidden" value="" class="input_txt"/>
+                    </div>
+                </div>
+                <div class="flex-area close">
+                    <div class="jsDivClose">
+                        <button class="btnNew_close" type="button"><span>닫기</span></button>
+                    </div>
+                    <div class="jsDivClose save">
+                        <button class="btnNew_applicate" type="button" onclick="requestReserve();"><span>예약</span></button>
+                    </div>
+                </div>
+			</div>
+            </div>
+		</article>
+	</div>
+ </div>
+
+    
+
+
+<script type="text/javascript">
+/**
+ * openDeliveryPop :배달 신청 팝업 열기
+ *
+ * @date 2022.02.16
+ * @author kjm
+ * @param  bookKey 책키, closeFn 팝업 닫힐시 함수
+ * @return 
+ */
+function openDeliveryPop(bookKey, closeFn) {
+	if(isNullCheck(bookKey)){
+        alert("신청할 수 없는 책입니다.");
+		return false;
+	}
+	$("#deliveryReqDivTitle").html(getDeliveryServiceName()+"신청");
+	if("Y" === getStaffCheck()){
+		bookInfoLoad(bookKey, closeFn);
+	} else {
+		alert("직원만 신청이 가능합니다.");
+		return false;
+	}
+	
+   	
+}
+
+/**
+ * bookInfoLoad :배달 신청 팝업  책정보 조회 열기
+ *
+ * @date 2022.02.16
+ * @author kjm
+ * @param  bookKey 책키, closeFn 팝업 닫힐시 함수
+ * @return 
+ */
+function bookInfoLoad(bookKey, closeFn){
+	commonAjaxRequest({
+		url : getContextPath() + "/delivery/get/bookinfo",
+		method : "post",
+		params : {book_key : bookKey},
+		success : function(data) {
+			if(isNullCheck(data.user_key)){
+				alert("로그인 후 신청이 가능합니다.");
+				return false;
+			}
+			if(data.result == "STOP_USER"){
+				alert("대출정지기간에는 신청 하실 수 없습니다.");
+				return false;
+			} else if(data.result == "OK"){
+				if(data.bookInfo.BOOK_STATUS === "0"){
+					alert("신청가능한 자료가 아닙니다.");
+					return false;
+				} else {
+					//배달신청 팝업 열기
+			        CloudDialog('deliveryReqDiv', 1, initDeliveryPop , closeFn);
+					
+					$("#addDeliveryManageCode").val(data.bookInfo.MANAGE_CODE);
+			        $("#delivery_bookname").html(data.bookInfo.TITLE);
+			    	$("#delivery_authors").html(data.bookInfo.AUTHOR_INFO);
+			    	$("#delivery_pub").html(data.bookInfo.PUB_INFO);
+			    	$("#delivery_pubYear").html(data.bookInfo.PUB_YEAR_INFO);
+			    	$("#delivery_isbn").html(data.bookInfo.EA_ISBN);
+			        $("#delivery_libName").html(data.bookInfo.LIB_NAME);
+
+					$("#addDeliveryBookKey").val(bookKey);
+					
+					
+					//배달 주소 유형 설정에 따라 팝업창 조건 변경
+					if(!isNullCheck(data.deliveryAddrType)){
+						$("#addDeliveryAddrType").val(data.deliveryAddrType);
+						if(data.deliveryAddrType == "W"){
+							$("#homeInfo").hide();
+							$("#workInfo").show();
+						} else {
+							$("#workInfo").hide();
+							$("#homeInfo").show();
+						}
+					} else {
+						$("#workInfo").hide();
+						$("#homeInfo").show();
+						$("#addDeliveryAddrType").val("H");
+					}
+				}
+			} else {
+				alert("자료 정보가 조회되지 않았습니다.");
+			}
+		},
+		error : function(data) {
+			alert("자료 정보 정보 조회");
+		},
+		loadingBar : true
+	});
+}
+
+/**
+ * userDeliveryInfoLoad : 이용자 주소 정보 조회
+ *
+ * @date 2022.02.16
+ * @author kjm
+ * @param
+ * @return 
+ */
+function userDeliveryInfoLoad(){
+	commonAjaxRequest({
+		url : getContextPath() + "/delivery/get/userinfo",
+		method : "post",
+		success : function(data) {
+			if(data.result == "OK"){
+				if(data.delivery_addr_type =="W"){
+					$("#addDeliveryPhone").val(data.userInfo.PHONE);
+					$("#addDeliveryWorkName").val(data.userInfo.DEPARTMENT_NAME);
+				} else {
+					$("#addDeliveryPhone").val(data.userInfo.PHONE);
+					$("#addDeliveryZipcode").val(isNullChange(data.userInfo.ZIP_CODE));
+					$("#addDeliveryAddress").val(isNullChange(data.userInfo.ADDRESS));					
+				}
+			} else {
+				warningAlert("이용자정보가 조회되지 않았습니다.");
+			}
+		},
+		error : function(data) {
+			getFailMessage("이용자 배송지 정보 조회", data);
+		},
+		loadingBar : true
+	});
+}
+
+/**
+ * initDeliveryPop : 배달 팝업 입력 창 초기화
+ *
+ * @date 2022.02.16
+ * @author kjm
+ * @param
+ * @return 
+ */
+function initDeliveryPop(){
+	$("#addDeliveryInfo").find("select, input").each(function(index,item){
+		$(item).val("");
+	});
+}
+
+/**
+ * requestDelivery : 배달 팝업 신청 
+ *
+ * @date 2022.02.16
+ * @author kjm
+ * @param
+ * @return 
+ */
+function requestDelivery(){
+	if(isNullCheck($("#addDeliveryPhone").val())){
+		alert("연락처를 입력해 주세요.");
+		$("#addDeliveryPhone").focus();
+		return false;
+	}
+	if($("#addDeliveryAddrType").val() == "W"){
+		if(isNullCheck($("#addDeliveryWorkName").val())){
+			alert("부서명을 입력해 주세요.");
+			$("#addDeliveryWorkName").focus();
+			return false;
+		}
+	} else {
+		if(isNullCheck($("#addDeliveryZipcode").val())){
+			alert("우편번호를 입력해 주세요.");
+			$("#addressSearchBtn").focus();
+			return false;
+		}
+		if(isNullCheck($("#addDeliveryAddress").val())){
+			alert("주소를 입력해 주세요.");
+			$("#addressSearchBtn").focus();
+			return false;
+		}	
+	}
+	
+	var data = $("#addDeliveryInfo").find("select, input").serialize();
+	
+	$.ajax({
+		url : getContextPath() + "/delivery/request",
+		data : data,
+		success : function(data) {
+			if(data.result == "OK") {
+				alert("배달자료 신청에 성공하였습니다.");
+				$("#addDeliveryCloseBtn").trigger('click');
+			} else if(data.result == "OVERLAP"){
+				alert("이미 접수된 정보 입니다.");
+			} else if(data.result == "STAFF_NO"){
+				alert("직원만 신청이 가능합니다.");
+			} else if(data.result == "STOP_USER"){
+				alert("대출 정지 중에는 신청을 할 수 없습니다.");
+			} else {
+				alert("배달자료 신청중 오류가 발생하였습니다. 문제가 지속될경우 시스템 관리자에게 문의 바랍니다.");
+			}
+		}
+	});
+
+}
+</script>
+
+
+ <!-- 배달신청 -->
+ <div class="jsDiv" id="deliveryReqDiv">
+    <div class="jsDivInner deliveryInner">
+        <article class="jsDivContentWrap color-cell">
+            <header>
+                <h3 class="title" id="deliveryReqDivTitle">배달신청</h3>
+                <button class="jsDivClose btnJsDivClose" id="addDeliveryCloseBtn">닫기
+				    <span></span>
+                    <span></span>
+                </button><!-- btnJsDivClose 클래스값 삭제시 접근성 포커스 가지않음 -->
+            </header>
+
+            <div class="jsDivContent">
+                <h5 class="h5_tit">신청 도서 정보</h5>
+                <div class="book_tbl clfix">
+                    <div class="book_tbl_r tbl_scroll book_tbl_pop">
+                        <table id="bookInfo" class="views_tbl mgb_30 table02">
+                            <colgroup>
+                                <col width="25%">
+                                <col width="25%">
+                                <col width="25%">
+                                <col width="25%">
+                            </colgroup>
+                            <tbody>
+                                <tr>
+                                    <th class="center_td">서명</th>
+                                    <td class="br_none left_td" colspan="3"><p id="delivery_bookname">-</p></td>
+                                </tr>
+                                <tr>
+                                    <th class="center_td">저자정보</th>
+                                    <td class="br_none left_td" colspan="3"><p id="delivery_authors">-</p></td>
+                                </tr>
+                                <tr>
+                                    <th class="center_td">출판사</th>
+                                    <td class="br_none left_td" colspan="3"><p id="delivery_pub">-</p></td>
+                                </tr>
+                                <tr>
+                                    <th class="center_td">출판연도</th>
+                                    <td class="br_none left_td"><p id="delivery_pubYear">-</p></td>
+                                    <th class="center_td">ISBN</th>
+                                    <td class="br_none left_td"><p id="delivery_isbn">-</p></td>
+                                </tr>
+                                <tr>
+                                    <th class="center_td">도서관</th>
+                                    <td class="br_none left_td book_intro" colspan="3"><p id="delivery_libName">-</p></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <h5 class="h5_tit">신청정보</h5>
+
+                <div class="jsDivForm applic_input" id="addDeliveryInfo">
+                    <dl>
+                        <dt><label for="addDeliveryPhone">연락처</label></dt>
+                        <dd><input id="addDeliveryPhone" name="phone" type="text" class="input70 input_txt" required="required" data-type="tel_and_phone" placeholder="연락처"> (-포함)</dd>
+                    </dl>
+					<dl id="homeInfo">
+                        <dt><label for="addDeliveryAddress">주소</label></dt>
+                        <dd><input id="addDeliveryZipcode" name="zip_code" type="text" value="" readonly="readonly" required="required" title="우편번호" class="input_txt" placeholder="우편번호">
+                        	<button id="addressSearchBtn" class="btn_pop" onclick="addressQuery('addDeliveryZipcode','addDeliveryAddress');">주소조회</button>
+                        	<button id="userDeliveryInfo" class="btn_pop" onclick="userDeliveryInfoLoad();">회원정보동일</button>
+							<br>
+							<input id="addDeliveryAddress" name="address" required="required" type="text" class="input_txt mt10" style="width:100%;" placeholder="주소">
+						</dd>
+                    </dl>
+                    <dl id="workInfo">
+                        <dt><label for="addDeliveryWorkName">부서명</label></dt>
+                        <dd>
+                        	<input id="addDeliveryWorkName" name="addDeliveryWorkName" type="text" class="input_txt" maxlength="15" placeholder="부서명">
+                        	<button id="addDeliveryWorkNameInfo" class="btn_pop" onclick="userDeliveryInfoLoad();">회원정보동일</button>
+                        </dd>
+                    </dl>
+					<input id="addDeliveryBookKey" name="book_key" type="hidden" value="" class="input_txt"/>
+					<input id="addDeliveryManageCode" name="manage_code" type="hidden" value="" class="input_txt"/>
+					<input id="addDeliveryPublishFormCode" name="publish_form_code" type="hidden" value="MO" class="input_txt"/>
+					<input id="addDeliveryAddrType" type="hidden" value="H"/>
+                </div>
+                <div class="jsDivNew_btn_wrap clfix">
+                    <div class="right">
+                    	<button class="btnNew_applicate" onclick="requestDelivery();">신청</button>
+                        <button class="btnNew_close">닫기</button>
+	               </div>
+                </div>
+			</div>
+		</article>
+	</div>
+ </div>
+
+	
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+	$("#kbillReqDivTitle").html(getLillServiceName() + " 신청");
+});
+
+
+let lillFunctionName = "상호대차신청";
+let lillFunctionType = "req";
+let globalKbillReqCloseFn = null;
+let kbillLibOwned = false;	// 선택 도서관이 해당 도서를 이미 소장중인지 여부 (신청 차단용)
+/**
+ * openLillPop :배달 신청 팝업 열기
+ *
+ * @date 2022.03.23
+ * @author kjm
+ * @param  bookKey 책키, closeFn 팝업 닫힐시 함수
+ * @return 
+ */
+function openLillPop(manageCode, bookKey, closeFn, userKey) {
+    lillFunctionName = "상호대차신청";
+    lillFunctionType = "req";
+    if("" == null || "" == "" || "" == "2"){
+        openWebUserChkPop();
+        return false;
+    }
+
+    const today = new Date().getDay();
+
+    if (today === 5 || today === 6 || today === 0) {
+        alert("금요일, 토요일, 일요일에는 신청할 수 없습니다.");
+        return;
+    }
+
+    if(isNullCheck(bookKey)){
+		alert("신청할 수 없는 책입니다.");
+		return false;
+	}
+
+    globalKbillReqCloseFn = closeFn;
+
+	$("#appendixTag").remove();
+	$("#kbillReqChkFlag").val("true");
+	$("#kbillReqBookKey").val(bookKey);
+    $("#kbillReqUserKey").val(userKey);
+
+
+    CloudDialog('kbillReqDiv', 1, function (){initRequestPopInfo(manageCode,bookKey)} , closeFn);
+
+    commonAjaxRequest({
+        method : 'post',
+        url: getContextPath() + "/kbill/get/liblist",
+        params : {"manageCode" : manageCode},
+        success : function(data) {
+            let libSelectOpt = "<option value=''>받을 도서관 선택</option>";
+            let libSize = data.length;
+
+            if(libSize > 0){
+                for(let i = 0; i < libSize ; i++){
+                    libSelectOpt += "<option value='"+data[i].MANAGE_CODE+"'>"
+                        + data[i].LIB_NAME
+                        + "</option>";
+                }
+            } else {
+                alert("신청 가능 도서관이 없습니다.");
+            }
+
+            $("#kbillLibSel").html(libSelectOpt);
+            $("#kbillLoanInfoArea").hide();
+            setKbillReqDisabled(false);
+        }
+    });
+}
+
+function forceCloseKbillReqeDialog() {
+    const targetId = 'kbillReqDiv';
+    const targetEl = document.getElementById(targetId);
+    if (!targetEl) return;
+
+    document.body.style.overflowY = 'auto';
+
+    targetEl.classList.remove('on');
+
+    setTimeout(function () {
+        targetEl.style.display = 'none';
+
+        // closeFn이 정의되어 있다면 실행
+        if (typeof globalKbillReqCloseFn === 'function') {
+            try {
+                globalKbillReqCloseFn();
+            } catch (e) {
+                console.error('closeFn 실행 중 오류:', e);
+            }
+        }
+    }, 50);
+}
+
+function openLillChangePop(manageCode, bookKey, closeFn, userKey) {
+    lillFunctionName = "상호대차전환";
+    lillFunctionType = "change";
+    if("" == null || "" == "" || "" == "2"){
+        openWebUserChkPop();
+        return false;
+    }
+
+    if(isNullCheck(bookKey)){
+        alert("신청할 수 없는 책입니다.");
+        return false;
+    }
+    globalKbillReqCloseFn = closeFn;
+
+    $("#appendixTag").remove();
+    $("#kbillReqChkFlag").val("true");
+    $("#kbillReqBookKey").val(bookKey);
+    $("#kbillReqUserKey").val(userKey);
+
+
+    CloudDialog('kbillReqDiv', 1, function (){initRequestPopInfo(manageCode,bookKey)} , closeFn);
+
+    commonAjaxRequest({
+        method : 'post',
+        url: getContextPath() + "/kbill/get/liblist",
+        params : {"manageCode" : manageCode},
+        success : function(data) {
+            let libSelectOpt =  "<option value=''>도서관구분</option>";
+            let libSize = data.length;
+            if(libSize > 0){
+                for(let i = 0; i < libSize ; i++){
+                    libSelectOpt += "<option value='"+data[i].MANAGE_CODE+"'>"+data[i].LIB_NAME+"</option>";
+                }
+            } else {
+                alert("신청 가능 도서관이 없습니다.");
+            }
+            $("#kbillLibSel").html(libSelectOpt);
+            $("#kbillLoanInfoArea").hide();
+            setKbillReqDisabled(false);
+        }
+    });
+}
+
+
+/**
+ * initRequestPopInfo :상호대차 팝업 초기 정보 조회
+ *
+ * @date 2022.03.23
+ * @author kjm
+ * @param  
+ */
+function initRequestPopInfo(manageCode, bookKey){
+	var setManageCode = getManageCode();
+	if(!isNullCheck(setManageCode)){
+		if(manageCode != setManageCode){
+			$("#kbillLibSel").val(setManageCode);	
+		}
+	}
+	$("#holdManageCode").val(manageCode);
+	var appendTag="";
+	
+	commonAjaxRequest({
+		method : 'post',
+		url: getContextPath() + "/kbill/get/appendix",
+		params : {"book_key" : bookKey},
+		type:"post",
+		success : function(data) {
+			if(data.length > 0){
+				appendTag += "<div id='appendixTag'>";
+				appendTag += "<div></div>";
+				appendTag += "<br/>";
+				appendTag += "<h3>신청가능한 부록목록</h3>";
+				appendTag += "<div class='tbl_scroll mt10'>";
+				appendTag += "<table class='table02'>";
+				appendTag += "	<thead>";
+				appendTag += "		<tr>";
+				appendTag += "			<th></th>";
+				appendTag += "			<th class='title' align='center'>서명</th>";
+				appendTag += "			<th>등록번호</th>";
+				appendTag += "			<th>매체구분</th>";
+				appendTag += "			<th>자료실</th>";
+				appendTag += "			<th>청구기호</th>";
+				appendTag += "		</tr>";
+				appendTag += "	</thead>";
+				appendTag += "	<tbody>";
+				for(var i = 0; i < data.length; i++){
+					appendTag += "		<tr>";
+					appendTag += "			<td><input name='appendAllcheck' value='" + data[i].REG_NO + "' type='checkbox' /></td>";
+					appendTag += "			<td>" + data[i].VOL_TITLE + "</td>";
+					appendTag += "			<td>" + data[i].REG_NO + "</td>";
+					appendTag += "			<td>" + data[i].DESCRIPTION + "</td>";
+					appendTag += "			<td>" + data[i].SHELF_LOC_NAME + "</td>";
+					appendTag += "			<td>" + data[i].CALL_NO + "</td>";
+					appendTag += "		</tr>";
+				}
+				appendTag += "	</tbody></table></div></div>";
+				
+				$("#kbillAppendList").html(appendTag);
+			}
+		}, error:function() {
+				alert("부록리스트를 가져오는 중에 문제가 발생하였습니다.\n문제가 지속되면 시스템관리자에게 문의하여 주십시오.");
+				$("#appendixTag").remove();
+				$("#kbillReqChkFlag").val("true");
+				$("#kbillReqCloseBtn").trigger('click');
+		}, loadingBar : true
+	});
+}
+
+/**
+ * onChangeKbillLib :대출신청도서관 선택 시 해당 도서관 소장 여부 및 대출가능여부 표시
+ *
+ * @date 2026.06.26
+ */
+function onChangeKbillLib() {
+    // 예약목록 상호대차변환(change)은 소장/대출가능 체크 없이 항상 신청 가능
+    if (lillFunctionType === "change") {
+        $("#kbillLoanInfoArea").hide();
+        setKbillReqDisabled(false);
+        return;
+    }
+
+    let libManageCode = $("#kbillLibSel").val();
+    let bookKey = $("#kbillReqBookKey").val();
+
+    if (isNullCheck(libManageCode) || isNullCheck(bookKey)) {
+        setKbillReqDisabled(false);
+        $("#kbillLoanInfoArea").hide();
+        return;
+    }
+
+    commonAjaxRequest({
+        method : 'post',
+        url: getContextPath() + "/kbill/get/loanInfo",
+        params : {"book_key" : bookKey, "lib_manage_code" : libManageCode},
+        success : function(data) {
+            if (data != null && data.OWNED == "Y") {
+                // 소장중이면 신청 불가 안내(소장위치/청구기호/자료상태 포함) + 신청 버튼 비활성화
+                let msg = "선택한 도서관에서 대출 가능한 도서가 있으므로 상호대차를 신청할 수 없습니다.";
+
+                $("#kbillLoanGuide").text(msg);
+                $("#kbillShelfLocName").text(isNullCheck(data.SHELF_LOC_NAME) ? "" : "소장 위치 : " + data.SHELF_LOC_NAME);
+                $("#kbillCallNo").text(isNullCheck(data.CALL_NO) ? "" : "청구기호 : " + data.CALL_NO);
+                $("#kbillLoanCode").text(isNullCheck(data.LOAN_CODE) ? "" : "자료 상태 : " + getKbillLoanCodeText(data.LOAN_CODE));
+                $("#kbillLoanInfoArea").show();
+                setKbillReqDisabled(true);
+            } else {
+                // 미소장이면 기존대로 신청 가능
+                $("#kbillLoanInfoArea").hide();
+                setKbillReqDisabled(false);
+            }
+        },
+        error : function() {
+            $("#kbillLoanInfoArea").hide();
+            setKbillReqDisabled(false);
+        }
+    });
+}
+
+/**
+ * setKbillReqDisabled :신청 버튼 활성/비활성 + 시각효과 + 차단 플래그 처리
+ */
+function setKbillReqDisabled(disabled) {
+    kbillLibOwned = disabled;
+    let $btn = $("#kbillReqBtn");
+    if (disabled) {
+        $btn.addClass("disabled").css({
+            "background"     : "#cccccc",
+            "border-color"   : "#cccccc",
+            "color"          : "#888888",
+            "cursor"         : "not-allowed",
+            "pointer-events" : "none"
+        });
+    } else {
+        $btn.removeClass("disabled").css({
+            "background"     : "",
+            "border-color"   : "",
+            "color"          : "",
+            "cursor"         : "",
+            "pointer-events" : ""
+        });
+    }
+}
+
+/**
+ * getKbillLoanCodeText :LOAN_CODE 코드값을 화면 문구로 변환
+ */
+function getKbillLoanCodeText(loanCode) {
+    switch (loanCode) {
+        case "OK"                : return "대출가능";
+        case "OUT_ON_LOAN"       : return "대출불가(대출중)";
+        case "OTHER_LOAN"        : return "대출불가(타관대출중)";
+        case "OTHER_LOAN_READY"  : return "대출불가(타관대출 대기중)";
+        case "OTHER_RETURN"      : return "대출불가(타관반납중)";
+        case "RESERVE_LOAN_READY": return "대출불가(예약대출 대기중)";
+        case "BROKEN"            : return "대출불가(파손자료)";
+        case "INSIDE_ONLY"       : return "관내열람만 가능";
+        default                  : return "대출불가";
+    }
+}
+
+/**
+ * requestLlii :상호대차 신청
+ *
+ * @date 2022.03.23
+ * @author kjm
+ * @param
+ */
+function requestLlii() {
+	var appendixrctyn = "N";
+	var appendixRegNo = "";
+	var appendTag = "";
+
+	if(lillFunctionType !== "change" && kbillLibOwned){
+		alert("선택한 도서관에서 소장 중인 도서이므로 상호대차를 신청할 수 없습니다.");
+		return;
+	}
+
+	if($("#kbillReqChkFlag").val() == "false"){
+		alert("신청중입니다.");
+		return;
+	}
+	
+	$("#kbillReqChkFlag").val("false");
+	
+	$("input[name='appendAllcheck']:checked").each(function() {
+		if(appendixRegNo == ""){
+			appendixRegNo = $(this).val();
+		}else{
+			appendixRegNo += "," + $(this).val();
+		}
+		appendixrctyn = "Y";
+	});
+	
+	if($("#kbillLibSel").val() == "") {
+		alert("대출도서관을 선택해 주십시오.");
+		appendixRegNo = "";
+		appendixrctyn = "N";
+		$("#kbillLibSel").focus();
+		return;
+	}
+	if($("#kbillLibSel").val() == $("#holdManageCode").val()) {
+		alert("제공(소장)도서관과 대출도서관이 같을 수 없습니다.");
+		appendixRegNo = "";
+		appendixrctyn = "N";
+		$("#kbillLibSel").focus();
+		return;
+	}
+
+    var requestData = {
+        "bookKey": $("#kbillReqBookKey").val(),
+        "user_key": $("#kbillReqUserKey").val(),
+        "manageCode": $("#holdManageCode").val(),
+        "useManageCode": $("#kbillLibSel").val(),
+        "appendixrctyn": appendixrctyn,
+        "appendixRegNo": appendixRegNo,
+        "lillFunctionType" : lillFunctionType
+    };
+
+    if ($("#kbillLoanKey").val() !== "") {
+        requestData.loankey = $("#kbillLoanKey").val();
+    }
+
+	$.ajax({
+		url: getContextPath() + "/kbill/set/request",
+		data: requestData,
+		type:"post",
+		success : function(data) {
+			if(data.RESULT == "OK") {
+				alert("신청이 완료되었습니다.");
+                insertFunctionLog(lillFunctionName);
+                forceCloseKbillReqeDialog();
+			}else if(data.ERROR != null && data.ERROR != "") {
+				alert(data.ERROR);
+				$("#appendixTag").remove();
+				$("#kbillReqChkFlag").val("true");
+				$("#kbillReqCloseBtn").trigger('click');
+			}
+		},
+		error:function() {
+			alert("통신중에 문제가 발생하였습니다.\n문제가 지속되면 시스템관리자에게 문의하여 주십시오.");
+			$("#appendixTag").remove();
+			$("#kbillReqChkFlag").val("true");
+			$("#kbillReqCloseBtn").trigger('click');
+		},
+		loadingBar : true
+	});
+
+}
+</script>
+
+ <div class="jsDiv suwon" id="kbillReqDiv">
+    <div class="jsDivInner kbillInner w500" style="width: 500px;">
+        <article class="jsDivContentWrap color-cell">
+            <header>
+                <h3 class="title" id="kbillReqDivTitle">상호대차 신청</h3>
+                <button class="jsDivClose btnJsDivClose" id="kbillReqCloseBtn">
+				    <span class="sr-only">닫기</span>
+                </button>
+            </header>
+
+            <div class="jsDivContent">
+                <div class="jsDivForm applic_input" id="addKillReqInfo">
+                    <div class="filter-list">
+                        <p class="title">수령도서관</p>
+                        <select class="select_txt"  id="kbillLibSel" name="kbillLibSel" onchange="onChangeKbillLib();">
+                        </select>
+                    </div>
+                    <div id="kbillLoanInfoArea"  class="txt_info mt5" >
+                        <ul>
+                            <li>
+                                <span id="kbillShelfLocName" ></span>
+                            </li>
+                            <li >
+                               <span id="kbillCallNo"></span>
+                            </li>
+                            <li>
+                                <span id="kbillLoanCode"></span>
+                            </li>
+                        </ul>
+                        <p class="caution" id="kbillLoanGuide"></p>
+                    </div>
+
+                </div>
+				<div id="kbillAppendList">
+				</div>				
+				<input type="hidden" id="holdManageCode"  name="holdManageCode" value=""/>
+				<input type="hidden" id="kbillReqChkFlag"  name="kbillReqChkFlag" value="true"/>
+				<input type="hidden" id="kbillReqBookKey"  name="kbillReqBookKey" value="true"/>
+                <input type="hidden" id="kbillReqUserKey"  name="kbillReqUserKey" value=""/>
+                <input type="hidden" id="kbillLoanKey"  name="kbillLoanKey" value=""/>
+
+                <div class="jsDivNew_btn_wrap clfix">
+                    <div class="right">
+                    	<button class="btnNew_applicate" id="kbillReqBtn" onclick="requestLlii();">신청</button>
+                        <button class="btnNew_close">닫기</button>
+	               </div>
+                </div>
+			</div>
+		</article>
+	</div>
+ </div>
+
+    
+
+<script type="text/javascript" src="/javascript/views/common/favorite/favorite.js"></script>
+<script type="text/javascript" src="/javascript/common/d3/d3.js"></script>
+<script type="text/javascript" src="/javascript/common/d3/d3.layout.cloud.js"></script>
+<script type="text/javascript" src="/javascript/jquery.number.min.js"></script>
+<script type="text/javascript">
+
+</script>
+
+
+<div class="jsDiv suwon" id="favoriteDiv">
+    <div class="jsDivInner small">
+        <article class="jsDivContentWrap color-cell">
+            <header>
+                <h3 class="title">내책장에 담기</h3>
+                <button class="jsDivClose btnJsDivClose" id="favoriteReqCloseBtn">
+                    <span class="sr-only">닫기</span>
+                </button>
+            </header>
+
+            <div class="jsDivContentArea">
+                <div class="jsDivContent">
+                    <div class="savelist">
+                        <ul id="myBookCaseList">
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+        </article>
+    </div>
+</div>
+
+
+    
+
+
+<script type="text/javascript">
+
+    /**
+     * openReservePop : 무인(책나루)예약 팝업 오픈
+     *
+     * @date 2025.09.15
+     * @author KBH
+     * @param  bookKey 책키, closeFn 팝업 닫힐시 함수
+     * @return
+     */
+    let manageCode = null;
+    let lib_name = null;
+    let unmanned_book_key = null;
+    let bookImage = null;
+    let selectedStationCode = null;
+    let globalUnmannedReserveCloseFn = null;
+    function openUnmannedReservePop(bookKey, manage_code, IMAGE, lib_name,closeFn) {
+        if("" == null || "" == "" || "" == "2"){
+            openWebUserChkPop();
+            return false;
+        }
+        if(isNullCheck(bookKey) || isNullCheck(closeFn)){
+            alert("필수값 입력 안됨.");
+            return false;
+        }
+        //예약 팝업 열기
+        manageCode = manage_code;
+        unmanned_book_key = bookKey;
+        bookImage = IMAGE;
+        lib_name = lib_name;
+        globalUnmannedReserveCloseFn = closeFn;
+        getUnmannedReserveInfo(bookKey, manage_code, bookImage, lib_name, closeFn);
+    }
+
+    /**
+     * openReservePop : 무인(책나루)예약
+     *
+     * @date 2025.09.15
+     * @author KBH
+     * @param  bookKey 책키, closeFn 팝업 닫힐시 함수
+     * @return
+     */
+    function getUnmannedBookInfo() {
+        let functionName = "무인예약신청";
+        if (!window.selectedStationCode) {
+            alert("먼저 수령 위치를 선택해주세요.");
+            return;
+        }
+
+        commonAjaxRequest({
+            url : getContextPath() + "/myLibrary/unmannedLoanReserveList/unmannedLoanReserve",
+            method: "post",
+            params : {
+                book_key : unmanned_book_key,
+                expire_date_cnt : "3",
+                worker : window.selectedStationCode
+            },
+            success : function (data) {
+                if (data.RESULT_INFO === "ERROR") {
+                    alert(data.RESULT_MESSAGE);
+                } else {
+                    alert("책나루(무인)예약에 성공하였습니다.");
+                    forceCloseUnmannedReserveDialog();
+
+                    try {
+                        insertFunctionLog(functionName);
+                    } catch (e) {
+                        console.error("insertFunctionLog error:", e);
+                    }
+                }
+            }
+        });
+    }
+
+    function getUnmannedReserveInfo(bookKey, manage_code, bookImage, lib_name, closeFn) {
+
+        commonAjaxRequest({
+            url: getContextPath() + "/bookreserve/getunmannedbookinfo",
+            method: "post",
+            params: { book_key: bookKey, manage_code: manage_code, lib_name: lib_name },
+            loadingBar: true,
+            success: function (data) {
+                const userKey  = data.USER_KEY;
+                const bookType = data.BOOK_TYPE;
+
+                commonAjaxRequest({
+                    url: getContextPath() + "/bookreserve/reservecheck",
+                    method: "post",
+                    params: { user_key: userKey, book_key: bookKey, book_type: bookType, unmanned_reservation_loan: "Y" },
+                    loadingBar: true,
+                    success: function (data2) {
+                        let code = Number(data2.RESERVE_CODE);
+
+                        if (code > 0) {
+                            CloudDialog('unmannedReserveReqDiv', 1, function onOpen() {
+                                let $dlg = $('#unmannedReserveReqDiv');
+
+                                $dlg.find('#popupImg').attr('src', bookImage || '../images/suwon/@temp-popup-img.jpg');
+                                $dlg.find('#reserve_title').text(data.TITLE_INFO || '-');
+                                $dlg.find('#reserve_authors').text(data.AUTHOR || '-');
+                                $dlg.find('#title2').text(data.LIB_NAME || '-');
+                                $dlg.find('#title3').text(data.LIB_NAME || '-');
+                                $dlg.find('#reserve_pub').text(data.PUBLISHER || '-');
+                                $dlg.find('#reserve_isbn').text(data.ISBN || '-');
+                                $dlg.find('#reserve_regno').text(data.REG_NO || '-');
+                                $dlg.find('#reserve_callno').text(data.CALL_NO || '-');
+                                $dlg.find('#reserve_owner').text(data.LIB_NAME || '-');
+
+                                $dlg.find('#addReserveBookKey').val(bookKey);
+                                $dlg.find('#addReserveBookType').val(bookType);
+                                $dlg.find('#addReserveUserKey').val(userKey);
+
+                                // 해당 도서관
+                                $dlg.find('#libCurrentLoanCount').text(data.libCurrentLoanCount || '0');
+                                $dlg.find('#libPossibleLoanCount').text(data.libPossibleLoanCount || '0');
+
+                                // 전체 도서관
+                                $dlg.find('#allCurrentLoanCount').text(data.allCurrentLoanCount || '0');
+                                $dlg.find('#allPossibleLoanCount').text(data.allPossibleLoanCount || '0');
+
+                                if (data.HANDPHONE) $dlg.find('#reserve_phone').text(data.HANDPHONE);
+
+                                if (data.takePlaceList && data.takePlaceList.length > 0) {
+                                    let radioArea = $dlg.find('.radio-area');
+                                    radioArea.empty();
+
+                                    data.takePlaceList.forEach(function (place, index) {
+                                        let isSuccess   = (place.RESULT_INFO === 'SUCCESS');
+                                        let resCntNum = Number(place.RESERVATION_CNT) || 0;
+                                        let countNum = Number(place.COUNT) || 0;
+
+                                        let stationName = place.STATION_NAME;
+                                        let recKey      = place.REC_KEY;
+                                        let id          = 'rd' + (index + 1);
+                                        let disabled    = (resCntNum <= countNum);
+
+                                        // SUWON-290로 인한 추가 추후 지워질 예정(20260310) - 20260312 주석처리
+                                        // let stationCode = place.STATION_CODE;
+                                        // if(stationCode == "SUBYT"){
+                                        //     disabled = true;
+                                        // }
+
+                                        console.log("stationName:" + stationName, "/ resCntNum:" + resCntNum + "/ countNum:" +  countNum + "/disabled:" +  disabled);
+
+                                        let $radioDiv = $('<div>').addClass('radio' + (disabled ? ' disabled' : ''));
+                                        let $radio    = $('<input>')
+                                            .attr('type', 'radio')
+                                            .attr('name', 'recive')
+                                            .attr('id', id)
+                                            .attr('value', recKey)
+                                            .prop('disabled', disabled)
+                                            .data('stationCode', place.STATION_CODE);
+
+                                        let $label = $('<label>')
+                                            .attr('for', id)
+                                            .css('margin-left', '6px')
+                                            .text(stationName + ' ');
+
+                                        if (disabled) {
+                                            $label.append(
+                                                $('<span>')
+                                                    .text('(예약불가)')
+                                            );
+                                        }
+
+                                        $radioDiv.append($radio, $label);
+                                        radioArea.append($radioDiv);
+                                    });
+
+
+                                    radioArea.off('change', 'input[name="recive"]').on('change', 'input[name="recive"]', function () {
+                                        window.selectedStationCode = $(this).data('stationCode');
+                                    });
+                                }
+                            }, closeFn);
+                        } else {
+                            let msg = {
+                                [-100]: "예약 기능을 지원 하지 않습니다.",
+                                [-101]: "대출정지기간에는 예약 신청을 신청 하실 수 없습니다.",
+                                [-102]: "약관 재 동의 후에 이용 가능 합니다.",
+                                [-103]: "이미 예약 혹은 대출하신 도서입니다.",
+                                [-104]: "예약 가능 권수를 초과하였습니다.",
+                                [-105]: "허용 가능한 예약 인원이 초과 하였습니다.",
+                                [-106]: "본인인증이 필요합니다.\n본인인증 후 이용가능합니다.",
+                                [-108]: "약관 동의 대상 입니다.",
+                                [-109]: "자관 예약가능 권수를 초과하였습니다.",
+                                [-110]: "통합 예약가능 권수를 초과하였습니다.",
+                                [-111]: "책이음 대출정지여부 확인에 실패하였습니다.",
+                                [-112]: "책이음 대출정지 상태입니다.\n예약 신청을 신청 하실 수 없습니다.",
+                                [-113]: "예약취소제한적용기간동안\n예약취소제한갯수를 초과하여 예약 하실 수 없습니다.",
+                                [-114]: "해당 도서 재대출제한 만료 전입니다.",
+                                [-115]: "회원증 분실상태에서는 예약할 수 없습니다.",
+                                [-120]: "이번달 예약 가능 권수를 초과하였습니다."
+                            };
+                            if (msg[code]) alert(msg[code]);
+                        }
+                    }
+                });
+            }
+        });
+    }
+
+    function forceCloseUnmannedReserveDialog() {
+        const targetId = 'unmannedReserveReqDiv';
+        const targetEl = document.getElementById(targetId);
+        if (!targetEl) return;
+
+        document.body.style.overflowY = 'auto';
+
+        targetEl.classList.remove('on');
+
+        setTimeout(function () {
+            targetEl.style.display = 'none';
+
+            // closeFn이 정의되어 있다면 실행
+            if (typeof globalUnmannedReserveCloseFn === 'function') {
+                try {
+                    globalUnmannedReserveCloseFn();
+                } catch (e) {
+                    console.error('closeFn 실행 중 오류:', e);
+                }
+            }
+        }, 50);
+    }
+
+
+</script>
+<style>
+    #unmannedReserveReqDiv .jsDivContent {
+        height: 600px;
+        overflow-y: auto !important;
+    }
+</style>
+<!-- 예약 -->
+<div class="jsDiv suwon " id="unmannedReserveReqDiv">
+    <div class="jsDivInner normal">
+        <article class="jsDivContentWrap color-cell">
+            <header>
+                <h3 class="title" id="unmannedReserveTitle">책나루(무인)예약 신청</h3>
+                <button class="jsDivClose btnJsDivClose" id="addReserveCloseBtn1" type="button">
+                    <span class="sr-only">닫기</span>
+                </button>
+            </header>
+            <div class="jsDivContentArea">
+                <div class="jsDivContent">
+                    <div class="noticeArea">
+                        <p class="bold">※ 무인예약 도서를 대출하는 시점에서 아래의 경우에는 도서 대출이 불가하오니, 예약 시 반드시 유의하시기 바랍니다.</p>
+                        <ul>
+                            <li>1. 대출하려는 도서가 소장도서관 대출권수를 초과하거나 전체 대출권수를 초과하는 경우(2권 예약 시 2권 모두 대출 불가)</li>
+                            <li>2. 연체로 인한 대출정지 상태인 경우</li>
+                        </ul>
+                        <span class="notice">※ 도서 신청 후 미대출 시 14일간 책나루(무인예약)신청이 제한됩니다.</span>
+                    </div>
+                    <div class="bookArea">
+                        <h5 class="comTitle">신청 도서 정보</h5>
+                        <div class="bookInfo">
+                            <div class="img-area">
+                                <img id="popupImg" src="" alt="" style="width: 70px; height: 99px;">
+                            </div>
+                            <div class="textInfo">
+                                <p class="subTitle" id="reserve_owner"></p>
+                                <p class="bookTitle" id="reserve_title"></p>
+                                <ul>
+                                    <li>
+                                        <span class="title">저자</span>
+                                        <span class="text" id="reserve_authors"></span>
+                                    </li>
+                                    <li>
+                                        <span class="title">발행처</span>
+                                        <span class="text" id="reserve_pub"></span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="libraryCheck">
+                        <p class="comTitle">수령처</p>
+                        <div class="radio-area">
+                            <div class="radio">
+                                <input type="radio" name="recive" id="rd1">
+                                <label for="rd1">수원시청 예약대출기</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="saveArea">
+                        <p class="comTitle">소장처</p>
+                        <div class="saveInfo">
+                            <span class="saveTitle" id="title2"></span>
+                            <div class="livebook">
+                                <p class="bold">현재 대출권수 : </p>
+                                <dl>
+                                    <dt id="title3"></dt>
+                                    <dd>
+                                        <span class="bold" id="libCurrentLoanCount"></span> / <!-- 도서관 대출 권수 -->
+                                        <span id="libPossibleLoanCount"></span> <!-- 도서관 대출 가능 권수 -->
+                                    </dd>
+                                </dl>
+                                <dl>
+                                    <dt>전체</dt>
+                                    <dd>
+                                        <span class="bold" id="allCurrentLoanCount"></span> / <!-- 전체 대출 권수 -->
+                                        <span id="allPossibleLoanCount"></span> <!-- 전체 대출 가능 권수 -->
+                                    </dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="telArea">
+                        <p class="comTitle">연락처</p>
+                        <p class="number" id="reserve_phone"></p>
+                    </div>
+                    <input id="addReserveBookKey" name="reserve_book_key" type="hidden" value="" class="input_txt"/>
+                    <input id="addReserveBookType" name="reserve_book_type" type="hidden" value="" class="input_txt"/>
+                    <input id="addReserveUserKey" name="reserve_user_key" type="hidden" value="" class="input_txt"/>
+                    <div class="flex-area close">
+                        <div class="jsDivClose">
+                            <button class="btnNew_close" type="button"><span>취소</span></button>
+                        </div>
+                        <div class="jsDivClose save">
+                            <button class="btnNew_applicate" type="button" onclick="getUnmannedBookInfo();"><span>신청</span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+</div>
+
+
+</article> <!-- // subContent -->
+            </section>
+
+            <footer class="footer">
+                
+
+
+<script type="text/javascript">
+	$(function() {
+		let showChk = true;
+		const isIos = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+
+		// 뒤로가기 버튼은 iOS에서만 노출
+		if (isIos) {
+			$("#BackBtnDiv").show();
+		}
+
+		$(window).scroll(function() {
+			if ($(this).scrollTop() > 10) {
+				if(!showChk) {
+					showChk = true;
+					$("#scrollTopBtnDiv").fadeIn();
+				}
+			} else {
+				if(showChk){
+					showChk = false;
+					$("#scrollTopBtnDiv").fadeOut();
+				}
+			}
+		});
+		$(".top_btn").click(function() {
+			$('html, body').animate({
+				scrollTop : 0
+			}, 500);
+			return false;
+		});
+
+		$("#BackBtnDiv").click(function(e) {
+			e.preventDefault();
+
+			if (window.history.length > 1) {
+				window.history.back();
+			} else {
+				location.href = "/";
+			}
+
+			return false;
+		});
+	});
+
+</script>
+  
+<div class="inner">
+  <h6 class="hidden">수원시도서관사업소</h6>
+    <div class="footerLink">
+        <a href="https://www.suwon.go.kr/sw-www/sw-www_09/sw-www_09_01.jsp" target="_blank">개인정보처리방침</a>
+        <a href="https://www.suwonlib.go.kr/intro/license.asp" target="_blank">홈페이지 이용약관</a>
+
+    </div>
+    <div class="textArea">
+        <p><strong>16258</strong><span>경기도 수원시 팔달구 신풍로 23번길 68(신풍동)</span></p>
+        <p>COPYRIGHT BY 수원시 도서관사업소 ALL RIGHT RESERVED.</p>
+    </div>
+
+
+
+
+    <!-- back btn (iOS에서만 노출, footer.jsp 스크립트에서 표시 처리) -->
+    <div class="back_btn on" id="BackBtnDiv" style="display: none;">
+        <button>
+            <span>뒤로가기</span>
+        </button>
+    </div>
+
+    <!-- top btn -->
+    <div class="top_btn on" id="scrollTopBtnDiv" style="display: none;">
+		<button>TOP</button>
+	</div>
+</div>
+
+            </footer>
+        </div>
+
+        <!-- LOADING -->
+        <article id="loadingWrap" class="loadingWrap" style="display: none;">
+            <div class="loadingInner">
+                <div id="loading"></div>
+            </div>
+        </article>
+
+        
+        
+
+
+
+<script type="text/javascript" src="/javascript/common/encryption.js"></script>
+<script type="text/javascript" src="/javascript/common/sha256.js"></script>
+<script type="text/javascript">
+    let globalPwEncryptYN = "";
+    let pni_token = "";
+    let user_key = ""
+    $(document).ready(function() {
+        /*if(!user_key) {
+            ssoLoginChk();
+        }*/
+        let autoLoginUser = getCookie("autoLoginUserKey");
+        if (autoLoginUser && !user_key) {
+            // 자동 로그인 API 호출
+            autoLogin(autoLoginUser);
+        }
+    });
+
+    function autoLogin(user) {
+        $.ajax({
+            url: getContextPath() + "/login/autologin",
+            type: "POST",
+            data: { user_info: user },
+            success: function(data) {
+                if(data.RESULT == "OK") {
+                    location.href = getContextPath() + "/";
+                } else {
+                    // 자동 로그인 실패 시 쿠키 삭제
+                    deleteLoginCookie("autoLoginUserKey");
+                }
+            }
+        });
+    }
+
+    function openLoginPop(closeFn){
+        CloudDialog('loginPop', 1, initLoginPop , closeFn);
+    }
+
+    function initLoginPop(){
+        $("#sso-pw-input").val("");
+        $("#sso-id-input").val("");
+        $("#pw-input").val("");
+        $("#id-input").val("");
+        $.ajax({
+            url: getContextPath() + "/login/getopt",
+            type:"post",
+            context:document.ready
+        }).done(function(data) {
+            globalPwEncryptYN = data.PWD_ENCRYPT_YN || 'N';
+        });
+    }
+
+    function userLogin() {
+        let functionName = "로그인";
+        let autoLoginChecked = $("#auto-login-checkbox").is(":checked");
+        let hidden_password = "";
+        if("N" == globalPwEncryptYN) {
+            initBase64();
+            hidden_password = base64Encode($("#pw-input").val());
+        } else {
+            hidden_password = sha256_digest($("#pw-input").val()).toUpperCase();
+        }
+        $.ajax({
+            url: getContextPath() + "/login/userLogin",
+            data: {id : $("#id-input").val().trim() , hidden_password : hidden_password,  manage_code : getManageCode(), autoLogin: autoLoginChecked},
+            type:"post",
+            context:document.ready
+        }).done(function(data) {
+            $("#password").val("");
+
+            if(data.RESULT == "OK") {
+                insertFunctionLog(functionName);
+                if (autoLoginChecked) {
+                    setCookie("autoLoginUserKey", data.AUTO_USER_INFO, 365);
+                } else {
+                    deleteLoginCookie("autoLoginUserKey");
+                }
+                if(!isNullCheck(showLoginReturnUrl)){
+                    location.href = getContextPath() + showLoginReturnUrl;
+                } else {
+                    location.href = getContextPath() + "/";
+                }
+            } else {
+
+                let message = data.MESSAGE;
+
+                if(message == "undefined") {
+                    alert("홈페이지에 로그인하는데 문제가 발생하였습니다. 관리자에게 문의바랍니다.");
+                } else if(message == "AGREE_RE" || message == "AGREE_NEW") {
+                    $("#id-input").val("");
+                    $("#pw-input").val("");
+                    openSuwonAgreeInfoPop(message, data.USER_KEY);
+                } else {
+                    alert(message);
+                }
+            }
+        });
+    }
+    function userSwSSOChkLogin() {
+        ssoLogOut();
+        $("#ssoAppRetUrl").val(window.location.href);
+        $("#ssoAppSignUrl").val(window.location.origin+"/sso/sign");
+        $("#form_suwon").submit();
+    }
+    function enterkeyPw() {
+        if (window.event.keyCode === 13) {
+            userLogin();
+        }
+    }
+    function enterkeySsoPw() {
+        if (window.event.keyCode === 13) {
+            swSSOInputLogin();
+        }
+    }
+    // 탭 스크립트
+    $(function() {
+        $('.tab_area .tabBtn').on('click', function() {
+            const idx = $(this).index(); // 클릭한 버튼의 순서 구하기
+            $('.tab_area .tabBtn').removeClass('on');
+            $('.tab_area .show').removeClass('on');
+            $(this).addClass('on');
+            $('.tab_area .show').eq(idx).addClass('on');
+        });
+    });
+
+
+    function setCookie(name, value, days) {
+        let date = new Date();
+        date.setTime(date.getTime() + (days*24*60*60*1000));
+        let expires = "expires=" + date.toUTCString();
+        document.cookie = name + "=" + encodeURIComponent(value) + ";" + expires + ";path=/";
+    }
+
+    function deleteLoginCookie(name) {
+        document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    }
+
+    function getCookie(name) {
+        let cname = name + "=";
+        let decodedCookie = decodeURIComponent(document.cookie);
+        let ca = decodedCookie.split(';');
+        for(let c of ca) {
+            c = c.trim();
+            if (c.indexOf(cname) == 0) {
+                return c.substring(cname.length, c.length);
+            }
+        }
+        return "";
+    }
+
+    function ssoLoginChk(){
+        if(isNullCheck(pni_token)) {
+            $.ajax({
+                url: "https://www.suwon.go.kr/passni/jsp/ssoTokenChecker.jsp?ssoAppId=out-suwon-booksearch"
+                , dataType: "jsonp"
+                , success: function (response) {
+                    pni_token =response.pni_token;
+                    if(!isNullCheck(pni_token)) {
+                        setTimeout(function() { // 300ms 후에 로그인 시도
+                            ssoUserLogin();
+                        }, 1000);
+                    }
+                }
+            });
+        } else {
+            ssoUserLogin();
+        }
+    }
+
+    function ssoUserLogin(){
+        let functionName = "로그인";
+        $.ajax({
+            url: getContextPath() + "/login/ssoUserInfo"
+            , type: "post"
+            , data: {"pni_token": pni_token}
+            , success: function (data) {
+                if(data.RESULT == "OK") {
+                    insertFunctionLog(functionName);
+                    setCookie("autoLoginUserKey", data.AUTO_USER_INFO, 365);
+                    if(!isNullCheck(showLoginReturnUrl)){
+                        location.href = getContextPath() + showLoginReturnUrl;
+                    } else {
+                        location.href = getContextPath() + "/";
+                    }
+                } else if(data.RESULT == "SSO_ERROR_CODE") {
+                    console.log("data.errorCode:"+data.errorCode);
+                } else {
+                    let message = data.MESSAGE;
+                    if(message == "undefined") {
+                        alert("홈페이지에 로그인하는데 문제가 발생하였습니다. 관리자에게 문의바랍니다.");
+                    } else if(message == "AGREE_RE" || message == "AGREE_NEW") {
+                        openSuwonAgreeInfoPop(message, data.USER_KEY);
+                    } else if(isNullCheck(message)){
+                        alert(message);
+                    }
+                }
+            }
+        });
+    }
+
+    function ssoLogOut() {
+        if(/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+            // const logoutWindow = window.open("https://www.suwon.go.kr/passni/jsp/ssoLogout.jsp?ssoAppId=out-suwon-booksearch", "_blank");
+            //
+            // setTimeout(() => {
+            //     logoutWindow.close();
+            // }, 300);
+        } else {
+            $.ajax({
+                url: "https://www.suwon.go.kr/passni/jsp/ssoLogout.jsp?ssoAppId=out-suwon-booksearch"
+                , dataType: "jsonp"
+            }).done(function (data) {
+                console.log("sso 로그아웃 응답 : " + data);
+            });
+        }
+    }
+
+
+    function swSSOInputLogin() {
+        let autoLoginChecked = $("#auto-sso-login-checkbox").is(":checked");
+        let pw = $("#sso-pw-input").val();
+        if (pw.length > 15) {
+            alert("비밀번호의 길이는 15까지 입니다.");
+            $("#sso-pw-input").focus();
+            return false;
+        }
+        // 비밀번호 URL 인코딩
+        let encodedPw = encodeURIComponent(pw);
+
+        $.ajax({
+            url: getContextPath() + "/login/ssoUserCheck",
+            data: {"ssoAppUID" : $("#sso-id-input").val().trim() , "ssoAppUPW" : encodedPw,  manage_code : getManageCode()},
+            type:"post",
+            context:document.ready
+        }).done(function(data) {
+            $("#sso-password").val("");
+            if(data.RESULT == "NOT_LIB_USER") {
+                alert("도서관 서비스 이용을 위해 도서관 홈페이지에서 수원시 통합 로그인(최초 1회)이 필요합니다.");
+                window.open("https://www.suwonlib.go.kr/sk/member/login_03.asp", "_blank");
+            } else if(data.RESULT == "OK") {
+                if (autoLoginChecked) {
+                    // 쿠키에 로그인 관련 토큰 또는 아이디 저장
+                    setCookie("autoLoginUserKey", data.AUTO_USER_INFO, 365);
+                } else {
+                    // 자동로그인 체크 해제 시 쿠키 삭제
+                    deleteLoginCookie("autoLoginUserKey");
+                }
+                location.href = getContextPath() + "/";
+            } else {
+
+                let message = data.MESSAGE || data.ERROR_MSG;
+
+                if(message == "undefined") {
+                    alert("홈페이지에 로그인하는데 문제가 발생하였습니다. 관리자에게 문의바랍니다.");
+                } else if(message == "AGREE_RE" || message == "AGREE_NEW") {
+                    $("#sso-id-input").val("");
+                    $("#sso-pw-input").val("");
+                    openSuwonAgreeInfoPop(message, data.USER_KEY);
+                }else {
+                    alert(message);
+                }
+            }
+        });
+    }
+</script>
+
+<div class="jsDiv" id="loginPop">
+    <div class="jsDivInner login">
+        <div class="infoText">
+            <p class="title">수원시<br class="mobile">도서관사업소</p>
+            <button class="jsDivClose btnJsDivClose" id="addloginCloseBtn">닫기</button>
+            <span>로그인을 하시면 더 많은 도서관 서비스를<br> 이용할 수 있습니다.</span>
+        </div>
+
+        <div class="tab_area">
+            <div class="tabBtn_area">
+                <button type="button" class="tabBtn on">
+                    <span>로그인</span>
+                </button>
+                <button type="button" class="tabBtn">
+                    <span>수원시<br>통합회원 로그인</span>
+                </button>
+            </div>
+
+            <div class="showArea">
+                <div class="show on">
+                    <div class="inputArea">
+                        <div class="inputBox id">
+                            <label for="id-input" class="sr-only">아이디입력</label>
+                            <input type="text" id="id-input" placeholder="아이디">
+                        </div>
+                        <div class="inputBox pw">
+                            <label for="pw-input" class="sr-only">비밀번호입력</label>
+                            <input type="password" id="pw-input" placeholder="비밀번호" onkeyup="enterkeyPw()" maxlength="20">
+                        </div>
+                        <div class="inputBox auto-login">
+                            <input type="checkbox" id="auto-login-checkbox">
+                            <label for="auto-login-checkbox">자동로그인</label>
+                        </div>
+                        <button type="button" onclick="userLogin();">
+                            <span>로그인</span>
+                        </button>
+                    </div>
+                    <div class="findArea">
+                        <a href="https://www.suwonlib.go.kr/buk/member/idpw.asp" target="_blank">아이디/비밀번호 찾기</a>
+                        <a href="#join" class="bold" onclick="openJoinLibPop(2); return false;">회원가입</a>
+                    </div>
+                </div>
+                <div class="show">
+                    <div class="inputArea pb">
+                        <div class="inputBox id">
+                            <lable for="sso-id-input" class="sr-only">아이디입력</lable>
+                            <input type="text" id="sso-id-input" placeholder="아이디">
+                        </div>
+                        <div class="inputBox pw">
+                            <label for="sso-pw-input" class="sr-only">비밀번호입력</label>
+                            <input type="password" id="sso-pw-input" placeholder="비밀번호" onkeyup="enterkeySsoPw()" maxlength="15">
+                        </div>
+                        <div class="inputBox auto-login">
+                            <input type="checkbox" id="auto-sso-login-checkbox">
+                            <label for="auto-sso-login-checkbox">자동로그인</label>
+                        </div>
+                        <button type="button" onclick="swSSOInputLogin();">
+                            <span>로그인</span>
+                        </button>
+                        <div class="findArea">
+                            <a href="https://www.suwon.go.kr/login/user/BD_findPwd.do" target="_blank">아이디/비밀번호 찾기</a>
+                            <a href="#join" class="bold" onclick="openJoinLibPop(2); return false;">회원가입</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+        
+
+<script type="text/javascript">
+function openWebUserChkPop() {
+	CloudDialog('webUserPop', 1, '',function (){location.reload();});
+}
+
+function moveSuwonlib() {
+	logoutCallBack();
+}
+</script>
+<div class="jsDiv suwon" id="webUserPop">
+	<div class="jsDivInner small">
+		<article class="jsDivContentWrap color-cell">
+			<header>
+				<h3 class="title">안내</h3>
+				<button class="jsDivClose btnJsDivClose" id="webUserPopCloseBtn">
+					<span class="sr-only">닫기</span>
+				</button>
+			</header>
+			<div class="jsDivContentArea popup_info">
+				<div class="jsDivContent center">
+					<p class="point">이 서비스는 정회원만 이용하실 수 있습니다.</p>
+					<p>정회원 전환 후 재로그인을 해 주세요.</p>
+				</div>
+				<div class="flex-area close">
+					<div class="jsDivClose">
+						<button type="button" class="btnNew_close btnJsDivClose" id="closeWebUserPop">
+							<span>닫기</span>
+						</button>
+					</div>
+					<div class="jsDivClose save">
+						<button type="button" onclick="moveSuwonlib()">
+							<span>정회원 신청 바로가기</span>
+						</button>
+					</div>
+				</div>
+			</div>
+		</article>
+	</div>
+</div>
+        
+
+<script type="text/javascript">
+	getArgeeInfo();
+	let agreeeUserKey = "";
+	let agreeeMessage = "";
+
+function openSuwonAgreePop() {
+	$("input[type='radio'][name='terms_aree']").prop("checked", false);
+	$("input[type='radio'][name='personal_aree']").prop("checked", false);
+	$("input[type='radio'][name='terms_optional_aree']").prop("checked", false);
+
+	document.getElementById('suwonAgreeInfoPop').classList.remove('on');
+	setTimeout(function() {
+		document.getElementById('suwonAgreeInfoPop').style.display = 'none';
+	}, 1);
+
+	CloudDialog('suwonAgreePop', 1);
+}
+function openSuwonAgreeInfoPop(message, userKey) {
+	agreeeMessage = message
+	agreeeUserKey = userKey;
+	if(message == "AGREE_RE") {
+		$("#agreeInfoMsg").empty().html("도서관 회원 개인정보 수집이용 보유기간이 만료되었습니다.");
+	} else if(message == "AGREE_NEW") {
+		$("#agreeInfoMsg").empty().html("도서관 회원 개인정보 수집이용 동의가 필요합니다.");
+	}
+	CloudDialog('suwonAgreeInfoPop', 1);
+}
+	function openSuwonFamilyAgreeInfoPop() {
+		CloudDialog('suwonFamilyAgreeInfoPop', 1);
+	}
+
+	function checkTerms() {
+		if (!$("input[name='terms_aree'][id='terms_areeY']").is(":checked")) {
+			alert("이용약관에 동의하여야 합니다.");
+			return false;
+		}
+		if (!$("input[name='personal_aree'][id='personal_areeY']").is(":checked")) {
+			alert("개인정보 수집 이용 동의에 대하여 동의하여야 합니다.");
+			return false;
+		}
+		if (!$("input[name='terms_optional_aree']:checked").length) {
+			alert("선택 약관에 대해 동의 여부를 선택해야 합니다.");
+			return false;
+		}
+		return true;
+	}
+
+function reagree() {
+	if(!checkTerms()){
+		return false;
+	}
+	commonAjaxRequest({
+		url : getContextPath()+'/login/agree/reagree',
+		params : {"user_key" : agreeeUserKey},
+		method : "post",
+		success : function(data){
+			if(data.code == "100"){
+				alert("동의가 완료되었습니다.");
+				document.getElementById('suwonAgreePop').classList.remove('on');
+				document.body.style.overflowY = 'auto';
+				setTimeout(function() {
+					document.getElementById('suwonAgreePop').style.display = 'none';
+				}, 1);
+
+			} else {
+				alert("약관 재동의에 실패 하였습니다.");
+				return false;
+			}
+		},
+		error:function(err){
+			if (err) {
+				console.error(err);
+			}
+		},
+		loadingBar : true
+	});
+}
+
+	function getArgeeInfo(){
+		$.ajax({
+			type : 'post',
+			url  : getContextPath()+'/agreeinfo',
+			data : {},
+			success : function(data){
+				if(data.result != "FALSE"){
+					$("#agreeInfo1").empty().html(data.agreeInfo.AGREE1 ?? "");
+					$("#agreeInfo2").empty().html(data.agreeInfo.AGREE2 ?? "");
+					$("#agreeInfo3").empty().html(data.agreeInfo.AGREE3 ?? "");
+				}
+			},
+			error : function(response){
+				ajaxErrorMsg(response, false);
+			}
+		});
+	}
+
+/* 모바일 팝업 노출 */
+	$(function () {
+		const btn = $("#suwonAgreePop .jsDivContentArea .jsDivContent .title-area button");
+
+		btn.click(function () {
+			const view = $(this).parent().next('.view');
+			const textSpan = $(this).find("span");
+			if (view.is(":visible")) {
+				view.hide();
+				textSpan.text("약관보기");
+			} else {
+				view.show();
+				textSpan.text("닫기");
+			}
+		});
+	});
+
+
+
+
+</script>
+<div class="jsDiv suwon" id="suwonAgreePop">
+	<div class="jsDivInner small">
+		<article class="jsDivContentWrap color-cell">
+			<header>
+				<h3 class="title">약관 재동의 안내</h3>
+				<button class="jsDivClose btnJsDivClose">
+					<span class="sr-only">닫기</span>
+				</button>
+			</header>
+			<div class="jsDivContentArea">
+				<div class="jsDivContent center">
+					<div class="content-area">
+						<div class="title-area">
+							<h5 class="title_h3">[필수] 이용약관</h5>
+							<button type="button">
+								<span>약관보기</span>
+							</button>
+						</div>
+						<div class="terms_page view" id="agreeInfo1">
+						</div>
+
+						<div class="radio_area">
+							<p>이용약관을 모두 읽었으며 동의합니다.</p>
+							<div class="radio_box">
+								<div class="radio">
+									<input type="radio" name="terms_aree" id="terms_areeN">
+									<label for="terms_areeN">동의안함</label>
+								</div>
+								<div class="radio">
+									<input type="radio" name="terms_aree" id="terms_areeY">
+									<label for="terms_areeY">동의함</label>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="content-area mt30">
+						<div class="title-area">
+							<h5 class="title_h3">[필수] 개인정보 수집 이용 동의</h5>
+							<button type="button">
+								<span>약관보기</span>
+							</button>
+						</div>
+						<div class="personal_page view" id="agreeInfo2">
+						</div>
+						<div class="radio_area">
+							<p>개인정보처리방침을 모두 읽었으며 동의합니다.</p>
+							<div class="radio_box">
+								<div class="radio">
+									<input type="radio" name="personal_aree" id="personal_areeN">
+									<label for="personal_areeN">동의안함</label>
+								</div>
+								<div class="radio">
+									<input type="radio" name="personal_aree" id="personal_areeY">
+									<label for="personal_areeY">동의함</label>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="content-area mt30">
+						<div class="title-area">
+							<h5 class="title_h3">[선택] 수원시 도서관 홈페이지 이용을 위한 개인정보 수집 이용동의서</h5>
+							<button type="button">
+								<span>약관보기</span>
+							</button>
+						</div>
+						<div class="terms_page view"  id="agreeInfo3">
+						</div>
+
+						<div class="radio_area">
+							<p>이용약관을 모두 읽었으며 동의합니다.</p>
+							<div class="radio_box">
+								<div class="radio">
+									<input type="radio" name="terms_optional_aree" id="terms_optional_areeN">
+									<label for="terms_optional_areeN">동의안함</label>
+								</div>
+								<div class="radio">
+									<input type="radio" name="terms_optional_aree" id="terms_optional_areeY">
+									<label for="terms_optional_areeY">동의함</label>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="jsDivClose save">
+					<button type="button" onclick="reagree()">
+						<span>동의</span>
+					</button>
+				</div>
+			</div>
+		</article>
+	</div>
+</div>
+
+<div class="jsDiv suwon" id="suwonAgreeInfoPop">
+	<div class="jsDivInner small">
+		<article class="jsDivContentWrap color-cell">
+			<header style="display: none">
+				<h3 class="title">안내</h3>
+				<button class="jsDivClose btnJsDivClose">
+					<span class="sr-only">닫기</span>
+				</button>
+			</header>
+			<div class="jsDivContentArea popup_info">
+				<div class="jsDivContent center">
+					<p id="agreeInfoMsg">도서관 회원 개인정보 수집이용 보유기간이 만료되었습니다.</p>
+					<p>약관 재동의가 필요합니다.</p>
+				</div>
+
+				<div class="jsDivClose save">
+					<button type="button" onclick="openSuwonAgreePop();">
+						<span>확인</span>
+					</button>
+				</div>
+			</div>
+		</article>
+	</div>
+</div>
+
+<div class="jsDiv suwon" id="suwonFamilyAgreeInfoPop">
+	<div class="jsDivInner small">
+		<article class="jsDivContentWrap color-cell">
+			<header>
+				<h3 class="title">안내</h3>
+				<button class="jsDivClose btnJsDivClose">
+					<span class="sr-only">닫기</span>
+				</button>
+			</header>
+			<div class="jsDivContentArea popup_info">
+				<div class="jsDivContent center">
+					<p>개인정보 수집이용 동의가 필요한 회원입니다.</p>
+					<p>재로그인을 통해 약관동의가 가능합니다.</p>
+				</div>
+
+				<div class="jsDivClose">
+					<button type="button" class="btnNew_close">
+						<span>닫기</span>
+					</button>
+				</div>
+			</div>
+		</article>
+	</div>
+</div>
+
+        <!-- pwa [S] -->
+        <!-- pwa [S] -->
+        <div class="pwa-wrap center" style="display: none;" id="pwaAndroidPop">
+            <!-- 안드로이드 [S] -->
+            <div class="pwa-area aos" >
+                <div class="content">
+                    <div class="logo">
+                        <span class="sr-only">수원시도서관 로고</span>
+                    </div>
+                    <p>홈 화면에 <strong>수원시 도서관 앱</strong>을 추가하고 다양한 서비스를 이용해보세요.</p>
+
+                </div>
+                <div class="btn-wrap">
+                    <button type="button" class="btn" id="installBtn">
+                        <span>홈 화면에 추가하기</span>
+                    </button>
+                    <button type="button" class="btn btn-normal" onclick="todayClose();">
+                        <span>오늘은 그냥 볼께요.</span>
+                    </button>
+                </div>
+                <div class="close_btn">
+                    <button type="button" id="androidPwaCloseBtn" onclick="hidePwaAndroidPop();">
+                        <span class="sr-only">닫기</span>
+                    </button>
+                </div>
+            </div>
+            <!-- 안드로이드 [E] -->
+        </div>
+
+        <div class="pwa-wrap" style="display: none;">
+            <!-- IOS [S] -->
+            <div class="pwa-area ios"  >
+                <div class="content">
+                    <div class="logo">
+                        <span class="sr-only">수원시도서관 로고</span>
+                    </div>
+                    <p><span class="share">공유하기</span>에서 '홈 화면에 추가'<br>바로가기 아이콘을 생성하세요.</p>
+                </div>
+                <button type="button"  class="close" id="iosPwaCloseBtn">
+                    <span class="sr-only">닫기</span>
+                </button>
+            </div>
+            <!-- IOS [E] -->
+        </div>
+        <!-- pwa [E] -->
+
+        <div class="jsDiv suwon" id="inAppModal">
+            <div class="jsDivInner mobile">
+                <div class="jsDivContentArea">
+                    <div class="jsDivContent inApp">
+                        <p class="title">플랫폼에 접속 중입니다</p>
+                        <p class="noticeText">아래의 바로가기 버튼으로 <br>바로 시작해 보세요!</p>
+                        <div class="img-area">
+                            <img src="../images/suwon/icon_inappLoagin.gif" alt="">
+                        </div>
+                        <div class="btn-wrap">
+                            <button type="button" class="btn" id="openExternalBtn" onclick="openExternalBtn();">
+                                <span>수원도서관 바로가기 </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                </article>
+            </div>
+        </div>
+    </body>
+
+
+</html>

@@ -1,0 +1,49 @@
+Book[0]:
+  Title: 파이썬 도서
+  Author: 이강성 저 
+발행처 프리렉
+  Library: 하안도서관
+  CallNumber: 005.133-ㅇ655ㅍ
+  Location: 종합자료실
+Book[1]:
+  Title: 파이썬 도서
+  Author: 김유진 지음 
+발행처 다본
+  Library: 하안도서관
+  CallNumber: 005.133-ㄱ866ㅍ
+  Location: 종합자료실
+Book[2]:
+  Title: 파이썬 도서
+  Author: Y. Daniel Liang 지음 ; 길준민 정재화 [공]옮김 
+발행처 에피스테메
+  Library: 소하도서관
+  CallNumber: 005.133-ㄹ944ㅍ
+  Location: 종합자료실1
+Book[3]:
+  Title: 파이썬 프로그래밍 도서
+  Author: Dave Lee 지음 
+발행처 아티오
+  Library: 충현도서관
+  CallNumber: 일005.133-ㄹ874ㅇ2
+  Location: 종합자료실
+Book[4]:
+  Title: 똑똑한 파이썬 도서
+  Author: 황재호 ; 황예린 [공]지음 
+발행처 인포앤북
+  Library: 광명도서관
+  CallNumber: 005.133-ㅎ783ㄷ
+  Location: 인문자연과학실 신간
+Book[5]:
+  Title: 파이썬 프로그래밍 도서
+  Author: John V. Guttag 저 ; 김영섭 옮김 
+발행처 홍릉과학
+  Library: 철산도서관
+  CallNumber: 005.133-ㄱ493ㅍ
+  Location: 서고
+Book[6]:
+  Title: (두근두근)파이썬 도서
+  Author: 천인국 지음 
+발행처 생능
+  Library: 철산도서관
+  CallNumber: 005.133-ㅊ252파2
+  Location: 종합자료실1

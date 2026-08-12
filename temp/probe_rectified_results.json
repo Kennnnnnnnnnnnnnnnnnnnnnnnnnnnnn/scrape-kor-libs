@@ -1,0 +1,115 @@
+{
+  "군포시": [],
+  "하남시": [],
+  "안성시": [],
+  "의왕시": [
+    {
+      "url": "https://www.uwlib.or.kr/intro/menu/10003/program/30001/searchResultList.do",
+      "status": 200,
+      "len": 170,
+      "is_valid": false
+    },
+    {
+      "url": "https://www.uwlib.or.kr/web/menu/10075/program/30005/searchResultList.do",
+      "status": 200,
+      "len": 170,
+      "is_valid": false
+    }
+  ],
+  "여주시": [
+    {
+      "url": "https://www.yjlib.go.kr/intro/menu/10003/program/30001/searchResultList.do",
+      "status": 200,
+      "len": 168,
+      "is_valid": false
+    },
+    {
+      "url": "https://www.yjlib.go.kr/web/menu/10075/program/30005/searchResultList.do",
+      "status": 200,
+      "len": 168,
+      "is_valid": false
+    }
+  ],
+  "가평군": [],
+  "이천시": [],
+  "김포시": [],
+  "파주시": [
+    {
+      "url": "https://lib.paju.go.kr/intro/menu/10181/program/30012/plusSearchResultList.do",
+      "status": 200,
+      "len": 178,
+      "is_valid": false
+    }
+  ],
+  "안산시": [
+    {
+      "url": "https://lib.ansan.go.kr/intro/menu/10003/program/30001/searchResultList.do",
+      "status": 200,
+      "len": 1901,
+      "is_valid": false
+    },
+    {
+      "url": "https://lib.ansan.go.kr/intro/menu/10181/program/30012/plusSearchResultList.do",
+      "status": 200,
+      "len": 1901,
+      "is_valid": false
+    },
+    {
+      "url": "https://lib.ansan.go.kr/main/searchBrief",
+      "status": 200,
+      "len": 1901,
+      "is_valid": false
+    },
+    {
+      "url": "https://lib.ansan.go.kr/web/menu/10075/program/30005/searchResultList.do",
+      "status": 200,
+      "len": 1901,
+      "is_valid": false
+    }
+  ],
+  "의정부시": [],
+  "시흥시": [
+    {
+      "url": "https://lib.siheung.go.kr/intro/menu/10003/program/30001/searchResultList.do",
+      "status": 200,
+      "len": 2325,
+      "is_valid": false
+    },
+    {
+      "url": "https://lib.siheung.go.kr/intro/menu/10181/program/30012/plusSearchResultList.do",
+      "status": 200,
+      "len": 2325,
+      "is_valid": false
+    },
+    {
+      "url": "https://lib.siheung.go.kr/search/searchDetail.do",
+      "status": 200,
+      "len": 2325,
+      "is_valid": false
+    },
+    {
+      "url": "https://lib.siheung.go.kr/search/tot/result.do",
+      "status": 200,
+      "len": 2325,
+      "is_valid": false
+    },
+    {
+      "url": "https://lib.siheung.go.kr/search/search_detail.do",
+      "status": 200,
+      "len": 2325,
+      "is_valid": false
+    },
+    {
+      "url": "https://lib.siheung.go.kr/main/searchBrief",
+      "status": 200,
+      "len": 2325,
+      "is_valid": false
+    },
+    {
+      "url": "https://lib.siheung.go.kr/web/menu/10075/program/30005/searchResultList.do",
+      "status": 200,
+      "len": 2325,
+      "is_valid": false
+    }
+  ]
+}

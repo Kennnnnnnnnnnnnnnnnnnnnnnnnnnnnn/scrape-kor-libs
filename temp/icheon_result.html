@@ -1,0 +1,4788 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="description" content="이천시립통합도서관">
+	<meta name="keyword" content="이천시립통합도서관, 이천시 도서관, 이천시 전자도서관, 이천시립 도서관, 이천시립도서관, 이천시도서관">
+	<meta name="copyright" content="@copy; 2019 ICHEON CITY LIBRARY. All Rights Reserved.">
+	<meta content="initial-scale=1, width=device-width" name="viewport">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<meta name="format-detection" content="telephone=no" /><!-- 아이폰 전화번호 스타일 초기화 -->
+	<meta name="robots" content="noindex, nofollow">
+	<meta http-equiv="Cache-Control" content="no-cache"/>
+	<meta http-equiv="Expires" content="0"/>
+	<meta http-equiv="Pragma" content="no-cache"/>
+    <title>[키워드/ 전체:파이썬] 검색결과 | 이천시 통합 도서관</title>
+    <link rel="stylesheet" type="text/css" href="/style/ko/standard/common.css">
+	<link rel="stylesheet" href="/style/ko/theme/pc/sub.css">
+	<link rel="stylesheet" href="/style/ko/theme/tablet/sub.css" media="screen and (min-width:768px) and (max-width:1024px)">
+	<link rel="stylesheet" href="/style/ko/theme/mobile/sub.css" media="screen and (max-width:767px)">
+	<link rel="stylesheet" type="text/css" href="/style/ko/theme/mobile/mobiletable.css" media="screen and (max-width:767px)">
+	<link rel="stylesheet" href="/style/ui/jquery.mThumbnailScroller.css">
+	<link rel="apple-touch-icon" href="/image/ko/favicon.png">
+	<link rel="shortcut icon" href="/image/ko/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/style/ui/jquery.ui.custom.css">
+	<script src="/script/jquery-1.8.3.min.js"></script>
+	<script src="/script/footable.js"></script>
+	<script src="/script/jquery.mThumbnailScroller.js"></script>
+	<script src="/script/jquery.placeholder.min.js"></script>
+	<script src="/jsf/common/cookie.js" charset="utf-8"></script>
+	<script src="/jsf/common/ui.core.js" charset="utf-8"></script>
+	<script src="/script/sub.js"></script>
+	<script>var imgPath = '/image/ko/';</script>
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-150822627-1"></script>
+	<meta charset="UTF-8">
+	
+	
+	<link rel="stylesheet" type="text/css" href="/style/ko/standard/list.css">
+	<link rel="stylesheet" href="/style/ko/search/cat/brief.css">
+	<link rel="stylesheet" href="/style/ko/search/cat/basket.css">
+	<link rel="stylesheet" href="/style/ko/search/cat/jquery-ui.css">
+	<link rel="stylesheet" href="/style/ko/search/cat/Nwagon.css">
+	<link rel="stylesheet" href="/style/ui/toastr/toastr.min.css">
+	<link rel="stylesheet" href="/style/ko/theme/mobile/mobiletable.css" media="screen and (max-width:767px)">
+	<!--[if lt IE 9]>
+	<script src="/script/css3-mediaqueries.js"></script>
+	<script src="/script/respond.src.js"></script>
+	<![endif]-->
+	
+	<script>
+	var ISLOGIN = "false";
+	var QUICK_MENU_COOKIE = 'SUB_QUICK_MENU';
+	
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	
+	  gtag('config', 'UA-150822627-1');
+	
+	//특정 IP에서 인증없는 회원가입 기능 허용
+	  var uri = '/search/tot/result';
+	 //var ip = '122.43.203.55 210.90.70.60 122.43.203.55 ';
+	 var ip = '122.43.203.55';
+
+	 if(uri.indexOf('/memberJoin/agreeOfNonCert')!=-1 || uri.indexOf('/memberJoin/writeOfNonCert')!=-1){		
+		if(ip != '10.10.19.11' && ip != '20.20.6.4' && ip != '20.20.6.2' && ip != '20.20.6.5' && ip != '20.20.6.1' && ip != '192.168.4.25' && ip != '20.20.2.2' && ip != '192.168.10.53' && ip != '210.99.13.139' && ip != '210.99.13.140' && ip != '121.133.177.131' && ip != '121.133.177.132' && ip != '121.133.177.133' && ip != '112.170.60.195'
+			  && ip != '210.90.70.30' && ip != '59.12.210.36' && ip != '59.12.210.37' && ip != '59.12.210.38' && ip != '211.52.144.131' && ip != '10.10.14.2' && ip != '10.10.24.3'
+			  && ip != '10.10.13.3' && ip != '10.10.19.3' && ip != '10.10.25.3' && ip != '10.10.23.3' && ip != '10.10.21.3' && ip != '10.10.12.4' && ip != '10.10.22.4' && ip != '10.10.17.3' && ip != '192.168.10.51' && ip != '192.168.6.26' && ip != '192.168.8.11' && ip != '112.170.88.242' && ip != '192.168.0.137') {
+			  alert("관내 특정 pc에서만 이용이 가능한 서비스입니다.");
+	
+			  location.href = '/local/html/memberJoinOfNonCert';
+		  }
+	  };
+	</script>
+	<style type="text/css">
+		.schTypeAgentWeek {display: none;}
+	</style>
+</head>
+<body>
+<div id="divAccessibility">
+	<ul>
+		<li><a href="#divTopMenu">메뉴 바로가기</a></li>
+		<li><a href="#divContents">본문 바로가기(skip to content)</a></li>
+		<li><a href="#divSearch">검색 바로가기</a></li>
+		<li><a href="#divFooter">도서관정보 바로가기</a></li>
+	</ul>
+</div>
+
+<div id="divWrapper">
+	
+<script >
+<!--
+function fn_searchForm_submit(){
+	var si = $('#headerSearchForm select[name="si"] option:selected').val();
+	if(si == 'edu'){
+		location.href = "/education/list?si=title&sw="+$('#headerSearchForm input[name="q"]').val();
+		return false;
+	}else{
+		return true;
+	}
+}
+//-->
+</script>
+<div id="divHeader">
+	<!-- header1 -->
+	<div class="header1">
+		<div>
+			<h1><a href="/" title="">이천시립통합도서관</a></h1>
+			<!-- Global Menu -->
+			<div id="divGlobalMenu">
+				<ul class="gnbList1">
+					<li><a href="/" title="홈">홈</a></li>
+					<li><a href="/relation/ebook" title="전자책" target="_blank">전자책</a></li>
+					<li><a href="http://small.icheonlib.go.kr/sso/login" title="작은도서관" target="_blank">작은도서관</a></li>
+				</ul>
+				<ul class="gnbList2">
+					<li>
+					
+						
+						
+							<a href="/login" title="로그인">로그인</a>
+					
+					</li>
+					
+					<li><a href="/iplls/appGuide" title="회원가입">회원가입</a></li>
+					
+					<li class="sitemap"><a href="/sitemap">사이트맵</a></li>
+					<li><a href="/nonRelation/guideEng" title="ENG" target="_blank">ENG</a></li>
+				</ul>
+			</div>
+			<!-- //Global Menu -->
+			<!-- divSearch -->
+			<a href="#" class="mobileSearchBtn"><img src="/image/ko/local/search.png" alt="검색 열고 닫기"></a>
+			<div id="divSearch">
+				<div>
+					<h2 class="skip">검색</h2>
+					<div class="searchForm">
+						<form  action="/search/tot/result" onsubmit="return fn_searchForm_submit();" id="headerSearchForm">
+						<input type="hidden" name="si" value="TOTAL">
+						<input type="hidden" name="st" value="KWRD">
+							<fieldset>
+								<legend>검색</legend>
+								<span class="selectBox">
+									<label for="selectBox">도서명</label>
+									<select id="selectBox" name="si">
+										<option value="1">도서명</option>
+										<option value="2">저자</option>
+										<option value="3">출판사</option>
+										<option value="edu">문화행사</option>
+									</select>
+								</span>
+								<span class="inputWrap">
+									<input type="text" class="searchInput" title="Search" name="q" placeholder="검색어를 입력하세요.">
+									<input type="image" class="searchBtn" src="/image/ko/local/main/searchBtn.png" alt="Search" title="Search">
+								</span>
+							</fieldset>
+						</form>
+					</div>
+				</div>
+			</div>
+			<!-- // divSearch -->
+		</div>
+	</div>
+	<!-- //header1 -->
+	<!-- header2 -->
+	<div class="blackBg2"></div>
+	<div class="header2">
+		<!-- Top Menu -->
+		<div id="divTopMenu">
+			<h2 class="skip">탑메뉴</h2>
+			<div class="menuWrap">
+				<div class="tablet">
+					<div class="menuLogo">
+						<img src="/image/ko/local/logo.png" alt="이천시립통합도서관">
+					</div>
+					<div class="gnbList2">
+			        	<ul>
+			        		<li>
+							
+								
+								
+									<a href="/login" title="로그인">로그인</a>
+							
+							</li>
+							
+							<li><a href="/privacy/agree" title="회원가입">회원가입</a></li>
+							
+							<li><a href="/nonRelation/guideEng" title="ENG" target="_blank">ENG</a></li>
+			           </ul>
+					</div>                        
+				</div>
+				<div>
+					 <ul>
+					 
+					    
+					 <li class="divTopMenu1">
+					 	<a href="/search/tot" title="자료검색"><span>자료검색</span></a>
+					 	
+					 	
+					 	<div>
+					 		<p><a href="#" title="자료검색">자료검색</a></p>
+							<ul>
+								     				
+	     						
+	     						
+	     						<li><a href="/search/tot"  title="통합검색" >통합검색</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/search/maz"  title="비도서자료" >비도서자료</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/newarrival"  title="신착자료검색" >신착자료검색</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/newbook/list"  title="추천자료" >추천자료</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/statistics/loanBestList"  title="인기대출도서" >인기대출도서</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/searchA/icz"  title="스마트도서관" >스마트도서관</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/bbs/list/19"  title="도서관소식지" >도서관소식지</a></li>	
+	     						
+		     				
+							</ul>  
+						</div>
+					 	
+					 </li>
+					 
+					 
+					    
+					 <li class="divTopMenu2">
+					 	<a href="/local/html/bookstart" title="도서관서비스"><span>도서관서비스</span></a>
+					 	
+					 	
+					 	<div>
+					 		<p><a href="#" title="도서관서비스">도서관서비스</a></p>
+							<ul>
+								     				
+	     						
+	     						
+	     						<li><a href="/local/html/loan"  title="도서대출/반납/예약" >도서대출/반납/예약</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/local/html/subebook2"  title="전자책(E-BOOK)" >전자책(E-BOOK)</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/local/html/bookdure"  title="책두레서비스" >책두레서비스</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/local/html/bookshare"  title="책배달(택배) 서비스" >책배달(택배) 서비스</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/local/html/iplls"  title="책이음서비스" >책이음서비스</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/local/html/seat"  title="열람실 좌석현황" >열람실 좌석현황</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/local/html/cabinet_iclib"  title="사물함이용신청" >사물함이용신청</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/local/html/studyroom1"  title="독서토론실예약" >독서토론실예약</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/local/html/bookstart"  title="북스타트" >북스타트</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/local/html/1000book"  title="세상을 바꿀 천 권의 책" >세상을 바꿀 천 권의 책</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/local/html/libtour"  title="도서관 견학" >도서관 견학</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/local/html/smartlibrary"  title="스마트도서관" >스마트도서관</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/local/html/faqlib"  title="사서에게물어보세요" >사서에게물어보세요</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/local/html/dbpia"  title="전자저널 서비스" >전자저널 서비스</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/local/html/audiobook"  title="오디오북" >오디오북</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/local/html/siyoillib"  title="시요일" >시요일</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/local/html/100book"  title="고전백서" >고전백서</a></li>	
+	     						
+		     				
+							</ul>  
+						</div>
+					 	
+					 </li>
+					 
+					 
+					    
+					 <li class="divTopMenu3">
+					 	<a href="/libsch/mixMonthlyCalendar/1" title="문화행사"><span>문화행사</span></a>
+					 	
+					 	
+					 	<div>
+					 		<p><a href="#" title="문화행사">문화행사</a></p>
+							<ul>
+								     				
+	     						
+	     						
+	     						<li><a href="/libsch/mixMonthlyCalendar/1"  title="도서관 일정" >도서관 일정</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/education/list"  title="문화행사" >문화행사</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/bbs/list/22"  title="2025 이천이책" >2025 이천이책</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/bbs/list/23"  title="읽는 사람 공모전" >읽는 사람 공모전</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/bbs/list/6"  title="동아리 마당" >동아리 마당</a></li>	
+	     						
+		     				
+							</ul>  
+						</div>
+					 	
+					 </li>
+					 
+					 
+					    
+					 <li class="divTopMenu4">
+					 	<a href="/bbs/list/1" title="참여마당"><span>참여마당</span></a>
+					 	
+					 	
+					 	<div>
+					 		<p><a href="#" title="참여마당">참여마당</a></p>
+							<ul>
+								     				
+	     						
+	     						
+	     						<li><a href="/bbs/list/1"  title="공지사항" >공지사항</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/bbs/list/14"  title="묻고답하기" >묻고답하기</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/bbs/list/13"  title="프로그램 참여후기" >프로그램 참여후기</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="https://icheon.go.kr/portal/selectBbsNttList.do?bbsNo=8&key=1524"  title="칭찬합시다" target='_blank'>칭찬합시다</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/bbs/faq/2"  title="자주하는질문(FAQ)" >자주하는질문(FAQ)</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/local/html/donate"  title="도서 기증" >도서 기증</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/bbs/list/5"  title="추천 도서 게시판" >추천 도서 게시판</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/bbs/list/3"  title="포토갤러리" >포토갤러리</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/local/html/JobOpenings"  title="채용공고" >채용공고</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/bbs/list/21"  title="강좌제안서" >강좌제안서</a></li>	
+	     						
+		     				
+							</ul>  
+						</div>
+					 	
+					 </li>
+					 
+					 
+					    
+					 <li class="divTopMenu5">
+					 	<a href="/mynotice/list" title="나만의도서관"><span>나만의도서관</span></a>
+					 	
+					 	
+					 	<div>
+					 		<p><a href="#" title="나만의도서관">나만의도서관</a></p>
+							<ul>
+								     				
+	     						
+	     						
+	     						<li><a href="/mynotice/list"  title="개인공지" >개인공지</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/myloan/list"  title="나의현황" >나의현황</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/local/html/purchaserequest"  title="희망도서신청" >희망도서신청</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/education/applyList"  title="나의문화행사" >나의문화행사</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/myprofile/profile"  title="회원정보변경" >회원정보변경</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/myprofile/reloginLeave"  title="회원탈퇴" >회원탈퇴</a></li>	
+	     						
+		     				
+							</ul>  
+						</div>
+					 	
+					 </li>
+					 
+					 
+					    
+					 <li class="divTopMenu6">
+					 	<a href="/local/html/memberJoinGuide" title="도서관 소개"><span>도서관 소개</span></a>
+					 	
+					 	
+					 	<div>
+					 		<p><a href="#" title="도서관 소개">도서관 소개</a></p>
+							<ul>
+								     				
+	     						
+	     						
+	     						<li><a href="/local/html/memberJoinGuide"  title="회원가입" >회원가입</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/local/html/manner1"  title="시설 및 이용시간 안내" >시설 및 이용시간 안내</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/local/html/data1"  title="자료현황" >자료현황</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/local/html/history"  title="연혁및조직" >연혁및조직</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/local/html/map1"  title="찾아오시는길" >찾아오시는길</a></li>	
+	     						
+		     				
+							</ul>  
+						</div>
+					 	
+					 </li>
+					 
+					 
+					 
+					 
+					 
+					 
+					 
+					 
+					</ul>
+				</div>
+				<div class="tablet">
+					<div class="sns">
+						<ul>
+							<li><a href="https://band.us/@icheonlib" target="_blank" title="새창"><img src="/image/ko/local/sns1.png" alt="네이버 band"></a></li>
+							<li><a href="https://pf.kakao.com/_XifaT" target="_blank" title="새창"><img src="/image/ko/local/sns2.png" alt="카카오톡"></a></li>
+						</ul>	
+					</div>
+				</div>
+			</div>
+			<a href="#" class="menuClose">
+				닫기
+				<span></span>
+				<span></span> 
+			</a>
+			<div class="btnWrap">
+				<a href="#" class="divTopMenuBtn">
+					전체메뉴열기
+					<span></span>
+					<span></span>
+					<span></span>
+				</a>
+			</div>
+		</div>
+		<!-- //Top Menu -->
+	</div>
+<!-- //header2 -->
+</div>
+	
+	<div class="blackBg"></div>			
+	<hr>
+	
+	<div class="divSubTitle">
+		<div class="">
+			<h2 id="divTitle">통합검색</h2>
+			<div id="divLocation">
+				<ul>
+					<li class="home"><a href="/"><img src="/image/ko/local/home.png" alt="home"></a></li>
+					<li><a href="/search/tot">자료검색</a></li><li><a href="/search/tot">통합검색</a></li>
+				</ul>
+			</div>	
+		</div>
+	</div>
+	
+	<!-- divContents -->
+	<div id="divContents">
+		
+	
+     
+		
+		<!-- 안내문구 출력 -->
+		
+		
+		
+
+
+<script th:inline="javascript">
+	/*<![CDATA[*/
+		var excelUrl = [];
+
+			excelUrl.push('/mynightloan/savexls');
+
+			excelUrl.push('/otherlib/excellist');
+
+			excelUrl.push('/publicationmng/excellist');
+
+			excelUrl.push('/transoutput/savexls');
+
+			excelUrl.push('/education/alert/savexls');
+
+			excelUrl.push('/education/userSavexls');
+
+			excelUrl.push('/application/savexls');
+
+			excelUrl.push('/bbs/excellist/');
+
+			excelUrl.push('/bookpackage/savexls');
+
+			excelUrl.push('/bookshelf/mngSavexls');
+
+			excelUrl.push('/bookshelf/savexls');
+
+			excelUrl.push('/ddsweb/savexls');
+
+			excelUrl.push('/delivery/savexls');
+
+			excelUrl.push('/groupeducation/userSavexls');
+
+			excelUrl.push('/libtour/savexls');
+
+			excelUrl.push('/missrepo/mngSavexls');
+
+			excelUrl.push('/missrepo/savexls');
+
+			excelUrl.push('/mynightloan/mngSavexls');
+
+		var excelUrlLength = excelUrl.length;
+		/*]]>*/
+</script>
+
+<div id="dialog-form" title="엑셀 다운로드 사유" class="ui-dialog-content ui-widget-content" style="display:none;width:auto;min-height:98.1667px;height:auto;">
+  <form id="formSavexls" action="" method="post">
+    <fieldset>
+      <legend>엑셀 다운로드 사유 입력</legend>
+      <label for="reason">사유</label>
+      <textarea id="reason" name="reason" style="height:120px;" class="txtArea"></textarea>
+      <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+    </fieldset>
+  </form>
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		var savexlsDialog, savexlsform;
+	    savexlsDialog = $("#dialog-form").dialog({
+	    	autoOpen: false,
+	        height: 250,
+	        width: 430,
+	        modal: true,
+	        title: '엑셀 다운로드 사유',
+            buttons: {
+                "확인": savexls,
+                "취소": function(){
+                    $(this).dialog("close");
+                }
+            },
+            close: function(event, ui){
+            	savexlsform[0].reset();
+            }
+        });
+
+	    savexlsform = savexlsDialog.find("form").on("submit", function(event) {
+	        event.preventDefault();
+	        savexls();
+	    });
+
+	    function savexls() {
+			var reason = $("#reason").val();
+			if(reason == '') {
+				alert('엑셀 다운로드 사유를 입력하세요.');
+				return false;
+			}
+
+			if(reason.length > 100) {
+				alert('100자 이하로 입력하세요.');
+				$("#reason").val("");
+				return false;
+			}
+
+			savexlsform[0].submit();
+			savexlsDialog.dialog("close");
+			return true;
+		}
+
+	    $("a").click(function(event) {
+		    var href = $(this).attr("href");
+		  	for(var i = 0; i < excelUrlLength; i++) {
+				if(href.indexOf(excelUrl[i]) != -1) {
+		  			event.preventDefault();
+			  		$("#formSavexls").attr("action", href);
+				    savexlsDialog.dialog("open");
+				    break;
+				}
+			}
+		});
+	});
+</script>
+		<!-- content -->
+<div id="divContent">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 검색 연간물 제본정보에 추가비고란(홍대 ct_accession ser_remark:결호내용) -->
+<!-- 결호내용(홍대) -->
+
+
+
+
+
+
+
+
+
+<script>
+//Message
+var imgPath = "/image/ko/";
+var noexistSearchDetailDataMsg = "상세정보가 없습니다.";
+var mediaMsg = "바로가기";
+var abstractMsg = "초록";
+var contentsMsg = "목차";
+var commentariesMsg = "해제";
+var urlMsg = "URL";
+var vodMsg = "VOD";
+var aodMsg = "AOD";
+var originalMsg = "원문";
+var criticismMsg = "비평";
+
+var numberMsg = "No.";
+var bookImageMsg = "책 표지";
+var shelfMsg = "소장처/자료실/서가";
+var callNoMsg = "청구기호";
+var shelfinfoMsg = "소장사항";
+var loaninfoMsg = "대출정보";
+var bookstateMsg = "도서상태";
+var reservationMsg = "예약";
+var remarkMsg = "비고";
+var returndateMsg = "반납예정일";
+var checkinMsg = "권호";
+var branchLoanMsg = "분관대출";
+var corenewMsg = "책두레";
+var bookNaraeMsg = "책나래 서비스";
+var loanreqMsg = "책배달";
+var pouchLoanMsg = "책배달신청";
+var closedLoanMsg = "도서예약대출";
+var checkBindingMsg = "권호·제본정보 보기";
+var latestdateMsg = "최근입수호";
+var missBookMsg = "서가에 없는책 신고";
+var missBookReportMsg="신고";
+var nonBookMsg = "메세지가 없습니다";
+var deliveryMsg="도서배달";
+var deliveryTitleMsg = "메세지가 없습니다";
+var printMsg = "인쇄";
+var smsMsg = "메세지가 없습니다";
+var selectMsg = "선택";
+
+var bookbindMsg = "제본정보";
+var detailholdinfoMsg = "권호정보";
+var noItemsMsg = "결과가 없습니다.";
+var subscriptionMsg = "구독";
+var checkinyearMsg = "연도별 권호정보";
+var yearhelpMsg = "연도를 선택하면 해당연도의 상세 권호정보를 보실 수 있습니다.";
+
+var checkinMsg = "권호";
+var pubdateMsg = "발행일";
+var indateMsg = "입수일";
+var articleMsg = "기사";
+var appendixMsg = "부록";
+var accessionnoMsg = "등록번호";
+var checkinnameMsg = "권호명";
+var densenoMsg = "";
+var metsMsg = "매체보기";
+
+var isUseOpacSearch = "";
+var serviceMsg = "서비스";
+var preserveMsg = "메세지가 없습니다";
+
+var MSG_ERM_PRODUCED_BY = "메세지가 없습니다";
+var MSG_ERM_COVERAGE_PERIOD = "메세지가 없습니다";
+var MSG_ERM_RESCNOTE = "주기";
+
+var isSeriesReserve = "";
+var CONST_CHECKINVIEW_TYPE = "radio";
+var isUseSerRemark = "false";
+var serRemarkMsg = "메세지가 없습니다";
+var newWindowMsg = "새창";
+var pouchLoanSearchView = false;//파우치대출 전용 검색화면 여부(파우치대출 신청시 소장자료 검색 기능)
+var requestMsg = "신청";
+var MSG_SERVICE_INFO="서비스 이용안내";
+var bookReviewTitleMsg = "메세지가 없습니다";
+var bookReviewContentMsg = "메세지가 없습니다";
+var bookReviewConfirmMsg = "메세지가 없습니다";
+var bookTagTitleMsg = "메세지가 없습니다";
+var bookReviewReplyMsg = "메세지가 없습니다";
+var bookReviewWaitMsg = "메세지가 없습니다";
+
+</script>
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<!-- PARAMITEM.KEY = st -->
+	
+		
+			
+				
+					
+					
+					
+					
+					
+						
+					
+				
+				
+				
+			
+			
+		
+	
+
+	<!-- PARAMITEM.KEY = q -->
+	
+		
+			
+				
+					
+					
+					
+					
+					
+						
+					
+				
+				
+				
+			
+			
+		
+	
+
+	<!-- PARAMITEM.KEY = __verified_refresh -->
+	
+		
+			
+				
+					
+					
+					
+					
+					
+						
+					
+				
+				
+				
+			
+			
+		
+	
+
+	<!-- PARAMITEM.KEY = si -->
+	
+		
+			
+				
+					
+					
+					
+					
+					
+						
+					
+				
+				
+				
+			
+			
+		
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+		
+			
+			
+		
+	
+
+	
+		
+			
+			
+		
+	
+
+	
+		
+			
+			
+		
+	
+
+	
+		
+			
+			
+		
+	
+
+<div class="searchBrief">
+	
+	
+	<div class="dataSearch">
+		<form name="refineSearch" method="get" action="#">
+			<fieldset>
+				<input type="hidden" name="pn" value="1">
+				<input type="hidden" name="isRefine" value="Y">
+				<input type="hidden" name="st" value="KWRD">
+						<input type="hidden" name="q" value="파이썬">
+						<input type="hidden" name="__verified_refresh" value="1">
+						<input type="hidden" name="si" value="TOTAL">
+				
+				
+				<legend>검색항목</legend>
+				<div class="searchSelect">
+					<span>
+						<input type="radio" id="stKWRD" name="st" value="KWRD" checked="checked" />
+						<label for="stKWRD" class="cursor">키워드</label>
+					</span>
+					<span>
+					<input type="radio" id="stFRNT" name="st" value="FRNT"  />
+					<label for="stFRNT" class="cursor">전방일치</label>
+					</span>
+					<span>
+					<input type="radio" id="stEXCT" name="st" value="EXCT"  />
+					<label for="stEXCT" class="cursor">완전일치</label>
+					</span>
+				</div>
+				
+				<select id="si1" name="si" title="검색 항목을 선택하는곳" class="searchOpt1">
+					<option value="TOTAL">전체</option>
+					<option value="1">서명</option><option value="2">저자</option><option value="3">출판사</option><option value="4">주제어</option>
+				</select>
+				<select id="si2" name="si" title="검색 항목을 선택하는곳" class="searchOpt1">
+					<option value="TOTAL">전체</option>
+					<option value="1">서명</option><option value="2">저자</option><option value="3">출판사</option><option value="4">주제어</option><option value="6">ISBN</option>
+				</select>
+				<div class="searchW">
+					
+					<span  class="keyword"><input type="text" name="q" title="검색어를 입력하세요"></span>
+					<span class="refine"><input type="checkbox" id="refine" name="refine" value="Y"> <label for="refine">결과내 검색</label></span>
+					<input type="submit" value="검색" class="searchBtn">
+					
+						
+							
+							<a href="/search/tot" class="advanceBtn">상세검색</a>
+						
+						
+					
+				</div>
+			</fieldset>
+		</form>
+	</div>
+	<!-- //dataSearch -->
+	
+	<div class="searchWords">
+		<dl class="searchKeyword">
+			<dt>검색어</dt>
+			<!-- <dd>[ 키워드 <span class="division">|</span> <span class="keyword">전체 : 행복 and 저자 : 롤링</span> ]</dd> -->
+			<dd>
+				<span class="keyword">[키워드/ 전체:파이썬]</span>
+				
+			</dd>
+			
+			
+				
+				
+					<input type="button" class="addLink btnType2" onclick="addLink('(((([파이썬,TOT,2,0,3]))AND NOT(([MA000000,TOT,3,6,3]AND([MA000024,TOT,3,7,3]OR[MA000025,TOT,3,7,3]OR[MA000027,TOT,3,7,3])))))');" title="추가" value="추가" style="display:none;">
+				
+			
+			
+		</dl>
+		
+<ul class="selectedFacet">
+	
+</ul>
+
+	</div>
+	<div class="briefContent">
+		
+		
+
+
+<script>
+	var nl_category = new Array();
+	
+		nl_category.push('dan');
+	
+		nl_category.push('yon');
+	
+		nl_category.push('media');
+	
+		nl_category.push('web');
+	
+		nl_category.push('music');
+	
+		nl_category.push('archive');
+	
+		nl_category.push('cip');
+	
+</script>
+<div class="facet">
+	<div class="facetList">
+		
+		
+		
+		<h3>검색결과제한 <button type="button" class="listOpenBtn"><img src="/image/ko/solution/common/ico/facetIco.png" alt="전체 펼치기" /></button></h3>
+		<ul>
+			
+			
+			
+				
+				
+				
+				
+				<li>
+					<dl>
+						<dt><a href="">소장처</a></dt>
+						<dd>
+							<ul>
+								
+								
+								<li    >
+								
+									
+									
+										<a href="?st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL&amp;bk_2=jttjma000000jttj" class="facetItem">시립도서관<span>(30)</span></a>
+									
+								
+								</li>
+								
+								<li    >
+								
+									
+									
+										<a href="?st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL&amp;bk_2=jttjbr000000jttj" class="facetItem">청미도서관<span>(7)</span></a>
+									
+								
+								</li>
+								
+								<li    >
+								
+									
+									
+										<a href="?st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL&amp;bk_2=jttjmc000000jttj" class="facetItem">효양도서관<span>(51)</span></a>
+									
+								
+								</li>
+								
+								<li    >
+								
+									
+									
+										<a href="?st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL&amp;bk_2=jttjmb000000jttj" class="facetItem">어린이도서관<span>(4)</span></a>
+									
+								
+								</li>
+								
+								<li    >
+								
+									
+									
+										<a href="?st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL&amp;bk_2=jttjna000000jttj" class="facetItem">마장도서관<span>(18)</span></a>
+									
+								
+								</li>
+								
+								<li  style="display:none;"  >
+								
+									
+									
+										<a href="?st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL&amp;bk_2=jttjnb000000jttj" class="facetItem">서희도서관<span>(5)</span></a>
+									
+								
+								</li>
+								
+								<li  style="display:none;"  >
+								
+									
+									
+										<a href="?st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL&amp;bk_2=jttjmg000000jttj" class="facetItem">설성작은도서관<span>(2)</span></a>
+									
+								
+								</li>
+								
+								<li  style="display:none;"  >
+								
+									
+									
+										<a href="?st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL&amp;bk_2=jttjmt000000jttj" class="facetItem">설봉아름드리작은도서관<span>(2)</span></a>
+									
+								
+								</li>
+								
+								<li  style="display:none;"  >
+								
+									
+									
+										<a href="?st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL&amp;bk_2=jttjmf000000jttj" class="facetItem">백사작은도서관<span>(1)</span></a>
+									
+								
+								</li>
+								
+								<li  style="display:none;"  >
+								
+									
+									
+										<a href="?st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL&amp;bk_2=jttjmj000000jttj" class="facetItem">아리마을작은도서관<span>(1)</span></a>
+									
+								
+								</li>
+								
+								<li  style="display:none;"  >
+								
+									
+									
+										<a href="?st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL&amp;bk_2=jttjne000000jttj" class="facetItem">대월작은도서관<span>(1)</span></a>
+									
+								
+								</li>
+								
+							</ul>
+							
+							<div class="more">
+								<p class="moreBtnWrap"><button type="button" class="moreList">더보기</button> 6</p>
+								<p class="closeBtnWrap"><button type="button" class="moreListClose">닫기</button> 닫기</p>
+							</div>
+							
+						</dd>
+					</dl>
+				</li>				
+				
+			
+			
+			
+			
+				
+				
+				
+				
+				<li>
+					<dl>
+						<dt><a href="">자료유형</a></dt>
+						<dd>
+							<ul>
+								
+								
+								<li    >
+								
+									
+									
+										<a href="?st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL&amp;bk_0=jttjmjttj" class="facetItem">단행본<span>(122)</span></a>
+									
+								
+								</li>
+								
+							</ul>
+							
+						</dd>
+					</dl>
+				</li>				
+				
+			
+			
+			
+			
+				
+				
+				
+				
+				<li>
+					<dl>
+						<dt><a href="">저자</a></dt>
+						<dd>
+							<ul>
+								
+								
+								<li    >
+								
+									
+									
+										<a href="?st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL&amp;bk_4=%EC%9D%B4%EC%8A%B9%EC%B0%AC" class="facetItem">이승찬<span>(6)</span></a>
+									
+								
+								</li>
+								
+								<li    >
+								
+									
+									
+										<a href="?st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL&amp;bk_4=%EB%B0%95%EC%9D%91%EC%9A%A9" class="facetItem">박응용<span>(5)</span></a>
+									
+								
+								</li>
+								
+								<li    >
+								
+									
+									
+										<a href="?st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL&amp;bk_4=%EB%A1%9C%ED%94%BC%2C+%ED%81%AC%EB%A6%AC%EC%8A%A4" class="facetItem">로피, 크리스<span>(4)</span></a>
+									
+								
+								</li>
+								
+								<li    >
+								
+									
+									
+										<a href="?st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL&amp;bk_4=%EC%9C%A0%ED%98%95%EB%AA%A9" class="facetItem">유형목<span>(4)</span></a>
+									
+								
+								</li>
+								
+								<li    >
+								
+									
+									
+										<a href="?st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL&amp;bk_4=Grus%2C+Joel" class="facetItem">Grus, Joel<span>(3)</span></a>
+									
+								
+								</li>
+								
+								<li  style="display:none;"  >
+								
+									
+									
+										<a href="?st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL&amp;bk_4=%EA%B7%B8%EB%A3%A8%EC%8A%A4%2C+%EC%A1%B0%EC%97%98" class="facetItem">그루스, 조엘<span>(3)</span></a>
+									
+								
+								</li>
+								
+								<li  style="display:none;"  >
+								
+									
+									
+										<a href="?st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL&amp;bk_4=%EA%B9%80%ED%95%9C%EA%B2%B0" class="facetItem">김한결<span>(3)</span></a>
+									
+								
+								</li>
+								
+								<li  style="display:none;"  >
+								
+									
+									
+										<a href="?st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL&amp;bk_4=%EB%A6%AC%EC%B2%98%EB%93%9C%EC%8A%A8%2C+%ED%81%AC%EB%A0%88%EC%9D%B4%EA%B7%B8" class="facetItem">리처드슨, 크레이그<span>(3)</span></a>
+									
+								
+								</li>
+								
+								<li  style="display:none;"  >
+								
+									
+									
+										<a href="?st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL&amp;bk_4=%EB%B0%95%EC%9D%80%EC%A0%95" class="facetItem">박은정<span>(3)</span></a>
+									
+								
+								</li>
+								
+								<li  style="display:none;"  >
+								
+									
+									
+										<a href="?st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL&amp;bk_4=%EB%B0%B0%EC%9E%A5%EC%97%B4" class="facetItem">배장열<span>(3)</span></a>
+									
+								
+								</li>
+								
+								<li  style="display:none;"  >
+								
+									
+									
+										<a href="?st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL&amp;bk_4=%ED%95%98%EC%84%B1%EC%A3%BC" class="facetItem">하성주<span>(3)</span></a>
+									
+								
+								</li>
+								
+								<li  style="display:none;"  >
+								
+									
+									
+										<a href="?st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL&amp;bk_4=Lutz%2C+Mark" class="facetItem">Lutz, Mark<span>(2)</span></a>
+									
+								
+								</li>
+								
+								<li  style="display:none;"  >
+								
+									
+									
+										<a href="?st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL&amp;bk_4=Mckinney%2C+Wes" class="facetItem">Mckinney, Wes<span>(2)</span></a>
+									
+								
+								</li>
+								
+								<li  style="display:none;"  >
+								
+									
+									
+										<a href="?st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL&amp;bk_4=Richardson%2C+Craig" class="facetItem">Richardson, Craig<span>(2)</span></a>
+									
+								
+								</li>
+								
+								<li  style="display:none;"  >
+								
+									
+									
+										<a href="?st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL&amp;bk_4=Slatkin%2C+Brett" class="facetItem">Slatkin, Brett<span>(2)</span></a>
+									
+								
+								</li>
+								
+								<li  style="display:none;"  >
+								
+									
+									
+										<a href="?st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL&amp;bk_4=%EA%B0%95%EC%84%B1%EC%9A%A9" class="facetItem">강성용<span>(2)</span></a>
+									
+								
+								</li>
+								
+								<li  style="display:none;"  >
+								
+									
+									
+										<a href="?st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL&amp;bk_4=%EA%B9%80%EB%AA%A8%EC%84%B8" class="facetItem">김모세<span>(2)</span></a>
+									
+								
+								</li>
+								
+								<li  style="display:none;"  >
+								
+									
+									
+										<a href="?st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL&amp;bk_4=%EA%B9%80%EC%84%9D%ED%9B%88" class="facetItem">김석훈<span>(2)</span></a>
+									
+								
+								</li>
+								
+								<li  style="display:none;"  >
+								
+									
+									
+										<a href="?st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL&amp;bk_4=%EA%B9%80%EC%98%81%EA%B7%BC" class="facetItem">김영근<span>(2)</span></a>
+									
+								
+								</li>
+								
+								<li  style="display:none;"  >
+								
+									
+									
+										<a href="?st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL&amp;bk_4=%EA%B9%80%EC%98%81%EC%9A%B0" class="facetItem">김영우<span>(2)</span></a>
+									
+								
+								</li>
+								
+								<li  style="display:none;"  >
+								
+									
+									
+										<a href="?st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL&amp;bk_4=%EA%B9%80%EC%99%84%EC%84%AD" class="facetItem">김완섭<span>(2)</span></a>
+									
+								
+								</li>
+								
+								<li  style="display:none;"  >
+								
+									
+									
+										<a href="?st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL&amp;bk_4=%EB%A7%A5%ED%82%A4%EB%8B%88%2C+%EC%9B%A8%EC%8A%A4" class="facetItem">맥키니, 웨스<span>(2)</span></a>
+									
+								
+								</li>
+								
+								<li  style="display:none;"  >
+								
+									
+									
+										<a href="?st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL&amp;bk_4=%EB%B0%95%EC%83%81%EA%B8%B8" class="facetItem">박상길<span>(2)</span></a>
+									
+								
+								</li>
+								
+								<li  style="display:none;"  >
+								
+									
+									
+										<a href="?st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL&amp;bk_4=%EC%84%9C%EC%88%98%ED%99%98" class="facetItem">서수환<span>(2)</span></a>
+									
+								
+								</li>
+								
+								<li  style="display:none;"  >
+								
+									
+									
+										<a href="?st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL&amp;bk_4=%EC%84%9C%EC%A7%84%EC%88%98" class="facetItem">서진수<span>(2)</span></a>
+									
+								
+								</li>
+								
+							</ul>
+							
+							<div class="more">
+								<p class="moreBtnWrap"><button type="button" class="moreList">더보기</button> 20</p>
+								<p class="closeBtnWrap"><button type="button" class="moreListClose">닫기</button> 닫기</p>
+							</div>
+							
+						</dd>
+					</dl>
+				</li>				
+				
+			
+			
+			
+			
+				
+				
+				
+				
+				<li>
+					<dl>
+						<dt><a href="">출판사</a></dt>
+						<dd>
+							<ul>
+								
+								
+								<li    >
+								
+									
+									
+										<a href="?st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL&amp;bk_5=%ED%95%9C%EB%B9%9B%EB%AF%B8%EB%94%94%EC%96%B4" class="facetItem">한빛미디어<span>(22)</span></a>
+									
+								
+								</li>
+								
+								<li    >
+								
+									
+									
+										<a href="?st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL&amp;bk_5=%EA%B8%B8%EB%B2%97" class="facetItem">길벗<span>(16)</span></a>
+									
+								
+								</li>
+								
+								<li    >
+								
+									
+									
+										<a href="?st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL&amp;bk_5=%EC%A0%9C%EC%9D%B4%ED%8E%8D" class="facetItem">제이펍<span>(9)</span></a>
+									
+								
+								</li>
+								
+								<li    >
+								
+									
+									
+										<a href="?st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL&amp;bk_5=%EC%9D%B4%EC%A7%80%EC%8A%A4%ED%8D%BC%EB%B8%94%EB%A6%AC%EC%8B%B1" class="facetItem">이지스퍼블리싱<span>(7)</span></a>
+									
+								
+								</li>
+								
+								<li    >
+								
+									
+									
+										<a href="?st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL&amp;bk_5=%EC%9C%84%ED%82%A4%EB%B6%81%EC%8A%A4" class="facetItem">위키북스<span>(6)</span></a>
+									
+								
+								</li>
+								
+								<li  style="display:none;"  >
+								
+									
+									
+										<a href="?st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL&amp;bk_5=%EB%B9%84%EC%A0%9C%EC%9D%B4%ED%8D%BC%EB%B8%94%EB%A6%AD" class="facetItem">비제이퍼블릭<span>(5)</span></a>
+									
+								
+								</li>
+								
+								<li  style="display:none;"  >
+								
+									
+									
+										<a href="?st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL&amp;bk_5=%EC%97%90%EC%9D%B4%EC%BD%98" class="facetItem">에이콘<span>(4)</span></a>
+									
+								
+								</li>
+								
+								<li  style="display:none;"  >
+								
+									
+									
+										<a href="?st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL&amp;bk_5=%EC%9D%B8%EC%82%AC%EC%9D%B4%ED%8A%B8" class="facetItem">인사이트<span>(4)</span></a>
+									
+								
+								</li>
+								
+								<li  style="display:none;"  >
+								
+									
+									
+										<a href="?st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL&amp;bk_5=%EC%97%90%EC%9D%B4%EC%BD%98%EC%B6%9C%ED%8C%90" class="facetItem">에이콘출판<span>(3)</span></a>
+									
+								
+								</li>
+								
+								<li  style="display:none;"  >
+								
+									
+									
+										<a href="?st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL&amp;bk_5=%EC%B1%85%EB%A7%8C" class="facetItem">책만<span>(3)</span></a>
+									
+								
+								</li>
+								
+								<li  style="display:none;"  >
+								
+									
+									
+										<a href="?st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL&amp;bk_5=%ED%95%9C%EB%B9%9B%EC%95%84%EC%B9%B4%EB%8D%B0%EB%AF%B8" class="facetItem">한빛아카데미<span>(3)</span></a>
+									
+								
+								</li>
+								
+								<li  style="display:none;"  >
+								
+									
+									
+										<a href="?st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL&amp;bk_5=GACHILABS%EA%B0%80%EC%B9%98%EB%9E%A9%EC%8A%A4" class="facetItem">GACHILABS가치랩스<span>(2)</span></a>
+									
+								
+								</li>
+								
+								<li  style="display:none;"  >
+								
+									
+									
+										<a href="?st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL&amp;bk_5=%EB%94%94%EC%A7%80%ED%84%B8%EB%B6%81%EC%8A%A4" class="facetItem">디지털북스<span>(2)</span></a>
+									
+								
+								</li>
+								
+								<li  style="display:none;"  >
+								
+									
+									
+										<a href="?st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL&amp;bk_5=%EC%95%A4%EC%8D%A8%EB%B6%81" class="facetItem">앤써북<span>(2)</span></a>
+									
+								
+								</li>
+								
+								<li  style="display:none;"  >
+								
+									
+									
+										<a href="?st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL&amp;bk_5=%EC%98%81%EC%A7%84%EB%8B%B7%EC%BB%B4" class="facetItem">영진닷컴<span>(2)</span></a>
+									
+								
+								</li>
+								
+								<li  style="display:none;"  >
+								
+									
+									
+										<a href="?st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL&amp;bk_5=%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C%EB%B6%81%EC%8A%A4" class="facetItem">클라우드북스<span>(2)</span></a>
+									
+								
+								</li>
+								
+								<li  style="display:none;"  >
+								
+									
+									
+										<a href="?st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL&amp;bk_5=%ED%94%84%EB%A6%AC%EB%A0%89" class="facetItem">프리렉<span>(2)</span></a>
+									
+								
+								</li>
+								
+								<li  style="display:none;"  >
+								
+									
+									
+										<a href="?st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL&amp;bk_5=Algoboni%3A%EC%95%8C%EA%B3%A0%EB%B3%B4%EB%8B%88" class="facetItem">Algoboni:알고보니<span>(1)</span></a>
+									
+								
+								</li>
+								
+								<li  style="display:none;"  >
+								
+									
+									
+										<a href="?st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL&amp;bk_5=Algoboni%EC%95%8C%EA%B3%A0%EB%B3%B4%EB%8B%88" class="facetItem">Algoboni알고보니<span>(1)</span></a>
+									
+								
+								</li>
+								
+								<li  style="display:none;"  >
+								
+									
+									
+										<a href="?st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL&amp;bk_5=BJPUBLIC%3A%EB%B9%84%EC%A0%9C%EC%9D%B4%ED%8D%BC%EB%B8%94%EB%A6%AD" class="facetItem">BJPUBLIC:비제이퍼블릭<span>(1)</span></a>
+									
+								
+								</li>
+								
+								<li  style="display:none;"  >
+								
+									
+									
+										<a href="?st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL&amp;bk_5=BJPUBLIC%EB%B9%84%EC%A0%9C%EC%9D%B4%ED%8D%BC%EB%B8%94%EB%A6%AD" class="facetItem">BJPUBLIC비제이퍼블릭<span>(1)</span></a>
+									
+								
+								</li>
+								
+								<li  style="display:none;"  >
+								
+									
+									
+										<a href="?st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL&amp;bk_5=BJpublic" class="facetItem">BJpublic<span>(1)</span></a>
+									
+								
+								</li>
+								
+								<li  style="display:none;"  >
+								
+									
+									
+										<a href="?st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL&amp;bk_5=BJpublic%3A%EB%B9%84%EC%A0%9C%EC%9D%B4%ED%8D%BC%EB%B8%94%EB%A6%AD" class="facetItem">BJpublic:비제이퍼블릭<span>(1)</span></a>
+									
+								
+								</li>
+								
+								<li  style="display:none;"  >
+								
+									
+									
+										<a href="?st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL&amp;bk_5=BJpublic%EB%B9%84%EC%A0%9C%EC%9D%B4%ED%8D%BC%EB%B8%94%EB%A6%AD" class="facetItem">BJpublic비제이퍼블릭<span>(1)</span></a>
+									
+								
+								</li>
+								
+								<li  style="display:none;"  >
+								
+									
+									
+										<a href="?st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL&amp;bk_5=Eduway%3A%EC%97%90%EB%93%80%EC%9B%A8%EC%9D%B4" class="facetItem">Eduway:에듀웨이<span>(1)</span></a>
+									
+								
+								</li>
+								
+							</ul>
+							
+							<div class="more">
+								<p class="moreBtnWrap"><button type="button" class="moreList">더보기</button> 20</p>
+								<p class="closeBtnWrap"><button type="button" class="moreListClose">닫기</button> 닫기</p>
+							</div>
+							
+						</dd>
+					</dl>
+				</li>				
+				
+			
+			
+			
+			
+				
+				
+					
+					
+					
+					
+						
+						
+							
+							
+						
+						
+					
+						
+						
+							
+							
+						
+						
+					
+						
+						
+							
+							
+						
+						
+					
+						
+						
+							
+							
+						
+						
+					
+						
+						
+							
+							
+						
+						
+					
+						
+						
+							
+							
+						
+						
+					
+						
+						
+							
+							
+						
+						
+					
+						
+						
+							
+							
+						
+						
+					
+						
+						
+							
+							
+						
+						
+					
+						
+						
+							
+							
+						
+						
+					
+						
+						
+							
+							
+						
+						
+					
+						
+						
+							
+							
+						
+						
+					
+						
+						
+							
+							
+						
+						
+					
+						
+						
+							
+							
+						
+						
+					
+					
+					<li class="pubYear">
+						<dl>
+							<dt><a href="">발행년</a></dt>
+							<dd>
+								<div class="graphWrap">
+									<div id="graphInner" class="graph"></div>
+									<div id="graph" class="graph">
+										<div id="graphOuter" class="graph"></div>
+									</div>
+								</div>
+								<div id="slider"></div>
+								<div class="graphDate">
+									<span class="searchRange">
+										<form id="frmBkRange" name="frmBkRange" method="get" action="">
+										
+											
+												
+													
+														
+															
+															
+																
+															
+														
+													
+													
+												
+											
+										
+											
+												
+													
+														
+															
+															
+																
+															
+														
+													
+													
+												
+											
+										
+											
+												
+													
+														
+															
+															
+																
+															
+														
+													
+													
+												
+											
+										
+											
+												
+													
+														
+															
+															
+																
+															
+														
+													
+													
+												
+											
+										
+										<input type="hidden" name="st" value="KWRD">
+																<input type="hidden" name="q" value="파이썬">
+																<input type="hidden" name="__verified_refresh" value="1">
+																<input type="hidden" name="si" value="TOTAL">
+										<input title="발행년 검색범위 시작일" id="startDate" name="bk_rf" maxlength="4" class="inputTextType1" type="text">
+										<span>-</span>
+										<input title="발행년 검색범위 종료일" id="endDate" name="bk_rt" maxlength="4" class="inputTextType1" type="text">
+										<input type="submit" value="검색" class="pubYearBtn" />
+										</form>
+									</span>
+								</div>
+							</dd>
+						</dl>
+					</li>
+				
+				
+			
+			
+		</ul>
+	</div>
+	
+</div>
+<!-- //facet -->
+
+		
+		<div class="result">
+			<div class="resultHeader">
+				<!-- <p class="searchCnt">총 <span>8,091건</span> 중 <span>500건</span> 출력</p>-->
+				<p class="searchCnt">
+					
+					
+					총 <strong>122</strong>건 중 <strong>122</strong>건 출력
+				</p>
+				<div class="resultInfo">
+					<div class="listInfo1">
+						<div class="breifPaging">
+							
+							<span class="current">1</span> - 10
+							
+							<a href="?pn=2&amp;st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL" class="lastPage" title="다음페이지로"><img src="/image/ko/solution/common/btn/breifLast.png" alt=""></a>
+							
+						</div>
+					</div>
+					<div class="listInfo2">
+						<div class="searchBtns">
+							<ul>
+								
+								
+									
+									
+										<li class=""><a href="/search/tot/excel?st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL" title="엑셀 다운로드"><img src="/image/ko/solution/common/btn/searchBtn01.png" alt=""></a></li>
+									
+								
+								<li class="myHistory"><a href="/search/service/searchHistory" title="검색이력"><img src="/image/ko/solution/common/btn/searchBtn03.png" alt=""></a></li>
+								
+								
+								<li class="myLib"><a href="/mylist/list" title="내서재"><img src="/image/ko/solution/common/btn/searchBtn05.png" alt=""></a></li>
+								
+							</ul>
+						</div>
+							<div id="export" class="export">
+							    <div class="exportForm">
+							        <h3>내보내기</h3>
+							        <form id="exportForm" name="exportForm" method="post" action="/search/handler/output" target="handler">
+							            <fieldset>
+							                <legend>내보내기</legend>
+							                <dl class="exportSelect">
+							                    <dt>내보내기 형식을 선택하세요.</dt>
+							                    <dd class="exportType">
+							                        <ul>
+							                            <li class="exportHtml"><input type="radio" name="submit" value="저장" checked="checked"  id="html"/> <label for="html">HTML</label></li>
+							                            
+							                            <li class="exportMail"><input type="radio" name="submit" value="메일"  id="email"/> <label for="email">E-Mail</label></li>
+							                            
+							                            <li class="exportPrint"><input type="radio" name="submit" value="인쇄" id="print"/> <label for="print">인쇄</label></li>
+							                            <li class="exportPreview"><input type="radio" name="submit" value="미리보기" id="preview"/> <label for="preview">미리보기</label></li>
+							                            
+							                            
+							                        </ul>
+							                    </dd>
+							                </dl>
+							                <dl class="range">
+							                    <dt>내보내기 범위를 선택하세요.</dt>
+							                    <dd>
+							                        <ul>
+							                            <li><label for="brief"><input type="checkbox" name="brief" value="Y" id="brief"> 간략정보</label></li>
+							                            <li><label for="detail"><input type="checkbox" name="detail" value="Y" id="detail"> 상세정보</label></li>
+							                            <li><label for="holding"><input type="checkbox" name="holding" value="Y" id="holding"> 도서정보</label></li>
+							                            <li><label for="abs"><input type="checkbox" name="abs" value="Y"  id="abs"> 초록</label></li>
+							                            <li><label for="toc"><input type="checkbox" name="toc" value="Y" id="toc"> 목차</label></li>
+							                        </ul>
+							                    </dd>
+							                </dl>
+							                <dl class="mail">
+							                    <dt><label for="receiveMailAddr">이메일 :</label></dt>
+							                    <dd><input type="text" id="receiveMailAddr" name="mailTo" title="" class="inputTextType1" value=""></dd>
+							                    <dt><label for="receiveMailTitle">제목 :</label></dt>
+							                    <dd><input type="text" id="receiveMailTitle" name="mailTitle" title="[도서관] 선택하신 서지정보입니다." class="inputTextType1"  placeholder="[도서관] 선택하신 서지정보입니다." value="[도서관] 선택하신 서지정보입니다." onfocus="if(this.value=='[도서관] 선택하신 서지정보입니다.')this.value=''"></dd>
+							                </dl>
+							                <p class="notice refworks">o RefWorks에서 이용 가능한 형식으로 반출합니다.</p>
+                							<p class="notice endnote">o EndNote에서 이용 가능한 형식으로 반출합니다.</p>
+							            </fieldset>
+							            <div class="buttons">
+							                <input type="submit" value="확인"><input type="reset" value="취소">
+							            </div>
+							        </form>
+							    </div>
+							</div> <!-- //export-->
+						
+						<div class="viewOptions">
+							<p class="typeSelect">
+								<a href="javascript:void(0);">
+									<img src="/image/ko/solution/common/ico/calNormalOn.png" alt="기본형">
+									
+									
+								<img src="/image/ko/solution/common/ico/calTypeOpen.png" alt="열기"></a>
+							</p>
+								<div class="typeList">
+									<ul><!-- BRIEF TYPE : L -->
+										
+										
+											
+												<li><a href="?st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL&amp;briefType=L"><img src="/image/ko/solution/common/ico/calNormalOn.png" alt=""><span>기본형</span></a></li>
+												<li><a href="?st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL&amp;briefType=G"><img src="/image/ko/solution/common/ico/calGallery.png" alt=""><span>갤러리형</span></a></li>
+												<li><a href="?st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL&amp;briefType=B"><img src="/image/ko/solution/common/ico/calBrief.png" alt=""><span>간력형</span></a></li>
+											
+											
+											
+										
+									</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					<div class="briefHeader sort">
+						
+						<div class="searchBtns2">
+							<span><input type="checkbox" name="allcheck" onclick="checkedAll(this, 'briefFrm', 'data')" class="checkbox" title="전체선택" id="selectAll"/><label for="selectAll">전체선택</label></span>
+							
+							
+							<a href="javascript:insertMylist();" title="새창"><img src="/image/ko/solution/common/ico/myLib.jpg" alt="">내서재에 저장</a>
+							
+							<a id="exportSelected" href="#export"><img src="/image/ko/solution/common/ico/export.jpg" alt="">내보내기</a>
+						</div>
+					
+						<div class="sortOptions">
+							
+							<form id="searchOption" name="searchOption" action="/search/tot/result?si=TOTAL&amp;st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1" method="get">
+							<fieldset><legend>Search Option</legend>
+							<input type="hidden" name="st" value="KWRD">
+						<input type="hidden" name="q" value="파이썬">
+						<input type="hidden" name="__verified_refresh" value="1">
+						<input type="hidden" name="si" value="TOTAL">
+							
+							
+							
+							
+							<select id="oi" name="oi" class="searchOpt2" title="정렬항목">
+								<option value="">정렬항목</option>
+								
+									<option value="DISP01">서명</option>
+								
+									<option value="DISP02">저자</option>
+								
+									<option value="DISP03">출판사</option>
+								
+									<option value="DISP04">청구기호</option>
+								
+									<option value="DISP06">출판년</option>
+								
+									
+								
+							</select>
+							
+							
+							<select id="os" name="os" class="searchOpt2" title="정렬순서">
+								<option value="">정렬순서</option>
+								<option value="ASC">오름차순</option>
+								<option value="DESC">내림차순</option>
+							</select>
+							
+							
+							<select id="cpp" name="cpp" class="searchOpt2" title="쪽당 출력 건수"><option value="5">5</option><option value="10" selected="selected">10</option><option value="15">15</option><option value="20">20</option><option value="30">30</option><option value="50">50</option><option value="100">100</option></select>
+							
+							<input type="submit" value="조회"  class="btnType6" />
+							</fieldset>
+							</form>
+						</div>
+				</div>
+				</div>
+			<form name="briefFrm" method="post" action="/search/brief/service" onsubmit="return checked(this);" >
+			<fieldset><legend>Service Form</legend>
+			<input type="hidden" name="webSysdiv" value="TOT"/>
+			<input type="hidden" name="popupYn" value="N"/>
+			
+			
+			
+			
+			
+			
+			
+			<input type="hidden" name="mainLink" value="/search/tot"/>
+			
+				
+			
+			
+			
+			
+
+<ul class="resultList resultDetail">
+	
+		
+		
+		
+			
+			
+		
+		
+		
+		
+		
+		<input type="hidden" name="firstData" value="CAT000001105601">
+		
+		
+		
+		
+		
+		
+		
+	
+	<li id="item_CATTOT000001105601" class="items">
+		<dl>
+			<dt class="title">No</dt>
+			<dd class="dataCheck"><input type="checkbox" name="data" value="CAT000001105601" title="혼자 공부하는 파이썬"></dd>
+			<dd class="num">1.</dd>
+			<dt class="title">표지이미지</dt>
+			<dd class="book">
+				<a href="/search/detail/CATTOT000001105601?mainLink=/search/tot&amp;briefLink=/search/tot/result?st=KWRD_A_q=%ED%8C%8C%EC%9D%B4%EC%8D%AC_A___verified_refresh=1_A_si=TOTAL">
+				
+					
+					
+						
+						
+							<img id="bookImg_CATTOT000001105601" src="/image/ko/solution/common/ico/type_m_M.png" width="75" height="103" alt="혼자 공부하는 파이썬" onerror="this.src='/image/ko/solution/common/ico/typeM.png'">
+						
+					
+					
+					
+				
+				</a>
+				
+				<p class="selectBtn">
+					
+					
+					
+					<a id="myLib_CAT000001105601" href="javascript:insertMyLib('CAT000001105601');" class="myLibBtn" title="새창 (내서재에 저장)"></a>
+				</p>
+			</dd>
+		
+			
+				
+				
+				
+				
+				
+				<dt class="title">서명</dt>
+				
+					
+						<dd class="title">
+							<a href="/search/detail/CATTOT000001105601?mainLink=/search/tot&amp;briefLink=/search/tot/result?st=KWRD_A_q=%ED%8C%8C%EC%9D%B4%EC%8D%AC_A___verified_refresh=1_A_si=TOTAL">혼자 공부하는 <span class='hilight'>파이썬</span></a>
+							
+							<button type="button" title="상세보기" onclick="previewDetail('CATTOT000001105601')">상세보기</button>
+							
+							
+							<input type="button" class="addItem btnType2" onclick="addItem('data=CAT000001105601');" title="추가" value="추가" style="display:none;">
+						</dd>
+						
+					
+					
+				
+			
+		
+			
+				
+				
+				
+				
+				
+				<dt class="title">저자</dt>
+				
+					
+					
+						
+						<dd class="info">윤인성</dd>
+						
+					
+				
+			
+		
+			
+				
+				
+				
+				
+				
+				<dt class="title">출판사</dt>
+				
+					
+					
+						
+						<dd class="info">한빛미디어</dd>
+						
+					
+				
+			
+		
+			
+				
+				
+				
+				
+				
+				<dt class="title">청구기호</dt>
+				
+					
+					
+						
+						<dd class="info">005.133  윤69ㅎ</dd>
+						
+					
+				
+			
+		
+			
+				
+				
+				
+				
+				
+				<dt class="title">출판년</dt>
+				
+					
+					
+						
+						<dd class="info">2019</dd>
+						
+					
+				
+			
+		
+			
+		
+			<dt class="title">자료유형</dt>
+			<dd class="type info">
+				
+				
+				
+					
+					<img alt="" src="/image/ko/solution/common/ico/type_m.png"/> 단행본
+				
+				
+			</dd>
+			<dt class="title">매체정보</dt>
+	<dd class="media">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</dd>
+			<dt class="title">미리보기</dt>
+			<dd class="preview">
+				<div id="prevDetail_CATTOT000001105601" class="detailInfo" style="display:none;"></div>
+			</dd>
+			<dt class="title">소장현황</dt>
+			<dd class="holdingInfo">
+				<div class="holding">
+					
+						
+						
+							
+							
+							<p class="location">
+								
+								
+								
+								
+								<a href="#previewLocation" onclick="javascript:previewHolding('1','1','CAT000001105601','BR000000')">청미도서관<span id="availableButton_CAT000001105601_1" class="availableBtn enabled">대출가능</span></a>
+							</p>
+							<div id ="holdingW_CAT000001105601_1" class="holdingW" style="display:none;">
+							</div>
+							
+						
+					
+				</div>
+			</dd>
+		</dl>
+	</li>
+	
+		
+		
+		
+			
+			
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	
+	<li id="item_CATTOT000001210266" class="items">
+		<dl>
+			<dt class="title">No</dt>
+			<dd class="dataCheck"><input type="checkbox" name="data" value="CAT000001210266" title="이젠 나도! 파이썬 : 17일 만에 배우는 파이썬 기초"></dd>
+			<dd class="num">2.</dd>
+			<dt class="title">표지이미지</dt>
+			<dd class="book">
+				<a href="/search/detail/CATTOT000001210266?mainLink=/search/tot&amp;briefLink=/search/tot/result?st=KWRD_A_q=%ED%8C%8C%EC%9D%B4%EC%8D%AC_A___verified_refresh=1_A_si=TOTAL">
+				
+					
+					
+						
+						
+							<img id="bookImg_CATTOT000001210266" src="/image/ko/solution/common/ico/type_m_M.png" width="75" height="103" alt="이젠 나도! 파이썬 : 17일 만에 배우는 파이썬 기초" onerror="this.src='/image/ko/solution/common/ico/typeM.png'">
+						
+					
+					
+					
+				
+				</a>
+				
+				<p class="selectBtn">
+					
+					
+					
+					<a id="myLib_CAT000001210266" href="javascript:insertMyLib('CAT000001210266');" class="myLibBtn" title="새창 (내서재에 저장)"></a>
+				</p>
+			</dd>
+		
+			
+				
+				
+				
+				
+				
+				<dt class="title">서명</dt>
+				
+					
+						<dd class="title">
+							<a href="/search/detail/CATTOT000001210266?mainLink=/search/tot&amp;briefLink=/search/tot/result?st=KWRD_A_q=%ED%8C%8C%EC%9D%B4%EC%8D%AC_A___verified_refresh=1_A_si=TOTAL">이젠 나도! <span class='hilight'>파이썬</span> : 17일 만에 배우는 <span class='hilight'>파이썬</span> 기초</a>
+							
+							<button type="button" title="상세보기" onclick="previewDetail('CATTOT000001210266')">상세보기</button>
+							
+							
+							<input type="button" class="addItem btnType2" onclick="addItem('data=CAT000001210266');" title="추가" value="추가" style="display:none;">
+						</dd>
+						
+					
+					
+				
+			
+		
+			
+				
+				
+				
+				
+				
+				<dt class="title">저자</dt>
+				
+					
+					
+						
+						<dd class="info">이지선</dd>
+						
+					
+				
+			
+		
+			
+				
+				
+				
+				
+				
+				<dt class="title">출판사</dt>
+				
+					
+					
+						
+						<dd class="info">성안당</dd>
+						
+					
+				
+			
+		
+			
+				
+				
+				
+				
+				
+				<dt class="title">청구기호</dt>
+				
+					
+					
+						
+						<dd class="info">005.133  이75ㅇ</dd>
+						
+					
+				
+			
+		
+			
+				
+				
+				
+				
+				
+				<dt class="title">출판년</dt>
+				
+					
+					
+						
+						<dd class="info">2019</dd>
+						
+					
+				
+			
+		
+			
+		
+			<dt class="title">자료유형</dt>
+			<dd class="type info">
+				
+				
+				
+					
+					<img alt="" src="/image/ko/solution/common/ico/type_m.png"/> 단행본
+				
+				
+			</dd>
+			<dt class="title">매체정보</dt>
+	<dd class="media">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</dd>
+			<dt class="title">미리보기</dt>
+			<dd class="preview">
+				<div id="prevDetail_CATTOT000001210266" class="detailInfo" style="display:none;"></div>
+			</dd>
+			<dt class="title">소장현황</dt>
+			<dd class="holdingInfo">
+				<div class="holding">
+					
+						
+						
+							
+							
+							<p class="location">
+								
+								
+								
+								
+								<a href="#previewLocation" onclick="javascript:previewHolding('1','1','CAT000001210266','MC000000')">효양도서관<span id="availableButton_CAT000001210266_1" class="availableBtn enabled">대출가능</span></a>
+							</p>
+							<div id ="holdingW_CAT000001210266_1" class="holdingW" style="display:none;">
+							</div>
+							
+						
+					
+				</div>
+			</dd>
+		</dl>
+	</li>
+	
+		
+		
+		
+			
+			
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	
+	<li id="item_CATTOT000001085794" class="items">
+		<dl>
+			<dt class="title">No</dt>
+			<dd class="dataCheck"><input type="checkbox" name="data" value="CAT000001085794" title="처음 시작하는 파이썬 :파이썬 3 버전 기준"></dd>
+			<dd class="num">3.</dd>
+			<dt class="title">표지이미지</dt>
+			<dd class="book">
+				<a href="/search/detail/CATTOT000001085794?mainLink=/search/tot&amp;briefLink=/search/tot/result?st=KWRD_A_q=%ED%8C%8C%EC%9D%B4%EC%8D%AC_A___verified_refresh=1_A_si=TOTAL">
+				
+					
+					
+						
+						
+							<img id="bookImg_CATTOT000001085794" src="/image/ko/solution/common/ico/type_m_M.png" width="75" height="103" alt="처음 시작하는 파이썬 :파이썬 3 버전 기준" onerror="this.src='/image/ko/solution/common/ico/typeM.png'">
+						
+					
+					
+					
+				
+				</a>
+				
+				<p class="selectBtn">
+					
+					
+					
+					<a id="myLib_CAT000001085794" href="javascript:insertMyLib('CAT000001085794');" class="myLibBtn" title="새창 (내서재에 저장)"></a>
+				</p>
+			</dd>
+		
+			
+				
+				
+				
+				
+				
+				<dt class="title">서명</dt>
+				
+					
+						<dd class="title">
+							<a href="/search/detail/CATTOT000001085794?mainLink=/search/tot&amp;briefLink=/search/tot/result?st=KWRD_A_q=%ED%8C%8C%EC%9D%B4%EC%8D%AC_A___verified_refresh=1_A_si=TOTAL">처음 시작하는 <span class='hilight'>파이썬</span> :<span class='hilight'>파이썬</span> 3 버전 기준</a>
+							
+							<button type="button" title="상세보기" onclick="previewDetail('CATTOT000001085794')">상세보기</button>
+							
+							
+							<input type="button" class="addItem btnType2" onclick="addItem('data=CAT000001085794');" title="추가" value="추가" style="display:none;">
+						</dd>
+						
+					
+					
+				
+			
+		
+			
+				
+				
+				
+				
+				
+				<dt class="title">저자</dt>
+				
+					
+					
+						
+						<dd class="info">루바노빅, 빌</dd>
+						
+					
+				
+			
+		
+			
+				
+				
+				
+				
+				
+				<dt class="title">출판사</dt>
+				
+					
+					
+						
+						<dd class="info">한빛미디어</dd>
+						
+					
+				
+			
+		
+			
+				
+				
+				
+				
+				
+				<dt class="title">청구기호</dt>
+				
+					
+					
+						
+						<dd class="info">005.133 루41ㅊ</dd>
+						
+					
+				
+			
+		
+			
+				
+				
+				
+				
+				
+				<dt class="title">출판년</dt>
+				
+					
+					
+						
+						<dd class="info">2015</dd>
+						
+					
+				
+			
+		
+			
+		
+			<dt class="title">자료유형</dt>
+			<dd class="type info">
+				
+				
+				
+					
+					<img alt="" src="/image/ko/solution/common/ico/type_m.png"/> 단행본
+				
+				
+			</dd>
+			<dt class="title">매체정보</dt>
+	<dd class="media">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</dd>
+			<dt class="title">미리보기</dt>
+			<dd class="preview">
+				<div id="prevDetail_CATTOT000001085794" class="detailInfo" style="display:none;"></div>
+			</dd>
+			<dt class="title">소장현황</dt>
+			<dd class="holdingInfo">
+				<div class="holding">
+					
+						
+						
+							
+							
+							<p class="location">
+								
+								
+								
+								
+								<a href="#previewLocation" onclick="javascript:previewHolding('1','1','CAT000001085794','NA000000')">마장도서관<span id="availableButton_CAT000001085794_1" class="availableBtn enabled">대출가능</span></a>
+							</p>
+							<div id ="holdingW_CAT000001085794_1" class="holdingW" style="display:none;">
+							</div>
+							
+						
+					
+				</div>
+			</dd>
+		</dl>
+	</li>
+	
+		
+		
+		
+			
+			
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	
+	<li id="item_CATTOT000001063115" class="items">
+		<dl>
+			<dt class="title">No</dt>
+			<dd class="dataCheck"><input type="checkbox" name="data" value="CAT000001063115" title="수학으로 배우는 파이썬 :초등 수학으로 재밌고 쉽게 파이썬 배우기 =Python progrming"></dd>
+			<dd class="num">4.</dd>
+			<dt class="title">표지이미지</dt>
+			<dd class="book">
+				<a href="/search/detail/CATTOT000001063115?mainLink=/search/tot&amp;briefLink=/search/tot/result?st=KWRD_A_q=%ED%8C%8C%EC%9D%B4%EC%8D%AC_A___verified_refresh=1_A_si=TOTAL">
+				
+					
+					
+						
+						
+							<img id="bookImg_CATTOT000001063115" src="/image/ko/solution/common/ico/type_m_M.png" width="75" height="103" alt="수학으로 배우는 파이썬 :초등 수학으로 재밌고 쉽게 파이썬 배우기 =Python progrming" onerror="this.src='/image/ko/solution/common/ico/typeM.png'">
+						
+					
+					
+					
+				
+				</a>
+				
+				<p class="selectBtn">
+					
+					
+					
+					<a id="myLib_CAT000001063115" href="javascript:insertMyLib('CAT000001063115');" class="myLibBtn" title="새창 (내서재에 저장)"></a>
+				</p>
+			</dd>
+		
+			
+				
+				
+				
+				
+				
+				<dt class="title">서명</dt>
+				
+					
+						<dd class="title">
+							<a href="/search/detail/CATTOT000001063115?mainLink=/search/tot&amp;briefLink=/search/tot/result?st=KWRD_A_q=%ED%8C%8C%EC%9D%B4%EC%8D%AC_A___verified_refresh=1_A_si=TOTAL">수학으로 배우는 <span class='hilight'>파이썬</span> :초등 수학으로 재밌고 쉽게 <span class='hilight'>파이썬</span> 배우기 =Python progrming</a>
+							
+							<button type="button" title="상세보기" onclick="previewDetail('CATTOT000001063115')">상세보기</button>
+							
+							
+							<input type="button" class="addItem btnType2" onclick="addItem('data=CAT000001063115');" title="추가" value="추가" style="display:none;">
+						</dd>
+						
+					
+					
+				
+			
+		
+			
+				
+				
+				
+				
+				
+				<dt class="title">저자</dt>
+				
+					
+					
+						
+						<dd class="info">다나카 카즈나리</dd>
+						
+					
+				
+			
+		
+			
+				
+				
+				
+				
+				
+				<dt class="title">출판사</dt>
+				
+					
+					
+						
+						<dd class="info">영진닷컴</dd>
+						
+					
+				
+			
+		
+			
+				
+				
+				
+				
+				
+				<dt class="title">청구기호</dt>
+				
+					
+					
+						
+						<dd class="info">005.133 다191ㅅ</dd>
+						
+					
+				
+			
+		
+			
+				
+				
+				
+				
+				
+				<dt class="title">출판년</dt>
+				
+					
+					
+						
+						<dd class="info">2019</dd>
+						
+					
+				
+			
+		
+			
+		
+			<dt class="title">자료유형</dt>
+			<dd class="type info">
+				
+				
+				
+					
+					<img alt="" src="/image/ko/solution/common/ico/type_m.png"/> 단행본
+				
+				
+			</dd>
+			<dt class="title">매체정보</dt>
+	<dd class="media">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</dd>
+			<dt class="title">미리보기</dt>
+			<dd class="preview">
+				<div id="prevDetail_CATTOT000001063115" class="detailInfo" style="display:none;"></div>
+			</dd>
+			<dt class="title">소장현황</dt>
+			<dd class="holdingInfo">
+				<div class="holding">
+					
+						
+						
+							
+							
+							<p class="location">
+								
+								
+								
+								
+								<a href="#previewLocation" onclick="javascript:previewHolding('1','1','CAT000001063115','MB000000')">어린이도서관<span id="availableButton_CAT000001063115_1" class="availableBtn enabled">대출가능</span></a>
+							</p>
+							<div id ="holdingW_CAT000001063115_1" class="holdingW" style="display:none;">
+							</div>
+							
+						
+					
+				</div>
+			</dd>
+		</dl>
+	</li>
+	
+		
+		
+		
+			
+			
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	
+	<li id="item_CATTOT000000914071" class="items">
+		<dl>
+			<dt class="title">No</dt>
+			<dd class="dataCheck"><input type="checkbox" name="data" value="CAT000000914071" title="(Do it!) 점프 투 파이썬"></dd>
+			<dd class="num">5.</dd>
+			<dt class="title">표지이미지</dt>
+			<dd class="book">
+				<a href="/search/detail/CATTOT000000914071?mainLink=/search/tot&amp;briefLink=/search/tot/result?st=KWRD_A_q=%ED%8C%8C%EC%9D%B4%EC%8D%AC_A___verified_refresh=1_A_si=TOTAL">
+				
+					
+					
+						
+						
+							<img id="bookImg_CATTOT000000914071" src="/image/ko/solution/common/ico/type_m_M.png" width="75" height="103" alt="(Do it!) 점프 투 파이썬" onerror="this.src='/image/ko/solution/common/ico/typeM.png'">
+						
+					
+					
+					
+				
+				</a>
+				
+				<p class="selectBtn">
+					
+					
+					
+					<a id="myLib_CAT000000914071" href="javascript:insertMyLib('CAT000000914071');" class="myLibBtn" title="새창 (내서재에 저장)"></a>
+				</p>
+			</dd>
+		
+			
+				
+				
+				
+				
+				
+				<dt class="title">서명</dt>
+				
+					
+						<dd class="title">
+							<a href="/search/detail/CATTOT000000914071?mainLink=/search/tot&amp;briefLink=/search/tot/result?st=KWRD_A_q=%ED%8C%8C%EC%9D%B4%EC%8D%AC_A___verified_refresh=1_A_si=TOTAL">(Do it!) 점프 투 <span class='hilight'>파이썬</span></a>
+							
+							<button type="button" title="상세보기" onclick="previewDetail('CATTOT000000914071')">상세보기</button>
+							
+							
+							<input type="button" class="addItem btnType2" onclick="addItem('data=CAT000000914071');" title="추가" value="추가" style="display:none;">
+						</dd>
+						
+					
+					
+				
+			
+		
+			
+				
+				
+				
+				
+				
+				<dt class="title">저자</dt>
+				
+					
+					
+						
+						<dd class="info">박응용</dd>
+						
+					
+				
+			
+		
+			
+				
+				
+				
+				
+				
+				<dt class="title">출판사</dt>
+				
+					
+					
+						
+						<dd class="info">이지스퍼블리싱</dd>
+						
+					
+				
+			
+		
+			
+				
+				
+				
+				
+				
+				<dt class="title">청구기호</dt>
+				
+					
+					
+						
+						<dd class="info">005.133 박68ㅈ</dd>
+						
+					
+				
+			
+		
+			
+				
+				
+				
+				
+				
+				<dt class="title">출판년</dt>
+				
+					
+					
+						
+						<dd class="info">2016</dd>
+						
+					
+				
+			
+		
+			
+		
+			<dt class="title">자료유형</dt>
+			<dd class="type info">
+				
+				
+				
+					
+					<img alt="" src="/image/ko/solution/common/ico/type_m.png"/> 단행본
+				
+				
+			</dd>
+			<dt class="title">매체정보</dt>
+	<dd class="media">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</dd>
+			<dt class="title">미리보기</dt>
+			<dd class="preview">
+				<div id="prevDetail_CATTOT000000914071" class="detailInfo" style="display:none;"></div>
+			</dd>
+			<dt class="title">소장현황</dt>
+			<dd class="holdingInfo">
+				<div class="holding">
+					
+						
+						
+							
+							
+							<p class="location">
+								
+								
+								
+								
+								<a href="#previewLocation" onclick="javascript:previewHolding('1','1','CAT000000914071','NA000000')">마장도서관<span id="availableButton_CAT000000914071_1" class="availableBtn enabled">대출가능</span></a>
+							</p>
+							<div id ="holdingW_CAT000000914071_1" class="holdingW" style="display:none;">
+							</div>
+							
+						
+					
+				</div>
+			</dd>
+		</dl>
+	</li>
+	
+		
+		
+		
+			
+			
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	
+	<li id="item_CATTOT000001091872" class="items">
+		<dl>
+			<dt class="title">No</dt>
+			<dd class="dataCheck"><input type="checkbox" name="data" value="CAT000001091872" title="깔끔한 파이썬 탄탄한 백엔드"></dd>
+			<dd class="num">6.</dd>
+			<dt class="title">표지이미지</dt>
+			<dd class="book">
+				<a href="/search/detail/CATTOT000001091872?mainLink=/search/tot&amp;briefLink=/search/tot/result?st=KWRD_A_q=%ED%8C%8C%EC%9D%B4%EC%8D%AC_A___verified_refresh=1_A_si=TOTAL">
+				
+					
+					
+						
+						
+							<img id="bookImg_CATTOT000001091872" src="/image/ko/solution/common/ico/type_m_M.png" width="75" height="103" alt="깔끔한 파이썬 탄탄한 백엔드" onerror="this.src='/image/ko/solution/common/ico/typeM.png'">
+						
+					
+					
+					
+				
+				</a>
+				
+				<p class="selectBtn">
+					
+					
+					
+					<a id="myLib_CAT000001091872" href="javascript:insertMyLib('CAT000001091872');" class="myLibBtn" title="새창 (내서재에 저장)"></a>
+				</p>
+			</dd>
+		
+			
+				
+				
+				
+				
+				
+				<dt class="title">서명</dt>
+				
+					
+						<dd class="title">
+							<a href="/search/detail/CATTOT000001091872?mainLink=/search/tot&amp;briefLink=/search/tot/result?st=KWRD_A_q=%ED%8C%8C%EC%9D%B4%EC%8D%AC_A___verified_refresh=1_A_si=TOTAL">깔끔한 <span class='hilight'>파이썬</span> 탄탄한 백엔드</a>
+							
+							<button type="button" title="상세보기" onclick="previewDetail('CATTOT000001091872')">상세보기</button>
+							
+							
+							<input type="button" class="addItem btnType2" onclick="addItem('data=CAT000001091872');" title="추가" value="추가" style="display:none;">
+						</dd>
+						
+					
+					
+				
+			
+		
+			
+				
+				
+				
+				
+				
+				<dt class="title">저자</dt>
+				
+					
+					
+						
+						<dd class="info">송은우</dd>
+						
+					
+				
+			
+		
+			
+				
+				
+				
+				
+				
+				<dt class="title">출판사</dt>
+				
+					
+					
+						
+						<dd class="info">비제이퍼블릭</dd>
+						
+					
+				
+			
+		
+			
+				
+				
+				
+				
+				
+				<dt class="title">청구기호</dt>
+				
+					
+					
+						
+						<dd class="info">005.13 송68ㄲ</dd>
+						
+					
+				
+			
+		
+			
+				
+				
+				
+				
+				
+				<dt class="title">출판년</dt>
+				
+					
+					
+						
+						<dd class="info">2019</dd>
+						
+					
+				
+			
+		
+			
+		
+			<dt class="title">자료유형</dt>
+			<dd class="type info">
+				
+				
+				
+					
+					<img alt="" src="/image/ko/solution/common/ico/type_m.png"/> 단행본
+				
+				
+			</dd>
+			<dt class="title">매체정보</dt>
+	<dd class="media">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</dd>
+			<dt class="title">미리보기</dt>
+			<dd class="preview">
+				<div id="prevDetail_CATTOT000001091872" class="detailInfo" style="display:none;"></div>
+			</dd>
+			<dt class="title">소장현황</dt>
+			<dd class="holdingInfo">
+				<div class="holding">
+					
+						
+						
+							
+							
+							<p class="location">
+								
+								
+								
+								
+								<a href="#previewLocation" onclick="javascript:previewHolding('1','1','CAT000001091872','MA000000')">시립도서관<span id="availableButton_CAT000001091872_1" class="availableBtn enabled">대출가능</span></a>
+							</p>
+							<div id ="holdingW_CAT000001091872_1" class="holdingW" style="display:none;">
+							</div>
+							
+						
+					
+				</div>
+			</dd>
+		</dl>
+	</li>
+	
+		
+		
+		
+			
+			
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	
+	<li id="item_CATTOT000000914127" class="items">
+		<dl>
+			<dt class="title">No</dt>
+			<dd class="dataCheck"><input type="checkbox" name="data" value="CAT000000914127" title="모두의 알고리즘 with 파이썬"></dd>
+			<dd class="num">7.</dd>
+			<dt class="title">표지이미지</dt>
+			<dd class="book">
+				<a href="/search/detail/CATTOT000000914127?mainLink=/search/tot&amp;briefLink=/search/tot/result?st=KWRD_A_q=%ED%8C%8C%EC%9D%B4%EC%8D%AC_A___verified_refresh=1_A_si=TOTAL">
+				
+					
+					
+						
+						
+							<img id="bookImg_CATTOT000000914127" src="/image/ko/solution/common/ico/type_m_M.png" width="75" height="103" alt="모두의 알고리즘 with 파이썬" onerror="this.src='/image/ko/solution/common/ico/typeM.png'">
+						
+					
+					
+					
+				
+				</a>
+				
+				<p class="selectBtn">
+					
+					
+					
+					<a id="myLib_CAT000000914127" href="javascript:insertMyLib('CAT000000914127');" class="myLibBtn" title="새창 (내서재에 저장)"></a>
+				</p>
+			</dd>
+		
+			
+				
+				
+				
+				
+				
+				<dt class="title">서명</dt>
+				
+					
+						<dd class="title">
+							<a href="/search/detail/CATTOT000000914127?mainLink=/search/tot&amp;briefLink=/search/tot/result?st=KWRD_A_q=%ED%8C%8C%EC%9D%B4%EC%8D%AC_A___verified_refresh=1_A_si=TOTAL">모두의 알고리즘 with <span class='hilight'>파이썬</span></a>
+							
+							<button type="button" title="상세보기" onclick="previewDetail('CATTOT000000914127')">상세보기</button>
+							
+							
+							<input type="button" class="addItem btnType2" onclick="addItem('data=CAT000000914127');" title="추가" value="추가" style="display:none;">
+						</dd>
+						
+					
+					
+				
+			
+		
+			
+				
+				
+				
+				
+				
+				<dt class="title">저자</dt>
+				
+					
+					
+						
+						<dd class="info">이승찬</dd>
+						
+					
+				
+			
+		
+			
+				
+				
+				
+				
+				
+				<dt class="title">출판사</dt>
+				
+					
+					
+						
+						<dd class="info">길벗</dd>
+						
+					
+				
+			
+		
+			
+				
+				
+				
+				
+				
+				<dt class="title">청구기호</dt>
+				
+					
+					
+						
+						<dd class="info">005.1 이58ㅁ</dd>
+						
+					
+				
+			
+		
+			
+				
+				
+				
+				
+				
+				<dt class="title">출판년</dt>
+				
+					
+					
+						
+						<dd class="info">2017</dd>
+						
+					
+				
+			
+		
+			
+		
+			<dt class="title">자료유형</dt>
+			<dd class="type info">
+				
+				
+				
+					
+					<img alt="" src="/image/ko/solution/common/ico/type_m.png"/> 단행본
+				
+				
+			</dd>
+			<dt class="title">매체정보</dt>
+	<dd class="media">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</dd>
+			<dt class="title">미리보기</dt>
+			<dd class="preview">
+				<div id="prevDetail_CATTOT000000914127" class="detailInfo" style="display:none;"></div>
+			</dd>
+			<dt class="title">소장현황</dt>
+			<dd class="holdingInfo">
+				<div class="holding">
+					
+						
+						
+							
+							
+							<p class="location">
+								
+								
+								
+								
+								<a href="#previewLocation" onclick="javascript:previewHolding('1','1','CAT000000914127','NA000000')">마장도서관<span id="availableButton_CAT000000914127_1" class="availableBtn enabled">대출가능</span></a>
+							</p>
+							<div id ="holdingW_CAT000000914127_1" class="holdingW" style="display:none;">
+							</div>
+							
+						
+					
+				</div>
+			</dd>
+		</dl>
+	</li>
+	
+		
+		
+		
+			
+			
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	
+	<li id="item_CATTOT000001308068" class="items">
+		<dl>
+			<dt class="title">No</dt>
+			<dd class="dataCheck"><input type="checkbox" name="data" value="CAT000001308068" title="클린 코드, 이제는 파이썬이다 : 한 권으로 읽는 파이썬 개발자 성장 프로젝트"></dd>
+			<dd class="num">8.</dd>
+			<dt class="title">표지이미지</dt>
+			<dd class="book">
+				<a href="/search/detail/CATTOT000001308068?mainLink=/search/tot&amp;briefLink=/search/tot/result?st=KWRD_A_q=%ED%8C%8C%EC%9D%B4%EC%8D%AC_A___verified_refresh=1_A_si=TOTAL">
+				
+					
+					
+						
+						
+							<img id="bookImg_CATTOT000001308068" src="/image/ko/solution/common/ico/type_m_M.png" width="75" height="103" alt="클린 코드, 이제는 파이썬이다 : 한 권으로 읽는 파이썬 개발자 성장 프로젝트" onerror="this.src='/image/ko/solution/common/ico/typeM.png'">
+						
+					
+					
+					
+				
+				</a>
+				
+				<p class="selectBtn">
+					
+					
+					
+					<a id="myLib_CAT000001308068" href="javascript:insertMyLib('CAT000001308068');" class="myLibBtn" title="새창 (내서재에 저장)"></a>
+				</p>
+			</dd>
+		
+			
+				
+				
+				
+				
+				
+				<dt class="title">서명</dt>
+				
+					
+						<dd class="title">
+							<a href="/search/detail/CATTOT000001308068?mainLink=/search/tot&amp;briefLink=/search/tot/result?st=KWRD_A_q=%ED%8C%8C%EC%9D%B4%EC%8D%AC_A___verified_refresh=1_A_si=TOTAL">클린 코드, 이제는 <span class='hilight'>파이썬</span>이다 : 한 권으로 읽는 <span class='hilight'>파이썬</span> 개발자 성장 프로젝트</a>
+							
+							<button type="button" title="상세보기" onclick="previewDetail('CATTOT000001308068')">상세보기</button>
+							
+							
+							<input type="button" class="addItem btnType2" onclick="addItem('data=CAT000001308068');" title="추가" value="추가" style="display:none;">
+						</dd>
+						
+					
+					
+				
+			
+		
+			
+				
+				
+				
+				
+				
+				<dt class="title">저자</dt>
+				
+					
+					
+						
+						<dd class="info">스웨이가트, 알</dd>
+						
+					
+				
+			
+		
+			
+				
+				
+				
+				
+				
+				<dt class="title">출판사</dt>
+				
+					
+					
+						
+						<dd class="info">책만</dd>
+						
+					
+				
+			
+		
+			
+				
+				
+				
+				
+				
+				<dt class="title">청구기호</dt>
+				
+					
+					
+						
+						<dd class="info">005.133  스67ㅋ</dd>
+						
+					
+				
+			
+		
+			
+				
+				
+				
+				
+				
+				<dt class="title">출판년</dt>
+				
+					
+					
+						
+						<dd class="info">2022</dd>
+						
+					
+				
+			
+		
+			
+		
+			<dt class="title">자료유형</dt>
+			<dd class="type info">
+				
+				
+				
+					
+					<img alt="" src="/image/ko/solution/common/ico/type_m.png"/> 단행본
+				
+				
+			</dd>
+			<dt class="title">매체정보</dt>
+	<dd class="media">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</dd>
+			<dt class="title">미리보기</dt>
+			<dd class="preview">
+				<div id="prevDetail_CATTOT000001308068" class="detailInfo" style="display:none;"></div>
+			</dd>
+			<dt class="title">소장현황</dt>
+			<dd class="holdingInfo">
+				<div class="holding">
+					
+						
+						
+							
+							
+							<p class="location">
+								
+								
+								
+								
+								<a href="#previewLocation" onclick="javascript:previewHolding('1','1','CAT000001308068','MC000000')">효양도서관<span id="availableButton_CAT000001308068_1" class="availableBtn enabled">대출가능</span></a>
+							</p>
+							<div id ="holdingW_CAT000001308068_1" class="holdingW" style="display:none;">
+							</div>
+							
+						
+					
+				</div>
+			</dd>
+		</dl>
+	</li>
+	
+		
+		
+		
+			
+			
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	
+	<li id="item_CATTOT000000612364" class="items">
+		<dl>
+			<dt class="title">No</dt>
+			<dd class="dataCheck"><input type="checkbox" name="data" value="CAT000000612364" title="Getting Start Python :파이썬 입문부터 응용까지 활용 가능!"></dd>
+			<dd class="num">9.</dd>
+			<dt class="title">표지이미지</dt>
+			<dd class="book">
+				<a href="/search/detail/CATTOT000000612364?mainLink=/search/tot&amp;briefLink=/search/tot/result?st=KWRD_A_q=%ED%8C%8C%EC%9D%B4%EC%8D%AC_A___verified_refresh=1_A_si=TOTAL">
+				
+					
+					
+						
+						
+							<img id="bookImg_CATTOT000000612364" src="/image/ko/solution/common/ico/type_m_M.png" width="75" height="103" alt="Getting Start Python :파이썬 입문부터 응용까지 활용 가능!" onerror="this.src='/image/ko/solution/common/ico/typeM.png'">
+						
+					
+					
+					
+				
+				</a>
+				
+				<p class="selectBtn">
+					
+					
+					
+					<a id="myLib_CAT000000612364" href="javascript:insertMyLib('CAT000000612364');" class="myLibBtn" title="새창 (내서재에 저장)"></a>
+				</p>
+			</dd>
+		
+			
+				
+				
+				
+				
+				
+				<dt class="title">서명</dt>
+				
+					
+						<dd class="title">
+							<a href="/search/detail/CATTOT000000612364?mainLink=/search/tot&amp;briefLink=/search/tot/result?st=KWRD_A_q=%ED%8C%8C%EC%9D%B4%EC%8D%AC_A___verified_refresh=1_A_si=TOTAL">Getting Start Python :<span class='hilight'>파이썬</span> 입문부터 응용까지 활용 가능!</a>
+							
+							<button type="button" title="상세보기" onclick="previewDetail('CATTOT000000612364')">상세보기</button>
+							
+							
+							<input type="button" class="addItem btnType2" onclick="addItem('data=CAT000000612364');" title="추가" value="추가" style="display:none;">
+						</dd>
+						
+					
+					
+				
+			
+		
+			
+				
+				
+				
+				
+				
+				<dt class="title">저자</dt>
+				
+					
+					
+						
+						<dd class="info">김영아</dd>
+						
+					
+				
+			
+		
+			
+				
+				
+				
+				
+				
+				<dt class="title">출판사</dt>
+				
+					
+					
+						
+						<dd class="info">구민사</dd>
+						
+					
+				
+			
+		
+			
+				
+				
+				
+				
+				
+				<dt class="title">청구기호</dt>
+				
+					
+					
+						
+						<dd class="info">005.133 김64ㄱ</dd>
+						
+					
+				
+			
+		
+			
+				
+				
+				
+				
+				
+				<dt class="title">출판년</dt>
+				
+					
+					
+						
+						<dd class="info">2016</dd>
+						
+					
+				
+			
+		
+			
+		
+			<dt class="title">자료유형</dt>
+			<dd class="type info">
+				
+				
+				
+					
+					<img alt="" src="/image/ko/solution/common/ico/type_m.png"/> 단행본
+				
+				
+			</dd>
+			<dt class="title">매체정보</dt>
+	<dd class="media">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</dd>
+			<dt class="title">미리보기</dt>
+			<dd class="preview">
+				<div id="prevDetail_CATTOT000000612364" class="detailInfo" style="display:none;"></div>
+			</dd>
+			<dt class="title">소장현황</dt>
+			<dd class="holdingInfo">
+				<div class="holding">
+					
+						
+						
+							
+							
+							<p class="location">
+								
+								
+								
+								
+								<a href="#previewLocation" onclick="javascript:previewHolding('1','1','CAT000000612364','MC000000')">효양도서관<span id="availableButton_CAT000000612364_1" class="availableBtn enabled">대출가능</span></a>
+							</p>
+							<div id ="holdingW_CAT000000612364_1" class="holdingW" style="display:none;">
+							</div>
+							
+						
+					
+				</div>
+			</dd>
+		</dl>
+	</li>
+	
+		
+		
+		
+			
+			
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	
+	<li id="item_CATTOT000001234425" class="items">
+		<dl>
+			<dt class="title">No</dt>
+			<dd class="dataCheck"><input type="checkbox" name="data" value="CAT000001234425" title="(슬기로운 파이썬 생활)데이터 싹쓰리 &amp; 업무자동화"></dd>
+			<dd class="num">10.</dd>
+			<dt class="title">표지이미지</dt>
+			<dd class="book">
+				<a href="/search/detail/CATTOT000001234425?mainLink=/search/tot&amp;briefLink=/search/tot/result?st=KWRD_A_q=%ED%8C%8C%EC%9D%B4%EC%8D%AC_A___verified_refresh=1_A_si=TOTAL">
+				
+					
+					
+						
+						
+							<img id="bookImg_CATTOT000001234425" src="/image/ko/solution/common/ico/type_m_M.png" width="75" height="103" alt="(슬기로운 파이썬 생활)데이터 싹쓰리 &amp; 업무자동화" onerror="this.src='/image/ko/solution/common/ico/typeM.png'">
+						
+					
+					
+					
+				
+				</a>
+				
+				<p class="selectBtn">
+					
+					
+					
+					<a id="myLib_CAT000001234425" href="javascript:insertMyLib('CAT000001234425');" class="myLibBtn" title="새창 (내서재에 저장)"></a>
+				</p>
+			</dd>
+		
+			
+				
+				
+				
+				
+				
+				<dt class="title">서명</dt>
+				
+					
+						<dd class="title">
+							<a href="/search/detail/CATTOT000001234425?mainLink=/search/tot&amp;briefLink=/search/tot/result?st=KWRD_A_q=%ED%8C%8C%EC%9D%B4%EC%8D%AC_A___verified_refresh=1_A_si=TOTAL">(슬기로운 <span class='hilight'>파이썬</span> 생활)데이터 싹쓰리 & 업무자동화</a>
+							
+							<button type="button" title="상세보기" onclick="previewDetail('CATTOT000001234425')">상세보기</button>
+							
+							
+							<input type="button" class="addItem btnType2" onclick="addItem('data=CAT000001234425');" title="추가" value="추가" style="display:none;">
+						</dd>
+						
+					
+					
+				
+			
+		
+			
+				
+				
+				
+				
+				
+				<dt class="title">저자</dt>
+				
+					
+					
+						
+						<dd class="info">서진수</dd>
+						
+					
+				
+			
+		
+			
+				
+				
+				
+				
+				
+				<dt class="title">출판사</dt>
+				
+					
+					
+						
+						<dd class="info">GACHILABS</dd>
+						
+					
+				
+			
+		
+			
+				
+				
+				
+				
+				
+				<dt class="title">청구기호</dt>
+				
+					
+					
+						
+						<dd class="info">005.133  서75ㄷ</dd>
+						
+					
+				
+			
+		
+			
+				
+				
+				
+				
+				
+				<dt class="title">출판년</dt>
+				
+					
+					
+						
+						<dd class="info">2020</dd>
+						
+					
+				
+			
+		
+			
+		
+			<dt class="title">자료유형</dt>
+			<dd class="type info">
+				
+				
+				
+					
+					<img alt="" src="/image/ko/solution/common/ico/type_m.png"/> 단행본
+				
+				
+			</dd>
+			<dt class="title">매체정보</dt>
+	<dd class="media">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</dd>
+			<dt class="title">미리보기</dt>
+			<dd class="preview">
+				<div id="prevDetail_CATTOT000001234425" class="detailInfo" style="display:none;"></div>
+			</dd>
+			<dt class="title">소장현황</dt>
+			<dd class="holdingInfo">
+				<div class="holding">
+					
+						
+						
+							
+							
+							<p class="location">
+								
+								
+								
+								
+								<a href="#previewLocation" onclick="javascript:previewHolding('1','1','CAT000001234425','MA000000')">시립도서관<span id="availableButton_CAT000001234425_1" class="availableBtn enabled">대출가능</span></a>
+							</p>
+							<div id ="holdingW_CAT000001234425_1" class="holdingW" style="display:none;">
+							</div>
+							
+						
+					
+				</div>
+			</dd>
+		</dl>
+	</li>
+	
+</ul>
+
+			
+			
+			
+			
+			
+			
+			
+			<div class="paging"><span><span>1</span><a href="?pn=2&amp;st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL">2</a><a href="?pn=3&amp;st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL">3</a><a href="?pn=4&amp;st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL">4</a><a href="?pn=5&amp;st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL">5</a></span><a href="?pn=6&amp;st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL" class="page" title="다음"><img src="/image/ko/solution/common/btn/nextPage.gif" alt="다음" title="다음"></a><a href="?pn=13&amp;st=KWRD&amp;q=%ED%8C%8C%EC%9D%B4%EC%8D%AC&amp;__verified_refresh=1&amp;si=TOTAL" class="page" title="맨뒤"><img src="/image/ko/solution/common/btn/lastPage.gif" alt="맨뒤" title="맨뒤"></a>
+</div>
+			</fieldset>
+		</form>
+		</div> <!-- //resultInfo -->
+	</div>
+</div> <!-- //brief -->
+<form name="frmDigicolPopup" action=""><input type="hidden" name="data"><input type="hidden" name="digicol_type" value="0003"></form>
+
+
+
+
+
+
+
+<script>
+var isUseCorenew = "Y";
+var isUseBookNarae = "N";
+var IS_USE_OPAC_SEARCH = false;
+var MSG_ERROR_NOT_FIND = "데이터가 존재하지 않습니다.";
+var MSG_VALID_LOGIN = "메세지가 없습니다";
+var MSG_VALID_SEND_SMS = "메세지가 없습니다";
+var MSG_VALID_COMPLETE_SMS = "메세지가 없습니다";
+var MSG_SERVICE_INFO="서비스 이용안내";
+var MSG_CHECKIN_INFO ="권호정보";
+var MSG_BINDING_INFO ="제본정보";
+var MSG_ALL="전체";
+var SITE_CODE = "";
+var TITLE_BASKET = "바구니";
+var INFO_BASKET_INPUT = "바구니에 담았습니다.";
+var INFO_BASKET_DEL= "바구니에서 삭제 하였습니다.";
+var WARN_CHECK_FIELDS = "항목을 체크하세요.";  //항목을 체크하세요.
+
+var SELECT_HOLDING_MODULE = '';
+var USE_SERVICE = true;
+
+var saveBtn = "저장";
+var mailBtn = "메일";
+var printBtn= "인쇄";
+var previewBtn = "미리보기";
+var endNoteBtn = "EndNote";
+var refWorksBtn = "RefWorks";
+var selectBtn = "메세지가 없습니다";
+
+$.global = {
+		resizeMove : null,
+		resizeDraw : null,
+		resizeSelectBox : null
+	};
+
+var facetYearList = ['2026','2025','2024','2023','2022','2021','2020','2019','2018','2017','2016','2015','2013','2011'];
+
+var facetYearCount = {};facetYearCount['2026']=1;facetYearCount['2025']=4;facetYearCount['2024']=6;facetYearCount['2023']=13;facetYearCount['2022']=12;facetYearCount['2021']=8;facetYearCount['2020']=14;facetYearCount['2019']=16;facetYearCount['2018']=8;facetYearCount['2017']=14;facetYearCount['2016']=16;facetYearCount['2015']=6;facetYearCount['2013']=3;facetYearCount['2011']=1;
+
+</script>
+<script src="/jsf/common/ajaxCommon.js"></script>
+<script src="/jsf/search/brief.js"></script>
+<script src="/jsf/search/media.js"></script>
+<script src="/jsf/search/mylibrary.js"></script>
+<script src="/jsf/common/Checkbox.js"></script>
+<script src="/jsf/common/jquery.bgiframe.js" ></script>
+<script src="/jsf/common/toastr.min.js" ></script>
+<script src="/script/jquery.mThumbnailScroller.js"></script>
+<script src="/script/jquery.selectBox.js"></script>
+<script src="/script/Nwagon.js"></script>
+<script src="/script/footable.js"></script>
+<script>
+
+$(window).load(function(){
+	
+	var _data = getGraphData();
+	setGraph(_data, true);
+	
+});
+
+$(document).ready(function() {
+		$('.facet li dd li.depth a.more').click(function(){
+	 		var imgPath = $(this).children().attr('src');
+			var imgAlt = $(this).children().attr('alt');
+             if($(this).parent().hasClass('on')){
+                        $(this).parent().removeClass('on');
+                        $(this).children().attr('src',imgPath.replace('Off','On'));
+                        $(this).children().attr('alt',imgAlt.replace('닫기','열기'));
+             }else{
+                        $(this).parent().addClass('on');
+                        $(this).children().attr('src',imgPath.replace('On','Off'));
+                        $(this).children().attr('alt',imgAlt.replace('열기','닫기'));
+             }
+             return false;
+		});
+
+		toastr.options = {
+			  "closeButton": true,
+			  "debug": false,
+			  "newestOnTop": false,
+			  "progressBar": false,
+			  "positionClass": "toast-bottom-center",
+			  "preventDuplicates": false,
+			  "onclick": null,
+			  "showDuration": "300",
+			  "hideDuration": "1000",
+			  "timeOut": "2000",
+			  "extendedTimeOut": "1000",
+			  "showEasing": "swing",
+			  "hideEasing": "linear",
+			  "showMethod": "fadeIn",
+			  "hideMethod": "fadeOut"
+			};
+
+	callThumbnail('bookImg_CATTOT000001105601','9791162241882','CAT','000001105601');callThumbnail('bookImg_CATTOT000001210266','9788931556278','CAT','000001210266');callThumbnail('bookImg_CATTOT000001085794','9788968482397','CAT','000001085794');callThumbnail('bookImg_CATTOT000001063115','9788931459852','CAT','000001063115');callThumbnail('bookImg_CATTOT000000914071','9788997390915','CAT','000000914071');callThumbnail('bookImg_CATTOT000001091872','9791186697757','CAT','000001091872');callThumbnail('bookImg_CATTOT000000914127','9791160501728','CAT','000000914127');callThumbnail('bookImg_CATTOT000001308068','9791189909451','CAT','000001308068');callThumbnail('bookImg_CATTOT000000612364','9791158132651','CAT','000000612364');callThumbnail('bookImg_CATTOT000001234425','9791196220938','CAT','000001234425');
+
+	$('.mobileTable').footable({
+		breakpoints: {
+			phone: 1024,
+			tablet: 1024
+		}
+	});
+
+	// 갤러리, 갤러리 상세, 간략 선택-모바일
+	var winWidth = window.innerWidth || document.documentElement.clientWidth;
+	if(winWidth < 768){
+		$('.typeSelect a').toggle(function(){
+			$(this).parent().next().children().show();
+			$(this).children().eq(1).attr({'src':'/image/ko/solution/common/ico/calTypeClose.png'},{'alt':'닫기'});
+		},function(){
+			$(this).parent().next().children().hide();
+			$(this).children().eq(1).attr({'src':'/image/ko/solution/common/ico/calTypeOpen.png'},{'alt':'열기'});
+		});
+	}
+
+	$(window).resize(function(){
+        winWidth = window.innerWidth || document.documentElement.clientWidth;
+        if(winWidth < 768){
+                  $('.typeList ul').hide();
+                  $('.typeSelect a img').eq(1).attr({'src':'/image/ko/solution/common/ico/calTypeOpen.png'},{'alt':'닫기'});
+                  $('.typeSelect a').toggle(function(){
+                             $(this).parent().next().children().show();
+                             $(this).children().eq(1).attr({'src':'/image/ko/solution/common/ico/calTypeClose.png'},{'alt':'닫기'});
+                  },function(){
+                             $(this).parent().next().children().hide();
+                             $(this).children().eq(1).attr({'src':'/image/ko/solution/common/ico/calTypeOpen.png'},{'alt':'열기'});
+                  });
+        }else{
+                  $('.typeList ul').show();
+        }
+});
+
+
+	
+	// 모바일 좌측메뉴 이벤트
+
+	if($(window).width() > 767){
+
+		$(".facet .listOpenBtn").unbind(".listOpen");
+		$(".facet .listOpenBtn").bind("click.listOpen", function() {
+			if($(".facet .listOpenBtn").hasClass("close"))
+			{
+				$(".facetList dd").show();
+				$(".facet dt a").removeClass();
+				$(".facet dt a").attr("class","open");
+				$(".facet .listOpenBtn").toggleClass("close");
+			}
+			else
+			{
+				$(".facetList dd").hide();
+				$(".facet dt a").removeClass();
+				$(".facet .listOpenBtn").toggleClass("close");
+			}
+		});
+
+		$(".facetList > ul").show();
+		$(".facetList dd").show();
+		$(".facet dt a").removeClass();
+		$(".facet dt a").attr("class","open");
+	}else{
+		$(".facet .listOpenBtn").unbind(".listOpen");
+		$(".facet .listOpenBtn").bind("click.listOpen", function() {
+			$(".facetList > ul").toggle();
+		});
+	}
+	$(window).resize(function(){
+        if($(window).width() > 767){
+        	$(".facet .listOpenBtn").unbind(".listOpen");
+        	$(".facet .listOpenBtn").bind("click.listOpen", function() {
+        		if($(".facet .listOpenBtn").hasClass("close"))
+    			{
+    				$(".facet .listOpenBtn").toggleClass("close");
+    				$(".facetList dd").hide();
+    				$(".facet dt a").removeClass();
+    				$(".facet dt a").attr("class","open");
+    			}
+    			else
+    			{
+    				$(".facet .listOpenBtn").toggleClass("close");
+    				$(".facetList dd").show();
+    				$(".facet dt a").removeClass();
+    			}
+       		});
+            $(".facetList > ul").show();
+        }else{
+        	$(".facet .listOpenBtn").unbind(".listOpen");
+        	$(".facet .listOpenBtn").bind("click.listOpen", function() {
+        		$(".facetList > ul").toggle();
+        	});
+        }
+	});
+
+	$(".facet dt a").bind("click", function() {
+	        $(this).parent().next().toggle();
+	        $(this).toggleClass("open");
+	        return false;
+	});
+
+
+	// 자료유형 1Depth 클릭 이벤트
+	$(".taxonomy button").bind("click", function() {
+		$(this).parent().toggleClass("open");
+		$(this).parent().find("ul").toggle();
+		return false;
+	});
+
+	// 자료유형 2Depth 클릭 이벤트
+	$(".taxonomy li li a").bind("click", function() {
+		$(this).toggleClass("selected");
+		return false;
+	});
+
+	// 더보기 클릭 이벤트
+	$(".facet .more").each(function() {
+		$(this).parent("dd").find("li").eq(4).nextAll().hide();
+	});
+
+	$(".facet .more button").bind("click", function() {
+		$(this).parents(".more").toggleClass("open");
+		var $list = $(this).parents("dd").find("li:not('.child')");
+		if ($(this).hasClass("moreList")) { // 더보기
+			$list.show();
+		} else { //닫기
+			$list.eq(4).nextAll().hide();
+		}
+	});
+
+	//$(".facet dt a").click();
+	
+
+	// 내보내기 이벤트
+	$("#exportSelected").click(function() {
+		if ($("input:checkbox[name=data]:checked").length == 0) {
+			alert("선택한 내보내기가 없습니다.");
+			return false;
+		}else{
+			if($("#export").css('display') == 'none'){
+				$("#export").show();
+				$('.exportType li:first-child input').focus();
+			}else{
+				$("#export").hide();
+			}
+		} 
+
+		//var id = $(this).attr("href");
+		//$(id).toggle();
+		//$(this).parent().toggleClass("on");
+		return false;
+	});
+
+    // 공유, 내보내기 이벤트
+    $(".searchLink > ul > li > a").click(function() {
+        var id = $(this).attr("href");
+        if ($(id).size() == 0) return true;
+
+        $(id).toggle().siblings("div").hide();
+        $(this).parent().toggleClass("on").siblings().removeClass("on");
+
+        $( "#exportForm" ).reset();
+        $( 'input[type="submit"]' ).val("확인");
+        return false;
+    });
+
+    // 서지정보 내보내기 이벤트
+    $(".exportType li:first-child").addClass("on");
+	$(".exportType input").bind('focus click',function() {
+		$(".exportType li").removeClass("on");
+		$(this).parent().addClass("on");
+	    var $parent = $(this).parent();
+	    if ($parent.hasClass("exportMail")) $(".export .mail").show();
+
+	    if ($parent.hasClass("exportEndNote")) {
+	        $(".export .range").hide();
+	        $(".export .mail").hide();
+	        $(".export .refworks").hide();
+	        $(".export .endnote").show();
+	    }
+	    else if ($parent.hasClass("exportRefWorks")) {
+	    	$(".export .range").hide();
+		    $(".export .mail").hide();
+	        $(".export .refworks").show();
+	        $(".export .endnote").hide();
+	    }
+	    else if ($parent.hasClass("exportHtml") || $parent.hasClass("exportPrint") || $parent.hasClass("exportPreview")) {
+	    	$(".export .mail").hide();
+	    	$(".export .range").show();
+	        $(".export .refworks").hide();
+	        $(".export .endnote").hide();
+	    } else {
+	        $(".export .range").show();
+	        $(".export .refworks").hide();
+	        $(".export .endnote").hide();
+	    }
+	});
+
+    $( "#exportForm" ).submit(function( event ) {
+
+    	$('#exportForm > input[name=data]').remove();
+
+    	$("input:checkbox[name=data]:checked").each(function() {
+    		$('<input>').attr({
+    			type: 'hidden',
+    			name: 'data',
+    			value: this.value
+    		}).appendTo("#exportForm");
+    	});
+
+    	if ($( 'input:checked[type="radio"]' ).val()  == "html") {
+    		$( 'input[type="submit"]' ).val(saveBtn);
+    	} else if($( 'input:checked[type="radio"]' ).val() == "email") {
+    		$( 'input[type="submit"]' ).val(mailBtn);
+    	} else if($( 'input:checked[type="radio"]' ).val() == "print") {
+    		$( 'input[type="submit"]' ).val(printBtn);
+    	} else if($( 'input:checked[type="radio"]' ).val() == "preview") {
+    		$( 'input[type="submit"]' ).val(previewBtn);
+    	} else if($( 'input:checked[type="radio"]' ).val() == "endnote") {
+    		$( 'input[type="submit"]' ).val(endNoteBtn);
+    		$( "#exportForm" ).attr("action","/search/endnote/export");
+        } else if($( 'input:checked[type="radio"]' ).val() == "refworks") {
+        	$( 'input[type="submit"]' ).val(refWorksBtn);
+        	$( "#exportForm" ).attr("action","/search/refworks/export");
+        }
+
+    	$("#export").toggle();
+    });
+
+    $(".export input[type='reset']").click(function() {
+        $("#export, .export .mail, .export .notice").hide();
+        $(".export .range").show();
+        $(".searchLink .mail").removeClass("on");
+        $("#exportSelected").focus(); 
+    });
+
+	// 전체 내보내기 이벤트
+	/*
+	$(".allExport input").click(function() {
+		var chk = this.checked;
+		$(".sendBtn").each(function() {
+			if (chk) $(this).addClass("selected");
+			else $(this).removeClass("selected");
+		});
+	});
+	*/
+
+	// 서비스 이용안내 클릭 이벤트
+	$("div.service dt").click(function() {
+		$(this).next().toggle();
+	});
+
+	$("input:checkbox[name=data]").change(function() {
+		var index = $("input:checkbox[name=data]").index(this);
+
+		if($(this).is(":checked")) {
+			$("#export_"+index).addClass("selected");
+		}
+		else {
+			$("#export_"+index).removeClass("selected");
+		}
+	});
+
+	$("input:checkbox[name=data]").each(function() {
+		$(this).attr("checked",false);
+	});
+
+	$("#exportAll").click(function() {
+		if ($("#export").css('display') == 'none') {
+			$('input:checkbox[name=data]').prop('checked', true);
+			$('input:checkbox[name=data]').change();
+			$("#export").show();
+		} else {
+			$("#export").hide();
+			$('input:checkbox[name=data]').prop('checked', false);
+			$('input:checkbox[name=data]').change();
+		}
+		//$(this).parent().toggleClass("on");
+		return false;
+	});
+
+	$("input:radio[name='st']").change(function(){
+		idx=$(this).parent().index();
+		$('.dataSearch .searchOpt1').hide().addClass('hide');
+		$('.dataSearch .searchOpt1').eq(idx).removeClass('hide');
+		$('.dataSearch a.searchOpt1').hide();
+		$('.dataSearch .searchOpt1').selectBox('disable');
+
+		if ($("input:radio[name='st']:checked").val() == 'EXCT') {
+            $('.dataSearch .searchOpt1').hide().addClass('hide');
+            $('.dataSearch .searchOpt1').eq(1).removeClass('hide');
+            $('.dataSearch a.searchOpt1').hide();
+            $('.dataSearch .searchOpt1').selectBox('disable');
+ 		}
+
+		if ($("input:radio[name='st']:checked").val() == 'KWRD') {
+			$('.dataSearch a.searchOpt1').eq(0).show();
+			$('.dataSearch select.searchOpt1').eq(0).selectBox('enable');
+	    } else {
+			$('.dataSearch a.searchOpt1').eq(1).show();
+			$('.dataSearch select.searchOpt1').eq(1).selectBox('enable');
+	    }
+
+		var ua = window.navigator.userAgent.toLowerCase();
+		if ( /iphone/.test(ua) || /android/.test(ua) || /opera/.test(ua) || /bada/.test(ua) || /ipad/.test(ua) || /ipod/.test(ua) ) {
+			if ($("input:radio[name='st']:checked").val() == 'KWRD') {
+				$('.dataSearch .searchOpt1').eq(0).show();
+				$('.dataSearch .searchOpt1').eq(1).hide();
+		    } else {
+				$('.dataSearch .searchOpt1').eq(1).show();
+				$('.dataSearch .searchOpt1').eq(0).hide();
+		    }
+		}
+	});
+
+	$("#stKWRD").attr('checked','checked');
+	$("#stKWRD").change();
+
+	viewBasketCount();
+
+	
+
+	/*
+	//내바구니 담기, 내보내기, 미리보기 선택
+	$(".selectBtn a").bind("click", function() {
+		if ($(this).hasClass("previewBtn")) {
+			var $parents = $(this).parents(".items");
+			$(".preview", $parents).toggle();
+		}
+		$(this).toggleClass("selected");
+		return false;
+	});
+	*/
+});
+
+
+
+$(window).resize(function() {
+	
+	var stval = $("input:radio[name='st']:checked").val();
+
+	if (stval == 'KWRD') {
+		$('.searchSelect span').first().children().eq(0).attr('checked','checked');
+		$('.dataSearch select.searchOpt1').eq(0).selectBox('enable');
+	}
+	else {
+		$('.searchSelect span').first().children().eq(1).attr('checked','checked');
+		$('.dataSearch select.searchOpt1').eq(1).selectBox('enable');
+	}
+	$(".searchOpt1").selectBox('destroy').selectBox();
+	$('.dataSearch a.hide').hide();
+	$("#stKWRD").change();
+});
+
+function addLinkPop (query) {
+	document.frmDigicolPopup.action="/digicol/pop/writeitem";
+	document.frmDigicolPopup.data.value=query;
+	var options = "width=600,height=550,resizable=no,top=100,left=200,scrollbars=yes";
+	window.open('',"digicolSave",options);
+
+	document.frmDigicolPopup.target="digicolSave";
+	document.frmDigicolPopup.submit();
+}
+</script>
+<!-- facet 하단 openApi검색 -->
+
+</div>
+	</div>	
+	
+<div id="divFooter">
+	<div class="footer">
+		<div class="footerLogo">
+			<img src="/image/ko/local/footerLogo.png" alt="이천시립통합도서관">
+		</div>
+		<div>
+			<div class="footerMenu">
+				<ul>
+					<li class="privacy">
+						<a href="/local/html/privacy" title="개인정보처리방침">개인정보처리방침</a>
+					</li>
+					<li>
+						<a href="/local/html/email" title="이메일무단수집거부">이메일무단수집거부</a>
+					</li>
+					<li>
+						<a href="/local/html/map1" title="찾아오시는길">찾아오시는길</a>
+					</li>
+					<li>
+						<a href="/sitemap" title="사이트맵">사이트맵</a>
+					</li>
+				</ul>
+			</div>
+			<div class="libraryInfo">
+				<ul class="addressList">
+					<li>
+						<h3>시립</h3>
+						<address>
+							(17354 ) 경기도 이천시 설봉로81번길 50(창전동) 
+						</address>
+						<ul>
+							<li>Tel. 031-644-4351~4</li>
+						</ul>
+					</li>
+					<li>
+						<h3>청미</h3>
+						<address>
+							(17421 ) 경기도 이천시 장호원읍 서동대로8829번길 53-6
+						</address>
+						<ul>
+							<li>Tel. 031 - 644 - 4371</li>
+						</ul>
+					</li>
+					<li>
+						<h3>효양</h3>
+						<address>
+							(17327 ) 경기도 이천시 부발읍 경충대로2250번길 35 
+						</address>
+						<ul>
+							<li>Tel. 031- 644 - 4391</li>
+						</ul>
+					</li>
+					<li>
+						<h3>어린이</h3>
+						<address>
+							(17375 ) 경기도 이천시 남천로 31
+						</address>
+						<ul>
+							<li>Tel. 031 - 644 - 4381</li>
+						</ul>
+					</li>
+					<li>
+						<h3>마장</h3>
+						<address> 
+							(17387 ) 경기도 이천시 마장면 마장로11
+						</address>
+						<ul>
+							<li>Tel. 031-645-3440</li>
+						</ul>
+					</li>
+					<li>
+						<h3>서희</h3>
+						<address>
+							(17372) 경기도 이천시 애련정로 29
+						</address>
+						<ul>
+							<li>Tel. 031-645-3430~3</li>
+						</ul>
+					</li>
+					<li>
+						<h3>이천시 도서관과 전자팩스</h3>
+						<address>
+							0502-696-2009
+						</address>
+					</li>
+				</ul>
+				<p class="copyright">
+					COPYRIGHT(C)2019 <span>ICHEON CITY LIBRARY.</span> ALL RIGHTS RESERVED.
+				</p>
+			</div>
+			<div class="familySite">
+				<ul>
+					<li>
+						<a href="">관련사이트 바로가기<span class="bg"></span></a>
+						<div class="siteWrap">
+							<div>
+								<ul>
+									<li><a href="http://www.icheon.go.kr/" title="새창" target="_blank" rel="noopener noreferrer">이천시청</a></li>
+									<li><a href="https://www.icheon.go.kr/depart/farmSubMain.do?key=2428" title="새창" target="_blank" rel="noopener noreferrer">이천시 농업기술센터</a></li>
+									<li><a href="https://www.icheon.go.kr/depart/selectEmployeeList.do?key=2425&searchDeptCode=000003136" title="새창" target="_blank" rel="noopener noreferrer">이천시 체육지원센터</a></li>
+									<li><a href="https://www.icheon.go.kr/depart/selectEmployeeList.do?key=2425&searchDeptCode=000003136" title="새창" target="_blank" rel="noopener noreferrer">이천문화재단</a></li>
+									<li><a href="https://www.artic.or.kr/icmus/main/view" title="새창" target="_blank" rel="noopener noreferrer">이천시립박물관</a></li>
+									<li><a href="http://www.sulbong.or.kr/" title="새창" target="_blank" rel="noopener noreferrer">설봉서원</a></li>
+									<li><a href="http://www.iwoljeon.org/" title="새창" target="_blank" rel="noopener noreferrer">이천시립월전미술관</a></li>
+									<li><a href="http://www.eais.go.kr/" title="새창" target="_blank" rel="noopener noreferrer">새움터</a></li>
+								</ul>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="visitToday">
+				<ul>
+					<li><span class="title">VISIT  TODAY</span><span class="num">35,138</span></li>
+					<li><span class="title">TOTAL</span><span class="num">142,965,876</span></li>
+				</ul>
+			</div>
+			<div class="sns">
+				<ul>
+					<li><a href="https://band.us/@icheonlib" target="_blank" title="새창"><img src="/image/ko/local/sns1.png" alt="네이버 band"></a></li>
+					<li><a href="https://pf.kakao.com/_XifaT" target="_blank" title="새창"><img src="/image/ko/local/sns2.png" alt="카카오톡"></a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+</body>
+</html>

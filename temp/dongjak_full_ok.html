@@ -1,0 +1,1335 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<!DOCTYPE html>
+	<html lang="ko">
+	<head>
+		<meta charset="utf-8" />
+		<meta id="_csrf" name="_csrf" th:content=""/>
+		<meta id="_csrf_header" name="_csrf_header" th:content=""/>
+		
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta X-content-type-options="nosniff" />
+		<meta X-frame-options="DENY" />
+		<meta X-XSS-Protection="1; mode=block" />
+		<meta Cache-Control="no-cache, no-store, must-revalidate" />
+		<meta Pragma="no-cache" />
+		<title>동작구 통합도서관 > 자료검색 > 소장자료검색 > 간략검색</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=0,maximum-scale=10" />
+		<link rel="shortcut icon" type="image/x-icon" href="/resources/icon/dongjak.ico" />
+		<link rel="stylesheet" type="text/css" href="/resources/common/css/fontawesome.min.css" />
+
+		<script type="text/javascript" src="/resources/common/js/jquery-1.12.4.min.js"></script>
+		<script type="text/javascript" src="/resources/common/js/jquery.mmenu.min.js"></script>
+		<script type="text/javascript" src="/resources/common/js/printThis.js"></script>
+		<script type="text/javascript" src="/resources/common/js/jquery-ui-1.12.0.min.js"></script>
+		<script type="text/javascript" src="/resources/common/js/jquery-ui-1.12.0-datepicker.js"></script>
+		<script type="text/javascript" src="/resources/common/js/jquery.bxslider.js"></script>
+		<script type="text/javascript" src="/resources/common/js/default.js"></script>
+		<script type="text/javascript" src="/resources/common/js/common.js"></script>
+		<script type="text/javascript" src="/resources/common/js/kakao.min.js"></script>
+		<script type="text/javascript" src="/resources/homepage/dj/js/default.js"></script>
+
+		<link rel="stylesheet" type="text/css" href="/resources/common/css/jquery.mmenu.css"/>
+		<link rel="stylesheet" type="text/css" href="/resources/common/css/navi.css"/>
+		<link rel="stylesheet" type="text/css" href="/resources/common/css/default.css"/>
+
+		<link rel="stylesheet" type="text/css" 	href="/resources/homepage/dj/css/defualt.css" />
+		<link rel="stylesheet" type="text/css" 	href="/resources/homepage/dj/css/base.css" />
+		<link rel="stylesheet" type="text/css" 	href="/resources/homepage/dj/css/main.css" />
+
+		<script> 
+			var userAgent = navigator.userAgent.toLowerCase(); // 접속 핸드폰 정보 
+			   
+			// 모바일 홈페이지 바로가기 링크 생성 
+			if(userAgent.match('iphone')) { 
+				document.write('<link rel="apple-touch-icon" href="/resources/common/img/144x144.png" />') 
+			} else if(userAgent.match('ipad')) { 
+				document.write('<link rel="apple-touch-icon" sizes="72*72" href="/resources/common/img/72x72.png" />') 
+			} else if(userAgent.match('ipod')) { 
+				document.write('<link rel="apple-touch-icon" href="/resources/common/img/144x144.png" />') 
+			} else if(userAgent.match('android')) { 
+				document.write('<link rel="shortcut icon" href="/resources/common/img/144x144.png" />') 
+			} 
+		</script>
+
+		</head>
+		<body>
+
+<a href="#contentArea" id="skip-to" class="skip-to">본문 바로가기</a>
+
+<link rel="stylesheet" type="text/css" href="/resources/homepage/dj/css/default_sub_lnb.css">
+<link rel="stylesheet" type="text/css" href="/resources/homepage/dj/css/default_sub_body.css">
+<!-- <link rel="stylesheet" type="text/css" href="/resources/homepage/dj/css/sub.css"> -->
+<link rel="stylesheet" href="/resources/common/css/default.css">
+<link rel="stylesheet" href="/resources/board/css/default.css">
+<script src="/resources/board/js/common.js"></script>
+<script type="text/javascript">
+$(function() {
+	$('li#menu_14').addClass('active');
+	$('li#menu_111').addClass('active');
+	var halbaeNode = $('li#menu_14').parent().parent()[0];
+	if ( halbaeNode != null && halbaeNode.nodeName == 'LI' ) {
+		$(halbaeNode).addClass('active');
+	}
+	$('li#menu_14').attr('title','확장됨');
+	$('li#menu_111').attr('title','확장됨');
+	
+	$('.sns_btn_visiable').on('click', function() {
+		$(".snsBoxSec").show();
+	});
+
+	$(".sns_btn_visiable").on("keyup",function(key){
+		if(key.keyCode==13) {
+			$(".snsBoxSec").show();
+			$(".sub-facebook").focus();
+		}
+	});
+
+	$('.sns_btn_invisiable').on('click', function() {
+		$(".snsBoxSec").hide();
+	});
+	
+	$(".sns_btn_invisiable").on("keyup",function(key){
+		if(key.keyCode==13) {
+			$(".snsBoxSec").hide();
+			$("a.sns_btn_visiable").focus();
+		}
+	});
+/*
+	$("a#skip-to").click(function(){
+		$("li.first > a").focus();
+	});
+*/
+});
+</script>
+
+	<div id="wrap">
+		<nav id="menu"></nav>
+		<div id="header">
+			
+
+
+
+
+
+
+
+<div id="mobileUtil">
+	<div class="section">
+		<div class="util">
+			<ul>
+				<li><a href="/dj/module/memberShip/index.do?menu_idx=125">모바일 회원증</a></li>
+				<li><a href="/dj/intro/search/loan/index.do?menu_idx=55">대출조회/연기</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div id="tnbWrap">
+    <div class="section">
+        <div class="util">
+            <ul>
+				<li><a href="/dj/index.do"><img src="/resources/homepage/dj/img/homebtn.gif" alt="홈으로" /></a></li>
+            	
+                
+				<!-- <li class="recertBtnbt"><a href="/dj/intro/join/reCertBefore.do?menu_idx=126">기존회원재인증</a></li> -->
+                <li><a href="/dj/intro/login/index.do?menu_idx=63">로그인</a></li>
+                <li><a href="/dj/html.do?menu_idx=64" >회원가입</a></li>
+                
+                
+            	
+                <li class="last"><a href="/dj/sitemap/index.do?menu_idx=62">사이트맵</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+			
+
+
+
+
+
+
+<div id="gnbWrap">
+	<div class="Gnb">
+		<div class="section">
+			<div class="mmode m-menu2">
+				
+					
+					
+						<a href="/dj/intro/login/index.do?menu_idx=63"><img src="/resources/homepage/dj/img/mmenu-icon02.png" alt="login"></a>
+					
+				
+				
+			</div>
+			<h1 class="logo">
+				<a href="/dj/index.do"><img src="/resources/homepage/dj/img/dj_logo.png" alt="동작구 통합도서관"></a>
+			</h1>
+			<div class="mmode m-menu">
+				<a href="#menu"><img src="/resources/homepage/dj/img/mmenu-icon01.png" alt="mobileMenu"></a>
+			</div>
+
+			<div class="g-menu">
+				<ul class="gnbMenu">
+<li class="List 1Depth menu1 menu_1"><a href="/dj/html.do?menu_idx=1" ><span>이용안내</span></a>
+<div class="subMenu">
+<ul>
+<li class="2Depth menu_7"><a href="/dj/html.do?menu_idx=7" ><span>이용시간/휴관일</span></a></li>
+<li class="2Depth menu_8"><a href="/dj/html.do?menu_idx=8" ><span>회원가입안내</span></a></li>
+<li class="2Depth menu_9"><a href="/dj/html.do?menu_idx=9" ><span>자료이용안내</span></a></li>
+<li class="2Depth menu_104"><a href="/dj/html.do?menu_idx=104" ><span>상호대차서비스</span></a></li>
+<li class="2Depth menu_224"><a href="/dj/html.do?menu_idx=224" ><span>스마트도서관</span></a>
+<ul>
+<li class="3Depth menu_256"><a href="/dj/html.do?menu_idx=256" ><span>스마트도서관 바로대출</span></a></li>
+<li class="3Depth menu_257"><a href="/dj/html.do?menu_idx=257" ><span>스마트도서관 예약대출</span></a></li></ul></li>
+<li class="2Depth menu_11"><a href="/dj/html.do?menu_idx=11" ><span>책이음서비스</span></a></li></ul></div></li>
+<li class="List 1Depth menu2 menu_2"><a href="/dj/html.do?menu_idx=2" ><span>자료검색</span></a>
+<div class="subMenu">
+<ul>
+<li class="2Depth menu_14"><a href="/dj/intro/search/index.do?menu_idx=14" ><span>소장자료검색</span></a>
+<ul>
+<li class="3Depth menu_111"><a href="/dj/intro/search/index.do?menu_idx=111" ><span>간략검색</span></a></li>
+<li class="3Depth menu_112"><a href="/dj/intro/search/indexDetail.do?menu_idx=112" ><span>상세검색</span></a></li></ul></li>
+<li class="2Depth menu_15"><a href="/dj/html.do?menu_idx=15" ><span>전자도서관</span></a>
+<ul>
+<li class="3Depth menu_19"><a href="/dj/html/html4.do?menu_idx=19" ><span>전자책</span></a></li>
+<li class="3Depth menu_20"><a href="/dj/html.do?menu_idx=20" ><span>오디오북</span></a></li></ul></li>
+<li class="2Depth menu_164"><a href="http://smartlib.dongjak.go.kr:8088/EZ-950SL_Web/mainPage/SI_searchbookindex.jsp" target="_blank"><span>스마트도서관</span></a></li>
+<li class="2Depth menu_16"><a href="/dj/intro/search/newBook/index.do?menu_idx=16" ><span>신착도서</span></a></li>
+<li class="2Depth menu_17"><a href="/dj/intro/search/bestBook/index.do?menu_idx=17" ><span>인기도서</span></a></li>
+<li class="2Depth menu_18"><a href="/dj/html.do?menu_idx=18" ><span>추천도서</span></a>
+<ul>
+<li class="3Depth menu_172"><a href="/dj/board/index.do?menu_idx=172&manage_idx=316" ><span>이 달의 추천도서</span></a></li></ul></li></ul></div></li>
+<li class="List 1Depth menu3 menu_3"><a href="/dj/html.do?menu_idx=3" ><span>문화공간</span></a>
+<div class="subMenu">
+<ul>
+<li class="2Depth menu_25"><a href="/dj/html.do?menu_idx=25" ><span>문화프로그램</span></a>
+<ul>
+<li class="3Depth menu_31"><a href="/dj/html.do?menu_idx=31" ><span>소개</span></a></li>
+<li class="3Depth menu_32"><a href="/dj/module/teach/index.do?menu_idx=32&searchCate1=16" ><span>신청</span></a></li></ul></li>
+<li class="2Depth menu_113"><a href="/dj/module/circles/index.do?menu_idx=113" ><span>동아리</span></a>
+<ul>
+<li class="3Depth menu_165"><a href="/dj/module/circles/index.do?menu_idx=165" ><span>동아리소개</span></a></li>
+<li class="3Depth menu_184"><a href="/dj/html.do?menu_idx=184" ><span>독서동아리 등록제</span></a></li></ul></li>
+<li class="2Depth menu_26"><a href="/dj/html.do?menu_idx=26" ><span>견학안내</span></a>
+<ul>
+<li class="3Depth menu_196"><a href="/dj/html.do?menu_idx=196" ><span>김영삼도서관</span></a></li>
+<li class="3Depth menu_234"><a href="/dj/html.do?menu_idx=234" ><span>까망돌도서관</span></a></li>
+<li class="3Depth menu_116"><a href="/dj/module/excursions/index.do?menu_idx=116&org_code=0001" ><span>사당솔밭도서관</span></a></li>
+<li class="3Depth menu_242"><a href="/dj/html.do?menu_idx=242" ><span>신대방누리도서관</span></a></li>
+<li class="3Depth menu_119"><a href="/dj/html.do?menu_idx=119" ><span>동작영어마루도서관</span></a></li>
+<li class="3Depth menu_121"><a href="/dj/module/excursions/index.do?menu_idx=121&org_code=0006" ><span>약수도서관</span></a></li>
+<li class="3Depth menu_122"><a href="/dj/html.do?menu_idx=122" ><span>동작샘터도서관</span></a></li>
+<li class="3Depth menu_120"><a href="/dj/module/excursions/index.do?menu_idx=120&org_code=0004" ><span>대방어린이도서관</span></a></li>
+<li class="3Depth menu_124"><a href="/dj/module/excursions/index.do?menu_idx=124&org_code=0008" ><span>다울작은도서관</span></a></li></ul></li>
+<li class="2Depth menu_202"><a href="/dj/html.do?menu_idx=202" ><span>대관안내</span></a>
+<ul>
+<li class="3Depth menu_207"><a href="/dj/html.do?menu_idx=207" ><span>김영삼도서관</span></a></li>
+<li class="3Depth menu_237"><a href="/dj/html.do?menu_idx=237" ><span>까망돌도서관</span></a></li>
+<li class="3Depth menu_236"><a href="/dj/html.do?menu_idx=236" ><span>사당솔밭도서관</span></a></li>
+<li class="3Depth menu_246"><a href="/dj/html.do?menu_idx=246" ><span>동작영어마루도서관</span></a></li></ul></li>
+<li class="2Depth menu_238"><a href="/dj/html.do?menu_idx=238" ><span>문화창작공간</span></a>
+<ul>
+<li class="3Depth menu_239"><a href="/dj/module/excursions/index.do?menu_idx=239&org_code=0001&date_type=0010" ><span>문화창작공간(사당솔밭)</span></a></li>
+<li class="3Depth menu_240"><a href="/dj/module/excursions/index.do?menu_idx=240&org_code=0011" ><span>문화창작공간(까망돌)</span></a></li></ul></li>
+<li class="2Depth menu_247"><a href="/dj/html.do?menu_idx=247" ><span>동작구지역작가</span></a>
+<ul>
+<li class="3Depth menu_248"><a href="/dj/html.do?menu_idx=248" ><span>지역작가발굴캠페인</span></a></li>
+<li class="3Depth menu_249"><a href="/dj/board/index.do?menu_idx=249&manage_idx=349" ><span>2023-24년 지역작가</span></a></li>
+<li class="3Depth menu_254"><a href="/dj/board/index.do?menu_idx=254&manage_idx=350" ><span>2025년 지역작가</span></a></li>
+<li class="3Depth menu_259"><a href="/dj/board/index.do?menu_idx=259&manage_idx=352" ><span>2026년 지역작가</span></a></li></ul></li></ul></div></li>
+<li class="List 1Depth menu4 menu_4"><a href="/dj/html.do?menu_idx=4" ><span>참여공간</span></a>
+<div class="subMenu">
+<ul>
+<li class="2Depth menu_33"><a href="/dj/html.do?menu_idx=33" ><span>공지사항</span></a>
+<ul>
+<li class="3Depth menu_168"><a href="/dj/board/index.do?menu_idx=168&manage_idx=330" ><span>알립니다</span></a></li>
+<li class="3Depth menu_169"><a href="/dj/board/index.do?menu_idx=169&manage_idx=312" ><span>행사소식</span></a></li></ul></li>
+<li class="2Depth menu_34"><a href="/dj/board/index.do?menu_idx=34&manage_idx=313" ><span>자주하는 질문</span></a></li>
+<li class="2Depth menu_35"><a href="/dj/board/index.do?menu_idx=35&manage_idx=314" ><span>묻고답하기</span></a></li>
+<li class="2Depth menu_38"><a href="/dj/html.do?menu_idx=38" ><span>사서에게 물어보세요</span></a></li>
+<li class="2Depth menu_39"><a href="/dj/board/index.do?menu_idx=39&manage_idx=315" ><span>분실물</span></a></li></ul></div></li>
+<li class="List 1Depth menu5 menu_5"><a href="/dj/html.do?menu_idx=5" ><span>도서관소개</span></a>
+<div class="subMenu">
+<ul>
+<li class="2Depth menu_41"><a href="/dj/html.do?menu_idx=41" ><span>연혁</span></a></li>
+<li class="2Depth menu_43"><a href="/dj/html.do?menu_idx=43" ><span>서비스헌장</span></a></li>
+<li class="2Depth menu_44"><a href="/dj/html.do?menu_idx=44" ><span>구립도서관</span></a>
+<ul>
+<li class="3Depth menu_194"><a href="/dj/html.do?menu_idx=194" ><span>김영삼도서관</span></a></li>
+<li class="3Depth menu_226"><a href="/dj/html.do?menu_idx=226" ><span>까망돌도서관</span></a></li>
+<li class="3Depth menu_76"><a href="/dj/html.do?menu_idx=76" ><span>사당솔밭도서관</span></a></li>
+<li class="3Depth menu_241"><a href="/dj/html.do?menu_idx=241" ><span>신대방누리도서관</span></a></li>
+<li class="3Depth menu_78"><a href="/dj/html.do?menu_idx=78" ><span>동작영어마루도서관</span></a></li>
+<li class="3Depth menu_81"><a href="/dj/html.do?menu_idx=81" ><span>약수도서관</span></a></li>
+<li class="3Depth menu_80"><a href="/dj/html.do?menu_idx=80" ><span>동작샘터도서관</span></a></li>
+<li class="3Depth menu_79"><a href="/dj/html.do?menu_idx=79" ><span>대방어린이도서관</span></a></li>
+<li class="3Depth menu_83"><a href="/dj/html.do?menu_idx=83" ><span>다울작은도서관</span></a></li>
+<li class="3Depth menu_250"><a href="/dj/html.do?menu_idx=250" ><span>어린이청소년북카페 신대방햇살</span></a></li>
+<li class="3Depth menu_84"><a href="/dj/html.do?menu_idx=84" ><span>국사봉숲속작은도서관</span></a></li></ul></li>
+<li class="2Depth menu_45"><a href="/dj/html.do?menu_idx=45" ><span>동 작은도서관</span></a>
+<ul>
+<li class="3Depth menu_255"><a href="/dj/board/index.do?menu_idx=255&manage_idx=351" ><span>동 작은도서관 공지사항</span></a></li>
+<li class="3Depth menu_85"><a href="/dj/html.do?menu_idx=85" ><span>노량진1동</span></a></li>
+<li class="3Depth menu_86"><a href="/dj/html.do?menu_idx=86" ><span>노량진2동</span></a></li>
+<li class="3Depth menu_97"><a href="/dj/html.do?menu_idx=97" ><span>대방동</span></a></li>
+<li class="3Depth menu_92"><a href="/dj/html.do?menu_idx=92" ><span>사당1동</span></a></li>
+<li class="3Depth menu_93"><a href="/dj/html.do?menu_idx=93" ><span>사당2동</span></a></li>
+<li class="3Depth menu_94"><a href="/dj/html.do?menu_idx=94" ><span>사당3동</span></a></li>
+<li class="3Depth menu_96"><a href="/dj/html.do?menu_idx=96" ><span>사당5동</span></a></li>
+<li class="3Depth menu_87"><a href="/dj/html.do?menu_idx=87" ><span>상도1동</span></a></li>
+<li class="3Depth menu_88"><a href="/dj/html.do?menu_idx=88" ><span>상도2동</span></a></li>
+<li class="3Depth menu_89"><a href="/dj/html.do?menu_idx=89" ><span>상도3동</span></a></li>
+<li class="3Depth menu_90"><a href="/dj/html.do?menu_idx=90" ><span>상도4동</span></a></li>
+<li class="3Depth menu_98"><a href="/dj/html.do?menu_idx=98" ><span>신대방1동</span></a></li>
+<li class="3Depth menu_99"><a href="/dj/html.do?menu_idx=99" ><span>신대방2동</span></a></li>
+<li class="3Depth menu_91"><a href="/dj/html.do?menu_idx=91" ><span>흑석동</span></a></li></ul></li>
+<li class="2Depth menu_46"><a href="/dj/html.do?menu_idx=46" ><span>사립작은도서관</span></a>
+<ul>
+<li class="3Depth menu_115"><a href="/dj/board/index.do?menu_idx=115&manage_idx=326" ><span>사립작은도서관 공지사항</span></a></li>
+<li class="3Depth menu_173"><a href="/dj/html.do?menu_idx=173" ><span>꿈담도서관</span></a></li>
+<li class="3Depth menu_163"><a href="/dj/html.do?menu_idx=163" ><span>꿈익는책마을</span></a></li>
+<li class="3Depth menu_128"><a href="/dj/html.do?menu_idx=128" ><span>나무별작은도서관</span></a></li>
+<li class="3Depth menu_129"><a href="/dj/html.do?menu_idx=129" ><span>담소작은도서관</span></a></li>
+<li class="3Depth menu_235"><a href="/dj/html.do?menu_idx=235" ><span>만나작은도서관</span></a></li>
+<li class="3Depth menu_137"><a href="/dj/html.do?menu_idx=137" ><span>보라매e편한세상작은도서관</span></a></li>
+<li class="3Depth menu_185"><a href="/dj/html.do?menu_idx=185" ><span>비전어린이도서관</span></a></li>
+<li class="3Depth menu_138"><a href="/dj/html.do?menu_idx=138" ><span>상도sh-ville작은도서관</span></a></li>
+<li class="3Depth menu_139"><a href="/dj/html.do?menu_idx=139" ><span>상도더샾아파트작은도서관</span></a></li>
+<li class="3Depth menu_130"><a href="/dj/html.do?menu_idx=130" ><span>상도중앙작은도서관</span></a></li>
+<li class="3Depth menu_233"><a href="/dj/html.do?menu_idx=233" ><span>새빛작은도서관</span></a></li>
+<li class="3Depth menu_140"><a href="/dj/html.do?menu_idx=140" ><span>생명나무도서관</span></a></li>
+<li class="3Depth menu_131"><a href="/dj/html.do?menu_idx=131" ><span>성대골어린이도서관</span></a></li>
+<li class="3Depth menu_132"><a href="/dj/html.do?menu_idx=132" ><span>아트&힐링작은도서관</span></a></li>
+<li class="3Depth menu_160"><a href="/dj/html.do?menu_idx=160" ><span>애스톤파크작은도서관</span></a></li>
+<li class="3Depth menu_186"><a href="/dj/html.do?menu_idx=186" ><span>양문작은도서관</span></a></li>
+<li class="3Depth menu_142"><a href="/dj/html.do?menu_idx=142" ><span>열림카페속작은도서관</span></a></li>
+<li class="3Depth menu_161"><a href="/dj/html.do?menu_idx=161" ><span>오손도손 우리동네 작은도서관</span></a></li>
+<li class="3Depth menu_229"><a href="/dj/html.do?menu_idx=229" ><span>작은도서관 민주주의</span></a></li>
+<li class="3Depth menu_133"><a href="/dj/html.do?menu_idx=133" ><span>주님의숲작은도서관</span></a></li>
+<li class="3Depth menu_143"><a href="/dj/html.do?menu_idx=143" ><span>지혜문고</span></a></li>
+<li class="3Depth menu_134"><a href="/dj/html.do?menu_idx=134" ><span>지혜샘터작은도서관</span></a></li>
+<li class="3Depth menu_222"><a href="/dj/html.do?menu_idx=222" ><span>트윈파크 작은도서관</span></a></li>
+<li class="3Depth menu_145"><a href="/dj/html.do?menu_idx=145" ><span>푸른도서관</span></a></li>
+<li class="3Depth menu_148"><a href="/dj/html.do?menu_idx=148" ><span>한숲문고</span></a></li>
+<li class="3Depth menu_135"><a href="/dj/html.do?menu_idx=135" ><span>행복한래미안작은도서관</span></a></li>
+<li class="3Depth menu_149"><a href="/dj/html.do?menu_idx=149" ><span>헤브론문고</span></a></li></ul></li>
+<li class="2Depth menu_48"><a href="/dj/html.do?menu_idx=48" ><span>구립도서관 조직 및 업무</span></a></li>
+<li class="2Depth menu_49"><a href="/dj/html.do?menu_idx=49" ><span>지역서점안내</span></a></li></ul></div></li>
+<li class="List 1Depth menu6 menu_6"><a href="/dj/html.do?menu_idx=6" ><span>나만의도서관</span></a>
+<div class="subMenu">
+<ul>
+<li class="2Depth menu_51"><a href="/dj/html.do?menu_idx=51" ><span>대출/예약/상호대차</span></a>
+<ul>
+<li class="3Depth menu_55"><a href="/dj/intro/search/loan/index.do?menu_idx=55" ><span>대출조회 / 연기</span></a></li>
+<li class="3Depth menu_150"><a href="/dj/intro/search/loan/history.do?menu_idx=150" ><span>대출이력</span></a></li>
+<li class="3Depth menu_58"><a href="/dj/intro/search/resve/index.do?menu_idx=58" ><span>예약(스마트도서관)</span></a></li>
+<li class="3Depth menu_56"><a href="/dj/intro/search/sanghoHistory.do?menu_idx=56" ><span>상호대차조회</span></a></li>
+<li class="3Depth menu_252"><a href="/dj/intro/search/loan/familyIndex.do?menu_idx=252" ><span>대출조회/연기(가족회원)</span></a></li>
+<li class="3Depth menu_253"><a href="/dj/intro/search/loan/familyHistory.do?menu_idx=253" ><span>대출이력(가족회원)</span></a></li></ul></li>
+<li class="2Depth menu_158"><a href="/dj/html.do?menu_idx=158" ><span>희망도서</span></a>
+<ul>
+<li class="3Depth menu_57"><a href="/dj/intro/search/hope/history.do?menu_idx=57" ><span>희망도서조회</span></a></li>
+<li class="3Depth menu_69"><a href="/dj/intro/search/hope/index.do?menu_idx=69" ><span>희망도서신청</span></a></li></ul></li>
+<li class="2Depth menu_52"><a href="/dj/module/myStorage/index.do?menu_idx=52" ><span>관심자료(보관함)보기</span></a></li>
+<li class="2Depth menu_157"><a href="/dj/module/teach/applyList.do?menu_idx=157&applyList.do?menu_idx=32" ><span>프로그램 신청내역</span></a></li>
+<li class="2Depth menu_54"><a href="/dj/intro/join/klMemberForm.do?menu_idx=54" ><span>책이음회원 전환신청</span></a></li>
+<li class="2Depth menu_125"><a href="/dj/module/memberShip/index.do?menu_idx=125" ><span>모바일회원증</span></a></li>
+<li class="2Depth menu_231"><a href="/dj/intro/search/family/list.do?menu_idx=231" ><span>가족회원확인</span></a></li>
+<li class="2Depth menu_110"><a href="/dj/intro/join/secessionForm.do?menu_idx=110" ><span>회원탈퇴</span></a></li>
+<li class="2Depth menu_53"><a href="/dj/intro/join/modifyForm.do?menu_idx=53" ><span>개인정보수정</span></a></li>
+<li class="2Depth menu_243"><a href="/dj/intro/join/dongjakAgree.do?menu_idx=243" ><span>구정홍보서비스신청</span></a></li></ul></div></li></ul>
+
+				<div class="mmode" style="display: none;">
+					
+						
+						
+							<a href="/dj/intro/login/index.do?menu_idx=63" title="로그인 페이지 새창으로 엽니다." class="btn1">
+								<i class="fa fa-lock"></i>
+								<span>로그인</span>
+							</a>
+ 							<a href="/dj/html.do?menu_idx=64" title="회원가입 페이지 새창으로 엽니다." class="btn2">
+ 								<i class="fa fa-user-plus"></i>
+ 								<span>회원가입</span>
+ 							</a>
+						
+					
+				</div>
+			</div>
+		</div>
+		<div class="mask">&nbsp;</div>
+	</div>
+</div>
+
+			<div class="doc-bg">
+				<span>The Future Library</span>
+				<p><strong>편안하고 행복한 도서관</strong> 동작구립도서관</p>
+			</div>
+		</div>
+
+		<div class="subContainer">
+			<div class="section">
+				
+				<div class="lnb">
+					<h2><b>자료검색</b></h2>
+					<ul class="SubMenu">
+<li id="menu_14"><a href="/dj/intro/search/index.do?menu_idx=14" ><span>소장자료검색</span></a>
+<ul class="SubMenu">
+<li id="menu_111"><a href="/dj/intro/search/index.do?menu_idx=111" ><span>간략검색</span></a></li>
+<li id="menu_112"><a href="/dj/intro/search/indexDetail.do?menu_idx=112" ><span>상세검색</span></a></li></ul></li>
+<li id="menu_15"><a href="/dj/html.do?menu_idx=15" ><span>전자도서관</span></a>
+<ul class="SubMenu">
+<li id="menu_19"><a href="/dj/html/html4.do?menu_idx=19" ><span>전자책</span></a></li>
+<li id="menu_20"><a href="/dj/html.do?menu_idx=20" ><span>오디오북</span></a></li></ul></li>
+<li id="menu_164"><a href="http://smartlib.dongjak.go.kr:8088/EZ-950SL_Web/mainPage/SI_searchbookindex.jsp" target="_blank"><span>스마트도서관</span></a></li>
+<li id="menu_16"><a href="/dj/intro/search/newBook/index.do?menu_idx=16" ><span>신착도서</span></a></li>
+<li id="menu_17"><a href="/dj/intro/search/bestBook/index.do?menu_idx=17" ><span>인기도서</span></a></li>
+<li id="menu_18"><a href="/dj/html.do?menu_idx=18" ><span>추천도서</span></a>
+<ul class="SubMenu">
+<li id="menu_172"><a href="/dj/board/index.do?menu_idx=172&manage_idx=316" ><span>이 달의 추천도서</span></a></li></ul></li></ul>
+
+				</div>
+				
+				<div class="content">
+					<div class="doc">
+						<div class="doc-info">
+							<div class="section">
+								<ol>
+									<li class="first">
+										<a href="#">
+											<span><img src="/resources/homepage/dj/img/seoul_home_icon.png" alt="home"></span>
+										</a>
+									</li>
+									<li><a href="/dj/intro/search/index.do?menu_idx=111">자료검색</a></li>
+<li><a href="/dj/intro/search/index.do?menu_idx=111">소장자료검색</a></li>
+<li class="on"><a href="/dj/intro/search/index.do?menu_idx=111">간략검색</a></li>
+
+								</ol>
+
+								<div class="shareArea">
+									<ul>
+										<!--
+										<li><a href="#" class="sns_btn_visiable"><img src="/resources/homepage/dj/img/seoul_snslink_icon.png" alt="SNS 공유 목록 열기" /></a>
+										<div class="snsBoxSec" style="display:none">
+											<ul>
+											<li><a href="#" class="sub-facebook shareIconArea" keyValue1="h12" keyValue2="111" keyValue3="간략검색" keyValue4="동작구 통합도서관" title="새창열림"><img src="/resources/homepage/dj/img/sns_facebook_btn.png" alt="페이스북" class="shareIcon"></a></li>
+											<li><a href="#" class="sub-twitter shareIconArea" keyValue1="h12" keyValue2="111" keyValue3="간략검색" keyValue4="동작구 통합도서관" title="새창열림"><img src="/resources/homepage/dj/img/sns_twitter_btn.png" alt="트위터" class="shareIcon"></a></li>
+											<li><a href="#" class="sub-kakao shareIconArea" keyValue1="h12" keyValue2="111" keyValue3="간략검색" keyValue4="동작구 통합도서관" title="새창열림"><img src="/resources/homepage/dj/img/sns_kakaostory_btn.png" alt="카카오스토리" class="shareIcon"></a></li>
+											<li><a href="#" class="sns_btn_invisiable"><img src="/resources/homepage/dj/img/sns_close_btn.png" alt="SNS 공유 닫기" class="sns_close_btn"/></a></li>
+											</ul>
+										</div>
+										</li>
+										-->
+										<li><a href="#" class="sub-facebook shareIconArea" keyValue1="h12" keyValue2="111" keyValue3="간략검색" keyValue4="동작구 통합도서관" title="새창열림"><img src="/resources/homepage/dj/img/sns_facebook_btn.png" alt="페이스북" class="shareIcon"></a></li>
+										<li><a href="#" class="sub-twitter shareIconArea" keyValue1="h12" keyValue2="111" keyValue3="간략검색" keyValue4="동작구 통합도서관" title="새창열림"><img src="/resources/homepage/dj/img/sns_twitter_btn.png" alt="트위터" class="shareIcon"></a></li>
+										<li><a href="#" class="sub-kakao shareIconArea" keyValue1="h12" keyValue2="111" keyValue3="간략검색" keyValue4="동작구 통합도서관" title="새창열림"><img src="/resources/homepage/dj/img/sns_kakaostory_btn.png" alt="카카오스토리" class="shareIcon"></a></li>										
+										<li class="print"><a href="#" onclick="contentPrint();"><img src="/resources/homepage/dj/img/seoul_print_icon.png" alt="인쇄" ></a></li>
+										<!-- <li><a href="" class="sub-qrcode"><img src="/resources/homepage/dj/img/seoul_qr_icon.png" alt="qr 아이콘"></a></li> -->
+									</ul>
+								</div>
+							</div>
+						</div>
+
+						<div class="doc-head">
+							<div class="doc-title">
+								<h3>간략검색</h3>
+							</div>
+						</div>
+						<div class="doc-body" id="contentArea">
+							<div class="body">
+								 
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/resources/book/search/css/default.css"/>
+<style type="text/css">
+	table a.resve-req {
+		cursor: pointer;
+	}
+</style>
+<script src="/resources/cms/js/vk/vk_popup.js?vk_skin=flat_gray&vk_layout=ZW Shona"></script>
+<script type="text/javascript">
+	var authorViewPage = 1;
+	var authorTotalCnt = '';
+	var publisherViewPage = 1;
+	var publisherTotalCnt = '';
+	var formCodeViewPage = 1;
+	var formCodeTotalCnt = '';
+	var yearViewPage = 1;
+	var yearTotalCnt = '';
+
+	$(function () {
+		var ua = window.navigator.userAgent;
+		var msie = ua.indexOf("MSIE ");
+
+		if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))  // If Internet Explorer, return version number
+		{
+// 	    alert(parseInt(ua.substring(msie + 5, ua.indexOf(".", msie))));
+		} else  // If another browser, return 0
+		{
+			$('div#printMsg').hide();
+			$('div#btn_print_div').hide();
+		}
+
+		$('#do-search').on('click', function (e) {
+			if ($('#librarySearch input#search_text').val() == '') {
+				alert('검색어를 입력해주세요');
+				$('#librarySearch input#search_text').focus();
+
+				return false;
+			}
+			if (!$('input#sub_search1').is(':checked')) {
+				$('form#librarySearch input#allBookListStr').val('');
+			}
+
+			$('input#search_type2').val($('select#search_type option:selected').val());
+			$('#librarySearch input#viewPage').val('1');
+			$('#librarySearch').submit();
+			//doGetLoad('search.do', serializeCustom($('#librarySearch')));
+		});
+
+		
+		$('a.moreAuthor').on('click', function (e) {
+			e.preventDefault();
+			$.ajax({
+				url: 'table2.do',
+				data: 'allBookListStr=' + $('input#allBookListStr').val() + '&viewPage=' + (authorViewPage + 1),
+				type: 'post',
+				success: function (html) {
+					$('a.moreAuthor').parent('p').prev('ul').append(html);
+					authorViewPage++;
+					if ((authorViewPage * 5) > authorTotalCnt) {
+						$('a.moreAuthor').hide();
+					}
+				}
+			});
+		});
+		
+		$('a.morePublisher').on('click', function (e) {
+			e.preventDefault();
+			$.ajax({
+				url: 'table3.do',
+				data: 'allBookListStr=' + $('input#allBookListStr').val() + '&viewPage=' + (publisherViewPage + 1),
+				type: 'post',
+				success: function (html) {
+					$('a.morePublisher').parent('p').prev('ul').append(html);
+					publisherViewPage++;
+					if ((publisherViewPage * 5) > publisherTotalCnt) {
+						$('a.morePublisher').hide();
+					}
+				}
+			});
+		});
+
+		
+		$('a.moreFormcode').on('click', function (e) {
+			e.preventDefault();
+			$.ajax({
+				url: 'table5.do',
+				data: 'allBookListStr=' + $('input#allBookListStr').val() + '&viewPage=' + (formcodeViewPage + 1),
+				type: 'post',
+				success: function (html) {
+					$('a.moreFormcode').parent('p').prev('ul').append(html);
+					formcodeViewPage++;
+					if ((formcodeViewPage * 5) > formcodeTotalCnt) {
+						$('a.moreFormcode').hide();
+					}
+				}
+			});
+		});
+
+		
+		$('a.moreYear').on('click', function (e) {
+			e.preventDefault();
+			$.ajax({
+				url: 'table4.do',
+				data: 'allBookListStr=' + $('input#allBookListStr').val() + '&viewPage=' + (yearViewPage + 1),
+				type: 'post',
+				success: function (html) {
+					$('a.moreYear').parent('p').prev('ul').append(html);
+					yearViewPage++;
+					if ((yearViewPage * 5) > yearTotalCnt) {
+						$('a.moreYear').hide();
+					}
+				}
+			});
+		});
+
+		$('#vk-popup').on('click', function (e) {
+			PopupVirtualKeyboard.toggle('search_text', 'vk');
+		});
+
+		$('#toggleLibList').on('click', function (e) {
+			$('div#libraryList').slideToggle(function () {
+				if (!$('div#libraryList').is(':visible')) {
+					$('div#libraryList input:checkbox').prop('checked', false);
+					$('div#libraryList input:checkbox[searched=true]').prop('checked', true);
+				}
+			});
+		});
+
+		$('#checkAll').change(function (e) {
+			$('div#libraryList input:checkbox').prop('checked', $(this).prop('checked'));
+		});
+
+		$('#checkGuAll').change(function (e) {
+			$('div.guLipLibrary input:checkbox').prop('checked', $(this).prop('checked'));
+		});
+
+		$('#checkDongAll').change(function (e) {
+			$('div.dongLibrary input:checkbox').prop('checked', $(this).prop('checked'));
+		});
+
+		$('#checkSiAll').change(function (e) {
+			$('div.siLipLibrary input:checkbox').prop('checked', $(this).prop('checked'));
+		});
+
+		$('#checkAllBook').change(function (e) {
+			$('input.checkBook').prop('checked', $(this).prop('checked'));
+		});
+
+		$('li.li-group a.bi').on('click', function () {
+			$(this).parent('li').toggleClass('active');
+		});
+
+		$('a#addMyLib').on('click', function (e) {
+			e.preventDefault();
+			var len = $('input.checkBook:checked').length;
+			if (len < 1) {
+				alert('선택된 도서가 없습니다.');
+				return false;
+			}
+
+			var checkList = $('#librarySearch input[name="print_param"]:checked').clone();
+			$('#basket').append(checkList);
+			$('#basket input').attr('name', 'strList');
+			doAjaxPost($('form#basket'));
+			//내 보관함 이동.
+		});
+
+		$('#do-submit-search').on('click', function (e) {
+			e.preventDefault();
+			$('#do-search').click();
+		});
+
+		$('#do-submit-search2').on('click', function (e) {
+			e.preventDefault();
+			var val = $(this).val();
+			$('input#viewPage').val('1');
+			$('#librarySearch #do-search').click();
+		});
+
+		$('#librarySearch #search_text').on('keyup', function (e) {
+			switch (e.keyCode) {
+				case 8:  // Backspace
+				case 9:  // Tab
+				case 13: // Enter
+				case 37: // Left
+				case 38: // Up
+				case 39: // Right
+				case 40: // Down
+					break;
+
+				default:
+					$.ajax({
+						type: 'GET',
+						async: true,
+						url: 'autoFill.do',
+						data: 'searchKeyword=' + encodeURIComponent($(this).val()),
+						success: function (response) {
+							var autofillArr = response;
+							var autoFillStr = [];
+							$.each(autofillArr, function (i, v) {
+								autoFillStr.push('<a class="autoText">' + v + '</a>');
+							});
+							$('#autoFill').html(autoFillStr.join(','));
+							$('a.autoText').on('click', function (e) {
+								e.preventDefault();
+								$('#librarySearch #search_text').val($(this).text());
+								$('#librarySearch #do-search').click();
+							});
+						},
+						error: function (e) {
+						}
+					});
+			}
+		});
+		$('a.showSlide').on('click', function (e) {
+			e.preventDefault();
+			var bci = $(this).parents('div.bif').next('div.bci');
+			var toggleState = $(bci).is(':hidden');
+			if (toggleState) {
+				$(bci).load('index_detail.do?vLoca=' + $(this).attr('vLoca') + '&vCtrl=' + $(this).attr('vCtrl'), function () {
+					$(bci).slideToggle();
+				});
+			} else {
+				$(bci).slideToggle();
+			}
+		});
+
+		$('a.goDetail').on('click', function (e) {
+			e.preventDefault();
+
+			$('input#isbn').val($(this).attr('isbn'));
+			$('input#manageCode').val($(this).attr('manageCode'));
+			$('input#regNo').val($(this).attr('regNo'));
+
+			var formData = serializeParameter(['regNo', 'isbn', 'menu_idx', 'manageCode']);
+			formData += '&booktype=' + $('input[type=radio][name=booktype]:checked').val();
+			doGetLoad('detail.do', formData);
+
+		});
+
+
+		$('div#search-results img').on('error', function () {
+		});
+
+		$('a#excelDownload').on('click', function (e) {
+			e.preventDefault();
+			var clone = $('form#librarySearch').clone();
+			$(clone).attr('id', 'cloneForm');
+			$(clone).css('display', 'none');
+			$(clone).append('<input name="excel_type" value="SEARCH">');
+			$(clone).attr('action', 'excelDownload.do');
+			$(clone).attr('onsubmit', '');
+			$('form#librarySearch').after(clone);
+			$(clone).submit();
+		});
+
+		$('div#hotTrend').load('hotTrend.do');
+		
+
+		$('a.resve-req').off().on('click', function (e) {
+			e.preventDefault();
+			if (!confirm('예약 신청 하시겠습니까?')) {
+				return false;
+			}
+			$('#resveReqForm #editMode').val('ADD');
+			$('#resveReqForm #bookkey').val($(this).attr('bookkey'));
+			$('#resveReqForm #booktype').val($(this).attr('booktype'));
+
+			if (doAjaxPost($('#resveReqForm'))) {
+				location.reload();
+			}
+		});
+
+		$('a.nightLoan').on('click', function (e) {
+			e.preventDefault();
+			$('#nightLoanForm #editMode').val('ADD');
+			$('#nightLoanForm #bookkey').val($(this).attr('bookkey'));
+			$('#nightLoanForm #booktype').val($(this).attr('booktype'));
+
+			if (doAjaxPost($('#nightLoanForm'))) {
+
+			}
+		});
+
+		$('a#ageLoanBestBtn').on('click', function (e) {
+			e.preventDefault();
+			$('div#ageLoanBest').html(
+					'<div style="text-align: center; padding-top: 100px;">' +
+					'<img id="loading_img" alt="loading" src="/resources/common/img/viewLoading.gif" />' +
+					'<br/><br/>' +
+					'대출 순위 불러오는 중' +
+					'</div>'
+			);
+			$('div#ageLoanBest').load('ageLoanBest.do');
+			$('div#ageLoanBest').dialog({
+				width: 1100,
+				height: 500,
+				resizable: true,
+				modal: true
+			});
+		});
+
+		
+		$('a.addBasket').on('click', function (e) {
+			e.preventDefault();
+			if (!confirm('택배 보관함에  추가 하시겠습니까?')) {
+				return false;
+			}
+			$('#basketReqForm #book_key').val($(this).data('basket'));
+
+			if (doAjaxPost($('#basketReqForm'))) {
+				if (confirm('보관함에 추가되었습니다. 보관함으로 이동하시겠습니까?')) {
+					location.href = '/dj/intro/search/deliveryBasket/index.do?menu_idx=0';
+				}
+			}
+		});
+
+		$('a.sangho').on('click', function (e) {
+			e.preventDefault();
+			$('form#sanghoReqForm input[name=isbn]').val($(this).attr('isbn'));
+			$('form#sanghoReqForm input[name=manageCode]').val($(this).attr('manageCode'));
+			$('form#sanghoReqForm input[name=regNo]').val($(this).attr('regNo'));
+			$('form#sanghoReqForm').submit();
+		});
+
+		$('a.btn_print').on('click', function (e) {
+			e.preventDefault();
+
+			var title = $(this).parents('div').children('div.box').children('div.item').children('div.bif').children('a').text();
+
+			var shelfLocName = $(this).attr('shelfLocName');
+			var callNo = $(this).attr('callno');
+			var regNo = $(this).attr('regNo');
+// 		var param = 'callNoPrint=동작구 통합도서관//////';
+			var param = 'callNoPrint=' + title + '///' + shelfLocName + '///' + callNo + '///' + regNo;
+			window.open("callNoPrint.do?" + encodeURI(param.replace(/&/g, '%26')), "", "width=510, height=225");
+		});
+
+		if ('false' == 'true') {
+			$('input[name=libraryCodes]').prop('checked', true);
+		} else {
+			var aa = '[ALL, GuALL, DongALL, SiALL]';
+			var bb = aa.replace(/\s/gi, '').replace(/lib_/gi, '');
+			if (bb.indexOf('MA,MK,MC,MD,MF,ME,MH,MJ,ML,MN') > -1) {
+				$('input#checkGuAll').prop('checked', true);
+			}
+			if (bb.indexOf('NA,NB,NN,NH,NJ,NK,NL,NM,NC,ND,NE,NF,NP,NQ,NG') > -1) {
+				$('input#checkDongAll').prop('checked', true);
+			}
+			if (bb.indexOf('PD,PG,PE,PC,PH,PA,PF,PB') > -1) {
+				$('input#checkSiAll').prop('checked', true);
+			}
+		}
+
+		$('a.closeBtn1').on('click', function () {
+			if ($("#guLipLibrarySection").css("display") != "none") {
+				$("#guLipLibrarySection").slideUp();
+				$("a.closeBtn1").text('열기');
+			} else {
+				$("#guLipLibrarySection").slideDown();
+				$("a.closeBtn1").text('닫기');
+			}
+		});
+
+		$('a.closeBtn2').on('click', function () {
+			if ($("#dongLibrarySection").css("display") != "none") {
+				$("#dongLibrarySection").slideUp();
+				$("a.closeBtn2").text('열기');
+			} else {
+				$("#dongLibrarySection").slideDown();
+				$("a.closeBtn2").text('닫기');
+			}
+		});
+
+		$('a.closeBtn3').on('click', function () {
+			if ($("#siLipLibrarySection").css("display") != "none") {
+				$("#siLipLibrarySection").slideUp();
+				$("a.closeBtn3").text('열기');
+			} else {
+				$("#siLipLibrarySection").slideDown();
+				$("a.closeBtn3").text('닫기');
+			}
+		});
+
+		$('a.unmannedloanreserve').on('click', function (e) {
+			e.preventDefault();
+			$('form#unmannedloanreserveForm input[name=bookkey]').val($(this).attr('bookkey'));
+			$('form#unmannedloanreserveForm input[name=regNo]').val($(this).attr('regno'));
+			$('form#unmannedloanreserveForm input[name=manageCode]').val($(this).attr('managecode'));
+
+			$('#unmannedloanreserveForm').submit();
+		});
+
+		
+
+		
+	});
+	$(document).on("keyup", "input:text[numberOnly]", function () {
+		$(this).val($(this).val().replace(/[^0-9]/gi, ""));
+	});
+
+	let libraryIdCounter = 1;
+
+	const guLibraryList = [
+		{ code: 'lib_MK', name: '김영삼도서관' },
+		{ code: 'lib_ML', name: '까망돌도서관' },
+		{ code: 'lib_MA', name: '사당솔밭도서관' },
+		{ code: 'lib_MN', name: '신대방누리도서관' },
+		{ code: 'lib_MC', name: '동작영어마루도서관' },
+		{ code: 'lib_MF', name: '약수도서관' },
+		{ code: 'lib_ME', name: '동작샘터도서관' },
+		{ code: 'lib_MD', name: '대방어린이도서관' },
+		{ code: 'lib_MH', name: '다울작은도서관' },
+		{ code: 'lib_MP', name: '신대방햇살' },
+		{ code: 'lib_MJ', name: '국사봉숲속작은도서관' }
+	];
+
+	const dongLibraryList = [
+		{ code: 'lib_NA', name: '노량진1동 작은도서관' },
+		{ code: 'lib_NB', name: '노량진2동 작은도서관' },
+		{ code: 'lib_NH', name: '사당1동 작은도서관' },
+		{ code: 'lib_NJ', name: '사당2동 작은도서관' },
+		{ code: 'lib_NK', name: '사당3동 작은도서관' },
+		// { code: 'lib_NL', name: '사당4동 작은도서관' },
+		{ code: 'lib_NM', name: '사당5동 작은도서관' },
+		{ code: 'lib_NC', name: '상도1동 작은도서관' },
+		{ code: 'lib_ND', name: '상도2동 작은도서관' },
+		{ code: 'lib_NE', name: '상도3동 작은도서관' },
+		{ code: 'lib_NF', name: '상도4동 작은도서관' },
+		{ code: 'lib_NP', name: '신대방1동 작은도서관' },
+		{ code: 'lib_NQ', name: '신대방2동 작은도서관' },
+		{ code: 'lib_NG', name: '흑석동 작은도서관' },
+		{ code: 'lib_NN', name: '대방동 작은도서관' }
+	];
+
+	const siLibraryList = [
+		{ code: 'lib_PG', name: '담소작은도서관' },
+		{ code: 'lib_PE', name: '상도중앙작은도서관' },
+		{ code: 'lib_PC', name: '성대골 어린이도서관' },
+		{ code: 'lib_PH', name: '아트&힐링작은도서관' },
+		{ code: 'lib_PF', name: '지혜샘터작은도서관' },
+		{ code: 'lib_PB', name: '행복한래미안작은도서관' },
+		// { code: 'lib_PJ', name: '양문작은도서관' },
+		{ code: 'lib_NR', name: '만나작은도서관' }
+	];
+
+
+	$(document).ready(function() {
+		let libraryCodes = "[ALL, GuALL, DongALL, SiALL]";
+		const selectedCodesArray = libraryCodes.length > 0 ? libraryCodes.replace('[', '').replace(']', '').split(', ') : [];
+		let isChecked = selectedCodesArray.length === 1 && selectedCodesArray[0] === 'ALL';
+
+		if (isChecked) {
+			$('#checkGuAll, #checkSiAll, #checkDongAll').prop('checked', true);
+		}
+
+		const librarySections = [
+			{ list: guLibraryList, sectionId: '#guLipLibrarySection', allCheckboxId: '#checkGuAll' },
+			{ list: dongLibraryList, sectionId: '#dongLibrarySection', allCheckboxId: '#checkDongAll' },
+			{ list: siLibraryList, sectionId: '#siLipLibrarySection', allCheckboxId: '#checkSiAll' },
+		];
+
+		let libraryIdCounter = 0;
+
+		for (let section of librarySections) {
+			renderLibrarySection(section.list, section.sectionId, section.allCheckboxId);
+		}
+
+		function renderLibrarySection(list, sectionId, allCheckboxId) {
+			const $section = $(sectionId);
+			for (let library of list) {
+				let libraryId = 'libraryCodes' + libraryIdCounter++;
+				let isCheckedText = isChecked || selectedCodesArray.includes(library.code) ? 'checked' : '';
+
+				let libraryHtml =
+						'<li>' +
+						'<span class="chk srch">' + 
+						'  <input id="' + libraryId + '" name="libraryCodes" type="checkbox" value="' + library.code + '" ' + isCheckedText + ' />' +
+						'  <label for="' + libraryId + '">' + library.name + '</label>' +
+						'</span>' +
+						//'  <input type="hidden" name="_libraryCodes" value="on" />' +
+						'</li>';
+
+				$section.append(libraryHtml);
+			}
+
+			$section.on('change', 'input[type="checkbox"]', function () {
+				updateAllCheckboxState(allCheckboxId, $section);
+			});
+
+			$(allCheckboxId).on('change', function () {
+				toggleAllCheckboxes(this, $section);
+			});
+		}
+
+		function updateAllCheckboxState(allCheckboxId, $section) {
+			const allChecked = $section.find('input[type="checkbox"]').length === $section.find('input[type="checkbox"]:checked').length;
+			$(allCheckboxId).prop('checked', allChecked);
+		}
+
+		function toggleAllCheckboxes(allCheckbox, $section) {
+			const isChecked = $(allCheckbox).prop('checked');
+			$section.find('input[type="checkbox"]').prop('checked', isChecked);
+		}
+	})
+</script>
+
+<form id="basket" name="basket" action="/dj/module/myStorage/saveItem.do" method="post" onsubmit="return false;">
+	<input type="hidden" name="_csrf" value="dbe869c0-6923-4992-8ef3-6c6d0fb35d27" />
+	<input type="hidden" id="reg_no_basket" name="reg_no">
+	<input type="hidden" id="manage_code_basket" name="manage_code">
+	<input type="hidden" id="book_type_basket" name="book_type">
+</form>
+
+<form id="basketReqForm" action="/dj/intro/search/saveDeliveryBasket.do">
+	<input type="hidden" id="book_key" name="book_key">
+	<input type="hidden" name="editMode" value="ADD">
+</form>
+<form id="sanghoReqForm" action="/dj/intro/search/sanghoForm.do" method="post">
+	<input type="hidden" name="menu_idx" value="111">
+	<input type="hidden" name="isbn" value="">
+	<input type="hidden" name="regNo" value="">
+	<input type="hidden" name="booktype" value="BOOK">
+	<input type="hidden" name="manageCode" value="">
+</form>
+<form id="unmannedloanreserveForm" action="unmannedForm.do" method="post">
+	<input type="hidden" name="bookkey" value="111">
+	<input type="hidden" name="booktype" value="BOOK">
+	<input type="hidden" name="regNo">
+	<input type="hidden" name="manageCode">
+	<input type="hidden" name="menu_idx" value="111">
+</form>
+<form id="excelForm" style="display: none;" action="excelDownload.do" method="post">
+	<input id="excel_search_type2" name="search_type2" type="hidden" value=""/>
+	<input id="excel_search_type" name="search_type" type="hidden" value="TITLE"/>
+	<input id="excel_search_text" name="search_text" type="hidden" value="파이썬"/>
+	<input id="excel_search_library" name="search_library" type="hidden" value=""/>
+	<input id="excel_search_form_code" name="search_form_code" type="hidden" value=""/>
+	<input id="excel_search_kdc" name="search_kdc" type="hidden" value=""/>
+	<input id="excel_search_athor" name="search_athor" type="hidden" value=""/>
+	<input id="excel_search_year" name="search_year" type="hidden" value=""/>
+	<input id="excel_search_publisher" name="search_publisher" type="hidden" value=""/>
+	<input id="excel_menu_idx" name="menu_idx" type="hidden" value="111"/>
+	<input id="excel_viewPage" name="viewPage" type="hidden" value="1"/>
+	<input id="excel_excel_type" name="excel_type" value="SEARCH" type="hidden" value=""/>
+</form>
+<form id="storageReqForm" style="display: none;">
+	<input type="hidden" name="_csrf" value="">
+</form>
+<form id="detailForm" action="detail.do" method="post">
+	<input id="menu_idx" name="menu_idx" type="hidden" value="111"/>
+	<input id="vLoca" name="vLoca" type="hidden" value=""/>
+	<input id="vCtrl" name="vCtrl" type="hidden" value=""/>
+	<input id="vImg" name="vImg" type="hidden" value=""/>
+	<input id="isbn" name="isbn" type="hidden" value=""/>
+	<input id="tid" name="tid" type="hidden" value=""/>
+	<input id="regNo" name="regNo" type="hidden" value=""/>
+</form>
+
+<form id="resveReqForm" action="resve/save.do" method="post">
+	<input id="editMode" name="editMode" type="hidden" value="ADD"/>
+	<input id="bookkey" name="bookkey" type="hidden" value=""/>
+	<input type="hidden" id="booktype" name="booktype" value="BOOK">
+	<input id="menu_idx" name="menu_idx" type="hidden" value="111"/>
+</form>
+
+<form id="nightLoanForm" action="nightLoan/save.do" method="post">
+	<input id="editMode" name="editMode" type="hidden" value="ADD"/>
+	<input id="bookkey" name="bookkey" type="hidden" value=""/>
+	<input id="booktype" name="booktype" type="hidden" value="BOOK"/>
+	<input id="expire_date_cnt" name="expire_date_cnt" type="hidden" value=""/>
+	<input id="menu_idx" name="menu_idx" type="hidden" value="111"/>
+</form>
+
+<form id="librarySearch" action="index.do" method="POST">
+	<input id="allBookListStr" name="allBookListStr" type="hidden" value=""/>
+	<input id="search_type2" name="search_type2" type="hidden" value=""/>
+	<input id="search_library" name="search_library" type="hidden" value=""/>
+	<input id="search_form_code" name="search_form_code" type="hidden" value=""/>
+	<input id="search_kdc" name="search_kdc" type="hidden" value=""/>
+	<input id="search_year" name="search_year" type="hidden" value=""/>
+	<input id="search_athor" name="search_athor" type="hidden" value=""/>
+	<input id="search_publisher" name="search_publisher" type="hidden" value=""/>
+	<input id="menu_idx" name="menu_idx" type="hidden" value="111"/>
+	<input id="viewPage" name="viewPage" type="hidden" value="1"/>
+	<input id="manageCode" name="manageCode" type="hidden" value=""/>
+	<div class="search-wrap">
+		
+		
+		<div class="search-form">
+
+			<div class="box1" style="width: 15%;">
+				<select id="search_type" name="search_type" class="selectmenu" style="width:100%;margin-top:2px;font-size:105%;padding-left:3px;" title="검색조건">
+					<option value="L_TITLE">서명</option>
+					<option value="L_AUTHOR">저자</option>
+					<option value="L_PUBLISHER">발행자</option>
+					<option value="L_KEYWORD">키워드</option>
+				</select>
+			</div>
+
+
+			<div class="box">
+				<div class="b1">
+					<input id="search_text" name="search_text" style="ime-mode:active; width:90%;" title="검색어 입력" placeholder="검색어를 입력하세요." type="text" value="파이썬" class="text" onfocus="PopupVirtualKeyboard.attachInput(this)" value="파이썬"/>
+				</div>
+				<div class="b2">
+					<button id="do-search"><i class="fa fa-search"></i><span class="blind">검색</span></button>
+				</div>
+			</div>
+
+			<div id="autoFill" class="autoFill">
+			</div>
+
+		</div>
+
+		<div id="libraryList" class="" style="margin-bottom:15px;overflow:hidden">
+			<div class="chk srch">
+				<input id="checkAll" name="libraryCodes" type="checkbox" value="ALL" checked="checked"/><label for="checkAll"> 전체도서관 선택</label><input type="hidden" name="_libraryCodes" value="on"/>
+			</div>
+		</div>
+
+		<div id="libraryList" class="searchLib guLipLibrary" style="margin-bottom:15px;overflow:hidden">
+			<p class="all">
+				<span class="chk srch"><input id="checkGuAll" name="libraryCodes" type="checkbox" value="GuALL"/>
+				<label for="checkGuAll"> 구립도서관 전체선택</label>
+				<input type="hidden" name="_libraryCodes" value="on"/></span>
+
+				<a href="#CLOSE" class="closeBtn1">닫기</a>
+			</p>
+
+			<ul id="guLipLibrarySection"></ul>
+
+		</div>
+
+		<div id="libraryList" class="searchLib dongLibrary" style="margin-bottom:15px;overflow:hidden">
+			<p class="all">
+				<span class="chk srch"><input id="checkDongAll" name="libraryCodes" type="checkbox" value="DongALL"/>
+				<label for="checkDongAll"> 동작은도서관 전체선택</label>
+				<input type="hidden" name="_libraryCodes" value="on"/></span>
+
+				<a href="#CLOSE" class="closeBtn2">닫기</a>
+			</p>
+			<ul id="dongLibrarySection"></ul>
+		</div>
+
+		<div id="libraryList" class="searchLib siLipLibrary" style="margin-bottom:15px;overflow:hidden">
+			<p class="all">
+				<span class="chk srch"><input id="checkSiAll" name="libraryCodes" type="checkbox" value="SiALL"/>
+				<label for="checkSiAll"> 사립작은도서관 전체선택</label>
+				<input type="hidden" name="_libraryCodes" value="on"/></span>
+
+				<a href="#CLOSE" class="closeBtn3">닫기</a>
+			</p>
+			<ul id="siLipLibrarySection"></ul>
+		</div>
+
+		<div class="inputFunction" style="text-align:right">
+			<p style="height:auto">
+				<a href="#fa-keyboard-o" id="vk-popup" class="btn" style="line-height:140%" title="새창열림">
+					<i class="fa fa-keyboard-o" style="font-size:19px;color:#777"></i><span>다국어입력기</span>
+				</a>
+				
+			</p>
+		</div>
+
+		<div class="search-info">
+			
+				검색결과 '<b class="og"><i>파이썬</i></b>' 총 <b>0</b>건이 검색되었습니다.
+			
+		</div>
+		<br/>
+		<div class="booktype-box">
+			<span class="radi"><input id="booktype1" name="booktype" checked="checked" type="radio" value="BOOK" checked="checked"/><label for="booktype1">도서</label></span>
+			<span class="radi"><input id="booktype2" name="booktype" style="margin-left:28px;" type="radio" value="NONBOOK"/><label for="booktype2">비도서</label></span>
+			<a href="#" class="btn" id="do-submit-search2" style='font-size:12px;'>확인</a>
+		</div>
+
+		
+		<div class="smain">
+			<div class="box" style="min-height: 500px;">
+				<div class="ws-toolbar" >
+
+					<div class="">
+						<input type="hidden" name="" value="on"/>
+						<input id="checkAllBook" name="" type="checkbox" value="Y"/>
+						<label for="checkAllBook">전체선택</label>
+					</div>
+
+					<div class="control">
+						<a href="#" id="addMyLib" class="btn" title="새창열림"><span>내보관함</span><i class="fa fa-plus"></i></a>
+						<select id="sortField" name="sortField" class="selectmenu" style="width:90px;" title="정렬조건">
+							<option value="NONE" selected="selected">정렬없음</option>
+							<option value="TITLE">서명</option>
+							<option value="AUTHOR">저자</option>
+							<option value="PUBLISHER">출판사</option>
+							<option value="PUB_YEAR">발행년도</option>
+						</select>
+						<select id="sortType" name="sortType" class="selectmenu" style="width:90px;" title="정렬방식">
+							<option value="ASC">오름차순</option>
+							<option value="DESC" selected="selected">내림차순</option>
+						</select>
+						<select id="rowCount" name="rowCount" class="selectmenu" style="width:70px;" title="노출건수">
+							<option value="10" selected="selected">10건</option>
+							<option value="20">20건</option>
+							<option value="30">30건</option>
+							<option value="40">40건</option>
+							<option value="50">50건</option>
+							<option value="100">100건</option>
+						</select>
+						<a href="#" class="btn" id="do-submit-search">확인</a>
+					</div>
+
+				</div>
+				
+					<div style="padding:10px 0">
+						<p style="text-align:center;">
+							<b>찾으시는 자료가 없으신가요? 희망도서 신청을 이용해보세요.</b>
+						</p>
+						<p style="text-align:center;">
+							<a href="/dj/intro/search/hope/index.do?menu_idx=69" class="btn btn3">희망도서신청 바로가기</a>
+						</p>
+					</div>
+				
+				<div id="search-results" class="search-results">
+					
+					
+					
+
+
+<div id="cms_paging" class="dataTables_paginate">
+
+	
+	<span>
+
+
+	
+	<a id="1" href="" class="paginate_button current" keyValue="1">1</a>
+
+
+
+
+
+
+	</span>
+</div>
+
+
+<script type="text/javascript">
+$(document).ready(function() {
+	jQuery.ajaxSettings.traditional = true;
+	
+	$('div#cms_paging a').on('click', function(e) {
+		
+		//location.hash = '#'+$(this).attr('keyValue');
+		e.preventDefault();
+		$('#viewPage').attr('value', parseInt($(this).attr('keyValue')));
+		var param = serializeObject($('#librarySearch'));
+			
+		$('input#search_type2').val($('select#search_type option:selected').val());
+		$('#librarySearch').submit();
+	
+	});
+	$('body').scrollTop(0);
+	
+});
+</script>
+				</div>
+			</div>
+
+			<div class="ws-filter" id="ageLoanBestDiv" style="padding-bottom: 20px; display: none;">
+				<a id="ageLoanBestBtn" class="btn" style="line-height:140%">
+					<i class="fa fa-keyboard-o" style="font-size:19px;color:#777"></i><span>연령별 대출순위</span>
+				</a>
+			</div>
+
+			<div class="ws-filter" id="hotTrend" style="height: 350px;">
+				<h4>인기 검색어 10</h4>
+				<div style="text-align: center; padding-top: 105px;">
+					불러오는 중...
+				</div>
+			</div>
+		</div>
+			
+	</div>
+</form>
+<div id="vk"></div>
+<div id="ageLoanBest" class="dialog-common" title="연령별 대출 리스트" style="display: none;">
+	<div style="text-align: center; padding-top: 100px;">
+		<img id="loading_img" alt="loading" src="/resources/common/img/viewLoading.gif"/>
+		<br/><br/>
+		대출 순위 불러오는 중
+	</div>
+</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="end"></div>
+		</div>
+
+		<div id="footer">
+			
+
+
+
+
+		<div class="info">
+			<div class="section">
+				<ul>
+					<li><a href="/dj/sitemap/index.do?menu_idx=62">사이트맵</a></li>
+					<li><a href="/dj/html.do?menu_idx=70"><b style="color:#FFFF00;">개인정보처리방침</b></a></li>
+					<!-- <li><a href="/dj/html.do?menu_idx=72">이용약관</a></li> -->
+					<li><a href="/dj/html.do?menu_idx=71">영상정보처리기기운영방침</a></li>
+					<!-- <li><a href="/dj/html.do?menu_idx=43">고객서비스헌장</a></li>
+					<li><a href="/dj/html.do?menu_idx=76">오시는길</a></li> -->
+					<li><a href="/board/boardFile/download/323/1410148/396533.do">조례</a></li>
+					<!-- <li><a href="/board/boardFile/download/323/1274618/371364.do" title="도서관운영내부규정(새창열림)">규정</a></li> -->
+				</ul>
+			</div>
+		</div>
+		<div class="section">
+
+			<div class="address">
+				<dl>
+					<dd>(우)06928 서울특별시 동작구 장승배기로 70, 동작구청 신청사 <br> <br>동작문화재단 대표전화 02-826-9330</dd><br><br>
+					<dd>※ 도서관 이용 및 서비스 문의는 각 도서관으로 연락하여 주시기 바랍니다.</dd>
+					<dd class="tel"> <!-- FAX  --></dd>
+				</dl>
+				<span>Copyright Ⓒ Dongjak. All Rights Reserved.</span>
+			</div>
+
+			<select class="site_select" id="locationSite" title="유관기관 및 타 기관 사이트 바로가기">
+				<option>유관기관 및 타 기관 사이트 바로가기</option>
+				
+					<option value="http://www.dongjak.go.kr" title="동작구청">동작구청</option>
+				
+					<option value="http://www.idfac.or.kr" title="동작문화재단">동작문화재단</option>
+				
+					<option value="http://lib.seoul.go.kr" title="서울도서관">서울도서관</option>
+				
+					<option value="http://www.nl.go.kr" title="국립중앙도서관">국립중앙도서관</option>
+				
+					<option value="https://www.riss.kr" title="학술연구정보서비스">학술연구정보서비스</option>
+				
+					<option value="https://blog.naver.com/kplm2020" title="구립 김영삼도서관 공식블로그">구립 김영삼도서관 공식블로그</option>
+				
+					<option value="http://www.nanet.go.kr" title="국회도서관">국회도서관</option>
+				
+					<option value="http://library.scourt.go.kr" title="법원도서관">법원도서관</option>
+				
+					<option value="http://infor.kbll.or.kr" title="한국점자도서관">한국점자도서관</option>
+				
+					<option value="http://lib.chongshin.ac.kr" title="총신대학교도서관">총신대학교도서관</option>
+				
+					<option value="http://www.lib.cau.ac.kr" title="중앙대학교도서관">중앙대학교도서관</option>
+				
+					<option value="http://oasis.ssu.ac.kr" title="숭실대학교도서관">숭실대학교도서관</option>
+				
+					<option value="http://library.kaist.ac.kr" title="한국과학기술원 전자도서관">한국과학기술원 전자도서관</option>
+				
+			</select>
+			<a href="#move" class="sel-btn recommendSite11" title="새창열림">이동</a>
+
+			<div class="wa-mark">
+				<img src="/resources/homepage/dj/img/wa-mark-2025.png" alt="한국웹접근성 인증 마크">
+			</div>
+
+		</div>
+
+
+		</div>
+	</div>
+
+</body>
+</html>

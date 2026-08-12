@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=900" />
+	<title>SSO</title>
+	<!--[if lt IE 9]>
+	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]--> 
+	
+	<!--[if lt IE 7]>
+	<script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE8.js"></script>
+	<![endif]--> 
+	
+	<!--[if lt IE 9]>
+	<script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
+	<![endif]-->
+	
+	<!--[if lt IE 9]>
+	<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+	<![endif]-->
+</head>
+<body onload="getClientIp();">
+	<script type="text/javascript" src="/resources/passni/js/jquery-1.8.1.min.js"></script>
+	<script type="text/javascript">
+		function getClientIp(){
+	
+	    	var pni_client_ip = '';
+	    	var route = 'SEARCH';
+	    	var keyword = '파이썬';
+	    	var param = '';
+	    	
+	    	if(pni_client_ip == ''){
+	    		$.ajax({
+	        		type: 'POST',
+	        		url : 'https://sso.bucheon.go.kr/sso/api/cors/get/ip',
+	        		xhrFields: { withCredentials: true },
+	        		async: false,
+	        		success : function( result ) {
+	            		
+	            		if(result){
+	            			pni_client_ip = result.client_ip;
+	
+	            			var tempForm = $("<form/>", {
+	        					"action" : '/alpasq-kolas-daemon/sso/bcl/ssoProc.jsp',
+	        					"method" : "POST"
+	        				}).append($("<input/>", {
+	        					"type" : "hidden",
+	        					"id" : "pni_client_ip",
+	        					"name" : "pni_client_ip",
+	        					"value" : pni_client_ip
+	        				})).append($("<input/>", {
+	        					"type" : "hidden",
+	        					"id" : "route",
+	        					"name" : "route",
+	        					"value" : route
+	        				})).append($("<input/>", {
+	        					"type" : "hidden",
+	        					"id" : "keyword",
+	        					"name" : "keyword",
+	        					"value" : encodeURIComponent(keyword)
+	        				})).append($("<input/>", {
+	        					"type" : "hidden",
+	        					"id" : "param",
+	        					"name" : "param",
+	        					"value" : encodeURIComponent(param)
+	        				})).appendTo('body');
+	
+	        				tempForm.submit().remove();
+	                	}
+	        		}
+	        	});
+	    	}
+	    	
+	    }
+	</script>
+</body>
+</html>

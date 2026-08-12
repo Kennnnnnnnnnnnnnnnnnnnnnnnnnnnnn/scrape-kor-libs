@@ -1,0 +1,1401 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta id="_csrf" name="_csrf" th:content=""/>
+<meta id="_csrf_header" name="_csrf_header" th:content=""/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="경상북도교육청 통합도서관"/>
+<meta property="og:description" content="경상북도교육청 통합도서관"/>
+<meta property="og:url" content="http://www.gbelib.kr/gbelib/index.do"/>
+<link rel="canonical" href="http://www.gbelib.kr/gbelib/index.do">
+<meta name="description" content="경상북도교육청 통합도서관">
+<title>경상북도교육청 통합도서관 > 도서관서비스 > 이용안내 > 자료이용</title>
+<!--[if IE]>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="referrer" content="no-referrer"/>
+<link rel="stylesheet" type="text/css" href="/resources/common/css/fontawesome.min.css"/>
+<link rel="stylesheet" type="text/css" href="/resources/common/css/select2.min.css"/>
+<link rel="stylesheet" type="text/css" href="/resources/common/css/jquery.mmenu.css"/>
+<link rel="stylesheet" type="text/css" href="/resources/common/css/default_new_fullpage.css"/>
+<link rel="stylesheet" type="text/css" href="/resources/common/css/login.css"/>
+<link rel="stylesheet" type="text/css" href="/resources/board/css/default.css"/>
+<link rel="stylesheet" type="text/css" href="/resources/book/css/common.css"/>
+<link rel="stylesheet" type="text/css" href="/resources/homepage/gbelib/css/default_new.css"/>
+<link rel="stylesheet" type="text/css" href="/resources/homepage/gbelib/css/main_new.css"/>
+<!--[if lte IE 7]>
+<link rel="stylesheet" type="text/css" href="/resources/common/css/fontawesome-ie7.min.css"/>
+<![endif]-->
+<!--[if lte IE 8]>
+<link rel="stylesheet" type="text/css" href="/resources/homepage/gbelib/css/ie.css"/>
+<![endif]-->
+<script type="text/javascript" src="/resources/common/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="/resources/common/js/jquery-ui-1.12.0.min.js"></script>
+<script type="text/javascript" src="/resources/common/js/jquery-ui-1.12.0-datepicker.min.js"></script>
+<script type="text/javascript" src="/resources/common/js/jquery.bxslider.min.js"></script>
+<script type="text/javascript" src="/resources/common/js/jquery.mmenu.min.js"></script>
+<script type="text/javascript" src="/resources/common/js/default.js"></script>
+<script type="text/javascript" src="/resources/common/js/common.js"></script>
+<script type="text/javascript" src="/resources/homepage/gbelib/js/common.js"></script>
+<script type="text/javascript" src="/resources/homepage/gbelib/js/curation_index.js"></script>
+<script type="text/javascript" src="/resources/common/js/kakao.min.js"></script>
+</head>
+<body>
+
+<a href="#container" class="skip-to">본문 바로가기</a>
+<a href="#navi" class="skip-to">메뉴 바로가기</a><link rel="stylesheet" type="text/css" href="/resources/homepage/gbelib/css/sub.css"/>
+<script type="text/javascript">
+$(function() {
+	$('li#menu_83').addClass('active');
+	$('li#menu_93').addClass('active');
+	var halbaeNode = $('li#menu_83').parent().parent()[0];
+	if ( halbaeNode != null && halbaeNode.nodeName == 'LI' ) {
+		$(halbaeNode).addClass('active');
+	}
+});
+</script>
+
+<style>
+	.doc-info li a.btn{height:18px;line-height:15px;margin-top:-7px;margin-right:5px;}
+	.tnb{border-bottom:1px solid #e4e4e4;}
+</style>
+
+<div id="wrap">
+	<script>
+$(document).ready(function() {
+	$('#popup_open').on('click',function(){
+		var popup_count = '0';
+		
+		if (popup_count > 0) {
+			$('#all-popup-wrap').empty;
+			$('#all-popup-wrap').show();
+			$('#all-popup-wrap').load('popupAll.do', function() {
+			});
+		} else {
+			alert('등록된 팝업이 없습니다.');
+			return false;
+		}
+	})
+});
+</script>
+<div id="header">
+	<nav id="menu"></nav>
+
+	<div class="tnb">
+		<div class="util-left">
+			<ul>
+				<li class="geic"><a href="https://www.gbelib.kr/geic/index.do" target="_blank">교육청정보센터</a></li>
+				<li class="gbelib"><a href="https://www.gbelib.kr/elib/index.do" target="_blank">전자도서관</a></li>
+			</ul>
+		</div>
+		<div class="util-right">
+			<ul>
+			<li><a href="https://www.gbelib.kr/gbelib/intro/login/index.do?menu_idx=137">로그인</a></li>
+					<li><a href="https://www.gbelib.kr/gbelib/intro/join/index.do?menu_idx=136">회원가입</a></li>
+					<li><a href="https://www.gbelib.kr/gbelib/module/myDashBoard/index.do?menu_idx=154" class='tnb-box-1'>나의도서관</a></li>
+				</ul>
+		</div>
+	</div>
+
+
+<script>
+$(document).ready(function () {
+	const isMobile = window.innerWidth < 1025;
+
+	if (isMobile) {
+		// 모바일: click만 사용
+		$('#memberInfoBtn').on('click', function (e) {
+			e.preventDefault();
+			$('#member_layer, .calAll').toggle();
+		});
+
+		$('#closeMemberInfo').on('click', function (e) {
+			e.preventDefault();
+			$('#member_layer, .calAll').hide();
+		});
+	} else {
+		// PC: hover 유지
+		$('#memberInfoBtn, #member_layer')
+			.on('mouseenter', function () {
+				$('#member_layer, .calAll').show();
+			})
+			.on('mouseleave', function () {
+				$('#member_layer, .calAll').hide();
+			});
+	}
+});
+
+</script>
+<div id="memberInfo">
+	<div class="inbox" id="member_layer" style="display: none;">
+		<div class="calAll" >
+			<img class="boxnImg box1" id="loginIcon" src="/resources/common/img/login01.png" alt=""/>
+			<div class="loginInfo">
+				<div class="boxn box2_1">최근 로그인<br/> <span class="fontBlue"></span><br/></div>
+				
+				
+				<div class="boxn box3_1">최근 접속 IP<br/> <span class="fontBlue"></span></div>
+			</div>
+			
+			<div style="margin-top: -15px; text-align: center;"><img id="line" src="/resources/common/img/line01.png" style="width:96%;height: 6px;" alt="이미지 선모양" ></div> 
+			 
+			<div style="text-align: center;">
+				<a href="https://www.gbelib.kr/gbelib/intro/join/modifyForm.do?menu_idx=113" class="btn">회원정보수정</a>
+				<!-- <a href="https://www.gbelib.kr/gbelib/intro/join/reAgree.do?menu_idx=113" class="btn btnStyle">유지기간 연장</a> -->
+			</div>
+			
+			<!--
+			<div class="memberCon" style="margin-top: 10px;">
+				<div class="memberCon2">
+					<strong>개인정보 재동의 기간</strong>: <span class="fontRed">~</span><br/><br/>
+					<ol style="list-style-position: outside; list-style-type:disc; margin-left: 12px;">
+						<li>회원자격 유지기간을 연장하려면 아래의 연장 버튼을 클릭하세요.</li>
+					</ol>
+					<br/>
+				</div>
+			</div>
+			-->
+		</div>
+		<a href="#" id="closeMemberInfo" class="close"><i class="fa fa-close"></i></a>
+	</div>
+</div><div id="m-util">
+	<ul>
+		<!-- <li><a href="https://www.info.go.kr/" target="_blank">교육행정포털</a></li>
+		<li><a href="https://www.gbelib.kr/gbelib/index.do" target="_blank">통합공공도서관</a></li>
+		<li><a href="https://www.gbelib.kr/elib/index.do" target="_blank">전자도서관</a></li> -->
+		<li style="width:100%;"><a href="">모바일회원증</a></li>
+	</ul>
+</div>
+
+
+<div class="head">
+		<div class="Gnb">
+			<h2 class="blind">주메뉴</h2>
+			<div class="wide-sections">
+				<h1><a href="http://www.gbelib.kr/gbelib/index.do"><img src="/resources/homepage/gbelib/img/logo.png" alt="경상북도교육청 통합도서관"/></a></h1>
+				<div class="mmode m-menu">
+					<a href="#menu"><i class="fa fa-navicon"></i><span class="blind">메뉴</span></a>
+				</div>
+				<!-- <div class="mmode m-menu curation">
+					<a href="http://q.gbelib.kr/index.jsp?gid=6" target="_blank" title="큐레이션으로 이동"><img src="/../resources/common/img/curation_btn_mobile.png" alt="큐레이션 이동"></a>
+				</div> -->
+				<!-- menu S -->
+				<div class="g-menu">
+					<ul class="gnb-menu">
+<li class="List 1Depth menu1 menu_1"><a href="/gbelib/html.do?menu_idx=1" ><span>자료검색</span></a>
+<ul class="SubMenu">
+<li class="2Depth menu_150"><a href="/gbelib/intro/totalSearch/index.do?menu_idx=150" ><span>통합검색</span></a></li>
+<li class="2Depth menu_7"><a href="/gbelib/html/metasearch.do?menu_idx=7" ><span>메타검색</span></a></li>
+<li class="2Depth menu_12"><a href="/gbelib/intro/search/newBook/index.do?menu_idx=12" ><span>신착자료</span></a></li>
+<li class="2Depth menu_15"><a href="/gbelib/html.do?menu_idx=15" ><span>도서관협력망서비스</span></a>
+<ul>
+<li class="3Depth menu_29"><a href="/gbelib/html.do?menu_idx=29" ><span>책바다</span></a></li>
+<li class="3Depth menu_30"><a href="/gbelib/html.do?menu_idx=30" ><span>책나래</span></a></li></ul></li>
+<li class="2Depth menu_32"><a href="http://www.dlibrary.go.kr/" target="_blank"><span>국가전자도서관</span></a></li></ul></li>
+<li class="List 1Depth menu2 menu_2"><a href="/gbelib/html.do?menu_idx=2" ><span>독서문화행사</span></a>
+<ul class="SubMenu">
+<li class="2Depth menu_34"><a href="/gbelib/html.do?menu_idx=34" ><span>행사안내</span></a></li>
+<li class="2Depth menu_120"><a href="/gbelib/html.do?menu_idx=120" ><span>학교도서관지원</span></a></li>
+<li class="2Depth menu_121"><a href="/gbelib/html.do?menu_idx=121" ><span>특색사업</span></a></li></ul></li>
+<li class="List 1Depth menu3 menu_3"><a href="/gbelib/html.do?menu_idx=3" ><span>평생교육</span></a>
+<ul class="SubMenu">
+<li class="2Depth menu_149"><a href="/gbelib/html.do?menu_idx=149" ><span>평생교육안내</span></a></li>
+<li class="2Depth menu_123"><a href="/gbelib/module/teach/index.do?menu_idx=123&searchCate1=18" ><span>평생교육프로그램</span></a>
+<ul>
+<li class="3Depth menu_124"><a href="/gbelib/module/teach/index.do?menu_idx=124&searchCate1=18" ><span>전체</span></a></li>
+<li class="3Depth menu_46"><a href="/gbelib/module/teach/index.do?menu_idx=46&searchCate1=18&searchAge=11&program_age_div_arr=11" ><span>어린이 프로그램</span></a></li>
+<li class="3Depth menu_47"><a href="/gbelib/module/teach/index.do?menu_idx=47&searchCate1=18&searchAge=12&program_age_div_arr=12" ><span>청소년 프로그램</span></a></li>
+<li class="3Depth menu_48"><a href="/gbelib/module/teach/index.do?menu_idx=48&searchCate1=18&searchAge=13&program_age_div_arr=13" ><span>성인 프로그램</span></a></li>
+<li class="3Depth menu_49"><a href="/gbelib/module/teach/index.do?menu_idx=49&searchCate1=18&searchAge=14&program_age_div_arr=14" ><span>어르신 프로그램</span></a></li>
+<li class="3Depth menu_50"><a href="/gbelib/module/teach/index.do?menu_idx=50&searchCate1=18&searchAge=19&program_age_div_arr=19" ><span>부모&가족 프로그램</span></a></li></ul></li>
+<li class="2Depth menu_51"><a href="/gbelib/html.do?menu_idx=51" ><span>평생학습동아리</span></a></li>
+<li class="2Depth menu_148"><a href="/gbelib/html.do?menu_idx=148" ><span>강사은행</span></a></li>
+<li class="2Depth menu_126"><a href="/gbelib/html.do?menu_idx=126" ><span>평생학습관</span></a></li></ul></li>
+<li class="List 1Depth menu4 menu_5"><a href="/gbelib/html.do?menu_idx=5" ><span>도서관서비스</span></a>
+<ul class="SubMenu">
+<li class="2Depth menu_128"><a href="/gbelib/board/index.do?menu_idx=128&manage_idx=521" ><span>공지사항</span></a></li>
+<li class="2Depth menu_83"><a href="/gbelib/html.do?menu_idx=83" ><span>이용안내</span></a>
+<ul>
+<li class="3Depth menu_91"><a href="/gbelib/html.do?menu_idx=91" ><span>대출회원가입</span></a></li>
+<li class="3Depth menu_92"><a href="/gbelib/html.do?menu_idx=92" ><span>책이음서비스</span></a></li>
+<li class="3Depth menu_95"><a href="/gbelib/html.do?menu_idx=95" ><span>모바일앱</span></a></li>
+<li class="3Depth menu_129"><a href="/gbelib/html.do?menu_idx=129" ><span>자원봉사신청</span></a></li></ul></li>
+<li class="2Depth menu_85"><a href="/gbelib/html.do?menu_idx=85" ><span>순회문고</span></a></li>
+<li class="2Depth menu_88"><a href="/gbelib/html.do?menu_idx=88" ><span>디지털자료실좌석예약</span></a></li>
+<li class="2Depth menu_89"><a href="/gbelib/html.do?menu_idx=89" ><span>사서에게물어보세요</span></a></li>
+<li class="2Depth menu_130"><a href="/gbelib/board/index.do?menu_idx=130&manage_idx=522" ><span>자주하는질문</span></a></li></ul></li>
+<li class="List 1Depth menu5 menu_6"><a href="/gbelib/html.do?menu_idx=6" ><span>도서관소개</span></a>
+<ul class="SubMenu">
+<li class="2Depth menu_97"><a href="/gbelib/html.do?menu_idx=97" ><span>경상북도교육청 통합도서관 소개</span></a></li>
+<li class="2Depth menu_131"><a href="/gbelib/html.do?menu_idx=131" ><span>도서관현황</span></a></li>
+<li class="2Depth menu_160"><a href="/gbelib/html.do?menu_idx=160" ><span>자료현황</span></a></li>
+<li class="2Depth menu_103"><a href="/gbelib/board/index.do?menu_idx=103&manage_idx=523" ><span>도서관뉴스</span></a></li></ul></li></ul>
+<a href="/gbelib/sitemap/index.do?menu_idx=141" class="last-box-a"><img src="/resources/common/img/sitemap_icon_b.png" alt="사이트맵" class="last-box"></a>
+
+					<div class="mmode">
+						<a href="https://www.gbelib.kr/gbelib/intro/login/index.do?menu_idx=121" class="btn1">
+									<i class="fa fa-lock"></i>
+									<span>로그인</span>
+								</a>
+								<a href="https://www.gbelib.kr/gbelib/intro/join/index.do?menu_idx=120" class="btn2">
+									<i class="fa fa-user-plus"></i>
+									<span>회원가입</span>
+								</a>
+							</div>
+				</div>
+				<!-- menu E -->
+			</div>
+			<div class="mask">&nbsp;</div>
+		</div>
+	</div>
+</div><div id="container" class="subpage">
+		<div class="sub-visual">
+			<div class="doc-info">
+				<div class="doc-title">
+					<h3 style="margin-top:10px;">자료이용</h3>
+					<ol>			
+						<li class="first"><a href="/gbelib/index.do"><i class="fa fa-home"></i>&nbsp;<span>HOME</span></a></li>
+						</ol>
+					<div class="sns-box">
+						<script>
+$(document).ready(function() {
+	$('a.shareBtn').on('click', function(e) {
+	    if($('div#share_layer').css('display') == 'none') {
+	           $('div#share_layer').show();
+	           $('div.shareAllBtn').show();
+	           e.preventDefault();
+	    } else {
+	           $('div#share_layer').hide();
+	           $('div.shareAllBtn').hide();
+	           e.preventDefault();
+	    }
+	});
+	$('a#closeshareBox').on('click', function(e) {
+		$('a.shareBtn').focus();
+		$('div#share_layer').hide();
+	});
+});
+</script>
+
+
+<ul>
+	<li><a href="" class="noBox shareBtn"><img src="/resources/common/img/sns_share_ov.png" alt="SNS 공유 목록" class="shareBtn"/></a>
+		<div id="shareBtnArea">
+			<div class="inbox" id="share_layer" style="display: none;"  >     
+				<div class="shareAllBtn" >
+					<ul class="shareBox">
+						<!--<li><a href="#" class="sub-kakao shareIconArea"    title="새창열림"  keyValue1="h1" keyValue2="93" keyValue3="자료이용" keyValue4="경상북도교육청 통합도서관"><img src="/resources/common/img/icon_kakaostory.png"  alt="카카오스토리 공유" class="shareIcon"/><span>카카오스토리</span></a></li>-->     
+						<li><a href="#" class="sub-facebook shareIconArea" title="새창열림"  keyValue1="h1" keyValue2="93" keyValue3="자료이용" keyValue4="경상북도교육청 통합도서관"><img src="/resources/common/img/icon_facebook.png" alt="페이스북 공유" class="shareIcon"/><span>페이스북</span></a></li>
+						<li><a href="#" class="sub-twitter shareIconArea"  title="새창열림"  keyValue1="h1" keyValue2="93" keyValue3="자료이용" keyValue4="경상북도교육청 통합도서관"><img src="/resources/common/img/icon_twitter.png" alt="트위터 공유" class="shareIcon"/><span>트위터</span></a></li>   
+					</ul>
+				</div>
+						 <a href="#" id="closeshareBox" class="close" title="닫기" ><i class="fa fa-close" title="닫기"  ></i></a>
+			</div>
+		</div>
+		</li>
+	<li><a href="#" class="noBox" title="새창열림"  onclick="contentPrint(); return false;"><img src="/resources/common/img/sns_prt_ov.png" alt="페이지 내용 인쇄" ></a></li>
+	<li><a href="#qrcode" class="sub-qrcode noBox" keyValue="true"><img src="/resources/common/img/sns_qr_ov.png" alt="경상북도교육청 통합도서관 QR코드"></a></li>
+</ul></div>
+				</div>
+				<div class="end"></div>
+			</div>
+		</div>
+
+		<div class="sections section">
+			<div class="lnb">
+				<h2><b>도서관서비스</b></h2>
+				<ul class="SubMenu">
+<li id="menu_128"><a href="/gbelib/board/index.do?menu_idx=128&manage_idx=521" ><span>공지사항</span></a></li>
+<li id="menu_83"><a href="/gbelib/html.do?menu_idx=83" ><span>이용안내</span></a>
+<ul class="SubMenu">
+<li id="menu_91"><a href="/gbelib/html.do?menu_idx=91" ><span>대출회원가입</span></a></li>
+<li id="menu_92"><a href="/gbelib/html.do?menu_idx=92" ><span>책이음서비스</span></a></li>
+<li id="menu_95"><a href="/gbelib/html.do?menu_idx=95" ><span>모바일앱</span></a></li>
+<li id="menu_129"><a href="/gbelib/html.do?menu_idx=129" ><span>자원봉사신청</span></a></li></ul></li>
+<li id="menu_85"><a href="/gbelib/html.do?menu_idx=85" ><span>순회문고</span></a></li>
+<li id="menu_88"><a href="/gbelib/html.do?menu_idx=88" ><span>디지털자료실좌석예약</span></a></li>
+<li id="menu_89"><a href="/gbelib/html.do?menu_idx=89" ><span>사서에게물어보세요</span></a></li>
+<li id="menu_130"><a href="/gbelib/board/index.do?menu_idx=130&manage_idx=522" ><span>자주하는질문</span></a></li></ul>
+</div>
+			<div class="content">
+				<div class="doc">
+					<div class="doc-body" id="contentArea">
+						<div class="body">
+							<style>
+.bci table thead th {font-size:13px;}
+.bci table tbody td {font-size:13px;}
+</style>
+<link rel="stylesheet" type="text/css" href="/resources/book/search/css/default.css"/>
+
+<script src="/resources/cms/js/vk/vk_popup.js?vk_skin=flat_gray&vk_layout=ZW Shona"></script>
+<script type="text/javascript">
+var authorViewPage = 1;
+var authorTotalCnt = '10';
+var publisherViewPage = 1;
+var publisherTotalCnt = '10';
+var formCodeViewPage = 1;
+var formCodeTotalCnt = '10';
+var yearViewPage = 1;
+var yearTotalCnt = '10';
+
+$(function() {
+	var ua = window.navigator.userAgent;
+	var msie = ua.indexOf("MSIE ");
+
+	if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))  // If Internet Explorer, return version number
+	{
+// 	    alert(parseInt(ua.substring(msie + 5, ua.indexOf(".", msie))));
+	}
+	else  // If another browser, return 0
+	{
+		$('div#printMsg').hide();
+		$('div#btn_print_div').hide();
+	}
+
+	$('#do-search').on('click', function(e) {
+		if ($('#librarySearch input#search_text').val() == '') {
+			alert('검색어를 입력해주세요');
+			$('#librarySearch input#search_text').focus();
+			return false;
+		}
+		if (!$('input#sub_search1').is(':checked')) {
+			$('form#librarySearch input#allBookListStr').val('');
+		}
+		$('input#search_type2').val($('select#search_type option:selected').val());
+		
+		$('input[name="libraryCodes"]:checked').each(function(index, item) {
+			var val = $(this).val();
+			var name = $(this).data('name'); // data-name 속성이 있다면 가져오기
+			
+			// 특정 값에 대한 개별 처리
+			if(val === '00147046') {
+				console.log('정보센터 체크됨');
+				webSearchLog();
+			}
+		});
+
+		$('#librarySearch').submit();
+		//doGetLoad('search.do', serializeCustom($('#librarySearch')));
+	});
+	
+// 	$('a.doSearchType').on('click', function(e) {
+// 		$('#viewPage').val(1);
+// 		$('#search_type').val($(this).attr('keyValue'));
+// 		loadIndex();
+// 		e.preventDefault();
+// 	});
+
+	$('a.doSearchYear').on('click', function(e) {
+		$('#search_type2').val($(this).attr('keyValue1'));
+		$('#search_year').val($(this).attr('keyValue2'));
+		loadIndex();
+		e.preventDefault();
+	});
+
+	$('a.doSearchFormCode').on('click', function(e) {
+		$('#search_form_code').val($(this).attr('keyValue2'));
+		$('#facet_num').val($(this).attr('keyValue3'));
+		loadIndex();
+		e.preventDefault();
+	});
+
+	$('a.doSearchWriter').on('click', function(e) {
+		$('#search_type2').val($(this).attr('keyValue1'));
+		$('#search_athor').val($(this).attr('keyValue2'));
+		loadIndex();
+		e.preventDefault();
+	});
+
+	$('a.doSearchPublisher').on('click', function(e) {
+		$('#search_type2').val($(this).attr('keyValue1'));
+		$('#search_publisher').val($(this).attr('keyValue2'));
+		loadIndex();
+		e.preventDefault();
+	});
+
+// 	$('a.doSearchPform').on('click', function(e) {
+// 		$('#search_type').val($(this).attr('keyValue1'));
+// 		$('#search_form_code').val($(this).attr('keyValue2'));
+// 		loadIndex();
+// 		e.preventDefault();
+// 	});
+
+	
+	$('a.moreAuthor').on('click', function(e) {
+		e.preventDefault();
+		$.ajax({
+			url:'table2.do',
+			data:'allBookListStr='+$('input#allBookListStr').val() + '&viewPage=' + (authorViewPage+1),
+			type:'post',
+			success:function(html) {
+				$('a.moreAuthor').parent('p').prev('ul').append(html);
+				authorViewPage++;
+				if ((authorViewPage*5) > authorTotalCnt) {
+					$('a.moreAuthor').hide();
+				}
+			}
+		});
+	});
+	
+	$('a.morePublisher').on('click', function(e) {
+		e.preventDefault();
+		$.ajax({
+			url:'table3.do',
+			data:'allBookListStr='+$('input#allBookListStr').val() + '&viewPage=' + (publisherViewPage+1),
+			type:'post',
+			success:function(html) {
+				$('a.morePublisher').parent('p').prev('ul').append(html);
+				publisherViewPage++;
+				if ((publisherViewPage*5) > publisherTotalCnt) {
+					$('a.morePublisher').hide();
+				}
+			}
+		});
+	});
+
+	
+	$('a.moreFormcode').on('click', function(e) {
+		e.preventDefault();
+		$.ajax({
+			url:'table5.do',
+			data:'allBookListStr='+$('input#allBookListStr').val() + '&viewPage=' + (formcodeViewPage+1),
+			type:'post',
+			success:function(html) {
+				$('a.moreFormcode').parent('p').prev('ul').append(html);
+				formcodeViewPage++;
+				if ((formcodeViewPage*5) > formcodeTotalCnt) {
+					$('a.moreFormcode').hide();
+				}
+			}
+		});
+	});
+
+	
+	$('a.moreYear').on('click', function(e) {
+		e.preventDefault();
+		$.ajax({
+			url:'table4.do',
+			data:'allBookListStr='+$('input#allBookListStr').val() + '&viewPage=' + (yearViewPage+1),
+			type:'post',
+			success:function(html) {
+				$('a.moreYear').parent('p').prev('ul').append(html);
+				yearViewPage++;
+				if ((yearViewPage*5) > yearTotalCnt) {
+					$('a.moreYear').hide();
+				}
+			}
+		});
+	});
+
+	$('#vk-popup').on('click', function(e) {
+		PopupVirtualKeyboard.toggle('search_text','vk');
+	});
+	//키보드로 조작 할 수 있도록
+	$('#vk-popup').on('keydown', function(e) {
+			$('html, body').animate({scrollTop: 0 }, 'fast');  //spacebar 바로 인해 내려간 화면을 다시 올려줌
+		if (e.keyCode == 32) {  //space bar keyCode
+			PopupVirtualKeyboard.toggle('search_text','vk');
+		}
+	});
+
+	$('#toggleLibList').on('click', function(e) {
+		$('div#libraryList').slideToggle(function() {
+			if (!$('div#libraryList').is(':visible')) {
+				$('div#libraryList input:checkbox').prop('checked', false);
+				$('div#libraryList input:checkbox[searched=true]').prop('checked', true);
+			}
+		});
+	});
+
+	$('#toggleLibList').on('keydown', function(e) {
+		if (e.keyCode == 32) { //space bar keyCode
+			$('div#libraryList').slideToggle(function() {
+				if (!$('div#libraryList').is(':visible')) {
+					$('div#libraryList input:checkbox').prop('checked', false);
+					$('div#libraryList input:checkbox[searched=true]').prop('checked', true);
+				}
+			});
+			$('html, body').animate({scrollTop: 0 }, 'fast'); //spacebar 바로 인해 내려간 화면을 다시 올려줌
+		}
+	});
+
+	$('#checkAll').change(function(e) {
+		$('div#libraryList input:checkbox').prop('checked', $(this).prop('checked'));
+	});
+
+	$('#checkAllBook').change(function(e) {
+		$('input.checkBook').prop('checked', $(this).prop('checked'));
+	});
+
+	$('li.li-group a.bi').on('click', function() {
+		$(this).parent('li').toggleClass('active');
+	});
+
+
+	$('a#addMyLib').on('click', function(e) {
+		e.preventDefault();
+		var len = $('input.checkBook:checked').length;
+		if (len < 1) {
+			alert('선택된 도서가 없습니다.');
+			return false;
+		}
+		
+		alert('로그인 후 이용가능합니다.');
+		
+	});
+
+$('a#addMyLibOne').on('click', function(e) {
+	e.preventDefault();
+	
+	alert('로그인 후 이용가능합니다.');
+	
+});
+
+	$('a.showSlide').on('click', function(e) {
+		e.preventDefault();
+		var bci = $(this).parents('div.bif').next('div.bci');
+		var toggleState = $(bci).is(':hidden');
+		if (toggleState) {
+			$(bci).load('index_detail.do?vLoca='+$(this).attr('vLoca')+'&vCtrl='+$(this).attr('vCtrl'), function() {
+				$(bci).slideToggle();
+			});
+		} else {
+			$(bci).slideToggle();
+		}
+	});
+
+	$('a.goDetail').on('click', function(e) {
+		e.preventDefault();
+		$('input#vLoca').val($(this).attr('vLoca'));
+		$('input#vCtrl').val($(this).attr('vCtrl'));
+		$('input#vImg').val($(this).attr('vImg'));
+		$('input#isbn').val($(this).attr('isbn'));
+		$('input#tid').val($(this).attr('tid'));
+		var formData = serializeParameter(['vLoca', 'vCtrl', 'vImg', 'isbn', 'tid', 'menu_idx']);
+		doGetLoad('detail.do', formData);
+// 		$('form#detailForm').submit();
+	});
+
+	if ($('input#viewPage').val() != '1') {
+		jQuery.ajaxSettings.traditional = true;
+		var param = serializeObject($('#librarySearch'));
+		var param2 = serializeObject($('#searchTableForm'));
+		loadIndex('table');
+	}
+
+	function loadIndex() {
+		jQuery.ajaxSettings.traditional = true;
+		$('input#viewPage').val('1');
+		var isSubSearch = $('input#sub_search1').is(':checked');
+		$('input#sub_search1').prop('checked', false);
+		var param = serializeObject($('#librarySearch'));
+		var param2 = serializeObject($('#searchTableForm'));
+		$('div#search-results').load('table.do', $.extend(true, param, param2));
+		if (isSubSearch) {
+			$('input#sub_search1').prop('checked', true);
+		}
+		$('body').scrollTop(0);
+	}
+
+	$('div#search-results img').on('error', function() {
+		var $this = $(this);
+		$this.attr('src', '/resources/common/img/noImg.gif');
+		$this.parent().addClass('noImg');
+	});
+
+	$('a#excelDownload').on('click', function(e) {
+		e.preventDefault();
+		var checkedLength = $('form#librarySearch input[name=print_param]:checked').length;
+		if (checkedLength < 1) {
+			alert('선택된 도서가 없습니다.');
+			return false;
+		}
+		var clone = $('form#librarySearch input[name=print_param]:checked').clone();
+		var clone2 = $('form#librarySearch input[name=libraryCodes]:checked').clone();
+		$('form#excelForm').append(clone);
+		$('form#excelForm').append(clone2);
+		$('form#excelForm input#excel_viewPage').val($('form#librarySearch input#viewPage').val());
+		$('form#excelForm input#excel_search_text').val($('form#librarySearch input#search_text').val());
+		$('form#excelForm input#excel_search_type2').val($('form#librarySearch input#search_type2').val());
+		$('form#excelForm').attr('action', 'excelDownload.do');
+		$('form#excelForm').submit();
+		$('form#excelForm input[name=print_param]').remove();
+		$('form#excelForm input[name=libraryCodes]').remove();
+
+	});
+
+	$('a#csvDownload').on('click', function(e) {
+		e.preventDefault();
+		var checkedLength = $('form#librarySearch input[name=print_param]:checked').length;
+		if (checkedLength < 1) {
+			alert('선택된 도서가 없습니다.');
+			return false;
+		}
+		var clone = $('form#librarySearch input[name=print_param]:checked').clone();
+		var clone2 = $('form#librarySearch input[name=libraryCodes]:checked').clone();
+		$('form#excelForm').append(clone);
+		$('form#excelForm').append(clone2);
+		$('form#excelForm input#excel_viewPage').val($('form#librarySearch input#viewPage').val());
+		$('form#excelForm input#excel_search_text').val($('form#librarySearch input#search_text').val());
+		$('form#excelForm input#excel_search_type2').val($('form#librarySearch input#search_type2').val());
+		$('form#excelForm').attr('action', 'csvDownload.do');
+		$('form#excelForm').submit();
+		$('form#excelForm input[name=print_param]').remove();
+		$('form#excelForm input[name=libraryCodes]').remove();
+
+	});
+
+	$('div#hotTrend').load('hotTrend.do');
+	
+
+
+	$('a#ageLoanBestBtn').on('click', function(e) {
+		e.preventDefault();
+// 		$('div#ageLoanBest').load('ageLoanBest.do', function( response, status, xhr ) {
+// 			$('div#ageLoanBest').dialog();
+// 		});
+		$('div#ageLoanBest').html(
+			'<div style="text-align: center; padding-top: 100px;">'+
+			'<img id="loading_img" alt="loading" src="/resources/common/img/viewLoading.gif" />'+
+			'<br/><br/>'+
+			'대출 순위 불러오는 중'+
+			'</div>'
+		);
+		$('div#ageLoanBest').load('ageLoanBest.do');
+		$('div#ageLoanBest').dialog({
+			width:1100,
+			height:500,
+			resizable: true,
+	 		modal: true
+		});
+	});
+
+	$('a#sort-btn').on('click', function(e) {
+		$('#do-search').click();
+	});
+
+	if (''=='') {
+		$('select#search_type').val('L_TITLEAUTHOR');
+	}
+	$('a#toggleDetailSearch').on('click', function(e) {
+		e.preventDefault();
+		$('#search_text').val('');
+		$('#searchKeyword4').val('');
+		$('#kdcSearch').val('');
+		$('.bgArea').addClass('bgGray');
+		$('#header').css('z-index','1');
+		$(this).attr('keyValue', 'show');
+		$('div#detailSearchArea').show();
+		$('a#subjectSearch').focus();
+	});
+
+	$('a#closeSearch').on('click', function(e) {
+		e.preventDefault();
+		$('.bgArea').removeClass('bgGray');
+		$('#header').css('z-index','3');
+		$(this).attr('keyValue', 'hide');
+		$('div#detailSearchArea').hide();
+		$('a#toggleDetailSearch').focus();
+	});
+
+	$('div#detailSearchArea a#detailDoSearch').on('click', function(e){
+
+		$('#search_detail_yn').val('Y');
+
+		$('#librarySearch #book_more_count').val(1);
+		$('#librarySearch #notice_more_count').val(1);
+		$('#librarySearch #teach_more_count').val(1);
+		$('#librarySearch #search_type2').val("DETAIL");
+		$('#librarySearch').submit();
+
+	});
+});
+$(document).on("keyup", "input:text[numberOnly]", function() {
+	$(this).val($(this).val().replace(/[^0-9]/gi, ""));
+});
+
+function webSearchLog()
+{
+
+	var weblogUrl = "https://data4library.kr/weblog";
+	var libKey = "2ea249d2a9f657f417c1574ff65a063463d5d353b812ab7174a0a239fcd942e5";
+	var libCode = "147046";
+	var searchTxt = $("#librarySearch input#search_text").val();
+	var sessionId = "1SADjANnyYQfBPn7e4oDD1nhhoUQPdZTmqWnTAOgAha0aK01TKtG1OjtC5PhWPf1.aG9tZXdhc19kb21haW4vaG9tZXdhczFfaG9tZXBhZ2Ux"; // 현재 사용자 session ID
+
+	$.ajax({ 
+		/* 도서관의 코드 사용 */
+		url: weblogUrl,
+		jsonp : "callback",
+		responseType:'application/json',
+		data:{
+			"logType":"search",
+			"libKey": libKey,
+			"libCode": libCode,
+			"sessionId": sessionId,
+			"q":encodeURIComponent(searchTxt),		/* UTF-8로 인코딩 */
+			"returnType":"N"
+		},
+		success:function(res){
+			if( res.result.response_code == 200 ){
+				console.log("Web log 등록 완료");
+			}
+		},
+		error: function() { 
+			console.log("Web log 등록 실패 : 원인 해명 필요");
+		}
+	});
+		
+}
+</script>
+<form id="basket" name="librarySearch" action="/gbelib/module/bookBasket/save.do" method="post" onsubmit="return false;">
+<input type="hidden" name="editMode" value="ADD"/>
+<input type="hidden" id="strList" name="strList">
+<input type="hidden" name="homepage_id">
+</form>
+
+<form id="excelForm" style="display: none;" action="excelDownload.do" method="post"><input id="excel_search_type2" name="search_type2" type="hidden" value="ALL"/><input id="excel_search_type" name="search_type" type="hidden" value="L_TITLEAUTHOR"/><input id="excel_search_text" name="search_text" type="hidden" value="파친코"/><input id="excel_search_library" name="search_library" type="hidden" value=""/><input id="excel_search_form_code" name="search_form_code" type="hidden" value=""/><input id="excel_search_kdc" name="search_kdc" type="hidden" value=""/><input id="excel_search_athor" name="search_athor" type="hidden" value=""/><input id="excel_search_year" name="search_year" type="hidden" value=""/><input id="excel_search_publisher" name="search_publisher" type="hidden" value=""/><input id="excel_menu_idx" name="menu_idx" type="hidden" value="93"/><input id="excel_viewPage" name="viewPage" type="hidden" value="1"/><input id="excel_excel_type" name="excel_type" value="SEARCH" type="hidden" value=""/></form><form id="storageReqForm" style="display: none;">
+<input type="hidden" name="_csrf" value="">
+</form>
+<form id="detailForm" action="detail.do" method="get"><input id="menu_idx" name="menu_idx" type="hidden" value="93"/><input id="vLoca" name="vLoca" type="hidden" value=""/><input id="vCtrl" name="vCtrl" type="hidden" value=""/><input id="vImg" name="vImg" type="hidden" value=""/><input id="isbn" name="isbn" type="hidden" value=""/><input id="tid" name="tid" type="hidden" value=""/></form><form id="librarySearch" action="index.do" method="get"><input id="allBookListStr" name="allBookListStr" type="hidden" value=""/><input id="search_type2" name="search_type2" type="hidden" value="ALL"/><input id="search_library" name="search_library" type="hidden" value=""/><input id="search_form_code" name="search_form_code" type="hidden" value=""/><input id="search_kdc" name="search_kdc" type="hidden" value=""/><input id="search_year" name="search_year" type="hidden" value=""/><input id="search_athor" name="search_athor" type="hidden" value=""/><input id="search_publisher" name="search_publisher" type="hidden" value=""/><input id="facet_num" name="facet_num" type="hidden" value=""/><input id="menu_idx" name="menu_idx" type="hidden" value="93"/><input id="viewPage" name="viewPage" type="hidden" value="1"/><input id="excel_type" name="excel_type" type="hidden" value=""/><input id="book_more_count" name="book_more_count" type="hidden" value="1"/><input id="notice_more_count" name="notice_more_count" type="hidden" value="1"/><input id="teach_more_count" name="teach_more_count" type="hidden" value="1"/><div class="search-wrap">
+		<div class="search-area">
+			<a id="toggleLibList"><span class="orange"><i class="fa fa-building" aria-hidden="true"></i>타도서관 검색</span></a>
+			<a href="#" id="toggleDetailSearch" class="btn btn1" title="상세검색" tabindex="0" style="border-radius: 15px;float: right;margin-top: -2px;" keyValue="hide"><i class="fa fa-search"></i> 상세 검색</a>
+		</div>
+		<div class="search-form">
+		<!--
+				<select id="search_type" name="search_type" class="selectmenu" style="width:100%;margin-top:2px;font-size:105%;padding-left:3px;"></select></div>
+			-->
+			<div class="box">
+
+			<div class="box1" style="width: 20%;">
+				<select id="search_type" name="search_type" class="selectmenu" style="width:100%;font-size:105%;padding-left:12px;border:0px;">
+				    <option value="L_TITLEAUTHOR" selected="selected">서명or저자</option>
+				    <option value="L_TITLE" >서명[전방일치]</option>
+				    <option value="L_AUTHOR" >저자[전방일치]</option>
+				    <option value="L_PUBLISHER" >출판사[완전일치]</option>
+				    <option value="INDEXSEARCH" >목차[부분일치]</option>
+					<option value="L_ISBN" >ISBN</option>
+					<option value="L_KEYWORD" >주제어</option>
+				</select>
+</div>
+				<span><img src="/resources/book/search/img/line.jpg" style="padding-top: 5px;"></span>
+				<div class="b1">
+					<input id="search_text" name="search_text" style="ime-mode:active;" title="검색어를 입력하세요" placeholder="검색어를 입력하세요." type="text" class="text2" onfocus="PopupVirtualKeyboard.attachInput(this)" value="파친코"/></div>
+				<div class="b2">
+					<button id="do-search"><i class="fa fa-search"></i><span class="blind">검색</span></button>
+				</div>
+			</div>
+			<br/>
+			<div id="autoFill">
+			</div>
+
+			<div class="search-bot">
+				<span style="color: red; float: left;">*</span>
+				<span class="notice">경상북도교육청 공공도서관에서 소장하고 있는 국내외 자료를 통합검색할 수 있습니다. 검색 대상 항목은 도서, 전자자료, 연속간행물, 멀티미디어자료, 장애인자료, 기타 등이 있습니다.</span>
+				<p style="height:auto">
+					<a id="vk-popup" class="btn" title="새창열림" style="line-height:140%" tabindex="0">
+					  <i class="fa fa-keyboard-o" style="font-size:19px;color:#777"></i><span>외국어입력기</span>
+					</a>
+					<!-- <a id="toggleLibList" class="btn" style="line-height:140%" tabindex="0">
+					  <i class="fa fa-leanpub" style="font-size:19px;color:#777"></i><span>타도서관검색</span>
+					</a> -->
+<!-- 					<a id="excelDownload" class="btn" style="line-height:140%" tabindex="0"> -->
+<!-- 						<i class="fa fa-file-excel-o" style="font-size:19px;color:#777"></i><span>엑셀 저장</span> -->
+<!-- 					</a> -->
+<!-- 					<a id="csvDownload" class="btn" style="line-height:140%" tabindex="0"> -->
+<!-- 						<i class="fa fa-file-excel-o" style="font-size:19px;color:#777"></i><span>CSV 저장</span> -->
+<!-- 					</a> -->
+</p>
+			</div>
+		</div>
+		<div class="detailSearch" id="detailSearchArea" style="display:none;;top:70px;right:0;">
+			<span style="font-size: 25px; font-weight: bold;">상세검색</span>
+
+			<ul class="searchList">
+				<li style="margin-bottom: 10px">
+					<select id="ilus_searchType1" name="ilus_searchType1" style="width:100px" title="검색항목선택1" class="selectmenu"><option value="1" selected="selected">서명</option><option value="2">저자</option><option value="3">출판사</option><option value="4">주제어</option></select><input id="searchKeyword1" name="searchKeyword1" placeholder="검색어1" class="text smalltxt" type="text" value=""/><label for="searchKeyword1" class="blind">검색어1</label>
+					<select id="logicFunction1" name="logicFunction1" style="width:80px" title="검색조건선택1" class="selectmenu"><option value="AND" selected="selected">AND</option><option value="OR">OR</option></select></li>
+
+				<li style="margin-bottom: 10px">
+					<select id="ilus_searchType2" name="ilus_searchType2" style="width:100px" title="검색항목선택2" class="selectmenu"><option value="1">서명</option><option value="2" selected="selected">저자</option><option value="3">출판사</option><option value="4">주제어</option></select><input id="searchKeyword2" name="searchKeyword2" placeholder="검색어2" class="text smalltxt" type="text" value=""/><label for="searchKeyword2" class="blind">검색어2</label>
+					<select id="logicFunction2" name="logicFunction2" style="width:80px" title="검색조건선택2" class="selectmenu"><option value="AND" selected="selected">AND</option><option value="OR">OR</option></select></li>
+
+				<li style="margin-bottom: 10px">
+					<select id="ilus_searchType3" name="ilus_searchType3" style="width:100px" title="검색항목선택3" class="selectmenu"><option value="1">서명</option><option value="2">저자</option><option value="3" selected="selected">출판사</option><option value="4">주제어</option></select><input id="searchKeyword3" name="searchKeyword3" placeholder="검색어3" class="text smalltxt" type="text" value=""/><label for="searchKeyword3" class="blind">검색어3</label>
+					<select id="logicFunction3" name="logicFunction3" style="width:80px" title="검색조건선택1" class="selectmenu"><option value="AND" selected="selected">AND</option><option value="OR">OR</option></select></li>
+				<li style="margin-bottom: 10px">
+					<select id="ilus_searchType4" name="ilus_searchType4" style="width:100px" title="검색항목선택4" class="selectmenu"><option value="1">서명</option><option value="2">저자</option><option value="3">출판사</option><option value="4" selected="selected">주제어</option></select><input id="searchKeyword4" name="searchKeyword4" placeholder="검색어4" class="text smalltxt" type="text" value=""/><label for="searchKeyword4" class="blind">검색어4</label>
+					<select id="logicFunction4" name="logicFunction4" style="width:80px" title="검색조건선택4" class="selectmenu"><option value="AND" selected="selected">AND</option><option value="OR">OR</option></select></li>
+			</ul>
+			<a href="#" class="searchBtn" id="detailDoSearch">상세 검색<img src="/resources/board/img/arrow.jpg" alt=""/></a>
+			<a href="#" id="closeSearch" style="    position: absolute;    top: 10px;    right: 10px;    margin: 0;"><i class="fa fa-times" aria-hidden="true"></i><span class="blind">닫기</span></a>
+		</div>
+		<br/>
+		<div id="libraryList" class="bbs-notice" style="margin-bottom:20px; display: none;" >
+			<div>
+				<input id="checkAll" name="libraryCodes" type="checkbox" value="ALL"/><label for="checkAll">전체</label><input type="hidden" name="_libraryCodes" value="on"/></div>
+			<div>
+				<ul>
+					<li>
+							<input id="lib_00147046" name="libraryCodes" title="선택" searched="true" checked="checked" type="checkbox" value="00147046" checked="checked"/><label for="lib_00147046">경상북도교육청정보센터</label><input type="hidden" name="_libraryCodes" value="on"/></li>
+						<li>
+							<input id="lib_00147003" name="libraryCodes" title="선택" type="checkbox" value="00147003"/><label for="lib_00147003">경상북도교육청 구미도서관</label><input type="hidden" name="_libraryCodes" value="on"/></li>
+						<li>
+							<input id="lib_00147010" name="libraryCodes" title="선택" type="checkbox" value="00147010"/><label for="lib_00147010">경상북도교육청 안동도서관</label><input type="hidden" name="_libraryCodes" value="on"/></li>
+						<li>
+							<input id="lib_00147011" name="libraryCodes" title="선택" type="checkbox" value="00147011"/><label for="lib_00147011">경상북도교육청 안동도서관용상분관</label><input type="hidden" name="_libraryCodes" value="on"/></li>
+						<li>
+							<input id="lib_00147039" name="libraryCodes" title="선택" type="checkbox" value="00147039"/><label for="lib_00147039">경상북도교육청 안동도서관풍산분관</label><input type="hidden" name="_libraryCodes" value="on"/></li>
+						<li>
+							<input id="lib_00147008" name="libraryCodes" title="선택" type="checkbox" value="00147008"/><label for="lib_00147008">경상북도교육청 상주도서관</label><input type="hidden" name="_libraryCodes" value="on"/></li>
+						<li>
+							<input id="lib_00147040" name="libraryCodes" title="선택" type="checkbox" value="00147040"/><label for="lib_00147040">경상북도교육청 상주도서관화령분관</label><input type="hidden" name="_libraryCodes" value="on"/></li>
+						<li>
+							<input id="lib_00147105" name="libraryCodes" title="선택" type="checkbox" value="00147105"/><label for="lib_00147105">경상북도교육청문화원</label><input type="hidden" name="_libraryCodes" value="on"/></li>
+						<li>
+							<input id="lib_00147013" name="libraryCodes" title="선택" type="checkbox" value="00147013"/><label for="lib_00147013">경상북도교육청 영일도서관</label><input type="hidden" name="_libraryCodes" value="on"/></li>
+						<li>
+							<input id="lib_00147016" name="libraryCodes" title="선택" type="checkbox" value="00147016"/><label for="lib_00147016">경상북도교육청 외동도서관</label><input type="hidden" name="_libraryCodes" value="on"/></li>
+						<li>
+							<input id="lib_00147032" name="libraryCodes" title="선택" type="checkbox" value="00147032"/><label for="lib_00147032">경상북도교육청 영주선비도서관</label><input type="hidden" name="_libraryCodes" value="on"/></li>
+						<li>
+							<input id="lib_00147024" name="libraryCodes" title="선택" type="checkbox" value="00147024"/><label for="lib_00147024">경상북도교육청 영주도서관풍기분관</label><input type="hidden" name="_libraryCodes" value="on"/></li>
+						<li>
+							<input id="lib_00147014" name="libraryCodes" title="선택" type="checkbox" value="00147014"/><label for="lib_00147014">경상북도교육청 금호도서관</label><input type="hidden" name="_libraryCodes" value="on"/></li>
+						<li>
+							<input id="lib_00147020" name="libraryCodes" title="선택" type="checkbox" value="00147020"/><label for="lib_00147020">경상북도교육청 점촌도서관</label><input type="hidden" name="_libraryCodes" value="on"/></li>
+						<li>
+							<input id="lib_00147006" name="libraryCodes" title="선택" type="checkbox" value="00147006"/><label for="lib_00147006">경상북도교육청 점촌도서관가은분관</label><input type="hidden" name="_libraryCodes" value="on"/></li>
+						<li>
+							<input id="lib_00147019" name="libraryCodes" title="선택" type="checkbox" value="00147019"/><label for="lib_00147019">경상북도교육청 의성도서관</label><input type="hidden" name="_libraryCodes" value="on"/></li>
+						<li>
+							<input id="lib_00147022" name="libraryCodes" title="선택" type="checkbox" value="00147022"/><label for="lib_00147022">경상북도교육청 청송도서관</label><input type="hidden" name="_libraryCodes" value="on"/></li>
+						<li>
+							<input id="lib_00147012" name="libraryCodes" title="선택" type="checkbox" value="00147012"/><label for="lib_00147012">경상북도교육청 영양도서관</label><input type="hidden" name="_libraryCodes" value="on"/></li>
+						<li>
+							<input id="lib_00147031" name="libraryCodes" title="선택" type="checkbox" value="00147031"/><label for="lib_00147031">경상북도교육청 영덕도서관</label><input type="hidden" name="_libraryCodes" value="on"/></li>
+						<li>
+							<input id="lib_00147021" name="libraryCodes" title="선택" type="checkbox" value="00147021"/><label for="lib_00147021">경상북도교육청 청도도서관</label><input type="hidden" name="_libraryCodes" value="on"/></li>
+						<li>
+							<input id="lib_00147002" name="libraryCodes" title="선택" type="checkbox" value="00147002"/><label for="lib_00147002">경상북도교육청 고령도서관</label><input type="hidden" name="_libraryCodes" value="on"/></li>
+						<li>
+							<input id="lib_00147009" name="libraryCodes" title="선택" type="checkbox" value="00147009"/><label for="lib_00147009">경상북도교육청 성주도서관</label><input type="hidden" name="_libraryCodes" value="on"/></li>
+						<li>
+							<input id="lib_00147023" name="libraryCodes" title="선택" type="checkbox" value="00147023"/><label for="lib_00147023">경상북도교육청 칠곡도서관</label><input type="hidden" name="_libraryCodes" value="on"/></li>
+						<li>
+							<input id="lib_00147015" name="libraryCodes" title="선택" type="checkbox" value="00147015"/><label for="lib_00147015">경상북도교육청 예천도서관</label><input type="hidden" name="_libraryCodes" value="on"/></li>
+						<li>
+							<input id="lib_00147007" name="libraryCodes" title="선택" type="checkbox" value="00147007"/><label for="lib_00147007">경상북도교육청 봉화도서관</label><input type="hidden" name="_libraryCodes" value="on"/></li>
+						<li>
+							<input id="lib_00147018" name="libraryCodes" title="선택" type="checkbox" value="00147018"/><label for="lib_00147018">경상북도교육청 울진도서관</label><input type="hidden" name="_libraryCodes" value="on"/></li>
+						<li>
+							<input id="lib_00147017" name="libraryCodes" title="선택" type="checkbox" value="00147017"/><label for="lib_00147017">경상북도교육청 울릉도서관</label><input type="hidden" name="_libraryCodes" value="on"/></li>
+						<li>
+							<input id="lib_00000001" name="libraryCodes" title="선택" searched="true" checked="checked" type="checkbox" value="00000001"/><label for="lib_00000001">경상북도교육청 전자도서관</label><input type="hidden" name="_libraryCodes" value="on"/></li>
+						</ul>
+			</div>
+		</div>
+		<div class="search-info" >
+			
+				검색결과 '<b class="og"><i>
+				파친코</i></b>'에 대한 <b>1</b>/페이지, 총 <b>10</b>건
+			</div>
+<div class="smain">
+			<div class="box" style="min-height: 500px;">
+				<div class="ws-toolbar">
+
+					<div class="control">
+						<a href="#" id="addMyLib" style="padding-right: 4px;"><img src="/resources/book/search/img/btn_my.png" alt="관심도서">관심도서담기....</a>
+						<select id="sortField" name="sortField" class="selectmenu l_title_option" style="width: 90px;"><option value="DISP06">발행년도</option><option value="DISP01" selected="selected">서명</option><option value="DISP02">저자</option><option value="DISP03">출판사</option></select><select id="sortType" name="sortType" class="selectmenu l_title_option" style="width: 90px;"><option value="ASC" selected="selected">오름차순</option><option value="DESC">내림차순</option></select><select id="rowCount" name="rowCount" class="selectmenu" style="width:70px;"><option value="10" selected="selected">10건</option><option value="20">20건</option><option value="30">30건</option><option value="40">40건</option><option value="50">50건</option></select><a id="sort-btn" class="btn l_title_option" title="재정렬" tabindex="0"><i class="fa fa-sort" style="font-size:19px;color:#777"></i><span>&nbsp;재정렬&nbsp;&nbsp;</span></a>
+					</div>
+				</div>
+				<div id="search-results" class="search-results">
+					<div class="row">
+							<p class="admin"><input name="print_param" id="print_param1" type="checkbox" class="checkBook" value="00147046__000004194691__ __https://shopping-phinf.pstatic.net/main_3343571/33435716826.20220728093341.jpg__경상북도교육청정보센터__843.6  이39ㅍ2__파친코  : 이민진 장편소설 . 1__이민진 지음__인플루엔셜__" title="이민진 지음"/></p>
+							<div class="thumb">
+								<a href="#" vLoca="00147046" vCtrl="000004194691" vImg="https://shopping-phinf.pstatic.net/main_3343571/33435716826.20220728093341.jpg" isbn="9791168340510" tid="" class="goDetail">
+											<img src="https://shopping-phinf.pstatic.net/main_3343571/33435716826.20220728093341.jpg" alt="파친코  : 이민진 장편소설 . 1"/>
+										</a>
+									</div>
+							<div class="box">
+								<div class="item">
+									<div class="bif">
+										<a href="#" vLoca="00147046" vCtrl="000004194691" vImg="https://shopping-phinf.pstatic.net/main_3343571/33435716826.20220728093341.jpg" isbn="9791168340510" tid="" class="name goDetail"><span style='color:#ffa651'>파친코</span>  : 이민진 장편소설 . 1</a>
+										<span class="txt"><span class="tit">저자: </span>
+												이민진 지음</span><span class="bar">|
+										</span>
+										<span class="txt"><span class="tit">발행처: </span>인플루엔셜</span><span class="bar">|</span>
+										<span class="txt"><span class="tit">발행연도: </span>2022</span><span class="bar">|</span>
+										<span class="txt"><span class="tit">자료이용하는 곳: </span>경상북도교육청정보센터</span><span class="bar">|</span>
+										<span class="txt"><span class="tit">청구기호: </span>843.6  이39ㅍ2</span>
+										<div class="stat">
+											<a href="#" id="addMyLibOne" value="00147046__000004194691__ __https://shopping-phinf.pstatic.net/main_3343571/33435716826.20220728093341.jpg__경상북도교육청정보센터__843.6  이39ㅍ2__파친코  : 이민진 장편소설 . 1__이민진 지음__인플루엔셜__경상북도교육청정보센터"><span>관심도서담기</span></a>
+											<a href="#" class="showSlide" vLoca="00147046" vCtrl="000004194691"><span>이용가능여부</span><i class="fa fa-angle-down" aria-hidden="true"></i></a>
+											</div>
+									</div>
+									<div class="bci" style="display: none;">
+										<!-- ajax_area -->
+									</div>
+								</div>
+							</div>
+						</div>
+					<div class="row">
+							<p class="admin"><input name="print_param" id="print_param2" type="checkbox" class="checkBook" value="00147046__000004194692__ __https://shopping-phinf.pstatic.net/main_3393982/33939827618.20220808182811.jpg__경상북도교육청정보센터__843.6  이39ㅍ2__파친코  : 이민진 장편소설 . 2__이민진 지음__인플루엔셜__경상북도교육청정보센터" title="이민진 지음"/></p>
+							<div class="thumb">
+								<a href="#" vLoca="00147046" vCtrl="000004194692" vImg="https://shopping-phinf.pstatic.net/main_3393982/33939827618.20220808182811.jpg" isbn="9791168340541" tid="" class="goDetail">
+											<img src="https://shopping-phinf.pstatic.net/main_3393982/33939827618.20220808182811.jpg" alt="파친코  : 이민진 장편소설 . 2"/>
+										</a>
+									</div>
+							<div class="box">
+								<div class="item">
+									<div class="bif">
+										<a href="#" vLoca="00147046" vCtrl="000004194692" vImg="https://shopping-phinf.pstatic.net/main_3393982/33939827618.20220808182811.jpg" isbn="9791168340541" tid="" class="name goDetail"><span style='color:#ffa651'>파친코</span>  : 이민진 장편소설 . 2</a>
+										<span class="txt"><span class="tit">저자: </span>
+												이민진 지음</span><span class="bar">|
+										</span>
+										<span class="txt"><span class="tit">발행처: </span>인플루엔셜</span><span class="bar">|</span>
+										<span class="txt"><span class="tit">발행연도: </span>2022</span><span class="bar">|</span>
+										<span class="txt"><span class="tit">자료이용하는 곳: </span>경상북도교육청정보센터</span><span class="bar">|</span>
+										<span class="txt"><span class="tit">청구기호: </span>843.6  이39ㅍ2</span>
+										<div class="stat">
+											<a href="#" id="addMyLibOne" value="00147046__000004194692__ __https://shopping-phinf.pstatic.net/main_3393982/33939827618.20220808182811.jpg__경상북도교육청정보센터__843.6  이39ㅍ2__파친코  : 이민진 장편소설 . 2__이민진 지음__인플루엔셜__경상북도교육청정보센터"><span>관심도서담기</span></a>
+											<a href="#" class="showSlide" vLoca="00147046" vCtrl="000004194692"><span>이용가능여부</span><i class="fa fa-angle-down" aria-hidden="true"></i></a>
+											</div>
+									</div>
+									<div class="bci" style="display: none;">
+										<!-- ajax_area -->
+									</div>
+								</div>
+							</div>
+						</div>
+					<div class="row">
+							<p class="admin"><input name="print_param" id="print_param3" type="checkbox" class="checkBook" value="00147046__000004378221__ __https://bookthumb-phinf.pstatic.net/cover/134/282/13428208.jpg__경상북도교육청정보센터__843.6  이39ㅍ__파친코  [점자자료] : 이민진 장편소설 . 1-1__이민진 지음__문학사상사__경상북도교육청정보센터" title="이민진 지음"/></p>
+							<div class="thumb">
+								<a href="#" vLoca="00147046" vCtrl="000004378221" vImg="https://bookthumb-phinf.pstatic.net/cover/134/282/13428208.jpg" isbn="9788970129815" tid="" class="goDetail">
+											<img src="https://bookthumb-phinf.pstatic.net/cover/134/282/13428208.jpg" alt="파친코  [점자자료] : 이민진 장편소설 . 1-1"/>
+										</a>
+									</div>
+							<div class="box">
+								<div class="item">
+									<div class="bif">
+										<a href="#" vLoca="00147046" vCtrl="000004378221" vImg="https://bookthumb-phinf.pstatic.net/cover/134/282/13428208.jpg" isbn="9788970129815" tid="" class="name goDetail"><span style='color:#ffa651'>파친코</span>  [점자자료] : 이민진 장편소설 . 1-1</a>
+										<span class="txt"><span class="tit">저자: </span>
+												이민진 지음</span><span class="bar">|
+										</span>
+										<span class="txt"><span class="tit">발행처: </span>문학사상사</span><span class="bar">|</span>
+										<span class="txt"><span class="tit">발행연도: </span>2021</span><span class="bar">|</span>
+										<span class="txt"><span class="tit">자료이용하는 곳: </span>경상북도교육청정보센터</span><span class="bar">|</span>
+										<span class="txt"><span class="tit">청구기호: </span>843.6  이39ㅍ</span>
+										<div class="stat">
+											<a href="#" id="addMyLibOne" value="00147046__000004378221__ __https://bookthumb-phinf.pstatic.net/cover/134/282/13428208.jpg__경상북도교육청정보센터__843.6  이39ㅍ__파친코  [점자자료] : 이민진 장편소설 . 1-1__이민진 지음__문학사상사__경상북도교육청정보센터"><span>관심도서담기</span></a>
+											<a href="#" class="showSlide" vLoca="00147046" vCtrl="000004378221"><span>이용가능여부</span><i class="fa fa-angle-down" aria-hidden="true"></i></a>
+											</div>
+									</div>
+									<div class="bci" style="display: none;">
+										<!-- ajax_area -->
+									</div>
+								</div>
+							</div>
+						</div>
+					<div class="row">
+							<p class="admin"><input name="print_param" id="print_param4" type="checkbox" class="checkBook" value="00147046__000004378222__ __https://bookthumb-phinf.pstatic.net/cover/134/282/13428208.jpg__경상북도교육청정보센터__843.6  이39ㅍ__파친코  [점자자료] : 이민진 장편소설 . 1-2__이민진 지음__문학사상사__경상북도교육청정보센터" title="이민진 지음"/></p>
+							<div class="thumb">
+								<a href="#" vLoca="00147046" vCtrl="000004378222" vImg="https://bookthumb-phinf.pstatic.net/cover/134/282/13428208.jpg" isbn="9788970129815" tid="" class="goDetail">
+											<img src="https://bookthumb-phinf.pstatic.net/cover/134/282/13428208.jpg" alt="파친코  [점자자료] : 이민진 장편소설 . 1-2"/>
+										</a>
+									</div>
+							<div class="box">
+								<div class="item">
+									<div class="bif">
+										<a href="#" vLoca="00147046" vCtrl="000004378222" vImg="https://bookthumb-phinf.pstatic.net/cover/134/282/13428208.jpg" isbn="9788970129815" tid="" class="name goDetail"><span style='color:#ffa651'>파친코</span>  [점자자료] : 이민진 장편소설 . 1-2</a>
+										<span class="txt"><span class="tit">저자: </span>
+												이민진 지음</span><span class="bar">|
+										</span>
+										<span class="txt"><span class="tit">발행처: </span>문학사상사</span><span class="bar">|</span>
+										<span class="txt"><span class="tit">발행연도: </span>2021</span><span class="bar">|</span>
+										<span class="txt"><span class="tit">자료이용하는 곳: </span>경상북도교육청정보센터</span><span class="bar">|</span>
+										<span class="txt"><span class="tit">청구기호: </span>843.6  이39ㅍ</span>
+										<div class="stat">
+											<a href="#" id="addMyLibOne" value="00147046__000004378222__ __https://bookthumb-phinf.pstatic.net/cover/134/282/13428208.jpg__경상북도교육청정보센터__843.6  이39ㅍ__파친코  [점자자료] : 이민진 장편소설 . 1-2__이민진 지음__문학사상사__경상북도교육청정보센터"><span>관심도서담기</span></a>
+											<a href="#" class="showSlide" vLoca="00147046" vCtrl="000004378222"><span>이용가능여부</span><i class="fa fa-angle-down" aria-hidden="true"></i></a>
+											</div>
+									</div>
+									<div class="bci" style="display: none;">
+										<!-- ajax_area -->
+									</div>
+								</div>
+							</div>
+						</div>
+					<div class="row">
+							<p class="admin"><input name="print_param" id="print_param5" type="checkbox" class="checkBook" value="00147046__000004378223__ __https://bookthumb-phinf.pstatic.net/cover/134/282/13428208.jpg__경상북도교육청정보센터__843.6  이39ㅍ__파친코  [점자자료] : 이민진 장편소설 . 1-3__이민진 지음__문학사상사__경상북도교육청정보센터" title="이민진 지음"/></p>
+							<div class="thumb">
+								<a href="#" vLoca="00147046" vCtrl="000004378223" vImg="https://bookthumb-phinf.pstatic.net/cover/134/282/13428208.jpg" isbn="9788970129815" tid="" class="goDetail">
+											<img src="https://bookthumb-phinf.pstatic.net/cover/134/282/13428208.jpg" alt="파친코  [점자자료] : 이민진 장편소설 . 1-3"/>
+										</a>
+									</div>
+							<div class="box">
+								<div class="item">
+									<div class="bif">
+										<a href="#" vLoca="00147046" vCtrl="000004378223" vImg="https://bookthumb-phinf.pstatic.net/cover/134/282/13428208.jpg" isbn="9788970129815" tid="" class="name goDetail"><span style='color:#ffa651'>파친코</span>  [점자자료] : 이민진 장편소설 . 1-3</a>
+										<span class="txt"><span class="tit">저자: </span>
+												이민진 지음</span><span class="bar">|
+										</span>
+										<span class="txt"><span class="tit">발행처: </span>문학사상사</span><span class="bar">|</span>
+										<span class="txt"><span class="tit">발행연도: </span>2021</span><span class="bar">|</span>
+										<span class="txt"><span class="tit">자료이용하는 곳: </span>경상북도교육청정보센터</span><span class="bar">|</span>
+										<span class="txt"><span class="tit">청구기호: </span>843.6  이39ㅍ</span>
+										<div class="stat">
+											<a href="#" id="addMyLibOne" value="00147046__000004378223__ __https://bookthumb-phinf.pstatic.net/cover/134/282/13428208.jpg__경상북도교육청정보센터__843.6  이39ㅍ__파친코  [점자자료] : 이민진 장편소설 . 1-3__이민진 지음__문학사상사__경상북도교육청정보센터"><span>관심도서담기</span></a>
+											<a href="#" class="showSlide" vLoca="00147046" vCtrl="000004378223"><span>이용가능여부</span><i class="fa fa-angle-down" aria-hidden="true"></i></a>
+											</div>
+									</div>
+									<div class="bci" style="display: none;">
+										<!-- ajax_area -->
+									</div>
+								</div>
+							</div>
+						</div>
+					<div class="row">
+							<p class="admin"><input name="print_param" id="print_param6" type="checkbox" class="checkBook" value="00147046__000004378224__ __https://bookthumb-phinf.pstatic.net/cover/134/282/13428208.jpg__경상북도교육청정보센터__843.6  이39ㅍ__파친코  [점자자료] : 이민진 장편소설 . 1-4__이민진 지음__문학사상사__경상북도교육청정보센터" title="이민진 지음"/></p>
+							<div class="thumb">
+								<a href="#" vLoca="00147046" vCtrl="000004378224" vImg="https://bookthumb-phinf.pstatic.net/cover/134/282/13428208.jpg" isbn="9788970129815" tid="" class="goDetail">
+											<img src="https://bookthumb-phinf.pstatic.net/cover/134/282/13428208.jpg" alt="파친코  [점자자료] : 이민진 장편소설 . 1-4"/>
+										</a>
+									</div>
+							<div class="box">
+								<div class="item">
+									<div class="bif">
+										<a href="#" vLoca="00147046" vCtrl="000004378224" vImg="https://bookthumb-phinf.pstatic.net/cover/134/282/13428208.jpg" isbn="9788970129815" tid="" class="name goDetail"><span style='color:#ffa651'>파친코</span>  [점자자료] : 이민진 장편소설 . 1-4</a>
+										<span class="txt"><span class="tit">저자: </span>
+												이민진 지음</span><span class="bar">|
+										</span>
+										<span class="txt"><span class="tit">발행처: </span>문학사상사</span><span class="bar">|</span>
+										<span class="txt"><span class="tit">발행연도: </span>2021</span><span class="bar">|</span>
+										<span class="txt"><span class="tit">자료이용하는 곳: </span>경상북도교육청정보센터</span><span class="bar">|</span>
+										<span class="txt"><span class="tit">청구기호: </span>843.6  이39ㅍ</span>
+										<div class="stat">
+											<a href="#" id="addMyLibOne" value="00147046__000004378224__ __https://bookthumb-phinf.pstatic.net/cover/134/282/13428208.jpg__경상북도교육청정보센터__843.6  이39ㅍ__파친코  [점자자료] : 이민진 장편소설 . 1-4__이민진 지음__문학사상사__경상북도교육청정보센터"><span>관심도서담기</span></a>
+											<a href="#" class="showSlide" vLoca="00147046" vCtrl="000004378224"><span>이용가능여부</span><i class="fa fa-angle-down" aria-hidden="true"></i></a>
+											</div>
+									</div>
+									<div class="bci" style="display: none;">
+										<!-- ajax_area -->
+									</div>
+								</div>
+							</div>
+						</div>
+					<div class="row">
+							<p class="admin"><input name="print_param" id="print_param7" type="checkbox" class="checkBook" value="00147046__000004378225__ __https://bookthumb-phinf.pstatic.net/cover/134/282/13428213.jpg__경상북도교육청정보센터__843.6  이39ㅍ__파친코  [점자자료] : 이민진 장편소설 . 2-1__이민진 지음__문학사상사__경상북도교육청정보센터" title="이민진 지음"/></p>
+							<div class="thumb">
+								<a href="#" vLoca="00147046" vCtrl="000004378225" vImg="https://bookthumb-phinf.pstatic.net/cover/134/282/13428213.jpg" isbn="9788970129822" tid="" class="goDetail">
+											<img src="https://bookthumb-phinf.pstatic.net/cover/134/282/13428213.jpg" alt="파친코  [점자자료] : 이민진 장편소설 . 2-1"/>
+										</a>
+									</div>
+							<div class="box">
+								<div class="item">
+									<div class="bif">
+										<a href="#" vLoca="00147046" vCtrl="000004378225" vImg="https://bookthumb-phinf.pstatic.net/cover/134/282/13428213.jpg" isbn="9788970129822" tid="" class="name goDetail"><span style='color:#ffa651'>파친코</span>  [점자자료] : 이민진 장편소설 . 2-1</a>
+										<span class="txt"><span class="tit">저자: </span>
+												이민진 지음</span><span class="bar">|
+										</span>
+										<span class="txt"><span class="tit">발행처: </span>문학사상사</span><span class="bar">|</span>
+										<span class="txt"><span class="tit">발행연도: </span>2021</span><span class="bar">|</span>
+										<span class="txt"><span class="tit">자료이용하는 곳: </span>경상북도교육청정보센터</span><span class="bar">|</span>
+										<span class="txt"><span class="tit">청구기호: </span>843.6  이39ㅍ</span>
+										<div class="stat">
+											<a href="#" id="addMyLibOne" value="00147046__000004378225__ __https://bookthumb-phinf.pstatic.net/cover/134/282/13428213.jpg__경상북도교육청정보센터__843.6  이39ㅍ__파친코  [점자자료] : 이민진 장편소설 . 2-1__이민진 지음__문학사상사__경상북도교육청정보센터"><span>관심도서담기</span></a>
+											<a href="#" class="showSlide" vLoca="00147046" vCtrl="000004378225"><span>이용가능여부</span><i class="fa fa-angle-down" aria-hidden="true"></i></a>
+											</div>
+									</div>
+									<div class="bci" style="display: none;">
+										<!-- ajax_area -->
+									</div>
+								</div>
+							</div>
+						</div>
+					<div class="row">
+							<p class="admin"><input name="print_param" id="print_param8" type="checkbox" class="checkBook" value="00147046__000004378226__ __https://bookthumb-phinf.pstatic.net/cover/134/282/13428213.jpg__경상북도교육청정보센터__843.6  이39ㅍ__파친코  [점자자료] : 이민진 장편소설 . 2-2__이민진 지음__문학사상사__경상북도교육청정보센터" title="이민진 지음"/></p>
+							<div class="thumb">
+								<a href="#" vLoca="00147046" vCtrl="000004378226" vImg="https://bookthumb-phinf.pstatic.net/cover/134/282/13428213.jpg" isbn="9788970129822" tid="" class="goDetail">
+											<img src="https://bookthumb-phinf.pstatic.net/cover/134/282/13428213.jpg" alt="파친코  [점자자료] : 이민진 장편소설 . 2-2"/>
+										</a>
+									</div>
+							<div class="box">
+								<div class="item">
+									<div class="bif">
+										<a href="#" vLoca="00147046" vCtrl="000004378226" vImg="https://bookthumb-phinf.pstatic.net/cover/134/282/13428213.jpg" isbn="9788970129822" tid="" class="name goDetail"><span style='color:#ffa651'>파친코</span>  [점자자료] : 이민진 장편소설 . 2-2</a>
+										<span class="txt"><span class="tit">저자: </span>
+												이민진 지음</span><span class="bar">|
+										</span>
+										<span class="txt"><span class="tit">발행처: </span>문학사상사</span><span class="bar">|</span>
+										<span class="txt"><span class="tit">발행연도: </span>2021</span><span class="bar">|</span>
+										<span class="txt"><span class="tit">자료이용하는 곳: </span>경상북도교육청정보센터</span><span class="bar">|</span>
+										<span class="txt"><span class="tit">청구기호: </span>843.6  이39ㅍ</span>
+										<div class="stat">
+											<a href="#" id="addMyLibOne" value="00147046__000004378226__ __https://bookthumb-phinf.pstatic.net/cover/134/282/13428213.jpg__경상북도교육청정보센터__843.6  이39ㅍ__파친코  [점자자료] : 이민진 장편소설 . 2-2__이민진 지음__문학사상사__경상북도교육청정보센터"><span>관심도서담기</span></a>
+											<a href="#" class="showSlide" vLoca="00147046" vCtrl="000004378226"><span>이용가능여부</span><i class="fa fa-angle-down" aria-hidden="true"></i></a>
+											</div>
+									</div>
+									<div class="bci" style="display: none;">
+										<!-- ajax_area -->
+									</div>
+								</div>
+							</div>
+						</div>
+					<div class="row">
+							<p class="admin"><input name="print_param" id="print_param9" type="checkbox" class="checkBook" value="00147046__000004378227__ __https://bookthumb-phinf.pstatic.net/cover/134/282/13428213.jpg__경상북도교육청정보센터__843.6  이39ㅍ__파친코  [점자자료] : 이민진 장편소설 . 2-3__이민진 지음__문학사상사__경상북도교육청정보센터" title="이민진 지음"/></p>
+							<div class="thumb">
+								<a href="#" vLoca="00147046" vCtrl="000004378227" vImg="https://bookthumb-phinf.pstatic.net/cover/134/282/13428213.jpg" isbn="9788970129822" tid="" class="goDetail">
+											<img src="https://bookthumb-phinf.pstatic.net/cover/134/282/13428213.jpg" alt="파친코  [점자자료] : 이민진 장편소설 . 2-3"/>
+										</a>
+									</div>
+							<div class="box">
+								<div class="item">
+									<div class="bif">
+										<a href="#" vLoca="00147046" vCtrl="000004378227" vImg="https://bookthumb-phinf.pstatic.net/cover/134/282/13428213.jpg" isbn="9788970129822" tid="" class="name goDetail"><span style='color:#ffa651'>파친코</span>  [점자자료] : 이민진 장편소설 . 2-3</a>
+										<span class="txt"><span class="tit">저자: </span>
+												이민진 지음</span><span class="bar">|
+										</span>
+										<span class="txt"><span class="tit">발행처: </span>문학사상사</span><span class="bar">|</span>
+										<span class="txt"><span class="tit">발행연도: </span>2021</span><span class="bar">|</span>
+										<span class="txt"><span class="tit">자료이용하는 곳: </span>경상북도교육청정보센터</span><span class="bar">|</span>
+										<span class="txt"><span class="tit">청구기호: </span>843.6  이39ㅍ</span>
+										<div class="stat">
+											<a href="#" id="addMyLibOne" value="00147046__000004378227__ __https://bookthumb-phinf.pstatic.net/cover/134/282/13428213.jpg__경상북도교육청정보센터__843.6  이39ㅍ__파친코  [점자자료] : 이민진 장편소설 . 2-3__이민진 지음__문학사상사__경상북도교육청정보센터"><span>관심도서담기</span></a>
+											<a href="#" class="showSlide" vLoca="00147046" vCtrl="000004378227"><span>이용가능여부</span><i class="fa fa-angle-down" aria-hidden="true"></i></a>
+											</div>
+									</div>
+									<div class="bci" style="display: none;">
+										<!-- ajax_area -->
+									</div>
+								</div>
+							</div>
+						</div>
+					<div class="row">
+							<p class="admin"><input name="print_param" id="print_param10" type="checkbox" class="checkBook" value="00147046__000004378228__ __https://bookthumb-phinf.pstatic.net/cover/134/282/13428213.jpg__경상북도교육청정보센터__843.6  이39ㅍ__파친코  [점자자료] : 이민진 장편소설 . 2-4__이민진 지음__문학사상사__경상북도교육청정보센터" title="이민진 지음"/></p>
+							<div class="thumb">
+								<a href="#" vLoca="00147046" vCtrl="000004378228" vImg="https://bookthumb-phinf.pstatic.net/cover/134/282/13428213.jpg" isbn="9788970129822" tid="" class="goDetail">
+											<img src="https://bookthumb-phinf.pstatic.net/cover/134/282/13428213.jpg" alt="파친코  [점자자료] : 이민진 장편소설 . 2-4"/>
+										</a>
+									</div>
+							<div class="box">
+								<div class="item">
+									<div class="bif">
+										<a href="#" vLoca="00147046" vCtrl="000004378228" vImg="https://bookthumb-phinf.pstatic.net/cover/134/282/13428213.jpg" isbn="9788970129822" tid="" class="name goDetail"><span style='color:#ffa651'>파친코</span>  [점자자료] : 이민진 장편소설 . 2-4</a>
+										<span class="txt"><span class="tit">저자: </span>
+												이민진 지음</span><span class="bar">|
+										</span>
+										<span class="txt"><span class="tit">발행처: </span>문학사상사</span><span class="bar">|</span>
+										<span class="txt"><span class="tit">발행연도: </span>2021</span><span class="bar">|</span>
+										<span class="txt"><span class="tit">자료이용하는 곳: </span>경상북도교육청정보센터</span><span class="bar">|</span>
+										<span class="txt"><span class="tit">청구기호: </span>843.6  이39ㅍ</span>
+										<div class="stat">
+											<a href="#" id="addMyLibOne" value="00147046__000004378228__ __https://bookthumb-phinf.pstatic.net/cover/134/282/13428213.jpg__경상북도교육청정보센터__843.6  이39ㅍ__파친코  [점자자료] : 이민진 장편소설 . 2-4__이민진 지음__문학사상사__경상북도교육청정보센터"><span>관심도서담기</span></a>
+											<a href="#" class="showSlide" vLoca="00147046" vCtrl="000004378228"><span>이용가능여부</span><i class="fa fa-angle-down" aria-hidden="true"></i></a>
+											</div>
+									</div>
+									<div class="bci" style="display: none;">
+										<!-- ajax_area -->
+									</div>
+								</div>
+							</div>
+						</div>
+					<div id="cms_paging" class="dataTables_paginate">
+<span>
+<a id="1" href="" class="paginate_button current" keyValue="1">1</a>
+</span>
+</div>
+
+
+<script type="text/javascript">
+$(document).ready(function() {
+	jQuery.ajaxSettings.traditional = true;
+	
+	$('div#cms_paging a').on('click', function(e) {
+		
+		//location.hash = '#'+$(this).attr('keyValue');
+		$('#viewPage').attr('value', parseInt($(this).attr('keyValue')));
+		var param = serializeObject($('#librarySearch'));
+		var param2 = serializeObject($('#searchTableForm'));
+		$('input#checkAllBook').prop('checked', false);
+		$('div#search-results').load('table.do', $.extend(true, param, param2), function() {
+			$('div#search-results').scrollTop(0);
+			location.href ="#";
+		});
+		e.preventDefault();
+	});
+	$('body').scrollTop(0);
+	
+});
+</script></div>
+			</div>
+
+			<div class="ws-filter" id="ageLoanBestDiv" style="padding-bottom: 20px; display: none;">
+				<a id="ageLoanBestBtn" class="btn" style="line-height:140%">
+				  <i class="fa fa-keyboard-o" style="font-size:19px;color:#777"></i><span>연령별 대출순위</span>
+				</a>
+			</div>
+
+			<div class="ws-filter" > <span class="search_h4">검색결과 제한</span>
+				<ul>
+					<li class="li-group active"><a href="" class="bi" onclick="return false;">유형별</a>
+						<ul>
+							<li><a href="javascript:void(0);" class="doSearchFormCode" keyValue2="jttjmjttj" keyValue3="0"><span>단행본</span><em>(10)</em></a></li>
+							</ul>
+					</li>
+
+					<li class="li-group active"><a href="" class="bi" onclick="return false;">저자별</a>
+						<ul>
+							</ul>
+					</li>
+
+					<li class="li-group active"><a href="" class="bi" onclick="return false;">연도별</a>
+						<ul>
+							<li><a href="javascript:void(0);" class="doSearchFormCode" keyValue2="jttj2021jttj" keyValue3="3"><span>2021</span><em>(8)</em></a></li>
+							<li><a href="javascript:void(0);" class="doSearchFormCode" keyValue2="jttj2022jttj" keyValue3="3"><span>2022</span><em>(2)</em></a></li>
+							</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</form><div id="vk"></div>
+<div id="ageLoanBest" class="dialog-common" title="연령별 대출 리스트" style="display: none;">
+	<div style="text-align: center; padding-top: 100px;">
+	<img id="loading_img" alt="loading" src="/resources/common/img/viewLoading.gif" />
+	<br/><br/>
+	대출 순위 불러오는 중
+	</div>
+</div>
+
+</div>
+					</div>
+					</div>
+			</div>
+		</div>	
+		<div class="end"></div>
+	</div>
+
+	<div id="foot_section">
+		<div id="footer">
+		<div class="top-box">
+			<div class="sections">
+				<div class="info">
+					<h3>경상북도교육청 통합도서관</h3>
+					<address>
+						<p>
+							<em>(우 38637) 경북 경산시 원효로 60 (계양동, 경상북도교육청정보센터)</em><br/>
+							<em>전화 053-810-9923</em><br class="mobile-view"/>
+							<em>팩스 053-810-9940</em>
+						</p>
+						<span>Copyright &copy; by Gyeongsangbuk-do office of Education Information Center Public Library, All rights reserved.</span>
+					</address>
+				</div>
+				<div class="info-right">
+					<div class="site_link">
+						<div class="sns title">SNS</div>
+						<div class="sns">
+							<a href="https://www.youtube.com/channel/UCjHqDBCsJ-KczeedA2AWLTw" target="_blank"><img src="/resources/common/img/youtube-icon.png" onmouseover="this.src='/resources/common/img/youtube-icon-on.png'" onmouseout="this.src='/resources/common/img/youtube-icon.png'" alt="경상북도교육청 통합공공도서관 유튜브 바로가기" target="_blank"/></a>
+							<a href="https://twitter.com/gbelibkr" target="_blank"><img src="/resources/common/img/twitter-icon.png" onmouseover="this.src='/resources/common/img/twitter-icon-on.png'" onmouseout="this.src='/resources/common/img/twitter-icon.png'" alt="경상북도교육청 통합공공도서관 트위터 바로가기"/></a>
+							<a href="https://www.instagram.com/gbelib/" target="_blank"><img src="/resources/common/img/instagram-icon.png" onmouseover="this.src='/resources/common/img/instagram-icon-on.png'" onmouseout="this.src='/resources/common/img/instagram-icon.png'" alt="경상북도교육청 통합공공도서관 인스타그램 바로가기"/></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="bottom-box">
+			<div class="sections">
+				<div class="">
+					<div class="overflow-x">
+					<div class="info">
+						<a href="http://www.gbelib.kr/geic/html.do?menu_idx=99" style="color: yellow;">개인정보처리방침</a>
+						<span class="txt-menu-bar"></span>
+						<a href="/gbelib/html.do?menu_idx=131">문의처확인</a>
+					</div>
+					</div>
+
+					<div class="info-right">
+						<div class="site_link">
+							<select name="select" title="새창열림">
+								<option value="https://www.gbelib.kr/gbelib/index.do">경상북도교육청 공공도서관</option>
+								<option value="https://www.gbelib.kr/geic/index.do">경상북도교육청정보센터</option>
+								<option value="https://www.gbelib.kr/gm/index.do">경상북도교육청 구미도서관</option>
+								<option value="https://www.gbelib.kr/ad/index.do">경상북도교육청 안동도서관</option>
+								<option value="https://www.gbelib.kr/adys/index.do">경상북도교육청 안동도서관용상분관</option>
+								<option value="https://www.gbelib.kr/adps/index.do">경상북도교육청 안동도서관풍산분관</option>
+								<option value="https://www.gbelib.kr/sj/index.do">경상북도교육청 상주도서관</option>
+								<option value="https://www.gbelib.kr/sjhr/index.do">경상북도교육청 상주도서관화령분관</option>
+								<option value="https://www.gbelib.kr/yj/index.do">경상북도교육청 영주선비도서관</option>
+								<option value="https://www.gbelib.kr/yjpg/index.do">경상북도교육청 영주선비도서관풍기분관</option>
+								<option value="https://www.gbelib.kr/gbccs/index.do">경상북도교육청문화원</option>
+								<option value="https://www.gbelib.kr/yi/index.do">경상북도교육청 영일도서관</option>
+								<option value="https://www.gbelib.kr/od/index.do">경상북도교육청 외동도서관</option>
+								<option value="https://www.gbelib.kr/ycgh/index.do">경상북도교육청 금호도서관</option>
+								<option value="https://www.gbelib.kr/jc/index.do">경상북도교육청 점촌도서관</option>
+								<option value="https://www.gbelib.kr/jcge/index.do">경상북도교육청 점촌도서관가은분관</option>
+								<option value="https://www.gbelib.kr/us/index.do">경상북도교육청 의성도서관</option>
+								<option value="https://www.gbelib.kr/cs/index.do">경상북도교육청 청송도서관</option>
+								<option value="https://www.gbelib.kr/yy/index.do">경상북도교육청 영양도서관</option>
+								<option value="https://www.gbelib.kr/yd/index.do">경상북도교육청 영덕도서관</option>
+								<option value="https://www.gbelib.kr/cd/index.do">경상북도교육청 청도도서관</option>
+								<option value="https://www.gbelib.kr/gr/index.do">경상북도교육청 고령도서관</option>
+								<option value="https://www.gbelib.kr/sjl/index.do">경상북도교육청 성주도서관</option>
+								<option value="https://www.gbelib.kr/cg/index.do">경상북도교육청 칠곡도서관</option>
+								<option value="https://www.gbelib.kr/yc/index.do">경상북도교육청 예천도서관</option>
+								<option value="https://www.gbelib.kr/bh/index.do">경상북도교육청 봉화도서관</option>
+								<option value="https://www.gbelib.kr/uj/index.do">경상북도교육청 울진도서관</option>
+								<option value="https://www.gbelib.kr/ul/index.do">경상북도교육청 울릉도서관</option>
+							</select>
+							<a href="#move" class="sel-btn recommendSite11" title="새창열림">이동</a>
+							<!-- <div>
+								<div style="width:200px">
+<a class="fsite type1">
+<span class="f1">경상북도교육청 공공도서관</span>
+<span class="f2"><i></i></span></a>
+<ul style="display:none">
+<li class="disabled"><a href="#">경상북도교육청 공공도서관</a></li>
+<li class="disabled"><a title="경상북도교육청정보센터" href="http://www.gbelib.kr/geic/index.do">경상북도교육청정보센터</a></li>
+<li class="disabled"><a title="경상북도교육청 구미도서관" href="http://www.gbelib.kr/gm/index.do">경상북도교육청 구미도서관</a></li>
+<li class="disabled"><a title="경상북도교육청 안동도서관 " href="http://www.gbelib.kr/ad/index.do">경상북도교육청 안동도서관 </a></li>
+<li class="disabled"><a title="경상북도교육청 안동도서관용상분관" href="http://www.gbelib.kr/adys/index.do">경상북도교육청 안동도서관용상분관</a></li>
+<li class="disabled"><a title="경상북도교육청 안동도서관풍산분관" href="http://www.gbelib.kr/adps/index.do">경상북도교육청 안동도서관풍산분관</a></li>
+<li class="disabled"><a title="경상북도교육청 상주도서관" href="http://www.gbelib.kr/sj/index.do">경상북도교육청 상주도서관</a></li>
+<li class="disabled"><a title="경상북도교육청 상주도서관화령분관" href="http://www.gbelib.kr/sjhr/index.do">경상북도교육청 상주도서관화령분관</a></li>
+<li class="disabled"><a title="경상북도교육청 영주선비도서관" href="http://www.gbelib.kr/yj/index.do">경상북도교육청 영주선비도서관</a></li>
+<li class="disabled"><a title="경상북도교육청 영주선비도서관풍기분관" href="http://www.gbelib.kr/yjpg/index.do">경상북도교육청 영주선비도서관풍기분관</a></li>
+<li class="disabled"><a title="경상북도교육청문화원" href="http://www.gbelib.kr/gbccs/index.do">경상북도교육청문화원</a></li>
+<li class="disabled"><a title="경상북도교육청 영일도서관" href="http://www.gbelib.kr/yi/index.do">경상북도교육청 영일도서관</a></li>
+<li class="disabled"><a title="경상북도교육청 외동도서관" href="http://www.gbelib.kr/od/index.do">경상북도교육청 외동도서관</a></li>
+<li class="disabled"><a title="경상북도교육청 금호도서관" href="http://www.gbelib.kr/ycgh/index.do">경상북도교육청 금호도서관</a></li>
+<li class="disabled"><a title="경상북도교육청 점촌도서관" href="http://www.gbelib.kr/jc/index.do">경상북도교육청 점촌도서관</a></li>
+<li class="disabled"><a title="경상북도교육청 점촌도서관가은분관" href="http://www.gbelib.kr/jcge/index.do">경상북도교육청 점촌도서관가은분관</a></li>
+<li class="disabled"><a title="경상북도교육청 청도도서관" href="http://www.gbelib.kr/cd/index.do">경상북도교육청 청도도서관</a></li>
+<li class="disabled"><a title="경상북도교육청 의성도서관" href="http://www.gbelib.kr/us/index.do">경상북도교육청 의성도서관</a></li>
+<li class="disabled"><a title="경상북도교육청 청송도서관" href="http://www.gbelib.kr/cs/index.do">경상북도교육청 청송도서관</a></li>
+<li class="disabled"><a title="경상북도교육청 영양도서관" href="http://www.gbelib.kr/yy/index.do">경상북도교육청 영양도서관</a></li>
+<li class="disabled"><a title="경상북도교육청 영덕도서관" href="http://www.gbelib.kr/yd/index.do">경상북도교육청 영덕도서관</a></li>
+<li class="disabled"><a title="경상북도교육청 고령도서관" href="http://www.gbelib.kr/gr/index.do">경상북도교육청 고령도서관</a></li>
+<li class="disabled"><a title="경상북도교육청 성주도서관" href="http://www.gbelib.kr/sjl/index.do">경상북도교육청 성주도서관</a></li>
+<li class="disabled"><a title="경상북도교육청 칠곡도서관" href="http://www.gbelib.kr/cg/index.do">경상북도교육청 칠곡도서관</a></li>
+<li class="disabled"><a title="경상북도교육청 예천도서관" href="http://www.gbelib.kr/yc/index.do">경상북도교육청 예천도서관</a></li>
+<li class="disabled"><a title="경상북도교육청 봉화도서관" href="http://www.gbelib.kr/bh/index.do">경상북도교육청 봉화도서관</a></li>
+<li class="disabled"><a title="경상북도교육청 울진도서관" href="http://www.gbelib.kr/uj/index.do">경상북도교육청 울진도서관</a></li>
+<li class="disabled"><a title="경상북도교육청 울릉도서관" href="http://www.gbelib.kr/ul/index.do">경상북도교육청 울릉도서관</a></li>
+<li class="disabled"><a title="삼국유사군위도서관" href="http:www.gbelib.kr/gw/index.do">삼국유사군위도서관</a></li></ul></div>
+<a href="#" class="btn">이동</a>
+</div> -->
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+</div>

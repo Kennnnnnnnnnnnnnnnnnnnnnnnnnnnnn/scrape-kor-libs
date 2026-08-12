@@ -1,0 +1,2513 @@
+        
+
+<style>
+  #main3 .fp-tableCell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #main3 .main1-box {
+    width: 100%;
+  }
+
+  #wrapMap {
+    display: flex;
+    flex-direction: row;
+    max-width: 1254px;
+    width: 100%;
+    height: 600px;
+    border: 1px solid #ccc;
+    margin: 0 auto;
+    box-sizing: border-box;
+    font-family: "Malgun Gothic", dotum, sans-serif;
+    scroll-margin-top: 20px; /* 스크롤 시 상단 여백 확보 */
+  }
+
+  #map {
+    flex: 1;
+    height: 100%;
+    background-color: #eee;
+  }
+
+  #list {
+    width: 280px;
+    height: 100%;
+    background: #f8f8f8;
+    border-left: 1px solid #ccc;
+    padding: 15px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .filter-container {
+    padding-bottom: 10px;
+    border-bottom: 2px solid #333;
+    margin-bottom: 10px;
+  }
+  .filter-label {
+    font-size: 14px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 8px;
+  }
+  #category-select {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #4caf50;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+
+  .list-section-title {
+    margin-top: 5px;
+    font-size: 15px;
+    font-weight: bold;
+    padding-bottom: 5px;
+    color: #444;
+  }
+
+  #display-list {
+    flex: 1;
+    overflow-y: auto;
+    margin-top: 5px;
+  }
+
+  .lib-item {
+    padding: 10px 8px;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: left;
+    transition: background 0.2s;
+  }
+  .lib-item:hover {
+    background: #f0f0f0;
+  }
+
+  .lib-item::before {
+    content: "· ";
+    font-weight: bold;
+    margin-right: 5px;
+    color: #4caf50;
+  }
+
+  .custom-overlay-box {
+    display: inline-block;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    padding: 8px 10px;
+    text-align: center;
+    border: 1px solid #ccc;
+    white-space: nowrap;
+  }
+
+  @media screen and (max-width: 1024px) {
+    #main2 {
+      height: 1400px;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    #wrapMap {
+      flex-direction: column;
+      height: auto;
+      border: none;
+      width: 95%;
+      margin: 0 auto;
+    }
+    #map {
+      width: 100%;
+      height: 350px;
+      flex: none;
+    }
+    #list {
+      width: 100%;
+      height: auto;
+      border-left: none;
+      border-top: 1px solid #ccc;
+      padding: 10px;
+    }
+    #display-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5px;
+    }
+    .lib-item {
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      min-height: 40px;
+      padding: 6px 4px;
+      font-size: 13px;
+      justify-content: center;
+      text-align: center;
+    }
+    .lib-item::before {
+      content: "";
+      margin: 0;
+    }
+  }
+  #fp-nav ul li .fp-tooltip {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateX(0) !important;
+  }
+
+  #fp-nav ul li .fp-tooltip.fp-right {
+    top: 2px;
+    right: 35px !important;
+    width: auto;
+  }
+
+  #fp-nav.dark-tooltip ul li .fp-tooltip {
+    color: #333;
+  }
+  #fp-nav .fp-tooltip {
+    pointer-events: auto !important;
+    cursor: pointer !important;
+    opacity: 1 !important;
+    user-select: none;
+  }
+</style>
+
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta id="_csrf" name="_csrf" th:content=""/>
+<meta id="_csrf_header" name="_csrf_header" th:content=""/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="의정부시 도서관 대표홈페이지"/>
+<meta property="og:description" content="의정부시 도서관 대표홈페이지"/>
+<meta property="og:url" content="https://www.uilib.go.kr/main/index.do"/>
+<link rel="canonical" href="https://www.uilib.go.kr/main/index.do">
+<title>의정부시 도서관 대표홈페이지</title>
+<!--[if IE]>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<![endif]-->
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=0,maximum-scale=10"/>
+<link rel="stylesheet" type="text/css" href="/resources/common/css/fontawesome.min.css"/>
+<link rel="stylesheet" type="text/css" href="/resources/common/css/select2.min.css"/>
+<link rel="stylesheet" type="text/css" href="/resources/common/css/jquery.mmenu.css"/>
+<link rel="stylesheet" type="text/css" href="/resources/common/css/default_new_fullpage.css"/>
+<link rel="stylesheet" type="text/css" href="/resources/common/css/login.css"/>
+<link rel="stylesheet" type="text/css" href="/resources/board/css/default.css"/>
+<link rel="stylesheet" type="text/css" href="/resources/book/css/common.css"/>
+
+<link rel="stylesheet" type="text/css" href="/resources/homepage/main/css/default.css"/>
+<link rel="stylesheet" type="text/css" href="/resources/homepage/main/css/main.css"/>
+<link rel="stylesheet" type="text/css" href="/resources/common/css/sub_design.css"/>
+<!--[if lte IE 7]>
+<link rel="stylesheet" type="text/css" href="/resources/common/css/fontawesome-ie7.min.css"/>
+<![endif]-->
+<!--[if lte IE 8]>
+<link rel="stylesheet" type="text/css" href="/resources/homepage/jungang/css/ie.css"/>
+<![endif]-->
+<script type="text/javascript" src="/resources/common/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="/resources/common/js/jquery-ui-1.12.0.min.js"></script>
+<script type="text/javascript" src="/resources/common/js/jquery-ui-1.12.0-datepicker.min.js"></script>
+<script type="text/javascript" src="/resources/common/js/jquery.bxslider.min.js"></script>
+<script type="text/javascript" src="/resources/common/js/jquery.mmenu.min.js"></script>
+<script type="text/javascript" src="/resources/common/js/jquery.newsticker.js"></script>
+<script type="text/javascript" src="/resources/common/js/default.js"></script>
+<script type="text/javascript" src="/resources/common/js/common.js"></script>
+<script type="text/javascript" src="/resources/homepage/main/js/common.js"></script>
+<script type="text/javascript" src="/resources/common/js/kakao.min.js"></script>
+</head>
+<body>
+
+<a href="#container" class="skip-to">본문 바로가기</a>
+<a href="#navi" class="skip-to">메뉴 바로가기</a>
+<script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=0e2c9375ee84a76cb255f817891293bd&libraries=services"></script>
+<link rel="stylesheet" type="text/css" href="/resources/common/css/jquery.fullpage.css" />
+<link rel="stylesheet" type="text/css" href="/resources/common/css/jquery.swiper.css" />
+<script type="text/javascript" src="/resources/common/js/jquery.fullpage.js"></script>
+<script type="text/javascript" src="/resources/common/js/jquery.swiper.min.js"></script>
+
+<div id="wrap">
+  
+
+
+
+<div id="header">
+	<nav id="menu"></nav>
+
+	<div class="tnb">
+		<div class="main-section">
+			<div class="libLink dropdown" >
+				<a href="javascript:void();" class="button" title="도서관 바로가기(축소됨)">도서관 바로가기</a>
+				<ul>
+					<li><a href="/main/index.do">의정부도서관</a></li>
+					<li><a href="/science/index.do">과학도서관</a></li>
+					<li><a href="/information/index.do">정보도서관</a></li>
+					<li><a href="/english/index.do">영어도서관</a></li>
+					<li><a href="/art/index.do">미술도서관</a></li>
+					<li><a href="/gajaeul/index.do">가재울도서관</a></li>
+					<li><a href="/music/index.do">음악도서관</a></li>
+					<li><a href="/small/index.do">작은도서관</a></li>
+					<li><a href="/observatory/index.do">의정부천문대</a></li>
+				</ul>
+			</div>
+
+			<div class="mmodecard m-menu2">
+				<a href="/main/html/mcard.do?menu_idx=80" class="mCard"><img src="/resources/homepage/main/img/mcard-icon-w.png" alt="mcard-icon"></a>
+			</div>
+
+			<div class="mmode m-menu">
+				<a href="#menu"><img src="/resources/homepage/main/img/sitemap-btn-w.png" alt="메뉴" /><span class="blind">메뉴</span></a>
+			</div>
+
+			<div class="util">
+				
+					
+					
+					
+						<a href="/main/intro/login/index.do?menu_idx=55">로그인</a>
+						<span class="txt-bar"></span>
+						<a href="/science/html/joinTypeSelect.do?menu_idx=58">회원가입</a>
+					
+				
+
+						<a href="https://twitter.com/ujblib" target="_blank" class="sns-link"><img src="/resources/homepage/science/img/top_sns_v2_02.png" alt="트위터"></a>
+						<span></span>
+						<a href="https://www.facebook.com/ujblib" target="_blank"><img src="/resources/homepage/science/img/top_sns_v2_03.png" alt="페이스북"></a>
+						<span></span>
+						<a href="https://www.instagram.com/sciencelib_ujb/" target="_blank"><img src="/resources/homepage/science/img/top_sns_v2_01.png" alt="인스타그램"></a>
+			</div>
+
+		</div>
+	</div>
+
+
+  
+
+
+	<div class="head">
+		<div class="main-section">
+			<h1 id="logo" class="web-logo"><a href="/main/index.do"><img src="/resources/homepage/main/img/main_logo.png" alt="책읽는도시 의정부시 도서관" class='main-logo'/></a></h1>
+
+			<form name="mainSearchForm" id="mainSearchForm" action="/main/intro/search/index.do">
+				<input type="hidden" name="menu_idx" value="9">
+
+				<fieldset>
+					<legend class="blind">통합검색 영역</legend>
+					<div id="searchBox" class="searchBoxWrap">
+						<div class="searchBox">
+							<input type="hidden" id="searchKey" name="booktype" value="ALL">
+							<div class="keywordInput">
+								<label for="search_text_1">자료검색</label>
+								<input type="text" title="검색어 입력" id="search_text_1" name="title" autocomplete="off">
+							</div>
+							<a href="javascript:void();" id="main-search-btn" title="자료검색" class="btnSearch" style="border:0;">자료검색</a>
+						</div>
+						<div id="mainBestKeyword" class="mainBestKeyword">
+							<div class="controlBox">
+								<a href="#up" id="btnUp" title="인기검색어 위로 넘기기"><span class="blind">위</span></a>
+								<a href="#dwon" id="btnDwon" title="인기검색어 아래로 넘기기"><span class="blind">아래</span></a>
+							</div>
+							<div class="bestKeywordWrap">
+								<ol class="bestKeywordList">
+									
+										
+											<li><a href="#link" onclick="javascript:fnMainSearchKeyword('비룡소'); return false;" title='비룡소'><i>1</i>비룡소</a></li>
+										
+									
+										
+											<li><a href="#link" onclick="javascript:fnMainSearchKeyword('마법천자문'); return false;" title='마법천자문'><i>2</i>마법천자문</a></li>
+										
+									
+										
+											<li><a href="#link" onclick="javascript:fnMainSearchKeyword('설민석'); return false;" title='설민석'><i>3</i>설민석</a></li>
+										
+									
+										
+											<li><a href="#link" onclick="javascript:fnMainSearchKeyword('아몬드'); return false;" title='아몬드'><i>4</i>아몬드</a></li>
+										
+									
+										
+											<li><a href="#link" onclick="javascript:fnMainSearchKeyword('전천당'); return false;" title='전천당'><i>5</i>전천당</a></li>
+										
+									
+										
+											<li><a href="#link" onclick="javascript:fnMainSearchKeyword('주식'); return false;" title='주식'><i>6</i>주식</a></li>
+										
+									
+										
+											<li><a href="#link" onclick="javascript:fnMainSearchKeyword('살아남기'); return false;" title='살아남기'><i>7</i>살아남기</a></li>
+										
+									
+										
+											<li><a href="#link" onclick="javascript:fnMainSearchKeyword('소설'); return false;" title='소설'><i>8</i>소설</a></li>
+										
+									
+										
+											<li><a href="#link" onclick="javascript:fnMainSearchKeyword('투자'); return false;" title='투자'><i>9</i>투자</a></li>
+										
+									
+										
+											<li><a href="#link" onclick="javascript:fnMainSearchKeyword('계발'); return false;" title='계발'><i>10</i>계발</a></li>
+										
+									
+								</ol>
+							</div>
+						</div>
+					</div>
+				</fieldset>
+			</form>
+		</div>
+
+		<div class="Gnb">
+			<h2 class="blind">주메뉴</h2>
+			<div class="main-section">
+				<!-- menu S -->
+				<div class="g-menu">
+
+					<div class="mmode">
+							<a href="/main/html/mcard.do?menu_idx=80" class="btn4">
+								<i class="fa fa-bookmark"></i>
+								<span>모바일회원증</span>
+       						</a>
+					
+						
+						
+						
+							<a href="/main/intro/login/index.do?menu_idx=55" class="btn1">
+								<i class="fa fa-lock"></i>
+								<span>로그인</span>
+							</a>
+							<a href="/main/intro/join/index.do?menu_idx=58" class="btn2">
+								<i class="fa fa-user-plus"></i>
+								<span>회원가입</span>
+							</a>
+						
+					
+
+					</div>
+				</div>
+				<!-- menu E -->
+			</div>
+			<div class="mask">&nbsp;</div>
+		</div>
+		<div id="allbg"></div>
+	</div>
+
+
+</div>
+
+  <div class="popupWrap main-section">
+    <div id="popupLayer">
+      
+    </div>
+  </div>
+
+  <div id="fullpage">
+    <!-- main0 -->
+    <div class="section" id="main0" data-anchor="firstPage">
+      <div class="main-visual">
+        <div class="swiper-container">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide mvimg01">
+              <div class="mvText">여러분의 삶을 변화시키는 곳입니다!<strong>의정부시도서관</strong></div>
+            </div>
+            <div class="swiper-slide mvimg02">
+              <div class="mvText">여러분의 삶을 변화시키는 곳입니다.<strong>의정부시도서관</strong></div>
+            </div>
+            <!-- <div class="swiper-slide mvimg03"><div class="mvText">여러분의 삶을 변화시키는 곳입니다.<strong>의정부시도서관</strong></div></div> -->
+            <div class="swiper-slide mvimg04">
+              <div class="mvText">여러분의 삶을 변화시키는 곳입니다.<strong>의정부시도서관</strong></div>
+            </div>
+            <div class="swiper-slide mvimg05">
+              <div class="mvText">여러분의 삶을 변화시키는 곳입니다.<strong>의정부시도서관</strong></div>
+            </div>
+
+            <div class="swiper-slide mvimg06">
+              <div class="mvText">여러분의 삶을 변화시키는 곳입니다.<strong>의정부시도서관</strong></div>
+            </div>
+            <div class="swiper-slide mvimg07">
+              <div class="mvText">여러분의 삶을 변화시키는 곳입니다.<strong>의정부시도서관</strong></div>
+            </div>
+            <!-- <div class="swiper-slide mvimg08"><div class="mvText">여러분의 삶을 변화시키는 곳입니다.<strong>의정부시도서관</strong></div></div> -->
+            <div class="swiper-slide mvimg09">
+              <div class="mvText">여러분의 삶을 변화시키는 곳입니다.<strong>의정부시도서관</strong></div>
+            </div>
+            <div class="swiper-slide mvimg10">
+              <div class="mvText">여러분의 삶을 변화시키는 곳입니다.<strong>의정부시도서관</strong></div>
+            </div>
+            <div class="swiper-slide mvimg11">
+              <div class="mvText">여러분의 삶을 변화시키는 곳입니다.<strong>의정부시도서관</strong></div>
+            </div>
+            <div class="swiper-slide mvimg12">
+              <div class="mvText">여러분의 삶을 변화시키는 곳입니다.<strong>의정부시도서관</strong></div>
+            </div>
+            <div class="swiper-slide mvimg13">
+              <div class="mvText">여러분의 삶을 변화시키는 곳입니다.<strong>의정부시도서관</strong></div>
+            </div>
+          </div>
+
+          <div class="mvBtn_wp">
+            <div class="mvBtn">
+              <div class="swiper-button-next"><img src="/resources/homepage/main/img/next-btn.png" alt="다음" /></div>
+              <div class="swiper-button-prev"><img src="/resources/homepage/main/img/prev-btn.png" alt="이전" /></div>
+            </div>
+            <div class="swiper-pagination"></div>
+
+            <div class="ctrBtn">
+              <a href="#" class="stop">stop</a>
+              <a href="#" class="start">play</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="libLinkMain dropdown">
+          <a href="javascript:void();" class="button" title="도서관 바로가기(축소됨)">도서관 바로가기</a>
+          <ul>
+            <li><a href="/main/index.do">의정부시도서관</a></li>
+            <li><a href="/information/index.do">정보도서관</a></li>
+            <li><a href="/science/index.do">과학도서관</a></li>
+            <li><a href="/art/index.do">미술도서관</a></li>
+            <li><a href="/music/index.do">음악도서관</a></li>
+            <li><a href="/english/index.do">영어도서관</a></li>
+            <li><a href="/gajaeul/index.do">가재울도서관</a></li>
+            <li><a href="/small/index.do">작은도서관</a></li>
+            <li><a href="/archive">의정부기록공유관</a></li>
+            <li><a href="/observatory/index.do">의정부천문대</a></li>
+          </ul>
+        </div>
+
+        <div class="holiday-box">
+          <div class="main-box">
+            <div id="holiday-box" class="holiday-section"></div>
+          </div>
+        </div>
+
+        <div class="main_scroll"><div class="main_scroll_wp">scroll down</div></div>
+      </div>
+    </div>
+    <!-- //main0 -->
+    <!-- //main1 -->
+    <div class="section" id="main1" data-anchor="secondPage">
+      <div class="main-section">
+        <div class="doc-body con23" id="contentArea">
+          <div class="body">
+            <script type="text/javascript">
+              $(function () {
+                var sysDate = new Date();
+                var year = sysDate.getFullYear();
+                var month = sysDate.getMonth() + 1;
+                //년도 초기화 (내년 일정 까지 볼수 있게 하려고 + 1함)
+                var planDate = "2026-08".split("-");
+                for (var i = 0; i < 15; i++) {
+                  var optionYear = year + 1 - i;
+                  var selectedAttr = "";
+
+                  if (optionYear == planDate[0]) {
+                    selectedAttr = 'selected="selected"';
+                  }
+
+                  $("#plan_year").append("<option " + selectedAttr + ' value="' + optionYear + '">' + optionYear + "년</option>");
+                }
+                // 월 초기화
+                for (var j = 1; j < 13; j++) {
+                  var valueMonth = "0" + j;
+                  var selectedAttr = "";
+                  valueMonth = valueMonth.substr(valueMonth.length - 2, valueMonth.length);
+
+                  if (j == planDate[1]) {
+                    selectedAttr = 'selected="selected"';
+                  }
+
+                  $("#plan_month").append("<option " + selectedAttr + ' value="' + valueMonth + '">' + j + "월</option>");
+                }
+
+                if (window.sessionStorage.getItem("hash")) {
+                  window.location.hash = window.sessionStorage.getItem("hash");
+                  window.sessionStorage.removeItem("hash");
+                }
+
+                $("a#monthSelect").on("click", function (e) {
+                  e.preventDefault();
+                  var planDate = $("#plan_year").val() + "-" + $("#plan_month").val();
+                  $("#plan_date").val(planDate);
+                  if (window.location.hash) {
+                    window.sessionStorage.setItem("hash", window.location.hash);
+                  }
+                  doGetLoad("index.do", serializeCustom($("#calendarManage")));
+                });
+
+                $("a#changeView").on("click", function (e) {
+                  e.preventDefault();
+                  var planDate = $("#plan_year").val() + "-" + $("#plan_month").val();
+                  $("#plan_date").val(planDate);
+                  doGetLoad("index_list.do", serializeCustom($("#calendarManage")));
+                });
+
+                $("select#homepage_id_1").on("change", function (e) {
+                  var planDate = $("#plan_year").val() + "-" + $("#plan_month").val();
+                  $("#plan_date").val(planDate);
+                  if ($(this).val() != "") {
+                    $("input#homepage_id_1").val($(this).val());
+                    doGetLoad("index.do", serializeCustom($("#calendarManage")));
+                  }
+
+                  e.preventDefault();
+                });
+
+                $("a.modify").on("click", function (event) {
+                  if ($(this).attr("type") == "calendar") {
+                    if ($(this).attr("linkurl") == null || $(this).attr("linkurl") == "null") {
+                      if ($("#homepage_id").val() === "h2") {
+                        doGetLoad("/science/module/calendarManage/index.do", "menu_idx=23");
+                      }
+                      if ($("#homepage_id").val() === "h3") {
+                        doGetLoad("/information/module/calendarManage/index.do", "menu_idx=23");
+                      }
+                      if ($("#homepage_id").val() === "h4") {
+                        doGetLoad("/english/module/calendarManage/index.do", "menu_idx=23");
+                      }
+                      if ($("#homepage_id").val() === "h5") {
+                        doGetLoad("/gajaeul/module/calendarManage/index.do", "menu_idx=23");
+                      }
+                      if ($("#homepage_id").val() === "h6") {
+                        doGetLoad("/art/module/calendarManage/index.do", "menu_idx=23");
+                      }
+                      if ($("#homepage_id").val() === "h7") {
+                        doGetLoad("/music/module/calendarManage/index.do", "menu_idx=23");
+                      }
+                      if ($("#homepage_id").val() === "h8") {
+                        doGetLoad("/observatory/module/excursions/index.do", "menu_idx=34");
+                      }
+                      // doGetLoad('/science/module/calendarManage/detail.do', 'menu_idx=23&cm_idx=' + $(this).attr('keyValue2') + '&date_type=' + $(this).attr('keyValue3'));
+                    } else {
+                      doGetLoad($(this).attr("linkurl"));
+                    }
+                  } else if ($(this).attr("type") == "teach") {
+                    if ($(this).attr("linkurl") == null || $(this).attr("linkurl") == "null") {
+                      if ($("#homepage_id").val() === "h2") {
+                        doGetLoad(
+                          "/science/module/teach/detail.do",
+                          "menu_idx=23&category_idx=" + $(this).attr("keyValue") + "&teach_idx=" + $(this).attr("keyValue2") + "&group_idx=" + $(this).attr("keyValue3"),
+                        );
+                      }
+                      if ($("#homepage_id").val() === "h3") {
+                        doGetLoad(
+                          "/information/module/teach/detail.do",
+                          "menu_idx=23&category_idx=" + $(this).attr("keyValue") + "&teach_idx=" + $(this).attr("keyValue2") + "&group_idx=" + $(this).attr("keyValue3"),
+                        );
+                      }
+                      if ($("#homepage_id").val() === "h4") {
+                        doGetLoad(
+                          "/english/module/teach/detail.do",
+                          "menu_idx=23&category_idx=" + $(this).attr("keyValue") + "&teach_idx=" + $(this).attr("keyValue2") + "&group_idx=" + $(this).attr("keyValue3"),
+                        );
+                      }
+                      if ($("#homepage_id").val() === "h5") {
+                        doGetLoad(
+                          "/gajaeul/module/teach/detail.do",
+                          "menu_idx=23&category_idx=" + $(this).attr("keyValue") + "&teach_idx=" + $(this).attr("keyValue2") + "&group_idx=" + $(this).attr("keyValue3"),
+                        );
+                      }
+                      if ($("#homepage_id").val() === "h6") {
+                        doGetLoad(
+                          "/art/module/teach/detail.do",
+                          "menu_idx=23&category_idx=" + $(this).attr("keyValue") + "&teach_idx=" + $(this).attr("keyValue2") + "&group_idx=" + $(this).attr("keyValue3"),
+                        );
+                      }
+                      if ($("#homepage_id").val() === "h7") {
+                        doGetLoad(
+                          "/music/module/teach/detail.do",
+                          "menu_idx=23&category_idx=" + $(this).attr("keyValue") + "&teach_idx=" + $(this).attr("keyValue2") + "&group_idx=" + $(this).attr("keyValue3"),
+                        );
+                      }
+                      if ($("#homepage_id").val() === "h8") {
+                        doGetLoad(
+                          "/observatory/module/teach/detail.do",
+                          "menu_idx=34&category_idx=" + $(this).attr("keyValue") + "&teach_idx=" + $(this).attr("keyValue2") + "&group_idx=" + $(this).attr("keyValue3"),
+                        );
+                      }
+                      // doGetLoad('/science/module/calendarManage/detail.do', 'menu_idx=23&cm_idx=' + $(this).attr('keyValue2') + '&date_type=' + $(this).attr('keyValue3'));
+                    } else {
+                      doGetLoad($(this).attr("linkurl"));
+                    }
+                    // doGetLoad(
+                    // 	'/information/module/teach/detail.do',
+                    // 	'category_idx=' + $(this).attr('keyValue') + '&teach_idx=' + $(this).attr('keyValue2') + '&menu_idx=' + $('#menu_idx').val() + '&group_idx=' + $(this).attr('keyValue3')
+                    // );
+                  } else if ($(this).attr("type") == "move") {
+                    doGetLoad("/information/board/view.do", "menu_idx=" + $(this).attr("keyValue3") + "&manage_idx=" + $(this).attr("keyValue") + "&board_idx=" + $(this).attr("keyValue2"));
+                  }
+                  event.preventDefault();
+                });
+
+                $("a#before-btn").on("click", function (event) {
+                  event.preventDefault();
+
+                  var year = $("#plan_year").val();
+                  var month = $("#plan_month").val();
+
+                  if (month == 1) {
+                    year = parseInt(year) - 1;
+                    month = 12;
+                  } else {
+                    month = parseInt(month) - 1;
+                  }
+
+                  var planDate = year + "-" + month;
+                  if (month < 10) {
+                    var planDate = year + "-0" + month;
+                  } else {
+                    var planDate = year + "-" + month;
+                  }
+
+                  if (window.location.hash) {
+                    window.sessionStorage.setItem("hash", window.location.hash);
+                  }
+
+                  $("#plan_date").val(planDate);
+                  doGetLoad("index.do", serializeCustom($("#calendarManage")));
+                });
+
+                $("a#next-btn").on("click", function (event) {
+                  event.preventDefault();
+
+                  var year = $("#plan_year").val();
+                  var month = $("#plan_month").val();
+
+                  if (month == 12) {
+                    year = parseInt(year) + 1;
+                    month = 1;
+                  } else {
+                    month = parseInt(month) + 1;
+                  }
+
+                  var planDate = year + "-" + month;
+                  if (month < 10) {
+                    var planDate = year + "-0" + month;
+                  } else {
+                    var planDate = year + "-" + month;
+                  }
+
+                  if (window.location.hash) {
+                    window.sessionStorage.setItem("hash", window.location.hash);
+                  }
+
+                  $("#plan_date").val(planDate);
+                  doGetLoad("index.do", serializeCustom($("#calendarManage")));
+                });
+
+                /* 달력 제어 시작 */
+                $("tr.week").each(function (i, e) {
+                  var $this = $(this);
+                  var liCountByTr = $this.find("li").length;
+
+                  var date = new Date();
+                  var day = date.getDate();
+
+                  if (liCountByTr > 0) {
+                    $this.find("td").each(function (i, e) {
+                      var liCountByTd = $(this).find("li").length;
+                      if (liCountByTd > 0) {
+                        $(this).addClass("data" + liCountByTd);
+                      }
+                    });
+                  } else {
+                    $this.addClass("noData");
+                  }
+
+                  $this.find("td").each(function (i, e) {
+                    if ($("#plan_year").val() + $("#plan_month").val() == year + "" + month) {
+                      if ($(this).find("div").text() == day) {
+                        $(this).addClass("today");
+                      }
+                    }
+                  });
+                });
+
+                function cwFunc() {
+                  var cw = $("#calendar td").width() - 8;
+                  $("#calendar td ul")
+                    .css({
+                      width: cw + "px",
+                    })
+                    .show();
+                }
+                cwFunc();
+
+                $(window).resize(function () {
+                  cwFunc();
+                });
+                /* 달력 제어 종료 */
+
+                $("select#homepage_id").on("change", function () {
+                  $("a#monthSelect").click();
+                });
+              });
+            </script>
+
+            
+            <form id="calendarManage" action="/main/index.do;jsessionid=EED5AA11A6C4935BC1D92D36C5693E85.wb12" method="GET">
+              <input id="plan_date" name="plan_date" type="hidden" value="2026-08"/>
+              <select id="homepage_id" name="homepage_id">
+                <option value="h2" selected="selected">과학도서관</option>
+                <option value="h3">정보도서관</option>
+                <option value="h4">영어도서관</option>
+                <option value="h5">가재울도서관</option>
+                <option value="h6">미술도서관</option>
+                <option value="h7">음악도서관</option>
+                <option value="h8">의정부천문대</option>
+              </select>
+              
+              <div class="ym_btns">
+                <a id="before-btn" href="#prev" class="btn prev"><i class="fa fa-angle-left"></i><span class="blind">이전달</span></a>
+                <!-- 			<label for="plan_year"/> -->
+                <select id="plan_year" name="plan_year" title="년도" style="width: 80px; height: 28px"></select>
+                <!-- 			<label for="plan_month"/> -->
+                <select id="plan_month" name="plan_month" title="월" style="width: 65px; height: 28px"></select>
+                <a href="#secondPage" id="monthSelect" class="btn btn1">이동</a>
+                <a id="next-btn" href="#next" class="btn next"><i class="fa fa-angle-right"></i><span class="blind">다음달</span></a>
+                
+              </div>
+              <div id="calendar" class="event-cal">
+                <div class="cal-func">
+                  <div class="date-type">
+                    <span class="type-r"><i></i><em>휴관일</em></span>
+                    <span class="type-e"><i></i><em>행사일정</em></span>
+                    <span class="type-m"><i></i><em>영화상영</em></span>
+                  </div>
+                </div>
+
+                <table class="cal-tbl" summary="이달의행사">
+                  <caption>
+                    이달의 행사 일정 안내
+                  </caption>
+                  <thead>
+                    <tr class="first">
+                      <th class="sun first th1">일</th>
+                      <th class="th2">월</th>
+                      <th class="th3">화</th>
+                      <th class="th4">수</th>
+                      <th class="th5">목</th>
+                      <th class="th6">금</th>
+                      <th class="sat last th7">토</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                      <tr class="week">
+                        
+                          
+                            <td><div>&nbsp;</div></td>
+                          
+                          
+                        
+                        
+                          
+                            <td><div>&nbsp;</div></td>
+                          
+                          
+                        
+                        
+                          
+                            <td><div>&nbsp;</div></td>
+                          
+                          
+                        
+                        
+                          
+                            <td><div>&nbsp;</div></td>
+                          
+                          
+                        
+                        
+                          
+                            <td><div>&nbsp;</div></td>
+                          
+                          
+                        
+                        
+                          
+                            <td><div>&nbsp;</div></td>
+                          
+                          
+                        
+                        
+                          
+                          
+                            <td class="sat">
+                              <div>1</div>
+                              
+                              <ul>
+                                <li title="[2026 길 위의 인문학 1] 나를 이해하는 뇌과학 (나를 알고 싶은 순간, 뇌과학 2)"><a href="#" class="modify" type="teach" keyValue="1" keyValue2="1646" keyValue3="10"><span class="type-e"><i></i><em>[강좌][2026 길 위의 인문학 1] 나를 이해하는 뇌과학 (나를 알고 싶은 순간, 뇌과학 2)</em></span></a></li>
+
+                              </ul>
+                            </td>
+                          
+                        
+                      </tr>
+                    
+                      <tr class="week">
+                        
+                          
+                          
+                            <td class="sun">
+                              <div>2</div>
+                              
+                              <ul>
+                                
+
+                              </ul>
+                            </td>
+                          
+                        
+                        
+                          
+                          
+                            <td>
+                              <div>3</div>
+                              
+                              <ul>
+                                <li title="정기휴관일"><span class="type-r"><i></i><em>정기휴관일</em></span></li>
+
+                              </ul>
+                            </td>
+                          
+                        
+                        
+                          
+                          
+                            <td>
+                              <div>4</div>
+                              
+                              <ul>
+                                
+
+                              </ul>
+                            </td>
+                          
+                        
+                        
+                          
+                          
+                            <td>
+                              <div>5</div>
+                              
+                              <ul>
+                                
+
+                              </ul>
+                            </td>
+                          
+                        
+                        
+                          
+                          
+                            <td>
+                              <div>6</div>
+                              
+                              <ul>
+                                
+
+                              </ul>
+                            </td>
+                          
+                        
+                        
+                          
+                          
+                            <td>
+                              <div>7</div>
+                              
+                              <ul>
+                                <li title="[2026 길 위의 인문학 1] 나를 이해하는 뇌과학 (나를 알고 싶은 순간, 뇌과학 2)"><a href="#" class="modify" type="teach" keyValue="1" keyValue2="1646" keyValue3="10"><span class="type-e"><i></i><em>[강좌][2026 길 위의 인문학 1] 나를 이해하는 뇌과학 (나를 알고 싶은 순간, 뇌과학 2)</em></span></a></li>
+
+                              </ul>
+                            </td>
+                          
+                        
+                        
+                          
+                          
+                            <td class="sat">
+                              <div>8</div>
+                              
+                              <ul>
+                                <li title="[2026 길 위의 인문학 1] 나를 이해하는 뇌과학 (나를 알고 싶은 순간, 뇌과학 2)"><a href="#" class="modify" type="teach" keyValue="1" keyValue2="1646" keyValue3="10"><span class="type-e"><i></i><em>[강좌][2026 길 위의 인문학 1] 나를 이해하는 뇌과학 (나를 알고 싶은 순간, 뇌과학 2)</em></span></a></li><li title="2026년 과학도서관 여름독서교실 「똥볶이 할멈」 저자 강연회"><a href="#" class="modify" type="teach" keyValue="0" keyValue2="1649" keyValue3="15"><span class="type-e"><i></i><em>[강좌]2026년 과학도서관 여름독서교실 「똥볶이 할멈」 저자 강연회</em></span></a></li>
+
+                              </ul>
+                            </td>
+                          
+                        
+                      </tr>
+                    
+                      <tr class="week">
+                        
+                          
+                          
+                            <td class="sun">
+                              <div>9</div>
+                              
+                              <ul>
+                                
+
+                              </ul>
+                            </td>
+                          
+                        
+                        
+                          
+                          
+                            <td>
+                              <div>10</div>
+                              
+                              <ul>
+                                <li title="정기휴관일"><span class="type-r"><i></i><em>정기휴관일</em></span></li>
+
+                              </ul>
+                            </td>
+                          
+                        
+                        
+                          
+                          
+                            <td>
+                              <div>11</div>
+                              
+                              <ul>
+                                
+
+                              </ul>
+                            </td>
+                          
+                        
+                        
+                          
+                          
+                            <td>
+                              <div>12</div>
+                              
+                              <ul>
+                                
+
+                              </ul>
+                            </td>
+                          
+                        
+                        
+                          
+                          
+                            <td>
+                              <div>13</div>
+                              
+                              <ul>
+                                
+
+                              </ul>
+                            </td>
+                          
+                        
+                        
+                          
+                          
+                            <td>
+                              <div>14</div>
+                              
+                              <ul>
+                                
+
+                              </ul>
+                            </td>
+                          
+                        
+                        
+                          
+                          
+                            <td class="sat">
+                              <div>15</div>
+                              
+                              <ul>
+                                <li title="광복절"><span class="type-r"><i></i><em>광복절</em></span></li>
+
+                              </ul>
+                            </td>
+                          
+                        
+                      </tr>
+                    
+                      <tr class="week">
+                        
+                          
+                          
+                            <td class="sun">
+                              <div>16</div>
+                              
+                              <ul>
+                                
+
+                              </ul>
+                            </td>
+                          
+                        
+                        
+                          
+                          
+                            <td>
+                              <div>17</div>
+                              
+                              <ul>
+                                <li title="정기휴관일"><span class="type-r"><i></i><em>정기휴관일</em></span></li>
+
+                              </ul>
+                            </td>
+                          
+                        
+                        
+                          
+                          
+                            <td>
+                              <div>18</div>
+                              
+                              <ul>
+                                
+
+                              </ul>
+                            </td>
+                          
+                        
+                        
+                          
+                          
+                            <td>
+                              <div>19</div>
+                              
+                              <ul>
+                                <li title="[2026 길 위의 인문학 2] 운동하면 좋은 걸 누가 모르냐고요 (나를 알고 싶은 순간, 뇌과학 2)"><a href="#" class="modify" type="teach" keyValue="1" keyValue2="1647" keyValue3="10"><span class="type-e"><i></i><em>[강좌][2026 길 위의 인문학 2] 운동하면 좋은 걸 누가 모르냐고요 (나를 알고 싶은 순간, 뇌과학 2)</em></span></a></li>
+
+                              </ul>
+                            </td>
+                          
+                        
+                        
+                          
+                          
+                            <td>
+                              <div>20</div>
+                              
+                              <ul>
+                                
+
+                              </ul>
+                            </td>
+                          
+                        
+                        
+                          
+                          
+                            <td>
+                              <div>21</div>
+                              
+                              <ul>
+                                
+
+                              </ul>
+                            </td>
+                          
+                        
+                        
+                          
+                          
+                            <td class="sat">
+                              <div>22</div>
+                              
+                              <ul>
+                                
+
+                              </ul>
+                            </td>
+                          
+                        
+                      </tr>
+                    
+                      <tr class="week">
+                        
+                          
+                          
+                            <td class="sun">
+                              <div>23</div>
+                              
+                              <ul>
+                                
+
+                              </ul>
+                            </td>
+                          
+                        
+                        
+                          
+                          
+                            <td>
+                              <div>24</div>
+                              
+                              <ul>
+                                <li title="정기휴관일"><span class="type-r"><i></i><em>정기휴관일</em></span></li>
+
+                              </ul>
+                            </td>
+                          
+                        
+                        
+                          
+                          
+                            <td>
+                              <div>25</div>
+                              
+                              <ul>
+                                
+
+                              </ul>
+                            </td>
+                          
+                        
+                        
+                          
+                          
+                            <td>
+                              <div>26</div>
+                              
+                              <ul>
+                                <li title="[2026 길 위의 인문학 2] 운동하면 좋은 걸 누가 모르냐고요 (나를 알고 싶은 순간, 뇌과학 2)"><a href="#" class="modify" type="teach" keyValue="1" keyValue2="1647" keyValue3="10"><span class="type-e"><i></i><em>[강좌][2026 길 위의 인문학 2] 운동하면 좋은 걸 누가 모르냐고요 (나를 알고 싶은 순간, 뇌과학 2)</em></span></a></li>
+
+                              </ul>
+                            </td>
+                          
+                        
+                        
+                          
+                          
+                            <td>
+                              <div>27</div>
+                              
+                              <ul>
+                                
+
+                              </ul>
+                            </td>
+                          
+                        
+                        
+                          
+                          
+                            <td>
+                              <div>28</div>
+                              
+                              <ul>
+                                
+
+                              </ul>
+                            </td>
+                          
+                        
+                        
+                          
+                          
+                            <td class="sat">
+                              <div>29</div>
+                              
+                              <ul>
+                                
+
+                              </ul>
+                            </td>
+                          
+                        
+                      </tr>
+                    
+                      <tr class="week">
+                        
+                          
+                          
+                            <td class="sun">
+                              <div>30</div>
+                              
+                              <ul>
+                                
+
+                              </ul>
+                            </td>
+                          
+                        
+                        
+                          
+                          
+                            <td>
+                              <div>31</div>
+                              
+                              <ul>
+                                <li title="정기휴관일"><span class="type-r"><i></i><em>정기휴관일</em></span></li>
+
+                              </ul>
+                            </td>
+                          
+                        
+                        
+                          
+                            <td><div>&nbsp;</div></td>
+                          
+                          
+                        
+                        
+                          
+                            <td><div>&nbsp;</div></td>
+                          
+                          
+                        
+                        
+                          
+                            <td><div>&nbsp;</div></td>
+                          
+                          
+                        
+                        
+                          
+                            <td><div>&nbsp;</div></td>
+                          
+                          
+                        
+                        
+                          
+                            <td><div>&nbsp;</div></td>
+                          
+                          
+                        
+                      </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+            </form>
+            <div id="menuRatingDiv"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--section2-->
+    <!-- section2 -->
+    <div class="section" id="main2" data-anchor="3rdPage">
+      <div class="main1-box">
+        <div class="main-section">
+          <div class="tab-box tabS">
+            <ul class="tabMenuSS">
+              
+                
+                  <li class="on">
+                    <a
+                      href="#tab1"
+                      id="notice"
+                      data-url="/science/board/index.do?manage_idx=8&menu_idx=102"
+                      ><span class="txt">공지사항</span></a
+                    >
+                  </li>
+                  <li>
+                    <a href="#tab2" id="culture" data-url="/science/module/teach/index.do?menu_idx=24"
+                      ><span class="txt">문화행사</span></a
+                    >
+                  </li>
+                
+                
+              
+            </ul>
+            
+               
+            
+
+            <div>
+              <div class="con" data-tab="tab1">
+                <ul class="articleList clearfix">
+                  <li>
+                    
+                      
+                        <a href="#">
+                          <div class="tit">
+                            <i class="lib main0001">과학도서관</i> <a href="https://www.uilib.go.kr/science/board/index.do?menu_idx=102&manage_idx=8" target="_blank" class="notice-more">더보기</a>
+                          </div>
+                          <div class="conts">
+                            <dl>
+                              <dt>
+                                <p>
+                                  <a
+                                    href="/science/board/view.do?manage_idx=8&menu_idx=102&board_idx=43733"
+                                    target="_blank"
+                                    >광복절 휴관 안내</a
+                                  >
+                                </p>
+                              </dt>
+                              <dd class="desc">
+                                
+                                  
+                                    
+                                
+                              </dd>
+                              <dd class="day">2026.08.05</dd>
+                            </dl>
+                          </div>
+                        </a>
+                      
+                      
+                    
+                  </li>
+                  <li>
+                    
+                      
+                        <a href="#">
+                          <div class="tit">
+                            <i class="lib main0002">정보도서관</i> <a href="https://www.uilib.go.kr/information/board/index.do?menu_idx=102&manage_idx=9" target="_blank" class="notice-more">더보기</a>
+                          </div>
+                          <div class="conts">
+                            <dl>
+                              <dt>
+                                <p>
+                                  <a
+                                    href="/information/board/view.do?manage_idx=9&menu_idx=102&board_idx=43727"
+                                    target="_blank"
+                                    >광복절 휴관 안내</a
+                                  >
+                                </p>
+                              </dt>
+                              <dd class="desc">
+                                
+                                  
+                                    
+                                
+                              </dd>
+                              <dd class="day">2026.08.04</dd>
+                            </dl>
+                          </div>
+                        </a>
+                      
+                      
+                    
+                  </li>
+                  <li>
+                    
+                      
+                        <a href="#">
+                          <div class="tit">
+                            <i class="lib main0003">영어도서관</i> <a href="https://www.uilib.go.kr/child/board/index.do?menu_idx=102&manage_idx=10" target="_blank" class="notice-more">더보기</a>
+                          </div>
+                          <div class="conts">
+                            <dl>
+                              <dt>
+                                <p>
+                                  <a
+                                    href="/english/board/view.do?manage_idx=10&menu_idx=102&board_idx=43714"
+                                    target="_blank"
+                                    >영어도서관 8월 영어그림책작가 사서컬렉션 「Frank Asch」</a
+                                  >
+                                </p>
+                              </dt>
+                              <dd class="desc">
+                                
+                                  
+                                    
+                                
+                              </dd>
+                              <dd class="day">2026.08.02</dd>
+                            </dl>
+                          </div>
+                        </a>
+                      
+                      
+                    
+                  </li>
+                  <li>
+                    
+                      
+                        <a href="#">
+                          <div class="tit">
+                            <i class="lib main0004">가재울도서관</i> <a href="https://www.uilib.go.kr/gajaeul/board/index.do?menu_idx=102&manage_idx=11" target="_blank" class="notice-more">더보기</a>
+                          </div>
+                          <div class="conts">
+                            <dl>
+                              <dt>
+                                <p>
+                                  <a
+                                    href="/gajaeul/board/view.do?manage_idx=11&menu_idx=102&board_idx=43722"
+                                    target="_blank"
+                                    >8월 17일 월요일 「광복절 대체휴일」 휴관 안내</a
+                                  >
+                                </p>
+                              </dt>
+                              <dd class="desc">
+                                
+                                  
+                                    
+                                
+                              </dd>
+                              <dd class="day">2026.08.04</dd>
+                            </dl>
+                          </div>
+                        </a>
+                      
+                      
+                    
+                  </li>
+                  <li>
+                    
+                      
+                        <a href="#">
+                          <div class="tit">
+                            <i class="lib main0005">미술도서관</i> <a href="https://www.uilib.go.kr/art/board/index.do?menu_idx=102&manage_idx=12" target="_blank" class="notice-more">더보기</a>
+                          </div>
+                          <div class="conts">
+                            <dl>
+                              <dt>
+                                <p>
+                                  <a
+                                    href="/art/board/view.do?manage_idx=12&menu_idx=102&board_idx=43693"
+                                    target="_blank"
+                                    >2026년 온 세상이 주목하는 지금 베스트셀러 목록(8월)</a
+                                  >
+                                </p>
+                              </dt>
+                              <dd class="desc">
+                                
+                                   온 세상이 주목하는 지금 베스트셀러 ... 
+                                  
+                                
+                              </dd>
+                              <dd class="day">2026.07.31</dd>
+                            </dl>
+                          </div>
+                        </a>
+                      
+                      
+                    
+                  </li>
+                  <li>
+                    
+                      
+                        <a href="#">
+                          <div class="tit">
+                            <i class="lib main0006">음악도서관</i> <a href="https://www.uilib.go.kr/music/board/index.do?menu_idx=102&manage_idx=56" target="_blank" class="notice-more">더보기</a>
+                          </div>
+                          <div class="conts">
+                            <dl>
+                              <dt>
+                                <p>
+                                  <a
+                                    href="/music/board/view.do?manage_idx=56&menu_idx=102&board_idx=43739"
+                                    target="_blank"
+                                    >의정부음악도서관 광복절 휴관 안내</a
+                                  >
+                                </p>
+                              </dt>
+                              <dd class="desc">
+                                
+                                  
+                                    
+                                
+                              </dd>
+                              <dd class="day">2026.08.06</dd>
+                            </dl>
+                          </div>
+                        </a>
+                      
+                      
+                    
+                  </li>
+                </ul>
+              </div>
+
+              <div class="con" data-tab="tab2" style="display: none">
+                <ul class="articleList clearfix">
+                  <li>
+                    
+                      
+                        <a href="#">
+                          <div class="tit">
+                            <i class="lib main0001"> 과학도서관 </i>
+
+                            <a href="https://www.uilib.go.kr/science/module/teach/index.do?menu_idx=24" target="_blank" class="notice-more">더보기</a>
+                          </div>
+                          <div class="conts">
+                            <dl>
+                              <dt>
+                                <p>
+                                  <a
+                                    href="/science/module/teach/detail.do?group_idx=15&teach_idx=1649&menu_idx=24&category_idx=0&large_category_idx=16"
+                                    target="_blank"
+                                  >
+                                    <i class="state tB02">
+                                      
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                         정원마감 
+                                        
+                                      
+                                    </i>
+
+                                    2026년 과학도서관 여름독서교실 「똥볶이 할멈」 저자 강연회
+                                     - 인기 도서 『똥볶이 할멈』의 창작과정을 알아보고, 어린이들의 고민을 함께 나누는 시간!
+반드시 어린이 아이디로 접수해주세요.  
+                                  </a>
+                                </p>
+                              </dt>
+
+                              <dd>접수기간 : 2026-07-21 ~ 2026-08-07</dd>
+                              <dd>행사기간 : 2026-08-08 ~ 2026-08-08</dd>
+                              <dd>행사대상 : 초등학교 1-3학년</dd>
+                            </dl>
+                          </div>
+                        </a>
+                      
+                      
+                    
+                  </li>
+
+                  <li>
+                    
+                      
+                        <a href="#">
+                          <div class="tit">
+                            <i class="lib main0002">정보도서관</i>
+
+                            <a href="https://www.uilib.go.kr/information/module/teach/index.do?menu_idx=24" target="_blank" class="notice-more">더보기</a>
+                          </div>
+                          <div class="conts">
+                            <dl>
+                              <dt>
+                                <p>
+                                  <a
+                                    href="/information/module/teach/detail.do?group_idx=1&teach_idx=1634&menu_idx=24&category_idx=1&large_category_idx=16"
+                                    target="_blank"
+                                  >
+                                    <i class="state tB02">
+                                      
+                                        
+                                        
+                                        
+                                        
+                                         수강종료 
+                                        
+                                        
+                                        
+                                      
+                                    </i>
+                                    2026 길 위의 인문학<예술과 역사 그리고 일상의 기록>이동섭 작가강연
+                                     - 2026 길 위의 공모사업 선정 프로그램
+-이동섭작가(파리제8대학교 대학원 예술과 공연미학 박사과정 수료)
+-놓치면 후회 할 한 여름밤의 시원하고 특별한 강연입니다!
+ 
+                                  </a>
+                                </p>
+                              </dt>
+
+                              <dd>접수기간 : 2026-06-17 ~ 2026-07-24</dd>
+                              <dd>행사기간 : 2026-07-02 ~ 2026-07-30</dd>
+                              <dd>행사대상 : 성인(청소년 가능)</dd>
+                            </dl>
+                          </div>
+                        </a>
+                      
+                      
+                    
+                  </li>
+
+                  <li>
+                    
+                      
+                        <a href="#">
+                          <div class="tit">
+                            <i class="lib main0003">영어도서관</i>
+
+                            <a href="https://www.uilib.go.kr/child/module/teach/index.do?menu_idx=24" target="_blank" class="notice-more">더보기</a>
+                          </div>
+                          <div class="conts">
+                            <dl>
+                              <dt>
+                                <p>
+                                  <a
+                                    href="/english/module/teach/detail.do?group_idx=3&teach_idx=1654&menu_idx=24&category_idx=5&large_category_idx=16"
+                                    target="_blank"
+                                  >
+                                    <i class="state tB02">
+                                      
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                         정원마감 
+                                        
+                                      
+                                    </i>
+                                    <스크리모> 2026 하반기 영어 필사 동아리
+                                     - - 8월 10일부터 11월 20일까지 매주 월~금요일
+
+- 1일 1페이지 필사 후 인증합니다.
+
+★ 참여자 확정 후 필사 도서 수령을 위해 본인이 직접
+
+    영어도서관에 방문하셔야 합니다.(개별 연락 예정)
+
+★ 도서 배부가 완료된 참여자에 한해 네이버밴드로 초대합니다.
+
+★★★ 완주를 목표로 꾸준히 참여하실 분만 신청해 주세요.
+ 
+                                  </a>
+                                </p>
+                              </dt>
+
+                              <dd>접수기간 : 2026-07-24 ~ 2026-08-07</dd>
+                              <dd>행사기간 : 2026-08-10 ~ 2026-11-20</dd>
+                              <dd>행사대상 : 성인 15명</dd>
+                            </dl>
+                          </div>
+                        </a>
+                      
+                      
+                    
+                  </li>
+
+                  <li>
+                    
+                      
+                        <a href="#">
+                          <div class="tit">
+                            <i class="lib main0004">가재울도서관</i>
+
+                            <a href="https://www.uilib.go.kr/gajaeul/module/teach/index.do?menu_idx=24" target="_blank" class="notice-more">더보기</a>
+                          </div>
+                          <div class="conts">
+                            <dl>
+                              <dt>
+                                <p>
+                                  <a
+                                    href="/gajaeul/module/teach/detail.do?group_idx=3&teach_idx=1630&menu_idx=24&category_idx=1&large_category_idx=16"
+                                    target="_blank"
+                                  >
+                                    <i class="state tB02">
+                                      
+                                        
+                                        
+                                        
+                                        
+                                         수강종료 
+                                        
+                                        
+                                        
+                                      
+                                    </i>
+                                    가재울도서관 「몰입」 연계 "먼저 온 미래" 독서토론회
+                                     - AI 시대의 변화와 인간의 삶에 대한 질문을 담은 도서 『먼저 온 미래』를 함께 읽고 생각을 나누는 독서토론 프로그램 
+                                  </a>
+                                </p>
+                              </dt>
+
+                              <dd>접수기간 : 2026-06-02 ~ 2026-06-16</dd>
+                              <dd>행사기간 : 2026-06-16 ~ 2026-06-16</dd>
+                              <dd>행사대상 : 의정부시 도서관 회원</dd>
+                            </dl>
+                          </div>
+                        </a>
+                      
+                      
+                    
+                  </li>
+
+                  <li>
+                    
+                      
+                        <a href="#">
+                          <div class="tit">
+                            <i class="lib main0005">미술도서관</i>
+
+                            <a href="https://www.uilib.go.kr/art/module/teach/index.do?menu_idx=24" target="_blank" class="notice-more">더보기</a>
+                          </div>
+                          <div class="conts">
+                            <dl>
+                              <dt>
+                                <p>
+                                  <a
+                                    href="/art/module/teach/detail.do?group_idx=7&teach_idx=1645&menu_idx=24&category_idx=0&large_category_idx=16"
+                                    target="_blank"
+                                  >
+                                    <i class="state tB02">
+                                      
+                                        
+                                        
+                                        
+                                        
+                                         수강종료 
+                                        
+                                        
+                                        
+                                      
+                                    </i>
+                                    길 위의 인문학1, <조선의 눈으로 시대를 읽다, 조선의 미학에서 배우는 통찰>
+                                     - - 조선의 미켈란젤로, 겸재 정선
+- 조선의 모차르트, 단원 김홍도
+- 조선의 크리스토퍼 놀란, 혜원 신윤복
+- 국립중앙박물관에서 만나는 한국의 미학 
+                                  </a>
+                                </p>
+                              </dt>
+
+                              <dd>접수기간 : 2026-06-30 ~ 2026-07-14</dd>
+                              <dd>행사기간 : 2026-07-15 ~ 2026-08-06</dd>
+                              <dd>행사대상 : 성인</dd>
+                            </dl>
+                          </div>
+                        </a>
+                      
+                      
+                    
+                  </li>
+
+                  <li>
+                    
+                      
+                        <a href="#">
+                          <div class="tit">
+                            <i class="lib main0006">음악도서관</i>
+
+                            <a href="https://www.uilib.go.kr/music/module/teach/index.do?menu_idx=24" target="_blank" class="notice-more">더보기</a>
+                          </div>
+                          <div class="conts">
+                            <dl>
+                              <dt>
+                                <p>
+                                  <a
+                                    href="/music/module/teach/detail.do?group_idx=1&teach_idx=1662&menu_idx=24&category_idx=1&large_category_idx=16"
+                                  >
+                                    <i class="state tB02">
+                                      
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                         신청대기 
+                                      
+                                    </i>
+                                    (임진모 × 오상익)세대공감 K팝 토크콘서트
+                                     - 2026년 경기도 독서문화 진흥 사업 <릴레이 명사 강연회 >
+
+(임진모 × 오상익)세대공감 K팝 토크콘서트
+일시: 2026.9.4.(금) 19시
+장소: 3층 뮤직홀
+ 
+                                  </a>
+                                </p>
+                              </dt>
+
+                              <dd>접수기간 : 2026-08-20 ~ 2026-09-03</dd>
+                              <dd>행사기간 : 2026-09-04 ~ 2026-09-04</dd>
+                              <dd>행사대상 : 중학생 이상</dd>
+                            </dl>
+                          </div>
+                        </a>
+                      
+                      
+                    
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //main1 -->
+
+    <div class="section" id="main3" data-anchor="4rdPage">
+      <div class="main1-box">
+        <div class="main-section">
+          <div class="tab-box tabS">
+            <div id="wrapMap">
+              <div id="map"></div>
+              <div id="list">
+                <div class="filter-container">
+                  <span class="filter-label">도서관 및 지역서점 분류 선택</span>
+                  <select id="category-select">
+                    <option value="public">의정부시 공공도서관</option>
+                    <option value="small">공립작은도서관</option>
+                    <option value="private">사립작은도서관</option>
+                    <option value="local_store">지역서점</option>
+                  </select>
+                </div>
+                <div id="current-category-title" class="list-section-title">목록 불러오는 중...</div>
+                <div id="display-list"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- //footer_section -->
+        <div class="end"></div>
+        <!-- footer_section -->
+        <div class="section fp-auto-height footer_area mobile-footer" id="foot_section">
+          
+
+
+
+	<div class="mFooter">
+		<div class="top">
+			<div class="sections-align">
+				<div class="left-link">
+					<div class="inf-txt">
+						<ul>
+							<li><a href="/science/html.do?menu_idx=60"><b>개인정보처리방침</b></a></li>
+							<li><span class="txt-bar"></span></li>
+							<li><a href="/science/html.do?menu_idx=61">영상정보처리방침</a></li>
+							<li><span class="txt-bar"></span></li>
+							<li><a href="/science/html.do?menu_idx=62">이용약관</a></li>
+							<li><span class="txt-bar"></span></li>
+							<li><a href="/science/html.do?menu_idx=63">도서관 서비스헌장</a></li>
+							<li><span class="txt-bar"></span></li>
+							<li><a href="/science/html.do?menu_idx=121">장서개발정책</a></li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="right-location">
+					<span>
+					<select id="recommendSite11" class="recommendSite11" title="관련사이트(새창열림)">
+						<option value="">관련사이트</option>
+						<option value="https://www.ui4u.go.kr/">의정부시청</option>
+						<option value="https://www.ull.or.kr/lifeedu/index.do">의정부시평생교육센터</option>
+						<option value="https://www.ujblib.or.kr/">경기의정부교육도서관</option>
+						<option value="https://www.uac.or.kr/uac.php">의정부예술의전당</option>
+						<option value="https://www.nl.go.kr/ableFront/index.jsp">국립중앙도서관</option>
+					</select>
+					<a href="#move" class="sel-btn recommendSite11">이동</a>
+					</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="bottom">
+			<div class="sections">
+				<p>
+					<em>(11780) 경기도 의정부시 추동로124번길 52 (신곡동)</em>
+				</p>
+				<p class="copyright">Copyright © 2020 UILIB, All rights reserved.</p>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="home-up">
+		<img src="/resources/homepage/main/img/m-top-btn.png" alt="위로" id="homeup">
+	</div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- footer_section -->
+    <div class="section fp-auto-height footer_area pc-footer" id="foot_section">
+      
+
+
+
+	<div class="mFooter">
+		<div class="top">
+			<div class="sections-align">
+				<div class="left-link">
+					<div class="inf-txt">
+						<ul>
+							<li><a href="/science/html.do?menu_idx=60"><b>개인정보처리방침</b></a></li>
+							<li><span class="txt-bar"></span></li>
+							<li><a href="/science/html.do?menu_idx=61">영상정보처리방침</a></li>
+							<li><span class="txt-bar"></span></li>
+							<li><a href="/science/html.do?menu_idx=62">이용약관</a></li>
+							<li><span class="txt-bar"></span></li>
+							<li><a href="/science/html.do?menu_idx=63">도서관 서비스헌장</a></li>
+							<li><span class="txt-bar"></span></li>
+							<li><a href="/science/html.do?menu_idx=121">장서개발정책</a></li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="right-location">
+					<span>
+					<select id="recommendSite11" class="recommendSite11" title="관련사이트(새창열림)">
+						<option value="">관련사이트</option>
+						<option value="https://www.ui4u.go.kr/">의정부시청</option>
+						<option value="https://www.ull.or.kr/lifeedu/index.do">의정부시평생교육센터</option>
+						<option value="https://www.ujblib.or.kr/">경기의정부교육도서관</option>
+						<option value="https://www.uac.or.kr/uac.php">의정부예술의전당</option>
+						<option value="https://www.nl.go.kr/ableFront/index.jsp">국립중앙도서관</option>
+					</select>
+					<a href="#move" class="sel-btn recommendSite11">이동</a>
+					</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="bottom">
+			<div class="sections">
+				<p>
+					<em>(11780) 경기도 의정부시 추동로124번길 52 (신곡동)</em>
+				</p>
+				<p class="copyright">Copyright © 2020 UILIB, All rights reserved.</p>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="home-up">
+		<img src="/resources/homepage/main/img/m-top-btn.png" alt="위로" id="homeup">
+	</div>
+
+    </div>
+    <!-- //footer_section -->
+  </div>
+
+  <script type="text/javascript">
+    $(function () {
+      $("#homeup").click(function () {
+        $("body,html").animate(
+          {
+            scrollTop: 0,
+          },
+          800,
+        );
+        return false;
+      });
+
+      // 팝업 관련 코드 START
+      $(".close-btn").on("click", function () {
+        var $this = $(this);
+        var checkInput = $this.parent().find('input[data-day="' + $this.data("day") + '"]');
+        var popupId = checkInput.val();
+        if (checkInput.prop("checked")) {
+          var todayDate = new Date();
+          todayDate = new Date(parseInt(todayDate.getTime() / 86400000) * 86400000 + 54000000);
+          if ($this.data("day") == 7) {
+            todayDate.setDate(todayDate.getDate() + 7);
+          }
+          document.cookie = popupId + "=no" + "; path=/; expires=" + todayDate.toGMTString() + ";";
+        }
+
+        $("div#" + popupId).hide();
+      });
+
+      $("input[id*=pop]").on("click", function (e) {
+        e.preventDefault();
+        $(this).prop("checked", true);
+        $(this).parent("div").next("a").data("day", $(this).data("day"));
+        $(this).parent("div").next("a").click();
+      });
+
+      $("#popupLayer > div").each(function (i, v) {
+        var result = "";
+        var name = $(v).attr("id");
+        var nameOfCookie = name + "=";
+        var x = 0;
+        while (x <= document.cookie.length) {
+          var y = x + nameOfCookie.length;
+          if (document.cookie.substring(x, y) == nameOfCookie) {
+            if ((endOfCookie = document.cookie.indexOf(";", y)) == -1) endOfCookie = document.cookie.length;
+            result = unescape(document.cookie.substring(y, endOfCookie));
+          }
+          x = document.cookie.indexOf(" ", x) + 1;
+          if (x == 0) break;
+        }
+
+        if (result != "no") {
+          if (window.innerWidth < $(v).width()) {
+            $(v).css("width", "auto");
+          }
+          $(v).show();
+        }
+      });
+      // 팝업 관련 코드 END
+
+      $("div#holiday-box").load("calendar5.do?homepage_id=h2");
+
+      $("#main-search-btn").on("click", function () {
+        if ($("input#search_text_1").val() == "") {
+          alert("검색어를 입력하세요.");
+          $("input#search_text_1").focus();
+          return false;
+        }
+        $("#mainSearchForm").submit();
+      });
+
+      $("a#topSearchBtn").on("click", function () {
+        if ($("input#search_text_1").val() == "") {
+          alert("검색어를 입력하세요.");
+          $("input#search_text_1").focus();
+          return false;
+        }
+        $("#topSearchForm").submit();
+      });
+
+      // TAB
+      $(document).on("click", ".tabMenuSS a#notice", function () {
+        var target = this.getAttribute("href").replace("#", "");
+        var $box = $(this).closest(".tabS");
+        var moreUrl = $(this).data("url");
+
+        $(this).closest(".tabMenuSS").find("li").removeClass("on");
+        $(this).parent("li").addClass("on");
+
+        $box.find(".con").hide();
+        $box.find('[data-tab="' + target + '"]').show();
+        $box.find(".btn-link-more").attr("href", moreUrl);
+      });
+
+      $(document).on("click", ".tabMenuSS a#culture", function () {
+        var target = this.getAttribute("href").replace("#", "");
+        var $box = $(this).closest(".tabS");
+        var moreUrl = $(this).data("url");
+        $(this).closest(".tabMenuSS").find("li").removeClass("on");
+        $(this).parent("li").addClass("on");
+
+        $box.find(".con").hide();
+        $box.find('[data-tab="' + target + '"]').show();
+        $box.find(".btn-link-more").attr("href", moreUrl);
+      });
+
+      $(".popup .close > a").click(function () {
+        $(".popup_top").slideToggle(500);
+        $("span.popup a").toggleClass("on");
+        if ($("span.popup a").attr("class") == "on") {
+          $("span.popup a").text("POPUP OPEN");
+        } else {
+          if ($(this).prev().is(":checked")) {
+            var todayDate = new Date();
+            todayDate = new Date(parseInt(todayDate.getTime() / 86400000) * 86400000 + 54000000);
+            document.cookie = "popupzone=no; path=/; expires=" + todayDate.toGMTString() + ";";
+          }
+          $("span.popup a").text("POPUP CLOSE");
+        }
+      });
+
+      if (document.cookie.indexOf("popupzone=no") > -1) {
+        $("div.popup_top").hide();
+      }
+
+      $("i.fa-external-link").remove();
+
+      $(".dropdown > a.button").click(function () {
+        var $dropdownNav = $(this).siblings("ul");
+        if ($dropdownNav.css("display") == "none") {
+          $(".dropdown > ul").hide();
+          $dropdownNav.show();
+          $(this).attr("title", "도서관 바로가기(확장됨)");
+        } else {
+          $dropdownNav.hide();
+          $(this).attr("title", "도서관 바로가기(축소됨)");
+        }
+        return false;
+      });
+
+      $(".dropdown > ul > li:last-child a").focusout(function () {
+        $(".dropdown > ul").hide();
+      });
+
+      $(".bestKeywordWrap").newsTicker({
+        itemHeight: 45,
+        showItems: 1,
+        duration: 4000,
+        prevButton: "#btnDwon",
+        nextButton: "#btnUp",
+      });
+
+      $("a.sessionStatusView").on("click", function (e) {
+        e.preventDefault();
+        if ($("div.sessionStatusBox").css("display") == "none") {
+          $.ajax({
+            type: "POST",
+            url: "/science/intro/join/getLoanInfo.do",
+            async: false,
+            dataType: "json",
+            success: function (response) {
+              response = eval(response);
+              if (response.valid) {
+                var member = response.data;
+                var memberStatus = "";
+                if (member.user_class == "0") {
+                  memberStatus = "정상";
+                } else if (member.user_class == "1") {
+                  memberStatus = "대출정지";
+                } else if (member.user_class == "2") {
+                  memberStatus = "제적";
+                } else {
+                  memberStatus = "탈퇴";
+                }
+
+                $("div.sessionStatusBox")
+                  .children("p")
+                  .eq(0)
+                  .text(member.member_name + "님 상태 : " + memberStatus);
+                $("div.sessionStatusBox")
+                  .children("p")
+                  .eq(1)
+                  .text("통합 대출중권수 :" + member.united_loan_count);
+                $("div.sessionStatusBox")
+                  .children("p")
+                  .eq(2)
+                  .text("예약중권수 : " + member.reservation_count);
+                $("div.sessionStatusBox")
+                  .children("p")
+                  .eq(3)
+                  .text("상호대차 신청도서 수 : " + member.mutualLoanCount);
+              } else {
+                alert(response.message);
+              }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+              alert("[" + textStatus + "]관리자에게 문의하세요. : " + errorThrown + ", " + jqXHR.status);
+            },
+          });
+
+          $("div.sessionStatusBox").show();
+        } else {
+          $("div.sessionStatusBox").hide();
+        }
+        return false;
+      });
+    });
+  </script>
+
+  <script>
+    var container = document.getElementById("map");
+    var BASE_URL = "https://www.uilib.go.kr/";
+
+    // 1. 공공도서관
+    var libraries = [
+      { name: "정보도서관", lat: 37.7366126, lng: 127.0340397, url: BASE_URL + "information" },
+      { name: "과학도서관", lat: 37.744874, lng: 127.0690533, url: BASE_URL + "science" },
+      { name: "미술도서관", lat: 37.745062, lng: 127.106172, url: BASE_URL + "art" },
+      { name: "음악도서관", lat: 37.728464, lng: 127.053773, url: BASE_URL + "music" },
+      { name: "영어도서관", lat: 37.7265, lng: 127.042609, url: BASE_URL + "english" },
+      { name: "가재울도서관", lat: 37.7483818, lng: 127.0441896, url: BASE_URL + "gajaeul" },
+      { name: "의정부천문대", lat: 37.7471273, lng: 127.07673, url: BASE_URL + "observatory" },
+    ];
+
+    // 2. 공립작은도서관
+    var smallLibraries = [
+      { name: "의정부1동 작은도서관", lat: 37.7322234, lng: 127.0489722, url: BASE_URL + "small/html.do?menu_idx=10" },
+      { name: "호원1동 작은도서관", lat: 37.7119471, lng: 127.0487383, url: BASE_URL + "small/html.do?menu_idx=13" },
+      { name: "장암동 작은도서관", lat: 37.7263499, lng: 127.0542353, url: BASE_URL + "small/html.do?menu_idx=14" },
+      { name: "신곡2동 작은도서관", lat: 37.7435457, lng: 127.0579399, url: BASE_URL + "small/html.do?menu_idx=16" },
+      { name: "송산1동 작은도서관", lat: 37.731076, lng: 127.0868068, url: BASE_URL + "small/html.do?menu_idx=17" },
+      { name: "송산2동 작은도서관", lat: 37.7396902, lng: 127.0899607, url: BASE_URL + "small/html.do?menu_idx=18" },
+      { name: "송산3동 작은도서관", lat: 37.7533424, lng: 127.1135893, url: BASE_URL + "small/html.do?menu_idx=62" },
+      { name: "자금동 작은도서관", lat: 37.7502915, lng: 127.0581231, url: BASE_URL + "small/html.do?menu_idx=19" },
+      { name: "가능동 작은도서관", lat: 37.7505561, lng: 127.0385953, url: BASE_URL + "small/html.do?menu_idx=20" },
+      { name: "흥선동 작은도서관", lat: 37.746796, lng: 127.030573, url: BASE_URL + "small/html.do?menu_idx=21" },
+      { name: "녹양동 작은도서관", lat: 37.7600606, lng: 127.0323092, url: BASE_URL + "small/html.do?menu_idx=22" },
+      { name: "희망 Library Center", lat: 37.7381, lng: 127.0459, url: BASE_URL + "small/html.do?menu_idx=23" },
+    ];
+
+    // 3. 사립작은도서관 (업로드하신 CSV 데이터 반영)
+    var privateLibraries = [
+      { name: "공감하늘 작은도서관", lat: 37.732540651, lng: 127.084136974, url: "https://www.uilib.go.kr/small/html.do?menu_idx=64" },
+      { name: "금강작은도서관", lat: 37.749893168, lng: 127.099047973, url: "https://www.uilib.go.kr/small/html.do?menu_idx=65" },
+      { name: "맑은샘도서관", lat: 37.732899184, lng: 127.085515868, url: "https://www.uilib.go.kr/small/html.do?menu_idx=67" },
+      { name: "민락e편한세상 작은도서관", lat: 37.738783848, lng: 127.091994459, url: "https://www.uilib.go.kr/small/html.do?menu_idx=68" },
+      { name: "민락복합문화 작은도서관", lat: 37.745989097, lng: 127.095473577, url: "https://www.uilib.go.kr/small/html.do?menu_idx=69" },
+      { name: "민락푸르지오 푸른도서관", lat: 37.751840973, lng: 127.108373131, url: "https://www.uilib.go.kr/small/html.do?menu_idx=71" },
+      { name: "반딧불이 작은도서관", lat: 37.755940159, lng: 127.114318104, url: "https://www.uilib.go.kr/small/html.do?menu_idx=72" },
+      { name: "보리수작은도서관", lat: 37.739010857, lng: 127.089004496, url: "https://www.uilib.go.kr/small/html.do?menu_idx=73" },
+      { name: "브라운스톤 흥선도서관", lat: 37.741524289, lng: 127.029963661, url: "https://www.uilib.go.kr/small/html.do?menu_idx=74" },
+      { name: "수락글방 작은도서관", lat: 37.69009642, lng: 127.052953891, url: "https://www.uilib.go.kr/small/html.do?menu_idx=75" },
+      { name: "신도브래뉴PLUS도서관", lat: 37.737018273, lng: 127.082772236, url: "https://www.uilib.go.kr/small/html.do?menu_idx=76" },
+      { name: "아람터도서관", lat: 37.748617486, lng: 127.08118162, url: "https://www.uilib.go.kr/small/html.do?menu_idx=77" },
+      { name: "안말사랑도서관", lat: 37.712018418, lng: 127.044752258, url: "https://www.uilib.go.kr/small/html.do?menu_idx=78" },
+      { name: "영유아미래작은도서관", lat: 37.733787604, lng: 127.039927425, url: "https://www.uilib.go.kr/small/html.do?menu_idx=79" },
+      { name: "용암마을 들꽃도서관", lat: 37.75712269, lng: 127.116863232, url: "https://www.uilib.go.kr/small/html.do?menu_idx=80" },
+      { name: "점진도서관", lat: 37.746713508, lng: 127.041262295, url: "https://www.uilib.go.kr/small/html.do?menu_idx=83" },
+      { name: "정글북스 작은도서관", lat: 37.750399588, lng: 127.115304815, url: "https://www.uilib.go.kr/small/html.do?menu_idx=84" },
+      { name: "참다운어린이도서관", lat: 37.737565611, lng: 127.069812641, url: "https://www.uilib.go.kr/small/html.do?menu_idx=85" },
+      { name: "책읽는 행복도서관", lat: 37.720845069, lng: 127.047857144, url: "https://www.uilib.go.kr/small/html.do?menu_idx=87" },
+      { name: "파밀리에 작은도서관", lat: 37.739114171, lng: 127.055799588, url: "https://www.uilib.go.kr/small/html.do?menu_idx=88" },
+      { name: "휴먼시아 작은도서관", lat: 37.760726835, lng: 127.039288905, url: "https://www.uilib.go.kr/small/html.do?menu_idx=90" },
+      { name: "휴스토리 꿈자람도서관", lat: 37.749007394, lng: 127.101137459, url: "https://www.uilib.go.kr/small/html.do?menu_idx=91" },
+      { name: "열매 작은도서관", lat: 37.737557253, lng: 127.077291283, url: "https://www.uilib.go.kr/small/html.do?menu_idx=97" },
+      { name: "고산행복마을 작은도서관", lat: 37.743322776, lng: 127.117536349, url: "https://www.uilib.go.kr/small/html.do?menu_idx=98" },
+      { name: "훈민정음 작은도서관", lat: 37.742418623, lng: 127.116959663, url: "https://www.uilib.go.kr/small/html.do?menu_idx=99" },
+      { name: "롯데캐슬1단지행복 작은도서관", lat: 37.730220797, lng: 127.03710177, url: "https://www.uilib.go.kr/small/html.do?menu_idx=100" },
+      { name: "고산센트레빌 작은도서관", lat: 37.731394914, lng: 127.112493419, url: "https://www.uilib.go.kr/small/html.do?menu_idx=101" },
+      { name: "LH더휴 작은도서관", lat: 37.744717095, lng: 127.118282153, url: "https://www.uilib.go.kr/small/html.do?menu_idx=102" },
+      { name: "양팔사랑 작은도서관", lat: 37.753655184, lng: 127.111993472, url: "https://www.uilib.go.kr/small/html.do?menu_idx=103" },
+      { name: "봄볕 작은도서관", lat: 37.733247999, lng: 127.112726164, url: "https://www.uilib.go.kr/small/html.do?menu_idx=104" },
+      { name: "상상메이커스쿨 작은도서관", lat: 37.742901619, lng: 127.02855225, url: "https://www.uilib.go.kr/small/html.do?menu_idx=105" },
+      { name: "정이든다작은도서관", lat: 37.719148901, lng: 127.100455467, url: "https://www.uilib.go.kr/small/html.do?menu_idx=106" },
+    ];
+
+    // 4. 지역서점 (독서포인트 사용 가능 문구 적용)
+    var localStores = [
+      { name: "가능서점", lat: 37.746889, lng: 127.036391, url: "https://naver.me/FOZzHHfG" },
+      { name: "광동서점", lat: 37.754947, lng: 127.037565, url: "없음" },
+      { name: "경민문고", lat: 37.744426, lng: 127.026291, url: "https://naver.me/xAAqIHPl" },
+      { name: "숭문당(독서포인트 사용 가능)", lat: 37.741694, lng: 127.049524, url: "https://naver.me/FEUV1c1k" },
+      { name: "송산서점(독서포인트 사용 가능)", lat: 37.745709, lng: 127.099219, url: "https://naver.me/GV2tkD18" },
+      { name: "유진서점", lat: 37.744576, lng: 127.026146, url: "https://naver.me/GXgnrBlm" },
+      { name: "호원문고(독서포인트 사용 가능)", lat: 37.725185, lng: 127.048665, url: "https://blog.naver.com/howonbook" },
+      { name: "푸른세상문고", lat: 37.7488301, lng: 127.0416884, url: "https://naver.me/Gj7ljJuK" },
+      { name: "다올서점(독서포인트 사용 가능)", lat: 37.744068, lng: 127.047852, url: "https://naver.me/FvQPvDUz" },
+      { name: "을지서점(독서포인트 사용 가능)", lat: 37.7525954, lng: 127.0472073, url: "https://naver.me/xumZqhJo" },
+      { name: "정앤북서점", lat: 37.737839, lng: 127.087777, url: "https://naver.me/5wNGgL9g" },
+      { name: "책방봄", lat: 37.729355, lng: 127.044857, url: "https://www.instagram.com/books.bom" },
+      { name: "영풍문고 의정부점(독서포인트 사용 가능)", lat: 37.73837, lng: 127.046415, url: "https://naver.me/FG7xAdKK" },
+    ];
+
+    var map = new kakao.maps.Map(container, { center: new kakao.maps.LatLng(37.738, 127.07), level: 6 });
+    var bigImg = new kakao.maps.MarkerImage("https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png", new kakao.maps.Size(24, 35));
+    var smallImg = new kakao.maps.MarkerImage("https://t1.daumcdn.net/mapjsapi/images/marker.png", new kakao.maps.Size(20, 30));
+
+    var markerGroups = { public: [], small: [], private: [], local_store: [] };
+
+    function createMarkers(data, type, img) {
+      data.forEach(function (lib) {
+        var pos = new kakao.maps.LatLng(lib.lat, lib.lng);
+        var marker = new kakao.maps.Marker({ position: pos, image: img });
+
+        var linkHtml =
+          lib.url === "없음"
+            ? '<span style="font-weight:bold; color:#333;">' + lib.name + "</span>"
+            : '<a href="' + lib.url + '" target="_blank" style="font-weight:bold; text-decoration:none; color:#333;">' + lib.name + "</a>";
+
+        var content =
+          '<div class="custom-overlay-box">' +
+          linkHtml +
+          ' <a href="https://map.kakao.com/link/to/' +
+          lib.name +
+          "," +
+          lib.lat +
+          "," +
+          lib.lng +
+          '" target="_blank" style="color:green; font-size:12px; margin-left:5px; text-decoration:none;">[길찾기]</a>' +
+          "</div>";
+        var overlay = new kakao.maps.CustomOverlay({ position: pos, content: content, yAnchor: 2.3 });
+        markerGroups[type].push({ marker: marker, overlay: overlay, info: lib });
+      });
+    }
+
+    createMarkers(libraries, "public", bigImg);
+    createMarkers(smallLibraries, "small", smallImg);
+    createMarkers(privateLibraries, "private", smallImg);
+    createMarkers(localStores, "local_store", smallImg);
+
+    function applyFilter() {
+      var selected = document.getElementById("category-select").value;
+      var listContainer = document.getElementById("display-list");
+      var titleContainer = document.getElementById("current-category-title");
+
+      listContainer.innerHTML = "";
+      Object.values(markerGroups)
+        .flat()
+        .forEach((obj) => {
+          obj.marker.setMap(null);
+          obj.overlay.setMap(null);
+        });
+
+      var titleMap = {
+        public: "의정부시 공공도서관 목록",
+        small: "공립작은도서관 목록",
+        private: "사립작은도서관 목록",
+        local_store: "지역서점 목록",
+      };
+      titleContainer.innerText = titleMap[selected];
+
+      markerGroups[selected].forEach((obj) => {
+        obj.marker.setMap(map);
+        obj.overlay.setMap(map);
+        var div = document.createElement("div");
+        div.className = "lib-item";
+        div.innerHTML = "<strong>" + obj.info.name + "</strong>";
+        div.onclick = function () {
+          map.setCenter(obj.marker.getPosition());
+          map.setLevel(3);
+          // 모바일일 때만 지도 위치(wrap)로 스크롤 이동
+          if (window.innerWidth <= 768) {
+            document.getElementById("wrapMap").scrollIntoView({ behavior: "smooth" });
+          }
+        };
+        listContainer.appendChild(div);
+      });
+
+      if (window.innerWidth <= 768) {
+        map.setCenter(new kakao.maps.LatLng(37.738, 127.065));
+        map.setLevel(7);
+      } else {
+        map.setCenter(new kakao.maps.LatLng(37.738, 127.07));
+        map.setLevel(6);
+      }
+      map.relayout();
+    }
+
+    document.getElementById("category-select").addEventListener("change", applyFilter);
+    window.addEventListener("resize", applyFilter);
+    window.onload = applyFilter;
+  </script>
+
+  <script type="text/javascript">
+    function fullPage() {
+      var myFullpage = new fullpage("#fullpage", {
+        anchors: ["firstPage", "secondPage", "3rdPage", "4rdPage"],
+        navigation: true,
+        navigationTooltips: ["도서관 바로가기", "도서관 일정", "공지사항", "도서관지도(길찾기)"],
+        showActiveTooltip: true,
+        menu: "#menu",
+        responsiveWidth: 1025,
+        afterLoad: function (origin, destination, direction) {
+          var cur_page = destination.index + 1;
+          if (destination.index == 0) {
+            $("#header").addClass("background-white");
+            $(".libLink").css("border-left", "1px solid rgba(255,255,255,0.15)");
+            $(".libLink").css("border-right", "1px solid rgba(255,255,255,0.15)");
+            $(".Gnb").css("border-top", "1px solid rgba(255,255,255,0.15)");
+            $(".Gnb").css("border-bottom", "1px solid transparent");
+            $(".tnb").css("border-bottom", "1px solid rgba(255,255,255,0.15)");
+            $(".Gnb").css("background", "none");
+            $(".tnb").css("background", "none");
+            $(".head").css("background", "none");
+            $(".main-logo").attr("src", "/resources/homepage/main/img/main_logo.png");
+            $(".mainBestKeyword").css("background", "rgba(255,255,255, 0.85)");
+            $(".keywordInput input").css("border", "3px solid #fff");
+            $(".keywordInput input").css("background", "rgba(255,255,255, 0.5)");
+            $("#fp-nav").removeClass("dark-tooltip");
+
+            if ($(window).width() < 1025) {
+              $(".Gnb, .head, .tnb").on("mouseenter", function () {
+                $("#header").addClass("background-white");
+                $(".libLink").css("border-left", "1px solid rgba(255,255,255,0.15)");
+                $(".libLink").css("border-right", "1px solid rgba(255,255,255,0.15)");
+                $(".Gnb").css("border-top", "1px solid rgba(255,255,255,0.15)");
+                $(".Gnb").css("border-bottom", "1px solid rgba(255,255,255,0.15)");
+                $(".tnb").css("border-bottom", "1px solid rgba(255,255,255,0.15)");
+                $(".Gnb").css("background", "none");
+                $(".tnb").css("background", "none");
+                $(".head").css("background", "none");
+                $(".main-logo").attr("src", "/resources/homepage/main/img/main_logo.png");
+                $(".mainBestKeyword").css("background", "rgba(255,255,255, 0.85)");
+                $(".keywordInput input").css("border", "3px solid #fff");
+                $(".keywordInput input").css("background", "rgba(255,255,255, 0.5)");
+              });
+
+              $(".Gnb, .head, .tnb").on("mouseleave", function () {
+                $("#header").addClass("background-white");
+                $(".libLink").css("border-left", "1px solid rgba(255,255,255,0.15)");
+                $(".libLink").css("border-right", "1px solid rgba(255,255,255,0.15)");
+                $(".Gnb").css("border-top", "1px solid rgba(255,255,255,0.15)");
+                $(".Gnb").css("border-bottom", "1px solid rgba(255,255,255,0.15)");
+                $(".tnb").css("border-bottom", "1px solid rgba(255,255,255,0.15)");
+                $(".Gnb").css("background", "none");
+                $(".tnb").css("background", "none");
+                $(".head").css("background", "none");
+                $(".main-logo").attr("src", "/resources/homepage/main/img/main_logo.png");
+                $(".mainBestKeyword").css("background", "rgba(255,255,255, 0.85)");
+                $(".keywordInput input").css("border", "3px solid #fff");
+                $(".keywordInput input").css("background", "rgba(255,255,255, 0.5)");
+              });
+            }
+          } else if (destination.index == 1) {
+            $("#header").removeClass("background-white");
+            $(".libLink").css("border-left", "1px solid #e6e6e6");
+            $(".libLink").css("border-right", "1px solid #e6e6e6");
+            $(".Gnb").css("border-top", "1px solid #e6e6e6");
+            $(".Gnb").css("border-bottom", "1px solid transparent");
+            $(".tnb").css("border-bottom", "1px solid #e6e6e6");
+            $(".Gnb").css("background", "none");
+            $(".tnb").css("background", "#fff");
+            $(".head").css("background", "#fff");
+            $(".main-logo").attr("src", "/resources/homepage/main/img/main_logo_b.png");
+            $(".mainBestKeyword").css("background", "rgba(0,0,0, 0.25)");
+            $(".keywordInput input").css("border", "3px solid rgba(0,0,0, 0.5)");
+            $(".keywordInput input").css("background", "rgba(0,0,0, 0.25)");
+            $("#fp-nav").addClass("dark-tooltip");
+          } else if (destination.index == 2) {
+            $("#header").removeClass("background-white");
+            $(".libLink").css("border-left", "1px solid #e6e6e6");
+            $(".libLink").css("border-right", "1px solid #e6e6e6");
+            $(".Gnb").css("border-top", "1px solid #e6e6e6");
+            $(".Gnb").css("border-bottom", "1px solid transparent");
+            $(".Gnb").css("background", "none");
+            $(".tnb").css("background", "#fff");
+            $(".head").css("background", "#fff");
+            $("#fp-nav").addClass("dark-tooltip");
+          } else if (destination.index == 3) {
+            $("#fp-nav").addClass("dark-tooltip");
+          } else {
+            $("#fp-nav").removeClass("dark-tooltip");
+          }
+        },
+        afterResponsive: function (isResponsive) {},
+        normalScrollElements: "#wrapMap",
+      });
+
+     $(document).on("click", "#fp-nav .fp-tooltip", function (e) {
+  e.preventDefault();
+  e.stopImmediatePropagation();
+
+  var $li = $(this).closest("li");
+  var index = $li.index() + 1;  // 섹션 번호 (1부터 시작)
+
+  if (typeof fullpage_api !== "undefined" && fullpage_api.moveTo) {
+    fullpage_api.moveTo(index);
+    console.log("툴팁 클릭 → fullpage_api.moveTo:", index);
+  } else {
+    console.error("fullpage_api 사용 불가");
+  }
+});
+
+        $(document).on("click", "#fp-nav .fp-tooltip", function (e) {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+
+            var $li = $(this).closest("li");
+            var index = $li.index() + 1;
+
+            if (typeof fullpage_api !== "undefined" && fullpage_api.moveTo) {
+                fullpage_api.moveTo(index);
+                console.log("툴팁 클릭 → fullpage_api.moveTo:", index);
+            }
+        });
+
+    }
+
+    // 모바일일 경우 fullpage 미사용1
+    if ($(window).width() < 1025) {
+      if ($("#fullpage").hasClass("fp-destroyed")) {
+      } else {
+        fullpage_api.destroy("all");
+      }
+    } else {
+      fullPage();
+    }
+
+    // 리사이즈 될때 모바일 화면에서 fullpage 미사용
+    $(window).resize(function (e) {
+      if ($(window).width() < 1025) {
+        if ($("#fullpage").hasClass("fp-destroyed")) {
+        } else {
+          fullpage_api.destroy("all");
+        }
+      } else {
+        fullPage();
+      }
+    });
+  </script>
+</div>

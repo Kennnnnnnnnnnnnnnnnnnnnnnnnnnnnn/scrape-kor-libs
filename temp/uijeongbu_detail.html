@@ -1,0 +1,1046 @@
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta id="_csrf" name="_csrf" th:content=""/>
+<meta id="_csrf_header" name="_csrf_header" th:content=""/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="의정부시 도서관 대표홈페이지"/>
+<meta property="og:description" content="의정부시 도서관 대표홈페이지"/>
+<meta property="og:url" content="https://www.uilib.go.kr/main/index.do"/>
+<link rel="canonical" href="https://www.uilib.go.kr/main/index.do">
+<title>의정부시 도서관 대표홈페이지 > 책읽는도시의정부 > 자료검색 > 간략검색</title>
+<!--[if IE]>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<![endif]-->
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=0,maximum-scale=10"/>
+<link rel="stylesheet" type="text/css" href="/resources/common/css/fontawesome.min.css"/>
+<link rel="stylesheet" type="text/css" href="/resources/common/css/select2.min.css"/>
+<link rel="stylesheet" type="text/css" href="/resources/common/css/jquery.mmenu.css"/>
+<link rel="stylesheet" type="text/css" href="/resources/common/css/default_new_fullpage.css"/>
+<link rel="stylesheet" type="text/css" href="/resources/common/css/login.css"/>
+<link rel="stylesheet" type="text/css" href="/resources/board/css/default.css"/>
+<link rel="stylesheet" type="text/css" href="/resources/book/css/common.css"/>
+
+<link rel="stylesheet" type="text/css" href="/resources/homepage/main/css/default.css"/>
+<link rel="stylesheet" type="text/css" href="/resources/homepage/main/css/main.css"/>
+<link rel="stylesheet" type="text/css" href="/resources/common/css/sub_design.css"/>
+<!--[if lte IE 7]>
+<link rel="stylesheet" type="text/css" href="/resources/common/css/fontawesome-ie7.min.css"/>
+<![endif]-->
+<!--[if lte IE 8]>
+<link rel="stylesheet" type="text/css" href="/resources/homepage/jungang/css/ie.css"/>
+<![endif]-->
+<script type="text/javascript" src="/resources/common/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="/resources/common/js/jquery-ui-1.12.0.min.js"></script>
+<script type="text/javascript" src="/resources/common/js/jquery-ui-1.12.0-datepicker.min.js"></script>
+<script type="text/javascript" src="/resources/common/js/jquery.bxslider.min.js"></script>
+<script type="text/javascript" src="/resources/common/js/jquery.mmenu.min.js"></script>
+<script type="text/javascript" src="/resources/common/js/jquery.newsticker.js"></script>
+<script type="text/javascript" src="/resources/common/js/default.js"></script>
+<script type="text/javascript" src="/resources/common/js/common.js"></script>
+<script type="text/javascript" src="/resources/homepage/main/js/common.js"></script>
+<script type="text/javascript" src="/resources/common/js/kakao.min.js"></script>
+</head>
+<body>
+
+<a href="#container" class="skip-to">본문 바로가기</a>
+<a href="#navi" class="skip-to">메뉴 바로가기</a>
+<link rel="stylesheet" type="text/css" href="/resources/homepage/main/css/sub.css"/>
+<script type="text/javascript">
+$(function() {
+	$('li#menu_5').addClass('active');
+	$('li#menu_9').addClass('active');
+	var halbaeNode = $('li#menu_5').parent().parent()[0];
+	if ( halbaeNode != null && halbaeNode.nodeName == 'LI' ) {
+		$(halbaeNode).addClass('active');
+	}
+
+	if (location.href.indexOf('html.do?') > -1) {
+ 		$('div#menuRatingDiv').load('/main/module/menuRating/index.do?menu_idx=9');
+	}
+	$(".dropdown > a.button").click(function(){
+		var $dropdownNav = $(this).siblings("ul");
+		if($dropdownNav.css("display") == "none"){
+			$(".dropdown > ul").hide();
+			$dropdownNav.show();
+			$(this).attr("title","도서관 바로가기(확장됨)");
+		}else{
+			$dropdownNav.hide();
+			$(this).attr("title","도서관 바로가기(축소됨)");
+		}
+		return false;
+	});
+	$(".dropdown > ul > li:last-child a").focusout(function(){
+		$(".dropdown > ul").hide();
+	});
+	$(".bestKeywordWrap").newsTicker({
+		itemHeight: 45,
+		showItems: 1,
+		duration: 4000,
+		prevButton: "#btnDwon",
+		nextButton: "#btnUp"
+	});
+	$('a.sessionStatusView').on('click', function(e) {
+		e.preventDefault();
+		if($('div.sessionStatusBox').css("display") == "none"){
+			$.ajax({
+				type: 'POST',
+				url: '/science/intro/join/getLoanInfo.do',
+				async: false,
+				dataType: 'json',
+				success: function(response) {
+					response = eval(response);
+					if(response.valid) {
+						var member = response.data;
+						var memberStatus = '';
+						if(member.user_class == '0')
+						{
+							memberStatus = '정상';
+						}
+						else if(member.user_class == '1')
+						{
+							memberStatus = '대출정지';
+						}
+						else if(member.user_class == '2')
+						{
+							memberStatus = '제적';
+						}
+						else
+						{
+							memberStatus = '탈퇴';
+						}
+
+						$('div.sessionStatusBox').children('p').eq(0).text(member.member_name+'님 상태 : '+ memberStatus);
+						$('div.sessionStatusBox').children('p').eq(1).text('통합 대출중권수 :' + member.united_loan_count);
+						$('div.sessionStatusBox').children('p').eq(2).text('예약중권수 : ' + member.reservation_count);
+						$('div.sessionStatusBox').children('p').eq(3).text('상호대차 신청도서 수 : ' + member.mutualLoanCount);
+					} else {
+						alert(response.message);
+					}
+				},
+				error: function(jqXHR, textStatus, errorThrown) {
+					alert('[' + textStatus + ']관리자에게 문의하세요. : ' + errorThrown + ', ' + jqXHR.status);
+				}
+			});
+			
+			$('div.sessionStatusBox').show();
+		}else{
+			$('div.sessionStatusBox').hide();
+		}
+		return false;
+	});
+
+	$('#header').removeClass("background-white");
+	$('.libLink').css('border-left','1px solid #e6e6e6');
+	$('.libLink').css('border-right','1px solid #e6e6e6');
+	$('.Gnb').css('border-top','1px solid #e6e6e6');
+	$('.Gnb').css('border-bottom','1px solid #e6e6e6');
+	$('.tnb').css('border-bottom','1px solid #e6e6e6');
+	$('.Gnb').css('background','#fff');
+	$('.tnb').css('background','#fff');
+	$('.head').css('background','#fff');
+	$('.main-logo').attr('src','/resources/homepage/main/img/main_logo_b.png');
+	$('.mainBestKeyword').css('background','rgba(0,0,0, 0.25)');
+	$('.keywordInput input').css('border','3px solid rgba(0,0,0, 0.5)');
+	$('.keywordInput input').css('background','rgba(0,0,0, 0.25)');
+	$('.libLink').css('display','block');
+});
+</script>
+
+<div id="wrap">
+	
+
+
+
+<div id="header">
+	<nav id="menu"></nav>
+
+	<div class="tnb">
+		<div class="main-section">
+			<div class="libLink dropdown" >
+				<a href="javascript:void();" class="button" title="도서관 바로가기(축소됨)">도서관 바로가기</a>
+				<ul>
+					<li><a href="/main/index.do">의정부도서관</a></li>
+					<li><a href="/science/index.do">과학도서관</a></li>
+					<li><a href="/information/index.do">정보도서관</a></li>
+					<li><a href="/english/index.do">영어도서관</a></li>
+					<li><a href="/art/index.do">미술도서관</a></li>
+					<li><a href="/gajaeul/index.do">가재울도서관</a></li>
+					<li><a href="/music/index.do">음악도서관</a></li>
+					<li><a href="/small/index.do">작은도서관</a></li>
+					<li><a href="/observatory/index.do">의정부천문대</a></li>
+				</ul>
+			</div>
+
+			<div class="mmodecard m-menu2">
+				<a href="/main/html/mcard.do?menu_idx=80" class="mCard"><img src="/resources/homepage/main/img/mcard-icon-w.png" alt="mcard-icon"></a>
+			</div>
+
+			<div class="mmode m-menu">
+				<a href="#menu"><img src="/resources/homepage/main/img/sitemap-btn-w.png" alt="메뉴" /><span class="blind">메뉴</span></a>
+			</div>
+
+			<div class="util">
+				
+					
+					
+					
+						<a href="/main/intro/login/index.do?menu_idx=55">로그인</a>
+						<span class="txt-bar"></span>
+						<a href="/science/html/joinTypeSelect.do?menu_idx=58">회원가입</a>
+					
+				
+
+						<a href="https://twitter.com/ujblib" target="_blank" class="sns-link"><img src="/resources/homepage/science/img/top_sns_v2_02.png" alt="트위터"></a>
+						<span></span>
+						<a href="https://www.facebook.com/ujblib" target="_blank"><img src="/resources/homepage/science/img/top_sns_v2_03.png" alt="페이스북"></a>
+						<span></span>
+						<a href="https://www.instagram.com/sciencelib_ujb/" target="_blank"><img src="/resources/homepage/science/img/top_sns_v2_01.png" alt="인스타그램"></a>
+			</div>
+
+		</div>
+	</div>
+
+
+	
+
+
+	<div class="head">
+		<div class="main-section">
+			<h1 id="logo" class="web-logo"><a href="/main/index.do"><img src="/resources/homepage/main/img/main_logo.png" alt="책읽는도시 의정부시 도서관" class='main-logo'/></a></h1>
+
+			<form name="mainSearchForm" id="mainSearchForm" action="/main/intro/search/index.do">
+				<input type="hidden" name="menu_idx" value="9">
+
+				<fieldset>
+					<legend class="blind">통합검색 영역</legend>
+					<div id="searchBox" class="searchBoxWrap">
+						<div class="searchBox">
+							<input type="hidden" id="searchKey" name="booktype" value="ALL">
+							<div class="keywordInput">
+								<label for="search_text_1">자료검색</label>
+								<input type="text" title="검색어 입력" id="search_text_1" name="title" autocomplete="off">
+							</div>
+							<a href="javascript:void();" id="main-search-btn" title="자료검색" class="btnSearch" style="border:0;">자료검색</a>
+						</div>
+						<div id="mainBestKeyword" class="mainBestKeyword">
+							<div class="controlBox">
+								<a href="#up" id="btnUp" title="인기검색어 위로 넘기기"><span class="blind">위</span></a>
+								<a href="#dwon" id="btnDwon" title="인기검색어 아래로 넘기기"><span class="blind">아래</span></a>
+							</div>
+							<div class="bestKeywordWrap">
+								<ol class="bestKeywordList">
+									
+										
+											<li><a href="#link" onclick="javascript:fnMainSearchKeyword('비룡소'); return false;" title='비룡소'><i>1</i>비룡소</a></li>
+										
+									
+										
+											<li><a href="#link" onclick="javascript:fnMainSearchKeyword('마법천자문'); return false;" title='마법천자문'><i>2</i>마법천자문</a></li>
+										
+									
+										
+											<li><a href="#link" onclick="javascript:fnMainSearchKeyword('설민석'); return false;" title='설민석'><i>3</i>설민석</a></li>
+										
+									
+										
+											<li><a href="#link" onclick="javascript:fnMainSearchKeyword('아몬드'); return false;" title='아몬드'><i>4</i>아몬드</a></li>
+										
+									
+										
+											<li><a href="#link" onclick="javascript:fnMainSearchKeyword('전천당'); return false;" title='전천당'><i>5</i>전천당</a></li>
+										
+									
+										
+											<li><a href="#link" onclick="javascript:fnMainSearchKeyword('주식'); return false;" title='주식'><i>6</i>주식</a></li>
+										
+									
+										
+											<li><a href="#link" onclick="javascript:fnMainSearchKeyword('살아남기'); return false;" title='살아남기'><i>7</i>살아남기</a></li>
+										
+									
+										
+											<li><a href="#link" onclick="javascript:fnMainSearchKeyword('소설'); return false;" title='소설'><i>8</i>소설</a></li>
+										
+									
+										
+											<li><a href="#link" onclick="javascript:fnMainSearchKeyword('투자'); return false;" title='투자'><i>9</i>투자</a></li>
+										
+									
+										
+											<li><a href="#link" onclick="javascript:fnMainSearchKeyword('계발'); return false;" title='계발'><i>10</i>계발</a></li>
+										
+									
+								</ol>
+							</div>
+						</div>
+					</div>
+				</fieldset>
+			</form>
+		</div>
+
+		<div class="Gnb">
+			<h2 class="blind">주메뉴</h2>
+			<div class="main-section">
+				<!-- menu S -->
+				<div class="g-menu">
+
+					<div class="mmode">
+							<a href="/main/html/mcard.do?menu_idx=80" class="btn4">
+								<i class="fa fa-bookmark"></i>
+								<span>모바일회원증</span>
+       						</a>
+					
+						
+						
+						
+							<a href="/main/intro/login/index.do?menu_idx=55" class="btn1">
+								<i class="fa fa-lock"></i>
+								<span>로그인</span>
+							</a>
+							<a href="/main/intro/join/index.do?menu_idx=58" class="btn2">
+								<i class="fa fa-user-plus"></i>
+								<span>회원가입</span>
+							</a>
+						
+					
+
+					</div>
+				</div>
+				<!-- menu E -->
+			</div>
+			<div class="mask">&nbsp;</div>
+		</div>
+		<div id="allbg"></div>
+	</div>
+
+
+</div>
+
+	<div id="container" class="subpage">
+
+		<div class="sub-visual">
+			<h2><b>책읽는도시의정부</b></h2>
+		</div>
+		<div class="doc-info-bg">
+			<div class="doc-info">
+				<ol>
+					<li class="first"><a href="/main/index.do"><img src="/resources/common/img/fa-home.png" alt="home으로"/></a></li>
+					<li><a href="/main/html.do?menu_idx=54">책읽는도시의정부</a></li>
+<li><a href="/main/intro/search/index.do?menu_idx=9">자료검색</a></li>
+<li><a href="/main/intro/search/index.do?menu_idx=9">간략검색</a></li>
+
+				</ol>
+			</div>
+		</div>
+
+		<div class="sections-align subsection">
+			
+			<div class="lnb">
+				<ul class="SubMenu">
+<li id="menu_54"><a href="/main/html.do?menu_idx=54" ><span>연혁</span></a></li>
+<li id="menu_5"><a href="/main/html.do?menu_idx=5" ><span>자료검색</span></a>
+<ul class="SubMenu">
+<li id="menu_9"><a href="/main/intro/search/index.do?menu_idx=9" ><span>간략검색</span></a></li>
+<li id="menu_10"><a href="/main/intro/search/indexDetail.do?menu_idx=10" ><span>상세검색</span></a></li></ul></li>
+<li id="menu_7"><a href="/main/html/bookPoint.do?menu_idx=7" ><span>독서포인트</span></a></li></ul>
+
+			</div>
+			
+			<div class="content">
+				<div class="doc">
+					<div class="doc-head">
+						<div class="doc-title">
+							
+							<h3>간략검색</h3>
+							
+							
+
+
+
+
+
+<script>
+$(document).ready(function() {
+	$('a.shareBtn').on('click', function(e) {
+
+		if($('div#share_layer').css('display') == 'none') {
+			$('div#share_layer').show();
+			e.preventDefault();
+		} else {
+			$('div#share_layer').hide();
+			e.preventDefault();
+		}
+
+	});
+
+	$('a#closeshareBox').on('click', function(e) {
+		e.preventDefault();
+		$('div#share_layer').hide();
+		$('a.shareBtn').focus();
+	});
+
+	$(window).scroll(function(){
+		if($(this).scrollTop() > 0 ) {
+			$('div#share_layer').hide();
+		}
+	});
+});
+</script>
+
+					<div class="shareArea">
+						<ul>
+							<li><a href="#" onclick="contentPrint();"><img src="/resources/common/img/sub_pr_icon.png" alt="현재페이지 인쇄"></a></li>
+							<li><a href="#" class="shareBtn snsBtn"><img src="/resources/common/img/sub_sns_icon.png" alt="sns 바로가기"></a>
+
+									<div id="share_layer">
+										<div class="shareAllBtns" >
+											<ul class="shareBox">
+												<li><a href="" class="sub-facebook" keyValue1="h1" keyValue2="9" keyValue3="간략검색" keyValue4="의정부시 도서관 대표홈페이지" title="의정부시 도서관 대표홈페이지 페이스북 새창열림"><img src="/resources/common/img/sns_facebook_btn.png" alt="의정부시 도서관 대표홈페이지 페이스북 바로가기" class="shareIcon" style="padding-left:3px;padding-right:3px;margin:0"></a></li>
+
+												<li><a href="" class="sub-twitter" keyValue1="h1" keyValue2="9" keyValue3="간략검색" keyValue4="의정부시 도서관 대표홈페이지" title="의정부시 도서관 대표홈페이지 트위터 새창열림"><img src="/resources/common/img/sns_twitter_btn.png" alt="의정부시 도서관 대표홈페이지 트위터로 공유하기" class="shareIcon" style="padding-left:3px;padding-right:3px;margin:0"></a></li>
+
+												<li><a href="#" id="closeshareBox" class="close shareIconArea" title="닫기" ><img src="/resources/common/img/sns-close.png" alt="sns-close" class="shareIcon" style="padding-left:3px;padding-right:3px;margin:0"/></a></li>
+											</ul>
+										</div>
+									</div>
+
+							</li>
+						</ul>
+					</div>
+						</div>
+					</div>
+					<div class="doc-body con9" id="contentArea">
+						<div class="body">
+							
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/resources/book/search/css/default.css"/>
+<link rel="stylesheet" href="/resources/common/css/search/jqcloud.css" type="text/css">
+<script type="text/javascript" src="/resources/common/js/jqcloud.js"></script>
+<script type="text/javascript">
+$(function() {
+
+	
+
+	
+	$('a#unmanned-req').on('click', function(e) {
+		e.preventDefault();
+		$('form#unmannedReqForm').submit();
+	});
+
+	
+	$('a#night-req').on('click', function(e) {
+		e.preventDefault();
+		$('form#nightReqForm').submit();
+	});
+
+	
+	$('a#service-noreq').on('click', function(e) {
+		e.preventDefault();
+		alert('비대면인증 회원은 서비스 이용이 불가능 하며 전자도서관만 이용가능 합니다.');
+		return;
+	});
+
+	$('a#addStorage').on('click', function(e) {
+		e.preventDefault();
+		/* if ( doAjaxPost($('storageReqForm')) ) {
+
+		} */
+
+		window.open("/main/module/myStorage/viewStorage.do?"+serializeCustom($('#storageReqForm')), "", "width=450, height=400");
+	});
+
+	$('a.addDelivery').on('click', function(e) {
+		e.preventDefault();
+
+	});
+
+	
+
+	try {
+		var words = JSON.parse(''.replaceAll('tag=', '"text":"').replaceAll(', weight=', '", "weight":'));
+		$('#cloud').jQCloud(words, {
+			autoResize: true
+		});
+	} catch (e) {
+		// TODO: handle exception
+	}
+
+	if (document.referrer.indexOf('/intro/search/index.do') > -1) {
+		$('a#goBack').on('click', function(e) {
+			e.preventDefault();
+			history.back();
+		});
+	}
+
+	if (document.referrer.indexOf('/intro/search/indexDetail.do') > -1) {
+		$('a#goBack').on('click', function(e) {
+			e.preventDefault();
+			history.back();
+		});
+	}
+	
+	if (document.referrer.indexOf('/intro/search/indexAll.do') > -1) {
+		$('a#goBack').on('click', function(e) {
+			e.preventDefault();
+			history.back();
+		});
+	}
+
+ 	//$('div#bookReviewDiv').load('/main/module/bookReview/index.do?menu_idx=9&manage_code=&reg_no=');
+
+	$(document).on('click', '.tabMenuS a.btnGraph', function(e){
+		e.preventDefault();
+		var target = this.getAttribute('href').replace('#','');
+		var $box = $(this).closest('.tabS');
+
+		$(this).closest('.tabMenuS').find('li').removeClass('on');
+		$(this).parent('li').addClass('on');
+
+		$('.graphWrap').hide();
+		$("#"+target).show();
+	});
+	
+	var text = $('#toc').text();
+	text = text.replace('\n\t\t\t' , '');
+	text = text.replaceAll('\n' , '<br>');
+	$('#toc').html(text);
+});
+
+</script>
+
+<form id="storageReqForm" action="/main/module/myStorage/saveItem.do" method="post">
+	<input type="hidden" name="_csrf" value="">
+	<input type="hidden" id="itemEditMode" name="editMode" value="ADD">
+	<input type="hidden" id="item_name" name="item_name" value="">
+	<input type="hidden" id="author" name="author" value="">
+	<input type="hidden" id="publer" name="publer" value="MO">
+	<input type="hidden" id="loca" name="loca" value="">
+	<input type="hidden" id="ctrl_no" name="ctrl_no" value="">
+	<input type="hidden" id="img_url" name="img_url" value="9">
+</form>
+
+
+
+<form id="unmannedReqForm" action="unmanned/form.do" method="post">
+	<input type="hidden" name="bookkey" value="">
+	<input type="hidden" name="booktype" value="MO">
+	<input type="hidden" name="regNo" value="">
+	<input type="hidden" name="manageCode" value="">
+	<input type="hidden" name="menu_idx" value="9">
+</form>
+
+<form id="nightReqForm" action="night/form.do" method="post">
+	<input type="hidden" name="bookkey" value="">
+	<input type="hidden" name="booktype" value="MO">
+	<input type="hidden" name="regNo" value="">
+	<input type="hidden" name="manageCode" value="">
+	<input type="hidden" name="menu_idx" value="9">
+</form>
+
+<form id="basketReqForm" action="/main/intro/search/saveDeliveryBasket.do">
+	<input type="hidden" id="book_key" name="book_key">
+	<input type="hidden" name="editMode" value="ADD">
+</form>
+
+
+
+<div class="search-wrap">
+	<div class="sview">
+		<div class="sinfo">
+			<div class="thumb">
+				<img src="https://www.uilib.go.kr/resources/common/img/noImg2.png" alt="">
+			</div>
+			<div class="info">
+				<ul>
+					<li><b class="title">[] </b></li>
+					<li><strong>저자사항</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+					<li><strong>발행사항</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  , \ </li>
+					<li><strong>형태사항</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+					<li><strong>표준부호</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ISBN : </li>
+					<li><strong>십진분류</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;, </li>
+				</ul>
+			</div>
+		</div>
+
+		<h3>소장정보</h3>
+		<div class="bookDetailInfo">
+			<table class="bookDetailInfoTbl">
+			<caption>도서 상태 및 등록 정보</caption>
+			<colgroup>
+				<col width="10%">
+				<col width="10%">
+				<col width="20%">
+				<col width="10%">
+				<col width="10%">
+				<col width="10%">
+				<col width="10%">
+			</colgroup>
+			<thead>
+				<tr>
+					<th>소장<br class="mBr"/>도서관</th>
+					<th>자료실</th>
+					<th>청구<br class="mBr"/>기호</th>
+					<th>등록<br class="mBr"/>번호</th>
+					<th>부록<br class="mBr"/>유무</th>
+					<th>대출가능<br class="mBr"/>여부</th>
+					<th>반납<br class="mBr"/>예정일</th>
+				</tr>
+			</thead>
+			<tbody>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td>N</td>
+				<td></td>
+
+				<td></td>
+			</tr>
+			</tbody>
+			</table>
+		</div>
+		<div class="sbtn" style="text-align:center;">
+			
+
+			
+			
+			<a href="bookcase/add.do?menu_idx=9&isbn=&bookkey=null&speciesKey=24840263" class="btn btnNormal">관심도서 추가</a>
+			<a id="goBack" class="btn btnNormal">목록으로</a>
+		</div>
+
+		<h3>책소개</h3>
+		<div>
+			
+		</div>
+		
+		<h3>목차</h3>
+		<div id= toc>
+			목차정보가 없습니다.
+		</div>
+
+<!--
+		<h3>서평</h3>
+		<div class="showFoldDiv" id="bookReviewDiv"></div>
+-->
+
+		<h3>이 책의 주요키워드</h3>
+		<div class="tagCloud">
+			<div id="cloud" class="jqcloud">
+			</div>
+		</div>
+		<div class="end"></div>
+
+
+		<h3>연령별 대출정보</h3>
+		<style>
+			svg > g > g:last-child { pointer-events: none }
+			svg > g:last-child > g:last-child { pointer-events: none }
+			div.google-visualization-tooltip { pointer-events: none }
+			table.blindTbl {position:absolute;font-size:0px;border:-1;overflow:hidden;width:0;height:0;}
+			table.blindTbl th, table.blindTbl td {padding:0;margin:0;font-size:0px;text-indent:-9999px;}
+		</style>
+		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+		<!-- 막대그래프 -->
+		<div class="graphWrap">
+			<!--p class="caption"><span class="cube"></span> 최근 90일 내 대출건수</p-->
+			<div id="ageBarGraph"></div>
+			<table class="blindTbl">
+				<caption>연령별 대출정보</caption>
+				<colgroup>
+					<col style="width:80px;">
+					<col>
+				</colgroup>
+				<thead>
+					<tr>
+						<th>연령</th>
+						<th>대출</th>
+					</tr>
+				</thead>
+				<tbody>
+					
+				</tbody>
+			</table>
+		</div>
+
+		<script type="text/javascript">
+			google.load("visualization", "1", {packages:["corechart"]});
+			google.setOnLoadCallback(drawChart);
+
+			function drawChart() {
+				var data = google.visualization.arrayToDataTable([
+					['연령','대출']
+					
+					
+						,['데이터 없음', parseInt('0')]
+					
+						
+				]);
+
+				var options = {
+					animation: {startup: true, duration: 1000},
+					fontName: "Malgun Gothic,맑은 고딕, Verdana,Arial, '돋움', Dotum",
+					fontSize: '12',
+					legend: {position: 'none'},
+					//bar: {groupWidth: "20%"}, //이게 막대가로폭
+					bar: {groupWidth: "20%"}, //이게 막대가로폭
+					vAxis: {format:'###,###,###',viewWindow:{min: 0},
+						baselineColor: '#d4d4d4'
+					},
+					colors:['#3598db'],
+					pointSize: 2,
+					//chartArea: {left:"0px",top: "5%",right:'0px', width: "80%", height: "80%"}
+					chartArea: {left:"10%",top: "5%",right:'0px', width: "85%", height: "80%"}
+				};
+
+				function resizeAge () {
+					var chart = new google.visualization.ColumnChart(document.getElementById('ageBarGraph'));
+					chart.draw(data, options);
+				}
+				
+				// 구글차트 리사이징 (반응형)
+				
+				window.addEventListener("onload", resizeAge());
+				// window.onresize = resizeAge;	
+
+				var resizeHandler = function(){
+					resizeAge();
+					//resizeGender();
+					//resizeRegion();
+				};
+
+				$(window).resize(resizeHandler);
+				
+				
+			}
+			
+		</script>
+
+
+		<!-- 성별 -->
+		<h3>연도별 대출선호도 정보</h3>
+		<style>
+			svg > g > g:last-child { pointer-events: none }
+			svg > g:last-child > g:last-child { pointer-events: none }
+			div.google-visualization-tooltip { pointer-events: none }
+			table.blindTbl {position:absolute;font-size:0px;border:0;overflow:hidden;width:0;height:0;}
+			table.blindTbl th, table.blindTbl td {padding:0;margin:0;font-size:0px;text-indent:-9999px;}
+		</style>
+		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+		<!-- 막대그래프 -->
+		<div class="graphWrap">
+			<!--p class="caption"><span class="cube"></span> 최근 90일 내 대출건수</p-->
+			<div id="genderBarGraph"></div>
+			<table class="blindTbl">
+				<caption>연도별 대출선호도 정보</caption>
+				<colgroup>
+					<col style="width:80px;">
+					<col>
+				</colgroup>
+				<thead>
+					<tr>
+						<th>성별</th>
+						<th>대출</th>
+					</tr>
+				</thead>
+				<tbody>
+						
+						
+						<tr>
+							<td>데이터 없음</td>
+							<td>0</td>
+						</tr>
+						
+				</tbody>
+			</table>
+		</div>
+		<script type="text/javascript">
+			google.load("visualization", "1", {packages:["corechart"]});
+			google.setOnLoadCallback(drawChart);
+
+			function drawChart() {
+				var data = google.visualization.arrayToDataTable([
+					['성별','대출']
+					
+					
+						,['데이터 없음', parseInt('0')]
+					
+				]);
+
+				var options = {
+					animation: {startup: true, duration: 1000},
+					fontName: "Malgun Gothic,맑은 고딕, Verdana,Arial, '돋움', Dotum",
+					fontSize: '12',
+					legend: {position: 'none'},
+					bar: {groupWidth: "30%"},
+					vAxis: {format:'###,###,###',viewWindow:{min: 0},
+						baselineColor: '#d4d4d4'
+					},
+					hAxis: {
+						slantedText : 'false',
+						slantedTextAngle : 1,
+						// maxAlternation: 3,
+						maxTextLines: 5,
+						showTextEvery: 1
+					},
+					colors:['#a088e6'],
+					pointSize: 2,
+					//chartArea: {left:"0px",top: "5%",right:'0px', width: "90%", height: "80%"}
+					chartArea: {left:"10%",top: "5%",right:'0px', width: "85%", height: "80%"}
+				};
+
+				function resizeGender () {
+					var chart = new google.visualization.ColumnChart(document.getElementById('genderBarGraph'));
+					chart.draw(data, options);
+				}
+
+				// 구글차트 리사이징 (반응형)
+				 window.onload = resizeGender();
+				 window.onresize = resizeGender;	
+				window.addEventListener("onload", resizeGender());
+			}	
+		</script>
+
+		<h3>함께 비치된 도서</h3>
+		<div class="detailBookList">
+			<ul class="bookListz">
+				
+					<li>
+						<div class="thumb">
+							<a href="detail.do?menu_idx=9&isbn=9791158393021&bookkey=24346292&speciesKey=24346290&booktype=MO" class="cover" tabindex="0">
+								<img src="https://image.aladin.co.kr/product/28736/71/cover/k572836780_1.jpg" alt="(생활코딩!) 자바 프로그래밍 : 입문 " >
+							</a>
+						</div>
+						<span class="tit">(생활코딩!) 자바 프로그래밍 : 입문 </span>
+					</li>
+				
+					<li>
+						<div class="thumb">
+							<a href="detail.do?menu_idx=9&isbn=9788955026832&bookkey=455543&speciesKey=455535&booktype=MO" class="cover" tabindex="0">
+								<img src="https://image.aladin.co.kr/product/4645/62/cover/8955026838_1.jpg" alt="JSP Programming : 답변형 게시판과 회원가입을 단계적으로 개발하며 배우는" >
+							</a>
+						</div>
+						<span class="tit">JSP Programming : 답변형 게시판과 회원가입을 단계적으로 개발하며 배우는</span>
+					</li>
+				
+					<li>
+						<div class="thumb">
+							<a href="detail.do?menu_idx=9&isbn=9791165920302&bookkey=1165141&speciesKey=1165137&booktype=MO" class="cover" tabindex="0">
+								<img src="https://image.aladin.co.kr/product/25679/1/cover/k082735348_1.jpg" alt="예제로 배우는 스프링 부트 입문 : JSP, Oracle, MyBatis와 연동한 웹 애플리케이션 만들기" >
+							</a>
+						</div>
+						<span class="tit">예제로 배우는 스프링 부트 입문 : JSP, Oracle, MyBatis와 연동한 웹 애플리케이션 만들기</span>
+					</li>
+				
+					<li>
+						<div class="thumb">
+							<a href="detail.do?menu_idx=9&isbn=9791156643067&bookkey=1068781&speciesKey=1068777&booktype=MO" class="cover" tabindex="0">
+								<img src="https://image.aladin.co.kr/product/9971/26/cover500/k202536266_1.jpg" alt="비주얼 베이직 2015 for Beginner" >
+							</a>
+						</div>
+						<span class="tit">비주얼 베이직 2015 for Beginner</span>
+					</li>
+				
+					<li>
+						<div class="thumb">
+							<a href="detail.do?menu_idx=9&isbn=9788960770485&bookkey=811672&speciesKey=811669&booktype=MO" class="cover" tabindex="0">
+								<img src="https://bookthumb-phinf.pstatic.net/cover/046/835/04683550.jpg" alt="자바 병렬 프로그래밍" >
+							</a>
+						</div>
+						<span class="tit">자바 병렬 프로그래밍</span>
+					</li>
+				
+					<li>
+						<div class="thumb">
+							<a href="detail.do?menu_idx=9&isbn=9788966260768&bookkey=1700941&speciesKey=1700937&booktype=MO" class="cover" tabindex="0">
+								<img src="https://bookthumb-phinf.pstatic.net/cover/072/042/07204207.jpg" alt="프론트엔드 개발자를 위한 자바스크립트 프로그래밍" >
+							</a>
+						</div>
+						<span class="tit">프론트엔드 개발자를 위한 자바스크립트 프로그래밍</span>
+					</li>
+				
+					<li>
+						<div class="thumb">
+							<a href="detail.do?menu_idx=9&isbn=9791158392024&bookkey=21827544&speciesKey=21827542&booktype=MO" class="cover" tabindex="0">
+								<img src="https://image.aladin.co.kr/product/23794/93/cover/k452639080_1.jpg" alt="(손가락 하나 까딱하지 않는) 주식 거래 시스템 구축 : 파이썬을 이용한 데이터 수집과 차트 분석, 매매 자동화까지 " >
+							</a>
+						</div>
+						<span class="tit">(손가락 하나 까딱하지 않는) 주식 거래 시스템 구축 : 파이썬을 이용한 데이터 수집과 차트 분석, 매매 자동화까지 </span>
+					</li>
+				
+					<li>
+						<div class="thumb">
+							<a href="detail.do?menu_idx=9&isbn=9788970505602&bookkey=24840265&speciesKey=24840263&booktype=MO" class="cover" tabindex="0">
+								<img src="https://bookthumb-phinf.pstatic.net/cover/222/025/22202592.jpg" alt="파이썬 데이터 분석" >
+							</a>
+						</div>
+						<span class="tit">파이썬 데이터 분석</span>
+					</li>
+				
+					<li>
+						<div class="thumb">
+							<a href="detail.do?menu_idx=9&isbn=9788966262755&bookkey=651780&speciesKey=651777&booktype=MO" class="cover" tabindex="0">
+								<img src="https://image.aladin.co.kr/product/25122/26/cover/8966262759_1.jpg" alt="Practical 모던 자바" >
+							</a>
+						</div>
+						<span class="tit">Practical 모던 자바</span>
+					</li>
+				
+					<li>
+						<div class="thumb">
+							<a href="detail.do?menu_idx=9&isbn=9791192187037&bookkey=25381362&speciesKey=25381360&booktype=MO" class="cover" tabindex="0">
+								<img src="https://bookthumb-phinf.pstatic.net/cover/214/735/21473517.jpg" alt="이제 시작이야! 컴퓨팅 사고력으로 인공지능까지 : 파이썬 " >
+							</a>
+						</div>
+						<span class="tit">이제 시작이야! 컴퓨팅 사고력으로 인공지능까지 : 파이썬 </span>
+					</li>
+				
+					<li>
+						<div class="thumb">
+							<a href="detail.do?menu_idx=9&isbn=9791192187082&bookkey=28720406&speciesKey=28720404&booktype=MO" class="cover" tabindex="0">
+								<img src="https://shopping-phinf.pstatic.net/main_3820371/38203710620.20230829085446.jpg" alt="이제 시작이야! 컴퓨팅 사고력으로 인공지능까지 : 스크래치 " >
+							</a>
+						</div>
+						<span class="tit">이제 시작이야! 컴퓨팅 사고력으로 인공지능까지 : 스크래치 </span>
+					</li>
+				
+					<li>
+						<div class="thumb">
+							<a href="detail.do?menu_idx=9&isbn=9791163032151&bookkey=22183042&speciesKey=22183040&booktype=MO" class="cover" tabindex="0">
+								<img src="https://bookthumb-phinf.pstatic.net/cover/177/277/17727701.jpg" alt="(Do it!) 첫 코딩 with 파이썬 : 보통 사람이 알아야 할 프로그래밍 기초 " >
+							</a>
+						</div>
+						<span class="tit">(Do it!) 첫 코딩 with 파이썬 : 보통 사람이 알아야 할 프로그래밍 기초 </span>
+					</li>
+				
+					<li>
+						<div class="thumb">
+							<a href="detail.do?menu_idx=9&isbn=9788995879313&bookkey=926399&speciesKey=926394&booktype=MO" class="cover" tabindex="0">
+								<img src="https://bookthumb-phinf.pstatic.net/cover/028/569/02856994.jpg" alt="비주얼 베이직 프로그래밍= Visual Basic programming" >
+							</a>
+						</div>
+						<span class="tit">비주얼 베이직 프로그래밍= Visual Basic programming</span>
+					</li>
+				
+					<li>
+						<div class="thumb">
+							<a href="detail.do?menu_idx=9&isbn=9791138373616&bookkey=34456607&speciesKey=34456605&booktype=MO" class="cover" tabindex="0">
+								<img src="https://shopping-phinf.pstatic.net/main_4895341/48953417618.20240711071725.jpg" alt="나의 첫 코딩 수업  : with 파이썬  : 그림과 비유로 쉽게 배우는 찐 코딩 입문서  " >
+							</a>
+						</div>
+						<span class="tit">나의 첫 코딩 수업  : with 파이썬  : 그림과 비유로 쉽게 배우는 찐 코딩 입문서  </span>
+					</li>
+				
+					<li>
+						<div class="thumb">
+							<a href="detail.do?menu_idx=9&isbn=9791191590265&bookkey=34451031&speciesKey=34451029&booktype=MO" class="cover" tabindex="0">
+								<img src="https://image.aladin.co.kr/product/34152/54/cover200/k582931499_1.jpg" alt="비전공자를 위한 이해할 수 있는 파이썬  : AI 시대에 최적화된 파이썬 공부법  " >
+							</a>
+						</div>
+						<span class="tit">비전공자를 위한 이해할 수 있는 파이썬  : AI 시대에 최적화된 파이썬 공부법  </span>
+					</li>
+				
+			</ul>
+		</div>
+
+		<h3>함께 대출한 자료</h3>
+		<div class="detailBookList">
+			<ul class="bookListz">
+				
+			</ul>
+		</div>
+
+		<h3>같은 주제의 자료</h3>
+		<div class="detailBookList">
+			<ul class="bookListz">
+				
+			</ul>
+		</div>
+
+	</div>
+</div>
+
+							<div id="menuRatingDiv"></div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+
+		<div class="end"></div>
+	</div>
+
+	<div id="foot_section">
+		
+
+
+
+	<div class="mFooter">
+		<div class="top">
+			<div class="sections-align">
+				<div class="left-link">
+					<div class="inf-txt">
+						<ul>
+							<li><a href="/science/html.do?menu_idx=60"><b>개인정보처리방침</b></a></li>
+							<li><span class="txt-bar"></span></li>
+							<li><a href="/science/html.do?menu_idx=61">영상정보처리방침</a></li>
+							<li><span class="txt-bar"></span></li>
+							<li><a href="/science/html.do?menu_idx=62">이용약관</a></li>
+							<li><span class="txt-bar"></span></li>
+							<li><a href="/science/html.do?menu_idx=63">도서관 서비스헌장</a></li>
+							<li><span class="txt-bar"></span></li>
+							<li><a href="/science/html.do?menu_idx=121">장서개발정책</a></li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="right-location">
+					<span>
+					<select id="recommendSite11" class="recommendSite11" title="관련사이트(새창열림)">
+						<option value="">관련사이트</option>
+						<option value="https://www.ui4u.go.kr/">의정부시청</option>
+						<option value="https://www.ull.or.kr/lifeedu/index.do">의정부시평생교육센터</option>
+						<option value="https://www.ujblib.or.kr/">경기의정부교육도서관</option>
+						<option value="https://www.uac.or.kr/uac.php">의정부예술의전당</option>
+						<option value="https://www.nl.go.kr/ableFront/index.jsp">국립중앙도서관</option>
+					</select>
+					<a href="#move" class="sel-btn recommendSite11">이동</a>
+					</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="bottom">
+			<div class="sections">
+				<p>
+					<em>(11780) 경기도 의정부시 추동로124번길 52 (신곡동)</em>
+				</p>
+				<p class="copyright">Copyright © 2020 UILIB, All rights reserved.</p>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="home-up">
+		<img src="/resources/homepage/main/img/m-top-btn.png" alt="위로" id="homeup">
+	</div>
+
+	</div>
+</div>
+
+</body>
+</html>

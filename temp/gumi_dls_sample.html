@@ -1,0 +1,1384 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>도서관 통합 자료 검색</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,target-densitydpi=medium-dpi">
+<meta http-equiv="X-UA-Compatible" content="IE=10">
+<!--[if IE 9]><meta http-equiv="X-UA-Compatible" content="IE=9"><![endif]-->
+<!--[if IE 8]><meta http-equiv="X-UA-Compatible" content="IE=8"><![endif]-->
+<!--[if IE 7]><meta http-equiv="X-UA-Compatible" content="IE=7"><![endif]-->
+<!--[if lte IE 6]><meta http-equiv="X-UA-Compatible" content="IE=6"><![endif]-->
+<meta name="keywords" content="DLS-LTE, LTE, 자료검색">
+<meta name="description" content="DLS-LTE 자료검색">
+
+<link rel="stylesheet" type="text/css" href="./wdModules/wdLayout/skins/default/css/wide_back.css?v=1">
+<link rel="stylesheet" type="text/css" href="./wdModules/wdLayout/skins/default/css/wide.css?v=1">
+
+<link href="./wdCommon/css/jquery-ui-1.10.3.custom.min.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="./wdCommon/jslib/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="./wdCommon/jslib/jquery-ui-1.10.3.custom.min.js"></script>
+<script type="text/javascript" src="./wdCommon/jslib/jcarousellite_1.0.1.js"></script>
+<script type="text/javascript" src="./wdCommon/jslib/jquery.cookie.js"></script>
+
+<!--[if IE]>
+<script type="text/javascript" src="./wdCommon/jslib/html5.js"></script>
+<script type="text/javascript" src="./wdCommon/jslib/respond.src.js"></script>
+<script type="text/javascript" src="./wdCommon/jslib/modernizr.js"></script>
+<script type="text/javascript" src="./wdCommon/jslib/placeholder.js"></script>
+<![endif]-->
+
+<script type="text/javascript" src="./wdModules/wdLayout/skins/default/jslib/thickbox.jquery.js"></script>
+<script type="text/javascript" src="./wdModules/wdLayout/skins/default/jslib/loyout.js"></script>
+<script type="text/javascript" src="./wdModules/wdDataSearch/skins/default/jslib/wdDataSearch.js"></script>
+<script type="text/javascript" src="./wdModules/wdDataSearch/skins/default/jslib/slide.jquery.js"></script>
+
+
+<script type="text/javascript">
+//<![CDATA[
+	$(function(){
+
+		/*$("#loading",parent.document).hide();
+		$("form").on("submit", function(){
+			$("#loading",parent.document).show();
+		});
+		if(document.getElementById('searchWord')) document.getElementById('searchWord').focus();*/
+	});
+//]]>
+</script>
+<script>
+function wjLoginCheck(){
+
+	if(confirm('로그인 후 서비스이용이 가능합니다.\n로그인 페이지로 이동하시겠습니까?')){
+		document.dlsltLoginForm.submit();
+		return false;
+	}
+	else return false;
+}
+</script>
+</head>
+
+<body>
+	<div style="height:15px">&nbsp;</div>
+	<form method="post" name="dlsltLoginForm" action="" target="_top">
+		<input type="submit" style="display:none" value="로그인페이지로 이동">
+	</form>
+
+	<div id="contentHeight">
+	<script type="text/javascript" src="./virtualKeyboard/vk_popup.js?vk_layout=CN%20Chinese%20Cangjie&vk_skin=flat_gray"></script>
+
+<div id="keyboard"></div>
+<div id="container">
+	
+	<div style="float:right">
+		<!-- a href="./index.php?mod=wdDataSearch">통합검색</a>
+		<a href="./index.php?mod=wdDataSearch&act=searchDvdResultList">DVD검색</a>
+		<a href="./index.php?mod=wdDataSearch&act=searchResultList&resultType=newList">신착자료</a>
+		<a href="./index.php?mod=wdDataSearch&act=loanBestList">대출베스트</a>
+		<a href="./index.php?mod=wdDataSearch&act=hopeDataRequestForm&regAct=guide">희망도서신청</a>
+		<a href="./index.php?mod=wdDataSearch&act=directHopeDataRequestForm&regAct=guide">바로희망도서신청</a>
+		<a href="./index.php?mod=wdDataSearch&act=dataLoanList">내서재</a -->
+	
+			<!-- a style="padding:3px solid; color:#fff; background-color:blue; display:block;font-weight:bold; font-size:14px;" href="./index.php?mod=wdMember&act=userLogin&userType=dls"> &nbsp;&nbsp;로 그 인&nbsp;&nbsp; </a -->
+		</div>
+
+	<div class="container">
+		<script>
+var _auto_kwd = '';
+var _auto_idx = -1;
+var _auto_json = '';
+var dataDetail = [];
+function getDataDetail(bookKey, json)
+{
+	if(dataDetail[bookKey]){
+		var jkey  = dataDetail[bookKey]['jongKey'];
+		var bkey  = dataDetail[bookKey]['bookKey'];
+		var title  = dataDetail[bookKey]['title'];
+		var author = dataDetail[bookKey]['author'];
+		var pub    = dataDetail[bookKey]['publisher'];
+		var pyear  = dataDetail[bookKey]['pubYear']; 
+		var callno = dataDetail[bookKey]['callNo']; 
+		var dtype  = dataDetail[bookKey]['dataType'];
+		var libName= dataDetail[bookKey]['libName'];
+		var placeName= dataDetail[bookKey]['placeName'];
+		var image  = dataDetail[bookKey]['image'];
+
+		$('#aTitle').attr('href','./index.php?mod=wdDataSearch&act=searchResultDetail&dbType=dan&jongKey=' + jkey).html(title);
+		$('#aAuthor').html(author);
+		$('#aPubInfo').html(pub);
+		$('#aPubYear').html(pyear);
+		$('#aCallNo').html(callno);
+		$('#aType').html(dtype);
+		$('#aLibName').html(libName);
+		$('#aPlaceName').html(placeName);
+		$('#aImage').attr('src',image);
+		$('#aLink').attr('href','./index.php?mod=wdDataSearch&act=searchResultDetail&dbType=dan&jongKey=' + jkey);
+		return;
+	}
+	if(json){
+		for(var k in json) {
+			var tmp = {
+				'jongKey' : json[k]['jongKey'],
+				'bookKey' : json[k]['bookKey'],
+				'title' : json[k]['title'],
+				'author' : json[k]['author'],
+				'publisher' : json[k]['publisher'],
+				'pubYear' : json[k]['pubYear'], 
+				'callNo' : json[k]['callNo'], 
+				'dataType' : json[k]['dataType'],
+				'libName' : json[k]['libName'],
+				'placeName' : json[k]['placeName'],
+				'image' : json[k]['image']};
+				console.log(tmp);
+			dataDetail[json[k]['bookKey']] = tmp;
+		};
+	}
+}
+
+function selectKeyword(flag) {
+	var obj = $('.keyword ul');
+	var child = obj.find('li a');
+	var cnt = child.length;
+	child.removeClass('sel');
+	if(_auto_idx<-1) _auto_idx = -1;
+	if(flag == 'up') _auto_idx--;
+	else if(flag == 'dn') _auto_idx++;
+	if(_auto_idx<0) {
+		$('#searchWord').val(_auto_kwd);
+		return;
+	}
+	if(_auto_idx>cnt-1) _auto_idx = cnt-1;
+	$('#searchWord').val(child.eq(_auto_idx).html().replace(/<[/]*strong>/g,""));
+	selectHover(child.eq(_auto_idx));
+}
+
+var selectHoverFlag = 0;
+function selectHover(obj) {
+	obj.addClass('sel').parent().click();
+	var ul = obj.parents('ul').eq(0);
+	var top = obj.offset().top - ul.offset().top + ul.scrollTop();
+	var height = ul.outerHeight();
+	var off = top-height;
+	if(off>selectHoverFlag) {
+		if(off>=0) {
+			ul.scrollTop(off+20);
+		}
+	} else {
+		if(off<=0) {
+			ul.scrollTop(ul.scrollTop()-20);
+		}
+	}
+	selectHoverFlag = off;
+}
+
+function getStringLength (str)
+{
+	var retCode = 0;
+	var strLength = 0;
+	for (i = 0; i < str.length; i++)
+	{
+		var code = str.charCodeAt(i)
+		var ch = str.substr(i,1).toUpperCase()
+		code = parseInt(code)
+		if ((ch < "0" || ch > "9") && (ch < "A" || ch > "Z") && ((code > 255) || (code < 0)))
+			strLength = strLength + 2;
+		else
+			strLength = strLength + 1;
+	}
+	return strLength;
+}
+
+function getByte(str) {
+	var resultSize = 0;
+	if (str == null) {
+		return 0;
+	}
+	for (var i = 0; i < str.length; i++) {
+		var c = escape(str.charAt(i));
+		if (c.length == 1) resultSize++;
+		else if (c.indexOf("%u") != -1) resultSize += 2;
+		else resultSize++;
+	}
+	return resultSize;
+}
+
+function wjDefaultSearch(url)
+{
+	window.name='searchOpener'; 
+	var tar = window.open(url.href,'defailSearchForm','width=700,height=720'); 
+	tar.focus(); 
+	return false;
+}
+
+
+$(function(){
+	var checked = false;
+
+	$(".choice").removeClass("sel").hide();
+
+	$(".selbox").find("input[type=checkbox]").on("click",function(){
+		checked = false;
+		$(".selbox").find("input[type=checkbox]").each(function(){
+			if($(this).is(":checked")) checked = true;
+		});
+		if(checked){
+			$(".choice").addClass("sel").show().on('click',function(){
+				document.headSearchForm.submit();
+			});
+		}
+	})
+	$(".clear").on("click",function(){
+		$(".selbox").find("input[type=checkbox]").attr("checked",false);
+	})
+	
+// 실행 후 기관별 검색 활성화
+	$(".selbox").find("input[type=checkbox]").each(function(){
+		if($(this).is(":checked")) checked = true;
+	});
+	if(checked){
+		$(".choice").addClass("sel").show().on('click',function(){
+			document.headSearchForm.submit();
+		});
+	}
+	//else $(".choice").removeClass("sel").hide();
+
+
+
+	$(function() {
+		//$(".wrapbox").css("display","none");
+	//	$(".wrapClose").css("display","none");
+		$(".wrapOpen").click(function(){
+			$(".wrapClose").css("display","block");
+			$(".wrapOpen").css("display","none");
+			$(".wrapbox").css("display","block");
+			$.cookie('isWrapOpen','open');
+		}),
+		$(".wrapClose").click(function(){
+			$(".wrapClose").css("display","none");
+			$(".wrapOpen").css("display","block");
+			$(".wrapbox").css("display","none");
+			$.cookie('isWrapOpen','close');
+		});
+		if(!$.cookie('isWrapOpen') || $.cookie('isWrapOpen') == 'open') $(".wrapOpen").click();
+	});
+})
+</script>
+<script type="text/javascript" src="./virtualKeyboard/vk_popup.js?vk_layout=CN%20Chinese%20Cangjie&vk_skin=flat_gray"></script>
+<div id="keyboard"></div>
+<form method="get" name="headSearchForm" id="headSearchForm" action="./index.php">
+<input type="hidden" name="mod" value="wdDataSearch" />
+<input type="hidden" name="act" value="searchResultList" />
+<input type="hidden" name="manageSearch" value="" />
+
+<input type="hidden" name="detailSearch" id="detailSearch" value="" />
+		<div id="headSearchForm">
+		
+		
+		
+				<div class="wrapbox">
+			<div class="selbox">
+				<dl>
+					<dt>도서관</dt>
+					<dd>
+						<ul id="_multiChk1">
+					 
+																				<li><input name="manageCode[MA]" value="MA" id="MA" type="checkbox" >
+								<label for="MA">구미시립중앙도서관 (11)</label>
+							</li>
+							 
+																				<li><input name="manageCode[MB]" value="MB" id="MB" type="checkbox" >
+								<label for="MB">구미시인동도서관 (4)</label>
+							</li>
+							 
+																				<li><input name="manageCode[MC]" value="MC" id="MC" type="checkbox" >
+								<label for="MC">구미시선산도서관 (2)</label>
+							</li>
+							 
+																				<li><input name="manageCode[MD]" value="MD" id="MD" type="checkbox" >
+								<label for="MD">구미시봉곡도서관 (4)</label>
+							</li>
+							 
+																				<li><input name="manageCode[ME]" value="ME" id="ME" type="checkbox" >
+								<label for="ME">구미시상모정수도서관 (2)</label>
+							</li>
+							 
+																				<li><input name="manageCode[MF]" value="MF" id="MF" type="checkbox" >
+								<label for="MF">구미시강동문화복지회관 (2)</label>
+							</li>
+							 
+																				<li><input name="manageCode[MG]" value="MG" id="MG" type="checkbox" >
+								<label for="MG">구미시양포도서관 (4)</label>
+							</li>
+							 
+																				<li><input name="manageCode[MH]" value="MH" id="MH" type="checkbox" >
+								<label for="MH">구미시산동도서관</label>
+							</li>
+							 
+																				<li><input name="manageCode[BA]" value="BA" id="BA" type="checkbox" >
+								<label for="BA">작은도서관(송정나래,해평누리,생활문화,폴리텍,평생자료실) (5)</label>
+							</li>
+													</ul>
+					</dd>
+				</dl>
+				<a class="choice" href="#submit">선택한 기관 검색</a>
+				<a class="clear">선택해제</a>
+				<label class="all none"><input id="multiChk1" type="checkbox" name="multiChk1" value="1" title="전체선택" onclick="wjAllChecked(this.id);"> 전체선택</label>
+			</div>
+						
+			
+		</div>
+		<div class="btnbox">
+			<a href="#" class="wrapOpen">도서관 더보기<i>+</i></a>
+			<a href="#" class="wrapClose">도서관 닫기<i>-</i></a>
+		</div>
+				
+
+
+
+
+				<div class="allbox">
+
+			<fieldset>
+				<legend>통합검색</legend>
+				
+								<label for="reSearch" class="result"><input id="reSearch" type="checkbox" name="reSearch" value="1" title="결과내 검색"> 결과내 검색</label>
+								<div class="search">
+					<div>
+						<strong>
+						<select name="searchItem[]">
+							<option value="total">전체
+							</option>
+							<option value="title">제목
+							</option>
+							<option value="author">저자
+							</option>
+							<option value="publisher">발행처
+							</option>
+							<option value="keyword">키워드
+							</option>
+						</select>
+				
+						<!-- select name="searchMothod">
+							<option value="total" >전체</option>
+							<option value="book"   selected='selected'>도서검색</option>
+							<option value="web"   >웹검색</option>
+						</select -->
+						</strong>
+
+						
+						<input type="text" name="searchWord[]" autocomplete="off" id="searchWord" style="ime-mode:active" onfocus="PopupVirtualKeyboard.attachInput(this);" placeholder="검색어를 적어주세요">
+						<!-- input type="hidden" name="item" value="title" id="item" -->
+					</div>
+					<input type="submit" class="btn btn-search" value="검색">
+				</div>
+								<a href="./index.php?mod=wdDataSearch&act=dataDetailSearchForm&searchItem[]=total&searchWord[]=%ED%8C%8C%EC%B9%9C%EC%BD%94&keyword=" onclick="return wjDefaultSearch(this);" class="btn btn-desearch">상세검색</a>
+								<a href="#" class="btn btn-research" onclick="PopupVirtualKeyboard.toggle('searchWord','keyboard'); return false;">다국어 입력기</a>
+			</fieldset>
+		</div>
+		
+		<div style="position:relative; z-index:9999;">
+			<div id="autoComplete" style="display:none">
+				<div class="keyword">
+					<ul>
+						<li>-</li>
+					</ul>
+				</div>
+				<div class="thumbnail">
+					<div class="list">
+						<dl>
+							<dt>
+								<a href="#" id="aLink"><img class="img" id="aImage" src="./wdModules/wdDataSearch/skins/default/img/common/small_img_no.gif" alt="NO IMAGE" width="83" height="119"></a>
+								<!-- em class="label"><img src="./wdModules/wdDataSearch/skins/default/./img/book/book_icon8.png" alt="KDC : 813.8"></em -->
+								<em class="loadr"><img src="./wdModules/wdDataSearch/skins/default/./img/common/ajax-loader.gif" id="loading_" alt="로딩중입니다."></em>
+							</dt>
+							<dd>
+								<div class="ico ico-bk">
+									<strong><span id="aType">-</span></strong>
+									<span><a href="#title" id="aTitle">-</a></span>
+								</div>
+								<ul>
+									<li><strong>ㆍ저&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;자</strong><em>|</em> <span id="aAuthor">-</span></li>
+									<li><strong>ㆍ출&nbsp;판&nbsp;사</strong><em>|</em> <span id="aPubInfo">-</span></li>
+									<li><strong>ㆍ발&nbsp;행&nbsp;년</strong><em>|</em> <span id="aPubYear">-</span></li>
+									<li><strong>ㆍ청구기호</strong><em>|</em> <span id="aCallNo">-</span></li>
+									<li><strong>ㆍ소장도서관</strong><em>|</em> <span id="aLibName">-</span></li>
+									<li><strong>ㆍ자&nbsp;료&nbsp;실</strong><em>|</em> <span id="aPlaceName">-</span></li>
+								</ul>
+							</dd>
+						</dl>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+	</div>
+			<input type="hidden" name="searchWord[]" value="파친코" />
+	<input type="hidden" name="searchItem[]" value="total" />
+	</form><div id="searchDataList">
+		<div class="title">
+		<h2>자료검색 <em>&gt;</em> 검색결과</h2>
+	</div>
+	
+	<div class="settype">
+		<form method="get" name="" action="./index.php">
+			
+<input type='hidden' name='mod' value='wdDataSearch' />
+<input type='hidden' name='act' value='searchResultList' />
+<input type='hidden' name='searchItem[0]' value='total' />
+<input type='hidden' name='searchWord[0]' value='파친코' />
+<input type='hidden' name='keyword' value='' />
+			<h3> 
+						
+								<strong>파친코</strong>(으)로 검색한 결과
+				 
+				총 <strong class="cyan">30권(개)</strong>
+			</h3>
+
+
+			<fieldset>
+				<select id="listNum" name="listNum" onchange="location.href='./index.php?mod=wdDataSearch&act=searchResultList&searchItem[]=total&searchWord[]=%ED%8C%8C%EC%B9%9C%EC%BD%94&keyword=&listNum=' + this.value">
+					<option value="10" selected='selected'>출력 10건</option>
+					<option value="20">출력 20건</option>
+					<option value="30">출력 30건</option>
+					<option value="50">출력 40건</option>
+				</select>
+				<select id="dataSort" name="dataSort" onchange="location.href='./index.php?mod=wdDataSearch&act=searchResultList&searchItem[]=total&searchWord[]=%ED%8C%8C%EC%B9%9C%EC%BD%94&keyword=&dataSort=' + this.value">
+					<option value="hd desc"  selected='selected'>등록일 내림차순</option>
+					<option value="hd asc"  >등록일 오름차순</option>
+					<option value="it desc" >표제 내림차순</option>
+					<option value="it asc"  >표제 오름차순</option>
+					<option value="ia desc" >저자 내림차순</option>
+					<option value="ia asc"  >저자 오름차순</option>
+					<option value="ip desc" >발행자 내림차순</option>
+					<option value="ip asc"  >발행자 오름차순</option>
+					<option value="yr desc" >발행년 내림차순</option>
+					<option value="yr asc"  >발행년 오름차순</option>
+				</select>
+			</fieldset>
+		</form>
+
+		<div class="type">
+			<a href="./index.php?viewType=div&mod=wdDataSearch&act=searchResultList&searchItem[]=total&searchWord[]=%ED%8C%8C%EC%B9%9C%EC%BD%94&keyword=" class="c1sel">열거형</a>
+			<a href="./index.php?viewType=table&mod=wdDataSearch&act=searchResultList&searchItem[]=total&searchWord[]=%ED%8C%8C%EC%B9%9C%EC%BD%94&keyword=" class="c2">목록형</a>
+		</div>
+
+		<label class="all none"><input class="list_check" type="checkbox" name="allChk" value="" id="searchListChk" onClick="wjAllChecked(this.id);" /> 전체선택</label>
+
+	</div>
+</div>
+<div class="standard">
+	<div id="category">
+		
+<script>
+$(function(){
+	$("#more_man").click(function(){
+		if($(this).attr("class") == "more_op"){
+			$(this).attr("class","more_cs").html("감추기 <em></em>");
+			$('.man_block').show();
+		}else{
+			$(this).attr("class","more_op").html("더보기 <em></em>");
+			$('.man_block').hide();
+		}
+	});
+	$("#more_man").click();
+	
+	$("#more_aut").click(function(){
+		if($(this).attr("class") == "more_op"){
+			$(this).attr("class","more_cs").html("감추기 <em></em>");
+			$('.aut_block').show();
+		}else{
+			$(this).attr("class","more_op").html("더보기 <em></em>");
+			$('.aut_block').hide();
+		}
+	});
+	$("#more_aut").click();
+
+	$("#more_pub").click(function(){
+		if($(this).attr("class") == "more_op"){
+			$(this).attr("class","more_cs").html("감추기 <em></em>");
+			$('.pub_block').show();
+		}else{
+			$(this).attr("class","more_op").html("더보기 <em></em>");
+			$('.pub_block').hide();
+		}
+	});
+	$("#more_pub").click();
+});
+</script>
+
+<div class="widget ddc">
+	<h3>기관</h3>
+	<div class="list">
+
+
+
+
+	 
+		<div>
+			<a href="./index.php?act=searchIList&manageCode=MA&=page&limit=publisher&mod=wdDataSearch&searchItem[]=total&searchWord[]=%ED%8C%8C%EC%B9%9C%EC%BD%94&keyword=">구미시립중앙도서관(11)</a>
+		</div>
+	 
+		<div>
+			<a href="./index.php?act=searchIList&manageCode=MB&=page&limit=publisher&mod=wdDataSearch&searchItem[]=total&searchWord[]=%ED%8C%8C%EC%B9%9C%EC%BD%94&keyword=">구미시인동도서관(4)</a>
+		</div>
+	 
+		<div>
+			<a href="./index.php?act=searchIList&manageCode=MC&=page&limit=publisher&mod=wdDataSearch&searchItem[]=total&searchWord[]=%ED%8C%8C%EC%B9%9C%EC%BD%94&keyword=">구미시선산도서관(2)</a>
+		</div>
+	 
+		<div>
+			<a href="./index.php?act=searchIList&manageCode=MD&=page&limit=publisher&mod=wdDataSearch&searchItem[]=total&searchWord[]=%ED%8C%8C%EC%B9%9C%EC%BD%94&keyword=">구미시봉곡도서관(4)</a>
+		</div>
+	 
+		<div>
+			<a href="./index.php?act=searchIList&manageCode=ME&=page&limit=publisher&mod=wdDataSearch&searchItem[]=total&searchWord[]=%ED%8C%8C%EC%B9%9C%EC%BD%94&keyword=">구미시상모정수도서관(2)</a>
+		</div>
+	 
+		<div>
+			<a href="./index.php?act=searchIList&manageCode=MF&=page&limit=publisher&mod=wdDataSearch&searchItem[]=total&searchWord[]=%ED%8C%8C%EC%B9%9C%EC%BD%94&keyword=">구미시강동문화복지회관(2)</a>
+		</div>
+	 
+		<div>
+			<a href="./index.php?act=searchIList&manageCode=MG&=page&limit=publisher&mod=wdDataSearch&searchItem[]=total&searchWord[]=%ED%8C%8C%EC%B9%9C%EC%BD%94&keyword=">구미시양포도서관(4)</a>
+		</div>
+	 
+		<div>
+			<a href="./index.php?act=searchIList&manageCode=MH&=page&limit=publisher&mod=wdDataSearch&searchItem[]=total&searchWord[]=%ED%8C%8C%EC%B9%9C%EC%BD%94&keyword=">구미시산동도서관</a>
+		</div>
+	 
+		<div>
+			<a href="./index.php?act=searchIList&manageCode=BA&=page&limit=publisher&mod=wdDataSearch&searchItem[]=total&searchWord[]=%ED%8C%8C%EC%B9%9C%EC%BD%94&keyword=">작은도서관(송정나래,해평누리,생활문화,폴리텍,평생자료실)(5)</a>
+		</div>
+			<a class="more_cs" id="more_man">감추기 <em></em></a>
+	</div>
+</div>
+
+<div class="widget ddc">
+	<h3>자료형태</h3>
+	<ul>
+		<li class="sel">        <a href="./index.php?act=searchIList&serSec=limit&mod=wdDataSearch&searchItem[]=total&searchWord[]=%ED%8C%8C%EC%B9%9C%EC%BD%94&keyword=">전체 <span>(0)</span></a></li>
+		<li> <a href="./index.php?act=searchIList&dataType=book&serSec=limit&mod=wdDataSearch&searchItem[]=total&searchWord[]=%ED%8C%8C%EC%B9%9C%EC%BD%94&keyword=">도서 <span>(0)</span></a></li>
+		<li><a href="./index.php?act=searchIList&dataType=ebook&serSec=limit&mod=wdDataSearch&searchItem[]=total&searchWord[]=%ED%8C%8C%EC%B9%9C%EC%BD%94&keyword=">전자책(e-book) <span>(0)</span></a></li>
+		<li><a href="./index.php?act=searchIList&dataType=audio&serSec=limit&mod=wdDataSearch&searchItem[]=total&searchWord[]=%ED%8C%8C%EC%B9%9C%EC%BD%94&keyword=">오디오북 <span>(0)</span></a></li>
+		<li>  <a href="./index.php?act=searchIList&dataType=dvd&serSec=limit&mod=wdDataSearch&searchItem[]=total&searchWord[]=%ED%8C%8C%EC%B9%9C%EC%BD%94&keyword=">DVD(영화) <span>(0)</span></a></li>
+	</ul>
+</div>
+
+<div class="widget ddc">
+	<h3>저자</h3>
+	<div class="list">
+				</div>
+</div>
+
+<div class="widget ddc">
+	<h3>발행처</h3>
+	<div class="list">
+				</div>
+</div>
+
+<div class="widget ddc">
+	<h3>발행년도</h3>
+	<ul>
+		</ul>
+</div>
+
+<div class="widget ddc">
+	<h3>KDC 카테고리</h3>
+	<ul>
+		
+	</ul>
+</div>
+
+
+	</div>
+	
+	<div id="sub">
+		
+		<form method="post" name="dataRegistForm" action="./index.php" onsubmit="return wjDataChecked();">
+		
+		<div id="searchBookList">
+			
+<input type='hidden' name='mod' value='wdDataSearch' />
+<input type='hidden' name='act' value='dataBasketRegist' />
+<input type='hidden' name='regAct' value='insert' />
+ 
+			 
+				<div class="divList" id="_searchListChk">
+
+	
+
+			<div  class="list">
+					<label><input class="listCheck" type="checkbox" name="bookKey[]" value="733603109" /></label>
+					<dl>
+				<dt>
+					<a href="./index.php?mod=wdDataSearch&act=searchResultDetail&dbType=dan&jongKey=733603107&time=1786449506&offset=1&searchItem[]=total&searchWord[]=%ED%8C%8C%EC%B9%9C%EC%BD%94&keyword=">
+												<img class="img" src="https://shopping-phinf.pstatic.net/main_3393982/33939827618.20230919123122.jpg" alt="파친코 . 2 " style="max-width: 80px; height: auto;">					</a>
+										<em class="label label-"><img src="./wdModules/wdDataSearch/skins/default/./img/book/book_icon8.png" alt="문학"></em>
+										<em class="loadr"><img src="./wdModules/wdDataSearch/skins/default/./img/common/ajax-loader.gif" id="loading_" alt="로딩중입니다."></em>
+				</dt>
+				<dd>
+					<div class="ico ico-">
+						<strong>도서</strong>
+						<a href="./index.php?mod=wdDataSearch&act=searchResultDetail&dbType=dan&jongKey=733603107&time=1786449506&offset=1&searchItem[]=total&searchWord[]=%ED%8C%8C%EC%B9%9C%EC%BD%94&keyword=">
+							파친코 . 2 						</a>
+					</div>
+					<ul>
+						<li>
+						<strong>저자</strong> 이민진 지음 ; 신승미 옮김 <em>|</em>
+											<strong>발행처</strong> 인플루엔셜											</li>
+
+						<li>
+											<strong>발행년</strong> 2022 <em>|</em>
+											
+											<strong>청구기호</strong>
+						<strong>생843-이민진ㅍㅅ-2</strong>
+											</li>
+
+						<li>
+											<!-- <strong>소장도서관</strong> <span class="fb blue">작은도서관(송정나래,해평누리,생활문화,폴리텍,평생자료실)</span> <em>|</em> -->
+					
+											<strong>자료실</strong> <span class="fb yellow">[생활문화]자료실</span>
+											</li>
+						
+					
+					</ul>
+				</dd>
+			</dl>
+			<ol>
+
+				 
+				<li><strong class="using">대출가능</strong></li>
+							 
+				<li><strong class="nonone">대출예약 불가</strong></li>
+									 
+				
+		 
+
+				
+			
+				
+		
+						
+			
+			</ol>
+
+					</div>
+			<div  class="list">
+					<label><input class="listCheck" type="checkbox" name="bookKey[]" value="733603106" /></label>
+					<dl>
+				<dt>
+					<a href="./index.php?mod=wdDataSearch&act=searchResultDetail&dbType=dan&jongKey=733603104&time=1786449506&offset=2&searchItem[]=total&searchWord[]=%ED%8C%8C%EC%B9%9C%EC%BD%94&keyword=">
+												<em></em>
+											</a>
+										<em class="label label-"><img src="./wdModules/wdDataSearch/skins/default/./img/book/book_icon8.png" alt="문학"></em>
+										<em class="loadr"><img src="./wdModules/wdDataSearch/skins/default/./img/common/ajax-loader.gif" id="loading_" alt="로딩중입니다."></em>
+				</dt>
+				<dd>
+					<div class="ico ico-">
+						<strong>도서</strong>
+						<a href="./index.php?mod=wdDataSearch&act=searchResultDetail&dbType=dan&jongKey=733603104&time=1786449506&offset=2&searchItem[]=total&searchWord[]=%ED%8C%8C%EC%B9%9C%EC%BD%94&keyword=">
+							파친코 . 1 						</a>
+					</div>
+					<ul>
+						<li>
+						<strong>저자</strong> 이민진 지음 ; 신승미 옮김 <em>|</em>
+											<strong>발행처</strong> 인플루엔셜											</li>
+
+						<li>
+											<strong>발행년</strong> 2022 <em>|</em>
+											
+											<strong>청구기호</strong>
+						<strong>생843-이민진ㅍㅅ-1</strong>
+											</li>
+
+						<li>
+											<!-- <strong>소장도서관</strong> <span class="fb blue">작은도서관(송정나래,해평누리,생활문화,폴리텍,평생자료실)</span> <em>|</em> -->
+					
+											<strong>자료실</strong> <span class="fb yellow">[생활문화]자료실</span>
+											</li>
+						
+					
+					</ul>
+				</dd>
+			</dl>
+			<ol>
+
+				 
+				<li><strong class="using">대출가능</strong></li>
+							 
+				<li><strong class="nonone">대출예약 불가</strong></li>
+									 
+				
+		 
+
+				
+			
+				
+		
+						
+			
+			</ol>
+
+					</div>
+			<div  class="list">
+					<label><input class="listCheck" type="checkbox" name="bookKey[]" value="731051567" /></label>
+					<dl>
+				<dt>
+					<a href="./index.php?mod=wdDataSearch&act=searchResultDetail&dbType=dan&jongKey=731051565&time=1786449506&offset=3&searchItem[]=total&searchWord[]=%ED%8C%8C%EC%B9%9C%EC%BD%94&keyword=">
+												<img class="img" src="https://shopping-phinf.pstatic.net/main_4467975/44679758650.20240925071509.jpg" alt="파친코  : 이민진 장편소설  : 합본  " style="max-width: 80px; height: auto;">					</a>
+										<em class="label label-"><img src="./wdModules/wdDataSearch/skins/default/./img/book/book_icon8.png" alt="문학"></em>
+										<em class="loadr"><img src="./wdModules/wdDataSearch/skins/default/./img/common/ajax-loader.gif" id="loading_" alt="로딩중입니다."></em>
+				</dt>
+				<dd>
+					<div class="ico ico-">
+						<strong>도서</strong>
+						<a href="./index.php?mod=wdDataSearch&act=searchResultDetail&dbType=dan&jongKey=731051565&time=1786449506&offset=3&searchItem[]=total&searchWord[]=%ED%8C%8C%EC%B9%9C%EC%BD%94&keyword=">
+							파친코  : 이민진 장편소설  : 합본  						</a>
+					</div>
+					<ul>
+						<li>
+						<strong>저자</strong> 이민진 지음  ; 신승미 옮김 <em>|</em>
+											<strong>발행처</strong> 인플루엔셜											</li>
+
+						<li>
+											<strong>발행년</strong> 2023 <em>|</em>
+											
+											<strong>청구기호</strong>
+						<strong>843-이민진ㅍㅅ</strong>
+											</li>
+
+						<li>
+											<!-- <strong>소장도서관</strong> <span class="fb blue">작은도서관(송정나래,해평누리,생활문화,폴리텍,평생자료실)</span> <em>|</em> -->
+					
+											<strong>자료실</strong> <span class="fb yellow">[폴리텍]자료실</span>
+											</li>
+						
+					
+					</ul>
+				</dd>
+			</dl>
+			<ol>
+
+				 
+				<li><strong class="using">대출가능</strong></li>
+							 
+				<li><strong class="nonone">대출예약 불가</strong></li>
+									 
+				
+		 
+
+				
+			
+				
+		
+						
+			
+			</ol>
+
+					</div>
+			<div  class="list">
+					<label><input class="listCheck" type="checkbox" name="bookKey[]" value="730989561" /></label>
+					<dl>
+				<dt>
+					<a href="./index.php?mod=wdDataSearch&act=searchResultDetail&dbType=dan&jongKey=730989559&time=1786449506&offset=4&searchItem[]=total&searchWord[]=%ED%8C%8C%EC%B9%9C%EC%BD%94&keyword=">
+												<em></em>
+											</a>
+										<em class="label label-"><img src="./wdModules/wdDataSearch/skins/default/./img/book/book_icon8.png" alt="문학"></em>
+										<em class="loadr"><img src="./wdModules/wdDataSearch/skins/default/./img/common/ajax-loader.gif" id="loading_" alt="로딩중입니다."></em>
+				</dt>
+				<dd>
+					<div class="ico ico-">
+						<strong>도서</strong>
+						<a href="./index.php?mod=wdDataSearch&act=searchResultDetail&dbType=dan&jongKey=730989559&time=1786449506&offset=4&searchItem[]=total&searchWord[]=%ED%8C%8C%EC%B9%9C%EC%BD%94&keyword=">
+							파친코  : 이민진 장편소설  / 1						</a>
+					</div>
+					<ul>
+						<li>
+						<strong>저자</strong> 이민진 지음  ; 신승미 옮김  <em>|</em>
+											<strong>발행처</strong> 인플루엔셜											</li>
+
+						<li>
+											<strong>발행년</strong> 2022 <em>|</em>
+											
+											<strong>청구기호</strong>
+						<strong>843-이민진ㅍㅅ-1</strong>
+											</li>
+
+						<li>
+											<!-- <strong>소장도서관</strong> <span class="fb blue">작은도서관(송정나래,해평누리,생활문화,폴리텍,평생자료실)</span> <em>|</em> -->
+					
+											<strong>자료실</strong> <span class="fb yellow">[평생]자료실</span>
+											</li>
+						
+					
+					</ul>
+				</dd>
+			</dl>
+			<ol>
+
+				 
+				<li><strong class="using">대출가능</strong></li>
+							 
+				<li><strong class="nonone">대출예약 불가</strong></li>
+									 
+				
+		 
+
+				
+			
+				
+		
+						
+			
+			</ol>
+
+					</div>
+			<div  class="list">
+					<label><input class="listCheck" type="checkbox" name="bookKey[]" value="730923983" /></label>
+					<dl>
+				<dt>
+					<a href="./index.php?mod=wdDataSearch&act=searchResultDetail&dbType=dan&jongKey=730923981&time=1786449506&offset=5&searchItem[]=total&searchWord[]=%ED%8C%8C%EC%B9%9C%EC%BD%94&keyword=">
+												<em></em>
+											</a>
+										<em class="label label-"><img src="./wdModules/wdDataSearch/skins/default/./img/book/book_icon8.png" alt="문학"></em>
+										<em class="loadr"><img src="./wdModules/wdDataSearch/skins/default/./img/common/ajax-loader.gif" id="loading_" alt="로딩중입니다."></em>
+				</dt>
+				<dd>
+					<div class="ico ico-">
+						<strong>도서</strong>
+						<a href="./index.php?mod=wdDataSearch&act=searchResultDetail&dbType=dan&jongKey=730923981&time=1786449506&offset=5&searchItem[]=total&searchWord[]=%ED%8C%8C%EC%B9%9C%EC%BD%94&keyword=">
+							파친코  : 이민진 장편소설  / 2						</a>
+					</div>
+					<ul>
+						<li>
+						<strong>저자</strong> 이민진 지음  ; 신승미 옮김  <em>|</em>
+											<strong>발행처</strong> 인플루엔셜											</li>
+
+						<li>
+											<strong>발행년</strong> 2022 <em>|</em>
+											
+											<strong>청구기호</strong>
+						<strong>843-이민진ㅍㅅ-2</strong>
+											</li>
+
+						<li>
+											<!-- <strong>소장도서관</strong> <span class="fb blue">작은도서관(송정나래,해평누리,생활문화,폴리텍,평생자료실)</span> <em>|</em> -->
+					
+											<strong>자료실</strong> <span class="fb yellow">[평생]자료실</span>
+											</li>
+						
+					
+					</ul>
+				</dd>
+			</dl>
+			<ol>
+
+				 
+				<li><strong class="using">대출가능</strong></li>
+							 
+				<li><strong class="nonone">대출예약 불가</strong></li>
+									 
+				
+		 
+
+				
+			
+				
+		
+						
+			
+			</ol>
+
+					</div>
+			<div  class="list">
+					<label><input class="listCheck" type="checkbox" name="bookKey[]" value="722720501" /></label>
+					<dl>
+				<dt>
+					<a href="./index.php?mod=wdDataSearch&act=searchResultDetail&dbType=dan&jongKey=722720499&time=1786449506&offset=6&searchItem[]=total&searchWord[]=%ED%8C%8C%EC%B9%9C%EC%BD%94&keyword=">
+												<img class="img" src="https://bookthumb-phinf.pstatic.net/cover/225/837/22583770.jpg?type=m1&&udate=20220719" alt="파친코  : 이민진 장편소설 . 1-2  " style="max-width: 80px; height: auto;">					</a>
+										<em class="label label-"><img src="./wdModules/wdDataSearch/skins/default/./img/book/book_icon8.png" alt="문학"></em>
+										<em class="loadr"><img src="./wdModules/wdDataSearch/skins/default/./img/common/ajax-loader.gif" id="loading_" alt="로딩중입니다."></em>
+				</dt>
+				<dd>
+					<div class="ico ico-">
+						<strong>도서</strong>
+						<a href="./index.php?mod=wdDataSearch&act=searchResultDetail&dbType=dan&jongKey=722720499&time=1786449506&offset=6&searchItem[]=total&searchWord[]=%ED%8C%8C%EC%B9%9C%EC%BD%94&keyword=">
+							파친코  : 이민진 장편소설 . 1-2  						</a>
+					</div>
+					<ul>
+						<li>
+						<strong>저자</strong> 이민진 [지음]  ; 신승미 옮김 <em>|</em>
+											<strong>발행처</strong> Influential :											</li>
+
+						<li>
+											<strong>발행년</strong> 2022 <em>|</em>
+											
+											<strong>청구기호</strong>
+						<strong>843-이민진ㅍㅅ-1</strong>
+											</li>
+
+						<li>
+											<!-- <strong>소장도서관</strong> <span class="fb blue">구미시인동도서관</span> <em>|</em> -->
+					
+											<strong>자료실</strong> <span class="fb yellow">[인동]종합자료실</span>
+											</li>
+						
+											<li><strong class="fb orange">반납예정일 : </strong> <span class="fb orange">2026-08-22</span></li>
+					
+					</ul>
+				</dd>
+			</dl>
+			<ol>
+
+				 
+				<li><strong class="using">대출중</strong></li>
+							 
+				<li>
+					<a href="./index.php?mod=wdDataSearch&act=dataReserve&bookKey=722720501" onclick="return wjLoginCheck();">대출예약</a>
+				</li>
+									 
+				
+		 
+
+				
+			
+				
+		
+						
+			
+			</ol>
+
+					</div>
+			<div  class="list">
+					<label><input class="listCheck" type="checkbox" name="bookKey[]" value="722720502" /></label>
+					<dl>
+				<dt>
+					<a href="./index.php?mod=wdDataSearch&act=searchResultDetail&dbType=dan&jongKey=722720499&time=1786449506&offset=7&searchItem[]=total&searchWord[]=%ED%8C%8C%EC%B9%9C%EC%BD%94&keyword=">
+												<img class="img" src="https://bookthumb-phinf.pstatic.net/cover/225/837/22583770.jpg?type=m1&&udate=20220719" alt="파친코  : 이민진 장편소설 . 1-2  " style="max-width: 80px; height: auto;">					</a>
+										<em class="label label-"><img src="./wdModules/wdDataSearch/skins/default/./img/book/book_icon8.png" alt="문학"></em>
+										<em class="loadr"><img src="./wdModules/wdDataSearch/skins/default/./img/common/ajax-loader.gif" id="loading_" alt="로딩중입니다."></em>
+				</dt>
+				<dd>
+					<div class="ico ico-">
+						<strong>도서</strong>
+						<a href="./index.php?mod=wdDataSearch&act=searchResultDetail&dbType=dan&jongKey=722720499&time=1786449506&offset=7&searchItem[]=total&searchWord[]=%ED%8C%8C%EC%B9%9C%EC%BD%94&keyword=">
+							파친코  : 이민진 장편소설 . 1-2  						</a>
+					</div>
+					<ul>
+						<li>
+						<strong>저자</strong> 이민진 [지음]  ; 신승미 옮김 <em>|</em>
+											<strong>발행처</strong> Influential :											</li>
+
+						<li>
+											<strong>발행년</strong> 2022 <em>|</em>
+											
+											<strong>청구기호</strong>
+						<strong>843-이민진ㅍㅅ-2</strong>
+											</li>
+
+						<li>
+											<!-- <strong>소장도서관</strong> <span class="fb blue">구미시인동도서관</span> <em>|</em> -->
+					
+											<strong>자료실</strong> <span class="fb yellow">[인동]종합자료실</span>
+											</li>
+						
+					
+					</ul>
+				</dd>
+			</dl>
+			<ol>
+
+				 
+				<li><strong class="using">대출가능</strong></li>
+							 
+				<li><strong class="nonone">대출예약 불가</strong></li>
+									 
+				
+		 
+
+				
+			
+				
+		
+						
+			
+			</ol>
+
+					</div>
+			<div  class="list">
+					<label><input class="listCheck" type="checkbox" name="bookKey[]" value="721682330" /></label>
+					<dl>
+				<dt>
+					<a href="./index.php?mod=wdDataSearch&act=searchResultDetail&dbType=dan&jongKey=721682328&time=1786449506&offset=8&searchItem[]=total&searchWord[]=%ED%8C%8C%EC%B9%9C%EC%BD%94&keyword=">
+												<img class="img" src="https://shopping-phinf.pstatic.net/main_3393982/33939827618.20230919123122.jpg" alt="파친코: 이민진 장편소설. 2" style="max-width: 80px; height: auto;">					</a>
+										<em class="label label-"><img src="./wdModules/wdDataSearch/skins/default/./img/book/book_icon8.png" alt="문학"></em>
+										<em class="loadr"><img src="./wdModules/wdDataSearch/skins/default/./img/common/ajax-loader.gif" id="loading_" alt="로딩중입니다."></em>
+				</dt>
+				<dd>
+					<div class="ico ico-">
+						<strong>도서</strong>
+						<a href="./index.php?mod=wdDataSearch&act=searchResultDetail&dbType=dan&jongKey=721682328&time=1786449506&offset=8&searchItem[]=total&searchWord[]=%ED%8C%8C%EC%B9%9C%EC%BD%94&keyword=">
+							파친코: 이민진 장편소설. 2						</a>
+					</div>
+					<ul>
+						<li>
+						<strong>저자</strong> 이민진 지음; 신승미 옮김 <em>|</em>
+											<strong>발행처</strong> 인플루엔셜											</li>
+
+						<li>
+											<strong>발행년</strong> 2023 <em>|</em>
+											
+											<strong>청구기호</strong>
+						<strong>843-이민진ㅍㅅ-2=2</strong>
+											</li>
+
+						<li>
+											<!-- <strong>소장도서관</strong> <span class="fb blue">구미시립중앙도서관</span> <em>|</em> -->
+					
+											<strong>자료실</strong> <span class="fb yellow">[중앙]종합자료실</span>
+											</li>
+						
+					
+					</ul>
+				</dd>
+			</dl>
+			<ol>
+
+				 
+				<li><strong class="using">대출불가</strong></li>
+					 
+				
+		 
+
+				
+			
+				
+		
+						
+			
+			</ol>
+
+					</div>
+			<div  class="list">
+					<label><input class="listCheck" type="checkbox" name="bookKey[]" value="721682327" /></label>
+					<dl>
+				<dt>
+					<a href="./index.php?mod=wdDataSearch&act=searchResultDetail&dbType=dan&jongKey=721682325&time=1786449506&offset=9&searchItem[]=total&searchWord[]=%ED%8C%8C%EC%B9%9C%EC%BD%94&keyword=">
+												<img class="img" src="https://bookthumb-phinf.pstatic.net/cover/225/837/22583770.jpg?type=m1&&udate=20220719" alt="파친코: 이민진 장편소설. 1" style="max-width: 80px; height: auto;">					</a>
+										<em class="label label-"><img src="./wdModules/wdDataSearch/skins/default/./img/book/book_icon8.png" alt="문학"></em>
+										<em class="loadr"><img src="./wdModules/wdDataSearch/skins/default/./img/common/ajax-loader.gif" id="loading_" alt="로딩중입니다."></em>
+				</dt>
+				<dd>
+					<div class="ico ico-">
+						<strong>도서</strong>
+						<a href="./index.php?mod=wdDataSearch&act=searchResultDetail&dbType=dan&jongKey=721682325&time=1786449506&offset=9&searchItem[]=total&searchWord[]=%ED%8C%8C%EC%B9%9C%EC%BD%94&keyword=">
+							파친코: 이민진 장편소설. 1						</a>
+					</div>
+					<ul>
+						<li>
+						<strong>저자</strong> 이민진 지음; 신승미 옮김 <em>|</em>
+											<strong>발행처</strong> 인플루엔셜											</li>
+
+						<li>
+											<strong>발행년</strong> 2023 <em>|</em>
+											
+											<strong>청구기호</strong>
+						<strong>843-이민진ㅍㅅ-1=2</strong>
+											</li>
+
+						<li>
+											<!-- <strong>소장도서관</strong> <span class="fb blue">구미시립중앙도서관</span> <em>|</em> -->
+					
+											<strong>자료실</strong> <span class="fb yellow">[중앙]종합자료실</span>
+											</li>
+						
+					
+					</ul>
+				</dd>
+			</dl>
+			<ol>
+
+				 
+				<li><strong class="using">대출불가</strong></li>
+					 
+				
+		 
+
+				
+			
+				
+		
+						
+			
+			</ol>
+
+					</div>
+			<div  class="list">
+					<label><input class="listCheck" type="checkbox" name="bookKey[]" value="719106072" /></label>
+					<dl>
+				<dt>
+					<a href="./index.php?mod=wdDataSearch&act=searchResultDetail&dbType=dan&jongKey=719106069&time=1786449506&offset=10&searchItem[]=total&searchWord[]=%ED%8C%8C%EC%B9%9C%EC%BD%94&keyword=">
+												<img class="img" src="https://shopping-phinf.pstatic.net/main_3393982/33939827618.20230919123122.jpg" alt="파친코. 2" style="max-width: 80px; height: auto;">					</a>
+										<em class="label label-"><img src="./wdModules/wdDataSearch/skins/default/./img/book/book_icon8.png" alt="문학"></em>
+										<em class="loadr"><img src="./wdModules/wdDataSearch/skins/default/./img/common/ajax-loader.gif" id="loading_" alt="로딩중입니다."></em>
+				</dt>
+				<dd>
+					<div class="ico ico-">
+						<strong>도서</strong>
+						<a href="./index.php?mod=wdDataSearch&act=searchResultDetail&dbType=dan&jongKey=719106069&time=1786449506&offset=10&searchItem[]=total&searchWord[]=%ED%8C%8C%EC%B9%9C%EC%BD%94&keyword=">
+							파친코. 2						</a>
+					</div>
+					<ul>
+						<li>
+						<strong>저자</strong> 이민진 지음; 신승미 옮김 <em>|</em>
+											<strong>발행처</strong> 인플루엔셜											</li>
+
+						<li>
+											<strong>발행년</strong> 2022 <em>|</em>
+											
+											<strong>청구기호</strong>
+						<strong>843-이민진ㅍㅅ-2=3</strong>
+											</li>
+
+						<li>
+											<!-- <strong>소장도서관</strong> <span class="fb blue">구미시립중앙도서관</span> <em>|</em> -->
+					
+											<strong>자료실</strong> <span class="fb yellow">[중앙]종합자료실</span>
+											</li>
+						
+					
+					</ul>
+				</dd>
+			</dl>
+			<ol>
+
+				 
+				<li><strong class="using">대출불가</strong></li>
+					 
+				
+		 
+
+				
+			
+				
+		
+						
+			
+			</ol>
+
+					</div>
+	</div>
+
+
+<script>
+$(function(){
+	var libKey = "fb0c30da7776dbe0ad38b55a0e934909794c6a6d76423b576e250ec4a597a845";
+	var libCode = "147178";
+	var searchTxt = "파친코";
+	var sessionId = "aq67jpkke7l544no8dcva48ms1";
+	$.ajax({
+		/* 도서관의 코드 사용 */
+		url: "https://data4library.kr/weblog",
+		jsonp : "callback",
+		data:{
+			"libKey" : libKey,
+			"logType": "search",
+			"libCode": libCode,
+			"sessionId": sessionId,
+			"q":encodeURIComponent(searchTxt)
+		},
+		responseType:'application/json',
+		success:function(res){
+			if( res.result.response_code == 200 ){
+				console.log("Web log 등록 완료");
+			}
+		}
+	});
+});
+</script>
+ 
+						
+						<div class="btngroup">
+				<div class="button">
+
+															<a href="#login" onClick="alert('로그인을 해주세요.'); return false;" class="btn-pack">관심도서 담기</a> 
+						<a href="#login" onClick="alert('로그인을 해주세요.'); return false;" class="btn-list">관심도서 보기</a> 
+					 
+									
+					<a href="#xls" onclick="wjXlsCheck(); return false;" class="btn-excel">선택엑셀 다운로드</a>
+				</div>
+
+				<div class="enbloc">
+					<a href="#allChk" onClick="wjAllChecked(1);" class="del">전체선택</a>
+					<a href="#cancelChk" onClick="wjAllChecked(2);" class="del">선택취소</a>
+				</div>
+			</div>
+					</div>
+		
+		</form>
+		
+		<div id="paging">
+			<div class="total"><strong>1</strong>페이지 / 총 <strong>3</strong>페이지</div>
+			<div class="paging">
+
+
+ 
+ 
+<strong>1</strong> 
+ 
+<a href="./index.php?page=2&mod=wdDataSearch&act=searchResultList&searchItem[]=total&searchWord[]=%ED%8C%8C%EC%B9%9C%EC%BD%94&keyword=" class="num">2</a> 
+ 
+<a href="./index.php?page=3&mod=wdDataSearch&act=searchResultList&searchItem[]=total&searchWord[]=%ED%8C%8C%EC%B9%9C%EC%BD%94&keyword=" class="num">3</a> 
+
+
+</div>
+		</div>
+	</div>
+
+	<div id="aside">
+		<div class="widget ndc">
+	<h3>내가 찾은 검색어</h3>
+	<ul>
+		</ul>
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+	$(function() {
+		$(".tabs li:first-child a").addClass("sel");
+		$(".lists:not("+$(".tabs li a.sel").attr("href")+")").hide();
+		$(".tabs li a").click(function(){
+			$(".tabs li a").removeClass("sel");
+			$(this).addClass("sel");
+			$(".lists").hide();
+			$($(this).attr("href")).show();
+			return false;
+		});
+	});
+//]]>
+</script>
+
+
+<div class="widget bdc">
+	<h3>인기검색어</h3>
+	<ol class="tabs">
+		<li><a href="#d1">일간</a></li>
+		<li><a href="#d2">주간</a></li>
+		<li><a href="#d3">월간</a></li>
+	</ol>
+
+	<ul class="lists" id="d1">
+							<li><a href="#nocont"><em>1</em> _&nbsp;</a></li>
+									<li><a href="#nocont"><em>2</em> _&nbsp;</a></li>
+									<li><a href="#nocont"><em>3</em> _&nbsp;</a></li>
+									<li><a href="#nocont"><em>4</em> _&nbsp;</a></li>
+									<li><a href="#nocont"><em>5</em> _&nbsp;</a></li>
+									<li><a href="#nocont"><em>6</em> _&nbsp;</a></li>
+									<li><a href="#nocont"><em>7</em> _&nbsp;</a></li>
+									<li><a href="#nocont"><em>8</em> _&nbsp;</a></li>
+									<li><a href="#nocont"><em>9</em> _&nbsp;</a></li>
+									<li><a href="#nocont"><em>10</em> _&nbsp;</a></li>
+				</ul>
+	<ul class="lists" id="d2">
+							<li><a href="#nocont"><em>1</em> _&nbsp;</a></li>
+									<li><a href="#nocont"><em>2</em> _&nbsp;</a></li>
+									<li><a href="#nocont"><em>3</em> _&nbsp;</a></li>
+									<li><a href="#nocont"><em>4</em> _&nbsp;</a></li>
+									<li><a href="#nocont"><em>5</em> _&nbsp;</a></li>
+									<li><a href="#nocont"><em>6</em> _&nbsp;</a></li>
+									<li><a href="#nocont"><em>7</em> _&nbsp;</a></li>
+									<li><a href="#nocont"><em>8</em> _&nbsp;</a></li>
+									<li><a href="#nocont"><em>9</em> _&nbsp;</a></li>
+									<li><a href="#nocont"><em>10</em> _&nbsp;</a></li>
+				</ul>
+	<ul class="lists" id="d3">
+							<li><a href="#nocont"><em>1</em> _&nbsp;</a></li>
+									<li><a href="#nocont"><em>2</em> _&nbsp;</a></li>
+									<li><a href="#nocont"><em>3</em> _&nbsp;</a></li>
+									<li><a href="#nocont"><em>4</em> _&nbsp;</a></li>
+									<li><a href="#nocont"><em>5</em> _&nbsp;</a></li>
+									<li><a href="#nocont"><em>6</em> _&nbsp;</a></li>
+									<li><a href="#nocont"><em>7</em> _&nbsp;</a></li>
+									<li><a href="#nocont"><em>8</em> _&nbsp;</a></li>
+									<li><a href="#nocont"><em>9</em> _&nbsp;</a></li>
+									<li><a href="#nocont"><em>10</em> _&nbsp;</a></li>
+				</ul>
+</div>
+
+	</div>
+</div>	</div>
+
+</div>
+<div id="dkitfoot">
+	<div class="foot">
+		<h2></h2>
+	</div>
+</div>	</div>
+
+	<!--wdGetHtmlFooter()-->
+	<div id="timeCheck1"></div>
+
+	<script type="text/javascript">
+		//<![CDATA[
+		function addCellHeader(table) {
+			if (!table) {
+				return false;
+			}
+
+			var trs = table.getElementsByTagName('tr');
+			var trsChild;
+			var grid = {};
+			var cells;
+			for (var i = 0, cntI = trs.length; i < cntI; i++) {
+				if (!grid[i]) {
+					grid[i] = {};
+				}
+				trsChild = trs.item(i).childNodes;
+				cells = 0
+				for (var j = 0, cntJ = trsChild.length; j < cntJ; j++) {
+					if (trsChild[j].nodeType == 1) {
+						grid[i][cells++] = trsChild[j];
+					}
+				}
+			}
+
+			var cellHeader = '';
+			for (row in grid) {
+				if (row == 0) {
+					continue;
+				}
+				for (cell in grid[row]) {
+					if (cell == 0) {
+						continue;
+					}
+					cellHeader = grid[0][cell].innerHTML + ' - ' + grid[row][0].innerHTML
+					grid[row][cell].setAttribute('data-cell-header', cellHeader);
+				}
+			}
+		}
+
+		addCellHeader(document.querySelector('.responsive'));
+		//]]>
+	</script>
+
+	<script type="text/javascript">
+		//<![CDATA[
+		$(function(){
+			var iframe  = document.getElementById( 'innerIframe' );
+			var wrapper = document.getElementById( 'wrapper' );
+			//var height  = parseInt(Math.max( document.body.offsetHeight, document.body.scrollHeight ));
+			var height = parseInt($("#contentHeight").innerHeight()) + 500;
+
+			iframe.src  = "/iframeAutoResize.htm?height="+height;
+			//$(parent.document).scrollTop(0);
+		});
+		//]]>
+	</script>
+	<iframe id="innerIframe" width="0" height="0" style="position:absolute;top:0px;left:0px; visibility:hidden;display:none;" title="iframe리사이즈"></iframe>
+
+
+</body>
+</html><script>
+$("#timeCheck1").html("");
+</script>

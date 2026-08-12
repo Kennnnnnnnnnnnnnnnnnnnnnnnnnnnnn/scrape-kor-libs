@@ -6,6 +6,10 @@ data.json
 main.spec
 build
 dist
-__pycache
+__pycache__/
 *.pyc
 .idea
+.venv/
+*.xlsx
+!data/**/*.xlsx
+cache.txt

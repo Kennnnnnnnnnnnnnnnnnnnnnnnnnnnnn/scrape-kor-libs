@@ -1,0 +1,203 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+$(function(){
+	$('.listDropdown').on("click", function(){
+		if(!$(this).hasClass("on")) {
+			$(this).addClass('on');
+			$('.thisBook-libraryselecter').addClass('open');
+		} else {
+			$(this).removeClass('on');
+			$('.thisBook-libraryselecter').removeClass('open');
+		}
+	});
+
+	$("#collectionLibraryAll").click(function(){
+		$(this).prop('checked', true);
+		$('.thisBook-libraryselecter a').removeClass('on');
+		$('.thisBook-libraryList tbody tr').css('display','table-row');
+	});
+
+	$('.thisBook-libraryselecter a').on("click", function(){
+		if ($("#collectionLibraryAll").is(":checked")){
+			$("input[name=collectionLibraryAll]").prop("checked", false);
+			$('.thisBook-libraryList tbody tr').css('display','none');
+		}
+
+		var name = $(this).data("name");
+		if(!$(this).hasClass("on")) {
+			$(this).addClass("on").attr("title", "선택됨,해당 도서관의 책 소장정보 표시됨");
+			$('.thisBook-libraryList tbody tr' + '.' + name).css('display','table-row');
+		} else {
+			$(this).removeClass("on").attr("title", "선택되지 않음");
+			$('.thisBook-libraryList tbody tr' + '.' + name).css('display','none');
+		}
+		if(!$('.thisBook-libraryselecter > a').hasClass("on")) {
+			$("input[name=collectionLibraryAll]").prop("checked", true);
+			$('.thisBook-libraryList tbody tr').css('display','table-row');
+		}
+	});
+	$('.whereLibClose').on("click", function(){
+		$('.whereLibrary').removeClass('open').removeAttr('tabIndex','0');
+		$('.btn_haveInfo').removeClass('on');
+		$('.btn_sergeInfo').removeClass('on');
+	});
+	$('.whereLibClose').focusout(function(){
+		$(this).parent().siblings('.bookArea').find('.bookDetailInfo li a.on').parent().next().children('a').focus();
+		$('.whereLibrary').removeClass('open').removeAttr('tabIndex','0');
+		$('.btn_haveInfo').removeClass('on');
+		$('.btn_sergeInfo').removeClass('on');
+	});
+});
+</script>
+<div class="thisBook-libraryselecter">
+	<p>
+		<input type="checkbox" id="collectionLibraryAll" name="collectionLibraryAll" value="collectionLibraryAll" class="check" checked="checked"> <label for="collectionLibraryAll">전체 도서관</label>
+	</p>
+	<!--
+		아래 span 클릭시 클릭한 span 과 같은 이름의 도서관 table list 삭제
+	-->
+	
+		<a href="#chk" class="MI" data-name="MI">만안</a>
+	
+		<a href="#chk" class="MG" data-name="MG">관양</a>
+	
+		<a href="#chk" class="MC" data-name="MC">비산</a>
+	
+		<a href="#chk" class="MD" data-name="MD">호계</a>
+	
+	<button type="button" class="listDropdown"><span>리스트 보기</span></button>
+</div>
+<div class="thisBook-libraryList">
+	<div class="tblWrap scrollTable">
+		<table class="tbl">
+			<caption>이 책의 정보 및 소장 도서관 정보</caption>
+			<colgroup>
+				<col>
+				<col>
+				<col>
+				<col>
+				<col>
+				<col>
+				<col>
+				<col>
+			</colgroup>
+			<thead>
+				<tr>
+					<th scope="col">도서관</th>
+					<th scope="col">대출상태</th>
+					<th scope="col">반납예정일</th>
+					<th scope="col">청구기호</th>
+					<th scope="col">예약</th>
+					<th scope="col">자료실</th>
+					<th scope="col">부록</th>
+					<th scope="col">등록번호</th>
+				</tr>
+			</thead>
+			<tbody>
+				
+					<tr class="MI">
+						<td>만안도서관</td>
+						<td>
+							대출가능
+							<br>비치중
+							
+						</td>
+						<td>-</td>
+						<td>005.133-김526ㅍ <a href="#print" onclick="javascript:fnCallNoPrintPop('18540658', 'MO'); return false" class="print" title="청구기호 출력 새창열림"><span class="blind">청구기호 출력</span></a></td>
+						<td>
+							
+							
+								<a href="#apply" title="새 창 열림" onclick="javascript:fnLibraryOneApplyPop('18540658' ,'OM0000123318');" class="btn white small">상호대차</a>
+							
+							
+						</td>
+						<td>만안_종합자료실</td>
+						<td>부록없음</td>
+						<td>OM0000123318</td>
+					</tr>
+				
+					<tr class="MG">
+						<td>관양도서관</td>
+						<td>
+							대출가능
+							<br>비치중
+							
+						</td>
+						<td>-</td>
+						<td>특화 005.133-김52ㅍ <a href="#print" onclick="javascript:fnCallNoPrintPop('18545143', 'MO'); return false" class="print" title="청구기호 출력 새창열림"><span class="blind">청구기호 출력</span></a></td>
+						<td>
+							
+							
+								<a href="#apply" title="새 창 열림" onclick="javascript:fnLibraryOneApplyPop('18545143' ,'GB0000033169');" class="btn white small">상호대차</a>
+							
+							
+						</td>
+						<td>관양_제1종합자료실</td>
+						<td>부록없음</td>
+						<td>GB0000033169</td>
+					</tr>
+				
+					<tr class="MD">
+						<td>호계도서관</td>
+						<td>
+							대출가능
+							<br>비치중
+							
+						</td>
+						<td>-</td>
+						<td>005.133-김526파 <a href="#print" onclick="javascript:fnCallNoPrintPop('18527758', 'MO'); return false" class="print" title="청구기호 출력 새창열림"><span class="blind">청구기호 출력</span></a></td>
+						<td>
+							
+							
+								<a href="#apply" title="새 창 열림" onclick="javascript:fnLibraryOneApplyPop('18527758' ,'EM0000138000');" class="btn white small">상호대차</a>
+							
+							
+						</td>
+						<td>호계_종합자료실</td>
+						<td>부록없음</td>
+						<td>EM0000138000</td>
+					</tr>
+				
+					<tr class="MC">
+						<td>비산도서관</td>
+						<td>
+							대출중
+							<br>(예약가능)
+							<br>(예약:0명)
+						</td>
+						<td>2026.08.16</td>
+						<td>005.133-김526파 <a href="#print" onclick="javascript:fnCallNoPrintPop('18356348', 'MO'); return false" class="print" title="청구기호 출력 새창열림"><span class="blind">청구기호 출력</span></a></td>
+						<td>
+							
+								<a href="javascript:;" onclick="javascript:reservationApplyProc('18356348','BM0000056260'); return false" class="btn white small">대출예약</a>
+							
+							
+							
+						</td>
+						<td>비산_종합자료실</td>
+						<td>부록없음</td>
+						<td>BM0000056260</td>
+					</tr>
+				
+			</tbody>
+		</table>
+	</div>
+</div>
+<a href="#close" class="btn whereLibClose small ta_c">닫기</a>

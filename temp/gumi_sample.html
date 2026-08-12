@@ -1,0 +1,1060 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>구미시립도서관</title>
+<meta name="subject" content="구미시립도서관 홈페이지">
+<meta name="description" content="구미시립도서관 홈페이지입니다.">
+<meta name="keywords" content="구미시립도서관">
+<meta name="copyright" content="구미시립도서관">
+<meta property="og:url"
+      content="http://lib.gumi.go.kr/page.do?mid=7&amp;searchWord=%ED%8C%8C%EC%B9%9C%EC%BD%94&amp;searchKey=title" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="구미시립도서관 - 소장 자료 검색" />
+<meta property="og:description" content="구미시립도서관 - 소장 자료 검색" />
+<meta property="og:image" content="http://lib.gumi.go.kr/images/cm_sns_fb.jpg" />
+<meta name="apple-mobile-web-app-capable" content="no">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0, user-scalable=yes" />
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+<link rel="stylesheet" type="text/css" href="css/reset.css?20201016" />
+<link rel="stylesheet" type="text/css" href="css/common.css?2023070615" />
+<link rel="stylesheet" type="text/css" href="css/sub.css?202605271431" />
+<link rel="stylesheet" type="text/css" href="css/satisfaction.css?202408291632" />
+<style>
+.tab_txt{margin-bottom:0;}
+</style>
+<script src="js/jquery.js"></script>
+<script src="js/clipboard-1.7.1.min.js"></script>
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/common.js?20251223"></script>
+<script src="js/sub.js?20240117"></script>
+<script type="text/javascript" src=" https://www.e-futurelibrary.com/common/js/sso.js"></script>
+<script>
+// HTTP -> HTTPS Redirect
+if(window.location.protocol == "http:") {
+	var restOfUrl = window.location.href.substr(5);
+	window.location = "https:" + restOfUrl;
+}
+</script>
+</head>
+<body>
+<section id="wrap">
+
+	<header id="header" class="bg_on">
+		<div class="hd_wp">
+
+			<h1><a href="/">구미시립도서관</a></h1>
+			<a href="/" class="open open_mn">메뉴</a>
+			<nav class="gnb">
+				<ul>
+                   <li class="">
+                        <a href="page.do?mid=7"
+                   >
+                    자료찾기                </a>
+                        <div class="menu_inner">
+							<div class="menu_wrap">
+								<div class="left_inner_01"></div>
+								<ul>
+									<li>
+										<a href="page.do?mid=7">소장 자료 검색</a>
+										<ul>
+										</ul>
+									</li>
+									<li>
+										<a href="page.do?mid=8">신착 도서</a>
+										<ul>
+										</ul>
+									</li>
+									<li>
+										<a href="page.do?mid=107">대출베스트 도서</a>
+										<ul>
+										</ul>
+									</li>
+									<li>
+										<a href="page.do?mid=9">희망도서 신청</a>
+										<ul>
+										</ul>
+									</li>
+									<li>
+										<a href="page.do?mid=196">스마트도서관</a>
+										<ul>
+										</ul>
+									</li>
+									<li>
+										<a href="page.do?mid=148">전자도서관</a>
+										<ul>
+											<li><a href="page.do?mid=148">이용안내</a></li>
+											<li><a href="" onclick="GoEbook();return false;return false;">전자책(소장형) <img src="images/icon_link_blank.png" alt="새창" /></a></li>
+											<li><a href="" onclick="GoEbook2();return false;return false;">전자책(구독형) <img src="images/icon_link_blank.png" alt="새창" /></a></li>
+											<li><a href="" onclick="GoMoazineBook();return false;return false;">전자저널(DBpia) <img src="images/icon_link_blank.png" alt="새창" /></a></li>
+											<li><a href="" onclick="GoAudioBook();return false;return false;">오디오북 <img src="images/icon_link_blank.png" alt="새창" /></a></li>
+											<li><a href="" onclick="GoEEbook();return false;return false;">영어전자도서관 <img src="images/icon_link_blank.png" alt="새창" /></a></li>
+										</ul>
+									</li>
+								</ul>
+                        	</div>
+						</div>
+                   </li>
+                   <li class="">
+                        <a href="page.do?mid=13"
+                   >
+                    책 읽는 도시                </a>
+                        <div class="menu_inner">
+							<div class="menu_wrap">
+								<div class="left_inner_02"></div>
+								<ul>
+									<li>
+										<a href="page.do?mid=13">추천도서</a>
+										<ul>
+											<li><a href="page.do?mid=154">사서 추천 도서</a></li>
+											<li><a href="page.do?mid=155">인공지능 추천 도서</a></li>
+										</ul>
+									</li>
+									<li>
+										<a href="page.do?mid=162">세대공감 구미독서문화, 구독</a>
+										<ul>
+											<li><a href="page.do?mid=193">세대공감 맞춤도서</a></li>
+											<li><a href="page.do?mid=162">세대공감 맞춤도서 추천</a></li>
+										</ul>
+									</li>
+									<li>
+										<a href="page.do?mid=163">지역작가</a>
+										<ul>
+											<li><a href="page.do?mid=163">지역작가 도서소개</a></li>
+											<li><a href="page.do?mid=164">지역작가 신청안내</a></li>
+											<li><a href="page.do?mid=165">지역작가 소식</a></li>
+											<li><a href="page.do?mid=203">이달의 지역작가</a></li>
+										</ul>
+									</li>
+									<li>
+										<a href="page.do?mid=17">독서동아리</a>
+										<ul>
+										</ul>
+									</li>
+									<li>
+										<a href="page.do?mid=18">책 읽어주는 할머니</a>
+										<ul>
+										</ul>
+									</li>
+									<li>
+										<a href="page.do?mid=195">독서문화축제</a>
+										<ul>
+										</ul>
+									</li>
+								</ul>
+                        	</div>
+						</div>
+                   </li>
+                   <li class="">
+                        <a href="page.do?mid=23"
+                   >
+                    문화 프로그램                </a>
+                        <div class="menu_inner">
+							<div class="menu_wrap">
+								<div class="left_inner_03"></div>
+								<ul>
+									<li>
+										<a href="page.do?mid=23">온라인 수강신청</a>
+										<ul>
+										</ul>
+									</li>
+									<li>
+										<a href="page.do?mid=170">북돋움 책선물</a>
+										<ul>
+										</ul>
+									</li>
+									<li>
+										<a href="page.do?mid=104">그림책 읽어주기</a>
+										<ul>
+										</ul>
+									</li>
+									<li>
+										<a href="page.do?mid=25">문화강좌</a>
+										<ul>
+										</ul>
+									</li>
+									<li>
+										<a href="page.do?mid=26">도서관학교/독서교실</a>
+										<ul>
+										</ul>
+									</li>
+									<li>
+										<a href="page.do?mid=27">도서관주간/독서의달</a>
+										<ul>
+										</ul>
+									</li>
+									<li>
+										<a href="page.do?mid=30">도서관 견학 신청</a>
+										<ul>
+										</ul>
+									</li>
+									<li>
+										<a href="page.do?mid=82">체험형 동화구연</a>
+										<ul>
+										</ul>
+									</li>
+									<li>
+										<a href="page.do?mid=160">강좌제안서</a>
+										<ul>
+										</ul>
+									</li>
+									<li>
+										<a href="page.do?mid=200">영어리딩레벨진단서비스</a>
+										<ul>
+										</ul>
+									</li>
+								</ul>
+                        	</div>
+						</div>
+                   </li>
+                   <li class="">
+                        <a href="page.do?mid=31"
+                   >
+                    참여  마당                </a>
+                        <div class="menu_inner">
+							<div class="menu_wrap">
+								<div class="left_inner_04"></div>
+								<ul>
+									<li>
+										<a href="page.do?mid=31">공지사항</a>
+										<ul>
+										</ul>
+									</li>
+									<li>
+										<a href="page.do?mid=32">자주 묻는 질문들</a>
+										<ul>
+										</ul>
+									</li>
+									<li>
+										<a href="page.do?mid=34">질문과 답변</a>
+										<ul>
+										</ul>
+									</li>
+									<li>
+										<a href="http://www.gb.go.kr/Main/open_contents/section/job/index.do" target="_blank">경상북도 채용공고 <img src="images/icon_link_blank.png" alt="새창" /></a>
+										<ul>
+										</ul>
+									</li>
+									<li>
+										<a href="https://www.gb.go.kr/lib/solars/mylib/ebook.tc?mn=2360&pageSeq=1593" target="_blank">경상북도 전자도서관 <img src="images/icon_link_blank.png" alt="새창" /></a>
+										<ul>
+										</ul>
+									</li>
+									<li>
+										<a href="https://www.youth.go.kr/youth/" target="_blank">자원봉사활동서비스 <img src="images/icon_link_blank.png" alt="새창" /></a>
+										<ul>
+										</ul>
+									</li>
+									<li>
+										<a href="https://lnp.nanet.go.kr/constitution" target="_blank">세계헌법정보 <img src="images/icon_link_blank.png" alt="새창" /></a>
+										<ul>
+										</ul>
+									</li>
+								</ul>
+                        	</div>
+						</div>
+                   </li>
+                   <li class="loan-auth-menu">
+                        <a href="page.do?mid=35"
+                   onclick="return confirm('대출회원 인증이 필요한 메뉴입니다.\n인증 되셨다면 취소 누르시면 이용가능합니다.\n대출회원 인증 페이지로 이동하시겠습니까?');">
+                    내 서재                </a>
+                        <div class="menu_inner">
+							<div class="menu_wrap">
+								<div class="left_inner_05"></div>
+								<ul>
+									<li>
+										<a href="page.do?mid=35">대출중인 도서</a>
+										<ul>
+										</ul>
+									</li>
+									<li>
+										<a href="page.do?mid=36">이전 대출내역</a>
+										<ul>
+										</ul>
+									</li>
+									<li>
+										<a href="page.do?mid=38">예약내역</a>
+										<ul>
+										</ul>
+									</li>
+									<li>
+										<a href="page.do?mid=39">희망도서내역</a>
+										<ul>
+										</ul>
+									</li>
+									<li>
+										<a href="page.do?mid=40">관심도서</a>
+										<ul>
+										</ul>
+									</li>
+									<li>
+										<a href="page.do?mid=37">프로그램 신청조회</a>
+										<ul>
+										</ul>
+									</li>
+									<li>
+										<a href="page.do?mid=112">상호대차 신청</a>
+										<ul>
+										</ul>
+									</li>
+									<li>
+										<a href="page.do?mid=156">임산부 책배달 서비스</a>
+										<ul>
+										</ul>
+									</li>
+									<li>
+										<a href="page.do?mid=194">전집대출서비스</a>
+										<ul>
+										</ul>
+									</li>
+									<li>
+										<a href="https://books.nl.go.kr/PU/main/index.do" target="_blank">책바다/책이음 <img src="images/icon_link_blank.png" alt="새창" /></a>
+										<ul>
+										</ul>
+									</li>
+									<li>
+										<a href="page.do?mid=42">책나래 서비스</a>
+										<ul>
+										</ul>
+									</li>
+								</ul>
+                        	</div>
+						</div>
+                   </li>
+                   <li class="">
+                        <a href="page.do?mid=50"
+                   >
+                    도서관 소개                </a>
+                        <div class="menu_inner">
+							<div class="menu_wrap">
+								<div class="left_inner_06"></div>
+								<ul>
+									<li>
+										<a href="page.do?mid=50">도서관소개</a>
+										<ul>
+											<li><a href="page.do?mid=50">인사말</a></li>
+											<li><a href="page.do?mid=51">연혁</a></li>
+										</ul>
+									</li>
+									<li>
+										<a href="page.do?mid=44">조직 및 업무</a>
+										<ul>
+										</ul>
+									</li>
+									<li>
+										<a href="page.do?mid=75">도서관 현황</a>
+										<ul>
+											<li><a href="page.do?mid=75">시설 현황</a></li>
+											<li><a href="page.do?mid=53">자료 현황</a></li>
+											<li><a href="page.do?mid=141">정기간행물</a></li>
+										</ul>
+									</li>
+									<li>
+										<a href="page.do?mid=97">도서관 이용안내</a>
+										<ul>
+											<li><a href="page.do?mid=97">이용시간 안내</a></li>
+											<li><a href="page.do?mid=191">자료 대출 안내</a></li>
+											<li><a href="page.do?mid=96">모바일회원증</a></li>
+											<li><a href="page.do?mid=69">사물함 신청 안내</a></li>
+											<li><a href="page.do?mid=101">강당 대관 안내</a></li>
+										</ul>
+									</li>
+									<li>
+										<a href="page.do?mid=62">작은도서관</a>
+										<ul>
+											<li><a href="page.do?mid=62">작은도서관이란?</a></li>
+											<li><a href="page.do?mid=92">해평누리</a></li>
+											<li><a href="page.do?mid=173">구미생활문화센터</a></li>
+											<li><a href="page.do?mid=176">평생학습원 자료실</a></li>
+											<li><a href="page.do?mid=179">폴리텍</a></li>
+											<li><a href="page.do?mid=182">송정나래</a></li>
+										</ul>
+									</li>
+									<li>
+										<a href="page.do?mid=61">이동도서관</a>
+										<ul>
+										</ul>
+									</li>
+									<li>
+										<a href="page.do?mid=166">스마트도서관</a>
+										<ul>
+										</ul>
+									</li>
+									<li>
+										<a href="page.do?mid=65">찾아오시는 길</a>
+										<ul>
+										</ul>
+									</li>
+								</ul>
+                        	</div>
+						</div>
+                   </li>
+                </ul>
+			</nav>
+
+			<div class="h_right">
+				<div class="etc_wp">
+					<ul class="etc_btn">
+						<li class="etc01"><a href="page.do?mid=56" title="회원가입">회원가입</a></li>
+						<li class="etc02"><a href="page.do?mid=55&RequestPage=%2Fpage.do%3Fmid%3D7%26searchWord%3D%25ED%258C%258C%25EC%25B9%259C%25EC%25BD%2594%26searchKey%3Dtitle" title="로그인">로그인</a></li>
+						<li class="etc03"><a href="page.do?mid=81" title="사이트맵">사이트맵</a></li>
+					</ul>
+				</div>
+			</div>
+		
+		</div>
+		
+		<div id="mobileNavi">
+                    <div>
+                    	<ul class="global">
+                          <li><a href="/">홈</a></li>
+                          <li><a href="page.do?mid=55&RequestPage=%2Fpage.do%3Fmid%3D7%26searchWord%3D%25ED%258C%258C%25EC%25B9%259C%25EC%25BD%2594%26searchKey%3Dtitle">로그인</a></li>
+                          <li><a href="page.do?mid=56">회원가입</a></li>
+                        </ul>
+                        <nav class="mobilelnb">
+                            <h2 style="display:none;">모바일 메뉴</h2>
+                            <ul class="depth_01">
+								<li>				
+									<a href="#">자료찾기 +</a>
+									<ul class="depth_02">
+										<li>
+											<a href="page.do?mid=7">소장 자료 검색</a>
+
+
+										</li>
+										<li>
+											<a href="page.do?mid=8">신착 도서</a>
+
+
+										</li>
+										<li>
+											<a href="page.do?mid=107">대출베스트 도서</a>
+
+
+										</li>
+										<li>
+											<a href="page.do?mid=9">희망도서 신청</a>
+
+
+										</li>
+										<li>
+											<a href="page.do?mid=196">스마트도서관</a>
+
+
+										</li>
+										<li>
+											<a href="page.do?mid=148">전자도서관 +</a>
+
+											<ul class="depth_03">
+												<li><a href="page.do?mid=148">- 이용안내</a></li>
+												<li><a href="" onclick="GoEbook();return false;return false;" title="새창열림">- 전자책(소장형) <img src="images/icon_link_blank.png" style="margin-top:-4px; vertical-align:middle;" alt="새창" /></a></li>
+												<li><a href="" onclick="GoEbook2();return false;return false;" title="새창열림">- 전자책(구독형) <img src="images/icon_link_blank.png" style="margin-top:-4px; vertical-align:middle;" alt="새창" /></a></li>
+												<li><a href="" onclick="GoMoazineBook();return false;return false;" title="새창열림">- 전자저널(DBpia) <img src="images/icon_link_blank.png" style="margin-top:-4px; vertical-align:middle;" alt="새창" /></a></li>
+												<li><a href="" onclick="GoAudioBook();return false;return false;" title="새창열림">- 오디오북 <img src="images/icon_link_blank.png" style="margin-top:-4px; vertical-align:middle;" alt="새창" /></a></li>
+												<li><a href="" onclick="GoEEbook();return false;return false;" title="새창열림">- 영어전자도서관 <img src="images/icon_link_blank.png" style="margin-top:-4px; vertical-align:middle;" alt="새창" /></a></li>
+											</ul>
+
+										</li>
+									</ul>
+								</li>
+								<li>				
+									<a href="#">책 읽는 도시 +</a>
+									<ul class="depth_02">
+										<li>
+											<a href="page.do?mid=13">추천도서 +</a>
+
+											<ul class="depth_03">
+												<li><a href="page.do?mid=154">- 사서 추천 도서</a></li>
+												<li><a href="page.do?mid=155">- 인공지능 추천 도서</a></li>
+											</ul>
+
+										</li>
+										<li>
+											<a href="page.do?mid=162">세대공감 구미독서문화, 구독 +</a>
+
+											<ul class="depth_03">
+												<li><a href="page.do?mid=193">- 세대공감 맞춤도서</a></li>
+												<li><a href="page.do?mid=162">- 세대공감 맞춤도서 추천</a></li>
+											</ul>
+
+										</li>
+										<li>
+											<a href="page.do?mid=163">지역작가 +</a>
+
+											<ul class="depth_03">
+												<li><a href="page.do?mid=163">- 지역작가 도서소개</a></li>
+												<li><a href="page.do?mid=164">- 지역작가 신청안내</a></li>
+												<li><a href="page.do?mid=165">- 지역작가 소식</a></li>
+												<li><a href="page.do?mid=203">- 이달의 지역작가</a></li>
+											</ul>
+
+										</li>
+										<li>
+											<a href="page.do?mid=17">독서동아리</a>
+
+
+										</li>
+										<li>
+											<a href="page.do?mid=18">책 읽어주는 할머니</a>
+
+
+										</li>
+										<li>
+											<a href="page.do?mid=195">독서문화축제</a>
+
+
+										</li>
+									</ul>
+								</li>
+								<li>				
+									<a href="#">문화 프로그램 +</a>
+									<ul class="depth_02">
+										<li>
+											<a href="page.do?mid=23">온라인 수강신청</a>
+
+
+										</li>
+										<li>
+											<a href="page.do?mid=170">북돋움 책선물</a>
+
+
+										</li>
+										<li>
+											<a href="page.do?mid=104">그림책 읽어주기</a>
+
+
+										</li>
+										<li>
+											<a href="page.do?mid=25">문화강좌</a>
+
+
+										</li>
+										<li>
+											<a href="page.do?mid=26">도서관학교/독서교실</a>
+
+
+										</li>
+										<li>
+											<a href="page.do?mid=27">도서관주간/독서의달</a>
+
+
+										</li>
+										<li>
+											<a href="page.do?mid=30">도서관 견학 신청</a>
+
+
+										</li>
+										<li>
+											<a href="page.do?mid=82">체험형 동화구연</a>
+
+
+										</li>
+										<li>
+											<a href="page.do?mid=160">강좌제안서</a>
+
+
+										</li>
+										<li>
+											<a href="page.do?mid=200">영어리딩레벨진단서비스</a>
+
+
+										</li>
+									</ul>
+								</li>
+								<li>				
+									<a href="#">참여  마당 +</a>
+									<ul class="depth_02">
+										<li>
+											<a href="page.do?mid=31">공지사항</a>
+
+
+										</li>
+										<li>
+											<a href="page.do?mid=32">자주 묻는 질문들</a>
+
+
+										</li>
+										<li>
+											<a href="page.do?mid=34">질문과 답변</a>
+
+
+										</li>
+										<li>
+											<a href="http://www.gb.go.kr/Main/open_contents/section/job/index.do" target="_blank" title="새창열림">경상북도 채용공고 <img src="images/icon_link_blank.png" style="margin-top:-4px; vertical-align:middle;" alt="새창" /></a>
+
+
+										</li>
+										<li>
+											<a href="https://www.gb.go.kr/lib/solars/mylib/ebook.tc?mn=2360&pageSeq=1593" target="_blank" title="새창열림">경상북도 전자도서관 <img src="images/icon_link_blank.png" style="margin-top:-4px; vertical-align:middle;" alt="새창" /></a>
+
+
+										</li>
+										<li>
+											<a href="https://www.youth.go.kr/youth/" target="_blank" title="새창열림">자원봉사활동서비스 <img src="images/icon_link_blank.png" style="margin-top:-4px; vertical-align:middle;" alt="새창" /></a>
+
+
+										</li>
+										<li>
+											<a href="https://lnp.nanet.go.kr/constitution" target="_blank" title="새창열림">세계헌법정보 <img src="images/icon_link_blank.png" style="margin-top:-4px; vertical-align:middle;" alt="새창" /></a>
+
+
+										</li>
+									</ul>
+								</li>
+								<li>				
+									<a href="#">내 서재 +</a>
+									<ul class="depth_02">
+										<li>
+											<a href="page.do?mid=35">대출중인 도서</a>
+
+
+										</li>
+										<li>
+											<a href="page.do?mid=36">이전 대출내역</a>
+
+
+										</li>
+										<li>
+											<a href="page.do?mid=38">예약내역</a>
+
+
+										</li>
+										<li>
+											<a href="page.do?mid=39">희망도서내역</a>
+
+
+										</li>
+										<li>
+											<a href="page.do?mid=40">관심도서</a>
+
+
+										</li>
+										<li>
+											<a href="page.do?mid=37">프로그램 신청조회</a>
+
+
+										</li>
+										<li>
+											<a href="page.do?mid=112">상호대차 신청</a>
+
+
+										</li>
+										<li>
+											<a href="page.do?mid=156">임산부 책배달 서비스</a>
+
+
+										</li>
+										<li>
+											<a href="page.do?mid=194">전집대출서비스</a>
+
+
+										</li>
+										<li>
+											<a href="https://books.nl.go.kr/PU/main/index.do" target="_blank" title="새창열림">책바다/책이음 <img src="images/icon_link_blank.png" style="margin-top:-4px; vertical-align:middle;" alt="새창" /></a>
+
+
+										</li>
+										<li>
+											<a href="page.do?mid=42">책나래 서비스</a>
+
+
+										</li>
+									</ul>
+								</li>
+								<li>				
+									<a href="#">도서관 소개 +</a>
+									<ul class="depth_02">
+										<li>
+											<a href="page.do?mid=50">도서관소개 +</a>
+
+											<ul class="depth_03">
+												<li><a href="page.do?mid=50">- 인사말</a></li>
+												<li><a href="page.do?mid=51">- 연혁</a></li>
+											</ul>
+
+										</li>
+										<li>
+											<a href="page.do?mid=44">조직 및 업무</a>
+
+
+										</li>
+										<li>
+											<a href="page.do?mid=75">도서관 현황 +</a>
+
+											<ul class="depth_03">
+												<li><a href="page.do?mid=75">- 시설 현황</a></li>
+												<li><a href="page.do?mid=53">- 자료 현황</a></li>
+												<li><a href="page.do?mid=141">- 정기간행물</a></li>
+											</ul>
+
+										</li>
+										<li>
+											<a href="page.do?mid=97">도서관 이용안내 +</a>
+
+											<ul class="depth_03">
+												<li><a href="page.do?mid=97">- 이용시간 안내</a></li>
+												<li><a href="page.do?mid=191">- 자료 대출 안내</a></li>
+												<li><a href="page.do?mid=96">- 모바일회원증</a></li>
+												<li><a href="page.do?mid=69">- 사물함 신청 안내</a></li>
+												<li><a href="page.do?mid=101">- 강당 대관 안내</a></li>
+											</ul>
+
+										</li>
+										<li>
+											<a href="page.do?mid=62">작은도서관 +</a>
+
+											<ul class="depth_03">
+												<li><a href="page.do?mid=62">- 작은도서관이란?</a></li>
+												<li><a href="page.do?mid=92">- 해평누리</a></li>
+												<li><a href="page.do?mid=173">- 구미생활문화센터</a></li>
+												<li><a href="page.do?mid=176">- 평생학습원 자료실</a></li>
+												<li><a href="page.do?mid=179">- 폴리텍</a></li>
+												<li><a href="page.do?mid=182">- 송정나래</a></li>
+											</ul>
+
+										</li>
+										<li>
+											<a href="page.do?mid=61">이동도서관</a>
+
+
+										</li>
+										<li>
+											<a href="page.do?mid=166">스마트도서관</a>
+
+
+										</li>
+										<li>
+											<a href="page.do?mid=65">찾아오시는 길</a>
+
+
+										</li>
+									</ul>
+								</li>
+								<li>
+                                    <a href="#">회원안내 +</a>
+                                    <ul class="depth_02">
+                                    	<li><a href="/page.do?mid=55">로그인</a></li>
+                                        <li><a href="/page.do?mid=56">회원가입</a></li>
+                                        <li><a href="/page.do?mid=57">아이디 찾기</a></li>
+                                        <li><a href="/page.do?mid=71">비밀번호 찾기</a></li>
+										<li><a href="http://www.gumi.go.kr/portal/contents.do?mId=0701010000" target="_blank">개인정보처리방침</a></li>
+										<li><a href="/page.do?mid=59">저작권정책</a></li>
+										<li><a href="/page.do?mid=60">이메일 무단수집거부</a></li>
+									</ul>
+								</li>
+							</ul>
+						</nav>
+					</div>
+					<a href="" class="close"><img src="/images/cm_header_mobile_navi_close.gif" alt="닫기"></a>
+            	</div>
+				
+		<div id="mask_mn"></div>
+		<div id="mask_kw"></div>
+	</header>
+	<script>
+	function GoEbook(){
+			if(confirm('로그인 후 이용이 가능합니다.\n로그인 페이지로 이동하시겠습니까?')){ location.href="page.do?mid=55"; }
+		}
+	function GoEbook2(){
+			if(confirm('로그인 후 이용이 가능합니다.\n로그인 페이지로 이동하시겠습니까?')){ location.href="page.do?mid=55"; }
+		}
+	function GoAudioBook(){
+			if(confirm('로그인 후 이용이 가능합니다.\n로그인 페이지로 이동하시겠습니까?')){ location.href="page.do?mid=55"; }
+		}
+	function GoEEbook(){
+			if(confirm('로그인 후 이용이 가능합니다.\n로그인 페이지로 이동하시겠습니까?')){ location.href="page.do?mid=55"; }
+		}
+	function GoMoazineBook(){
+			if(confirm('로그인 후 이용이 가능합니다.\n로그인 페이지로 이동하시겠습니까?')){ location.href="page.do?mid=55"; }
+		}
+
+	</script>
+	<form name="frm_fx" method="post" target="_blank" action="https://gumilib.yes24library.com/" target="_blank" accept-charset="utf-8">
+		<input type="hidden" name="user_id" value="" />
+		<input type="hidden" name="user_nm" value="" />
+	</form>
+	<form name="frm_fx2" method ="post" target="_blank" action="https://gumi.dkyobobook.co.kr/frontapi/mmbrLnkg.ink" accept-charset="UTF-8">
+		<input type="hidden" name="user_id" value ="">
+		<input type="hidden" name="user_name" value ="">
+		<input type="hidden" name="user_type" value ="T1">
+		<input type="hidden" name="user_type_name" value ="회원">
+		<input type="hidden" name="libraryCode" value ="26062">
+		<input type="submit" value ="전송" style="display:none;">
+	</form>
+
+	<section id="container">
+
+		<div class="sub_visual">			
+			<div class="subvisual_inner">
+				<h2>자료찾기</h2>
+					<ul class="sub_location">
+						<li>홈</li>
+						<li>자료찾기</li>
+						<li>소장 자료 검색</li>
+					</ul>
+			</div>
+		</div>
+		
+		<div class="cnti_inner">
+			
+			<div class="snb">
+				<dl>
+					<dt style="display:none;">현재위치</dt>
+					<dd>
+						<ul>
+							<li class="Ov">
+								<a href="page.do?mid=7">소장 자료 검색</a>
+							</li>
+							<li>
+								<a href="page.do?mid=8">신착 도서</a>
+							</li>
+							<li>
+								<a href="page.do?mid=107">대출베스트 도서</a>
+							</li>
+							<li>
+								<a href="page.do?mid=9">희망도서 신청</a>
+							</li>
+							<li>
+								<a href="page.do?mid=196">스마트도서관</a>
+							</li>
+							<li>
+								<a href="page.do?mid=148">전자도서관</a>
+							</li>
+						</ul>
+					</dd>
+				</dl>
+			</div>
+			
+			<div id="content">
+				<div class="substance">
+					<h4 class="first">소장 자료 검색</h4>
+					
+					<div class="cnt_sns_wp">
+						<div class="cnt_sns">
+							<a href="#facebook" class="face" onclick="facebook('구미시립도서관'); return false;" title="페이스북 공유">페이스북 공유</a>
+							<a href="#twitter" class="tw" onclick="twitter('구미시립도서관'); return false;" title="트위터 공유">트위터 공유</a>
+							<a href="#naver_blog" class="blog" onclick="naverblog('구미시립도서관'); return false;" title="블로그 공유">네이버 블로그 공유</a>
+							<a href="#kakao_story" class="kakao" onclick="kakaostory('구미시립도서관'); return false;" title="카카오스토리 공유">카카오스토리 공유</a>
+							<a href="#url_copy" class="url" data-clipboard-text="http://lib.gumi.go.kr/page.do?mid=7&amp;searchWord=%ED%8C%8C%EC%B9%9C%EC%BD%94&amp;searchKey=title" onclick="return false;" title="URL 복사">URL 복사</a>
+							<a href="#page_print" class="print" onclick="printArticle();return false;" title="페이지 인쇄">페이지 인쇄</a>
+						</div>
+						<script>
+						var clipboard = new Clipboard('.url');
+						clipboard.on('success', function(e) { alert("링크가 복사되었습니다."); });
+						</script>
+					</div>
+
+					<div class="tab_txt">
+						<ul>
+						</ul>
+					</div>
+
+
+					<div class="tab_txt">
+						<ul>
+						</ul>
+					</div>
+
+					<!-- 본문 출력 시작 -->
+					<div class="page_content">
+
+<style>
+#NoticePopupList{}
+#NoticePopupList dt{display:none;}
+#NoticePopupList h3{display:none;}
+#NoticePopupList .PopupWrap{display:none; position:absolute; left:170px; top:185px; box-shadow:2px 2px 15px rgba(0,0,0,0.5); border-radius:5px; overflow:hidden; z-index:99990;}
+#NoticePopupList .contentPop{padding:10px;}
+#NoticePopupList .closeBtn{width:100%; height:42px; background-color:rgba(0, 0, 0, 0.8); font-size:13px;}
+#NoticePopupList .closeBtn a{color:#fff;}
+#NoticePopupList .closeBtn .tCls{display:block; float:left; padding:6px 0 0 8px;}
+#NoticePopupList .closeBtn .rCls{display:block; float:right; padding:6px 8px 0 0;}
+
+	/* Tablet-1024x 이하 해상도에서 해석하는 코드 */
+	@media all and (max-width:1024px){
+		#NoticePopupList{}
+		#NoticePopupList .PopupWrap{position:absolute; width:auto !important; left:0px !important;  box-shadow:none; border-radius:0; overflow:auto;}
+		#NoticePopupList .PopupWrap div.imgPop{max-width:360px !important; height:auto  !important;}
+		#NoticePopupList .PopupWrap div img{max-width:360px !important;}
+		#NoticePopupList .closeBtn{max-width:360px !important; height:35px; background-color:rgba(0, 0, 0, 0.8); font-size:12px;}
+	}
+</style>
+
+
+<script>
+function SetCookie( name, value, expiredays ) {
+  var todayDate = new Date();
+  todayDate.setDate( todayDate.getDate() + expiredays );
+  document.cookie = name + "=" + escape( value ) + "; path=/; expires=" + todayDate.toGMTString() + ";"
+}
+
+function GetCookie( name ) {
+  var nameOfCookie = name + "=";
+  var x = 0;
+  while ( x <= document.cookie.length ) {
+    var y = (x+nameOfCookie.length);
+    if ( document.cookie.substring( x, y ) == nameOfCookie ) {
+      if ( (endOfCookie=document.cookie.indexOf( ";", y )) == -1 )
+        endOfCookie = document.cookie.length;
+      return unescape( document.cookie.substring( y, endOfCookie ) );
+    }
+    x = document.cookie.indexOf( " ", x ) + 1;
+    if ( x == 0 )
+      break;
+  }
+  return "";
+}
+function popupClose(){
+	if($('input:checkbox[id="todaychk"]').is(":checked")==true){ SetCookie("topBanner","done",1); }
+	$("#top_banner").animate({height:0},250,function(){ $(this).hide(); });
+}
+function NoticePopupClose(SelectDate, Checked){
+	if(Checked==1){	SetCookie( SelectDate , "done" , 1);	}
+	$("#"+SelectDate).fadeOut("normal");
+}
+var currentWidth;
+var currentHeight;
+function LayerControl(Title, Href, Width, Height){
+	if(Href){
+		currentWidth = Width;
+		currentHeight = Height;
+		$('.ctTitle').html(Title);
+		$('.frameWrap').css("height", (Height)?(Height+45)+"px":"300px")
+		$('#ControlSrc').css("width", (Width)?Width+"px":"500px").css("height", (Height)?Height+"px":"300px").attr("src", Href);
+		$('#ControlWrap').css('opacity', 0.5).stop().animate({opacity:'toggle',height:($(document).height())+'px'}, 300);
+		var layerTop = ($(window).scrollTop()+($(window).width()<=1280 ? 60 : 130));
+		$('#ControlPopLayer').css('width', (Width)?(Width+42)+"px":"500px").css('display','block').animate({top:layerTop}, 100).css("marginLeft", (Width)?(((Width/2)-Width))+"px":"-250px");
+	}else{
+		$('.ctTitle').html('');
+		$('#ControlSrc').attr("src", "about:blank");
+		$('#ControlPopLayer').animate({top:"150px"}, 100).fadeOut(100);
+		$('#ControlWrap').css('opacity', 1).stop().css('display','none');
+	}
+	LayerResize();
+}
+
+var SW;
+var SH;
+function LayerResize(){
+	SW	=	$(window).width();
+	SH	=	$(window).height();
+	//$('.ctTitle').html(SW+":"+SH+" / "+currentWidth+":"+currentHeight);
+	if(SW <= 1310){
+		var layerResizeWidth = SW-44;
+		var layerResizeHeight = SH-125;
+		$('.frameWrap').css("height", layerResizeHeight);
+		$('#ControlSrc').css('width', (layerResizeWidth-40)).css("height", layerResizeHeight-40);
+		$('#ControlPopLayer').css('width', (layerResizeWidth)).css('top', 50).css("marginLeft", (layerResizeWidth/2)-layerResizeWidth);
+	}else{
+		$('.frameWrap').css("height", (currentHeight)?(currentHeight+45)+"px":"300px");
+		$('#ControlSrc').css("width", (currentWidth)?currentWidth+"px":"500px").css("height", (currentHeight)?currentHeight+"px":"300px");
+		var layerTop = ($(window).scrollTop()+($(window).width()<=1280 ? 60 : 130));
+		$('#ControlPopLayer').css('width', (currentWidth)?(currentWidth+22)+"px":"500px").animate({top:layerTop}, 100).css("marginLeft", (currentWidth)?(((currentWidth/2)-currentWidth))+"px":"-250px");
+	}
+}
+
+$(window).resize(function(){
+	LayerResize()
+});
+</script><style>
+.searchFrame {-webkit-overflow-scrolling:touch;}
+</style>
+<iframe src="/dls_lt/index.php?mod=wdDataSearch&act=searchResultList&searchItem=total&searchWord=파친코&manageCode=" id="searchFrame" class="searchFrame" title="소장 자료 검색" style="width:100%; height:350px; border:0;" scrolling="0"></iframe>
+<script>
+function resizeIFrame( height ) {
+	$("#searchFrame").height(height-268);
+}
+</script>					</div>
+					<!-- 본문 출력 종료 -->
+
+				</div>
+				
+				<!-- 만족도 시작 -->
+				<div class="customer_zone">
+					<div class="customer_bottom">
+											<form name="page_poll" method="post" onsubmit="return pagePoll_(this);">
+						<input type="hidden" name="CSRFToken" value="317045ade5d2f6ed117f6cfae889aa7a" />
+						<input type="hidden" name="poll_mid" value="7" />
+						<div class="agreebox">
+							<p class="txt">홈페이지 서비스 향상을 위해 만족도 조사를 실시하고 있습니다. 현재 페이지의 내용과 편의성에 만족하십니까?</p>
+							<div class="radio_wrap">
+								<p class="radio_tit">메뉴구성</p>
+									<ul class="radio_lst">
+										<li><input type="radio" name="menu_point" id="menu_poll_5" value="5" /><label for="menu_poll_5">매우만족</label></li>
+										<li><input type="radio" name="menu_point" id="menu_poll_4" value="4" /><label for="menu_poll_4">만족</label></li>
+										<li><input type="radio" name="menu_point" id="menu_poll_3" value="3" /><label for="menu_poll_3">보통</label></li>
+										<li><input type="radio" name="menu_point" id="menu_poll_2" value="2" /><label for="menu_poll_2">불만족</label></li>
+										<li><input type="radio" name="menu_point" id="menu_poll_1" value="1" /><label for="menu_poll_1">매우불만족</label></li>
+									</ul>
+							</div>
+							<div class="radio_wrap">
+								<p class="radio_tit">디자인</p>
+									<ul class="radio_lst">
+										<li><input type="radio" name="design_point" id="design_poll_5" value="5" /><label for="design_poll_5">매우만족</label></li>
+										<li><input type="radio" name="design_point" id="design_poll_4" value="4" /><label for="design_poll_4">만족</label></li>
+										<li><input type="radio" name="design_point" id="design_poll_3" value="3" /><label for="design_poll_3">보통</label></li>
+										<li><input type="radio" name="design_point" id="design_poll_2" value="2" /><label for="design_poll_2">불만족</label></li>
+										<li><input type="radio" name="design_point" id="design_poll_1" value="1" /><label for="design_poll_1">매우불만족</label></li>
+									</ul>
+							</div>
+							<div class="radio_wrap">
+								<p class="radio_tit">응답속도</p>
+									<ul class="radio_lst">
+										<li><input type="radio" name="response_point" id="response_poll_5" value="5" /><label for="response_poll_5">매우만족</label></li>
+										<li><input type="radio" name="response_point" id="response_poll_4" value="4" /><label for="response_poll_4">만족</label></li>
+										<li><input type="radio" name="response_point" id="response_poll_3" value="3" /><label for="response_poll_3">보통</label></li>
+										<li><input type="radio" name="response_point" id="response_poll_2" value="2" /><label for="response_poll_2">불만족</label></li>
+										<li><input type="radio" name="response_point" id="response_poll_1" value="1" /><label for="response_poll_1">매우불만족</label></li>
+									</ul>
+							</div>
+						<div class="form"><input type="text" name="poll_text" title="의견 입력" placeholder="여러분의 소중한 의견을 남겨주세요"><button type="submit"><span>의견 반영하기</span></button></div>
+						</form>
+					</div>
+				</div>
+				<!-- 만족도 종료 -->
+
+			</div>
+
+		</div>
+		
+	</section>	
+	
+	<footer class="section fp-auto-height footer_area">
+		<div id="footer">
+			<div class="ft_wrap">
+				<ul>
+					<li><a href="https://www.gumi.go.kr/portal/contents.do?mid=0701000000" target="_blank">개인정보처리방침</a></li>
+					<li><a href="page.do?mid=59">저작권정책</a></li>
+					<li><a href="page.do?mid=60">이메일 무단수집 거부</a></li>
+					<li><a href="page.do?mid=65">찾아오시는 길</a></li>
+				</ul>
+				<a href="#firstPage" class="btn_top">TOP</a>
+				<div class="address_wrap">
+					<address>
+						<strong class="lib_name">중앙</strong>(39293) 경북 구미시 경은로 85(형곡동)　 TEL. 054-480-4660　 FAX. 054-480-4659<br />
+						<strong class="lib_name">인동</strong>(39398) 경북 구미시 인동14길 14(진평동)　 TEL. 054-480-4700　 FAX. 054-480-4659<br />
+						<strong class="lib_name">상모정수</strong>(39339) 경북 구미시 상사서로 4길 10(상모동)　 TEL. 054-480-4730　 FAX. 054-480-4659<br />
+						<strong class="lib_name">양포</strong>(39183) 경북 구미시 옥계북로 51(옥계동)　 TEL. 054-480-4770　 FAX. 054-480-4659<br />
+						<strong class="lib_name">산동</strong>(39463) 경북 구미시 산동읍 신당3로1길 4(신당리)　 TEL. 054-480-4690　 FAX. 054-480-4659<br />
+						<strong class="lib_name">봉곡</strong>(39208) 경북 구미시 봉곡로15길 54(봉곡동)　 TEL. 054-480-2100　 FAX. 054-457-3016<br />
+						<strong class="lib_name">선산</strong>(39117) 경북 구미시 선산읍 선산대로 1400-16(동부리)　 TEL. 054-480-2120　 FAX. 054-482-2113<br />
+					</address>
+					<p>Copyright ⓒ 구미시립도서관. All rights reserved.</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
+	<script type="text/javascript">
+	if(!wcs_add) var wcs_add = {};
+	wcs_add["wa"] = "13ee9414fcafdf";
+	if(window.wcs) {
+	wcs_do();
+	}
+	</script>
+
+</section>
+</body>
+</html>

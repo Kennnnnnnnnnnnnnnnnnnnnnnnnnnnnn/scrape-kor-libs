@@ -1,0 +1,3212 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+
+
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="연천군도서관">
+<meta name="description" content="연천군도서관 정보 및 도서검색 제공">
+<meta name="generator" content="jnet co. ltd.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="연천군도서관">
+<meta property="og:description" content="연천군도서관 정보 및 도서검색 제공">
+<meta property="og:image" content="/include/image/common/ico_sns_favicon.png">
+<meta property="og:url" content="https://library.yeoncheon.go.kr/index.do">
+<link rel="canonical" href="https://library.yeoncheon.go.kr/index.do">
+<title>연천군도서관</title>
+<link rel="shortcut icon" href="/include/image/common/ico_sns_favicon.png">
+<link rel="stylesheet" type="text/css" href="/include/js/slick-theme.css">
+<link rel="stylesheet" type="text/css" href="/include/js/slick.css">
+<link rel="stylesheet" type="text/css" href="/include/css/main.css?v=20230404">
+<link rel="stylesheet" type="text/css" href="/include/css/layout.css">
+<link rel="stylesheet" type="text/css" href="/include/js/swiper.min.css">
+<script src="/include/js/jquery-1.11.3.min.js"></script>
+<script src="/include/js/jquery.slider.js"></script>
+<script src="/include/js/jquery.tab.js"></script>
+<script src="/include/js/jquery.newsticker.js"></script>
+<script src="/include/js/gnb.js"></script>
+<script src="/include/js/swiper.min.js"></script>
+<script src="/include/js/slick.min.js"></script>
+<script src="/include/js/common.js"></script>
+<script>
+$(function(){
+	//탭 이벤트
+	$(".tab").each(function(){
+		$(this).tabList({tabContSelector : false});
+	});
+
+	// 모바일 회원카드
+	filter = "win16|win32|win64|mac|macintel";
+	var $logoutArea = $(".logoutArea"),
+		$mobilecard = $(".mobilecard"),
+		$barcode = $(".barcode"),
+		$btnZoomIn = $mobilecard.find(".zoom"),
+		$btnZoomOut = $mobilecard.find(".zoomOut");
+	var zoomTimer = 0;
+	if(navigator.platform){
+		if(filter.indexOf(navigator.platform.toLowerCase()) < 0){
+			$mobilecard.show();
+			$logoutArea.hide();
+		}else{
+			$logoutArea.show();
+			$mobilecard.hide();
+		}
+	};
+	$btnZoomIn.click(function(){
+		var $this = $(this);
+		$this.addClass("zoomOut");
+		if(zoomTimer == 0){
+			zoomTimer = 1;
+			$("#wrap").append($barcode);
+			$barcode.addClass("zoomIn");
+		}else{
+			$mobilecard.append($barcode);
+			$barcode.removeClass("zoomIn");
+			zoomTimer = 0;
+		}
+		return false;
+	});
+	$btnZoomOut.click(function(){
+		$(this).removeClass("zoomOut");
+	});
+})
+
+</script>
+</head>
+<body>
+
+<!-- 메인 레이어팝업 -->
+<div class="mainLayerPop" id="mainLayerPop">
+	<div class="mainLayerPopInner">
+		<div class="mainLayer-slick slider">
+			<div class="slick-slide" id="popup6">
+				<a href="https://library.yeoncheon.go.kr/menu/10051/program/30013/lectureDetail.do?currentPageNo=1&manageCd=ALL&searchStatusCd=&lectureIdx=1276" class="cover"><img src="/include/image/popup/popup_260806.png" alt="길 위의 인문학 포스터"></a>
+			</div>
+			<div class="slick-slide" id="popup7">
+				<span class="cover"><img src="/include/image/popup/popup_260721.jpg" alt="가가호호 책배달 서비스 임시중단 안내"></span>
+			</div>
+			<div class="slick-slide" id="popup4">
+				<a href="https://library.yeoncheon.go.kr/menu/10051/program/30013/lectureDetail.do?currentPageNo=2&manageCd=ALL&searchStatusCd=&lectureIdx=1261" class="cover"><img src="/include/image/popup/popup_260720.jpg" alt="다달이인문학 8월"></a>
+			</div>
+			<div class="slick-slide" id="popup8">
+				<span class="cover"><img src="/include/image/popup/popup_260713_4.png" alt="경계의 생태인문학 7-경계그림책"></span>
+			</div>
+			<div class="slick-slide" id="popup1">
+				<span class="cover"><img src="/include/image/popup/popup_260610_1.jpg" alt="전국고전읽기 백일장대회"></span>
+			</div>
+			<div class="slick-slide" id="popup2">
+				<span class="cover"><img src="/include/image/popup/popup_260610_2.jpg" alt="전국 청소년 독서감상문 발표 대회"></span>
+			</div>
+			<div class="slick-slide" id="popup3">
+				<span class="cover"><img src="/include/image/popup/popup_260610_3.jpg" alt="아동,청소년 가족사랑 독서감상문 대회"></span>
+			</div>
+			<div class="slick-slide" id="popup5">
+				<a href="https://library.yeoncheon.go.kr/menu/10053/contents/40029/contents.do" class="cover"><img src="/include/image/popup/popup_260313.jpg" alt="독서마라톤"></a>
+			</div>
+		</div>
+		<div class="close">
+			<button type="button" onclick="todayCloseBtn();" class="cookieBtn todayCloseBtn"><span>오늘하루 보지않기</span></button>
+			<button type="button" onclick="closeBtn();" class="closeBtn"><span>팝업창 닫기</span></button>
+		</div>
+	</div>
+
+	<script>
+		function setCookie(name,value,expirehours){
+			let todayDate = new Date();
+			todayDate.setHours(todayDate.getHours() + expirehours);
+			document.cookie = name + "=" + escape(value) + ";path=/; expires=" + todayDate.toGMTString() + ";"
+		}
+
+		// 팝업창 활성화
+		function mainLayerShow(){
+			document.getElementById("mainLayerPop").style.display = "flex";
+			$("body").css("overflow","hidden");
+		}
+		// 팝업창 비활성화
+		function mainLayerHide(){
+			document.getElementById("mainLayerPop").style.display = "none";
+			$("body").removeAttr("style");
+		}
+
+		// 버튼 - 닫기
+		function closeBtn(){
+			mainLayerHide();
+		}
+		// 버튼 - 하루 닫기
+		function todayCloseBtn(){
+			setCookie("mainLayerCookie","done",24);
+			mainLayerHide();
+		}
+
+		// 쿠키
+		cookiedata = document.cookie;
+		if ( cookiedata.indexOf("mainLayerCookie=done") < 0 ){
+			mainLayerShow();
+		} else {
+			mainLayerHide();
+		}
+
+		// 메인레이어 팝업 슬라이더
+		function mainLayerPopResize() {
+			var d_now = new Date();
+			// popup1
+			var sdate1= new Date("2026/06/10 09:00:00");
+			var edate1= new Date("2026/09/28 23:59:00");
+			// 게시기간
+			if(!(d_now >= sdate1 && d_now <= edate1)){
+				document.getElementById('popup1').remove();
+			}
+			// popup2
+			var sdate2= new Date("2026/06/10 09:00:00");
+			var edate2= new Date("2026/10/02 23:59:00");
+			// 게시기간
+			if(!(d_now >= sdate2 && d_now <= edate2)){
+				document.getElementById('popup2').remove();
+			}
+			// popup3
+			var sdate3= new Date("2026/06/10 09:00:00");
+			var edate3= new Date("2026/10/23 23:59:00");
+			// 게시기간
+			if(!(d_now >= sdate3 && d_now <= edate3)){
+				document.getElementById('popup3').remove();
+			}
+			// popup4
+			var sdate4= new Date("2026/07/20 09:00:00");
+			var edate4= new Date("2026/08/22 23:59:00");
+			// 게시기간
+			if(!(d_now >= sdate4 && d_now <= edate4)){
+				document.getElementById('popup4').remove();
+			}
+			// popup5
+			var sdate5= new Date("2026/03/12 09:00:00");
+			var edate5= new Date("2026/11/30 23:59:00");
+			// 게시기간
+			if(!(d_now >= sdate5 && d_now <= edate5)){
+				document.getElementById('popup5').remove();
+			}
+			// popup6
+			var sdate6= new Date("2026/08/06 09:00:00");
+			var edate6= new Date("2026/11/03 23:59:00");
+			// 게시기간
+			if(!(d_now >= sdate6 && d_now <= edate6)){
+				document.getElementById('popup6').remove();
+			}
+			// popup7
+			var sdate7= new Date("2026/07/21 09:00:00");
+			var edate7= new Date("2026/08/07 23:59:00");
+			// 게시기간
+			if(!(d_now >= sdate7 && d_now <= edate7)){
+				document.getElementById('popup7').remove();
+			}
+			// popup8
+			var sdate8= new Date("2026/07/13 09:00:00");
+			var edate8= new Date("2026/11/01 23:59:00");
+			// 게시기간
+			if(!(d_now >= sdate8 && d_now <= edate8)){
+				document.getElementById('popup8').remove();
+			}
+
+			let mlW = $(".mainLayerPop .mainLayerPopInner");
+			let mpl = $(".mainLayerPop .slick-slide").length;
+			switch(mpl) {
+				case 0:
+					mainLayerHide();
+					break;
+				case 1:
+					mlW.addClass("w1");
+					$(".mainLayer-slick").slick({
+						slidesToShow: 1,
+						infinite: true,
+						draggable: false,
+						autoplay: true,
+						autoplaySpeed: 3000,
+						speed: 500,
+						pauseOnHover: true,
+						pauseOnFocus: true,
+					});
+					break;
+				case 2:
+					mlW.addClass("w2");
+					$(".mainLayer-slick").slick({
+						slidesToShow: 2,
+						infinite: true,
+						draggable: false,
+						autoplay: true,
+						autoplaySpeed: 3000,
+						speed: 500,
+						pauseOnHover: true,
+						pauseOnFocus: true,
+						responsive: [
+							{
+								breakpoint: 640,
+								settings: {
+									slidesToShow: 1,
+								}
+							}
+						]
+					});
+					break;
+				default:
+					mlW.addClass("wb");
+					$('.mainLayer-slick').slick({
+						slidesToShow: 3,
+						infinite: true,
+						draggable: false,
+						autoplay: true,
+						autoplaySpeed: 3000,
+						speed: 500,
+						pauseOnHover: true,
+						pauseOnFocus: true,
+						responsive: [
+							{
+								breakpoint: 1025,
+								settings: {
+									slidesToShow: 2,
+								}
+							},
+							{
+								breakpoint: 640,
+								settings: {
+									slidesToShow: 1,
+								}
+							}
+						]
+					});
+					break;
+			}
+		}
+		$(document).ready(function(e) {
+			mainLayerPopResize();
+		});
+	</script>
+</div>
+<!-- // 메인 레이어팝업 -->
+
+<!-- skip -->
+<ul class="skip">
+	<li><a href="#contents">본문 바로가기</a></li>
+	<li><a href="#gnb">주메뉴 바로가기</a></li>
+</ul>
+<!-- skip -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+	$(function(){
+		var $topPopupClose = $(".topPopupClose");
+		$topPopupClose.on("click",function(){
+			var $area = $(this).parents(".topPopupWrap");
+			var hgt = $area.height();
+			$area.css({"margin-top": "-" + hgt + "px","z-index":0});
+			return false;
+		});
+	});
+</script>
+<!-- top popup -->
+
+
+<!-- //top popup -->
+
+
+<!-- wrap -->
+<div id="wrap">
+	
+
+
+<header id="header">
+	<a href="#back" id="blackBG"><span class="blind">이전으로 돌아가기</span></a>
+	<div id="snb">
+		<div class="siteUtilGroup">
+			<div id="homeMenu" class="homeMenu">
+				<ul class="clearfix">
+					<li class="home"><a href="/index.do">홈으로</a></li>
+				</ul>
+			</div>
+			<div id="siteMenu" class="siteMenu clearfix">
+				<ul class="clearfix">
+					
+						
+							<li class="login"><a href="/memberLogin.do?returnUrl=aHR0cHM6Ly9saWJyYXJ5Lnllb25jaGVvbi5nby5rci9pbmRleC5kbw==">로그인</a></li>
+							<li class="joinus"><a href="/memberJoinIntro.do">회원가입</a></li>
+						
+						
+					
+					<li class="sitemap"><a href="/siteMap.do">사이트맵</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="headerInner clearfix">
+		<h1 id="logo"><a href="/index.do"><img src="/include/image/common/logo.png" alt="연천군도서관"></a></h1>
+		<a href="#open" id="mobileIndexOpen"><span class="blind">메뉴 열기</span></a>
+		
+
+<a href="#searchBoxOpen" id="btnSearchTop"><span class="blind">검색창열기</span></a>
+<div id="searchTopClose">검색 닫기<a href="#searchTopClose"><span class="blind">검색 닫기</span></a></div>
+<form name="topSearchForm" id="topSearchForm" method="post">
+	<input type="hidden" name="searchType" value="SIMPLE">
+	<input type="hidden" name="searchCategory" value="BOOK">
+	<input type="hidden" name="searchLibrary" value="ALL" />
+	<input type="hidden" name="searchKey" value="ALL" />
+	<fieldset>
+		<legend>통합자료 검색영역</legend>
+		<div id="searchBox" class="searchBoxWrap">
+			<div class="searchBox">
+				<div class="keywordInput">
+					<label for="topSearchKeyword" class="blind">검색어 입력</label>
+					<input type="text" title="검색어 입력" id="topSearchKeyword" name="searchKeyword" >
+				</div>
+				<ul class="searchBtn">
+					<li><a href="#search" id="topSearchBtn" class="themeColor">검색</a></li>
+					<li><a href="/searchDetail.do" class="themeColor2">상세검색</a></li>
+				</ul>
+			</div>
+		</div>
+	</fieldset>
+</form>
+
+<script>
+	$(function(){
+		$("#topSearchBtn").click(fnTopSearch);
+	});
+
+	function fnTopSearch() {
+		var form = document.topSearchForm;
+		if(isEmpty(form.searchKeyword.value)){
+			alert("검색어를 입력하세요.");
+			form.searchKeyword.focus();
+			return false;
+		}
+		form.action="/searchResultList.do";
+		form.submit();
+	}
+</script>
+	</div>
+	<nav id="gnbNav" class="clearfix">
+		<div id="mobileIndexClose">전체메뉴 닫기<a href="#close"><span class="blind">메뉴 닫기</span></a></div>
+		<ul id="gnb" class="clearfix">
+ <li id="gnb1"> <a href="/menu/10002/contents/40001/contents.do"> <em>도서관안내</em> </a>
+  <ul>
+   <li id="gnb1_1"><a href="/menu/10002/contents/40001/contents.do">인사말</a> </li>
+   <li id="gnb1_2"><a href="/menu/10003/contents/40002/contents.do">연혁</a> </li>
+   <li id="gnb1_3"><a href="/menu/10005/contents/40003/contents.do">도서관 현황</a>
+    <ul class="MkSub">
+     <li id="gnb1_3_1"><a href="/menu/10005/contents/40003/contents.do">연천군도서관 현황</a> </li>
+     <li id="gnb1_3_2"><a href="/menu/10007/program/30001/dataStatus.do?siteCd=jalib">장서현황</a>
+      <ul class="MkTab">
+       <li id="gnb1_3_2_1"><a href="/menu/10007/program/30001/dataStatus.do?siteCd=jalib">중앙도서관</a></li>
+       <li id="gnb1_3_2_2"><a href="/menu/10008/program/30001/dataStatus.do?siteCd=yclib">연천도서관</a></li>
+       <li id="gnb1_3_2_3"><a href="/menu/10009/program/30001/dataStatus.do?siteCd=small">작은도서관</a></li>
+      </ul> </li>
+     <li id="gnb1_3_3"><a href="/menu/10011/contents/40004/contents.do">시설현황</a>
+      <ul class="MkTab">
+       <li id="gnb1_3_3_1"><a href="/menu/10011/contents/40004/contents.do">중앙도서관</a></li>
+       <li id="gnb1_3_3_2"><a href="/menu/10012/contents/40005/contents.do">연천도서관</a></li>
+       <li id="gnb1_3_3_3"><a href="/menu/10013/contents/40006/contents.do">작은도서관</a></li>
+      </ul> </li>
+    </ul> </li>
+   <li id="gnb1_4"><a href="/menu/10036/contents/40018/contents.do">PC 좌석현황</a> </li>
+   <li id="gnb1_5"><a href="/menu/10015/contents/40007/contents.do">조직/직원정보</a>
+    <ul class="MkTab">
+     <li id="gnb1_5_1"><a href="/menu/10015/contents/40007/contents.do">조직도</a> </li>
+     <li id="gnb1_5_2"><a href="/menu/10016/program/30002/staffList.do">직원정보</a> </li>
+    </ul> </li>
+   <li id="gnb1_6"><a href="/menu/10017/program/30003/location.do">오시는길</a> </li>
+  </ul> </li>
+ <li id="gnb2"> <a href="/menu/10019/contents/40008/contents.do"> <em>이용안내</em> </a>
+  <ul>
+   <li id="gnb2_1"><a href="/menu/10019/contents/40008/contents.do">이용시간/휴관일</a> </li>
+   <li id="gnb2_2"><a href="/menu/10020/contents/40009/contents.do">회원가입</a> </li>
+   <li id="gnb2_3"><a href="/menu/10021/contents/40010/contents.do">도서대출/반납/예약</a> </li>
+   <li id="gnb2_4"><a href="/menu/10220/contents/41041/contents.do">자료복사/인쇄/스캔</a> </li>
+   <li id="gnb2_5"><a href="/menu/10022/contents/40011/contents.do">모바일회원증</a> </li>
+   <li id="gnb2_6"><a href="/menu/10023/contents/40012/contents.do">도서무인반납함 위치</a> </li>
+   <li id="gnb2_7"><a href="/menu/10024/contents/40031/contents.do">책이음서비스</a> </li>
+   <li id="gnb2_8"><a href="/menu/10026/contents/40013/contents.do">책바다서비스</a> </li>
+  </ul> </li>
+ <li id="gnb3"> <a href="/menu/10039/program/30005/searchSimple.do"> <em>자료검색</em> </a>
+  <ul>
+   <li id="gnb3_1"><a href="/menu/10039/program/30005/searchSimple.do">소장자료검색</a>
+    <ul class="MkSub">
+     <li id="gnb3_1_1"><a href="/menu/10039/program/30005/searchSimple.do">간략검색</a> </li>
+     <li id="gnb3_1_2"><a href="/menu/10040/program/30006/searchDetail.do">상세검색</a> </li>
+     <li id="gnb3_1_3"><a href="/menu/10041/contents/40019/contents.do">자료검색 도움말</a> </li>
+    </ul> </li>
+   <li id="gnb3_2"><a href="/menu/10042/program/30007/searchKdc.do">주제별검색</a> </li>
+   <li id="gnb3_3"><a href="/menu/10043/program/30008/searchNewList.do">새로들어온책</a> </li>
+   <li id="gnb3_4"><a href="/menu/10044/program/30009/loanBestList.do">대출베스트</a> </li>
+   <li id="gnb3_5"><a href="/menu/10045/program/30010/libraryPopularBookList.do">공공도서관 인기도서</a> </li>
+   <li id="gnb3_6"><a href="/menu/10032/contents/40015/contents.do">전자책서비스</a>
+    <ul class="MkSub">
+     <li id="gnb3_6_1"><a href="/menu/10032/contents/40015/contents.do">전자책</a>
+      <ul class="MkTab">
+       <li id="gnb3_6_1_1"><a href="/menu/10032/contents/40015/contents.do">연천군 전자책도서관</a></li>
+       <li id="gnb3_6_1_2"><a href="/menu/10244/contents/41063/contents.do">어린이 전자책도서관</a></li>
+       <li id="gnb3_6_1_3"><a href="/menu/10033/contents/40030/contents.do">경기도 사이버도서관</a></li>
+      </ul> </li>
+     <li id="gnb3_6_2"><a href="/menu/10034/contents/40016/contents.do">오디오북</a> </li>
+     <li id="gnb3_6_3"><a href="/menu/10035/contents/40017/contents.do">원문DB검색</a> </li>
+    </ul> </li>
+   <li id="gnb3_7"><a href="/menu/10047/contents/40020/contents.do">희망도서신청</a>
+    <ul class="MkTab">
+     <li id="gnb3_7_1"><a href="/menu/10047/contents/40020/contents.do">신청안내</a> </li>
+     <li id="gnb3_7_2"><a href="/menu/10048/program/30011/hopeBookApply.do" target="_self">신청하기</a> </li>
+    </ul> </li>
+  </ul> </li>
+ <li id="gnb4"> <a href="/menu/10050/program/30012/calendar.do"> <em>문화마당</em> </a>
+  <ul>
+   <li id="gnb4_1"><a href="/menu/10050/program/30012/calendar.do">도서관달력</a> </li>
+   <li id="gnb4_2"><a href="/menu/10051/program/30013/lectureList.do">수강신청</a> </li>
+   <li id="gnb4_3"><a href="/menu/10053/contents/40029/contents.do">독서마라톤신청</a>
+    <ul class="MkTab">
+     <li id="gnb4_3_1"><a href="/menu/10053/contents/40029/contents.do">신청안내</a> </li>
+     <li id="gnb4_3_2"><a href="/menu/10054/program/30035/readathonApply.do?applyTypeCd=PERSON">개인신청</a> </li>
+     <li id="gnb4_3_3"><a href="/menu/10055/program/30035/readathonApply.do?applyTypeCd=RELAY">릴레이신청</a> </li>
+     <li id="gnb4_3_4"><a href="/menu/10056/program/30035/readathonApply.do?applyTypeCd=GROUP">단체신청</a> </li>
+    </ul> </li>
+  </ul> </li>
+ <li id="gnb5"> <a href="/menu/10059/bbs/20001/bbsPostList.do"> <em>이용자마당</em> </a>
+  <ul>
+   <li id="gnb5_1"><a href="/menu/10059/bbs/20001/bbsPostList.do">공지사항</a> </li>
+   <li id="gnb5_2"><a href="/menu/10060/bbs/20002/bbsPostList.do">자주하는질문</a> </li>
+   <li id="gnb5_3"><a href="/menu/10061/bbs/20003/bbsPostList.do">Q&amp;A게시판</a> </li>
+   <li id="gnb5_4"><a href="/menu/10200/contents/41001/contents.do">신청서비스</a>
+    <ul class="MkSub">
+     <li id="gnb5_4_1"><a href="/menu/10200/contents/41001/contents.do">시설대관신청</a>
+      <ul class="MkTab">
+       <li id="gnb5_4_1_1"><a href="/menu/10200/contents/41001/contents.do">시설대관정보</a></li>
+       <li id="gnb5_4_1_2"><a href="/menu/10064/contents/40021/contents.do">신청안내</a></li>
+       <li id="gnb5_4_1_3"><a href="/menu/10065/program/30015/rentSpaceCalendar.do">신청하기</a></li>
+      </ul> </li>
+     <li id="gnb5_4_2"><a href="/menu/10067/contents/40022/contents.do">견학신청</a>
+      <ul class="MkTab">
+       <li id="gnb5_4_2_1"><a href="/menu/10067/contents/40022/contents.do">신청안내</a></li>
+       <li id="gnb5_4_2_2"><a href="/menu/10068/program/30016/visitCalendar.do">신청하기</a></li>
+      </ul> </li>
+     <li id="gnb5_4_3"><a href="/menu/10069/contents/40023/contents.do">자원봉사신청 안내</a> </li>
+     <li id="gnb5_4_4"><a href="/menu/10071/contents/40024/contents.do">사물함신청</a>
+      <ul class="MkTab">
+       <li id="gnb5_4_4_1"><a href="/menu/10071/contents/40024/contents.do">사물함정보</a></li>
+       <li id="gnb5_4_4_2"><a href="/menu/10072/contents/40025/contents.do">신청안내</a></li>
+       <li id="gnb5_4_4_3"><a href="/menu/10073/program/30036/lockerList.do">신청하기</a></li>
+      </ul> </li>
+    </ul> </li>
+   <li id="gnb5_5"><a href="/menu/10028/contents/40014/contents.do">책배달서비스</a>
+    <ul class="MkSub">
+     <li id="gnb5_5_1"><a href="/menu/10028/contents/40014/contents.do">내가고른 가가호호</a>
+      <ul class="MkTab">
+       <li id="gnb5_5_1_1"><a href="/menu/10028/contents/40014/contents.do">이용안내</a></li>
+       <li id="gnb5_5_1_2"><a href="/menu/10029/program/30004/gagahohoApply.do">배달 신청하기</a></li>
+       <li id="gnb5_5_1_3"><a href="https://library.yeoncheon.go.kr/menu/10089/program/30004/mypage/gagahohoApplyList.do" target="_self">반납 신청하기</a></li>
+      </ul> </li>
+    </ul> </li>
+   <li id="gnb5_6"><a href="/menu/10074/program/30017/surveyList.do">설문조사</a> </li>
+  </ul> </li>
+ <li id="gnb6"> <a href="/menu/10080/program/30019/mypage/myInfo.do"> <em>내서재</em> </a>
+  <ul>
+   <li id="gnb6_1"><a href="/menu/10080/program/30019/mypage/myInfo.do">기본정보</a> </li>
+   <li id="gnb6_2"><a href="/menu/10082/program/30020/mypage/loanStatusList.do">도서이용정보</a>
+    <ul class="MkTab">
+     <li id="gnb6_2_1"><a href="/menu/10082/program/30020/mypage/loanStatusList.do">대출현황</a> </li>
+     <li id="gnb6_2_2"><a href="/menu/10083/program/30021/mypage/reservationStatusList.do">예약현황</a> </li>
+     <li id="gnb6_2_3"><a href="/menu/10084/program/30022/mypage/loanHistoryList.do">대출이력</a> </li>
+    </ul> </li>
+   <li id="gnb6_3"><a href="/menu/10085/program/30023/mypage/basketList.do">관심자료목록</a> </li>
+   <li id="gnb6_4"><a href="/menu/10087/program/30013/mypage/lectureApplyList.do">나의신청정보</a>
+    <ul class="MkSub">
+     <li id="gnb6_4_1"><a href="/menu/10087/program/30013/mypage/lectureApplyList.do">수강신청조회</a> </li>
+     <li id="gnb6_4_2"><a href="/menu/10088/program/30011/mypage/hopeBookList.do">희망도서신청조회</a> </li>
+     <li id="gnb6_4_3"><a href="/menu/10089/program/30004/mypage/gagahohoApplyList.do">가가호호신청조회</a> </li>
+     <li id="gnb6_4_4"><a href="/menu/10090/program/30015/mypage/rentSpaceApplyList.do">시설대관신청조회</a> </li>
+     <li id="gnb6_4_5"><a href="/menu/10091/program/30016/mypage/visitApplyList.do">견학신청조회</a> </li>
+     <li id="gnb6_4_6"><a href="/menu/10092/program/30035/mypage/readathonApplyList.do">독서마라톤신청조회</a> </li>
+     <li id="gnb6_4_7"><a href="/menu/10093/program/30036/mypage/lockerApplyList.do">사물함신청조회</a> </li>
+    </ul> </li>
+   <li id="gnb6_5"><a href="/menu/10094/program/30024/mypage/myPopularBookList.do">도서추천서비스</a> </li>
+  </ul> </li>
+ <li id="gnb7"> <a href="/menu/10096/program/30025/memberLogin.do"> <em>회원정보</em> </a>
+  <ul>
+   <li id="gnb7_1"><a href="/menu/10096/program/30025/memberLogin.do">로그인</a> </li>
+   <li id="gnb7_2"><a href="/menu/10097/program/30026/memberFindId.do">아이디찾기</a> </li>
+   <li id="gnb7_3"><a href="/menu/10098/program/30027/memberFindPwd.do">비밀번호재설정</a> </li>
+   <li id="gnb7_4"><a href="/menu/10099/program/30028/memberJoinIntro.do">회원가입</a> </li>
+  </ul> </li>
+ <li id="gnb8"> <a href="/menu/10101/program/30029/mypage/memberModifyCheck.do"> <em>회원정보수정</em> </a>
+  <ul>
+   <li id="gnb8_1"><a href="/menu/10101/program/30029/mypage/memberModifyCheck.do">회원정보수정</a> </li>
+   <li id="gnb8_2"><a href="/menu/10102/program/30030/mypage/memberPwdModify.do">비밀번호변경</a> </li>
+   <li id="gnb8_3"><a href="/menu/10103/program/30031/mypage/memberWithdraw.do">회원탈퇴</a> </li>
+  </ul> </li>
+ <li id="gnb9"> <a href="/menu/10105/program/30032/siteMap.do"> <em>홈페이지 이용안내</em> </a>
+  <ul>
+   <li id="gnb9_1"><a href="/menu/10105/program/30032/siteMap.do">사이트맵</a> </li>
+   <li id="gnb9_2"><a href="/menu/10106/contents/40026/contents.do">이용약관</a> </li>
+   <li id="gnb9_3"><a href="/menu/10107/contents/41061/contents.do">개인정보처리방침</a> </li>
+   <li id="gnb9_4"><a href="/menu/10108/contents/40028/contents.do">이메일무단수집거부</a> </li>
+   <li id="gnb9_5"><a href="/menu/10243/contents/41062/contents.do">장서관리정책</a> </li>
+  </ul> </li>
+</ul>
+		<div class="btnTotal"><a href="#view" title="전체메뉴 보기"><span><span class="blind">전체메뉴</span></span></a></div>
+	</nav>
+	<div id="submenuArea">
+		<div id="submenuLink">
+			<p class="catchphrase">주민과 함께 평생학습의<br>전당을 만들어가는<strong>연천군도서관</strong></p>
+		</div>
+	</div>
+
+</header>
+
+	<div id="container" class="main">
+		<section id="section1" class="mainSectionCore">
+			<h2 class="blind">메인 비주얼 영역</h2>
+			<div class="sectionGroup">
+				<div class="slogan">주민과 함께 평생학습의 전당을 만들어가는<strong>연천군도서관</strong></div>
+				<!-- 통합검색 -->
+				
+
+<script>
+	$(function(){
+		//통합검색 인기검색어
+		$(".keywordListWrap").newsTicker({
+			itemHeight: 25,
+			showItems: 1,
+			duration: 4000,
+			prevButton: "#btnDwon",
+			nextButton: "#btnUp"
+		});
+
+		$("#mainSearchKeyword").keypress(function (e){
+			if((e.keyCode || e.which) == 13){
+				fnMainSearch();
+				e.preventDefault();
+			}
+		});
+		$("#mainSearchBtn").click(fnMainSearch);
+	});
+
+	function fnMainSearch() {
+		var form = document.mainSearchForm;
+		if(isEmpty(form.searchKeyword.value)){
+			alert("검색어를 입력하세요.");
+			form.searchKeyword.focus();
+			return false;
+		}
+		form.action="/searchResultList.do";
+		form.submit();
+	}
+
+	function fnMainSearchPopularWord(popularWord){
+		var form = document.mainSearchForm;
+		form.searchKeyword.value = popularWord;
+		form.action="/searchResultList.do";
+		form.submit();
+	}
+</script>
+<dl class="mainSearchWrap">
+	<dt class="title">통합검색</dt>
+	<dd class="mainSearchForm clearfix">
+		<form name="mainSearchForm" id="mainSearchForm" method="post">
+		<input type="hidden" name="searchType" value="SIMPLE">
+		<input type="hidden" name="searchCategory" value="ALL">
+		<input type="hidden" name="searchKey" value="TITLE">
+		<input type="hidden" name="searchLibrary" value="ALL" />
+		<fieldset>
+		<legend class="blind">통합검색 영역</legend>
+		<div class="mainSearchKeyword">
+			<label for="mainSearchKeyword" class="blind">검색어 입력</label>
+			<input type="text" title="검색어 입력" class="form-ele" id="mainSearchKeyword" name="searchKeyword" placeholder="도서명을 입력하세요">
+			<a href="#search" id="mainSearchBtn" title="검색" class="btnSearch">검색</a>
+		</div>
+		<div class="mainDetailSearch">
+			<a href="/searchDetail.do">상세검색</a>
+		</div>
+		<div class="mainBestKeyword mobileHide">
+			<div class="controlArea">
+				<a href="#up" id="btnUp" title="인기검색어 위로 넘기기"><span class="blind">위</span></a>
+				<a href="#dwon" id="btnDwon" title="인기검색어 아래로 넘기기"><span class="blind">아래</span></a>
+			</div>
+			<div class="keywordListWrap">
+				<ol class="keywordList">
+					
+						<li><span>1</span><a href="#search" onclick="javascript:fnMainSearchPopularWord('홍학의 자리'); return false;" title="홍학의 자리">홍학의 자리</a></li>
+					
+						<li><span>2</span><a href="#search" onclick="javascript:fnMainSearchPopularWord('과학'); return false;" title="과학">과학</a></li>
+					
+						<li><span>3</span><a href="#search" onclick="javascript:fnMainSearchPopularWord('오디세이'); return false;" title="오디세이">오디세이</a></li>
+					
+						<li><span>4</span><a href="#search" onclick="javascript:fnMainSearchPopularWord('흔한남매'); return false;" title="흔한남매">흔한남매</a></li>
+					
+						<li><span>5</span><a href="#search" onclick="javascript:fnMainSearchPopularWord('마법천자문'); return false;" title="마법천자문">마법천자문</a></li>
+					
+						<li><span>6</span><a href="#search" onclick="javascript:fnMainSearchPopularWord('혼모노'); return false;" title="혼모노">혼모노</a></li>
+					
+						<li><span>7</span><a href="#search" onclick="javascript:fnMainSearchPopularWord('모순'); return false;" title="모순">모순</a></li>
+					
+						<li><span>8</span><a href="#search" onclick="javascript:fnMainSearchPopularWord('주식'); return false;" title="주식">주식</a></li>
+					
+						<li><span>9</span><a href="#search" onclick="javascript:fnMainSearchPopularWord('코스모스'); return false;" title="코스모스">코스모스</a></li>
+					
+						<li><span>10</span><a href="#search" onclick="javascript:fnMainSearchPopularWord('삼국지'); return false;" title="삼국지">삼국지</a></li>
+					
+				</ol>
+			</div>
+		</div>
+		</fieldset>
+		</form>
+	</dd>
+</dl>
+
+				<!-- //통합검색 -->
+				<div class="sectionContent">
+					<!-- 팝업존 -->
+					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+	$(function(){
+		//팝업존
+		$(".popupList").slider({
+			useArrow : false,
+			resolution : "520x360",
+			setTime : 7000
+		});
+	});
+</script>
+<article class="popupZone public">
+	<h2 class="blind">팝업존</h2>
+	<ul class="popupList thumb">
+		
+			
+				
+					<li><span>
+						
+							
+							
+								
+									
+									
+										<a href="https://library.yeoncheon.go.kr/menu/10051/program/30013/lectureDetail.do?currentPageNo=1&amp;manageCd=ALL&amp;searchStatusCd=&amp;lectureIdx=1276" >
+											<img src="/attachfile/popupzone/3217_1_20260806141918139.jpg" alt="길 위의 인문학 포스터 길 위의 인문학 포스터" onerror="javascript:errorPopupzoneImageFile(this);" class="slide">
+										</a>
+									
+								
+							
+						
+					</span></li>
+				
+					<li><span>
+						
+							
+							
+								
+									
+										<img src="/attachfile/popupzone/3213_1_20260721163130241.jpg" alt="혹서기 폭염 안전사고 예방을 위한 '내가고른 가가호호 책배달 서비스' 임시중단 안내 혹서기 폭염 안전사고 예방을 위한 '내가고른 가가호호 책배달 서비스' 임시중단 안내" onerror="javascript:errorPopupzoneImageFile(this);" class="slide">
+									
+									
+								
+							
+						
+					</span></li>
+				
+					<li><span>
+						
+							
+							
+								
+									
+									
+										<a href="https://library.yeoncheon.go.kr/menu/10051/program/30013/lectureDetail.do?currentPageNo=2&amp;manageCd=ALL&amp;searchStatusCd=&amp;lectureIdx=1261" >
+											<img src="/attachfile/popupzone/3212_1_20260720171006638.jpg" alt="다달이 인문학 8월 다달이 인문학 8월" onerror="javascript:errorPopupzoneImageFile(this);" class="slide">
+										</a>
+									
+								
+							
+						
+					</span></li>
+				
+					<li><span>
+						
+							
+							
+								
+									
+									
+										<a href="#none" >
+											<img src="/attachfile/popupzone/3208_1_20260713174957147.png" alt="경계의 생태인문학 7-경계그림책 경계의 생태인문학 7-경계그림책" onerror="javascript:errorPopupzoneImageFile(this);" class="slide">
+										</a>
+									
+								
+							
+						
+					</span></li>
+				
+					<li><span>
+						
+							
+							
+								
+									
+										<img src="/attachfile/popupzone/3196_1_20260610111730043.jpg" alt="아동,청소년 가족사랑 독서감상문 대회 : 2026.06.10. ~ 2026.10.23. 아동,청소년 가족사랑 독서감상문 대회 : 2026.06.10. ~ 2026.10.23." onerror="javascript:errorPopupzoneImageFile(this);" class="slide">
+									
+									
+								
+							
+						
+					</span></li>
+				
+					<li><span>
+						
+							
+							
+								
+									
+										<img src="/attachfile/popupzone/3195_1_20260610111708432.jpg" alt="전국 청소년 독서감상문 발표 대회 : 2026.06.10. ~ 2026.10.02. 전국 청소년 독서감상문 발표 대회 : 2026.06.10. ~ 2026.10.02." onerror="javascript:errorPopupzoneImageFile(this);" class="slide">
+									
+									
+								
+							
+						
+					</span></li>
+				
+					<li><span>
+						
+							
+							
+								
+									
+										<img src="/attachfile/popupzone/3194_1_20260610111645102.jpg" alt="전국고전읽기 백일장대회 : 2026.06.10. ~ 2026.09.28. 전국고전읽기 백일장대회 : 2026.06.10. ~ 2026.09.28." onerror="javascript:errorPopupzoneImageFile(this);" class="slide">
+									
+									
+								
+							
+						
+					</span></li>
+				
+					<li><span>
+						
+							
+							
+								
+									
+									
+										<a href="https://library.yeoncheon.go.kr/menu/10053/contents/40029/contents.do" >
+											<img src="/attachfile/popupzone/3143_1_20260319142018551.jpg" alt="2026 연천군 독서마라톤 안내 2026 연천군 독서마라톤
+신청기간: 2026. 3. 12. ~ 11. 30.
+신청대상: 초등학생 이상 연천군 도서관 회원
+신청방법: 온라인 신청(library.yeoncheon.go.kr)
+문의처: 031.839.4411." onerror="javascript:errorPopupzoneImageFile(this);" class="slide">
+										</a>
+									
+								
+							
+						
+					</span></li>
+				
+			
+			
+		
+	</ul>
+	<div class="controlGroup">
+		<div class="pagerWrap"></div>
+		<div class="pp-controls"></div>
+	</div>
+</article>
+
+					<!-- //팝업존 -->
+
+					<!-- 공지사항 -->
+					
+
+
+<article class="noticeArticle mobileHide">
+	<h3 class="title">공지사항</h3>
+	<ul class="articleList">
+		
+			
+				
+					
+						
+							<li class="top">
+								<img src="/include/image/main/img_notice.png" alt="" class="themeColor">
+								<p><a href="/20001/bbsPostDetail.do?postIdx=4664">혹서기 폭염 안전사고 예방을 위한 &#039;내가고른 가가호호 책배달 서비스&#039; 임시중단 안내</a></p>
+								<span class="date">07.21</span>
+							</li>
+						
+						
+					
+				
+					
+						
+						
+							<li>
+								<span class="lib commonFC">[공통]</span>
+								<a href="/20001/bbsPostDetail.do?postIdx=4659">2026년 &#039;한 도시 한 책&#039; 읽기 선정도서 안내</a>
+								<span class="date">06.22</span>
+							</li>
+						
+					
+				
+					
+						
+						
+							<li>
+								<span class="lib commonFC">[공통]</span>
+								<a href="/20001/bbsPostDetail.do?postIdx=4654">내가고른 가가호호 책배달서비스 운영 안내</a>
+								<span class="date">06.18</span>
+							</li>
+						
+					
+				
+					
+						
+						
+							<li>
+								<span class="lib commonFC">[공통]</span>
+								<a href="/20001/bbsPostDetail.do?postIdx=4644">내가고른 가가호호 책배달 서비스 배송 지연 안내</a>
+								<span class="date">05.26</span>
+							</li>
+						
+					
+				
+					
+						
+						
+							<li>
+								<span class="lib commonFC">[공통]</span>
+								<a href="/20001/bbsPostDetail.do?postIdx=4640">2026 대한민국 독서대전 &#039;춘천 산책 독서마라톤&#039; 행사 홍보</a>
+								<span class="date">05.12</span>
+							</li>
+						
+					
+				
+					
+						
+						
+							<li>
+								<span class="lib commonFC">[공통]</span>
+								<a href="/20001/bbsPostDetail.do?postIdx=4628">2026년 제13회 연천군 독서마라톤 대회 안내</a>
+								<span class="date">03.12</span>
+							</li>
+						
+					
+				
+			
+			
+		
+	</ul>
+	<a href="/20001/bbsPostList.do" title="공지사항 더보기" class="more"><span class="blind">더보기</span></a>
+</article>
+
+
+					<!-- //공지사항 -->
+
+					<!-- 도서관일정 -->
+					<script>
+						function fnCalendarSearchMonth(searchMonth) {
+							$("#calendarWrap").load("/main/include/calendar.do", {manageCd : $("#manageCd").val(), searchMonth : searchMonth});
+						}
+					</script>
+					<div id="calendarWrap" class="schedule mobileHide">
+						
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h3 class="title">도서관일정</h3>
+<select name="manageCd" id="manageCd" title="도서관 선택" onchange="javascript:fnCalendarSearchMonth('2026-08');">
+	
+		
+			<option value="MA" selected="selected">중앙</option>
+		
+	
+		
+			<option value="BR" >연천</option>
+		
+	
+		
+			<option value="ME" >청산</option>
+		
+	
+		
+			<option value="MD" >학마을</option>
+		
+	
+		
+			<option value="MF" >무등실</option>
+		
+	
+		
+			<option value="MG" >신서</option>
+		
+	
+</select>
+<div class="cont">
+	<div class="guide">
+		
+		<a href="#prev" onclick="fnCalendarSearchMonth('2026-07');" class="arrow prev"><span class="blind">이전 달 바로가기</span></a>
+		<a href="#next" onclick="fnCalendarSearchMonth('2026-09');" class="arrow next"><span class="blind">다음 달 바로가기</span></a>
+		<p class="year">2026. <span>08</span></p>
+	</div>
+	<div class="calendar">
+		<table>
+			<caption>전체휴관일 및 자료실휴관일 안내 일정표</caption>
+			<thead>
+				<tr>
+					<th scope="col" class="sun">일</th>
+					<th scope="col">월</th>
+					<th scope="col">화</th>
+					<th scope="col">수</th>
+					<th scope="col">목</th>
+					<th scope="col">금</th>
+					<th scope="col" class="sat">토</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					
+					
+					
+						<td><div></div></td>
+						
+					
+						<td><div></div></td>
+						
+					
+						<td><div></div></td>
+						
+					
+						<td><div></div></td>
+						
+					
+						<td><div></div></td>
+						
+					
+						<td><div></div></td>
+						
+					
+					
+					
+						
+						
+						
+						
+							
+							
+							
+						
+						<td class="sat">
+							
+								
+								
+								
+								1
+							
+						</td>
+						
+							</tr>
+							<tr>
+						
+						
+					
+						
+						
+						
+						
+							
+							
+							
+						
+						<td class="sun">
+							
+								
+								
+								
+								2
+							
+						</td>
+						
+						
+					
+						
+						
+						
+						
+							
+							
+							
+						
+						<td class="">
+							
+								
+								
+								
+								3
+							
+						</td>
+						
+						
+					
+						
+						
+						
+						
+							
+							
+							
+						
+						<td class="">
+							
+								
+								
+								<div><a href="/calendar.do?searchMonth=2026-08&searchYmd=2026-08-04&manageCd=MA" class="event" title="길 위의 인문학(1회)">4</a></div>
+								
+							
+						</td>
+						
+						
+					
+						
+						
+						
+						
+							
+							
+							
+						
+						<td class="">
+							
+								
+								
+								
+								5
+							
+						</td>
+						
+						
+					
+						
+						
+						
+						
+							
+							
+							
+						
+						<td class="">
+							
+								
+								
+								
+								6
+							
+						</td>
+						
+						
+					
+						
+						
+						
+						
+							
+							
+							
+						
+						<td class="">
+							
+								
+								
+								
+								7
+							
+						</td>
+						
+						
+					
+						
+						
+						
+						
+							
+							
+							
+						
+						<td class="sat">
+							
+								
+								
+								
+								8
+							
+						</td>
+						
+							</tr>
+							<tr>
+						
+						
+					
+						
+						
+						
+						
+							
+							
+							
+						
+						<td class="sun">
+							
+								
+								
+								
+								9
+							
+						</td>
+						
+						
+					
+						
+						
+						
+						
+							
+							
+							
+						
+						<td class="">
+							
+								
+								
+								
+								10
+							
+						</td>
+						
+						
+					
+						
+						
+						
+						
+							
+							
+							
+						
+						<td class="">
+							
+								
+								
+								<div><a href="/calendar.do?searchMonth=2026-08&searchYmd=2026-08-11&manageCd=MA" class="event" title="길 위의 인문학(2회)">11</a></div>
+								
+							
+						</td>
+						
+						
+					
+						
+						
+						
+						
+							
+							
+							
+						
+						<td class="">
+							
+								
+								
+								
+								12
+							
+						</td>
+						
+						
+					
+						
+						
+						
+						
+							
+							
+							
+						
+						<td class="">
+							
+								
+								
+								
+								13
+							
+						</td>
+						
+						
+					
+						
+						
+						
+						
+							
+							
+							
+						
+						<td class="">
+							
+								
+								
+								
+								14
+							
+						</td>
+						
+						
+					
+						
+						
+						
+						
+							
+							
+							
+						
+						<td class="sat">
+							
+								<div><a href="/calendar.do?searchMonth=2026-08&searchYmd=2026-08-15&manageCd=MA" class="all" title="광복절">15</a></div>
+								
+								
+								
+							
+						</td>
+						
+							</tr>
+							<tr>
+						
+						
+					
+						
+						
+						
+						
+							
+							
+							
+						
+						<td class="sun">
+							
+								
+								
+								
+								16
+							
+						</td>
+						
+						
+					
+						
+						
+						
+						
+							
+							
+							
+						
+						<td class="">
+							
+								<div><a href="/calendar.do?searchMonth=2026-08&searchYmd=2026-08-17&manageCd=MA" class="all" title="대체공휴일">17</a></div>
+								
+								
+								
+							
+						</td>
+						
+						
+					
+						
+						
+						
+						
+							
+							
+							
+						
+						<td class="">
+							
+								
+								
+								<div><a href="/calendar.do?searchMonth=2026-08&searchYmd=2026-08-18&manageCd=MA" class="event" title="길 위의 인문학(3회)">18</a></div>
+								
+							
+						</td>
+						
+						
+					
+						
+						
+						
+						
+							
+							
+							
+						
+						<td class="">
+							
+								
+								
+								
+								19
+							
+						</td>
+						
+						
+					
+						
+						
+						
+						
+							
+							
+							
+						
+						<td class="">
+							
+								
+								
+								
+								20
+							
+						</td>
+						
+						
+					
+						
+						
+						
+						
+							
+							
+							
+						
+						<td class="">
+							
+								
+								
+								
+								21
+							
+						</td>
+						
+						
+					
+						
+						
+						
+						
+							
+							
+							
+						
+						<td class="sat">
+							
+								
+								
+								<div><a href="/calendar.do?searchMonth=2026-08&searchYmd=2026-08-22&manageCd=MA" class="event" title="다달이 인문학">22</a></div>
+								
+							
+						</td>
+						
+							</tr>
+							<tr>
+						
+						
+					
+						
+						
+						
+						
+							
+							
+							
+						
+						<td class="sun">
+							
+								
+								
+								
+								23
+							
+						</td>
+						
+						
+					
+						
+						
+						
+						
+							
+							
+							
+						
+						<td class="">
+							
+								
+								
+								
+								24
+							
+						</td>
+						
+						
+					
+						
+						
+						
+						
+							
+							
+							
+						
+						<td class="">
+							
+								
+								
+								<div><a href="/calendar.do?searchMonth=2026-08&searchYmd=2026-08-25&manageCd=MA" class="event" title="길 위의 인문학(4회)">25</a></div>
+								
+							
+						</td>
+						
+						
+					
+						
+						
+						
+						
+							
+							
+							
+						
+						<td class="">
+							
+								
+								
+								
+								26
+							
+						</td>
+						
+						
+					
+						
+						
+						
+						
+							
+							
+							
+						
+						<td class="">
+							
+								
+								
+								
+								27
+							
+						</td>
+						
+						
+					
+						
+						
+						
+						
+							
+							
+							
+						
+						<td class="">
+							
+								
+								
+								
+								28
+							
+						</td>
+						
+						
+					
+						
+						
+						
+						
+							
+							
+							
+						
+						<td class="sat">
+							
+								
+								
+								
+								29
+							
+						</td>
+						
+							</tr>
+							<tr>
+						
+						
+					
+						
+						
+						
+						
+							
+							
+							
+						
+						<td class="sun">
+							
+								
+								
+								
+								30
+							
+						</td>
+						
+						
+					
+						
+						
+						
+						
+							
+							
+							
+						
+						<td class="">
+							
+								
+								
+								
+								31
+							
+						</td>
+						
+						
+					
+					
+						
+							<td><div></div></td>
+						
+							<td><div></div></td>
+						
+							<td><div></div></td>
+						
+							<td><div></div></td>
+						
+							<td><div></div></td>
+						
+					
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="guide_info">
+		<ul>
+			<li><i class="all"><span class="blind">원형 아이콘</span></i> 휴관일</li>
+			<li><i class="holiday"><span class="blind">사각형 아이콘</span></i> 부분휴실</li>
+			<li><i class="event"><span class="blind">사각형 아이콘</span></i> 행사일</li>
+		</ul>
+	</div>
+</div>
+<a href="/calendar.do?searchMonth=2026-08&manageCd=MA" title="도서관일정 더보기" class="more"><span class="blind">더보기</span></a>
+
+					</div>
+					<!-- //도서관일정 -->
+				</div>
+				<p class="main_scroll"><img src="/include/image/main/ico_scroll.png" alt="스크롤 하세요"></p>
+			</div>
+		</section>
+
+		<section id="section2" class="serviceGroup">
+			<h2 class="blind">한눈에보는 도서관서비스</h2>
+			<div class="sectionGroup">
+				<!-- 한눈에 보는 도서관서비스 -->
+				<dl class="serviceTitle mobileHide">
+					<dt>한눈에보는 도서관서비스</dt>
+					<dd>연천군도서관의 다양한 서비스를 이용해보세요</dd>
+				</dl>
+				<!-- 나만의 도서관 -->
+				
+
+<article class="myLib">
+	<h3 class="tit">나만의 도서관</h3>
+	<p class="txt mobileHide">도서관 이용내역을 손쉽게 확인하세요</p>
+	<ul class="mylibList clearfix">
+		<li class="svc1">
+			<a href="/loanStatusList.do" title="대출현황">
+				<dl>
+					<dt></dt>
+					<dd>대출현황</dd>
+				</dl>
+			</a>
+		</li>
+		<li class="svc2">
+			<a href="/reservationStatusList.do" title="예약현황">
+				<dl>
+					<dt></dt>
+					<dd>예약현황</dd>
+				</dl>
+			</a>
+		</li>
+		<li class="svc3">
+			<a href="/hopeBookList.do" title="희망도서신청조회">
+				<dl>
+					<dt></dt>
+					<dd>희망도서<br>신청조회</dd>
+				</dl>
+			</a>
+		</li>
+		<li class="svc4">
+			<a href="/lectureApplyList.do" title="수강신청조회">
+				<dl>
+					<dt></dt>
+					<dd>수강신청조회</dd>
+				</dl>
+			</a>
+		</li>
+		<li class="svc5">
+			<a href="/rentSpaceApplyList.do" title="대관신청조회">
+				<dl>
+					<dt></dt>
+					<dd>대관신청조회</dd>
+				</dl>
+			</a>
+		</li>
+		<li class="svc6">
+			<a href="/visitApplyList.do" title="견학신청조회">
+				<dl>
+					<dt></dt>
+					<dd>견학신청조회</dd>
+				</dl>
+			</a>
+		</li>
+	</ul>
+</article>
+				<!-- //나만의 도서관 -->
+
+				<div class="linkGroup">
+					<!-- 도서관 신청서비스 -->
+					
+
+<article class="applyService">
+	<h3 class="tit">도서관 신청서비스</h3>
+	<p class="txt">이용자 참여서비스입니다</p>
+	<ul class="clearfix">
+		<li><a href="/40020/contents.do" title="희망도서신청">희망도서신청</a></li>
+		<li><a href="/40014/contents.do" title="가가호호책배달신청">가가호호책배달신청</a></li>
+		<li><a href="/lectureList.do" title="수강신청">수강신청</a></li>
+		<li><a href="/40021/contents.do" title="시설대관신청">시설대관신청</a></li>
+		<li><a href="/40022/contents.do" title="견학신청">견학신청</a></li>
+		<li><a href="/40023/contents.do" title="자원봉사신청">자원봉사신청</a></li>
+		<li><a href="/40024/contents.do" title="사물함신청">사물함신청</a></li>
+	</ul>
+</article>
+
+<article class="serviceInfo">
+	<h3 class="tit">도서관 서비스</h3>
+	<ul class="serviceList clearfix">
+		<li class="svc1">
+			<a href="/menu/10032/contents/40015/contents.do" title="전자책(e-Book)">
+				<dl>
+					<dt></dt>
+					<dd>전자책(e-Book)</dd>
+				</dl>
+			</a>
+		</li>
+		<li class="svc1">
+			<a href="/menu/10244/contents/41063/contents.do" title="어린이 전자책">
+				<dl>
+					<dt></dt>
+					<dd>어린이 전자책</dd>
+				</dl>
+			</a>
+		</li>
+		<li class="svc2">
+			<a href="/40018/contents.do" title="멀티미디어실 예약/확인">
+				<dl>
+					<dt></dt>
+					<dd>멀티미디어실 좌석현황</dd>
+				</dl>
+			</a>
+		</li>
+		<!-- <li class="svc3">
+			<a href="/surveyList.do" title="설문조사">
+				<dl>
+					<dt></dt>
+					<dd>설문조사</dd>
+				</dl>
+			</a>
+		</li> -->
+	</ul>
+</article>
+
+<article class="linkService">
+	<h3 class="blind">도서관소개</h3>
+	<ul class="clearfix">
+		<li>
+			<a href="/40003/contents.do" title="도서관현황">
+				<dl>
+					<dt><img src="/include/image/main/ico_linkSer_1.png" alt="도서관현황"></dt>
+					<dd>도서관현황</dd>
+				</dl>
+			</a>
+		</li>
+		<li>
+			<a href="/40008/contents.do" title="도서관이용안내">
+				<dl>
+					<dt><img src="/include/image/main/ico_linkSer_2.png" alt="도서관이용안내"></dt>
+					<dd>도서관이용안내</dd>
+				</dl>
+			</a>
+		</li>
+		<li>
+			<a href="/location.do" title="오시는길">
+				<dl>
+					<dt><img src="/include/image/main/ico_linkSer_3.png" alt="오시는길"></dt>
+					<dd>오시는길</dd>
+				</dl>
+			</a>
+		</li>
+	</ul>
+</article>
+					<!-- //도서관 신청서비스 -->
+				</div>
+			</div>
+		</section>
+		<section id="section3" class="classGroup">
+			<h2 class="blind">수강신청안내</h2>
+			<div class="sectionGroup">
+				<!-- 수강신청안내 -->
+				
+
+
+
+<dl class="classTitle">
+	<dt>수강신청안내</dt>
+	<dd>연천군도서관의 다양한 서비스를 이용해보세요</dd>
+</dl>
+<!-- 수강신청 PC용-->
+<div class="service-inner mobileHide">
+	<div class="swiper-service swiper-container">
+		<div class="swiper-wrapper">
+			<div class="swiper-slide slide-panel01">
+				<ul class="classList clearfix">
+					
+						
+							<li>
+								<i class="lib MA">중앙</i>
+								
+									
+										
+										<i class="lib tB01"><span>접수중</span></i>
+										
+										
+										
+									
+								
+								<a href="/lectureDetail.do?lectureIdx=1277">
+									<dl>
+										<dt>독서토론 길잡이 첫걸음 교실</dt>
+										<dd><span>대상 :</span> 성인 일반</dd>
+										<dd class="edu_date">
+											
+											2026.08.13
+											~
+											
+											2026.08.27
+										</dd>
+										<dd>목요일</dd>
+									</dl>
+								</a>
+							</li>
+							
+						
+							<li>
+								<i class="lib MA">중앙</i>
+								
+									
+										
+										
+										<i class="lib tB01"><span>대기접수</span></i>
+										
+										
+									
+								
+								<a href="/lectureDetail.do?lectureIdx=1276">
+									<dl>
+										<dt>길 위의 인문학 : 그림책으로 떠나는 세계 여행</dt>
+										<dd><span>대상 :</span> 성인 일반</dd>
+										<dd class="edu_date">
+											
+											2026.08.04
+											~
+											
+											2026.11.03
+										</dd>
+										<dd>화요일</dd>
+									</dl>
+								</a>
+							</li>
+							
+						
+							<li>
+								<i class="lib MA">중앙</i>
+								
+									
+										
+										
+										
+										
+										<i class="lib tB03"><span>종료</span></i>
+									
+								
+								<a href="/lectureDetail.do?lectureIdx=1275">
+									<dl>
+										<dt>[폐강] 여름방학 특강 : 책 읽고 톡(Talk) 터지는 여름 방학</dt>
+										<dd><span>대상 :</span> 청소년과 보호자</dd>
+										<dd class="edu_date">
+											
+											2026.07.27
+											~
+											
+											2026.08.12
+										</dd>
+										<dd>월요일, 수요일</dd>
+									</dl>
+								</a>
+							</li>
+							
+						
+							<li>
+								<i class="lib MA">중앙</i>
+								
+									
+										
+										
+										
+										
+										<i class="lib tB03"><span>종료</span></i>
+									
+								
+								<a href="/lectureDetail.do?lectureIdx=1274">
+									<dl>
+										<dt>여름방학 특강 : 내 맘대로 주제 일기 쓰기(고학년)</dt>
+										<dd><span>대상 :</span> 초등4~6</dd>
+										<dd class="edu_date">
+											
+											2026.08.03
+											~
+											
+											2026.08.08
+										</dd>
+										<dd>월, 화, 목, 토</dd>
+									</dl>
+								</a>
+							</li>
+							
+						
+							<li>
+								<i class="lib MA">중앙</i>
+								
+									
+										
+										
+										
+										
+										<i class="lib tB03"><span>종료</span></i>
+									
+								
+								<a href="/lectureDetail.do?lectureIdx=1273">
+									<dl>
+										<dt>[폐강] 여름방학 특강 : 내 맘대로 주제 일기 쓰기(저학년)</dt>
+										<dd><span>대상 :</span> 초등1~3</dd>
+										<dd class="edu_date">
+											
+											2026.07.27
+											~
+											
+											2026.08.01
+										</dd>
+										<dd>월, 화, 목, 토</dd>
+									</dl>
+								</a>
+							</li>
+							
+						
+							<li>
+								<i class="lib MA">중앙</i>
+								
+									
+										
+										
+										
+										
+										<i class="lib tB03"><span>종료</span></i>
+									
+								
+								<a href="/lectureDetail.do?lectureIdx=1272">
+									<dl>
+										<dt>[어린이 독서코칭 - 8세] 학교 가는 책 친구, 도서관에서 레벨 업!</dt>
+										<dd><span>대상 :</span> 8세(초등 1학년)</dd>
+										<dd class="edu_date">
+											
+											2026.08.03
+											~
+											
+											2026.08.12
+										</dd>
+										<dd>월요일, 수요일</dd>
+									</dl>
+								</a>
+							</li>
+							
+						
+							<li>
+								<i class="lib BR">연천</i>
+								
+									
+										
+										
+										
+										
+										<i class="lib tB03"><span>종료</span></i>
+									
+								
+								<a href="/lectureDetail.do?lectureIdx=1271">
+									<dl>
+										<dt>[어린이 독서코칭 - 7세] 말놀이 숲에서 책이랑 쑥쑥!</dt>
+										<dd><span>대상 :</span> 7세 어린이</dd>
+										<dd class="edu_date">
+											
+											2026.07.29
+											~
+											
+											2026.08.07
+										</dd>
+										<dd>수요일, 금요일</dd>
+									</dl>
+								</a>
+							</li>
+							
+						
+							<li>
+								<i class="lib MA">중앙</i>
+								
+									
+										
+										
+										
+										
+										<i class="lib tB03"><span>종료</span></i>
+									
+								
+								<a href="/lectureDetail.do?lectureIdx=1270">
+									<dl>
+										<dt>2026년 여름독서교실: 시니어 그림책 읽기 심화 과정</dt>
+										<dd><span>대상 :</span> 성인 일반</dd>
+										<dd class="edu_date">
+											
+											2026.07.29
+											~
+											
+											2026.08.19
+										</dd>
+										<dd>수요일</dd>
+									</dl>
+								</a>
+							</li>
+							
+								</ul>
+							</div>
+							<div class="swiper-slide slide-panel02">
+								<ul class="classList clearfix">
+							
+						
+							<li>
+								<i class="lib BR">연천</i>
+								
+									
+										
+										
+										
+										
+										<i class="lib tB03"><span>종료</span></i>
+									
+								
+								<a href="/lectureDetail.do?lectureIdx=1269">
+									<dl>
+										<dt>2026년 여름독서교실: GO 보드게임 GO</dt>
+										<dd><span>대상 :</span> 유아(6~7세)</dd>
+										<dd class="edu_date">
+											
+											2026.07.25
+											~
+											
+											2026.08.22
+										</dd>
+										<dd>토요일</dd>
+									</dl>
+								</a>
+							</li>
+							
+						
+							<li>
+								<i class="lib BR">연천</i>
+								
+									
+										
+										
+										
+										
+										<i class="lib tB03"><span>종료</span></i>
+									
+								
+								<a href="/lectureDetail.do?lectureIdx=1268">
+									<dl>
+										<dt>2026년 여름독서교실: 생각이 쑥쑥! 지혜가 솔솔! 창의 한자 놀이!</dt>
+										<dd><span>대상 :</span> 초등학생</dd>
+										<dd class="edu_date">
+											
+											2026.07.25
+											~
+											
+											2026.08.22
+										</dd>
+										<dd>토요일</dd>
+									</dl>
+								</a>
+							</li>
+							
+						
+							<li>
+								<i class="lib MA">중앙</i>
+								
+									
+										
+										
+										
+										
+										<i class="lib tB03"><span>종료</span></i>
+									
+								
+								<a href="/lectureDetail.do?lectureIdx=1267">
+									<dl>
+										<dt>2026년 여름독서교실: 보드게임</dt>
+										<dd><span>대상 :</span> 초등학생</dd>
+										<dd class="edu_date">
+											
+											2026.07.25
+											~
+											
+											2026.08.22
+										</dd>
+										<dd>토요일</dd>
+									</dl>
+								</a>
+							</li>
+							
+						
+							<li>
+								<i class="lib MA">중앙</i>
+								
+									
+										
+										
+										
+										
+										<i class="lib tB03"><span>종료</span></i>
+									
+								
+								<a href="/lectureDetail.do?lectureIdx=1266">
+									<dl>
+										<dt>2026년 여름독서교실: 명화로 보는 화가 이야기</dt>
+										<dd><span>대상 :</span> 초등(3~6)</dd>
+										<dd class="edu_date">
+											
+											2026.07.25
+											~
+											
+											2026.08.22
+										</dd>
+										<dd>토요일</dd>
+									</dl>
+								</a>
+							</li>
+							
+						
+							<li>
+								<i class="lib BR">연천</i>
+								
+									
+										
+										
+										
+										
+										<i class="lib tB03"><span>종료</span></i>
+									
+								
+								<a href="/lectureDetail.do?lectureIdx=1265">
+									<dl>
+										<dt>[독서] 게릴라 버스킹 : 마술공연</dt>
+										<dd><span>대상 :</span> 연천군민</dd>
+										<dd class="edu_date">
+											
+											2026.07.25
+											~
+											
+											2026.07.25
+										</dd>
+										<dd>토요일</dd>
+									</dl>
+								</a>
+							</li>
+							
+						
+							<li>
+								<i class="lib small">청산</i>
+								
+									
+										
+										
+										
+										
+										<i class="lib tB03"><span>종료</span></i>
+									
+								
+								<a href="/lectureDetail.do?lectureIdx=1264">
+									<dl>
+										<dt>청산작은도서관 독서문화프로그램 : 일상을 드로잉하는 어반스케치</dt>
+										<dd><span>대상 :</span> 성인 일반</dd>
+										<dd class="edu_date">
+											
+											2026.07.04
+											~
+											
+											2026.08.29
+										</dd>
+										<dd>토</dd>
+									</dl>
+								</a>
+							</li>
+							
+						
+							<li>
+								<i class="lib small">무등실</i>
+								
+									
+										
+										
+										
+										
+										<i class="lib tB03"><span>종료</span></i>
+									
+								
+								<a href="/lectureDetail.do?lectureIdx=1263">
+									<dl>
+										<dt>[폐강]무등실작은도서관 독서문화프로그램 : 이야기 속담 그림책</dt>
+										<dd><span>대상 :</span> 초등학생 저학년</dd>
+										<dd class="edu_date">
+											
+											2026.07.04
+											~
+											
+											2026.08.29
+										</dd>
+										<dd>토</dd>
+									</dl>
+								</a>
+							</li>
+							
+						
+							<li>
+								<i class="lib MA">중앙</i>
+								
+									
+										<i class="lib tB00"><span>접수예정</span></i>
+										
+										
+										
+										
+									
+								
+								<a href="/lectureDetail.do?lectureIdx=1262">
+									<dl>
+										<dt>다달이 인문학 : 9월 「행동력 수업 - 관망자가 아닌 실천가가 되는 법」</dt>
+										<dd><span>대상 :</span> 성인 일반</dd>
+										<dd class="edu_date">
+											
+											2026.09.19
+											~
+											
+											2026.09.19
+										</dd>
+										<dd>토요일</dd>
+									</dl>
+								</a>
+							</li>
+							
+						
+					
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="paginationWrap">
+		<div class="swiper-pagination service-pagination"></div>
+		<a href="#play" title="재생" class="button-play service-play" style="display:none;"><span class="blind">재생</span></a>
+		<a href="#stop" title="정지" class="button-stop service-stop"><span class="blind">정지</span></a>
+	</div>
+</div>
+<!-- //수강신청 PC용 -->
+
+<!-- 수강신청 모바일용-->
+<div class="service-inner mobileShow">
+	<div class="swiper-Mservice swiper-container">
+		<div class="swiper-wrapper">
+			
+				
+					<div class="swiper-slide">
+						<i class="lib MA">중앙</i>
+						
+							
+								
+								<i class="lib tB01"><span>접수중</span></i>
+								
+								
+								
+							
+						
+						<a href="/lectureDetail.do?lectureIdx=1277">
+							<dl>
+								<dt>독서토론 길잡이 첫걸음 교실</dt>
+								<dd><span>대상 :</span> 성인 일반</dd>
+								<dd class="edu_date">
+									
+									2026.08.13
+									~
+									
+									2026.08.27
+								</dd>
+								<dd>목요일</dd>
+							</dl>
+						</a>
+					</div>
+				
+					<div class="swiper-slide">
+						<i class="lib MA">중앙</i>
+						
+							
+								
+								
+								<i class="lib tB01"><span>대기접수</span></i>
+								
+								
+							
+						
+						<a href="/lectureDetail.do?lectureIdx=1276">
+							<dl>
+								<dt>길 위의 인문학 : 그림책으로 떠나는 세계 여행</dt>
+								<dd><span>대상 :</span> 성인 일반</dd>
+								<dd class="edu_date">
+									
+									2026.08.04
+									~
+									
+									2026.11.03
+								</dd>
+								<dd>화요일</dd>
+							</dl>
+						</a>
+					</div>
+				
+					<div class="swiper-slide">
+						<i class="lib MA">중앙</i>
+						
+							
+								
+								
+								
+								
+								<i class="lib tB03"><span>종료</span></i>
+							
+						
+						<a href="/lectureDetail.do?lectureIdx=1275">
+							<dl>
+								<dt>[폐강] 여름방학 특강 : 책 읽고 톡(Talk) 터지는 여름 방학</dt>
+								<dd><span>대상 :</span> 청소년과 보호자</dd>
+								<dd class="edu_date">
+									
+									2026.07.27
+									~
+									
+									2026.08.12
+								</dd>
+								<dd>월요일, 수요일</dd>
+							</dl>
+						</a>
+					</div>
+				
+					<div class="swiper-slide">
+						<i class="lib MA">중앙</i>
+						
+							
+								
+								
+								
+								
+								<i class="lib tB03"><span>종료</span></i>
+							
+						
+						<a href="/lectureDetail.do?lectureIdx=1274">
+							<dl>
+								<dt>여름방학 특강 : 내 맘대로 주제 일기 쓰기(고학년)</dt>
+								<dd><span>대상 :</span> 초등4~6</dd>
+								<dd class="edu_date">
+									
+									2026.08.03
+									~
+									
+									2026.08.08
+								</dd>
+								<dd>월, 화, 목, 토</dd>
+							</dl>
+						</a>
+					</div>
+				
+					<div class="swiper-slide">
+						<i class="lib MA">중앙</i>
+						
+							
+								
+								
+								
+								
+								<i class="lib tB03"><span>종료</span></i>
+							
+						
+						<a href="/lectureDetail.do?lectureIdx=1273">
+							<dl>
+								<dt>[폐강] 여름방학 특강 : 내 맘대로 주제 일기 쓰기(저학년)</dt>
+								<dd><span>대상 :</span> 초등1~3</dd>
+								<dd class="edu_date">
+									
+									2026.07.27
+									~
+									
+									2026.08.01
+								</dd>
+								<dd>월, 화, 목, 토</dd>
+							</dl>
+						</a>
+					</div>
+				
+					<div class="swiper-slide">
+						<i class="lib MA">중앙</i>
+						
+							
+								
+								
+								
+								
+								<i class="lib tB03"><span>종료</span></i>
+							
+						
+						<a href="/lectureDetail.do?lectureIdx=1272">
+							<dl>
+								<dt>[어린이 독서코칭 - 8세] 학교 가는 책 친구, 도서관에서 레벨 업!</dt>
+								<dd><span>대상 :</span> 8세(초등 1학년)</dd>
+								<dd class="edu_date">
+									
+									2026.08.03
+									~
+									
+									2026.08.12
+								</dd>
+								<dd>월요일, 수요일</dd>
+							</dl>
+						</a>
+					</div>
+				
+					<div class="swiper-slide">
+						<i class="lib BR">연천</i>
+						
+							
+								
+								
+								
+								
+								<i class="lib tB03"><span>종료</span></i>
+							
+						
+						<a href="/lectureDetail.do?lectureIdx=1271">
+							<dl>
+								<dt>[어린이 독서코칭 - 7세] 말놀이 숲에서 책이랑 쑥쑥!</dt>
+								<dd><span>대상 :</span> 7세 어린이</dd>
+								<dd class="edu_date">
+									
+									2026.07.29
+									~
+									
+									2026.08.07
+								</dd>
+								<dd>수요일, 금요일</dd>
+							</dl>
+						</a>
+					</div>
+				
+					<div class="swiper-slide">
+						<i class="lib MA">중앙</i>
+						
+							
+								
+								
+								
+								
+								<i class="lib tB03"><span>종료</span></i>
+							
+						
+						<a href="/lectureDetail.do?lectureIdx=1270">
+							<dl>
+								<dt>2026년 여름독서교실: 시니어 그림책 읽기 심화 과정</dt>
+								<dd><span>대상 :</span> 성인 일반</dd>
+								<dd class="edu_date">
+									
+									2026.07.29
+									~
+									
+									2026.08.19
+								</dd>
+								<dd>수요일</dd>
+							</dl>
+						</a>
+					</div>
+				
+					<div class="swiper-slide">
+						<i class="lib BR">연천</i>
+						
+							
+								
+								
+								
+								
+								<i class="lib tB03"><span>종료</span></i>
+							
+						
+						<a href="/lectureDetail.do?lectureIdx=1269">
+							<dl>
+								<dt>2026년 여름독서교실: GO 보드게임 GO</dt>
+								<dd><span>대상 :</span> 유아(6~7세)</dd>
+								<dd class="edu_date">
+									
+									2026.07.25
+									~
+									
+									2026.08.22
+								</dd>
+								<dd>토요일</dd>
+							</dl>
+						</a>
+					</div>
+				
+					<div class="swiper-slide">
+						<i class="lib BR">연천</i>
+						
+							
+								
+								
+								
+								
+								<i class="lib tB03"><span>종료</span></i>
+							
+						
+						<a href="/lectureDetail.do?lectureIdx=1268">
+							<dl>
+								<dt>2026년 여름독서교실: 생각이 쑥쑥! 지혜가 솔솔! 창의 한자 놀이!</dt>
+								<dd><span>대상 :</span> 초등학생</dd>
+								<dd class="edu_date">
+									
+									2026.07.25
+									~
+									
+									2026.08.22
+								</dd>
+								<dd>토요일</dd>
+							</dl>
+						</a>
+					</div>
+				
+					<div class="swiper-slide">
+						<i class="lib MA">중앙</i>
+						
+							
+								
+								
+								
+								
+								<i class="lib tB03"><span>종료</span></i>
+							
+						
+						<a href="/lectureDetail.do?lectureIdx=1267">
+							<dl>
+								<dt>2026년 여름독서교실: 보드게임</dt>
+								<dd><span>대상 :</span> 초등학생</dd>
+								<dd class="edu_date">
+									
+									2026.07.25
+									~
+									
+									2026.08.22
+								</dd>
+								<dd>토요일</dd>
+							</dl>
+						</a>
+					</div>
+				
+					<div class="swiper-slide">
+						<i class="lib MA">중앙</i>
+						
+							
+								
+								
+								
+								
+								<i class="lib tB03"><span>종료</span></i>
+							
+						
+						<a href="/lectureDetail.do?lectureIdx=1266">
+							<dl>
+								<dt>2026년 여름독서교실: 명화로 보는 화가 이야기</dt>
+								<dd><span>대상 :</span> 초등(3~6)</dd>
+								<dd class="edu_date">
+									
+									2026.07.25
+									~
+									
+									2026.08.22
+								</dd>
+								<dd>토요일</dd>
+							</dl>
+						</a>
+					</div>
+				
+					<div class="swiper-slide">
+						<i class="lib BR">연천</i>
+						
+							
+								
+								
+								
+								
+								<i class="lib tB03"><span>종료</span></i>
+							
+						
+						<a href="/lectureDetail.do?lectureIdx=1265">
+							<dl>
+								<dt>[독서] 게릴라 버스킹 : 마술공연</dt>
+								<dd><span>대상 :</span> 연천군민</dd>
+								<dd class="edu_date">
+									
+									2026.07.25
+									~
+									
+									2026.07.25
+								</dd>
+								<dd>토요일</dd>
+							</dl>
+						</a>
+					</div>
+				
+					<div class="swiper-slide">
+						<i class="lib small">청산</i>
+						
+							
+								
+								
+								
+								
+								<i class="lib tB03"><span>종료</span></i>
+							
+						
+						<a href="/lectureDetail.do?lectureIdx=1264">
+							<dl>
+								<dt>청산작은도서관 독서문화프로그램 : 일상을 드로잉하는 어반스케치</dt>
+								<dd><span>대상 :</span> 성인 일반</dd>
+								<dd class="edu_date">
+									
+									2026.07.04
+									~
+									
+									2026.08.29
+								</dd>
+								<dd>토</dd>
+							</dl>
+						</a>
+					</div>
+				
+					<div class="swiper-slide">
+						<i class="lib small">무등실</i>
+						
+							
+								
+								
+								
+								
+								<i class="lib tB03"><span>종료</span></i>
+							
+						
+						<a href="/lectureDetail.do?lectureIdx=1263">
+							<dl>
+								<dt>[폐강]무등실작은도서관 독서문화프로그램 : 이야기 속담 그림책</dt>
+								<dd><span>대상 :</span> 초등학생 저학년</dd>
+								<dd class="edu_date">
+									
+									2026.07.04
+									~
+									
+									2026.08.29
+								</dd>
+								<dd>토</dd>
+							</dl>
+						</a>
+					</div>
+				
+					<div class="swiper-slide">
+						<i class="lib MA">중앙</i>
+						
+							
+								<i class="lib tB00"><span>접수예정</span></i>
+								
+								
+								
+								
+							
+						
+						<a href="/lectureDetail.do?lectureIdx=1262">
+							<dl>
+								<dt>다달이 인문학 : 9월 「행동력 수업 - 관망자가 아닌 실천가가 되는 법」</dt>
+								<dd><span>대상 :</span> 성인 일반</dd>
+								<dd class="edu_date">
+									
+									2026.09.19
+									~
+									
+									2026.09.19
+								</dd>
+								<dd>토요일</dd>
+							</dl>
+						</a>
+					</div>
+				
+			
+		</div>
+	</div>
+</div>
+<!-- //수강신청 모바일용-->
+
+			</div>
+		</section>
+		<section id="section4">
+			<h2 class="blind">도서리스트</h2>
+			<div class="sectionGroup">
+				<!-- 도서정보(추천도서/신착도서/공공도서관인기도서) -->
+				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+	function fnNewBookDetail(recKey, bookKey, publishFormCode){
+		var form = document.newBookForm;
+		form.recKey.value = recKey;
+		form.bookKey.value = bookKey;
+		form.publishFormCode.value = publishFormCode;
+		form.action = "/searchNewDetail.do";
+		form.submit();
+	}
+</script>
+<form id="newBookForm" name="newBookForm" method="get">
+	<input type="hidden" name="searchType" value="NEW">
+	<input type="hidden" name="searchLibrary" value="ALL">
+	<input type="hidden" name="searchPeriod" value="3M">
+	<input type="hidden" name="recKey">
+	<input type="hidden" name="bookKey">
+	<input type="hidden" name="publishFormCode">
+</form>
+<div class="bookZone">
+	<ul class="tab book clearfix">
+		<!-- <li><a href="#recommBook">추천<span>도서</span></a></li> -->
+		<li><a href="#newBook">신착<span>도서</span></a></li>
+		<li><a href="#bestBook">공공도서관 인기<span>도서</span></a></li>
+	</ul>
+	<!-- <div id="recommBook" class="bookListWrap">
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p>연천군도서관의 사서 추천도서입니다</p>
+<ul class="bookList clearfix">
+	
+		
+			
+				<li>
+					<dl>
+						<dt class="cover">
+							<a href="/recommendBookDetail.do?recommendBookIdx=479&searchCategory=2">
+								
+									
+										<img src="/attachfile/recommendbook/2647_0_20221205093644033.jpg" alt="최강의 실험경제반 아이들" onerror="javascript:fnImageLoadError(this); return false;">
+									
+									
+								
+							</a>
+						</dt>
+						<dd class="tit">최강의 실험경제반 아이들</dd>
+						<dd class="writer">김나영 지음, 정진염 그림</dd>
+					</dl>
+				</li>
+			
+				<li>
+					<dl>
+						<dt class="cover">
+							<a href="/recommendBookDetail.do?recommendBookIdx=478&searchCategory=3">
+								
+									
+										<img src="/attachfile/recommendbook/2646_0_20221205093543088.jpg" alt="귀신 씻나락 까먹는 무서운 이야기" onerror="javascript:fnImageLoadError(this); return false;">
+									
+									
+								
+							</a>
+						</dt>
+						<dd class="tit">귀신 씻나락 까먹는 무서운 이야기</dd>
+						<dd class="writer">정윤경 글, 최선혜 그림</dd>
+					</dl>
+				</li>
+			
+				<li>
+					<dl>
+						<dt class="cover">
+							<a href="/recommendBookDetail.do?recommendBookIdx=477&searchCategory=3">
+								
+									
+										<img src="/attachfile/recommendbook/2645_0_20221205093438119.jpg" alt="어서 와, 도서관은 처음이지? " onerror="javascript:fnImageLoadError(this); return false;">
+									
+									
+								
+							</a>
+						</dt>
+						<dd class="tit">어서 와, 도서관은 처음이지? </dd>
+						<dd class="writer">이주희 글·그림</dd>
+					</dl>
+				</li>
+			
+		
+		
+	
+</ul>
+<a href="/recommendBookList.do" title="추천도서 더보기" class="more1"></a>
+
+	</div> -->
+	<div id="newBook" class="bookListWrap"></div>
+	<div id="bestBook" class="bookListWrap"></div>
+</div>
+
+<script>
+	$(function(){
+		$("#newBook").load("/main/include/newBook.do");
+		$("#bestBook").load("/main/include/libraryPopularBook.do");
+	});
+</script>
+				<!-- //도서정보(추천도서/신착도서/공공도서관인기도서) -->
+
+				<!-- 인기도서 -->
+				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+	function fnLoanBestDetail(bookKey, publishFormCode){
+		var form = document.loanBestForm;
+		form.bookKey.value = bookKey;
+		form.publishFormCode.value = publishFormCode;
+		form.action = "/loanBestDetail.do";
+		form.submit();
+	}
+</script>
+<form id="loanBestForm" name="loanBestForm" method="get">
+	<input type="hidden" name="searchType" value="LOANBEST">
+	<input type="hidden" name="searchPeriod" value="3M">
+	<input type="hidden" name="recKey" value="0">
+	<input type="hidden" name="bookKey">
+	<input type="hidden" name="publishFormCode">
+</form>
+<article class="rankingBestBook">
+	<h3 class="title">인기도서</h3>
+	<p>연천군도서관의 대출베스트 도서입니다</p>
+	<ol class="rankingList">
+		
+			
+				
+					<li class="top">
+						<b class="num">1</b>
+						<a href="#link" onclick="javascript:fnLoanBestDetail(84675675,'BO'); return false;" class="tit">흔한남매. 8</a>
+					</li>
+				
+					<li class="top">
+						<b class="num">2</b>
+						<a href="#link" onclick="javascript:fnLoanBestDetail(104089392,'BO'); return false;" class="tit">흔한남매. 19</a>
+					</li>
+				
+					<li class="top">
+						<b class="num">3</b>
+						<a href="#link" onclick="javascript:fnLoanBestDetail(111455725,'BO'); return false;" class="tit">따끈따끈 말 베이커리 : 주현조 그림책</a>
+					</li>
+				
+					<li >
+						<b class="num">4</b>
+						<a href="#link" onclick="javascript:fnLoanBestDetail(112945445,'BO'); return false;" class="tit">(이코노미스트) 2026 세계대전망</a>
+					</li>
+				
+					<li >
+						<b class="num">5</b>
+						<a href="#link" onclick="javascript:fnLoanBestDetail(113031003,'BO'); return false;" class="tit">엄마의 여름 방학</a>
+					</li>
+				
+					<li >
+						<b class="num">6</b>
+						<a href="#link" onclick="javascript:fnLoanBestDetail(115734149,'BO'); return false;" class="tit">오십에 읽는 중용 : 2,400년간 내려온 잘 사는 삶의 이치</a>
+					</li>
+				
+					<li >
+						<b class="num">7</b>
+						<a href="#link" onclick="javascript:fnLoanBestDetail(115743906,'BO'); return false;" class="tit">용궁 공주와 수박 빙수 : 송태고 그림책</a>
+					</li>
+				
+					<li >
+						<b class="num">8</b>
+						<a href="#link" onclick="javascript:fnLoanBestDetail(116454279,'BO'); return false;" class="tit">세종의 나라 : 김진명 장편소설. 1</a>
+					</li>
+				
+					<li >
+						<b class="num">9</b>
+						<a href="#link" onclick="javascript:fnLoanBestDetail(117923259,'BO'); return false;" class="tit">(어쩔뚱땡!) 고구마머리 TV. 10, 우주 히어로 행성을 지켜라!</a>
+					</li>
+				
+					<li >
+						<b class="num">10</b>
+						<a href="#link" onclick="javascript:fnLoanBestDetail(117923278,'BO'); return false;" class="tit">(어쩔뚱땡!) 고구마머리 TV. 11, 열대 무인도 새로운 모험!</a>
+					</li>
+				
+			
+			
+		
+	</ol>
+	<a href="/loanBestList.do" title="인기도서 더보기" class="more1"></a>
+</article>
+				<!-- //인기도서 -->
+			</div>
+		</section>
+	</div>
+	
+
+<!-- footer -->
+<footer id="footer">
+	<div class="fnb">
+		<ul class="clearfix">
+			<li><a href="/40026/contents.do">이용약관</a></li>
+			<li><a href="/41061/contents.do"><b>개인정보처리방침</b></a></li>
+			<li><a href="https://www.yeoncheon.go.kr/www/contents.do?key=3580">영상정보처리기기 운영관리방침</a></li>
+			<li class="mobileHide2"><a href="/40028/contents.do">이메일무단수집거부</a></li>
+			<li class="mobileHide2"><a href="/41062/contents.do">장서관리정책</a></li>
+		</ul>
+	</div>
+	<div class="footerInner clearfix">
+		<div class="familySite">
+			<label for="relatedSite" class="blind">관련사이트 바로가기</label>
+			<select name="relatedSite" id="relatedSite" title="관련사이트 선택">
+				<option value="" selected="selected">관련사이트 바로가기</option>
+				<option value="http://www.yeoncheon.go.kr">연천군청</option>
+				<option value="http://gg.go.kr">경기도</option>
+				<option value="http://www.ggc.go.kr">경기도의회</option>
+				<option value="http://www.ycsudo.go.kr">맑은물관리사업소</option>
+				<option value="http://www.yeoncheon.go.kr/agri/index.yeoncheon">농업기술센터</option>
+				<option value="http://www.yeoncheon.go.kr/safe/index.yeoncheon">재난안전대책본부</option>
+				<option value="http://yccs.or.kr">시설관리공단</option>
+				<option value="http://ggbpolice.go.kr/yc/mainPage.do">연천경찰서</option>
+				<option value="http://www.koreapost.go.kr/486/index.do">연천우체국</option>
+				<option value="http://www.goeyc.kr">연천교육지원청</option>
+				<option value="http://farm.gg.go.kr/sigt/1774">경기도농촌체험관광</option>
+				<option value="http://english-village.gg.go.kr">경기도평생교육진흥원</option>
+				<option value="http://www.epeople.go.kr">국민신문고</option>
+				<option value="http://www.acrc.go.kr/acrc/index.do">국민권익위원회</option>
+				<option value="http://www.invil.org">정보화마을</option>
+				<option value="http://www.egov.go.kr">정부민원포털 민원24</option>
+				<option value="http://www.iros.go.kr">대법원인터넷등기소</option>
+				<option value="http://www.hometax.go.kr">국세청홈택스</option>
+				<option value="http://www.open.go.kr">정보공개포털</option>
+			</select>
+			<a href="#go" id="relateSiteBtn" class="btnGo" title="사이트 새창열기">확인</a>
+		</div>
+		<div class="fAdd">
+			<address class="clearfix">
+				
+					
+						<dl>
+							<dt>중앙도서관</dt>
+							<dd class="add">경기도 연천군 전곡읍 전은길 9-26</dd>
+							<dd class="tel">TEL. 031-839-4413~4</dd>
+							
+								<dd class="fax">FAX. 031-839-4419</dd>
+							
+						</dl>
+					
+				
+					
+						<dl>
+							<dt>연천도서관</dt>
+							<dd class="add">경기도 연천군 연천읍 차현로 76-7</dd>
+							<dd class="tel">TEL. 031-839-4404</dd>
+							
+								<dd class="fax">FAX. 031-839-4409</dd>
+							
+						</dl>
+					
+				
+					
+						<dl>
+							<dt>청산작은도서관</dt>
+							<dd class="add">경기도 연천군 청산면 아우라지길 9</dd>
+							<dd class="tel">TEL. 031-835-3644</dd>
+							
+						</dl>
+					
+				
+					
+						<dl>
+							<dt>학마을작은도서관</dt>
+							<dd class="add">경기도 연천군 백학면 청정로 534</dd>
+							<dd class="tel">TEL. 031-839-4408</dd>
+							
+						</dl>
+					
+				
+					
+						<dl>
+							<dt>무등실작은도서관</dt>
+							<dd class="add">경기도 연천군 왕징면 왕산로 44</dd>
+							<dd class="tel">TEL. 031-833-4417</dd>
+							
+						</dl>
+					
+				
+					
+						<dl>
+							<dt>신서작은도서관</dt>
+							<dd class="add">경기도 연천군 신서면 연신로 1134-1</dd>
+							<dd class="tel">TEL. 031-834-4406</dd>
+							
+						</dl>
+					
+				
+			</address>
+			<cite>Copyright&copy; 2019. YeonCheon Library. All Rights Reserved.</cite>
+		</div>
+		<a href="#body" id="btnTopScroll" title="상단으로 이동"><img src="/include/image/button/btn_top.png" alt="TOP"></a>
+	</div>
+	<div><p id="post-result"></p></div>
+</footer>
+<!-- //footer -->
+<input type="hidden" name="pbInitNo1" id="pbInitNo1" value="" />
+<input type="hidden" name="pbInitNo2" id="pbInitNo2" value="" />
+<input type="hidden" name="pbInitNo3" id="pbInitNo3" value="" />
+<input type="hidden" name="pbInitNo4" id="pbInitNo4" value="" />
+<input type="hidden" name="pbInitNo5" id="pbInitNo5" value="" />
+<iframe name="hiddenFrame" id="hiddenFrame" title="빈프레임" class="hidden"></iframe>
+<script>
+	$(function(){
+		$("#relateSiteBtn").click(function(){
+			var url = $("#relatedSite").val();
+			if(!$("#relatedSite").val()){
+				alert("유관기관을 선택하세요.");
+				$("#relatedSite").focus();
+			}else{
+				window.open(url,"_blank");
+			}
+			return false;
+		});
+
+		$("#privacyBtn").click(function(){
+			var url = $("#selectPrivacy").val();
+			if(!$("#selectPrivacy").val()){
+				alert("선택이 안 되었습니다.");
+				$("#selectPrivacy").focus();
+			}else{
+				window.open(url,"_self");
+			}
+			return false;
+		});
+	});
+</script>
+
+</div>
+<!-- //wrap -->
+<script>initMenu(0,0,0,0,0);</script>
+<script>
+$(function(){
+	var $wrap = $("#wrap");
+	var mobileChk = ($wrap.width() < 1024 && $wrap.width() > 550) ? true : false;
+	var mobileChk1 = ($wrap.width() < 550) ? true : false;
+	if(mobileChk){
+		var serviceSwiper = new Swiper('.swiper-Mservice', {
+			slidesPerView: 2,
+			spaceBetween: 25,
+			freeMode: true,
+			autoplay: {
+				delay: 3000,
+			},
+		});
+	} else if(mobileChk1){
+		var serviceSwiper = new Swiper('.swiper-Mservice', {
+			slidesPerView: 1,
+			spaceBetween: 25,
+			freeMode: true,
+			autoplay: {
+				delay: 3000,
+			},
+		});
+	} else {
+		var serviceSwiper = new Swiper('.swiper-service', {
+			paginationElement: 'a',
+			paginationClickable: true,
+			grabCursor: true,
+			autoplay:4000,
+			slidesPerView: 1,
+			slidesPerGroup: 1,
+			pagination: {
+				el: '.swiper-pagination',
+				clickable: true,
+			},
+		});
+		$('.service-play').click(function(){
+			$(this).hide();
+			$('.service-stop').show();
+			serviceSwiper.startAutoplay();
+			return false;
+		});
+		$('.service-stop').click(function(){
+			$(this).hide();
+			$('.service-play').show();
+			serviceSwiper.stopAutoplay();
+			return false;
+		});
+	}
+});
+</script>
+</body>
+</html>

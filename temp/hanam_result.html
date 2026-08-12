@@ -1,0 +1,562 @@
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,width=device-width" />
+        <meta name="title" content="자료검색 - 하남시 나룰도서관" />
+        <meta name="keywords" content="하남시립도서관, 하남시 나룰도서관, 나룰도서관" />
+        <meta name="author" content="하남시 나룰도서관" />
+        <meta name="description" content="반갑습니다. 여기는 하남시나룰도서관입니다." />
+        <link rel="stylesheet" type="text/css" href="/common/css/default.css" />
+        <link rel="stylesheet" type="text/css" href="/common/css/font.css" />
+        <link rel="stylesheet" type="text/css" href="/site/nalib/css/sub.css" />
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <!--<script type="text/javascript" src="/common/js/jquery-1.11.1.min.js"></script>-->
+        <script type="text/javascript" src="/common/js/respond.min.js"></script>
+        <script type="text/javascript" src="/common/js/jquery-migrate-1.2.1.min.js"></script>
+        <script type="text/javascript" src="/common/js/common.js"></script>
+        <script type="text/javascript" src="/site/nalib/js/common.js"></script>
+        <script type="text/javascript" src="/site/nalib/js/sub.js"></script>
+        <script type="text/javascript" src="https://www.dbpia.co.kr/js/dbpia_outConn.js"></script>
+				<script type="text/javascript" src="/common/js/jquery.tab.js"></script>
+		<script type="text/javascript" src="/common/js/swiper.min.js"></script>
+        <!--[if lt IE 7]>
+        <script type="text/javascript" src="/site/nalib/js/unitpngfix.js"></script>
+        <![endif]-->
+        <title>자료검색 - 하남시 나룰도서관</title>
+        
+
+	<script type="text/javascript">
+
+
+	   function aspservice_01(){
+		var member_id = '';
+			var filter = "win16|win32|win64|mac";
+
+			if(member_id==""){
+				alert("로그인 후 이용해주세요");
+				return false;
+			}else{
+				if(navigator.platform){
+
+					if(0 > filter.indexOf(navigator.platform.toLowerCase())){
+
+						//alert("Mobile");
+						window.open("http://m.asp.audien.com/mpoc/web/main.htm?paId=81913b1e3c8aa5a1158e&userId=",'audien_pop', 'width=950, height=670,scrollbars=yes,resizable=yes');
+
+					}else{
+
+						//alert("PC");
+						window.open("https://aspservice.audien.com/inticube/front/NeoAspMain.do?paId=81913b1e3c8aa5a1158e&userId=",'audien_pop', 'width=950, height=670,scrollbars=yes,resizable=yes');
+					}
+
+				}
+
+			}
+		}
+
+
+		
+		function fn_dbpia_open()
+		{
+			alert("로그인 후 이용해주세요" );
+			return false;
+		}
+		
+        </script>
+
+    </head>
+    <body>
+    	<div class="mlnb_bg"></div>
+    	<!-- 반응형 모드에서 전체메뉴 표시할 경우 나오는 배경-->
+    	<div class="accessibility">
+    		<a href="#container">본문바로가기</a>
+    	</div>
+    	<div id="header">
+    		<div class="gnb">
+    			<div class="wrap clearfix">
+    				<ul class="gnb_link clearfix">
+						<li class="mslib"><a href="/mslib/index.do" target="_blank" title="새창"><span>미사도서관</span></a></li>
+                        <li class="nrlib"><a href="/nalib/index.do" target="_blank" title="새창"><span>나룰도서관</span></a></li>
+                        <li class="wilib"><a href="/wilib/index.do" target="_blank" title="새창"><span>위례도서관</span></a></li>
+                        <li class="sjlib"><a href="/silib/index.do" target="_blank" title="새창"><span>신장도서관</span></a></li>
+						<li class="gamlib"><a href="/gamlib/index.do" target="_blank" title="새창"><span>감일도서관</span></a></li>
+                        <li class="selib"><a href="/selib/index.do" target="_blank" title="새창"><span>세미도서관</span></a></li>
+						<li class="dilib"><a href="/dilib/index.do" target="_blank" title="새창"><span>디지털도서관</span></a></li>
+                        <li class="dplib"><a href="/dulib/index.do" target="_blank" title="새창"><span>덕풍도서관</span></a></li>
+						<li class="iglib"><a href="/iglib/index.do" target="_blank" title="새창"><span>일가도서관</span></a></li>
+						<li class="eulib">
+							<a href="#"><span>작은도서관</span></a>
+							<div class="smBox">
+									<span>작은도서관</span>
+									<div class="smCont">
+										<p><a href="/dslib/index.do" target="_blank" title="새창">덕풍스포츠작은도서관</a></p>
+											<p><a href="/eulib/index.do" target="_blank" title="새창">어울림작은도서관</a></p>
+											<p><a href="./contents.do?key=114" target="_blank" title="새창">사립작은도서관</a></p>
+									</div>
+									<button class="close"></button>
+							</div>
+						</li>
+                        <li class="smlib"><a href="./sub.do?key=357"><span>스마트도서관</span></a></li>
+                        <li class="movelib"><a href="/nalib/sub.do?key=418"><span>이동도서관</span></a></li>
+												
+    				</ul>
+    				<!-- //상단 글로벌 사이트 이동 -->
+    				<ul class="gnb_navi clearfix">
+    					<li class="home"><a href="./index.do">홈</a></li>
+                        <li><a href="./sub.do?key=129">사이트맵</a></li>
+                            
+                                
+                                
+                                    <li><a href="./sub.do?key=325">회원가입</a><a href="./loginFrm.do?key=277" class="mypage">로그인</a></li>
+                                
+                            
+    					<li>
+						<a href="/eng/index.do" target="_blank" title="새창으로 열림"><span>ENGLISH</span></a>
+    						<!--<button class="lang_off">LANGUAGE</button>
+    						<ul>
+    							<li><a href="#"><span>ENGLISH</span></a></li>
+    							<li><a href="#"><span>JAPANESE</span></a></li>
+    							<li><a href="#"><span>CHINESE</span></a></li>
+    						</ul>-->
+    					</li>
+    				</ul>
+    				<!-- 글로벌메뉴 -->
+    			</div>
+    			<!-- //gnb wrap -->
+    		</div>
+    		<!-- //gnb -->
+    		<div class="wrap">
+    			<div class="logo">
+    				<h1>
+    					<a href="./index.do">
+                            <img src="/site/nalib/images/common/logo.png" alt="하남시 나룰도서관 Hanam City Narul Library 로고" />
+    					</a>
+    				</h1>
+    			</div>
+                <div class="mobile_btn">
+                    <button class="m_search_btn">
+                        <span class="line1"></span>
+                        <span class="line2"></span>
+                        <span class="line3"></span>
+                    </button>
+                    <button class="m_menu_btn">
+                        <span class="line1"></span>
+                        <span class="line2"></span>
+                        <span class="line3"></span>
+                    </button>
+                </div>
+    			<!-- //반응형 메뉴 전체보기 버튼. 웹에선 숨겨짐 -->
+    		</div>
+    		<!-- // header_ wrap -->
+    		<div id="lnb">
+                <div class="m_member clearfix">
+                    
+                        
+                        
+                            <a href="./sub.do?key=325"><span>회원가입</span></a>
+                            <a href="./loginFrm.do?key=277"><span>로그인</span></a>
+                        
+                    
+                </div>
+    			
+
+				<ul id="top1menu" class="clearfix">
+					<li class="depth1 ">
+						<a href="/nalib/contents.do?key=50" class="depth1_ti" accesskey="1" target="_self" ><span>도서관소개</span></a>
+								<div class="tm1_title">
+									<strong>도서관소개</strong>
+									<p>하남시립 도서관에 오신 것을 환영합니다.</p>
+								</div>
+								<ul class="depth2">
+									<li><a href="/nalib/contents.do?key=50" target="_self" >소개</a></li>
+									<li><a href="/nalib/contents.do?key=56" target="_self" >연혁</a></li>
+									<li><a href="/nalib/contents.do?key=57" target="_self" >조직도</a></li>
+									<li><a href="/nalib/contents.do?key=58" target="_self" >도서관현황</a></li>
+									<li><a href="/nalib/contents.do?key=811" target="_self" >도서관 LI</a></li>
+									<li><a href="/nalib/contents.do?key=59" target="_self" >운영시간/휴관일</a></li>
+									<li><a href="/nalib/contents.do?key=99" target="_self" >도서관이용안내</a></li>
+									<li><a href="/nalib/contents.do?key=1152" target="_self" >도서관지도</a></li>
+									<li><a href="/nalib/contents.do?key=61" target="_self" >오시는 길</a></li>
+								</ul>
+					</li>
+					<li class="depth1 ">
+						<a href="/nalib/searchSimple.do?key=64" class="depth1_ti" accesskey="2" target="_self" ><span>도서관자료</span></a>
+								<div class="tm2_title">
+									<strong>도서관자료</strong>
+									<p>신착, 추천도서 등 도서관의 다양한 자료를 검색하세요.</p>
+								</div>
+								<ul class="depth2">
+									<li><a href="/nalib/searchSimple.do?key=64" target="_self" >자료검색</a></li>
+									<li><a href="/nalib/searchNew.do?key=65" target="_self" >신착자료검색</a></li>
+									<li><a href="/nalib/loanBestList.do?key=389" target="_self" >대출베스트</a></li>
+									<li><a href="/nalib/smartLibrarySearch.do?key=981" target="_self" >스마트도서관자료</a></li>
+									<li><a href="/nalib/moveLibrarySearch.do?key=1601" target="_self" >이동도서관자료</a></li>
+									<li><a href="/nalib/dvdLibrarySearch.do?key=1132" target="_self" >DVD 자료</a></li>
+									<li><a href="/nalib/contents.do?key=66" target="_self" >전자도서관</a></li>
+									<li><a href="/nalib/selectBbsNttList.do?bbsNo=15&amp;key=108&amp;integrDeptCode=C01" target="_self" >추천도서 목록</a></li>
+									<li><a href="/nalib/selectBbsNttList.do?bbsNo=34&amp;key=70" target="_self" >영어원서 목록</a></li>
+									<li><a href="/nalib/selectBbsNttList.do?bbsNo=9&amp;key=112" target="_self" >책꾸러미 목록</a></li>
+									<li><a href="/nalib/selectBbsNttList.do?bbsNo=185&amp;key=1204" target="_self" >전집대출</a></li>
+									<li><a href="/nalib/contents.do?key=111" target="_self" >연속간행물 목록</a></li>
+								</ul>
+					</li>
+					<li class="depth1 ">
+						<a href="/nalib/selectSchedule.do?key=71" class="depth1_ti" accesskey="3" target="_self" ><span>독서문화행사</span></a>
+								<div class="tm3_title">
+									<strong>독서문화행사</strong>
+									<p>문화강좌, 영화상영 등 다양한 문화행사에 참여하세요.</p>
+								</div>
+								<ul class="depth2">
+									<li><a href="/nalib/selectSchedule.do?key=71" target="_self" >이달의 행사</a></li>
+									<li><a href="/nalib/selectWebEdcLctreList.do?key=72" target="_self" >독서문화프로그램 신청</a></li>
+									<li><a href="/nalib/selectBbsNttList.do?bbsNo=29&amp;key=73" target="_self" >영화상영</a></li>
+								</ul>
+					</li>
+					<li class="depth1 ">
+						<a href="/nalib/selectBbsNttList.do?bbsNo=6&amp;key=76" class="depth1_ti" accesskey="4" target="_self" ><span>열린공간</span></a>
+								<div class="tm4_title">
+									<strong>열린공간</strong>
+									<p>하남시립도서관의 다양한 소식을 전해드립니다.</p>
+								</div>
+								<ul class="depth2">
+									<li><a href="/nalib/selectBbsNttList.do?bbsNo=6&amp;key=76" target="_self" >공지사항</a></li>
+									<li><a href="/nalib/selectBbsNttList.do?bbsNo=11&amp;key=77" target="_self" >자주하는 질문</a></li>
+									<li><a href="/nalib/selectBbsNttList.do?bbsNo=12&amp;key=78" target="_self" >묻고답하기</a></li>
+									<li><a href="/nalib/selectBbsNttList.do?bbsNo=13&amp;key=80" target="_self" >공개자료실</a></li>
+								</ul>
+					</li>
+					<li class="depth1 ">
+						<a href="/nalib/contents.do?key=81" class="depth1_ti" accesskey="5" target="_self" ><span>도서 서비스</span></a>
+								<div class="tm5_title">
+									<strong>도서 서비스</strong>
+									<p>책이음, 책바다 등 다양한 서비스를 제공하고 있습니다.</p>
+								</div>
+								<ul class="depth2">
+									<li><a href="/nalib/contents.do?key=81" target="_self" >책이음</a></li>
+									<li><a href="/nalib/contents.do?key=643" target="_self" >상호대차 책두레</a></li>
+									<li><a href="/nalib/contents.do?key=82" target="_self" >책바다 / 책나래</a></li>
+									<li><a href="/nalib/contents.do?key=83" target="_self" >두루두루</a></li>
+									<li><a href="/nalib/contents.do?key=84" target="_self" >내 생애 첫 도서관</a></li>
+									<li><a href="/nalib/contents.do?key=75" target="_self" >북스타트</a></li>
+									<li><a href="/nalib/contents.do?key=357" target="_self" >스마트도서관</a></li>
+									<li><a href="/nalib/contents.do?key=418" target="_self" >이동도서관</a></li>
+								</ul>
+					</li>
+					<li class="depth1 ">
+						<a href="/nalib/contents.do?key=283" class="depth1_ti" accesskey="6" target="_self" ><span>온라인서비스</span></a>
+								<div class="tm6_title">
+									<strong>온라인서비스</strong>
+									<p>희망도서, 도서관견학, 사물함신청 등을 확인하세요.</p>
+								</div>
+								<ul class="depth2">
+									<li><a href="/nalib/contents.do?key=283" target="_self" >희망도서 신청</a></li>
+									<li><a href="https://www.hanamlib.go.kr/277/nalib/hopeBookLoanImmediately.do" target="_self" >희망도서 바로대출</a></li>
+									<li><a href="/nalib/loanStatusList.do?key=343" target="_self" >대출도서 연기</a></li>
+									<li><a href="/nalib/selectLnbnsList.do?key=88" target="_self" >도서관 견학신청</a></li>
+									<li><a href="/nalib/selectBbsNttList.do?bbsNo=4&amp;key=267" target="_self" >사물함 신청</a></li>
+									<li><a href="http://seat.hanamlib.go.kr:8000/seatmate_nl/" target="_blank" title="새창">열람실 현황</a></li>
+									<li><a href="/nalib/contents.do?key=335" target="_self" >기증안내</a></li>
+									<li><a href="/nalib/contents.do?key=1003" target="_self" >시설물 예약</a></li>
+								</ul>
+					</li>
+					<li class="depth1 ">
+						<a href="/eulib/contents.do?key=1273" class="depth1_ti" accesskey="7" target="_self" ><span>작은도서관</span></a>
+								<div class="tm7_title">
+									<strong>작은도서관</strong>
+									<p>우리동네 작은 도서관을 확인해보세요.</p>
+								</div>
+								<ul class="depth2">
+									<li><a href="/eulib/contents.do?key=1273" target="_self" >작은도서관 현황</a></li>
+									<li><a href="/eulib/contents.do?key=1274" target="_self" >작은도서관 등록</a></li>
+									<li><a href="/eulib/selectBbsNttList.do?bbsNo=201&amp;key=1275" target="_self" >작은도서관 문화행사</a></li>
+									<li><a href="/eulib/selectBbsNttList.do?bbsNo=202&amp;key=1276" target="_self" >작은도서관 소식</a></li>
+								</ul>
+					</li>
+					<li class="depth1 webHide">
+						<a href="/nalib/myStatus.do?key=829" class="depth1_ti" accesskey="8" target="_self" ><span>나의도서관</span></a>
+								<div class="tm8_title">
+									<strong>나의도서관</strong>
+									<p></p>
+								</div>
+								<ul class="depth2">
+									<li><a href="/nalib/reservationStatusList.do?key=392" target="_self" >예약/대출/상호대차 내역</a></li>
+									<li><a href="/nalib/hopeBookList.do?key=121" target="_self" >희망도서 내역</a></li>
+									<li><a href="/nalib/basketList.do?key=395" target="_self" >관심도서조회</a></li>
+									<li><a href="/nalib/selectMyBookStartPackageList.do?key=1466" target="_self" >북스타트 내역</a></li>
+									<li><a href="/nalib/selectMyEdcLctreList.do?key=122" target="_self" >독서문화프로그램</a></li>
+									<li><a href="/nalib/selectMyLnbnsList.do?key=123" target="_self" >견학내역</a></li>
+									<li><a href="/nalib/selectMyLockerRceptList.do?key=124" target="_self" >사물함내역</a></li>
+									<li><a href="/nalib/selectMyBookCntrList.do?key=266" target="_self" >기증내역</a></li>
+									<li><a href="/nalib/joinmemUpdt.do?key=118" target="_self" >회원정보 수정</a></li>
+									<li><a href="/nalib/memWithdraw.do?key=817" target="_self" >회원탈퇴</a></li>
+									<li><a href="/nalib/selectMyFacilityReservationList.do?key=1312" target="_self" >시설물예약 내역</a></li>
+									<li><a href="/nalib/selectMyBookStartProgramList.do?key=1323" target="_self" >전집대출</a></li>
+								</ul>
+					</li>
+				</ul>
+    		</div>
+    		<!-- //lnb -->
+    	</div>
+    	<!-- //header -->
+    	<hr />
+    	<div id="container">
+    		<div class="mlnb_bg"></div>
+    		<div class="wrap clearfix">
+
+                
+
+                <div class="side sub_menu1">
+                	<div class="side_ti">도서관자료</div>
+                	<ul class="side_menu">
+                        <li><a href="/nalib/searchSimple.do?key=64" target="_self" class="sm_2th_ti on" ><span>자료검색</span></a>
+                        </li>
+                        <li><a href="/nalib/searchNew.do?key=65" target="_self" class="sm_2th_ti" ><span>신착자료검색</span></a>
+                        </li>
+                        <li><a href="/nalib/loanBestList.do?key=389" target="_self" class="sm_2th_ti" ><span>대출베스트</span></a>
+                        </li>
+                        <li><a href="/nalib/smartLibrarySearch.do?key=981" target="_self" class="sm_2th_ti" ><span>스마트도서관자료</span></a>
+                        </li>
+                        <li><a href="/nalib/moveLibrarySearch.do?key=1601" target="_self" class="sm_2th_ti" ><span>이동도서관자료</span></a>
+                        </li>
+                        <li><a href="/nalib/dvdLibrarySearch.do?key=1132" target="_self" class="sm_2th_ti" ><span>DVD 자료</span></a>
+                        </li>
+                        <li><a href="/nalib/contents.do?key=66" target="_self" class="sm_2th_ti" ><span>전자도서관</span></a>
+                        </li>
+                        <li><a href="/nalib/selectBbsNttList.do?bbsNo=15&amp;key=108&amp;integrDeptCode=C01" target="_self" class="sm_2th_ti" ><span>추천도서 목록</span></a>
+                        </li>
+                        <li><a href="/nalib/selectBbsNttList.do?bbsNo=34&amp;key=70" target="_self" class="sm_2th_ti" ><span>영어원서 목록</span></a>
+                        </li>
+                        <li><a href="/nalib/selectBbsNttList.do?bbsNo=9&amp;key=112" target="_self" class="sm_2th_ti" ><span>책꾸러미 목록</span></a>
+			
+                        </li>
+                        <li><a href="/nalib/selectBbsNttList.do?bbsNo=185&amp;key=1204" target="_self" class="sm_2th_ti" ><span>전집대출</span></a>
+			
+                        </li>
+                        <li><a href="/nalib/contents.do?key=111" target="_self" class="sm_2th_ti" ><span>연속간행물 목록</span></a>
+                        </li>
+                	</ul>
+					
+
+					<ul class="sub_link clearfix">
+						<li class="icon1"><a href="http://seat.hanamlib.go.kr:8000/SeatMate/SeatMate.php" onclick="fn_popWindow(this.href,'schedulePop','toolbors=no,scrollbars=yes,width=1000px,height=1000px'); return false;" target="_blank" title="새창">열람실 좌석</a></li>
+						<li class="icon2"><a href="./contents.do?key=283">희망자료 신청</a></li>
+						<li class="icon3"><a href="./sub.do?key=119">대출도서 연기</a></li>
+						<li class="icon4"><a href="/baro/homepage/main.do" target="_blank" title="새창">희망 바로대출</a></li>
+						<li class="icon5"><a href="./sub.do?key=103">이용자 에티켓</a></li>
+						<li class="icon6"><a href="./sub.do?key=61">오시는 길</a></li>
+						
+							<li class="icon7"><a href="./sub.do?key=279">아이디 찾기</a></li>
+							<li class="icon8"><a href="./sub.do?key=280">비밀번호 찾기</a></li>
+						
+					</ul>
+                </div>
+
+    			<div class="rowgroup">
+                    <div class="sub_head">
+        				<div class="sub_title sub_bg51">
+                            <h1>
+                                자료검색
+                            </h1>
+        					<div class="navigation">
+        						<span class="home">홈</span>
+    
+        
+    	&gt; 도서관자료
+    
+        
+    								&gt; <strong>자료검색</strong>
+    	
+    	
+    
+        					</div>
+        				</div>
+                    </div>
+
+    
+    				<div id="contents" class="contents">
+                        <script type="text/javascript" src="/common/js/iframeResizer.min.js"></script>
+<!--[if lte IE 8]>
+    <script type="text/javascript" src="/common/js/ie8.polyfils.min.js"></script>
+<![endif]-->
+<script type="text/javascript">
+$(document).ready(function(e) {
+	$("iframe").iFrameResize({
+		log: false,
+		autoResize: true,
+		heightCalculationMethod: 'grow',
+		doHeight: true,
+		doWidth: false,
+		enablePublicMethods: true,
+		interval: 0,
+		scrolling: false,
+		callback:function(messageData){
+// 			console.log("Frame ID: " + messageData.iframe.id);
+// 			console.log("Height: " + messageData.height);
+// 			console.log("Width: " + messageData.width);
+		}
+	});
+});
+</script>
+
+	
+		<iframe src="/kolaseek/search/plusSearchResultList.do?searchLibraryArr=MB&searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&searchType=SIMPLE&searchCategory=ALL&searchKey=ALL" style="width:100%" scrolling=no frameborder=0 title="하남시 나룰도서관 자료검색"></iframe>
+                    </div>
+    				<!-- //contents -->
+    			</div>
+    			<!-- //rowgroup -->
+    		</div>
+    		<!-- //container wrap -->
+    		<div class="link_set">
+    			<div class="wrap clearfix">
+    				<div class="site_link clearfix">
+    					<h2 class="skip">관련기관</h2>
+    					<div class="sitelink_cont f_list">
+    						<h3>
+    							<button class="open">유관사이트</button>
+    						</h3>
+    						<div class="layer">
+    							<button class="close">유관사이트목록 닫기</button>
+    							<div class="link_part">
+    								<h4>유관사이트</h4>
+
+    								
+                <ul>
+                    <li><a href="http://www.hanam.go.kr" target="_blank"  title="새창">하남시청</a></li>
+                    <li><a href="http://www.gg.go.kr/" target="_blank"  title="새창">경기도청</a></li>
+                    <li><a href="http://www.하남문화원.kr/" target="_blank"  title="새창">하남문화원</a></li>
+                    <li><a href="http://www.hanammuseum.com/" target="_blank"  title="새창">하남역사박물관</a></li>
+                    <li><a href="http://www.dbpia.co.kr/" target="_blank"  title="새창">DBPIA</a></li>
+                    <li><a href="https://www.huic.co.kr" target="_blank"  title="새창">하남도시공사</a></li>
+                    <li><a href="https://www.mois.go.kr/frt/sub/a03/corruptionDeclareInfo/screen.do" target="_blank"  title="새창">공직비리익명신고</a></li>
+                </ul>
+
+
+    							</div>
+    						</div>
+    					</div>
+    					<div class="sitelink_cont">
+    						<h3>
+    							<button class="open">공공도서관</button>
+    						</h3>
+    						<div class="layer">
+    							<button class="close">공공도서관 사이트목록 닫기</button>
+    							<div class="link_part">
+    								<h4>공공도서관</h4>
+
+                                    
+<ul>
+    <li><a href="http://www.nl.go.kr/" target="_blank"  title="새창">국립중앙도서관</a></li>
+    <li><a href="http://www.library.kr" target="_blank"  title="새창">경기도사이버도서관</a></li>
+    <li><a href="https://www.nld.go.kr/ableFront/index.jsp" target="_blank"  title="새창">국립장애인도서관</a></li>
+    <li><a href="https://s-space.snu.ac.kr/" target="_blank"  title="새창">서울대학교 S-SPAC</a></li>
+    <li><a href="https://snu-primo.hosted.exlibrisgroup.com/primo-explore/collectionDiscovery?vid=82SNU&lang=ko_KR" target="_blank"  title="새창">서울대학교 디지털컬렉션</a></li>
+    <li><a href="https://www.nl.go.kr/NL/contents/N10200000000.do" target="_blank"  title="새창">국립중앙도서관 디지털화 자료실</a></li>
+    <li><a href="https://www.nanet.go.kr/main.do" target="_blank"  title="새창">국회도서관</a></li>
+</ul>
+
+
+    							</div>
+    						</div>
+    					</div>
+    				</div>
+    				<!--//site_link  -->
+    				<div class="banner_wrap">
+    					<h2>배너모음</h2>
+    					<div class="bn_ctrl clearfix">
+    						<button class="bn_prev"><img src="/common/images/common/bn_prev.png" alt="이전 배너 보기" /></button>
+    						<button class="bn_control"><img src="/common/images/common/bn_stop.png" alt="배너 롤링 정지" /></button>
+    						<button class="bn_next"><img src="/common/images/common/bn_next.png" alt="다음 배너 보기" /></button>
+    						<!--<a href="#"><img src="/common/images/common/bn_more.png" alt="모든 배너 보기" /></a>-->
+    					</div>
+                        <div class="banner_list">
+    					
+                <ul class="clearfix">
+                    <li><a href="https://lll.hanam.go.kr/" target="_blank"  title="새창" ><img src="/DATA/banner/banner_lll.png" alt="하남시 평생학습포털" /></a></li>
+                    <li><a href="http://www.gg.go.kr" target="_blank"  title="새창" ><img src="/DATA/banner/20160721061941466SWy.png" alt="세계속의경기도" /></a></li>
+                    <li><a href="https://www.library.kr/" target="_blank"  title="새창" ><img src="/DATA/banner/20160721061925160i0K.png" alt="경기도사이버도서관" /></a></li>
+                    <li><a href="http://global.library.kr" target="_blank"  title="새창" ><img src="/DATA/banner/20160721062223251lJe.png" alt="경기 사이버 다문화 도서관" /></a></li>
+                    <li><a href="http://www.hanam.go.kr" target="_blank"  title="새창" ><img src="/DATA/banner/20160721061844030Vh1.png" alt="하남시" /></a></li>
+                    <li><a href="http://www.dbpia.co.kr/" target="_blank"  title="새창" onclick="fn_dbpia_open(); return false;"><img src="/DATA/banner/20160721061824361TYH.png" alt="DBPia" /></a></li>
+                    <li><a href="https://www.hnart.or.kr/museum/index.do" target="_blank"  title="새창" ><img src="/DATA/banner/20160721062056411SXW.png" alt="하남역사박물관" /></a></li>
+                    <li><a href="http://www.하남문화원.kr" target="_blank"  title="새창" ><img src="/DATA/banner/20160721062123272P6P.png" alt="하남문화원" /></a></li>
+                    <li><a href="https://www.huic.co.kr/www/index.do" target="_blank"  title="새창" ><img src="/DATA/banner/20160721062150204smc.png" alt="huic하남도시개발공사" /></a></li>
+                    <li><a href="http://www.data4library.kr" target="_blank"  title="새창" ><img src="/DATA/banner/20170828090710861X1K.jpg" alt="도서관 정보나루" /></a></li>
+					<li><a href="https://www.nld.go.kr/ableFront/index.jsp" target="_blank"  title="새창" ><img src="/DATA/banner/20210703094926896vcn.png" alt="국립장애인도서관" /></a></li>
+                    <li><a href="https://job.cleaneye.go.kr/index.jsp" target="_blank"  title="새창" ><img src="/DATA/banner/20230825_01.png" alt="클린아이 잡플러스" /></a></li>
+                    <li><a href="http://www.worldjob.or.kr" target="_blank"  title="새창" ><img src="/DATA/banner/20230825_02.png" alt="월드잡플러스" /></a></li>
+                    <li><a href="https://s-space.snu.ac.kr/" target="_blank"  title="새창" ><img src="/DATA/banner/20231220.png" alt="서울대학교 S-SPACE" /></a></li>
+                    <li><a href="https://snu-primo.hosted.exlibrisgroup.com/primo-explore/collectionDiscovery?vid=82SNU&lang=ko_KR" target="_blank"  title="새창" ><img src="/DATA/banner/20231221.png" alt="서울대학교 중앙도서관" /></a></li>
+                    <li><a href="http://www.nl.go.kr" target="_blank"  title="새창" ><img src="/DATA/banner/20160721062022187gwu.png" alt="국립중앙도서관" /></a></li>
+                    <li><a href="http://www.nanet.go.kr/" target="_blank"  title="새창" ><img src="/DATA/banner/20160721061903416haw.png" alt="국회도서관" /></a></li>
+
+                </ul>
+
+                        </div>
+    				</div>
+    				<!-- //banner -->
+    			</div>
+    			<!-- //wrap -->
+    		</div>
+    		<!-- //배너모음 -->
+    	</div>
+    	<!-- //container -->
+    	<hr />
+    	<div id="footer">
+
+    		<div class="wrap">
+    			<h2 class="skip">사이트정보</h2>
+    			<img src="/common/images/common/flogo.png" alt="하남시 로고" class="flogo" />
+
+    			
+<ul class="fnavi clearfix">
+<li><a href="./sub.do?key=198" target="_self" >개인정보처리방침</a></li>
+<li><a href="./sub.do?key=196" target="_self" >도서관법규</a></li>
+<li><a href="./sub.do?key=316" target="_self" >영상정보처리기기 운영방침</a></li>
+<li><a href="./sub.do?key=197" target="_self" >이메일무단수집거부</a></li>
+<li><a href="./sub.do?key=99" target="_self" >이용도우미</a></li>
+<!--<li class="gnb_sns"><a href="#" class="fb">나룰도서관 페이스북 바로가기</a>
+<a href="#" class="bl">나룰도서관 블로그 바로가기</a></li>-->
+        </ul>
+
+
+    			<div class="footer_info">
+    				<address>경기도 하남시 덕풍북로 180 하남시나룰도서관 <span>TEL:(031)790-6887 / FAX:(031)790-6502</span></address>
+    				<p>Copyright 2009 by 하남시 나룰도서관. All Right Reserved.</p>
+    			</div>
+				<!--
+				<div class="wa">
+					<a href="http://www.webwatch.or.kr/Situation/WA_Situation.html?MenuCD=110"><img src="/common/images/common/wa.png" alt="미래창조과학부 WEB ACCESSIBILITY 마크(웹 접근성 품질인증 마크)" title="국가 공인 인증기관 : 웹와치"></a>
+				</div>
+				-->
+                <div class="explorer9_txt">
+                        <p>본 홈페이지는 Internet Explorer 9 이상의 브라우저 환경에 최적화되어있습니다. Internet Explorer 9 이하의 브라우저에서는 일부 기능이 지원되지 않을 수 있으니 양해부탁드립니다.</p>
+                        <a href="https://support.microsoft.com/ko-kr/help/17621/internet-explorer-downloads" target="_blank" title="새창"><span>최신 익스플로러11 업그레이드</span></a>
+                </div>
+    		</div><!-- //wrap2 -->
+
+    	</div><!-- //footer -->
+	<form name='audien_frm_web1'
+	action='http://aspservice.audien.com/inticube/front/NeoAspMain.do?paId=81913b1e3c8aa5a1158e&userId=' method='post'>
+                        <input type="hidden" name="partnerCode" value="81913b1e3c8aa5a1158e">
+	</form>
+	<script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
+	<script type="text/javascript">
+	if(!wcs_add) var wcs_add = {};
+	wcs_add["wa"] = "178b3b477112c9";
+	wcs_do();
+	</script>
+    </body>
+</html>

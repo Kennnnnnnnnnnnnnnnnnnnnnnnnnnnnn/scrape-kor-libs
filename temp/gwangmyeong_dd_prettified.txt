@@ -1,0 +1,92 @@
+<dl>
+ <dt>
+  <a href="#" id="aLink">
+   <img alt="NO IMAGE" class="img" height="119" id="aImage" src="./wdModules/wdDataSearch/skins/default/img/common/small_img_no.gif" width="83"/>
+  </a>
+  <em class="loadr">
+   <img alt="로딩중입니다." id="loading_" src="./wdModules/wdDataSearch/skins/default/./img/common/ajax-loader.gif"/>
+  </em>
+ </dt>
+ <dd>
+  <div class="ico ico-bk">
+   <strong>
+    <span id="aType">
+     -
+    </span>
+   </strong>
+   <span>
+    <a href="#title" id="aTitle">
+     -
+    </a>
+   </span>
+  </div>
+  <ul>
+   <li>
+    <strong>
+     ㆍ저     자
+    </strong>
+    <em>
+     |
+    </em>
+    <span id="aAuthor">
+     -
+    </span>
+   </li>
+   <li>
+    <strong>
+     ㆍ출 판 사
+    </strong>
+    <em>
+     |
+    </em>
+    <span id="aPubInfo">
+     -
+    </span>
+   </li>
+   <li>
+    <strong>
+     ㆍ발 행 년
+    </strong>
+    <em>
+     |
+    </em>
+    <span id="aPubYear">
+     -
+    </span>
+   </li>
+   <li>
+    <strong>
+     ㆍ청구기호
+    </strong>
+    <em>
+     |
+    </em>
+    <span id="aCallNo">
+     -
+    </span>
+   </li>
+   <li>
+    <strong>
+     ㆍ소장기관
+    </strong>
+    <em>
+     |
+    </em>
+    <span id="aLibName">
+     -
+    </span>
+   </li>
+   <li>
+    <strong>
+     ㆍ자 료 실
+    </strong>
+    <em>
+     |
+    </em>
+    <span id="aPlaceName">
+     -
+    </span>
+   </li>
+  </ul>
+ </dd>
+</dl>

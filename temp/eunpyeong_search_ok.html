@@ -1,0 +1,1581 @@
+
+<script>
+  // console.log("page",'')
+  // console.log("article",'')
+
+</script>
+
+<!DOCTYPE HTML>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="author" content="은평구립도서관" />
+<meta name="keywords" content="은평구립도서관, 책단비서비스, 스마트리움"  />
+<meta name="description" content="내 마음속에 새겨진 소중한 공간 은평구립도서관 입니다." />
+<meta name="Copyright" content="Copyright BY 은평구립도서관" />
+<meta name="naver-site-verification" content="eece377440ff3c88baa403fd51e03cc793599df8" />
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, maximum-scale=2.0, minimum-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta property="og:type"content="website" />
+<meta property="og:title" content="은평구립도서관" />
+<meta property="og:description" content="내 마음속에 새겨진 소중한 공간 은평구립도서관 입니다." />
+<meta property="og:image" content="http://www.eplib.or.kr/img/main/mainep.jpg" />
+<meta property="og:url" content="http://www.eplib.or.kr" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+
+
+<title>은평구립도서관</title>
+	
+	
+
+	<link rel="stylesheet" type="text/css" href="/_css/global.css?v=20220803" />
+	<link rel="stylesheet" type="text/css" href="/unified/unified_search.css?v=20220729" media="all" />
+
+	<!-- JS -->
+	<!--<script language="javascript" type="text/javascript" src="/_js/jquery-1.8.2.min.js"></script>-->
+	<script src="/_js/main/jquery-1.11.3.min.js"></script>
+	<script src="/_js/main/slick.min.js"></script>
+
+	<script language="javascript" type="text/javascript" src="/_js/common.js?v=20220729"></script>
+	<script language="javascript" type="text/javascript" src="/_js/basic.js?v=20220729"></script>
+	<script language="javascript" type="text/javascript" src="/_js/js_rolling.js?v=20220729"></script>
+	<script language="javascript" type="text/javascript" src="/_js/family.js?v=20220729"></script>
+	<script language="javascript" type="text/javascript" src="/_js/mobile.js?v=20220729"></script>
+	<script type="text/javascript" src="/unified/js/common.js?v=20220729"></script>
+	<script type="text/javascript" src="/unified/js/search.js?v=20220729"></script>
+	<script language="javascript" type="text/javascript" src="/_js/ajax.js?v=20220729"></script>
+	<script language="javascript" type="text/javascript" src="/_js/checkbox_util.js?v=20220729"></script>
+	<script language="javascript" type="text/javascript" src="/unified/js/ie9_select.js?v=20220729"></script>
+	<!-- <script language="javascript" type="text/javascript" src="../_js/multiLanguage.js"></script> -->
+	<script language="javascript" type="text/javascript" src="/_js/jquery-ui.min.js?v=20220729"></script>
+	<script src='https://www.google.com/recaptcha/api.js?v=20220729'></script>
+	<script language="javascript" type="text/javascript" src="/_js/mark.js?v=20220729"></script>
+	<!-- polyfill -->
+<!-- <script src="https://polyfill.io/v3/polyfill.min.js?version=3.52.1&features=es5%2Ces6%2Ces7"></script> -->
+<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?version=3.52.1&features=es5%2Ces6%2Ces7"></script>
+<!-- cdn -->
+<link rel="stylesheet" href="/_vue/css/mybook.css" />
+<!-- <script src="/_vue/cdn/vue@2.6.1.js"></script> -->
+<script src="/_vue/cdn/vue.js"></script>
+<script src="/_vue/cdn/polyfill.js"></script>
+<script src="/_vue/cdn/browser.js"></script>
+<script src="/_vue/cdn/lodash.js"></script>
+<script src="/_vue/cdn/vuex.js"></script>
+<script src="/_vue/cdn/axios.min.js"></script>
+<script src="/_vue/cdn/chart.min.js"></script>
+<script src="/_vue/cdn/vue-chartjs.min.js"></script>
+<script src="/_vue/cdn/vueWordCloud.js"></script>
+<script src="/_vue/cdn/vuex-persistedstate.umd.js"></script>
+
+<!-- utils -->
+<script src="/_vue/utils/axiosMethods.js"></script>
+
+<!-- directive -->
+<script src="/_vue/directive/focus.js"></script>
+<script src="/_vue/directive/visible.js"></script>
+
+<!-- mixins -->
+<script src="/_vue/mixins/authentication.js"></script>
+
+<!-- store -->
+<script src="/_vue/store/search.js"></script>
+<script src="/_vue/store/bookDetail.js?v=20220729"></script>
+<script src="/_vue/store/popularBook.js"></script>
+<script src="/_vue/store/accessionBook.js"></script>
+<script src="/_vue/store/recommendationBook.js"></script>
+<script src="/_vue/store/awardBook.js"></script>
+<script src="/_vue/store/ai.js"></script>
+<script src="/_vue/store/myLibrary.js"></script>
+<script src="/_vue/store/popup.js"></script>
+<script src="/_vue/store/cart.js"></script>
+<script src="/_vue/store/index.js"></script>
+
+<!-- components -->
+<script src="/_vue/components/popup/modal.js"></script>
+<script src="/_vue/components/popup/myBookcasePopup.js"></script>
+<script src="/_vue/components/common/pagination.js"></script>
+<script src="/_vue/components/common/book.js"></script>
+
+<!-- daum API-->
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="/_vue/utils/daumAPI.js"></script>
+
+<!-- vue main -->
+<script>
+  var userId = '';
+  var userToken = '';
+  var userName = '';
+  var userMemberClass = Number('');
+  var sbHost = '';
+  var lbHost = '';
+
+  console.log(sbHost);
+
+  console.log(lbHost);
+  
+  Vue.use(Vuex);
+  Vue.mixin(authentication(userId, userToken, userName, userMemberClass));
+  Vue.component('modal', modal);
+  Vue.component('my-bookcase-popup', myBookcasePopup);
+  Vue.component('book', book);
+  Vue.component('pagination', pagination);
+  Vue.directive('focus', focus);
+  Vue.directive('visible', visible);
+
+  var store = createStore();
+  store.commit('setParams', { userId: userId, userToken: userToken, userName: userName, userMemberClass: userMemberClass, sbHost: sbHost, lbHost: lbHost });
+  Vue.prototype.$bus = new Vue();
+  Vue.prototype.$store = store;
+  Vue.prototype.$get = axiosMethods.axiosGet;
+  Vue.prototype.$post = axiosMethods.axiosPost;
+  Vue.prototype.$put = axiosMethods.axiosPut;
+  Vue.prototype.$delete = axiosMethods.axiosDelete;
+  Vue.prototype.$daumAPI = daumAPI;
+  
+</script>
+
+<script>
+  if (window.addEventListener) {
+    // W3C DOM 지원 브라우저
+    window.addEventListener('load', load, false);
+  } else if (window.attachEvent) {
+    // W3C DO M 지원 브라우저 외(ex:MSDOM 지원 브라우저 IE)
+    window.attachEvent('onload', load);
+  } else {
+    window.onload = load;
+  }
+
+  function load() {
+    var El = function () {
+      this._dom;
+      this.create = function (selectors) {
+        this._dom = document.querySelectorAll(selectors);
+        return this;
+      }
+      this.on = function (event, callback) {
+        if(!this._dom) return;
+        Array.prototype.forEach.call(this._dom, function (dom) {
+          dom.addEventListener(event, callback);
+        });
+      }
+    };
+    var $ = function (selectors) {
+      return new El().create(selectors);
+    };
+    var onClickClearEvent = function (targets) {
+      Array.prototype.forEach.call(targets, function (target) {
+        target.on('click', clear);
+      })
+    };
+
+    onClickClearEvent([
+      $('#total-search'), 
+      $('#mobile-modal'), 
+      $('#alpasQ-top-menu li a'), 
+	  $('#library-service li a'),
+      $('#alpasQ-main-top-menu li a'), 
+      $('#alpasQ-mobile-menu li a'), 
+      $('#alpasQ-sub-menu li a')
+    ]);
+
+    function clear() {
+      sessionStorage.clear();
+    }
+  }
+</script>
+
+<style>
+  [v-cloak] {
+    display: none;
+  }
+  a {
+    cursor: pointer;
+  }
+</style>
+
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-114734416-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-114734416-1');
+</script>
+
+<!-- Google tag (gtag.js) -20230104->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-98ZPX5LVJ5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-98ZPX5LVJ5');
+</script>
+
+<!--네이버 -->
+<script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
+<script type="text/javascript">
+if(!wcs_add) var wcs_add = {};
+wcs_add["wa"] = "19fe0e7a1b29840";
+if(window.wcs) {
+  wcs_do();
+}
+</script>
+
+	<!-- CSS -->
+	<link rel="stylesheet" href="/_css/main/font.css?v=20220729">
+	<link rel="stylesheet" href="/_css/main/slick.css?v=20220729">
+	<link rel="stylesheet" href="/_css/main/style.css?v=20220729">
+		
+	
+	
+	<script type="text/javascript">
+		// 접속 핸드폰 정보 
+		var userAgent = navigator.userAgent.toLowerCase();
+
+		// 모바일 홈페이지 바로가기 링크 생성 
+		if(userAgent.match('iphone')) { 
+		document.write('<link rel="apple-touch-icon" href="/img/common/favicon.png" />') 
+		} else if(userAgent.match('ipad')) { 
+		document.write('<link rel="apple-touch-icon" sizes="72*72" href="/img/common/favicon.png" />') 
+		} else if(userAgent.match('ipod')) { 
+		document.write('<link rel="apple-touch-icon" href="/img/common/favicon.png" />') 
+		} else if(userAgent.match('android')) { 
+		document.write('<link rel="shortcut icon" href="/img/common/favicon_s.png" />') 
+		}
+	</script>
+
+</head>
+	
+<body>
+<div class="containerMain">
+	
+<header class="header">
+	<div class="inner">
+		<h1 class="logo">
+			<a href="/main.asp">
+				<em>(사복) 인덕원삼천사복지재단운영</em>
+				은평구립도서관
+			</a>
+		</h1>
+		<button type="button" class="btIco home"><a href="/main.asp"><i>홈</i></a></button>
+		<button type="button" class="btIco find"><a href="/unified/search.asp"><i>검색</i></a></button>
+		<button type="button" class="btIco user jqToggle">
+			
+				<a href="/member/login.asp"><i>사용자열닫</i></a>
+			
+		</button>
+		<button type="button" class="btIco menu jqToggle"><i>메뉴열닫</i></button>
+		<nav class="nav">
+			<ul>
+				
+				<li><a title="새창열림" target="_blink" href="https://lib.eplib.or.kr/" class="menu">통합페이지 바로가기</a></li>
+				<li><a href="/main.asp" class="menu">홈으로</a></li>
+				
+					<li><a href="https://www.eplib.or.kr/member/login.asp" class="menu">로그인</a></li>
+					<li><a href="javascript:;" OnClick="javascript:void window.open('https://nid.eplib.or.kr/');" title="새창열림" class="menu">회원가입</a></li>
+					<a href="javascript:;" OnClick="javascript:void window.open('https://nid.eplib.or.kr/');" class="m_log" style="display: none;">회원가입</a>
+				
+				<!-- <li><a href="/library/state.asp" class="menu">MY LIBRARY</a></li> -->
+				
+					<li><a href="/library/state.asp" class="menu">MY LIBRARY</a></li>
+				
+				<li><a href="/foot/sitemap.asp" class="menu">사이트맵</a></li>
+			</ul>
+		</nav>
+		<!-- <div class="fontSize">
+			<button type="button" class="btIco minus"><i>축소</i></button>
+			<button type="button" class="btIco plus"><i>확대</i></button>
+		</div> -->
+		<div class="social">
+			<a href="https://pf.kakao.com/_uXJXj" target="_blink" title="새창으로 열림"><button type="button" class="sns k">카카오톡</button></a>
+			<a href="https://blog.naver.com/epgulib" target="_blink" title="새창으로 열림"><button type="button" class="sns b">블로그</button></a>
+			<a href="https://www.youtube.com/user/EPLIBRARY" title="새창으로 열림" target="_blank"><button type="button" class="sns y">유투브</button></a>
+			<a href="https://www.facebook.com/KorEpl" title="새창으로 열림" target="_blank"><button type="button" class="sns f">페이스북</button></a>
+		</div>
+	</div>
+</header>
+	
+<nav class="gnb">
+	<div class="inner">
+		<button type="button" class="btIco close"><i>닫기</i></button>
+
+		<nav class="nav">
+			<ul>
+				
+					<li style="padding: 0;"><a href="/member/login.asp " class="menu">로그인</a></li>
+					<li style="padding: 0;"><a href="javascript:;" OnClick="javascript:void window.open('https://nid.eplib.or.kr/');" class="menu">회원가입</a></li>
+				
+			</ul>
+		</nav>
+		
+		<ul class="menuList">
+			<li>
+				<button type="button" class="btIco toggle"><i>열닫</i></button>
+				<a href="/mainSearch.asp" class="menu">자료검색</a>
+				<ul class="toggleBox">
+					<li><a href="/unified/search.asp" class="menu">통합검색</a></li>
+					<li><a href="/unified/detail_search.asp" class="menu">고급검색</a></li>
+					<li><a href="/unified/search_subject.asp" class="menu">자료탐색</a></li>
+					<li><a href="/unified/ill_trans.asp" class="menu">책단비검색</a></li>
+					<li><a href="/unified/search_smartmedia.asp" class="menu">스마트도서관검색</a></li>
+					<li><a href="/unified/wish_book.asp" class="menu">희망도서신청</a></li>
+					<li><a href="/unified/search_periodicals.asp" class="menu">연속간행물</a></li>
+					<li><a href="/unified/ai_book.asp" class="menu">큐레이션</a></li>
+				</ul>
+			</li>
+			<li>
+				<button type="button" class="btIco toggle"><i>열닫</i></button>
+				<a href="/intro/intro.asp" class="menu">도서관소개</a>
+				<ul class="toggleBox">
+					<li><a href="/intro/intro.asp" class="menu">도서관현황</a></li>
+					<li><a href="/intro/use.asp" class="menu">도서관이용안내</a></li>
+					<li><a href="/intro/forest.asp" class="menu">생각숲길</a></li>
+					<li><a href="/intro/data.asp" class="menu">자료실 안내</a></li>
+					<li><a href="/intro/location.asp" class="menu">오시는 길/주차안내</a></li>
+					<li><a href="/intro/lib01.asp" class="menu">구립상림도서관</a></li>
+					<li><a href="/intro/lib02.asp" class="menu">녹번 만화도서관</a></li>
+				</ul>
+			</li>
+			<li>
+				<button type="button" class="btIco toggle"><i>열닫</i></button>
+				<a href="/service/danbi.asp" class="menu">도서관서비스</a>
+				<ul class="toggleBox">
+					<li><a href="/service/danbi.asp" class="menu">책단비</a></li>
+					<li><a href="/service/book_unity.asp" class="menu">책이음</a></li>
+					<li><a href="/service/narea.asp" class="menu">책바다/책나래</a></li>
+					<li><a href="/service/e-lib.asp" class="menu">전자도서관/모바일</a></li>
+					<li><a href="/service/schoolBooks.asp" class="menu">스쿨북스/인생서가</a></li>
+					<li><a href="/service/bookmt.asp" class="menu">책동산</a></li>
+					<!-- <li><a href="/service/bookstart_intro.asp" class="menu">북스타트</a></li> -->
+					<li><a href="/service/pregnantDelivery_info.asp" class="menu">임산부택배 서비스</a></li>
+					<li><a href="/service/history.asp" class="menu">은평역사문화관</a></li>
+				</ul>
+			</li>
+			<li>
+				<button type="button" class="btIco toggle"><i>열닫</i></button>
+				<a href="/culture/event.asp" class="menu">문화행사</a>
+				<ul class="toggleBox">
+					<li><a href="/culture/event.asp" class="menu">문화행사 신청</a></li>
+					<li><a href="/culture/eventresult.asp?BOARD_STATE=1" class="menu">문화행사 결과</a></li>
+					<li><a href="/culture/readingbook.asp" class="menu">한 주제 함께 읽기</a></li>
+					<li><a href="/culture/movie.asp" class="menu">영화상영 안내</a></li>
+					<li><a href="/culture/dream.asp" class="menu">꿈꾸는 사서</a></li>
+				</ul>
+			</li>
+			<li>
+				<button type="button" class="btIco toggle"><i>열닫</i></button>
+				<a href="/info/news.asp" class="menu">정보광장</a>
+				<ul class="toggleBox">
+					<li><a href="/info/news.asp" class="menu">공지사항</a></li>
+					<li><a href="/info/recruit.asp" class="menu">채용공고</a></li>
+					<li><a href="/info/bookrecom.asp" class="menu">사서가 콕! 찍어주는 책</a></li>
+					<li><a href="/info/dataroom.asp" class="menu">공개자료</a></li>
+					<li><a href="/info/newsletter.asp" class="menu">발간자료</a></li>
+					<li><a href="/info/press.asp" class="menu">보도자료</a></li>
+					<li><a href="/info/libsmall.asp" class="menu">작은도서관</a></li>
+					<li><a href="/info/district.asp" class="menu">은평구 도서관 안내</a></li>
+					<li><a href="/info/olibrary.asp" class="menu">온라인정보서비스</a></li>
+				</ul>
+			</li>
+			<li>
+				<button type="button" class="btIco toggle"><i>열닫</i></button>
+				<a href="/parti/faq.asp" class="menu">참여마당</a>
+				<ul class="toggleBox">
+					<li><a href="/parti/faq.asp" class="menu">FAQ</a></li>
+					<li><a href="/parti/openfree.asp" class="menu">자유게시판</a></li>
+					<li><a href="/parti/question.asp" class="menu">자료이용질문</a></li>
+					<li><a href="/parti/compliment.asp" class="menu">참여후기&칭찬합니다</a></li>
+					<li><a href="/parti/volunteer.asp" class="menu">자원봉사 신청</a></li>
+					<li><a href="/parti/visit.asp" class="menu">도서관견학 신청</a></li>
+					<li><a href="/parti/donation.asp" class="menu">재능기부 신청</a></li>
+					<!-- <li><a href="/parti/use_lib.asp" class="menu">시설대관안내</a></li> -->
+				</ul>
+			</li>
+			<li>
+				<button type="button" class="btIco toggle"><i>열닫</i></button>
+				<a href="/mainsmart.asp" class="menu">스마트리움</a>
+				<ul class="toggleBox">
+					<li><a href="/smartrium/smartrium.asp" class="menu">소개</a></li>
+					<li><a href="/smartrium/event.asp" class="menu">프로그램 신청</a></li>
+					<li><a href="/smartrium/rent.asp" class="menu">공간대관 신청</a></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+</nav>
+
+<section class="template">
+<!--컨텐츠로드영역-->
+
+	<article class="contentSub">
+		
+		
+
+
+<div id="container">
+  <div class="container_inner">
+    <div class="lnb">
+      <h2>통합검색</h2>
+<ul id="alpasQ-sub-menu">
+	<li><a href="/unified/search.asp">통합검색</a></li>
+	<li><a href="/unified/detail_search.asp">고급검색</a></li>
+	<li><a href="/unified/search_subject.asp">자료탐색</a></li>
+	<li><a href="/unified/ill_trans.asp">책단비검색</a></li>
+	<li><a href="/unified/search_smartmedia.asp">스마트도서관검색</a></li>
+	<li><a href="/unified/wish_book.asp">희망도서신청</a></li>
+	<li><a href="/unified/search_periodicals.asp?manageCode=MA">연속간행물</a></li>
+	<li>
+		<a href="/unified/ai_book.asp">큐레이션</a>
+		<ul class="depth2">
+			<li><a href="/unified/ai_book.asp">인공지능추천</a></li>
+			<li><a href="/unified/month_book.asp">인기도서</a>
+				<ul class="depth3">
+					<li><a href="/unified/month_book.asp">이달의인기도서</a></li>
+					<li><a href="/unified/age_book.asp">연령별인기도서</a></li>
+					<li><a href="/unified/reservation_book.asp">예약인기도서</a></li>
+					<li><a href="/unified/subject_book.asp">주제별인기도서</a></li>
+					<li><a href="/unified/genre_book.asp">장르별인기도서</a></li>
+				</ul>
+			</li>
+			<li><a href="/unified/accession_book.asp">신착도서</a></li>
+			<li><a href="/unified/recommendation_book.asp">기관별추천도서</a></li>
+			<li><a href="/unified/award_book.asp">문학상수상작</a></li>
+			<li><a href="/unified/search_edu.asp">초중고교과연계도서</a></li>
+		</ul>
+	</li>
+	<!--
+	<li><a href="/unified/search.asp?lib=MA">간략검색</a></li>
+	<li><a href="/unified/detail_search.asp?lib=MA">상세검색</a></li>
+	<li><a href="/unified/recent_book.asp?lib=MA">신착도서검색</a></li>
+	<li><a href="/unified/search_subject.asp?manageCode=MA">주제별검색</a></li>
+	<li><a href="/unified/ill_trans.asp">책단비검색</a></li>
+	<li><a href="/unified/wish_book.asp">희망도서신청</a></li>
+	<li><a href="/unified/search_edu.asp">초중고 교과연계도서</a></li>
+	<li><a href="/unified/search_periodicals.asp?manageCode=MA">연속간행물</a></li>
+	-->
+</ul>			<div class="sns">
+				<a href="https://pf.kakao.com/_uXJXj" target="_blink" title="새창으로 열림"><img src="../img/ico/sns11.png" alt="은평구립도서관 카카오플러스친구 바로가기" /></a>
+				<a href="https://blog.naver.com/epgulib" title="새창으로 열림" target="_blank"><img src="../img/ico/sns06.gif" alt="은평구립도서관 블로그 바로가기" /></a>
+				<a href="https://www.youtube.com/user/EPLIBRARY" title="새창으로 열림" target="_blank"><img src="../img/ico/sns08.gif" alt="은평구립도서관 유튜브 연동하기" /></a>
+				<a href="https://www.facebook.com/KorEpl/" title="새창으로 열림" target="_blank"><img src="../img/ico/sns02.gif" alt="은평구립도서관 페이스북 바로가기" /></a>
+			</div>
+
+								
+    </div>
+		<div class="content">
+      <div class="locator">
+        <span class="home">HOME</span><span>자료검색</span><span>통합검색</span>
+        <div class="toggle_btn">
+          <a href="#" id="noggle"><img src="../img/btn/location_btn.png" id="bgnoggle" class="toggle_img" alt="메뉴열기"/></a>
+          <ul id="alpasQ-mobile-menu" class="noggle toggle_menu">
+            <!--
+            <li class="on"><a href="/unified/search.asp?lib=MA">통합검색</a></li>
+            <li><a href="/unified/detail_search.asp?lib=MA">상세검색</a></li>
+            <li><a href="/unified/recent_book.asp?lib=MA">신착도서검색</a></li>
+            <li><a href="/unified/search_subject.asp?manageCode=MA">주제별검색</a></li>
+            <li><a href="/unified/ill_trans.asp">책단비검색</a></li>
+            <li><a href="/unified/wish_book.asp">희망도서신청</a></li>
+            <li><a href="/unified/search_edu.asp">초중고 교과연계도서</a></li>
+            <li><a href="/unified/search_periodicals.asp?manageCode=MA">연속간행물</a></li>
+            -->
+						<li class="on"><a href="/unified/search.asp">통합검색</a></li>
+            <li><a href="/unified/detail_search.asp">고급검색</a></li>
+            <li><a href="/unified/search_subject.asp">자료탐색</a></li>
+            <li><a href="/unified/ill_trans.asp">책단비검색</a></li>
+            <li><a href="/unified/search_smartmedia.asp">스마트도서관검색</a></li>
+            <li><a href="/unified/wish_book.asp">희망도서신청</a></li>
+            <li><a href="/unified/search_periodicals.asp?manageCode=MA">연속간행물</a></li>
+            <li><a href="/unified/ai_book.asp">큐레이션</a></li>
+          </ul>
+        </div>
+      </div>
+      <div id="content">
+        <div class="visual_box visual_box02">
+          <h3>통합검색</h3>
+          <p>소장하고 있는 자료에 대한 가장 기본적인 검색입니다.</p>
+        </div>
+        <!-- include virtual="/search/BookList_test.asp" -->
+				<link rel="stylesheet" href="/_vue/css/unified_search.css" />
+
+<div id="app" class="searchTemplate blueThema" v-cloak>
+  <!--  thema 선택
+  blueThema : blue
+  redThema : red
+  greemThema : green
+  blackThema : black
+  -->
+  <search :is-Main-search="true"></search>
+
+  <!-- 검색후 보여짐  추천검색어 -->
+  <div v-if="!_.isEmpty(searchResult)" :class="isMobileRecommendKeyword && 'open'" class="recommendWrap">
+    <h4>추천검색어</h4>
+    <div class="recommendList">
+      <span v-for="keyword in recommendKeywords" :key="keyword.searchKeyword" @click="onRecommendKeywordClick(keyword.searchKeyword)" style="cursor: pointer;">
+        {{ keyword.searchKeyword }}
+      </span>
+    </div>
+    <button @click="isMobileRecommendKeyword = !isMobileRecommendKeyword" :class="isMobileRecommendKeyword && 'on'" type="button" class="thisdrop" style="cursor: pointer;"></button>
+  </div>
+  <!-- 추천검색어 -->
+  <!-- // searchWrap Mobile -->
+
+  <div v-if="!_.isEmpty(searchResult)" class="searchResultWrap">
+    <div class="result_box">
+      <!-- 자료유형 -->
+      <div class="container">
+        <div>
+          <ul class="curationMenu">
+            <li
+              v-for="(contents, i) in contentsTypes"
+              :key="i + contents.pubFormCode"
+              @click="onContentsTypeClick(contents.pubFormCode)"
+              :class="[activeContentsType(contents.pubFormCode), disable(contents.pubFormCode)]"
+            >
+              {{ contents.contentsType }}
+              <template v-if="contents.contentsTypeCount">({{ contents.contentsTypeCount }})</template>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- // 자료유형 -->
+
+      <div class="listSetting">
+        <div class="result_screen">
+          검색결과 총 <strong>{{ searchResult.totalCount | numberWithCommas }}</strong> 건
+          <span v-if="!isCategoryAndKdcCategorySearch" class="mobnone">검색어</span>
+          <p v-if="!isCategoryAndKdcCategorySearch" class="mobnone keywordList">
+            <strong>[ 키워드 : {{ searchKeyword }}</strong>
+            <strong v-if="advSearchKeywordB">"{{ advSearchKeywordB }}"</strong>
+            <strong v-if="advSearchKeywordC">{{ advSearchKeywordC }}</strong>
+            <strong v-if="advSearchKeywordD">-{{ advSearchKeywordD }}</strong>
+            <strong>]</strong>
+            <strong v-if="advAuthor">[ 저자명 : {{ advAuthor }} ]</strong>
+            <strong v-if="advPublisher">[ 발행처 : {{ advPublisher }} ]</strong>
+            <strong v-if="advIsbn">[ ISBN : {{ advIsbn }} ]</strong>
+            <strong v-if="advClassNo">[ ISSN : {{ advClassNo }} ]</strong>
+            <strong v-if="advFromPubYear">[ 발행년 : {{ advFromPubYear }} ~</strong>
+            <strong v-if="advToPubYear">{{advToPubYear }} ]</strong>
+            <strong v-if="advTextLang && advSearchKeywordA">[ 언어 : {{ advLangName }} ]</strong>
+            <strong v-if="advManageCode && advSearchKeywordA">[ 소장처 : {{ advLibName }} ]</strong>
+            <strong v-if="!_.isEmpty(reSearchKeywords)">{{ filteredReSearchkeyword }}</strong>
+          </p>
+          <!-- <a class="help_icon mobnone">도움말</a> -->
+        </div>
+
+        <div class="listStyleType">
+          <p class="HanChange">
+            <span @click="onLanguageClick('kor')" :class="activeLanguage('kor')" class="langKor">가</span>
+            <span @click="onLanguageClick('han')" :class="activeLanguage('han')" class="langHan">漢</span>
+          </p>
+          <select @change="onArticleChange">
+            <option v-for="article in articles" :key="article.code" :selected="selectedArticles(article.code)" :value="article.code">{{ article.name }}</option>
+          </select>
+          <select @change="onOrderChange" class="mobnone" :disabled="article === 'SCORE'">
+            <option value="ASC" :selected="selectedOrders('ASC')">오름차순</option>
+            <option value="DESC" :selected="selectedOrders('DESC')">내림차순</option>
+          </select>
+          <select @change="onDisplayChange" class="mobnone">
+            <option v-for="display in displays" :key="display" :selected="selectedDisplays(display)" :value="display">{{ display }}</option>
+          </select>
+          <div class="btnSetmob">
+            <span @click="toggleIsFacet" :class="isFacet && 'on'" class="mobPasit">패싯네비게이션</span>
+            <span @click="onListViewClickMobile()" :class="isListView ? 'listTypeList' : 'listTypeCard'" class="mobListType">리스트형</span>
+          </div>
+
+          <div class="btnSetWeb">
+            <span @click="onListViewClick(LIST)" :class="activeListViewType(LIST)" class="listTypeList">이미지형</span>
+            <span @click="onListViewClick(CARD)" :class="activeListViewType(CARD)" class="listTypeCard">리스트형</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 패싯 네비게이션 -->
+      <!-- <div v-if="!_.isEmpty(searchResult.bookList) && !_.isEmpty(aggregations)" class="pasitNavi"> -->
+      <div v-if="isAggregations" class="pasitNavi">
+        <a @click.stop="toggleIsFacet" :class="isFacet && 'on'">패싯 네비게이션</a>
+      </div>
+
+      <!-- <div v-if="!_.isEmpty(searchResult.bookList) && !_.isEmpty(aggregations)" :class="isFacet && 'open'" class="finder_area"> -->
+      <div :class="isFacet && 'open'" class="finder_area">
+        <div id="_filter" class="finder">
+          <div v-if="!_.isEmpty(aggregations.aggsContentsTypeList)" :class="activeFacetMoreView('contents', aggregations.aggsContentsTypeList)" class="finder_col _filter_row">
+            <h3 class="finder_tit">
+              <strong>자료유형</strong>
+              <a v-show="isMobile && isMoreViewBtn(aggregations.aggsContentsTypeList)" @click.stop="onFacetMoreViewClick('contents')" class="btn_extend _filter_more">
+                <span>더보기</span>
+              </a>
+            </h3>
+            <ul class="finder_list">
+              <li v-for="(contents, i) in aggregations.aggsContentsTypeList" :key="contents.aggsKey">
+                <input v-model="facet.aggsContentsType" :id="'contentType' + i" :value="contents.aggsKey" type="checkbox" @click="onFacetClick"/>
+                <label :for="'contentType' + i" class="text_over">{{ contents.aggsKey }}</label>
+                <label :for="'contentType' + i" class="facet_remove"></label>
+              </li>
+            </ul>
+          </div>
+
+          <div v-if="!_.isEmpty(aggregations.aggsAuthorList)" :class="activeFacetMoreView('author',aggregations.aggsAuthorList)" class="finder_col _filter_row">
+            <h3 class="finder_tit">
+              <strong>저자</strong>
+              <a v-show="isMoreViewBtn(aggregations.aggsAuthorList)" @click.stop="onFacetMoreViewClick('author')" class="btn_extend _filter_more">
+                <span>더보기</span>
+              </a>
+            </h3>
+            <ul class="finder_list">
+              <li v-for="(author, i) in aggregations.aggsAuthorList" :key="author.aggsKey">
+                <input v-model="facet.aggsAuthor" :id="'author' + i" :value="author.aggsKey" type="checkbox" @click="onFacetClick"/>
+                <label :for="'author' + i" class="text_over">{{ author.aggsKey }}</label>
+                <label :for="'author' + i" class="facet_remove"></label>
+              </li>
+            </ul>
+          </div>
+
+          <div v-if="!_.isEmpty(aggregations.aggsPublisherList)" :class="activeFacetMoreView('publisher', aggregations.aggsPublisherList)" class="finder_col _filter_row">
+            <h3 class="finder_tit">
+              <strong>발행처</strong>
+              <a v-show="isMoreViewBtn(aggregations.aggsPublisherList)" @click.stop="onFacetMoreViewClick('publisher')" class="btn_extend _filter_more">
+                <span>더보기</span>
+              </a>
+            </h3>
+            <ul class="finder_list">
+              <li v-for="(publisher, i) in aggregations.aggsPublisherList" :key="publisher.aggsKey">
+                <input v-model="facet.aggsPublisher" :id="'publisher' + i" :value="publisher.aggsKey" type="checkbox" @click="onFacetClick"/>
+                <label :for="'publisher' + i" class="text_over">{{ publisher.aggsKey }}</label>
+                <label :for="'publisher' + i" class="facet_remove"></label>
+              </li>
+            </ul>
+          </div>
+
+          <div v-if="aggregations.aggsPubYear.maxPubYear" :class="activeFacetMoreView('pubYear', aggregations.aggsPubYear)" class="finder_col _filter_row year">
+            <h3 class="finder_tit">
+              <strong>발행년도</strong>
+              <a v-show="isMobile && isMoreViewBtn(aggregations.aggsPubYear)" @click.stop="onFacetMoreViewClick('pubYear')" class="btn_extend _filter_more">
+                <span>더보기</span>
+              </a>
+            </h3>
+            <ul class="finder_list">
+              <li class="year_wrap">
+                <div class="year_search">
+                  <input @input="onFromPubYearInput" v-model.number="facet.aggsFromPubYear" maxlength="4" type="text" class="y_input" @click="onFacetClick"/> ~
+                  <input @input="onToPubYearInput" v-model.number="facet.aggsToPubYear" type="text" maxlength="4" class="y_input2" @click="onFacetClick"/>
+                  <button @click="onAggsPubYearClick" type="button" class="button" style="cursor: pointer;">
+                    <i aria-hidden="true" class="fa fa-search"></i>
+                  </button>
+                </div>
+
+                <div class="slider">
+                  <!-- vue slider 추가  (jqeury-ui slider 넣을려다 보니 vue slider 인거 확인했습니다)
+                  http://211.43.12.249:18180/searchResult/%EA%B0%9C%EB%AF%B8 에 연도 옆의 slider
+
+                  style도 동일 한데 style 수정해야 할시 slider 적용후 style 수정 할게요.
+                  -->
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div v-if="!_.isEmpty(aggregations.aggsTextLangList)" :class="activeFacetMoreView('language', aggregations.aggsTextLangList)" class="finder_col _filter_row">
+            <h3 class="finder_tit">
+              <strong>언어</strong>
+              <a v-show="isMoreViewBtn(aggregations.aggsTextLangList)" @click.stop="onFacetMoreViewClick('language')" class="btn_extend _filter_more">
+                <span>더보기</span>
+              </a>
+            </h3>
+            <ul class="finder_list">
+              <li v-for="(language, i) in aggregations.aggsTextLangList">
+                <input v-model="facet.aggsTextLang" :id="'language' + i" :value="language.aggsKey" type="checkbox" @click="onFacetClick"/>
+                <label :for="'language' + i" class="text_over">{{ language.aggsKey }}</label>
+                <label :for="'language' + i" class="facet_remove"></label>
+              </li>
+            </ul>
+          </div>
+
+          <!-- <div v-if="!_.isEmpty(aggregations.aggsLibNameList)" :class="activeFacetMoreView('library', aggregations.aggsLibNameList)" class="finder_col _filter_row">
+            <h3 class="finder_tit">
+              <strong>소장처</strong>
+              <a v-show="isMoreViewBtn(aggregations.aggsLibNameList)" @click.stop="onFacetMoreViewClick('library')" class="btn_extend _filter_more">
+                <span>더보기</span>
+              </a>
+            </h3>
+            <ul class="finder_list">
+              <li v-for="(library, i) in aggregations.aggsLibNameList">
+                <input v-model="facet.aggsLibName" :id="'library' + i" :value="library.aggsKey" type="checkbox" />
+                <label :for="'library' + i" class="text_over">{{ library.aggsKey }}</label>
+                <label :for="'library' + i" class="facet_remove"></label>
+              </li>
+            </ul>
+          </div> -->
+
+          <div v-if="!_.isEmpty(aggregations.aggsClassNoDescList)" :class="activeFacetMoreView('subject', aggregations.aggsClassNoDescList)" class="finder_col _filter_row">
+            <h3 class="finder_tit">
+              <strong>주제분류</strong>
+              <a v-show="isMoreViewBtn(aggregations.aggsClassNoDescList)" @click.stop="onFacetMoreViewClick('subject')" class="btn_extend _filter_more">
+                <span>더보기</span>
+              </a>
+            </h3>
+            <ul class="finder_list">
+              <li v-for="(subject, i) in aggregations.aggsClassNoDescList">
+                <input v-model="facet.aggsClassNoDesc" :id="'category' + i" :value="subject.aggsKey" type="checkbox" @click="onFacetClick"/>
+                <label :for="'category' + i" class="text_over">{{ subject.aggsKey }}</label>
+                <label :for="'category' + i" class="facet_remove"></label>
+              </li>
+            </ul>
+          </div>
+
+          <div v-if="!_.isEmpty(aggregations.aggsKeywordList)" :class="activeFacetMoreView('keyword', aggregations.aggsKeywordList)" class="finder_col _filter_row">
+            <h3 class="finder_tit">
+              <strong>주제어</strong>
+              <a v-show="isMoreViewBtn(aggregations.aggsKeywordList)" @click.stop="onFacetMoreViewClick('keyword')" class="btn_extend _filter_more">
+                <span>더보기</span>
+              </a>
+            </h3>
+            <ul class="finder_list">
+              <li v-for="(keyword, i) in aggregations.aggsKeywordList">
+                <input v-model="facet.aggsKeyword" :id="'keyword' + i" :value="keyword.aggsKey" type="checkbox" @click="onFacetClick"/>
+                <label :for="'keyword' + i" class="text_over">{{ keyword.aggsKey }}</label>
+                <label :for="'keyword' + i" class="facet_remove"></label>
+              </li>
+            </ul>
+          </div>
+
+          <div v-if="!_.isEmpty(aggregations.aggsTotalTitleList)" :class="activeFacetMoreView('totalTitle', aggregations.aggsTotalTitleList)" class="finder_col _filter_row">
+            <h3 class="finder_tit">
+              <strong>총서명</strong>
+              <a v-show="isMoreViewBtn(aggregations.aggsTotalTitleList)" @click.stop="onFacetMoreViewClick('totalTitle')" class="btn_extend _filter_more">
+                <span>더보기</span>
+              </a>
+            </h3>
+            <ul class="finder_list">
+              <li v-for="(totalTitle, i) in aggregations.aggsTotalTitleList">
+                <input v-model="facet.aggsTotalTitle" :id="'totalTitle' + i" :value="totalTitle.aggsKey" type="checkbox" @click="onFacetClick"/>
+                <label :for="'totalTitle' + i" class="text_over">{{ totalTitle.aggsKey }}</label>
+                <label :for="'totalTitle' + i" class="facet_remove"></label>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="category_tit">
+          <p>
+            <a @click.stop="onDeleteFacetClick('ALL_DELETE')" class="clear">전체해제 <span class="ico_clear"></span></a>
+          </p>
+          <div class="selc_object">
+            <a v-for="facet in selectedFacets" :key="facet" @click.stop="onDeleteFacetClick(facet)" :title="facet" class="pic">
+              <span>{{ facet }}</span>
+              <span class="del">선택해제</span>
+            </a>
+          </div>
+        </div>
+        <div @click.stop="closeFacet" class="pasit_dim"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 자료탐색 경로 결과 -->
+  <div v-if="isCategoryAndKdcCategorySearch" class="categorysort">
+    <span class="categoryLabel">{{ /^categorySearch/.test(searchType) ? '카테고리분류' : '한국십진분류' }}</span>
+    <select v-show="!_.isEmpty(lCategories)" @change="onLCategoryChange" ref="lCategory">
+      <option v-for="category in lCategories" :key="category.lCategoryCode" :value="category.lCategoryCode" :selected="selectedLCategory(category)">{{ category.lCategoryDesc }}</option>
+    </select>
+    <select v-show="!_.isEmpty(mCategories)" @change="onMCategoryChange" ref="mCategory">
+      <option :selected="selectedMCategory(null)" value="">선택하세요</option>
+      <option v-for="category in mCategories" :key="category.mCategoryCode" :value="category.mCategoryCode" :selected="selectedMCategory(category)">{{ category.mCategoryDesc }}</option>
+    </select>
+    <select v-show="!_.isEmpty(sCategories)" @change="onSCategoryChange" ref="sCategory">
+      <option :selected="selectedSCategory(null)" value="">선택하세요</option>
+      <option v-for="category in sCategories" :key="category.sCategoryCode" :value="category.sCategoryCode" :selected="selectedSCategory(category)">{{ category.sCategoryDesc }}</option>
+    </select>
+  </div>
+
+  <!-- 
+  listViewStyle   ,   cardViewStyle 
+    리스트 스타일         카드 스타일
+
+    기본 listViewStyle
+  -->
+  <div :class="viewStyle" class="bookList">
+    <ul class="listWrap">
+      <template v-for="(book, i) in searchResult.bookList">
+        <search-book :book="book" :index="i + 1" :key="i + ': ' + book.title"></search-book>
+      </template>
+    </ul>
+  </div>
+  <pagination v-if="!_.isEmpty(searchResult)" :total-count="searchResult.totalCount" :total-page="searchResult.totalPage" :init-page="page"></pagination>
+  <modal></modal>
+  <book-danbi-popup></book-danbi-popup>
+  <my-bookcase-popup :is-add-my-bookcase="true"></my-bookcase-popup>
+</div>
+
+<script src="/_vue/components/search/multilingual.js"></script>
+<script src="/_vue/components/search/webSite.js"></script>
+<script src="/_vue/components/search/selectLibrary.js"></script>
+<script src="/_vue/components/search/searchBook.js"></script>
+<script src="/_vue/components/search/search.js"></script>
+<script src="/_vue/components/popup/bookDanbi.js"></script>
+
+<script>
+  var vm = new Vue({
+    el: '#app',
+    components: {
+      search: search,
+      searchBook: searchBook,
+      pagination: pagination,
+      bookDanbiPopup: bookDanbiPopup
+    },
+    data: function() {
+      return {
+        searchUtil: null,
+        LIST: 'list',
+        CARD: 'card',
+        MULTILINGUAL: 'Multilingual',
+        WEB_SITE: 'webSite',
+        SELECT_LIBRARY: 'selectLibrary',
+        isMobileRecommendKeyword: false,
+        isListView: true,
+        isMobile: false,
+        isSearching: false,
+        selectedPubFormCode: 'ALL',
+        articles: [
+          { code: 'SCORE', name: '적합도' },
+          { code: 'TITLE', name: '서명' },
+          { code: 'AUTHOR', name: '저자' },
+          { code: 'PUBLISHER', name: '발행처' },
+          { code: 'PUBYEAR', name: '발행년' }
+        ],
+        displays: [20, 40, 60, 80]
+      };
+    },
+    computed: {
+       advLangName: function() {
+        var that = this;
+        var advLangName = that.advTextLang;
+        if (that.advTextLang === 'ALL') {
+          return '전체';
+        }
+        return advLangName;
+      },
+      advLibName: function() {
+        var that = this;
+        var selectedLibraries = this.libraries
+          .filter(function(library) {
+            return that.selectedLibraries.indexOf(library.manageCode) > -1;
+          })
+          .map(function(library) {
+            return library.libName;
+          });
+        return selectedLibraries.join(', ') || '전체 도서관';
+      },
+      disable: function() {
+        return function(pubFormCode) {
+          var isCategorySearch = /^kdcCategorySearch|^categorySearch/g.test(this.searchType) && !/^MO/g.test(pubFormCode);
+          return isCategorySearch && 'disable';
+        };
+      },
+      activeContentsType: function() {
+        return function(pubFormCode) {
+          return this.selectedPubFormCode === pubFormCode && 'on';
+        };
+      },
+      activeListViewType: function() {
+        return function(type) {
+          return this.listViewType === type && 'on';
+        };
+      },
+      activeLanguage: function() {
+        return function(language) {
+          return this.language === language && 'on';
+        };
+      },
+      isMoreViewBtn: function() {
+        return function(list) {
+          return this.isMobile ? true : list.length > 5;
+        };
+      },
+      selectedArticles: function() {
+        return function(article) {
+          return this.article === article;
+        };
+      },
+      selectedOrders: function() {
+        return function(order) {
+          return this.order === order;
+        };
+      },
+      selectedDisplays: function() {
+        return function(display) {
+          return this.display === display;
+        };
+      },
+      selectedLCategory: function() {
+        return function(category) {
+          return this.activeCategory.lCategory.lCategoryCode === category.lCategoryCode;
+        };
+      },
+      selectedMCategory: function() {
+        return function(category) {
+          if (!category) return false;
+          return this.activeCategory.mCategory.mCategoryCode === category.mCategoryCode;
+        };
+      },
+      selectedSCategory: function() {
+        return function(category) {
+          if (!category) return false;
+          return this.activeCategory.sCategory.sCategoryCode === category.sCategoryCode;
+        };
+      },
+      selectedLibraries: function() {
+        return this.state('selectedLibraries');
+      },
+      advTitle: function() {
+        return this.state('advTitle');
+      },
+      advAuthor: function() {
+        return this.state('advAuthor');
+      },
+      advPublisher: function() {
+        return this.state('advPublisher');
+      },
+      advIsbn: function() {
+        return this.state('advIsbn');
+      },
+      advClassNo: function() {
+        return this.state('advClassNo');
+      },
+      advFromPubYear: function() {
+        return this.state('advFromPubYear');
+      },
+      advToPubYear: function() {
+        return this.state('advToPubYear');
+      },
+      advTextLang: function() {
+        return this.state('advTextLang');
+      },
+      advManageCode: function() {
+        return this.state('advManageCode');
+      },
+      advSearchKeywordA: function() {
+        return this.state('advSearchKeywordA');
+      },
+      advSearchKeywordB: function() {
+        return this.state('advSearchKeywordB');
+      },
+      advSearchKeywordC: function() {
+        return this.state('advSearchKeywordC');
+      },
+      advSearchKeywordD: function() {
+        return this.state('advSearchKeywordD');
+      },
+      order: function() {
+        return this.state('order');
+      },
+      article: function() {
+        return this.state('article');
+      },
+      page: function() {
+        return this.state('page');
+      },
+      display: function() {
+        return this.state('display');
+      },
+      language: function() {
+        return this.state('language');
+      },
+      listViewType: function() {
+        return this.state('listViewType');
+      },
+      searchType: function() {
+        return this.state('searchType');
+      },
+      isCategoryAndKdcCategorySearch: function() {
+        return /^kdcCategorySearch|^categorySearch/g.test(this.searchType);
+      },
+      activeCategory: function() {
+        return this.state('category');
+      },
+      categories: function() {
+        return this.state('categories');
+      },
+      kdcCategories: function() {
+        return this.state('kdcCategories');
+      },
+      lCategories: function() {
+        var key = this.searchType === 'categorySearch' ? 'categories' : 'kdcCategories';
+        return this[key];
+      },
+      mCategories: function() {
+        return this.activeCategory.lCategory.mCategoryList || [];
+      },
+      sCategories: function() {
+        return this.activeCategory.mCategory.sCategoryList || [];
+      },
+      pubFormCode: function() {
+        return this.state('pubFormCode');
+      },
+      searchKeyword: function() {
+        return this.state('searchKeyword');
+      },
+      reSearchKeywords: function() {
+        return this.state('reSearchKeywords');
+      },
+      libraries: function() {
+        return this.state('libraries');
+      },
+      recommendKeywords: function() {
+        return this.state('recommendKeywords');
+      },
+      facetMorViews: {
+        get: function() {
+          return this.state('facetMorViews');
+        },
+        set: function(value) {
+          return this.setParams({ facetMorViews: value });
+        }
+      },
+      isFacet: function() {
+        return this.state('isFacet');
+      },
+      facet: function() {
+        return this.state('facet');
+      },
+      searchResult: function() {
+        return this.state('searchResult');
+      },
+      aggregations: function() {
+        return this.state('aggregations');
+      },
+      contentsTypes: function() {
+        return this.state('contentsTypes');
+      },
+      recentSearchKeywords: function() {
+        return this.state('recentSearchKeywords');
+      },
+      isAggregations: function() {
+        var isAggsAuthorList = !_.isEmpty(this.aggregations.aggsAuthorList);
+        var isAggsClassNoDescList = !_.isEmpty(this.aggregations.aggsClassNoDescList);
+        var isAggsContentsTypeList = !_.isEmpty(this.aggregations.aggsContentsTypeList);
+        var isAggsKeywordList = !_.isEmpty(this.aggregations.aggsKeywordList);
+        var isAggsPubYear = !!this.aggregations.aggsPubYear.maxPubYear;
+        var isAggsPublisherList = !_.isEmpty(this.aggregations.aggsPublisherList);
+        var isAggsTextLangList = !_.isEmpty(this.aggregations.aggsTextLangList);
+        var isAggsTotalTitleList = !_.isEmpty(this.aggregations.aggsTotalTitleList);
+        return isAggsAuthorList && isAggsClassNoDescList && isAggsContentsTypeList && isAggsKeywordList && isAggsPubYear && isAggsPublisherList && isAggsTextLangList && isAggsTotalTitleList;
+      },
+      filteredReSearchkeyword: function() {
+        var reSearchKeywords = this.reSearchKeywords.slice(0, this.reSearchKeywords.length).join(' and ');
+        return reSearchKeywords ? '[결과내검색 : ' + reSearchKeywords + ']' : '';
+      },
+      selectedFacets: function() {
+        return this.facet.aggsContentsType.concat(
+          this.facet.aggsAuthor,
+          this.facet.aggsPublisher,
+          this.facet.aggsTextLang,
+          this.facet.aggsLibName,
+          this.facet.aggsClassNoDesc,
+          this.facet.aggsKeyword,
+          this.facet.aggsTotalTitle
+        );
+      },
+      activeFacetMoreView: function() {
+        return function(facet, list) {
+          var isFacet = function(_facet) {
+            return _facet === facet;
+          };
+          if (!this.isMobile && list.length < 6) return false;
+          return this.facetMorViews.some(isFacet) && 'on';
+        };
+      },
+      viewStyle: function() {
+        return this.listViewType === 'list' ? 'listViewStyle' : 'cardViewStyle';
+      }
+    },
+    created: function() {
+      // var page = '';
+      // if (page) this.setParams({ page: Number(page) });
+      if (this.searchType === 'categorySearch') this.selectedPubFormCode = 'MO';
+      this.$bus.$on('goto', this.paging);
+    },
+    mounted: function() {
+      window.addEventListener('resize', this.resize);
+      var media = matchMedia('screen and (max-width: 640px)');
+      this.isMobile = media.matches;
+      this.initSearch();
+    },
+    beforeDestroy: function() {
+      window.removeEventListener('resize', this.resize);
+      this.$bus.$off('goto', this.paging);
+    },
+    watch: {
+      selectedFacets: 'watchSelectedFacets'
+    },
+    methods: {
+	  onFacetClick:function(){
+		 this.setParams({ page: 1 });
+		 this.$bus.$emit('initPagination');
+	  },
+      state: function(key) {
+        return this.$store.state.search[key];
+      },
+      commit: function(mutation, params) {
+        return this.$store.commit('search/' + mutation, params);
+      },
+      dispatch: function(action, params) {
+        return this.$store.dispatch('search/' + action, params);
+      },
+      setParams: function(params) {
+        this.commit('setParams', params);
+      },
+      resize: _.throttle(function() {
+        var media = matchMedia('screen and (max-width: 640px)');
+        this.isMobile = media.matches;
+      }, 300),
+      initSearch: function() {
+        this.dispatch('getCategories');
+        this.dispatch('getKdcCategories');
+        this.dispatch('getLibraries');
+        this.dispatch('getRecommendKeywords');
+        this.dispatch('getPopularKeywords');
+
+        if (this.userToken) this.dispatch('getRecentSearchKeywords');
+        if (this.isMobile) this.setParams({ isFacet: false });
+        if (this.searchType === 'search' && !this.searchKeyword) return;
+        if (this.searchType === 'facetSearch') return this.dispatch('facetSearch');
+        this.dispatch('search');
+      },
+      closeFacet: function() {
+        this.setParams({ isFacet: false });
+      },
+      paging: function(page) {
+		$('.containerMain').scrollTop(0);
+		this.setParams({ page: page });
+        if (this.searchType === 'facetSearch') return this.dispatch('facetSearch');
+		this.dispatch('search');
+		
+        // location.href = '/unified/search.asp?page=' + page +'&article='+'';
+      },
+      onListViewClick: function(type) {
+        this.setParams({ listViewType: type, bibliographicViewIndex: -1, collectionViewIndex: -1 });
+      },
+      onListViewClickMobile: function() {
+        if (this.isListView === true) {
+          this.setParams({ listViewType: 'card', bibliographicViewIndex: -1, collectionViewIndex: -1 });
+          this.isListView = false;
+        } else {
+          this.setParams({ listViewType: 'list', bibliographicViewIndex: -1, collectionViewIndex: -1 });
+          this.isListView = true;
+        }
+      },
+      onLanguageClick: function(language) {
+        this.setParams({ language: language });
+        this.$bus.$emit('onLanguageClick', language);
+      },
+      toggleIsFacet: function() {
+        this.setParams({ isFacet: !this.isFacet });
+      },
+      onLCategoryChange: function(e) {
+        var isKdcCategory = this.searchType === 'kdcCategorySearch';
+
+        var lCategoryCode = e.target.value;
+
+        var alpasqCode = lCategoryCode;
+        var classNoCode = 'l' + lCategoryCode;
+
+        var lCategory = this.lCategories.find(function(category) {
+          return category.lCategoryCode === lCategoryCode;
+        });
+
+        this.commit('setCategory', {
+          isKdcCategory: isKdcCategory,
+          alpasqCode: isKdcCategory ? '' : alpasqCode,
+          classNoCode: isKdcCategory ? classNoCode : '',
+          lCategory: lCategory,
+          mCategory: {},
+          sCategory: {},
+          mCategories: lCategory ? lCategory.mCategoryList : [],
+          sCategories: []
+        });
+
+        this.dispatch('search');
+      },
+      onMCategoryChange: function(e) {
+        var isKdcCategory = this.searchType === 'kdcCategorySearch';
+
+        var lCategoryCode = this.activeCategory.lCategory.lCategoryCode;
+        var mCategoryCode = e.target.value;
+
+        var mCategory = this.mCategories.find(function(category) {
+          return category.mCategoryCode === e.target.value;
+        });
+
+        var alpasqCode = mCategory ? mCategoryCode : lCategoryCode;
+        var classNoCode = mCategory ? 'm' + mCategoryCode : 'l' + lCategoryCode;
+
+        this.commit('setCategory', {
+          isKdcCategory: isKdcCategory,
+          alpasqCode: isKdcCategory ? '' : alpasqCode,
+          classNoCode: isKdcCategory ? classNoCode : '',
+          lCategory: this.activeCategory.lCategory,
+          mCategory: mCategory || {},
+          sCategory: {},
+          sCategories: mCategory ? mCategory.sCategoryList : []
+        });
+
+        this.dispatch('search');
+      },
+      onSCategoryChange: function(e) {
+        var isKdcCategory = this.searchType === 'kdcCategorySearch';
+
+        var mCategoryCode = this.activeCategory.mCategory.mCategoryCode;
+        var sCategoryCode = e.target.value;
+
+        var sCategory = this.sCategories.find(function(category) {
+          return category.sCategoryCode === sCategoryCode;
+        });
+
+        var alpasqCode = sCategory ? sCategoryCode : mCategoryCode;
+        var classNoCode = sCategory ? 's' + sCategoryCode : 'm' + mCategoryCode;
+
+        this.commit('setCategory', {
+          isKdcCategory: isKdcCategory,
+          alpasqCode: isKdcCategory ? '' : alpasqCode,
+          classNoCode: isKdcCategory ? classNoCode : '',
+          lCategory: this.activeCategory.lCategory,
+          mCategory: this.activeCategory.mCategory,
+          sCategory: sCategory || {}
+        });
+
+        this.dispatch('search');
+      },
+      onDeleteFacetClick: function(facet) {
+        var that = this;
+        var facetKeys = ['aggsContentsType', 'aggsAuthor', 'aggsPublisher', 'aggsTextLang', 'aggsLibName', 'aggsClassNoDesc', 'aggsKeyword', 'aggsTotalTitle'];
+        var hasFacet = function(_facet) {
+          return _facet === facet;
+        };
+        if (facet === 'ALL_DELETE') {
+          this.facet.aggsFromPubYear = this.aggregations.aggsPubYear.minPubYear;
+          this.facet.aggsToPubYear = this.aggregations.aggsPubYear.maxPubYear;
+          facetKeys.forEach(function(key) {
+            that.facet[key] = [];
+          });
+          return that.setParams({ searchType: 'search' });
+        }
+        facetKeys.forEach(function(key) {
+          if (!that.facet[key].some(hasFacet)) return;
+          that.facet[key].splice(that.facet[key].findIndex(hasFacet), 1);
+        });
+      },
+      watchSelectedFacets: function() {
+        if (this.searchType === 'facetSearch') return this.dispatch('facetSearch');
+        this.dispatch('search');
+      },
+      onAggsPubYearClick: function() {
+        if (this.facet.aggsFromPubYear < this.aggregations.aggsPubYear.minPubYear) {
+          this.facet.aggsFromPubYear = this.aggregations.aggsPubYear.minPubYear;
+        }
+        if (this.facet.aggsFromPubYear > this.aggregations.aggsPubYear.maxPubYear) {
+          this.facet.aggsFromPubYear = this.aggregations.aggsPubYear.minPubYear;
+        }
+        if (this.facet.aggsToPubYear > this.aggregations.aggsPubYear.maxPubYear) {
+          this.facet.aggsToPubYear = this.aggregations.aggsPubYear.maxPubYear;
+        }
+        if (this.facet.aggsFromPubYear > this.facet.aggsToPubYear) {
+          this.facet.aggsToPubYear = this.aggregations.aggsPubYear.maxPubYear;
+        }
+        this.setParams({ searchType: 'facetSearch' });
+        this.dispatch('facetSearch');
+        if (this.isMobile) this.setParams({ isFacet: false });
+      },
+      onFacetMoreViewClick: function(facet) {
+		 console.log(facet)
+        var isFacet = function(_facet) {
+          return _facet === facet;
+        };
+        var facetIndex = this.facetMorViews.findIndex(isFacet);
+        if (this.facetMorViews.some(isFacet)) this.facetMorViews.splice(facetIndex, 1);
+        else this.facetMorViews.push(facet);
+      },
+      onContentsTypeClick: function(pubFormCode) {
+		this.setParams({page:1});
+		this.$bus.$emit('initPagination');
+        if (/^kdcCategorySearch|^categorySearch/g.test(this.searchType)) return;
+        if (this.isSearching) return;
+        var that = this;
+
+        this.isSearching = true;
+
+        this.setParams({ pubFormCode: pubFormCode, isFacet: false });
+        this.dispatch('search').then(function() {
+          that.isSearching = false;
+          that.selectedPubFormCode = pubFormCode;
+        });
+      },
+      onOrderChange: function(e) {
+        if (this.article === 'SCORE') {
+          e.preventDefault();
+          return;
+        }
+        this.setParams({ order: e.target.value });
+        this.dispatch('search');
+      },
+      onArticleChange: function(e) {
+        var order = 'DESC';
+        if (/^TITLE|^AUTHOR|^PUBLISHER/.test(e.target.value)) order = 'ASC';
+        this.setParams({ article: e.target.value, order: order });
+        this.dispatch('search');
+        // location.href = '/unified/search.asp?page=' + ''+'&article='+e.target.value;
+      },
+      onDisplayChange: function(e) {
+        this.$bus.$emit('initPagination');
+        this.setParams({ display: Number(e.target.value), page: 1 });
+        this.dispatch('search');
+      },
+      onRecommendKeywordClick: function(keyword) {
+        this.setParams({ searchKeyword: keyword });
+        this.dispatch('search');
+      },
+      onFromPubYearInput: function(e) {
+        e.target.value = e.target.value.replace(/[^0-9]/g, '');
+        this.facet.aggsFromPubYear = Number(e.target.value);
+      },
+      onToPubYearInput: function(e) {
+        e.target.value = e.target.value.replace(/[^0-9]/g, '');
+        this.facet.aggsToPubYear = Number(e.target.value);
+      }
+    },
+    filters: {
+      numberWithCommas: function (value) {
+        return value ? value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") : 0;
+      }
+    }
+  });
+</script>
+<style>	
+html { height: 100%; overflow:auto; }
+body { height: 100%; }
+  .box_check label {
+    cursor: pointer;
+  }
+  .worldwordBox {
+    z-index: 0;
+  }
+  .highlight.word {
+    color: #7aa6ee;
+  }
+  .seleted-autocomplate {
+    background-color: #ededf2;
+  }
+  .recommend-keyword {
+    padding-top: 15px;
+    text-align: center;
+  }
+  .recommend-keyword strong {
+    padding-right: 5px;
+  }
+  .recommend-keyword span {
+    cursor: pointer;
+  }
+  .recommend-keyword span:after {
+    content: '|';
+    padding: 0 5px;
+    cursor: context-menu;
+  }
+  .recommend-keyword span:last-child:after {
+    content: '';
+  }
+  .result_screen > p strong {
+    display: inline-block;
+  }
+
+  .keywordList {
+    width: 74% !important;
+    height: 23px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 1.9;
+  }
+  @media screen and (max-width: 720px) {
+    .keywordList {
+      width: 420px !important;
+      height: 23px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+  @media screen and (min-width: 641px) {
+    .result_screen {
+      margin-bottom: 45px;
+      margin-top: -4px;
+      border-bottom: 1px solid #ddd;
+      height: 25px;
+    }
+    .listStyleType {
+      top: 33px;
+    }
+  }
+</style>
+
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+	$('.gnb li:nth-child(1)').addClass('gnb_on');
+	$('.lnb ul li:nth-child(1)').addClass('lnb_on');
+</script>
+<!--
+<style>
+	.search_bar {
+		border: 1px solid #000000;
+		line-height: 30%;
+	}
+	.first {
+		display: inline-block;
+		width: 100px;
+		margin-left: 10px;
+	}
+	.btnSearch {
+		width: 200px;
+	}
+	.result_bar {
+		margin: 30px 0;
+	}
+	.pagination a {
+		padding-left: 5px;
+	}
+
+	#content_list {
+		border-collapse: collapse;
+	}
+	#content_list th,
+	#content_list td {
+		border: 1px solid black;
+	}
+</style>
+-->
+
+	</article>
+		
+<!--//컨텐츠로드영역-->
+</section>
+	
+<footer class="footer">
+	<div class="inner">
+		<div class="logo">
+			<span>
+				<em>(사복) 인덕원삼천사복지재단운영</em>
+				은평구립도서관
+			</span>
+		</div>
+		<nav class="nav">
+			<ul>
+				<li><a href="/foot/privacy.asp" class="menu"><strong>개인정보처리방침</strong></a></li>
+				<li><a href="/foot/noemail.asp" class="menu">이메일수집거부</a></li>
+				<li><a href="/intro/location.asp" class="menu">도서관 찾아오기</a></li>
+				<li><a href="/intro/use_advantage.asp?mode=01" class="menu">도서관 둘러보기</a></li>
+				<li><a href="/intro/intro03.asp" class="menu">전화번호부</a></li>
+				<li><a href="/foot/site.asp" class="menu">추천사이트</a></li>
+				<li><a href="https://988.co.kr/1671" target="_blank" class="menu">원격지원요청</a></li>
+			</ul>
+		</nav>
+		<span class="select">
+			<select onchange="openLink2(this.value)">
+				<option value="idw">사회복지법인 인덕원삼천사복지재단</option>
+				<option value="3004">삼천사</option>
+				<option value="ep-silver">은평노인종합복지관</option>
+				<option value="eplib">은평구립도서관</option>
+				<option value="jsplib">구립증산도서관</option>
+				<option value="enlib">은평뉴타운도서관</option>
+				<option value="guswc">길음종합사회복지관</option>
+				<option value="yc-silver">역촌노인복지관</option>
+				<option value="dj-silver">대조노인복지관</option>
+				<option value="escare">은평신사데이케어센터</option>
+				<option value="bkkid">불광어린이집</option>
+				<option value="gnkid">개나리어린이집</option>
+				<option value="flkid">꽃빛나라어린이집</option>
+				<option value="dakid">다솔어린이집</option>
+				<option value="sskid">응암새싹어린이집</option>
+				<option value="fqkid">물빛캐슬어린이집</option>
+				<option value="knrkid">꿈나래어린이집</option>
+			</select>
+			<label>FAMILY SITE</label>
+		</span>
+
+		<script>
+			function openLink2(value) {
+				if(value=='idw') 
+					window.open('http://www.idw.or.kr' , '_blank');
+				else if(value=='3004') 
+					window.open('http://www.3004.or.kr' , '_blank');
+				else if(value=='paramil') 
+					window.open('http://www.paramil.net' , '_blank');
+				else if(value=='ep-silver') 
+					window.open('http://www.ep-silver.org' , '_blank');
+				else if(value=='eplib') 
+					window.open('https://www.eplib.or.kr' , '_blank');
+				else if(value=='jsplib') 
+					window.open('https://www.jsplib.or.kr' , '_blank');
+				else if(value=='enlib') 
+					window.open('https://www.enlib.or.kr' , '_blank');
+				else if(value=='guswc') 
+					window.open('http://www.guswc.org', '_blank');
+				else if(value=='yc-silver') 
+					window.open('http://www.yc-silver.org','_blank');
+				else if(value=='dj-silver') 
+					window.open('http://www.dj-silver.org','_blank');
+				else if(value=='escare') 
+					window.open('http://www.escare.kr','_blank');
+				else if(value=='bkkid') 
+					window.open('http://www.bkkid.co.kr','_blank');
+				else if(value=='gnkid') 
+					window.open('http://www.gnkid.co.kr','_blank');
+				else if(value=='flkid') 
+					window.open('http://www.flkid.co.kr','_blank');
+				else if(value=='dakid') 
+					window.open('http://www.dakid.co.kr','_blank');
+				else if(value=='sskid') 
+					window.open('http://www.sskid.kr','_blank');
+				else if(value=='fqkid') 
+					window.open('https://blog.naver.com/anfqlc2022','_blank');
+				else if(value=='knrkid') 
+					window.open('https://knrkid.kidsnote.ac/home/main','_blank');
+
+			}
+		</script>
+		<ul class="company">
+			<li>우 03352 서울특별시 은평구 통일로78가길 13-84(불광동)</li>
+			<li>TEl.(02)385-1671~4</li>
+			<li>FAX.총무과:(02)388-9451 사서과:(02)352-2944</li>
+			<li>13-84, Tongil-ro 78ga-gil, Eunpyeong-gu, Seoul(03352)</li>
+			<li style="position: static;">
+				<img src="/img/main/educationalPartner.png" style="right: 50px; width: 55px; cursor: pointer;" onclick="window.open('https://www.ggoomgil.go.kr/front/cert/expPlaceCertificationInfo.do')"/>
+				<img src="https://www.eprivacy.or.kr/images/mng/sub/mark1_eprivacy.png" style="cursor:pointer;width:40px" onclick="window.open('https://www.eprivacy.or.kr/front/certifiedSiteMark/certifiedSiteMarkPopup.do?certCmd=E&certNum=2026-E-R005','seal','width=527,height=720,location=no,status=no,scrollbars=no')" />
+			</li>
+		</ul>
+		<p class="copyright">Copyright ⓒ2001 by 은평구립도서관, All rights reserved.</p>
+	</div>
+</footer>
+	
+</div><!--//container-->
+</body>
+</html>
+
+<!--<script>
+var app = new Vue({
+	el: '#app',
+	data: { library:'은평구립도서관' }
+})
+
+$(document).ready(function() {
+	
+});
+</script>-->
+
+<script src="/_js/main/common.js"></script>

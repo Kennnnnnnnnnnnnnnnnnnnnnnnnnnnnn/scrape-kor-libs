@@ -1,0 +1,1034 @@
+
+
+
+<!DOCTYPE HTML>
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>홈 >자료검색>소장자료(통합검색)</title>
+<link rel="stylesheet" href="/ssc/intro/section.css" type="text/css">
+<link rel="stylesheet" href="/ssc/sub.css" type="text/css">
+<link rel="stylesheet" href="/ssc/intro/intro_all.css" type="text/css">
+<link rel="stylesheet" href="/lib/css/flick/jquery-ui-1.10.4.custom.min.css" type="text/css">
+<script type="text/javascript" src="/lib/js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="/lib/js/jquery-migrate.min.js"></script>
+<script type="text/javascript" src="/lib/js/jquery-ui-1.10.3.custom.min.js"></script>
+<script type="text/javascript" src="/lib/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="/lib/js/jquery.lck.util.js"></script>
+<script type="text/javascript" src="/lib/js/jquery.form.js"></script>
+<script type="text/javascript" src="/lib/js/gnb.js"></script>
+<script type="text/javascript" src="/lib/js/sub.js"></script>
+<script type="text/javascript" src="/lib/js/common.js"></script>
+<script type="text/javascript" src="/lib/js/mc.js"></script>
+<script type="text/javascript" src="/lib/js/jquery.blockUI.js"></script>
+<script type="text/javascript" src="/sj/common.js"></script>
+<script src="https://apis.google.com/js/client.js?onload=load"></script>
+<script
+    src="https://lib.gjcity.go.kr/netfunnel/netfunnel-statics/agents/client/javascript/netfunnel-javascript-agent.js"
+    data-nf-server-url="https://wait.gjcity.go.kr"
+    data-nf-setting-url="https://wait.gjcity.go.kr/assets/nf-setting/1/nf-setting.json"
+    data-nf-vwr-page-url="https://lib.gjcity.go.kr/netfunnel/netfunnel-statics/assets/vwr-page/1/index.html"
+    data-nf-error-page-url="https://lib.gjcity.go.kr/netfunnel/netfunnel-statics/assets/vwr-page/error/errorPage.html"
+    data-nf-retry-count="0"
+    data-nf-network-timeout="3000"
+></script>
+
+        <script charset="UTF-8" class="daum_roughmap_loader_script" src="https://spi.maps.daum.net/imap/map_js_init/roughmapLoader.js"></script>
+    
+
+
+<!-- 관리자 메뉴설정에서 설정 -->
+
+</head>
+<body>
+<div class="wrap">
+	
+
+
+
+<script type="text/javascript">
+$(window).load(function(){
+	var delayCount = "";
+
+
+
+
+var urlPath = $(location).attr('pathname');
+if(urlPath=="/" || urlPath == "/index.do"){
+	if(delayCount>0){
+	var result = confirm("연체중인 도서가 "+delayCount+"권 있습니다. 마이라이브러리로 이동하시겠습니까?");
+	if(result){
+		location.href="/lay4/program/S1T2C529/member/borrowing.do";
+	}else{
+		return false;
+	}
+}
+}
+
+
+});
+</script>
+<script type="text/javascript">
+function check() {
+
+	  if(libSearch2.q.value == "")
+	  {
+	    alert("도서명을 입력해주세요1");
+	    return false;
+	  }
+	  else return true;
+}
+</script>
+<!--#header S-->
+      <!--#header S-->
+<dl id="skip-go">
+	<dt>바로가기</dt>
+	<dd><a href="#body_contents" >본문영역 바로가기</a></dd>
+</dl>
+
+<!-- header -->
+<header id="header">
+
+  <!-- header_top -->
+  <div class="header_top">
+     <div class="header_topCon">
+         <div class="utilLink">
+		   <!-- <a href="/index.do">HOME</a>  -->
+			
+				   	<a href="/lay4/program/S1T2C4/member/login.do">로그인&<br/>회원가입</a>
+					<!--<a href="/lay4/program/S1T2C3/member/join_step1.do" title="새창열림" target="_blank">회원가입</a>-->
+				
+			<div class="linkSelect linkSite">
+				<dl>
+					<dt class="pad_t9">
+						<a href="javascript:;" class="open" style="display: block;">도서관 <br />바로가기<span class="hide">열기</span></a>
+						<a href="javascript:;" class="close cpc" style="display: none;">
+						<p class="cpc"><img src="/gmi/intro/gnb_search_close.png" alt="닫기" /></p><p class="cm">도서관 <br />바로가기</p><span class="hide">닫기</span></a>
+					</dt>
+					<dd>
+						<div>
+							<h3 class="skip">도서관 바로가기</h3>
+							<ul>
+								<li><a href="/index.do" target="_blank" title="새창열림">통합페이지</a></li>
+								<li><a href="/center/index.do" target="_blank" title="새창열림">중앙도서관</a></li>
+								<li><a href="/tc/index.do" target="_blank" title="새창열림">퇴촌도서관</a></li>
+								<li><a href="/yb/index.do" target="_blank" title="새창열림">양벌도서관</a></li>
+								<li><a href="/cw/index.do" target="_blank" title="새창열림">초월도서관</a></li>
+								<li><a href="/gj/index.do" target="_blank" title="새창열림">곤지암도서관</a></li>
+								<li><a href="/op/index.do" target="_blank" title="새창열림">오포도서관</a></li>
+								<li><a href="/sh/index.do" target="_blank" title="새창열림">신현도서관</a></li>
+								<li><a href="/np/index.do" target="_blank" title="새창열림">능평도서관</a></li>
+								<li><a href="/gn/index.do" target="_blank" title="새창열림">광남도서관</a></li>
+								<li><a href="/ms/index.do" target="_blank" title="새창열림">만선도서관</a></li>
+								<li><a href="/slib/index.do" target="_blank" title="새창열림">작은도서관</a></li>
+                            </ul>
+						</div>
+					</dd>
+				</dl>
+		   </div>
+		   <a href="/lay4/program/S1T2C529/jnet/member/borrowing.do" title="새창열림" target="_blank">나의<br />도서관</a>
+        </div>
+
+     </div><!--// header_topCon -->
+  </div><!--// header_top -->
+
+<!-- gnb_area -->
+    <div class="gnb_area">
+	<h1 class="logo"><a href="/index.do" title="홈으로 이동"><img src="/gmi/intro/logo_new_white.png" alt="광주시 시립도서관" /></a></h1>
+      <ul class="gnb clearfix">  
+ <li class="li02"> <a href="/lay1/S1T1C82/sublink.do">이용안내 </a> 
+  <ul class="sub"> 
+   <li> <a href="/lay1/S1T82C106/contents.do">도서관 이용시간 </a> </li>  
+   <li> <a href="/lay1/S1T82C456/contents.do">회원가입안내 </a> </li> 
+   <li> <a href="/lay1/S1T82C457/contents.do">도서 대출 및 반납 </a> </li>  
+   <li> <a href="/lay1/S1T82C686/sublink.do">자료실 및 열람실 이용 </a> </li> 
+   <li> <a href="/lay1/S1T82C459/contents.do">기타 도서관시설 이용 </a> </li>   
+   <li> <a href="/lay1/S1T82C3221/contents.do">도서관 시설 대관 </a> </li> 
+   <li> <a href="https://lib.gjcity.go.kr/sh/lay1/S21T3607C3721/contents.do" target="_blank">신현도서관 세미나룸 </a> </li> 
+   <li> <a href="/lay1/bbs/S1T82C485/E/3/list.do">자주 물어보는 질문 </a> </li> 
+   <li> <a href="/lay1/bbs/S1T82C2412/K/241/list.do">분실물 찾기 </a> </li> 
+   <li> <a href="/lay1/S1T82C2426/sublink.do">도서관이야기 </a> </li> 
+   <li> <a href="/lay1/bbs/S1T2426C2427/I/181/list.do">소식지 </a> </li> 
+   <li> <a href="/lay1/bbs/S1T82C2861/L/281/list.do">美 갤러리 </a> </li>
+  </ul></li> 
+ <li class="li03"> <a href="/lay1/S1T1C1206/sublink.do">도서관서비스 </a> 
+  <ul class="sub"> 
+   <li> <a href="/lay1/program/S1T1206C1226/bookservice/intro.do">희망도서신청 </a> </li> 
+   <li> <a href="/lay1/program/S1T1206C2446/hopeBook/intro.do">희망도서신청(스마트도서관) </a> </li> 
+   <li> <a href="/lay1/S1T1206C1346/contents.do">자료기증 </a> </li> 
+   <li> <a href="/lay1/S1T1206C1286/contents.do">내 생애 첫 도서관 </a> </li> 
+   <li> <a href="/lay1/S1T1206C1306/contents.do">두루두루 서비스 </a> </li> 
+   <li> <a href="/lay1/S1T1206C1326/contents.do">국가상호대차 서비스 </a> </li> 
+   <li> <a href="/lay1/S1T1206C1406/contents.do">순회문고 </a> </li> 
+   <li> <a href="/lay1/S1T1206C2681/contents.do">무인 도서예약 대출 </a> </li>
+  </ul></li> 
+ <li class="li04 on"> <a href="/lay1/S1T1C446/sublink.do">자료검색 </a> 
+  <ul class="sub"> 
+   <li> <a href="/lay1/program/S1T446C461/jnet/resourcessearch/list.do">소장자료(통합검색) </a> </li> 
+   <li> <a href="/lay1/bbs/S1T446C2922/M/301/list.do">한 책 읽기 </a> </li> 
+   <li> <a href="/lay1/program/S1T446C2721/reading/list.do">책 읽어주는 사서 </a> </li> 
+   <li> <a href="/lay1/program/S1T446C462/jnet/resourcessearch/newlist.do">신착자료 </a> </li> 
+   <li> <a href="/lay1/S1T446C463/sublink.do">사서 추천도서 </a> </li>   
+   <li> <a href="/lay1/S1T446C1786/sublink.do">권장도서 </a> </li> 
+   <li> <a href="/lay1/program/S1T446C464/jnet/resourcessearch/multmedia.do">멀티미디어 자료 </a> </li> 
+   <li> <a href="/lay1/S1T446C599/sublink.do">정기간행물 </a> </li> 
+   <li> <a href="/lay1/S1T446C2467/sublink.do">대출베스트 </a> </li> 
+   <li> <a href="/lay1/program/S1T446C2491/jnet/resourcessearch/popularBookList.do">공공도서관인기도서 </a> </li> 
+   <li> <a href="/lay1/S1T446C3242/contents.do">AI도서추천 </a> </li> 
+   <li> <a href="/lay1/program/S1T446C3780/suggestSmart/list.do">스마트도서관 추천도서 </a> </li>
+  </ul></li>  
+ <li class="li06"> <a href="/lay1/S1T1C107/sublink.do">전자도서관 </a> 
+  <ul class="sub"> 
+   <li> <a href="/lay1/S1T107C110/contents.do">전자책(E-BOOK) </a> </li> 
+   <li> <a href="/lay1/S1T107C2642/contents.do">전자잡지 </a> </li> 
+   <li> <a href="/lay1/S1T107C449/contents.do">오디오북 </a> </li> 
+   <li> <a href="/lay1/S1T107C2521/contents.do">홈러닝 서비스 </a> </li> 
+   <li> <a href="/lay1/S1T107C109/contents.do">무선인터넷서비스 </a> </li> 
+   <li> <a href="/lay1/S1T107C108/contents.do">원문DB서비스 </a> </li> 
+   <li> <a href="/lay1/program/S1T107C466/resourcessearch/intro.do">스마트도서관 </a> </li> 
+   <li> <a href="/lay1/S1T107C986/contents.do">행복광주 독서마라톤 </a> </li>  
+   <li> <a href="/lay1/S1T1206C2601/contents.do">도서요약서비스 </a> </li> 
+   <li> <a href="/lay1/S1T107C2661/contents.do">영어도서관 </a> </li>
+  </ul></li>  
+ <li class="li08"> <a href="/lay1/S1T1C447/sublink.do">도서관 안내 </a> 
+  <ul class="sub"> 
+   <li> <a href="/lay1/S1T447C467/contents.do">인사말 </a> </li> 
+   <li> <a href="/lay1/S1T447C468/contents.do">도서관연혁 </a> </li> 
+   <li> <a href="/lay1/program/S1T447C1626/organ/list.do">조직도 및 담당업무 </a> </li> 
+   <li> <a href="/lay1/S1T447C470/sublink.do">도서관현황 </a> </li> 
+   <li> <a href="/lay1/S1T447C471/contents.do">도서관 오시는 길 </a> </li> 
+   <li> <a href="/lay1/S1T447C472/contents.do">행정서비스 헌장 </a> </li> 
+   <li> <a href="/lay1/S1T447C473/contents.do">도서관 조례 </a> </li> 
+   <li> <a href="/lay1/S1T447C3482/contents.do">도서관 LI </a> </li> 
+   <li> <a href="/lay1/bbs/S1T82C3521/H/1/list.do">공지사항 </a> </li>
+  </ul></li>  
+ <li class="li10"> <a href="/lay1/S1T1C948/sublink.do" target="_blank">작은도서관 </a> 
+  <ul class="sub"> 
+   <li> <a href="/slib/index.do">작은도서관 </a> </li>
+  </ul></li>  
+ <li class="li12"> <a href="/lay1/S1T107C108/contents.do">전자도서관 </a> </li>  
+ <li class="li14"> <a href="/lay1/bbs/S1T450C452/G/4/list.do">도서관 갤러리 </a> </li>   
+ <li class="li17"> <a href="/popup/seat_list.do" target="_blank">열람실 이용현황 </a> 
+  <ul class="sub">      
+  </ul></li>   
+</ul>
+    <form action="/lay1/program/S1T446C461/jnet/resourcessearch/resultList.do" id="libSearch2" name="libSearch2" onsubmit="return check()">
+
+
+	  <!-- 검색 -->
+	  <div class="sch_box on">
+	<input type="text" class="sch_field" id="searchKeyword" name="searchKeyword" title="검색어를 입력하세요" placeholder="검색어를 입력하세요" value="">
+	<input type="hidden" id="searchType" name="searchType"  value="SIMPLE">
+	<input type="hidden" id="searchKey" name="searchKey"  value="ALL">
+	<input type="hidden" id="searchLibrary" name="searchLibrary"  value="ALL">
+
+
+	<button type="submit" class="sch_ico smt button" >자료검색</button>
+</div>
+
+<div class="etc">
+	<a href="#" class="search"><img src="/gmi/intro/gnb_search.png" alt="자료검색"></a>
+	<!-- 모바일 전체보기 아이콘 -->
+	<button type="button" class="m_gnb_btn act_btn"> <span class="hide">모바일 주 메뉴 보기</span> <span class="top"></span> <span class="middle"></span> <span class="bottom"></span> </button>
+</div>
+</form>
+    </div>
+	<!-- //gnb_area -->
+
+
+	<!-- gnb_qiuck -->
+	<div class="gnb_bg">
+      <div class="gnb_etc">
+        <div class="gnb_quick">
+		<p class="gnb_tit"><span>한 권의 책,</span>당신의 미래를 바꿉니다.</p>
+		<ul id="gnb_etc_jq" class="">
+			<!-- <li><a href="/intro/lmth/04_elect/elect01.asp">전자도서관</a></li>
+			<li><a href="/intro/lmth/05_communi/communi02.asp">도서관 갤러리</a></li>
+			<li><a href="http://lib.gjcity.go.kr/section/info/info_09_frame.asp?lib=5" target="_blank" title="새창열림">열람실 <br />이용현황</a></li>
+			<li><a href="http://lib.gjcity.go.kr/section/info/info_14_list.asp" target="_blank" title="새창열림">전자정보실 <br />이용현황</a></li> -->
+		</ul>
+        </div>
+      </div>
+    </div>
+	<!-- gnb_qiuck_e -->
+
+  </header>
+  <!--// header -->
+
+<!-- header_script -->
+<script type="text/javascript">
+		$(document).ready(function(){
+			/* Menu Copy and Paste*/
+			var jq_menu = $(".gnb.clearfix").clone();
+			$(".gnb.clearfix").find(".li12,.li13,.li14,.li15,.li16,.li17").remove();
+			//$(".gnb.clearfix").find(".li09,.li11,.li12,.li13,.li14").remove();
+			$(jq_menu).find(".li02,.li03,.li04,.li05,.li07,.li08,.li09,.li17").remove();
+			$(jq_menu).find("li>ul").remove();
+			var jq_menu_html = $(jq_menu).html();
+			$("#gnb_etc_jq").html(jq_menu_html);
+
+			/* gnb */
+			$('.gnb > li , .gnb_bg').mouseenter(function(){
+				$('.gnb_bg').stop().show().animate({height:'330px'});
+				$('.sub').stop().show().animate({height:'330px'});
+				//*마우스오버시 서브메뉴 백그라운드*//
+				$('.gnb > li > ul').css("background-color","");
+				$(this).find(" > ul").css("background-color","#e3e4e9");
+			});
+			$('.gnb, .gnb_bg').mouseleave(function(){
+				$('.gnb_bg').stop().animate({height:'0px'},500,function(){
+					$('.gnb_bg').hide();
+				});
+
+				$('.sub').stop().animate({height:'0px'},function(){
+					$('.sub').hide();
+				});
+			});
+
+			//gnb close button click
+			/* $("#gnb_close").on("click",function(){
+					$('.gnb_bg').css({height:'0px'}).hide();
+					$('.sub').css({height:'0px'}).hide();
+					$('#gnb_close').hide();
+			}); */
+
+			$('.gnb > li').mouseenter(function(){
+				$(this).addClass('on').siblings().removeClass('on');
+				$(this).children().text();
+			});
+			$('.gnb > li').mouseleave(function(){
+				$(this).removeClass('on');
+			});
+
+
+
+			/* search */
+			$('.etc .search').click(function(){
+				var sch = $('.sch_box').hasClass('on');
+				if (sch) {
+					$('.sch_box').fadeIn().removeClass('on');
+					$('.search img').attr('src','/gmi/intro/gnb_search_close.png');
+				}
+				else {
+					$('.sch_box').fadeOut().addClass('on');
+					$('.search img').attr('src','/gmi/intro/gnb_search.png');
+				}
+				return false;
+			});
+
+			/* 모바일 메뉴 */
+			$('.m_gnb_btn').click(function(){
+				var t_height = $(document).height();
+				$('.all_menu2').animate({right:'0'});
+				$('.m_gnb_bg').css({opacity:'0.5',display:'block'});
+				$('html,body').css('overflow','hidden');
+				$('.footer').css({'z-index':0});
+			});
+
+			$('.m_cancel_btn').click(function(){
+				$('.all_menu2').animate({right :'-380px'}, function(){
+					$('.footer').css({'z-index':1});
+				});
+				$('.m_gnb_bg').css({opacity:'0',display:'none'});
+				$('html,body').css('overflow','visible');
+			});
+
+
+			$('.m_gnb_bg').click(function(){
+				$('.all_menu2').animate({right :'-380px'}, function(){
+					$('.footer').css({'z-index':1});
+				});
+				$('.m_gnb_bg').css({opacity:'0',display:'none'});
+				$('html,body').css('overflow','visible');
+			});
+
+
+			/* 아코디언 */
+			$('.all_menu2 .all_menu2_con > li > a , .all_menu2 .arrow').click(function(){
+				$(this).parent().toggleClass('on').find('.m_sub').slideToggle().end().siblings().removeClass('on').end().siblings().find('.m_sub').slideUp();
+				return false;
+			});
+
+			var hei = $('#header').outerHeight();
+			var scroll = $(document).scrollTop();
+			$(window).scroll(function(){
+				scroll = $(document).scrollTop();
+				if (scroll >= hei) {
+					$('#header').addClass('fixed');
+					$('#real_contents').css('padding-top','140px');
+
+
+				}
+				else {
+					$('#header').removeClass('fixed');
+					$('#real_contents').css('padding-top','0px');
+
+				}
+			});
+		});
+
+//$(window).load(function(){
+$(document).ready(function(){
+// 	$.get("/member/mainVisitCnt.do",{
+// 		visitType:""
+// 	}, function(result){
+// 		console.log(result);
+// 		$('#today_visit').html(comma(result.today_visit)+" 명");
+// 		$('#full_visit').html(comma(result.full_visit)+" 명");
+// 	}, 'json')
+// 	.fail(function(result){
+// 		console.log(result);
+// 	});
+});
+
+function comma(str){
+	str = String(str);
+	return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g,'$1,');
+}
+</script>
+<!-- header_script E -->
+	
+
+
+<!-- 모바일용 전체 메뉴 -->
+<header class="all_menu2" id="scroller">
+	<!-- header_top -->
+	<div class="mheader_top">
+		<div class="mheader_topCon">
+			<div class="mutilLink">
+				<a href="/center/index.do"><span class="skip">처음으로</span></a>
+				
+						<a href="/lay4/program/S1T2C3/member/join_step1.do">회원가입</a>
+					
+				<a href="/lay1/program/S1T546C547/sitemap/intro.do">사이트맵</a>
+			</div>
+			<div class="m_cancel_btn">
+				<button><img src="/gmi/cni/mgnb_close.png" alt="메뉴 닫기" /></button>
+			</div>
+		</div><!--// header_topCon -->	 
+		<div class="m_login">
+		
+				<a href="/lay4/program/S1T2C4/member/login.do">로그인</a>
+			
+		</div>
+		<div class="m_mcode"><a href="/lay4/program/S1T2C529/member/membershipcard.do?gg=5">모바일 회원증</a></div>
+	</div><!--// header_top -->
+
+
+    <!-- <ul class="all_menu2_con"> -->
+	<ul class="all_menu2_con">  
+ <li class="li02"> <a href="/lay1/S1T1C82/sublink.do">이용안내 </a> 
+  <ul class="m_sub"> 
+   <li> <a href="/lay1/S1T82C106/contents.do">도서관 이용시간 </a> </li>  
+   <li> <a href="/lay1/S1T82C456/contents.do">회원가입안내 </a> </li> 
+   <li> <a href="/lay1/S1T82C457/contents.do">도서 대출 및 반납 </a> </li>  
+   <li> <a href="/lay1/S1T82C686/sublink.do">자료실 및 열람실 이용 </a> 
+    <ul> 
+     <li> <a href="/lay1/S1T686C706/contents.do">중앙도서관 </a> </li> 
+     <li> <a href="/lay1/S1T686C726/contents.do">오포도서관 </a> </li> 
+     <li> <a href="/lay1/S1T686C747/contents.do">초월도서관 </a> </li> 
+     <li> <a href="/lay1/S1T686C746/contents.do">곤지암도서관 </a> </li> 
+     <li> <a href="/lay1/S1T686C3201/contents.do">능평도서관 </a> </li> 
+     <li> <a href="/lay1/S1T686C3380/contents.do">광남도서관 </a> </li> 
+     <li> <a href="/lay1/S1T686C3261/contents.do">만선도서관 </a> </li> 
+     <li> <a href="/lay1/S1T686C3720/contents.do">신현도서관 </a> </li>
+    </ul></li> 
+   <li> <a href="/lay1/S1T82C459/contents.do">기타 도서관시설 이용 </a> </li>   
+   <li> <a href="/lay1/S1T82C3221/contents.do">도서관 시설 대관 </a> </li> 
+   <li> <a href="https://lib.gjcity.go.kr/sh/lay1/S21T3607C3721/contents.do" target="_blank">신현도서관 세미나룸 </a> </li> 
+   <li> <a href="/lay1/bbs/S1T82C485/E/3/list.do">자주 물어보는 질문 </a> </li> 
+   <li> <a href="/lay1/bbs/S1T82C2412/K/241/list.do">분실물 찾기 </a> </li> 
+   <li> <a href="/lay1/S1T82C2426/sublink.do">도서관이야기 </a> 
+    <ul> 
+     <li> <a href="/lay1/bbs/S1T2426C2428/A/62/list.do">언론보도 </a> </li>
+    </ul></li> 
+   <li> <a href="/lay1/bbs/S1T2426C2427/I/181/list.do">소식지 </a> </li> 
+   <li> <a href="/lay1/bbs/S1T82C2861/L/281/list.do">美 갤러리 </a> </li>
+  </ul></li> 
+ <li class="li03"> <a href="/lay1/S1T1C1206/sublink.do">도서관서비스 </a> 
+  <ul class="m_sub"> 
+   <li> <a href="/lay1/program/S1T1206C1226/bookservice/intro.do">희망도서신청 </a> </li> 
+   <li> <a href="/lay1/program/S1T1206C2446/hopeBook/intro.do">희망도서신청(스마트도서관) </a> </li> 
+   <li> <a href="/lay1/S1T1206C1346/contents.do">자료기증 </a> </li> 
+   <li> <a href="/lay1/S1T1206C1286/contents.do">내 생애 첫 도서관 </a> </li> 
+   <li> <a href="/lay1/S1T1206C1306/contents.do">두루두루 서비스 </a> </li> 
+   <li> <a href="/lay1/S1T1206C1326/contents.do">국가상호대차 서비스 </a> </li> 
+   <li> <a href="/lay1/S1T1206C1406/contents.do">순회문고 </a> </li> 
+   <li> <a href="/lay1/S1T1206C2681/contents.do">무인 도서예약 대출 </a> </li>
+  </ul></li> 
+ <li class="li04 on"> <a href="/lay1/S1T1C446/sublink.do">자료검색 </a> 
+  <ul class="m_sub"> 
+   <li class="on"> <a href="/lay1/program/S1T446C461/jnet/resourcessearch/list.do">소장자료(통합검색) </a> </li> 
+   <li> <a href="/lay1/bbs/S1T446C2922/M/301/list.do">한 책 읽기 </a> </li> 
+   <li> <a href="/lay1/program/S1T446C2721/reading/list.do">책 읽어주는 사서 </a> </li> 
+   <li> <a href="/lay1/program/S1T446C462/jnet/resourcessearch/newlist.do">신착자료 </a> </li> 
+   <li> <a href="/lay1/S1T446C463/sublink.do">사서 추천도서 </a> 
+    <ul> 
+     <li> <a href="/lay1/program/S1T463C641/suggest/list.do?fn_kind=1">성인 </a> </li> 
+     <li> <a href="/lay1/program/S1T463C642/suggest/list.do?fn_kind=1&amp;child=2">어린이 </a> </li>
+    </ul></li>   
+   <li> <a href="/lay1/S1T446C1786/sublink.do">권장도서 </a> 
+    <ul> 
+     <li> <a href="/lay1/bbs/S1T1786C1866/A/201/list.do">시립중앙도서관 </a> </li> 
+     <li> <a href="/lay1/bbs/S1T463C643/A/81/list.do">학교별권장도서 </a> </li>
+    </ul></li> 
+   <li> <a href="/lay1/program/S1T446C464/jnet/resourcessearch/multmedia.do">멀티미디어 자료 </a> </li> 
+   <li> <a href="/lay1/S1T446C599/sublink.do">정기간행물 </a> 
+    <ul> 
+     <li> <a href="/lay1/S1T599C600/contents.do">중앙도서관 </a> </li> 
+     <li> <a href="/lay1/S1T599C601/contents.do">오포도서관 </a> </li> 
+     <li> <a href="/lay1/S1T599C603/contents.do">초월도서관 </a> </li> 
+     <li> <a href="/lay1/S1T599C602/contents.do">곤지암도서관 </a> </li> 
+     <li> <a href="/lay1/S1T599C604/contents.do">능평도서관 </a> </li> 
+     <li> <a href="/lay1/S1T599C2881/contents.do">양벌도서관 </a> </li> 
+     <li> <a href="/lay1/S1T599C3500/contents.do">광남도서관 </a> </li> 
+     <li> <a href="/lay1/S1T599C3460/contents.do">퇴촌도서관 </a> </li> 
+     <li> <a href="/lay1/S1T599C3262/contents.do">만선도서관 </a> </li> 
+     <li> <a href="/lay1/S1T599C3740/contents.do">신현도서관 </a> </li>
+    </ul></li> 
+   <li> <a href="/lay1/S1T446C2467/sublink.do">대출베스트 </a> 
+    <ul> 
+     <li> <a href="/lay1/program/S1T2467C2468/jnet/resourcessearch/loanBest.do">대출베스트 </a> </li> 
+     <li> <a href="/lay1/program/S1T2467C2469/jnet/resourcessearch/loanBestTopSubjectList.do">주제별대출베스트 </a> </li> 
+     <li> <a href="/lay1/program/S1T2467C2470/jnet/resourcessearch/loanBestTopAgesList.do">연령별대출베스트 </a> </li>
+    </ul></li> 
+   <li> <a href="/lay1/program/S1T446C2491/jnet/resourcessearch/popularBookList.do">공공도서관인기도서 </a> </li> 
+   <li> <a href="/lay1/S1T446C3242/contents.do">AI도서추천 </a> </li> 
+   <li> <a href="/lay1/program/S1T446C3780/suggestSmart/list.do">스마트도서관 추천도서 </a> </li>
+  </ul></li>  
+ <li class="li06"> <a href="/lay1/S1T1C107/sublink.do">전자도서관 </a> 
+  <ul class="m_sub"> 
+   <li> <a href="/lay1/S1T107C110/contents.do">전자책(E-BOOK) </a> </li> 
+   <li> <a href="/lay1/S1T107C2642/contents.do">전자잡지 </a> </li> 
+   <li> <a href="/lay1/S1T107C449/contents.do">오디오북 </a> </li> 
+   <li> <a href="/lay1/S1T107C2521/contents.do">홈러닝 서비스 </a> </li> 
+   <li> <a href="/lay1/S1T107C109/contents.do">무선인터넷서비스 </a> </li> 
+   <li> <a href="/lay1/S1T107C108/contents.do">원문DB서비스 </a> </li> 
+   <li> <a href="/lay1/program/S1T107C466/resourcessearch/intro.do">스마트도서관 </a> </li> 
+   <li> <a href="/lay1/S1T107C986/contents.do">행복광주 독서마라톤 </a> </li>  
+   <li> <a href="/lay1/S1T1206C2601/contents.do">도서요약서비스 </a> </li> 
+   <li> <a href="/lay1/S1T107C2661/contents.do">영어도서관 </a> </li>
+  </ul></li>  
+ <li class="li08"> <a href="/lay1/S1T1C447/sublink.do">도서관 안내 </a> 
+  <ul class="m_sub"> 
+   <li> <a href="/lay1/S1T447C467/contents.do">인사말 </a> </li> 
+   <li> <a href="/lay1/S1T447C468/contents.do">도서관연혁 </a> </li> 
+   <li> <a href="/lay1/program/S1T447C1626/organ/list.do">조직도 및 담당업무 </a> </li> 
+   <li> <a href="/lay1/S1T447C470/sublink.do">도서관현황 </a> 
+    <ul> 
+     <li> <a href="/lay1/S1T470C1506/contents.do">도서관 일반현황 </a> </li> 
+     <li> <a href="/lay1/S1T470C486/contents.do">도서관 층별안내 </a> </li> 
+     <li> <a href="/lay1/program/S1T470C487/libstatus/list.do?fn_sitekey=1&amp;st=1">도서관 자료현황 </a> </li>
+    </ul></li> 
+   <li> <a href="/lay1/S1T447C471/contents.do">도서관 오시는 길 </a> </li> 
+   <li> <a href="/lay1/S1T447C472/contents.do">행정서비스 헌장 </a> </li> 
+   <li> <a href="/lay1/S1T447C473/contents.do">도서관 조례 </a> </li> 
+   <li> <a href="/lay1/S1T447C3482/contents.do">도서관 LI </a> </li> 
+   <li> <a href="/lay1/bbs/S1T82C3521/H/1/list.do">공지사항 </a> </li>
+  </ul></li>  
+ <li class="li10"> <a href="/lay1/S1T1C948/sublink.do" target="_blank">작은도서관 </a> 
+  <ul class="m_sub"> 
+   <li> <a href="/slib/index.do">작은도서관 </a> </li>
+  </ul></li>  
+ <li class="li12"> <a href="/lay1/S1T107C108/contents.do">전자도서관 </a> </li>  
+ <li class="li14"> <a href="/lay1/bbs/S1T450C452/G/4/list.do">도서관 갤러리 </a> </li>   
+ <li class="li17"> <a href="/popup/seat_list.do" target="_blank">열람실 이용현황 </a> 
+  <ul class="m_sub">      
+  </ul></li>   
+</ul> 
+    <!-- </ul> -->
+
+	<!-- mgnb_quick-->
+	<div class="mgnb_etc">
+		<div class="mgnb_quick">
+			<ul id="mgnb_etc_jq">
+				<!-- <li><a href="#">전자도서관</a></li>
+				<li><a href="#">자원봉사</a></li>
+				<li><a href="#" target="_blank" title="새창열림">열람실 <br />이용현황</a></li>
+				<li><a href="#" target="_blank" title="새창열림">전자정보실 <br />이용현황</a></li> -->
+			</ul>
+		</div>
+	</div>
+	<!-- mgnb_quick_e-->
+</header>
+<div class="m_gnb_bg"></div>
+<!--// 모바일용 전체 메뉴 -->
+<script type="text/javascript">
+$(document).ready(function(){
+	var jq_menu = $(".all_menu2_con").clone();
+	$(".all_menu2_con").find(".li11,.li12,.li13,.li14").remove();
+	$(jq_menu).find(".li02,.li03,.li04,.li05,.li07,.li08,.li09").remove();
+	$(jq_menu).find("li>ul").remove();
+	var jq_menu_html = $(jq_menu).html();
+	$("#mgnb_etc_jq").html(jq_menu_html);
+});
+</script>
+<!-- container S -->
+	<div id="container">
+		<div class="s_visual1">
+			
+
+
+
+		</div>
+		<!--body_head S-->
+		<div id="body_head_outer">
+			
+
+
+
+
+
+
+	
+
+	
+
+ 	<div class="body_head">    
+		<h2><span class="h2_bg"><span class="h2_icon"></span>자료검색</span></h2>    
+        <!--localtion S-->
+        <div id="location">         
+			<!-- Start-->
+			<div class="path">
+				<ul>
+					<li class="home"><span><a class="navi_home" href="/index.do">HOME</a></span></li>
+					
+						<li>자료검색</li>
+					
+						<li>소장자료(통합검색)</li>
+					
+					<li class="btn">
+						<a href="#print" onclick="javascript:window.print()" class="btn_print">인쇄</a>
+						<a href="#sns_slide" id="sns_slide">sns</a>
+						<div id="naviSNS">
+							<a href="#naviSNS" onclick="twitterOpen(); return false;" class="tw">트위터</a>
+							<a href="#naviSNS" onclick="facebookOpen(); return false;" class="fb">페이스북</a>               
+						</div>
+					</li>
+				</ul>
+				<script type="text/javascript">
+					function slide_snsbtn(){
+						var param = $("#location");
+						var obj = param.find("#naviSNS");
+						var btn = param.find("#sns_slide");
+						obj.css({"display":"none","position":"absolute","top":"-40px","left":"0","z-index":"-1"});
+						btn.unbind().bind("click touchend",function(event){
+							if(obj.css("display") == "none"){
+								obj.css({"z-index":"1"});
+								obj.show().stop(true,false).animate({top:-40},{duration:0,easing:"easeOutCubic"});
+								btn.addClass("ov");
+							}else{
+								obj.css({"z-index":"-1"});
+								obj.hide().stop(true,false).animate({top:-40},{duration:0,easing:"easeOutCubic"});
+								btn.removeClass("ov");
+							}
+							event.preventDefault();
+							event.stopPropagation();
+						});
+					}
+					slide_snsbtn();
+				</script>
+			</div>
+			<!-- End-->        
+		</div>
+		<!--localtion E -->   
+	</div>
+		</div>
+
+		
+
+
+<div id="lnb">
+<ul> 
+ <li use_yn="Y" class="active"> <a href="/lay1/program/S1T446C461/jnet/resourcessearch/list.do"> <span>소장자료(통합검색)</span> </a> </li> 
+ <li use_yn="Y"> <a href="/lay1/bbs/S1T446C2922/M/301/list.do"> <span>한 책 읽기</span> </a> </li> 
+ <li use_yn="Y"> <a href="/lay1/program/S1T446C2721/reading/list.do"> <span>책 읽어주는 사서</span> </a> </li> 
+ <li use_yn="Y"> <a href="/lay1/program/S1T446C462/jnet/resourcessearch/newlist.do"> <span>신착자료</span> </a> </li> 
+ <li use_yn="Y"> <a href="/lay1/S1T446C463/sublink.do"> <span>사서 추천도서</span> </a> </li>   
+ <li use_yn="Y"> <a href="/lay1/S1T446C1786/sublink.do"> <span>권장도서</span> </a> </li> 
+ <li use_yn="Y"> <a href="/lay1/program/S1T446C464/jnet/resourcessearch/multmedia.do"> <span>멀티미디어 자료</span> </a> </li> 
+ <li use_yn="Y"> <a href="/lay1/S1T446C599/sublink.do"> <span>정기간행물</span> </a> </li> 
+ <li use_yn="Y"> <a href="/lay1/S1T446C2467/sublink.do"> <span>대출베스트</span> </a> </li> 
+ <li use_yn="Y"> <a href="/lay1/program/S1T446C2491/jnet/resourcessearch/popularBookList.do"> <span>공공도서관인기도서</span> </a> </li> 
+ <li use_yn="Y"> <a href="/lay1/S1T446C3242/contents.do"> <span>AI도서추천</span> </a> </li> 
+ <li use_yn="Y"> <a href="/lay1/program/S1T446C3780/suggestSmart/list.do"> <span>스마트도서관 추천도서</span> </a> </li> 
+</ul>
+</div>
+
+		<!--body_title S-->
+		
+
+
+<div class="body_title">
+	<h3>소장자료(통합검색)</h3>
+</div>
+		<!--body_title E-->
+
+		<!-- body_contents S-->
+		<section id="body_contents">
+			<h2 class="skip">본문영역</h2>
+			<!-- content_area S-->
+			<div class="content_area">
+				
+
+
+
+				
+
+<div style="text-align:center;" class="iframe-wrap">
+<iframe id="jnIframe" src="https://lib.gjcity.go.kr:8443/kolaseek/plus/search/plusSearchResultList.do?searchType=SIMPLE&searchKey=ALL&searchKeyword=%EF%BF%BD%EF%BF%BD%EF%BF%BD
+&searchLibrary=ALL
+&searchLibraryArr=
+&searchLibraryArr=
+&searchLibraryArr=
+&searchLibraryArr=
+&searchLibraryArr=
+&searchLibraryArr=
+" 
+style="width:100%; height:4200px;" ></iframe>
+</div>
+
+
+				
+        	</div>
+    	</section>
+    	<!-- body_contents E-->
+	</div>
+	
+
+
+	
+
+<!-- container E -->
+	
+
+
+<!-- 사이트관리에서 변경할수있음. -->
+<!-- go_top S -->
+
+<div class="top"> <a href="#header"><span class="skip">위로 이동</span></a> </div>
+<!-- go_top E --> 
+
+<!--footer S-->
+<footer class="footer"> 
+  <!--footer_con S-->
+  <section class="footer_con">
+    <h2 class="skip">광주시립도서관</h2>
+    
+    <!--serviceLink S-->
+    <div class="serviceLink">
+      <ul>
+        <li><a href="https://www.gjcity.go.kr/portal/contents.do?mId=0602010000" title="새창열림" target="_blank">개인정보처리방침</a></li>
+        <li><a href="https://www.gjcity.go.kr/portal/contents.do?mId=0602020000" title="새창열림" target="_blank">영상정보처리기기 운영 관리 방침</a></li>
+        <li><a href="/lay1/S1T447C471/contents.do">오시는 길</a></li>
+        <li><a href="/lay1/program/S1T546C547/sitemap/intro.do">사이트맵</a></li>
+        <!--
+        <li><a style="color: rgb(255, 126, 0);" href="javascript:void(0);">오늘 접속자 수 : <span id="today_visit" style="color: rgb(202, 201, 202);">-</span></a></li>
+        <li><a style="color: rgb(164, 115, 202);" href="javascript:void(0);">총 접속자 수 : <span id="full_visit" style="color: rgb(202, 201, 202);">-</span></a>
+         -->
+      </ul>
+    </div>
+    <!--//serviceLink E--> 
+    
+    <!--addr S-->
+	<div class="addr">
+		<ul>
+			<li>중앙도서관<br>12761 광주시 문화로 82<br>전화 : 031-760-5678 팩스 : 031-760-1435</li>
+			<li>오포도서관<br>12790 광주시 태봉로 193 (고산동)<br>전화 : 031-760-5697 팩스 : 031-760-1435</li>
+			<li>초월도서관<br>12735 광주시 초월읍 무들로 3-26<br>전화 : 031-760-5688 팩스 : 031-760-1435</li>
+			<li>곤지암도서관<br>12804 광주시 곤지암읍 곤지암로 11번길 47<br>전화 : 031-760-5935 팩스 : 031-760-1435</li>
+			<li>능평도서관<br>12773 광주시 창뜰아랫길 6&nbsp;(능평동)<br>전화 : 031-760-5912 팩스 : 031-760-1435</li>
+			<li>양벌도서관&nbsp;<br>12793 광주시 양벌로 195-25 (양벌동)<br>전화 : 031-760-4130 팩스 : 031-760-1435</li>
+			<li>광남도서관&nbsp;<br>12768 경기도 광주시 고불로 46번길 47<br>전화 : 031-760-4128 팩스 : 031-760-1435</li>
+			<li>퇴촌도서관<br>12793 광주시 퇴촌면 탑골길 37<br>전화 : 031-760-4158&nbsp;&nbsp; 팩스 : 031-760-1435</li>
+			<li>만선도서관<br>12721 광주시 곤지암읍 신만로 499<br>전화 : 031-769-3428 팩스 : 031-769-2420</li>
+                        <li>신현도서관<br>12821 광주시 머루숯길70 (신현행정문화체육센터 내)<br>전화 : 031-760-1768  팩스 : 031-760-1435 </li>
+			<li>작은도서관 <br>대주, 퇴촌, 도척, 광남, 남한산성, 송정작은도서관</li>
+		</ul>
+	</div>
+    
+    <!--// addr E--> 
+    
+    <!-- addr_m S-->
+    <div class="addr_m">
+      <div class="addrm">
+        <h3 class="skip">광주시립도서관 안내</h3>
+        
+        <!-- 01중앙도서관 -->
+        <div class="ms_box">
+          <h4 class="r01"><a href="#">중앙도서관<span></span></a></h4>
+          <ul class="a01" style="display: none;">
+            <li>
+              <dl>
+                <dt>중앙도서관</dt>
+                <dd>12761 광주시 문화로 82</dd>
+                <dd>전화 : 031-760-5678</dd>
+                <dd>팩스 : 031-760-1435</dd>
+              </dl>
+            </li>
+          </ul>
+        </div>
+        
+        <!-- 02오포도서관 -->
+        <div class="ms_box">
+          <h4 class="r02"><a href="#">오포도서관<span></span></a></h4>
+          <ul class="a02" style="display: none;">
+            <li>
+              <dl>
+                <dt>오포도서관</dt>
+                <dd>12790 광주시 태봉로 193</dd>
+                <dd>전화 : 031-760-5697</dd>
+                <dd>팩스 : 031-760-1435</dd>
+              </dl>
+            </li>
+          </ul>
+        </div>
+        
+        <!-- 03곤지암도서관 -->
+        <div class="ms_box">
+          <h4 class="r03"><a href="#">곤지암도서관<span></span></a></h4>
+          <ul class="a03" style="display: none;">
+            <li>
+              <dl>
+                <dt>곤지암도서관</dt>
+                <dd>12804 곤지암읍 곤지암로 11번길 47</dd>
+                <dd>전화 : 031-760-5666</dd>
+                <dd>팩스 : 031-760-1435</dd>
+              </dl>
+            </li>
+          </ul>
+        </div>
+        
+        <!-- 04초월도서관 -->
+        <div class="ms_box">
+          <h4 class="r04"><a href="#">초월도서관<span></span></a></h4>
+          <ul class="a04" style="display: none;">
+            <li>
+              <dl>
+                <dt>초월도서관</dt>
+                <dd>12735 광주시 초월읍 무들로 3-26</dd>
+                <dd>전화 : 031-760-5688</dd>
+                <dd>팩스 : 031-760-1435</dd>
+              </dl>
+            </li>
+          </ul>
+        </div>
+        
+        <!-- 05능평도서관 -->
+        <div class="ms_box">
+          <h4 class="r05"><a href="#">능평도서관<span></span></a></h4>
+          <ul class="a05" style="display: none;">
+            <li>
+              <dl>
+                <dt>능평도서관</dt>
+                <dd>12773 광주시 오포읍 창뜰아랫길 6</dd>
+                <dd>전화 : 031-760-5912</dd>
+                <dd>팩스 : 031-760-1435</dd>
+              </dl>
+            </li>
+          </ul>
+        </div>
+                <!-- 05양벌도서관 -->
+        <div class="ms_box">
+          <h4 class="r06"><a href="#">양벌도서관<span></span></a></h4>
+          <ul class="a06" style="display: none;">
+            <li>
+              <dl>
+                <dt>양벌도서관</dt>
+                <dd>12773 광주시 양벌리 1106-1</dd>
+                <dd>전화 : 031-760-0000</dd>
+                <dd>팩스 : 031-760-1435</dd>
+              </dl>
+            </li>
+          </ul>
+        </div>
+        
+        <!-- 06작은도서관 -->
+     <!--<div class="ms_box">
+          <h4 class="r07"><a href="#">작은도서관<span></span></a></h4>
+          <ul class="a07" style="display: none;">
+            <li>
+              <dl>
+                <dt>작은도서관</dt>
+                <dd>대주, 퇴촌, 도척, 광남, 남한산성, 송정작은도서관</dd>
+              </dl>
+            </li>
+          </ul>
+        </div>-->
+      </div>
+    </div>
+    <!--// addr_m E--> 
+    
+  </section>
+  <!--// footer_con --> 
+</footer>
+<!--// footer E--> 
+
+
+<script type="text/javascript" src="/lib/js/pgwbrowser.js"></script>
+<script type="text/javascript" src="/lib/js/mc.analytics.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	var btn = $(".addrm h4>a");
+	var data = false;
+
+	btn.bind("click.addrm",function(event){
+		var t = $(this);
+		if($(window).width() < 768){
+			if(t.parent().next().css("display") != "block"){
+				t.parent().next().show();
+				t.addClass('ov');
+			}else{
+				t.parent().next().hide();
+				t.removeClass('ov');
+			}
+		}
+		event.preventDefault();
+	});
+
+	function loadInit(){
+		if($(window).width() < 768){
+			btn.parent().next().hide();
+		}else{
+			btn.parent().next().show();
+		}
+	}
+
+	$(window).resize(function(){
+		loadInit();
+	});
+
+	loadInit();
+
+	//실시간 시간
+	//printClock(); 2019 07 15 주석  ->타임시커로 시간보기로
+});
+
+
+
+/*
+var xmlHttp;
+
+function srvTime(){
+
+    if (window.XMLHttpRequest) {//분기하지 않으면 IE에서만 작동된다.
+
+        xmlHttp = new XMLHttpRequest(); // IE 7.0 이상, 크롬, 파이어폭스 등
+
+        xmlHttp.open('HEAD',window.location.href.toString(),false);
+
+        xmlHttp.setRequestHeader("Content-Type", "text/html");
+
+        xmlHttp.send('');
+
+        return xmlHttp.getResponseHeader("Date");
+
+    }else if (window.ActiveXObject) {
+
+        xmlHttp = new ActiveXObject('Msxml2.XMLHTTP');
+
+        xmlHttp.open('HEAD',window.location.href.toString(),false);
+
+        xmlHttp.setRequestHeader("Content-Type", "text/html");
+
+        xmlHttp.send('');
+
+        return xmlHttp.getResponseHeader("Date");
+
+    }
+
+}
+
+
+
+
+ function addZero(n){
+
+     return n < 10 ? "0" + n : n;
+
+ }
+
+
+function printClock() {
+
+	var st = srvTime();
+
+	var currentDate = new Date(st);
+
+	
+
+    var clock = document.getElementById("clock");            // 출력할 장소 선택
+
+   // var currentDate = new Date();                                     // 현재시간
+
+    var calendar = currentDate.getFullYear() + "-" + (currentDate.getMonth()+1) + "-" + currentDate.getDate() // 현재 날짜
+
+
+
+    var amPm = 'AM'; // 초기값 AM
+
+    var currentHours = addZeros(currentDate.getHours(),2); 
+
+    var currentMinute = addZeros(currentDate.getMinutes() ,2);
+
+    var currentSeconds =  addZeros(currentDate.getSeconds(),2);
+
+    
+
+    if(currentHours >= 12){ // 시간이 12보다 클 때 PM으로 세팅, 12를 빼줌
+
+    	amPm = 'PM';
+
+    	currentHours = addZeros(currentHours - 12,2);
+
+    }
+
+
+
+
+//     if(currentSeconds >= 50){// 50초 이상일 때 색을 변환해 준다.
+
+//        currentSeconds = '<span style="color:#de1951;">'+currentSeconds+'</span>'
+
+//     }
+
+ //   clock.innerHTML = currentHours+":"+currentMinute+":"+currentSeconds +" <span //style='font-size:11px;'>"+ amPm+"</span>"; //날짜를 출력해 줌
+
+    clock.innerHTML = currentHours+":"+currentMinute+" <span style='font-size:11px;'>"+ amPm+"</span>"; //날짜를 출력해 줌
+
+    setTimeout("printClock()",60000);         // 1초마다 printClock() 함수 호출
+
+}
+
+
+
+
+function addZeros(num, digit) { // 자릿수 맞춰주기
+
+	  var zero = '';
+
+	  num = num.toString();
+
+	  if (num.length < digit) {
+
+	    for (i = 0; i < digit - num.length; i++) {
+
+	      zero += '0';
+
+	    }
+
+	  }
+
+	  return zero + num;
+
+}
+*/
+
+</script>
+</div>
+
+
+</body>
+</html>

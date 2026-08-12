@@ -1,0 +1,1633 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="description" content="이천시립통합도서관">
+	<meta name="keyword" content="이천시립통합도서관, 이천시 도서관, 이천시 전자도서관, 이천시립 도서관, 이천시립도서관, 이천시도서관">
+	<meta name="copyright" content="@copy; 2019 ICHEON CITY LIBRARY. All Rights Reserved.">
+	<meta content="initial-scale=1, width=device-width" name="viewport">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<meta name="format-detection" content="telephone=no" /><!-- 아이폰 전화번호 스타일 초기화 -->
+	<meta name="robots" content="noindex, nofollow">
+	<meta http-equiv="Cache-Control" content="no-cache"/>
+	<meta http-equiv="Expires" content="0"/>
+	<meta http-equiv="Pragma" content="no-cache"/>
+    <title>혼자 공부하는 파이썬 상세정보 | 이천시 통합 도서관</title>
+    <link rel="stylesheet" type="text/css" href="/style/ko/standard/common.css">
+	<link rel="stylesheet" href="/style/ko/theme/pc/sub.css">
+	<link rel="stylesheet" href="/style/ko/theme/tablet/sub.css" media="screen and (min-width:768px) and (max-width:1024px)">
+	<link rel="stylesheet" href="/style/ko/theme/mobile/sub.css" media="screen and (max-width:767px)">
+	<link rel="stylesheet" type="text/css" href="/style/ko/theme/mobile/mobiletable.css" media="screen and (max-width:767px)">
+	<link rel="stylesheet" href="/style/ui/jquery.mThumbnailScroller.css">
+	<link rel="apple-touch-icon" href="/image/ko/favicon.png">
+	<link rel="shortcut icon" href="/image/ko/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/style/ui/jquery.ui.custom.css">
+	<script src="/script/jquery-1.8.3.min.js"></script>
+	<script src="/script/footable.js"></script>
+	<script src="/script/jquery.mThumbnailScroller.js"></script>
+	<script src="/script/jquery.placeholder.min.js"></script>
+	<script src="/jsf/common/cookie.js" charset="utf-8"></script>
+	<script src="/jsf/common/ui.core.js" charset="utf-8"></script>
+	<script src="/script/sub.js"></script>
+	<script>var imgPath = '/image/ko/';</script>
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-150822627-1"></script>
+	<!-- 검색 연간물 제본정보에 추가비고란(홍대 ct_accession ser_remark:결호내용) -->
+<!-- 결호내용(홍대) -->
+
+
+
+
+
+
+
+
+
+<script>
+//Message
+var imgPath = "/image/ko/";
+var noexistSearchDetailDataMsg = "상세정보가 없습니다.";
+var mediaMsg = "바로가기";
+var abstractMsg = "초록";
+var contentsMsg = "목차";
+var commentariesMsg = "해제";
+var urlMsg = "URL";
+var vodMsg = "VOD";
+var aodMsg = "AOD";
+var originalMsg = "원문";
+var criticismMsg = "비평";
+
+var numberMsg = "No.";
+var bookImageMsg = "책 표지";
+var shelfMsg = "소장처/자료실/서가";
+var callNoMsg = "청구기호";
+var shelfinfoMsg = "소장사항";
+var loaninfoMsg = "대출정보";
+var bookstateMsg = "도서상태";
+var reservationMsg = "예약";
+var remarkMsg = "비고";
+var returndateMsg = "반납예정일";
+var checkinMsg = "권호";
+var branchLoanMsg = "분관대출";
+var corenewMsg = "책두레";
+var bookNaraeMsg = "책나래 서비스";
+var loanreqMsg = "책배달";
+var pouchLoanMsg = "책배달신청";
+var closedLoanMsg = "도서예약대출";
+var checkBindingMsg = "권호·제본정보 보기";
+var latestdateMsg = "최근입수호";
+var missBookMsg = "서가에 없는책 신고";
+var missBookReportMsg="신고";
+var nonBookMsg = "메세지가 없습니다";
+var deliveryMsg="도서배달";
+var deliveryTitleMsg = "메세지가 없습니다";
+var printMsg = "인쇄";
+var smsMsg = "메세지가 없습니다";
+var selectMsg = "선택";
+
+var bookbindMsg = "제본정보";
+var detailholdinfoMsg = "권호정보";
+var noItemsMsg = "결과가 없습니다.";
+var subscriptionMsg = "구독";
+var checkinyearMsg = "연도별 권호정보";
+var yearhelpMsg = "연도를 선택하면 해당연도의 상세 권호정보를 보실 수 있습니다.";
+
+var checkinMsg = "권호";
+var pubdateMsg = "발행일";
+var indateMsg = "입수일";
+var articleMsg = "기사";
+var appendixMsg = "부록";
+var accessionnoMsg = "등록번호";
+var checkinnameMsg = "권호명";
+var densenoMsg = "";
+var metsMsg = "매체보기";
+
+var isUseOpacSearch = "";
+var serviceMsg = "서비스";
+var preserveMsg = "메세지가 없습니다";
+
+var MSG_ERM_PRODUCED_BY = "메세지가 없습니다";
+var MSG_ERM_COVERAGE_PERIOD = "메세지가 없습니다";
+var MSG_ERM_RESCNOTE = "주기";
+
+var isSeriesReserve = "";
+var CONST_CHECKINVIEW_TYPE = "radio";
+var isUseSerRemark = "false";
+var serRemarkMsg = "메세지가 없습니다";
+var newWindowMsg = "새창";
+var pouchLoanSearchView = false;//파우치대출 전용 검색화면 여부(파우치대출 신청시 소장자료 검색 기능)
+var requestMsg = "신청";
+var MSG_SERVICE_INFO="서비스 이용안내";
+var bookReviewTitleMsg = "메세지가 없습니다";
+var bookReviewContentMsg = "메세지가 없습니다";
+var bookReviewConfirmMsg = "메세지가 없습니다";
+var bookTagTitleMsg = "메세지가 없습니다";
+var bookReviewReplyMsg = "메세지가 없습니다";
+var bookReviewWaitMsg = "메세지가 없습니다";
+
+</script>
+<link rel="stylesheet" type="text/css" href="/style/ko/theme/mobile/mobiletable.css" media="screen and (max-width:767px)">
+<link rel="stylesheet" href="/style/ko/home/message.css">
+<link rel="stylesheet" href="/style/ko/search/cat/common.css">
+<link rel="stylesheet" href="/style/ko/search/cat/detail.css">
+<link rel="stylesheet" href="/style/ko/search/cat/basket.css">
+<script src="/jsf/common/ajaxCommon.js"></script>
+<script src="/jsf/search/detail.js"></script>
+<script src="/jsf/search/seriesAjax.js"></script>
+<script src="/jsf/search/media.js"></script>
+<script src="/script/footable.js"></script>
+<script src="/script/jquery.selectBox.js"></script>
+<!-- <script src="/script/jquery-ui.js"></script> -->
+<script src="/script/jquery.placeholder.min.js"></script>
+
+<script>
+	var serverDomain = "https://www.icheonlib.go.kr";
+	var isbn="9791162241882";
+	var sysdiv = "CAT";
+	var isUseMypreserve = "";
+	var isUseDelivery = "";
+	var isSeriesReserve = "";
+	var dataType = "m";
+
+	//이패스 코어 콜렉션 사용여부
+	var isUseEpassCCBookinfo = "false";
+	//ECIP
+	var isUseEcipCCBookinfo = "false";
+
+	var controlno = "000001105601";
+	var annex = "icheon";
+	var CONST_CHECKINVIEW_TYPE = "radio";
+	var isReplaceVolumeUse = "false";
+	var serRemarkMsg = "메세지가 없습니다";
+	var isUseSerRemark = "false";
+
+	//ImgPath
+	var imgPath = "/image/ko/";
+	var saveBtn = "저장";
+	var mailBtn = "메일";
+	var printBtn= "인쇄";
+	var previewBtn = "미리보기";
+	var endNoteBtn = "EndNote";
+	var refWorksBtn = "RefWorks";
+
+	var MSG_ERROR_NOT_FIND = "데이터가 존재하지 않습니다.";
+	var MSG_VALID_VIEW_DETAIL = "상세보기";
+	var MSG_VALID_VIEW_MARC = "MARC보기";
+	var MSG_ALL="전체";
+	var previewMsg = "이전";
+	var nextMsg = "다음";
+	var isLogin = "false";
+
+	$(function(){
+	    $('input, textarea').placeholder({customClass:'placeholder'});
+
+		
+			 
+			
+			
+			getCoverImage(isbn,'','');
+		
+
+		
+	    	getCallNoBrowsing('CAT', 'TOT', '000001105601', '000001105601', '');
+		
+
+		$('.commentW > .searchContents, .tagW > .searchContents').hide();
+
+		//태그가 존재한다면 화면에 활성화 시킨다.
+		
+
+
+		$('.searchInfo .searchHeader').each(function(){
+			if($(this).next().css('display') != 'none'){
+				$(this).children().addClass('open');
+			}
+		});
+
+		$(".searchInfo .searchHeader h3").bind("click", function() {
+			$(this).toggleClass("open");
+			$(this).parent().next().toggle();
+			return false;
+		});
+
+		$("dl.service dt a").bind("click", function() {
+			$(this).toggleClass("open");
+			$(this).parent().next().toggle();
+			return false;
+		});
+	});
+
+</script>
+	<!--[if lt IE 9]>
+	<script src="/script/css3-mediaqueries.js"></script>
+	<script src="/script/respond.src.js"></script>
+	<![endif]-->
+	
+	<script>
+	var ISLOGIN = "false";
+	var QUICK_MENU_COOKIE = 'SUB_QUICK_MENU';
+	
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	
+	  gtag('config', 'UA-150822627-1');
+	
+	//특정 IP에서 인증없는 회원가입 기능 허용
+	  var uri = '/search/detail/CATTOT000001105601';
+	 //var ip = '122.43.203.55 210.90.70.60 122.43.203.55 ';
+	 var ip = '122.43.203.55';
+
+	 if(uri.indexOf('/memberJoin/agreeOfNonCert')!=-1 || uri.indexOf('/memberJoin/writeOfNonCert')!=-1){		
+		if(ip != '10.10.19.11' && ip != '20.20.6.4' && ip != '20.20.6.2' && ip != '20.20.6.5' && ip != '20.20.6.1' && ip != '192.168.4.25' && ip != '20.20.2.2' && ip != '192.168.10.53' && ip != '210.99.13.139' && ip != '210.99.13.140' && ip != '121.133.177.131' && ip != '121.133.177.132' && ip != '121.133.177.133' && ip != '112.170.60.195'
+			  && ip != '210.90.70.30' && ip != '59.12.210.36' && ip != '59.12.210.37' && ip != '59.12.210.38' && ip != '211.52.144.131' && ip != '10.10.14.2' && ip != '10.10.24.3'
+			  && ip != '10.10.13.3' && ip != '10.10.19.3' && ip != '10.10.25.3' && ip != '10.10.23.3' && ip != '10.10.21.3' && ip != '10.10.12.4' && ip != '10.10.22.4' && ip != '10.10.17.3' && ip != '192.168.10.51' && ip != '192.168.6.26' && ip != '192.168.8.11' && ip != '112.170.88.242' && ip != '192.168.0.137') {
+			  alert("관내 특정 pc에서만 이용이 가능한 서비스입니다.");
+	
+			  location.href = '/local/html/memberJoinOfNonCert';
+		  }
+	  };
+	</script>
+	<style type="text/css">
+		.schTypeAgentWeek {display: none;}
+	</style>
+</head>
+<body>
+<div id="divAccessibility">
+	<ul>
+		<li><a href="#divTopMenu">메뉴 바로가기</a></li>
+		<li><a href="#divContents">본문 바로가기(skip to content)</a></li>
+		<li><a href="#divSearch">검색 바로가기</a></li>
+		<li><a href="#divFooter">도서관정보 바로가기</a></li>
+	</ul>
+</div>
+
+<div id="divWrapper">
+	
+<script >
+<!--
+function fn_searchForm_submit(){
+	var si = $('#headerSearchForm select[name="si"] option:selected').val();
+	if(si == 'edu'){
+		location.href = "/education/list?si=title&sw="+$('#headerSearchForm input[name="q"]').val();
+		return false;
+	}else{
+		return true;
+	}
+}
+//-->
+</script>
+<div id="divHeader">
+	<!-- header1 -->
+	<div class="header1">
+		<div>
+			<h1><a href="/" title="">이천시립통합도서관</a></h1>
+			<!-- Global Menu -->
+			<div id="divGlobalMenu">
+				<ul class="gnbList1">
+					<li><a href="/" title="홈">홈</a></li>
+					<li><a href="/relation/ebook" title="전자책" target="_blank">전자책</a></li>
+					<li><a href="http://small.icheonlib.go.kr/sso/login" title="작은도서관" target="_blank">작은도서관</a></li>
+				</ul>
+				<ul class="gnbList2">
+					<li>
+					
+						
+						
+							<a href="/login" title="로그인">로그인</a>
+					
+					</li>
+					
+					<li><a href="/iplls/appGuide" title="회원가입">회원가입</a></li>
+					
+					<li class="sitemap"><a href="/sitemap">사이트맵</a></li>
+					<li><a href="/nonRelation/guideEng" title="ENG" target="_blank">ENG</a></li>
+				</ul>
+			</div>
+			<!-- //Global Menu -->
+			<!-- divSearch -->
+			<a href="#" class="mobileSearchBtn"><img src="/image/ko/local/search.png" alt="검색 열고 닫기"></a>
+			<div id="divSearch">
+				<div>
+					<h2 class="skip">검색</h2>
+					<div class="searchForm">
+						<form  action="/search/tot/result" onsubmit="return fn_searchForm_submit();" id="headerSearchForm">
+						<input type="hidden" name="si" value="TOTAL">
+						<input type="hidden" name="st" value="KWRD">
+							<fieldset>
+								<legend>검색</legend>
+								<span class="selectBox">
+									<label for="selectBox">도서명</label>
+									<select id="selectBox" name="si">
+										<option value="1">도서명</option>
+										<option value="2">저자</option>
+										<option value="3">출판사</option>
+										<option value="edu">문화행사</option>
+									</select>
+								</span>
+								<span class="inputWrap">
+									<input type="text" class="searchInput" title="Search" name="q" placeholder="검색어를 입력하세요.">
+									<input type="image" class="searchBtn" src="/image/ko/local/main/searchBtn.png" alt="Search" title="Search">
+								</span>
+							</fieldset>
+						</form>
+					</div>
+				</div>
+			</div>
+			<!-- // divSearch -->
+		</div>
+	</div>
+	<!-- //header1 -->
+	<!-- header2 -->
+	<div class="blackBg2"></div>
+	<div class="header2">
+		<!-- Top Menu -->
+		<div id="divTopMenu">
+			<h2 class="skip">탑메뉴</h2>
+			<div class="menuWrap">
+				<div class="tablet">
+					<div class="menuLogo">
+						<img src="/image/ko/local/logo.png" alt="이천시립통합도서관">
+					</div>
+					<div class="gnbList2">
+			        	<ul>
+			        		<li>
+							
+								
+								
+									<a href="/login" title="로그인">로그인</a>
+							
+							</li>
+							
+							<li><a href="/privacy/agree" title="회원가입">회원가입</a></li>
+							
+							<li><a href="/nonRelation/guideEng" title="ENG" target="_blank">ENG</a></li>
+			           </ul>
+					</div>                        
+				</div>
+				<div>
+					 <ul>
+					 
+					    
+					 <li class="divTopMenu1">
+					 	<a href="/search/tot" title="자료검색"><span>자료검색</span></a>
+					 	
+					 	
+					 	<div>
+					 		<p><a href="#" title="자료검색">자료검색</a></p>
+							<ul>
+								     				
+	     						
+	     						
+	     						<li><a href="/search/tot"  title="통합검색" >통합검색</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/search/maz"  title="비도서자료" >비도서자료</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/newarrival"  title="신착자료검색" >신착자료검색</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/newbook/list"  title="추천자료" >추천자료</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/statistics/loanBestList"  title="인기대출도서" >인기대출도서</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/searchA/icz"  title="스마트도서관" >스마트도서관</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/bbs/list/19"  title="도서관소식지" >도서관소식지</a></li>	
+	     						
+		     				
+							</ul>  
+						</div>
+					 	
+					 </li>
+					 
+					 
+					    
+					 <li class="divTopMenu2">
+					 	<a href="/local/html/bookstart" title="도서관서비스"><span>도서관서비스</span></a>
+					 	
+					 	
+					 	<div>
+					 		<p><a href="#" title="도서관서비스">도서관서비스</a></p>
+							<ul>
+								     				
+	     						
+	     						
+	     						<li><a href="/local/html/loan"  title="도서대출/반납/예약" >도서대출/반납/예약</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/local/html/subebook2"  title="전자책(E-BOOK)" >전자책(E-BOOK)</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/local/html/bookdure"  title="책두레서비스" >책두레서비스</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/local/html/bookshare"  title="책배달(택배) 서비스" >책배달(택배) 서비스</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/local/html/iplls"  title="책이음서비스" >책이음서비스</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/local/html/seat"  title="열람실 좌석현황" >열람실 좌석현황</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/local/html/cabinet_iclib"  title="사물함이용신청" >사물함이용신청</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/local/html/studyroom1"  title="독서토론실예약" >독서토론실예약</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/local/html/bookstart"  title="북스타트" >북스타트</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/local/html/1000book"  title="세상을 바꿀 천 권의 책" >세상을 바꿀 천 권의 책</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/local/html/libtour"  title="도서관 견학" >도서관 견학</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/local/html/smartlibrary"  title="스마트도서관" >스마트도서관</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/local/html/faqlib"  title="사서에게물어보세요" >사서에게물어보세요</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/local/html/dbpia"  title="전자저널 서비스" >전자저널 서비스</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/local/html/audiobook"  title="오디오북" >오디오북</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/local/html/siyoillib"  title="시요일" >시요일</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/local/html/100book"  title="고전백서" >고전백서</a></li>	
+	     						
+		     				
+							</ul>  
+						</div>
+					 	
+					 </li>
+					 
+					 
+					    
+					 <li class="divTopMenu3">
+					 	<a href="/libsch/mixMonthlyCalendar/1" title="문화행사"><span>문화행사</span></a>
+					 	
+					 	
+					 	<div>
+					 		<p><a href="#" title="문화행사">문화행사</a></p>
+							<ul>
+								     				
+	     						
+	     						
+	     						<li><a href="/libsch/mixMonthlyCalendar/1"  title="도서관 일정" >도서관 일정</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/education/list"  title="문화행사" >문화행사</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/bbs/list/22"  title="2025 이천이책" >2025 이천이책</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/bbs/list/23"  title="읽는 사람 공모전" >읽는 사람 공모전</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/bbs/list/6"  title="동아리 마당" >동아리 마당</a></li>	
+	     						
+		     				
+							</ul>  
+						</div>
+					 	
+					 </li>
+					 
+					 
+					    
+					 <li class="divTopMenu4">
+					 	<a href="/bbs/list/1" title="참여마당"><span>참여마당</span></a>
+					 	
+					 	
+					 	<div>
+					 		<p><a href="#" title="참여마당">참여마당</a></p>
+							<ul>
+								     				
+	     						
+	     						
+	     						<li><a href="/bbs/list/1"  title="공지사항" >공지사항</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/bbs/list/14"  title="묻고답하기" >묻고답하기</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/bbs/list/13"  title="프로그램 참여후기" >프로그램 참여후기</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="https://icheon.go.kr/portal/selectBbsNttList.do?bbsNo=8&key=1524"  title="칭찬합시다" target='_blank'>칭찬합시다</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/bbs/faq/2"  title="자주하는질문(FAQ)" >자주하는질문(FAQ)</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/local/html/donate"  title="도서 기증" >도서 기증</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/bbs/list/5"  title="추천 도서 게시판" >추천 도서 게시판</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/bbs/list/3"  title="포토갤러리" >포토갤러리</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/local/html/JobOpenings"  title="채용공고" >채용공고</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/bbs/list/21"  title="강좌제안서" >강좌제안서</a></li>	
+	     						
+		     				
+							</ul>  
+						</div>
+					 	
+					 </li>
+					 
+					 
+					    
+					 <li class="divTopMenu5">
+					 	<a href="/mynotice/list" title="나만의도서관"><span>나만의도서관</span></a>
+					 	
+					 	
+					 	<div>
+					 		<p><a href="#" title="나만의도서관">나만의도서관</a></p>
+							<ul>
+								     				
+	     						
+	     						
+	     						<li><a href="/mynotice/list"  title="개인공지" >개인공지</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/myloan/list"  title="나의현황" >나의현황</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/local/html/purchaserequest"  title="희망도서신청" >희망도서신청</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/education/applyList"  title="나의문화행사" >나의문화행사</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/myprofile/profile"  title="회원정보변경" >회원정보변경</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/myprofile/reloginLeave"  title="회원탈퇴" >회원탈퇴</a></li>	
+	     						
+		     				
+							</ul>  
+						</div>
+					 	
+					 </li>
+					 
+					 
+					    
+					 <li class="divTopMenu6">
+					 	<a href="/local/html/memberJoinGuide" title="도서관 소개"><span>도서관 소개</span></a>
+					 	
+					 	
+					 	<div>
+					 		<p><a href="#" title="도서관 소개">도서관 소개</a></p>
+							<ul>
+								     				
+	     						
+	     						
+	     						<li><a href="/local/html/memberJoinGuide"  title="회원가입" >회원가입</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/local/html/manner1"  title="시설 및 이용시간 안내" >시설 및 이용시간 안내</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/local/html/data1"  title="자료현황" >자료현황</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/local/html/history"  title="연혁및조직" >연혁및조직</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/local/html/map1"  title="찾아오시는길" >찾아오시는길</a></li>	
+	     						
+		     				
+							</ul>  
+						</div>
+					 	
+					 </li>
+					 
+					 
+					 
+					 
+					 
+					 
+					 
+					 
+					</ul>
+				</div>
+				<div class="tablet">
+					<div class="sns">
+						<ul>
+							<li><a href="https://band.us/@icheonlib" target="_blank" title="새창"><img src="/image/ko/local/sns1.png" alt="네이버 band"></a></li>
+							<li><a href="https://pf.kakao.com/_XifaT" target="_blank" title="새창"><img src="/image/ko/local/sns2.png" alt="카카오톡"></a></li>
+						</ul>	
+					</div>
+				</div>
+			</div>
+			<a href="#" class="menuClose">
+				닫기
+				<span></span>
+				<span></span> 
+			</a>
+			<div class="btnWrap">
+				<a href="#" class="divTopMenuBtn">
+					전체메뉴열기
+					<span></span>
+					<span></span>
+					<span></span>
+				</a>
+			</div>
+		</div>
+		<!-- //Top Menu -->
+	</div>
+<!-- //header2 -->
+</div>
+	
+	<div class="blackBg"></div>			
+	<hr>
+	
+	<div class="divSubTitle">
+		<div class="">
+			<h2 id="divTitle">상세정보</h2>
+			<div id="divLocation">
+				<ul>
+					<li class="home"><a href="/"><img src="/image/ko/local/home.png" alt="home"></a></li>
+					<li class="current">상세정보</li>
+				</ul>
+			</div>	
+		</div>
+	</div>
+	
+	<!-- divContents -->
+	<div id="divContents">
+		
+	
+     
+		
+		<!-- 안내문구 출력 -->
+		
+		
+		
+
+
+<script th:inline="javascript">
+	/*<![CDATA[*/
+		var excelUrl = [];
+
+			excelUrl.push('/mynightloan/savexls');
+
+			excelUrl.push('/otherlib/excellist');
+
+			excelUrl.push('/publicationmng/excellist');
+
+			excelUrl.push('/transoutput/savexls');
+
+			excelUrl.push('/education/alert/savexls');
+
+			excelUrl.push('/education/userSavexls');
+
+			excelUrl.push('/application/savexls');
+
+			excelUrl.push('/bbs/excellist/');
+
+			excelUrl.push('/bookpackage/savexls');
+
+			excelUrl.push('/bookshelf/mngSavexls');
+
+			excelUrl.push('/bookshelf/savexls');
+
+			excelUrl.push('/ddsweb/savexls');
+
+			excelUrl.push('/delivery/savexls');
+
+			excelUrl.push('/groupeducation/userSavexls');
+
+			excelUrl.push('/libtour/savexls');
+
+			excelUrl.push('/missrepo/mngSavexls');
+
+			excelUrl.push('/missrepo/savexls');
+
+			excelUrl.push('/mynightloan/mngSavexls');
+
+		var excelUrlLength = excelUrl.length;
+		/*]]>*/
+</script>
+
+<div id="dialog-form" title="엑셀 다운로드 사유" class="ui-dialog-content ui-widget-content" style="display:none;width:auto;min-height:98.1667px;height:auto;">
+  <form id="formSavexls" action="" method="post">
+    <fieldset>
+      <legend>엑셀 다운로드 사유 입력</legend>
+      <label for="reason">사유</label>
+      <textarea id="reason" name="reason" style="height:120px;" class="txtArea"></textarea>
+      <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+    </fieldset>
+  </form>
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		var savexlsDialog, savexlsform;
+	    savexlsDialog = $("#dialog-form").dialog({
+	    	autoOpen: false,
+	        height: 250,
+	        width: 430,
+	        modal: true,
+	        title: '엑셀 다운로드 사유',
+            buttons: {
+                "확인": savexls,
+                "취소": function(){
+                    $(this).dialog("close");
+                }
+            },
+            close: function(event, ui){
+            	savexlsform[0].reset();
+            }
+        });
+
+	    savexlsform = savexlsDialog.find("form").on("submit", function(event) {
+	        event.preventDefault();
+	        savexls();
+	    });
+
+	    function savexls() {
+			var reason = $("#reason").val();
+			if(reason == '') {
+				alert('엑셀 다운로드 사유를 입력하세요.');
+				return false;
+			}
+
+			if(reason.length > 100) {
+				alert('100자 이하로 입력하세요.');
+				$("#reason").val("");
+				return false;
+			}
+
+			savexlsform[0].submit();
+			savexlsDialog.dialog("close");
+			return true;
+		}
+
+	    $("a").click(function(event) {
+		    var href = $(this).attr("href");
+		  	for(var i = 0; i < excelUrlLength; i++) {
+				if(href.indexOf(excelUrl[i]) != -1) {
+		  			event.preventDefault();
+			  		$("#formSavexls").attr("action", href);
+				    savexlsDialog.dialog("open");
+				    break;
+				}
+			}
+		});
+	});
+</script>
+		<!-- Google 미리보기 페이지 연결 -->
+
+<!-- sns share기능 사용여부  -->
+
+
+
+<!--바구니넣기,바구니보기 버튼 사용여부 -->
+
+
+
+
+
+
+
+
+<!-- 검색 연간물 제본정보에 추가비고란(홍대 ct_accession ser_remark:결호내용) -->
+
+
+<!-- 내보내기 (submit변수로 사용됨) -->
+
+
+
+
+
+
+<!-- MARC -->
+<!-- 상세보기-->
+
+
+
+
+
+
+
+
+
+
+
+<div id="divContent">
+    <div class="searchDetail">
+        
+
+
+
+
+
+
+<div class="searchLink">
+
+
+	<form name="frmMylist" action="/mylist/writeitem" method="post">
+		<input type="hidden" name="data" value="CAT000001105601">
+	</form>
+	<ul class="searchLinkBtn">
+		
+		
+		
+		<li class="mylist"><a href="#" onclick="insertMylist();" title="새창">내서재에 저장</a></li>
+		
+		
+			
+			
+				<li class="marc"><a href="javascript:toggleMarcView('000001105601');" id="spnMarcView">MARC보기</a></li>
+			
+		
+	    <li class="view"><a href="#"  id="#moreInfo">상세보기</a></li>
+	    <!-- <li class="xml"><a href="" target="_blank" title="XML보기">XML보기</a></li> -->
+	    <li class="send"><a href="#" id="#export">내보내기</a></li>
+	</ul>
+	<!-- 내보내기 -->
+	<div id="export" class="export">
+    <div class="exportForm">
+        <h3>내보내기</h3>
+        <form id="exportForm" name="exportForm" method="post" action="/search/handler/output" target="handler">
+	        <input type="hidden" name="data" value="CAT000001105601"/>
+            <fieldset>
+                <legend>내보내기</legend>
+                <dl class="exportSelect">
+                    <dt>내보내기 형식을 선택하세요.</dt>
+                    <dd class="exportType">
+                        <ul>
+                            <li class="exportHtml"><input type="radio" name="submit" value="저장" checked="checked"  id="html"/> <label for="html">HTML</label></li>
+                            
+                            <li class="exportMail"><input type="radio" name="submit" value="메일"  id="email"/> <label for="email">E-Mail</label></li>
+                            
+                            <li class="exportPrint"><input type="radio" name="submit" value="인쇄" id="print"/> <label for="print">인쇄</label></li>
+                            <li class="exportPreview"><input type="radio" name="submit" value="미리보기" id="preview"/> <label for="preview">미리보기</label></li>
+                            
+                            
+                        </ul>
+                    </dd>
+                </dl>
+                <dl class="range">
+                    <dt>내보내기 범위를 선택하세요.</dt>
+                    <dd>
+                        <ul>
+                        	<li><label for="brief"><input type="checkbox" name="brief" value="Y" id="brief"> 간략정보</label></li>
+                            <li><label for="detail"><input type="checkbox" name="detail" value="Y" id="detail"> 상세정보</label></li>
+                            <li><label for="holding"><input type="checkbox" name="holding" value="Y" id="holding"> 도서정보</label></li>
+                            <li><label for="abs"><input type="checkbox" name="abs" value="Y"  id="abs"> 초록</label></li>
+                            <li><label for="toc"><input type="checkbox" name="toc" value="Y" id="toc"> 목차</label></li>
+                        </ul>
+                    </dd>
+                </dl>
+                <dl class="mail">
+                   <dt><label for="receiveMailAddr">이메일 :</label></dt>
+                   <dd><input type="text" id="receiveMailAddr" name="mailTo" class="inputTextType1" value=""></dd>
+                   <dt><label for="receiveMailTitle">제목 :</label></dt>
+                   <dd><input type="text" id="receiveMailTitle" name="mailTitle" class="inputTextType1"  placeholder="[도서관] 선택하신 서지정보입니다." value="[도서관] 선택하신 서지정보입니다." onfocus="if(this.value=='[도서관] 선택하신 서지정보입니다.')this.value=''"></dd>
+               </dl>
+               	<p class="notice refworks">o RefWorks에서 이용 가능한 형식으로 반출합니다.</p>
+                <p class="notice endnote">o EndNote에서 이용 가능한 형식으로 반출합니다.</p>
+            </fieldset>
+            <div class="buttons">
+                <input type="submit" value="확인" title="새창"><input type="reset" value="취소" title="취소">
+            </div>
+        </form>
+    </div>
+	</div> <!-- //export-->
+
+
+</div>
+        
+
+
+
+
+
+<!-- 하단 변수는 우선 정의만 해놓음. 사용시 디자인 코딩 필요 -->
+
+
+
+
+
+
+
+
+<div class="profile">
+	<div class="profileHeader">
+	    <h3>혼자 공부하는 파이썬</h3>
+	    <p>윤인성</p>
+	</div>
+	<div class="profileContent">
+		
+		    <div class="briefInfo">
+		        <dl>
+		          <dt>책이미지</dt>
+		            <dd class="bookImg">
+		            
+		                
+		                
+		                	
+	                			
+								
+									
+									<img id="coverimage" src="/image/ko/solution/common/ico/type_m_L.png" width="120" height="153" alt="" >
+									
+									
+								
+							
+		                
+		            
+		            </dd>
+		            
+					
+						
+						<dt>도서 상세정보</dt>
+						<dd class="addWriteBtn">
+							<a id="detailInfoHref" href="http://book.naver.com/search/search.nhn?sm=sta_hty.book&sug=&where=nexearch&query=9791162241882" target="_blank" style="display:none;">
+								도서 상세정보
+							</a>
+						</dd>
+						
+						
+					
+					<dt>서평쓰기</dt>
+		            
+		        </dl>
+		        <span class="bookBg"></span>
+		    </div>
+		
+		
+		<div class="table">
+		<div id="divProfile" >
+	        <table xmlns:url="http://whatever/java/java.net.URLEncoder"  id="moreInfo"><tbody>
+<tr class="main"><th scope="row">자료유형</th><td>단행본</td></tr><tr class="main"><th scope="row">개인저자</th><td><a href="/search/tot/result?st=FRNT&amp;si=2&amp;q=%EC%9C%A4%EC%9D%B8%EC%84%B1">윤인성</a></td></tr><tr><th scope="row">서명/저자사항</th><td>혼자 공부하는 파이썬 /윤인성 지음.</td></tr><tr><th scope="row">발행사항</th><td>서울:한빛미디어,2019.</td></tr><tr><th scope="row">형태사항</th><td>xiii, 434 p.:삽화;26 cm+별책부록 1책.</td></tr><tr><th scope="row">ISBN</th><td>9791162241882<br/>9791162241943(세트)<br/></td></tr><tr><th scope="row">일반주기</th><td>
+색인: p.430-434
+</td></tr><tr><th scope="row">인용자료주기</th><td>별책부록: 혼공 용어 노트</td></tr>
+	
+	
+</tbody></table>
+	    </div>
+	    <div id="divMarcProfile" ></div>
+		</div>
+	</div>
+</div>
+		
+
+
+
+
+
+
+
+
+
+<!-- Tulip5.0v 파우치대출 사용 여부(Tulip5.0v 부터 서비스별 대출예약 테이블 분리) -->
+<!-- 예약대출 -->
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<div class="searchInfo">
+		<div class="searchHeader">
+		    <h3><a href="#">소장정보</a></h3>
+		</div>
+		<div class="searchContents">
+	    <ul class="searchTabs">
+		
+		    
+		
+	    </ul>
+	    
+	    	 
+			    <dl class="service">
+			        <dt><a href="#">서비스 이용안내</a></dt>
+			        <dd>
+			            <ul>
+	                        
+							
+							
+							
+							<li><span class="serviceIco"><img src="/image/ko/solution/common/ico/corenew.gif" alt="" ></span>책두레</li>
+							
+							
+							<li><span class="serviceIco"><img src="/image/ko/solution/common/ico/closedLoan.gif" alt="" ></span>도서예약대출</li>
+							
+							<li><span class="serviceIco"><img src="/image/ko/solution/common/ico/print.gif" alt="" ></span>인쇄</li>
+			            </ul>
+			        </dd>
+			    </dl>
+			  
+		    
+		    
+		    <div class="listTable">
+		        <table class="searchTable">
+
+		            <caption>소장정보</caption>
+
+	                
+
+	                
+		            <thead>
+	                    <tr>
+	                        <th scope="col"  data-hide="phone">No.</th>
+	                        <th scope="col" data-hide="phone">등록번호</th>
+	                        
+	                        <th scope="col" data-hide="phone">청구기호</th>
+	                        
+	                        <th scope="col" >소장처/자료실/서가</th>
+	                        
+	                        <th scope="col"  data-class="expand">도서상태</th>
+	                        <th scope="col" data-hide="phone">반납예정일</th>
+	                        
+	                        <th scope="col" >예약</th>
+	                        
+	                        
+								<th scope="col" data-hide="phone">서비스</th>
+							
+	                    </tr>
+		            </thead>
+		            <tbody>
+		            
+	                
+	                
+						
+	                		
+						
+		                <tr>
+		                    <td class="num">1</td>
+		                    <td class="accessionNo">JE0074074</td>
+		                    
+		                    <td class="callNum">JE 005.133 윤69ㅎ
+		                    	<a href="/rwww/jsp/search/service/miniPrint.jsp?title=%ed%98%bc%ec%9e%90+%ea%b3%b5%eb%b6%80%ed%95%98%eb%8a%94+%ed%8c%8c%ec%9d%b4%ec%8d%ac&author=%ec%9c%a4%ec%9d%b8%ec%84%b1&call_no=JE+005.133+%ec%9c%a469%e3%85%8e&acsson_no=JE0074074&place=%ec%9d%b4%ec%b2%9c%ec%8b%9c%eb%a6%bd%ec%b2%ad%eb%af%b8%eb%8f%84%ec%84%9c%ea%b4%80%2f%eb%ac%b8%ed%97%8c%ec%a0%95%eb%b3%b4%ec%8b%a4%2f&publisher=%ed%95%9c%eb%b9%9b%eb%af%b8%eb%94%94%ec%96%b4&pub_year=2019&book_status=%eb%8c%80%ec%b6%9c%ea%b0%80%eb%8a%a5" onclick="miniPrint(this);return false;" title="인쇄 새창"><img src="/image/ko/solution/common/ico/print.gif" alt=""></a>
+		                    </td>
+		                    
+		                    <td class="location">
+			                    
+			                        
+			                        
+			                        이천시립청미도서관/문헌정보실/
+			                    
+	                        </td>
+	                        
+		                    <td>
+		                       
+		                           <span class="status available">대출가능</span>
+		                           
+		                           
+		                           
+		                       
+
+		                    </td>
+		                    <td class="returnDate"></td>
+		                    
+							<td>
+								<!-- 이용가능상태의 도서만 예약버튼 활성화  -->
+								
+									
+								
+								
+
+							</td>
+							
+							 
+			                    <td class="service">
+			                        <div class="serviceInfo">
+
+											
+
+											
+											
+
+											
+											
+											
+											
+												<a href="/search/reserve/corenew?acc_no=JE0000074074&amp;location=BR000000&amp;loan_status=0001" target="reserve" title="책두레 서비스" onclick="return doReserve(this)"><img src="/image/ko/solution/common/ico/corenew.gif" alt="" /></a>
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+
+											 
+
+			                        </div>
+			                    </td>
+		                   
+		                </tr>
+		            
+
+		            </tbody>
+		            
+		        </table>
+		        </div>
+		        
+	            
+	            
+		    </div> <!-- //listTable -->
+		</div> <!-- //searchInfo -->
+
+
+<script>
+<!--
+
+function miniPrint(obj){
+	var option = "toolbar=no,scrollbars=yes,status=no,resizable=yes,location=no,width=400,height=300";
+	window.open(obj.href,obj.target,option);
+	return false;
+}
+
+//서가위치 팝업
+function popImage(img){
+		var option='width=,height=, scrollbars=yes,resizable=yes';
+		popWin=window.open(img, '', option);
+		popWin.document.open();
+		popWin.document.write('<title>서가위치</title><body topMargin="0" leftMargin="0"><img style=cursor:hand; onclick="self.close()" src="'+img+'"></body>');
+		popWin.document.close();
+}
+
+//-->
+</script>
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+		
+
+
+        
+
+
+        
+		
+
+
+        <!-- //청구기호 Browsing -->
+        
+        <div class="searchInfo browsingW" >
+			<div class="searchHeader">
+				<h3><a href="#">청구기호 Browsing</a></h3>
+			</div>
+			<div class="searchContents" id="browsing"></div>
+		</div>
+		
+        
+		
+
+
+	
+		
+		
+		
+	
+	
+
+        
+        
+            ﻿
+
+	<div class="searchInfo bookDataW">
+	    <div class="searchHeader">
+	        <h3><a href="#">이 분야 인기자료</a></h3>
+	    </div>
+	    <div class="searchContents">
+	        <div class="bookData">
+	            <ul>
+	                
+	                
+	                
+	        
+	                <li>
+	                    <div>
+	                        <a href="/search/detail/CAT000001478472" title="[천책76-3]미세미세한 맛 플라수프">
+	                            <img id="popularImg_0" src="/image/ko/solution/local/noCoverImg.jpg" alt="">
+		                        <dl>
+		                            <dt class="title">[천책76-3]미세미세한 맛 플라수프</dt>
+		                            <dd>김지형</dd>
+		                            <dd>두마리토끼책, 2022</dd>
+		                        </dl>
+	                        </a>
+	                    </div>
+	                </li>
+	                <script>callThumbnail('popularImg_0','9791197303449','CAT','000001478472');</script>
+	                
+	                
+	                
+	        
+	                <li>
+	                    <div>
+	                        <a href="/search/detail/CAT000001324462" title="(흔한남매)수수께끼 어드벤처 . 2">
+	                            <img id="popularImg_1" src="/image/ko/solution/local/noCoverImg.jpg" alt="">
+		                        <dl>
+		                            <dt class="title">(흔한남매)수수께끼 어드벤처 . 2</dt>
+		                            <dd>흔한남매</dd>
+		                            <dd>아이세움, 2022</dd>
+		                        </dl>
+	                        </a>
+	                    </div>
+	                </li>
+	                <script>callThumbnail('popularImg_1','9791168414921','CAT','000001324462');</script>
+	                
+	                
+	                
+	        
+	                <li>
+	                    <div>
+	                        <a href="/search/detail/CAT000001379032" title="[도전2-37-3] 연암 박지원, 살아 있는 고전을 남기다">
+	                            <img id="popularImg_2" src="/image/ko/solution/local/noCoverImg.jpg" alt="">
+		                        <dl>
+		                            <dt class="title">[도전2-37-3] 연암 박지원, 살아 있는 고전을 남...</dt>
+		                            <dd>김수경</dd>
+		                            <dd>천개의바람, 2021</dd>
+		                        </dl>
+	                        </a>
+	                    </div>
+	                </li>
+	                <script>callThumbnail('popularImg_2','9791165731977','CAT','000001379032');</script>
+	                
+	                
+	                
+	        
+	                <li>
+	                    <div>
+	                        <a href="/search/detail/CAT000001385625" title="(흔한남매)수수께끼 어드벤처 . 4">
+	                            <img id="popularImg_3" src="/image/ko/solution/local/noCoverImg.jpg" alt="">
+		                        <dl>
+		                            <dt class="title">(흔한남매)수수께끼 어드벤처 . 4</dt>
+		                            <dd>흔한남매</dd>
+		                            <dd>아이세움(미래엔), 2023</dd>
+		                        </dl>
+	                        </a>
+	                    </div>
+	                </li>
+	                <script>callThumbnail('popularImg_3','9791168417656','CAT','000001385625');</script>
+	                
+	                
+	                
+	        
+	                <li>
+	                    <div>
+	                        <a href="/search/detail/CAT000001379084" title="[도전2-43-4] 전염병 연구소 : 흑사병부터 코로나19까지 오싹오싹한 세균과 바이러스!">
+	                            <img id="popularImg_4" src="/image/ko/solution/local/noCoverImg.jpg" alt="">
+		                        <dl>
+		                            <dt class="title">[도전2-43-4] 전염병 연구소 : 흑사병부터 코로나...</dt>
+		                            <dd>플랫, 리처드</dd>
+		                            <dd>사파리, 2021</dd>
+		                        </dl>
+	                        </a>
+	                    </div>
+	                </li>
+	                <script>callThumbnail('popularImg_4','9791166372810','CAT','000001379084');</script>
+	                
+	            </ul>
+	        </div>
+            <div class="button"><a class="more" href="/statistics/loanBestList?category=000&amp;newdays=30&amp;dtf=20260708&amp;dtt=20260807" class="page"><span></span>더보기</a></div>
+	    </div>
+	</div>                 
+
+
+
+
+        
+
+        
+        
+
+        
+        
+    </div>
+</div>
+	</div>	
+	
+<div id="divFooter">
+	<div class="footer">
+		<div class="footerLogo">
+			<img src="/image/ko/local/footerLogo.png" alt="이천시립통합도서관">
+		</div>
+		<div>
+			<div class="footerMenu">
+				<ul>
+					<li class="privacy">
+						<a href="/local/html/privacy" title="개인정보처리방침">개인정보처리방침</a>
+					</li>
+					<li>
+						<a href="/local/html/email" title="이메일무단수집거부">이메일무단수집거부</a>
+					</li>
+					<li>
+						<a href="/local/html/map1" title="찾아오시는길">찾아오시는길</a>
+					</li>
+					<li>
+						<a href="/sitemap" title="사이트맵">사이트맵</a>
+					</li>
+				</ul>
+			</div>
+			<div class="libraryInfo">
+				<ul class="addressList">
+					<li>
+						<h3>시립</h3>
+						<address>
+							(17354 ) 경기도 이천시 설봉로81번길 50(창전동) 
+						</address>
+						<ul>
+							<li>Tel. 031-644-4351~4</li>
+						</ul>
+					</li>
+					<li>
+						<h3>청미</h3>
+						<address>
+							(17421 ) 경기도 이천시 장호원읍 서동대로8829번길 53-6
+						</address>
+						<ul>
+							<li>Tel. 031 - 644 - 4371</li>
+						</ul>
+					</li>
+					<li>
+						<h3>효양</h3>
+						<address>
+							(17327 ) 경기도 이천시 부발읍 경충대로2250번길 35 
+						</address>
+						<ul>
+							<li>Tel. 031- 644 - 4391</li>
+						</ul>
+					</li>
+					<li>
+						<h3>어린이</h3>
+						<address>
+							(17375 ) 경기도 이천시 남천로 31
+						</address>
+						<ul>
+							<li>Tel. 031 - 644 - 4381</li>
+						</ul>
+					</li>
+					<li>
+						<h3>마장</h3>
+						<address> 
+							(17387 ) 경기도 이천시 마장면 마장로11
+						</address>
+						<ul>
+							<li>Tel. 031-645-3440</li>
+						</ul>
+					</li>
+					<li>
+						<h3>서희</h3>
+						<address>
+							(17372) 경기도 이천시 애련정로 29
+						</address>
+						<ul>
+							<li>Tel. 031-645-3430~3</li>
+						</ul>
+					</li>
+					<li>
+						<h3>이천시 도서관과 전자팩스</h3>
+						<address>
+							0502-696-2009
+						</address>
+					</li>
+				</ul>
+				<p class="copyright">
+					COPYRIGHT(C)2019 <span>ICHEON CITY LIBRARY.</span> ALL RIGHTS RESERVED.
+				</p>
+			</div>
+			<div class="familySite">
+				<ul>
+					<li>
+						<a href="">관련사이트 바로가기<span class="bg"></span></a>
+						<div class="siteWrap">
+							<div>
+								<ul>
+									<li><a href="http://www.icheon.go.kr/" title="새창" target="_blank" rel="noopener noreferrer">이천시청</a></li>
+									<li><a href="https://www.icheon.go.kr/depart/farmSubMain.do?key=2428" title="새창" target="_blank" rel="noopener noreferrer">이천시 농업기술센터</a></li>
+									<li><a href="https://www.icheon.go.kr/depart/selectEmployeeList.do?key=2425&searchDeptCode=000003136" title="새창" target="_blank" rel="noopener noreferrer">이천시 체육지원센터</a></li>
+									<li><a href="https://www.icheon.go.kr/depart/selectEmployeeList.do?key=2425&searchDeptCode=000003136" title="새창" target="_blank" rel="noopener noreferrer">이천문화재단</a></li>
+									<li><a href="https://www.artic.or.kr/icmus/main/view" title="새창" target="_blank" rel="noopener noreferrer">이천시립박물관</a></li>
+									<li><a href="http://www.sulbong.or.kr/" title="새창" target="_blank" rel="noopener noreferrer">설봉서원</a></li>
+									<li><a href="http://www.iwoljeon.org/" title="새창" target="_blank" rel="noopener noreferrer">이천시립월전미술관</a></li>
+									<li><a href="http://www.eais.go.kr/" title="새창" target="_blank" rel="noopener noreferrer">새움터</a></li>
+								</ul>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="visitToday">
+				<ul>
+					<li><span class="title">VISIT  TODAY</span><span class="num">35,148</span></li>
+					<li><span class="title">TOTAL</span><span class="num">142,965,886</span></li>
+				</ul>
+			</div>
+			<div class="sns">
+				<ul>
+					<li><a href="https://band.us/@icheonlib" target="_blank" title="새창"><img src="/image/ko/local/sns1.png" alt="네이버 band"></a></li>
+					<li><a href="https://pf.kakao.com/_XifaT" target="_blank" title="새창"><img src="/image/ko/local/sns2.png" alt="카카오톡"></a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+</body>
+</html>

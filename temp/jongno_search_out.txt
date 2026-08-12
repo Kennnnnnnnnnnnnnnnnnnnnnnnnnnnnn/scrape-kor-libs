@@ -1,0 +1,2558 @@
+<!DOCTYPE html>
+<html lang="ko">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1.0,minimum-scale=0,maximum-scale=10,user-scalable=yes" name="viewport"/>
+  <meta content="no" http-equiv="imagetoolbar"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <title>
+   종로구립도서관
+  </title>
+  <link href="https://lib.jongno.go.kr/theme/basic/css/default.css?ver=210618" rel="stylesheet"/>
+  <link href="https://lib.jongno.go.kr/js/font-awesome/css/font-awesome.min.css?ver=210618" rel="stylesheet"/>
+  <link href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css?ver=210618" rel="stylesheet"/>
+  <link href="https://lib.jongno.go.kr/theme/basic/skin/outlogin/basic/style.css?ver=210618" rel="stylesheet"/>
+  <link href="https://lib.jongno.go.kr/theme/basic/css/mobile.css?ver=210618" rel="stylesheet"/>
+  <!--[if lte IE 8]>
+<script src="https://lib.jongno.go.kr/js/html5.js"></script>
+<![endif]-->
+  <script>
+   // 자바스크립트에서 사용하는 전역변수 선언
+var g5_url       = "https://lib.jongno.go.kr";
+var g5_bbs_url   = "https://lib.jongno.go.kr/bbs";
+var g5_is_member = "";
+var g5_is_admin  = "";
+var g5_is_mobile = "";
+var g5_bo_table  = "";
+var g5_sca       = "";
+var g5_editor    = "";
+var g5_cookie_domain = "";
+
+
+if(g5_is_member == 1){
+	var tid;
+	var timer = 1800;
+	var cnt = parseInt(timer);//초기값(초단위)
+	function counter_init() {
+		tid = setInterval("counter_run()", 1000);
+	}
+
+
+	function counter_run() {
+		cnt--;
+       // console.log(cnt);
+		if(cnt < 0) {
+			alert('개인정보를 위해 자동 로그아웃 되었습니다. 다시 한 번 로그인해 주시기 바랍니다.');
+			clearInterval(tid);
+			self.location = "/bbs/logout.php";
+		}
+	}
+	function time_format(s) {
+		var nHour=0;
+		var nMin=0;
+		var nSec=0;
+		if(s>0) {
+			nMin = parseInt(s/60);
+			nSec = s%60;
+
+			if(nMin>60) {
+				nHour = parseInt(nMin/60);
+				nMin = nMin%60;
+			}
+		} 
+		if(nSec<10) nSec = "0"+nSec;
+		if(nMin<10) nMin = "0"+nMin;
+
+		return ""+nHour+":"+nMin+":"+nSec;
+	}
+
+	function counter_reset(t) {
+		clearInterval(tid);
+		cnt = parseInt(t);
+		counter_init();
+	}
+	counter_init();
+
+	$(document).click(function(){
+		counter_reset(timer);
+	});
+
+	$(document).keydown(function(){
+		counter_reset(timer);
+	});
+
+}
+  </script>
+  <script src="https://lib.jongno.go.kr/js/jquery-1.12.4.min.js?ver=210618">
+  </script>
+  <script src="https://lib.jongno.go.kr/js/jquery-migrate-1.4.1.min.js?ver=210618">
+  </script>
+  <script src="https://lib.jongno.go.kr/js/jquery.menu.js?ver=210618">
+  </script>
+  <script src="https://lib.jongno.go.kr/js/common.js?ver=210618">
+  </script>
+  <script src="https://lib.jongno.go.kr/js/wrest.js?ver=210618">
+  </script>
+  <script src="https://lib.jongno.go.kr/js/placeholders.min.js?ver=210618">
+  </script>
+  <script crossorigin="anonymous" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js">
+  </script>
+  <script src="https://lib.jongno.go.kr/theme/basic/js/menu.js?ver=210618">
+  </script>
+  <script src="https://lib.jongno.go.kr/plus/css_js/default.js?ver=210618">
+  </script>
+ </head>
+ <body>
+  <!-- 상단 시작 { -->
+  <div id="hd">
+   <h1 id="hd_h1">
+    종로구립도서관
+   </h1>
+   <div id="skip_to_container">
+    <a href="#container">
+     본문 바로가기
+    </a>
+   </div>
+   <div class="header_top">
+    <div id="hd_wrapper">
+     <!-- <div id="logo">
+                <a href="https://lib.jongno.go.kr"><img src="https://lib.jongno.go.kr/img/logo.gif" alt="종로구립도서관"></a>
+            </div> -->
+     <ul class="hd_login">
+      <li>
+       <a href="https://lib.jongno.go.kr/bbs/login.php">
+        로그인
+       </a>
+      </li>
+      <li>
+       <a href="https://lib.jongno.go.kr/menu/member/join01.php">
+        회원가입
+       </a>
+      </li>
+     </ul>
+    </div>
+   </div>
+   <div class="header_search">
+    <div id="search_wrapper">
+     <div id="logo">
+      <a href="https://lib.jongno.go.kr">
+       <img alt="종로구립도서관" src="https://lib.jongno.go.kr/img/logo2.gif"/>
+      </a>
+     </div>
+     <div class="booksearch">
+      <form action="https://lib.jongno.go.kr/menu/subpage/subpage_02/sub01.php" type="get">
+       <input name="library" type="hidden" value="ALL"/>
+       <input name="search_type" type="hidden" value="normal"/>
+       <!-- <div class="booksearch_text">통합검색</div> -->
+       <input id="booksearch_txt" name="search_value" type="text">
+        <input alt="검색" id="bookserch_img" src="https://lib.jongno.go.kr/img/main/find.gif" type="image">
+        </input>
+       </input>
+      </form>
+     </div>
+    </div>
+   </div>
+   <div class="header_middle sub_m">
+    <button class="hd_opener navToggle" id="gnb_open" type="button">
+     <img alt="메뉴열기" src="https://lib.jongno.go.kr/img/m_menu.gif"/>
+     <span class="sound_only">
+      메뉴열기
+     </span>
+    </button>
+    <div class="navClose" style="display: none;">
+    </div>
+    <div class="navigation transform">
+     <div class="navigationMenu">
+      <div class="user">
+      </div>
+      <div class="icons">
+       <a href="https://lib.jongno.go.kr/bbs/login.php">
+        <!-- <img src="/img/mobile/menu/logout.png" /> -->
+        <span>
+         로그인
+        </span>
+       </a>
+      </div>
+     </div>
+     <ul>
+      <li>
+       <strong>
+        <!-- <img src="/img/mobile/menu/mobile_card.png" /> -->
+        도서관 안내
+       </strong>
+       <ul>
+        <li>
+         <a href="/menu/subpage/subpage_01/sub01.php" target="_self">
+          연혁
+         </a>
+        </li>
+        <li>
+         <a href="/menu/subpage/subpage_01/sub02.php" target="_self">
+          종로구 도서관 한눈에 보기
+         </a>
+        </li>
+        <li>
+         <a href="/menu/subpage/subpage_01/sub02_1_2.php" target="_self">
+          구립도서관 안내
+         </a>
+        </li>
+        <li>
+         <a href="/menu/subpage/subpage_01/sub03.php" target="_self">
+          회원가입
+         </a>
+        </li>
+        <li>
+         <a href="/menu/subpage/subpage_01/sub04.php" target="_self">
+          도서이용규정
+         </a>
+        </li>
+        <li>
+        </li>
+       </ul>
+      </li>
+      <li>
+       <strong>
+        <!-- <img src="/img/mobile/menu/mobile_card.png" /> -->
+        자료검색
+       </strong>
+       <ul>
+        <li>
+         <a href="/menu/subpage/subpage_02/sub01.php" target="_self">
+          통합검색
+         </a>
+        </li>
+        <li>
+         <a href="/menu/subpage/subpage_02/sub02.php" target="_self">
+          신착자료
+         </a>
+        </li>
+        <li>
+         <a href="/menu/subpage/subpage_02/sub06.php" target="_self">
+          인기도서
+         </a>
+        </li>
+        <li>
+         <a href="/menu/subpage/subpage_02/sub05.php" target="_self">
+          우리소리 음원 검색
+         </a>
+        </li>
+        <li>
+         <a href="/menu/subpage/subpage_02/sub07.php" target="_self">
+          희망도서 신청
+         </a>
+        </li>
+        <li>
+        </li>
+       </ul>
+      </li>
+      <li>
+       <strong>
+        <!-- <img src="/img/mobile/menu/mobile_card.png" /> -->
+        도서관 서비스
+       </strong>
+       <ul>
+        <li>
+         <a href="/menu/subpage/subpage_05/sub08.php" target="_self">
+          전자도서관
+         </a>
+        </li>
+        <li>
+         <a href="https://lib.jongno.go.kr/bbs/board.php?bo_table=ReadingPgm" target="_self">
+          도서관 프로그램
+         </a>
+        </li>
+        <li>
+         <a href="https://lib.jongno.go.kr/bbs/board.php?bo_table=bookstart" target="_self">
+          북스타트
+         </a>
+        </li>
+        <li>
+         <a href="/menu/subpage/subpage_05/sub09.php" target="_self">
+          상호대차
+         </a>
+        </li>
+        <li>
+         <a href="/menu/subpage/subpage_05/sub07.php" target="_self">
+          책나래
+         </a>
+        </li>
+        <li>
+         <a href="/menu/subpage/subpage_05/sub01.php" target="_self">
+          책이음
+         </a>
+        </li>
+        <li>
+         <a href="https://lib.jongno.go.kr/menu/subpage/subpage_05/sub04.php" target="_self">
+          모바일회원증
+         </a>
+        </li>
+        <li>
+        </li>
+       </ul>
+      </li>
+      <li>
+       <strong>
+        <!-- <img src="/img/mobile/menu/mobile_card.png" /> -->
+        내서재
+       </strong>
+       <ul>
+        <li>
+         <a href="/menu/subpage/subpage_03/sub01.php" target="_self">
+          대출현황
+         </a>
+        </li>
+        <li>
+         <a href="/menu/subpage/subpage_03/sub13.php" target="_self">
+          상호대차현황
+         </a>
+        </li>
+        <li>
+         <a href="/menu/subpage/subpage_03/sub011.php" target="_self">
+          대출이력
+         </a>
+        </li>
+        <li>
+         <a href="/menu/subpage/subpage_03/sub07.php" target="_self">
+          예약현황
+         </a>
+        </li>
+        <li>
+         <a href="/menu/subpage/subpage_03/sub09.php" target="_self">
+          관심자료
+         </a>
+        </li>
+        <li>
+         <a href="/menu/subpage/subpage_03/sub02.php" target="_self">
+          나의신청정보
+         </a>
+        </li>
+        <li>
+         <a href="/menu/subpage/subpage_03/sub12.php" target="_self">
+          도서추천서비스
+         </a>
+        </li>
+        <li>
+        </li>
+       </ul>
+      </li>
+      <li>
+       <strong>
+        <!-- <img src="/img/mobile/menu/mobile_card.png" /> -->
+        참여공간
+       </strong>
+       <ul>
+        <li>
+         <a href="https://lib.jongno.go.kr/bbs/board.php?bo_table=Notice" target="_self">
+          공지사항
+         </a>
+        </li>
+        <li>
+         <a href="https://lib.jongno.go.kr/menu/subpage/subpage_06/faq.php" target="_self">
+          자주하는질문
+         </a>
+        </li>
+        <li>
+         <a href="https://lib.jongno.go.kr/bbs/board.php?bo_table=QnA" target="_self">
+          묻고답하기
+         </a>
+        </li>
+        <li>
+        </li>
+       </ul>
+      </li>
+     </ul>
+    </div>
+    <nav class="hd_div" id="gnb">
+     <!-- <button type="button" id="gnb_close" class="hd_closer"><span class="sound_only">메뉴 닫기</span><i class="fa fa-times" aria-hidden="true"></i></button> -->
+     <aside class="ol" id="ol_before">
+      <h2>
+       회원로그인
+      </h2>
+      <a class="btn_b01" href="https://lib.jongno.go.kr/bbs/login.php">
+       로그인
+      </a>
+      <a class="btn_b02" href="https://lib.jongno.go.kr/bbs/register.php">
+       회원가입
+      </a>
+     </aside>
+     <!-- 로그인 전 외부로그인 끝 -->
+     <div class="gnb_wrap">
+      <ul id="gnb_1dul">
+       <!-- <li class="gnb_1dli gnb_mnal"><button type="button" class="gnb_menu_btn" title="전체메뉴"><i class="fa fa-bars" aria-hidden="true"></i><span class="sound_only">전체메뉴열기</span></button></li> -->
+       <li class="gnb_1dli gnb_al_li_plus" style="z-index:999">
+        <div class="gnb_form">
+         <a class="gnb_1da" onclick="go_href('/menu/subpage/subpage_01/sub01.php','1');" target="_self">
+          도서관 안내
+         </a>
+        </div>
+       </li>
+       <li class="gnb_1dli gnb_al_li_plus" style="z-index:998">
+        <div class="gnb_form">
+         <a class="gnb_1da" onclick="go_href('/menu/subpage/subpage_02/sub01.php','2');" target="_self">
+          자료검색
+         </a>
+        </div>
+       </li>
+       <li class="gnb_1dli gnb_al_li_plus" style="z-index:997">
+        <div class="gnb_form">
+         <a class="gnb_1da" onclick="go_href('/menu/subpage/subpage_05/sub08.php','3');" target="_self">
+          도서관 서비스
+         </a>
+        </div>
+       </li>
+       <li class="gnb_1dli gnb_al_li_plus" style="z-index:996">
+        <div class="gnb_form">
+         <a class="gnb_1da" onclick="go_href('/menu/subpage/subpage_03/sub01.php','4');" target="_self">
+          내서재
+         </a>
+        </div>
+       </li>
+       <li class="gnb_1dli gnb_al_li_plus" style="z-index:995">
+        <div class="gnb_form">
+         <a class="gnb_1da" onclick="go_href('https://lib.jongno.go.kr/bbs/board.php?bo_table=Notice','5');" target="_self">
+          참여공간
+         </a>
+        </div>
+       </li>
+      </ul>
+      <div id="gnb_all">
+       <!-- <h2>전체메뉴</h2> -->
+       <ul class="gnb_al_ul">
+        <li class="gnb_al_li">
+         <!-- <a href="/menu/subpage/subpage_01/sub01.php" target="_self" class="gnb_al_a">도서관 안내</a> -->
+         <ul>
+          <li>
+           <a href="/menu/subpage/subpage_01/sub01.php" target="_self">
+            연혁
+           </a>
+          </li>
+          <li>
+           <a href="/menu/subpage/subpage_01/sub02.php" target="_self">
+            종로구 도서관 현황
+           </a>
+          </li>
+          <li>
+           <a href="/menu/subpage/subpage_01/sub03.php" target="_self">
+            이용안내
+           </a>
+          </li>
+         </ul>
+        </li>
+        <li class="gnb_al_li">
+         <!-- <a href="/menu/subpage/subpage_02/sub01.php" target="_self" class="gnb_al_a">자료검색</a> -->
+         <ul>
+          <li>
+           <a href="/menu/subpage/subpage_02/sub01.php" target="_self">
+            통합검색
+           </a>
+          </li>
+          <li>
+           <a href="/menu/subpage/subpage_02/sub02.php" target="_self">
+            신착자료
+           </a>
+          </li>
+          <li>
+           <a href="/menu/subpage/subpage_02/sub06.php" target="_self">
+            인기도서
+           </a>
+          </li>
+          <li>
+           <a href="/menu/subpage/subpage_02/sub05.php" target="_self">
+            우리소리 음원 검색
+           </a>
+          </li>
+          <li>
+           <a href="/menu/subpage/subpage_02/sub07.php" target="_self">
+            희망도서 신청
+           </a>
+          </li>
+         </ul>
+        </li>
+        <li class="gnb_al_li">
+         <!-- <a href="/menu/subpage/subpage_05/sub08.php" target="_self" class="gnb_al_a">도서관 서비스</a> -->
+         <ul>
+          <li>
+           <a href="/menu/subpage/subpage_05/sub08.php" target="_self">
+            전자도서관
+           </a>
+          </li>
+          <li>
+           <a href="https://lib.jongno.go.kr/bbs/board.php?bo_table=ReadingPgm" target="_self">
+            도서관 프로그램
+           </a>
+          </li>
+          <li>
+           <a href="https://lib.jongno.go.kr/bbs/board.php?bo_table=bookstart" target="_self">
+            북스타트
+           </a>
+          </li>
+          <li>
+           <a href="/menu/subpage/subpage_05/sub09.php" target="_self">
+            상호대차
+           </a>
+          </li>
+          <li>
+           <a href="/menu/subpage/subpage_05/sub07.php" target="_self">
+            책나래
+           </a>
+          </li>
+          <li>
+           <a href="/menu/subpage/subpage_05/sub01.php" target="_self">
+            책이음
+           </a>
+          </li>
+          <li>
+           <a href="https://lib.jongno.go.kr/menu/subpage/subpage_05/sub04.php" target="_self">
+            모바일회원증
+           </a>
+          </li>
+         </ul>
+        </li>
+        <li class="gnb_al_li">
+         <!-- <a href="/menu/subpage/subpage_03/sub01.php" target="_self" class="gnb_al_a">내서재</a> -->
+         <ul>
+          <li>
+           <a href="/menu/subpage/subpage_03/sub01.php" target="_self">
+            도서이용정보
+           </a>
+          </li>
+          <li>
+           <a href="/menu/subpage/subpage_03/sub011.php" target="_self">
+            대출이력
+           </a>
+          </li>
+          <li>
+           <a href="/menu/subpage/subpage_03/sub07.php" target="_self">
+            예약현황
+           </a>
+          </li>
+          <li>
+           <a href="/menu/subpage/subpage_03/sub09.php" target="_self">
+            관심자료
+           </a>
+          </li>
+          <li>
+           <a href="/menu/subpage/subpage_03/sub02.php" target="_self">
+            나의신청정보
+           </a>
+          </li>
+          <li>
+           <a href="/menu/subpage/subpage_03/sub12.php" target="_self">
+            도서추천서비스
+           </a>
+          </li>
+         </ul>
+        </li>
+        <li class="gnb_al_li">
+         <!-- <a href="https://lib.jongno.go.kr/bbs/board.php?bo_table=Notice" target="_self" class="gnb_al_a">참여공간</a> -->
+         <ul>
+          <li>
+           <a href="https://lib.jongno.go.kr/bbs/board.php?bo_table=Notice" target="_self">
+            공지사항
+           </a>
+          </li>
+          <li>
+           <a href="https://lib.jongno.go.kr/menu/subpage/subpage_06/faq.php" target="_self">
+            자주하는질문
+           </a>
+          </li>
+          <li>
+           <a href="https://lib.jongno.go.kr/bbs/board.php?bo_table=QnA" target="_self">
+            묻고답하기
+           </a>
+          </li>
+         </ul>
+        </li>
+       </ul>
+       <!-- <button type="button" class="gnb_close_btn"><i class="fa fa-times" aria-hidden="true"></i></button> -->
+      </div>
+      <div id="gnb_all_bg">
+      </div>
+     </div>
+    </nav>
+   </div>
+   <script>
+    function go_href(href,code){
+        if (window.outerWidth >= 820) {
+            location.href = href;
+        }else{
+            $(".gnb_al_li").removeClass("active");
+            $(".gnb_al_li").eq(code-1).addClass("active");
+        }
+    }
+    
+    $(function () {
+        //폰트 크기 조정 위치 지정
+        var font_resize_class = get_cookie("ck_font_resize_add_class");
+        if( font_resize_class == 'ts_up' ){
+            $("#text_size button").removeClass("select");
+            $("#size_def").addClass("select");
+        } else if (font_resize_class == 'ts_up2') {
+            $("#text_size button").removeClass("select");
+            $("#size_up").addClass("select");
+        }
+
+        $(".hd_opener").on("click", function() {
+            var $this = $(this);
+            var $hd_layer = $this.next(".hd_div");
+
+            if($hd_layer.is(":visible")) {
+                $hd_layer.hide();
+                $this.find("span").text("열기");
+            } else {
+                var $hd_layer2 = $(".hd_div:visible");
+                $hd_layer2.prev(".hd_opener").find("span").text("열기");
+                $hd_layer2.hide();
+
+                $hd_layer.show();
+                $this.find("span").text("닫기");
+            }
+        });
+
+
+        $(".btn_gnb_op").click(function(){
+            $(this).toggleClass("btn_gnb_cl").next(".gnb_2dul").slideToggle(300);
+            
+        });
+
+        $(".hd_closer").on("click", function() {
+            var idx = $(".hd_closer").index($(this));
+            $(".hd_div:visible").hide();
+            $(".hd_opener:eq("+idx+")").find("span").text("열기");
+        });
+    });
+    if (window.outerWidth >= 820) {
+        
+    }else{
+        $(function(){
+            $(".gnb_menu_btn").click(function(){
+                $("#gnb_all, #gnb_all_bg").show();
+            });
+            $(".gnb_close_btn, #gnb_all_bg").click(function(){
+                $("#gnb_all, #gnb_all_bg").hide();
+            });
+        });
+        $("#container").on("click", function() {
+            $(".hd_div").hide();
+
+        });
+    }
+   </script>
+  </div>
+  <!-- } 상단 끝 -->
+  <!-- 콘텐츠 시작 { -->
+  <div id="wrapper">
+   <div id="container_wr">
+    <div id="container">
+     <link href="https://lib.jongno.go.kr/css/content.css" rel="stylesheet"/>
+     <script src="https://lib.jongno.go.kr/theme/basic/js/common_ui.js">
+     </script>
+     <div id="subWrapper">
+      <div id="container">
+       <div id="left_menu">
+        <h3>
+         자료검색
+        </h3>
+        <ul>
+         <li class="active">
+          <a href="/menu/subpage/subpage_02/sub01.php" target="_self">
+           통합검색
+          </a>
+         </li>
+         <li>
+          <a href="/menu/subpage/subpage_02/sub02.php" target="_self">
+           신착자료
+          </a>
+         </li>
+         <li>
+          <a href="/menu/subpage/subpage_02/sub06.php" target="_self">
+           인기도서
+          </a>
+         </li>
+         <li>
+          <a href="/menu/subpage/subpage_02/sub05.php" target="_self">
+           우리소리 음원 검색
+          </a>
+         </li>
+         <li>
+          <a href="/menu/subpage/subpage_02/sub07.php" target="_self">
+           희망도서 신청
+          </a>
+         </li>
+        </ul>
+       </div>
+       <div id="facet_area">
+       </div>
+       <style>
+        #facet_area{
+		width: 181px;
+		top: 470px;
+		position: absolute;
+	}
+	#facet_area.on{
+		border:1px solid #eee;
+	}
+	#facet_area ul li.facet_subject{
+		font-weight: bold;
+		background-color:#f6f6f6;
+		text-align: center;
+		margin-top: 0px;
+		padding-left: 0px;
+		height: 40px;
+		padding-top: 7px;
+	}
+	#facet_area ul li{
+		margin-top: 10px;
+		padding-bottom: 5px;
+		padding-left: 5px;
+
+	} 
+	#facet_area ul li.active{
+		font-weight: bold;
+	}
+       </style>
+       <div class="book_content" id="subContent">
+        <div id="location">
+         <div class="location_title">
+          <h3>
+           통합검색
+          </h3>
+         </div>
+         <div class="location_history">
+          홈
+          <span class="first_loc">
+           자료검색
+          </span>
+          <strong class="last_loc">
+           통합검색
+          </strong>
+         </div>
+        </div>
+        <div class="main_con">
+         <style>
+         </style>
+         <div id="wrap">
+          <!-- 일반검색  -->
+          <div class="ndlstab">
+           <ul>
+            <li>
+             <a class="on" href="#simple" onclick="javascript:change_search('normal',this);">
+              일반검색
+             </a>
+            </li>
+            <li>
+             <a href="#detail" onclick="javascript:change_search('detail',this);">
+              상세검색
+             </a>
+            </li>
+           </ul>
+          </div>
+          <div class="book_search normal">
+           <!-- <span class="select_style long">
+            <select name="library" class="lib_list">
+                <option selected value="ALL">전체</option>
+                                    <option  value="MA">청운문학도서관</option>
+                                    <option  value="MT">어린이청소년 국학도서관</option>
+                                    <option  value="MU">창신소담도서관</option>
+                                    <option  value="MB">아름꿈 도서관</option>
+                                    <option  value="MQ">삼청공원 숲속도서관</option>
+                                    <option  value="MS">우리소리도서관</option>
+                                    <option  value="MD">통인 어린이 작은도서관</option>
+                                    <option  value="MR">도담도담 한옥도서관</option>
+                                    <option  value="ME">청운효자동 북카페</option>
+                                    <option  value="MF">꿈꾸는 평창동 작은도서관</option>
+                                    <option  value="MG">무악다솜방</option>
+                                    <option  value="MH">홍파랑 북카페</option>
+                                    <option  value="MJ">지혜만들기 작은도서관</option>
+                                    <option  value="MK">이화마을 작은도서관</option>
+                                    <option  value="ML">혜화마을 북카페</option>
+                                    <option  value="MP">숭인마루 작은도서관</option>
+                            </select>
+        </span> 
+        
+        <span class="select_style short">
+            <select name="search_type" class="lib_list">
+                <option value="ALL">제목</option>
+                <option value="ALL">저자</option>
+                <option value="ALL">발행처</option>
+            </select>
+        </span> 
+        <form action="" style="display:inline-block;" method="get">  
+            <input type="hidden" name="search_type" value="normal">
+            <div class="search_area">
+                <div class="ip_text"><input type="text" name="search_value" value="파친코"  class="search_ipt"/></div>
+                <input type="submit" value="검색" class="book_submit_btn"/>
+                
+                <input type="hidden" value="ALL" name="library"/>
+            </div>
+        </form>
+        <input type="button" name="" value="상세검색" class="lib_submit_btn" onclick="javascript:change_search();" id=""> -->
+           <form action="" method="get" style="display:inline-block;">
+            <input name="search_type" type="hidden" value="normal"/>
+            <fieldset>
+             <legend>
+              단순 검색
+             </legend>
+             <div class="searchbox base_search" style="">
+              <div class="searchtype1">
+               <!-- 셀렉트박스 -->
+               <div class="select_box">
+                <span class="select_style medium">
+                 <select id="search_item" name="search_item" title="검색형태 선택">
+                  <option value="search_title">
+                   제목
+                  </option>
+                  <option value="search_author">
+                   저자
+                  </option>
+                  <option value="search_publisher">
+                   발행처
+                  </option>
+                 </select>
+                </span>
+                <span class="select_style medium">
+                 <select id="orderby" name="sh_orderby" title="정렬조건 선택">
+                  <option value="">
+                   정렬
+                  </option>
+                  <option value="TITLE;ASC">
+                   제목 오름차순
+                  </option>
+                  <option value="TITLE;DESC">
+                   제목 내림차순
+                  </option>
+                  <option value="AUTHOR;ASC">
+                   저자 오름차순
+                  </option>
+                  <option value="AUTHOR;DESC">
+                   저자 내림차순
+                  </option>
+                  <option value="PUBLISHER;ASC">
+                   발행처 오름차순
+                  </option>
+                  <option value="PUBLISHER;DESC">
+                   발행처 내림차순
+                  </option>
+                  <option value="PUB_YEAR;ASC">
+                   발행년도 오름차순
+                  </option>
+                  <option value="PUB_YEAR;DESC">
+                   발행년도 내림차순
+                  </option>
+                  <option value="SHELF_DATE;ASC">
+                   배가일 오름차순
+                  </option>
+                  <option value="SHELF_DATE;DESC">
+                   배가일 내림차순
+                  </option>
+                 </select>
+                </span>
+               </div>
+               <!-- 검색바 -->
+               <div class="search_style">
+                <div class="search">
+                 <div class="input">
+                  <input class="withlabel span" id="search_txt" maxlength="50" name="search_value" placeholder="검색어를 입력하세요" title="검색어를 입력하세요" type="text" value="파친코"/>
+                 </div>
+                 <input class="book_submit_btn" type="submit" value="검색"/>
+                </div>
+               </div>
+               <!-- //검색바 -->
+               <!-- //셀렉트박스 -->
+               <!-- 체크박스 -->
+               <div class="lib_chk">
+                <!-- 개별도서관 -->
+                <ul class="ul_big_lib">
+                 <li class="libTotal">
+                  <input id="sh_big" type="checkbox" value="Y"/>
+                  <label for="sh_big">
+                   전체
+                  </label>
+                 </li>
+                 <li>
+                  <input class="lib_code" id="big_manage_code0" name="library[]" type="checkbox" value="MA"/>
+                  <label for="big_manage_code0">
+                   청운문학도서관
+                  </label>
+                 </li>
+                 <li>
+                  <input class="lib_code" id="big_manage_code1" name="library[]" type="checkbox" value="MT"/>
+                  <label for="big_manage_code1">
+                   어린이청소년 국학도서관
+                  </label>
+                 </li>
+                 <li>
+                  <input class="lib_code" id="big_manage_code2" name="library[]" type="checkbox" value="MU"/>
+                  <label for="big_manage_code2">
+                   창신소담도서관
+                  </label>
+                 </li>
+                 <li>
+                  <input class="lib_code" id="big_manage_code3" name="library[]" type="checkbox" value="MB"/>
+                  <label for="big_manage_code3">
+                   아름꿈 도서관
+                  </label>
+                 </li>
+                 <li>
+                  <input class="lib_code" id="big_manage_code4" name="library[]" type="checkbox" value="MQ"/>
+                  <label for="big_manage_code4">
+                   삼청공원 숲속도서관
+                  </label>
+                 </li>
+                 <li>
+                  <input class="lib_code" id="big_manage_code5" name="library[]" type="checkbox" value="MS"/>
+                  <label for="big_manage_code5">
+                   우리소리도서관
+                  </label>
+                 </li>
+                 <li>
+                  <input class="lib_code" id="big_manage_code6" name="library[]" type="checkbox" value="MD"/>
+                  <label for="big_manage_code6">
+                   통인 어린이 작은도서관
+                  </label>
+                 </li>
+                 <li>
+                  <input class="lib_code" id="big_manage_code7" name="library[]" type="checkbox" value="MR"/>
+                  <label for="big_manage_code7">
+                   도담도담 한옥도서관
+                  </label>
+                 </li>
+                 <li>
+                  <input class="lib_code" id="big_manage_code8" name="library[]" type="checkbox" value="ME"/>
+                  <label for="big_manage_code8">
+                   청운효자동 북카페
+                  </label>
+                 </li>
+                 <li>
+                  <input class="lib_code" id="big_manage_code9" name="library[]" type="checkbox" value="MF"/>
+                  <label for="big_manage_code9">
+                   꿈꾸는 평창동 작은도서관
+                  </label>
+                 </li>
+                 <li>
+                  <input class="lib_code" id="big_manage_code10" name="library[]" type="checkbox" value="MG"/>
+                  <label for="big_manage_code10">
+                   무악다솜방
+                  </label>
+                 </li>
+                 <li>
+                  <input class="lib_code" id="big_manage_code11" name="library[]" type="checkbox" value="MH"/>
+                  <label for="big_manage_code11">
+                   홍파랑 북카페
+                  </label>
+                 </li>
+                 <li>
+                  <input class="lib_code" id="big_manage_code12" name="library[]" type="checkbox" value="MJ"/>
+                  <label for="big_manage_code12">
+                   지혜만들기 작은도서관
+                  </label>
+                 </li>
+                 <li>
+                  <input class="lib_code" id="big_manage_code13" name="library[]" type="checkbox" value="MK"/>
+                  <label for="big_manage_code13">
+                   이화마을 작은도서관
+                  </label>
+                 </li>
+                 <li>
+                  <input class="lib_code" id="big_manage_code14" name="library[]" type="checkbox" value="ML"/>
+                  <label for="big_manage_code14">
+                   혜화마을 북카페
+                  </label>
+                 </li>
+                 <li>
+                  <input class="lib_code" id="big_manage_code15" name="library[]" type="checkbox" value="MP"/>
+                  <label for="big_manage_code15">
+                   숭인마루 작은도서관
+                  </label>
+                 </li>
+                </ul>
+               </div>
+               <!-- <p class="searchwithin"><input name="search_txt_add_ok" id="search_txt_add_ok" type="checkbox" value="Y"> 
+                        <i></i>
+                        <label for="search_txt_add_ok"> 결과 내 재검색</label>
+                    </p> -->
+              </div>
+             </div>
+            </fieldset>
+           </form>
+          </div>
+          <!-- 상세검색 -->
+          <div class="book_search de detail">
+           <form action="" method="get" style="display:inline-block;">
+            <input name="search_type" type="hidden" value="detail"/>
+            <div class="searchbox detail_search" data-detail="" id="div_detail" style="">
+             <div class="section">
+              <dl>
+               <dt>
+                <label for="search_title">
+                 제목
+                </label>
+               </dt>
+               <dd>
+                <input id="search_title" name="search_title" type="text" value="파친코"/>
+               </dd>
+              </dl>
+              <dl>
+               <dt>
+                <label for="search_isbn_issn">
+                 ISBN
+                </label>
+               </dt>
+               <dd>
+                <input id="search_isbn_issn" name="search_isbn_issn" type="text" value=""/>
+               </dd>
+              </dl>
+              <dl>
+               <dt>
+                <label for="search_author">
+                 저자
+                </label>
+               </dt>
+               <dd>
+                <input id="search_author" name="search_author" type="text" value=""/>
+               </dd>
+              </dl>
+              <dl>
+               <dt>
+                <label for="media_code">
+                 매체구분
+                </label>
+               </dt>
+               <dd>
+                <span class="select_style">
+                 <select id="media_code" name="media_code" title="매체구분선택">
+                  <option value="">
+                   적용안함
+                  </option>
+                  <option value="PR">
+                   인쇄자료(책자형)
+                  </option>
+                  <option value="CR">
+                   CD-ROM
+                  </option>
+                  <option value="PD">
+                   DVD
+                  </option>
+                  <option value="EB">
+                   전자책
+                  </option>
+                  <option value="CD">
+                   컴팩트디스크
+                  </option>
+                  <option value="CV">
+                   비디오CD
+                  </option>
+                 </select>
+                </span>
+               </dd>
+              </dl>
+              <dl>
+               <dt>
+                <label for="search_publisher">
+                 발행처
+                </label>
+               </dt>
+               <dd>
+                <input id="search_publisher" name="search_publisher" type="text" value=""/>
+               </dd>
+              </dl>
+              <dl>
+               <dt>
+                <label for="library">
+                 도서관
+                </label>
+               </dt>
+               <dd>
+                <span class="select_style">
+                 <select class="lib_list" id="library" name="library">
+                  <option selected="" value="ALL">
+                   전체
+                  </option>
+                  <option value="MA">
+                   청운문학도서관
+                  </option>
+                  <option value="MT">
+                   어린이청소년 국학도서관
+                  </option>
+                  <option value="MU">
+                   창신소담도서관
+                  </option>
+                  <option value="MB">
+                   아름꿈 도서관
+                  </option>
+                  <option disabled="true" value="MQ">
+                   삼청공원 숲속도서관
+                  </option>
+                  <option value="MS">
+                   우리소리도서관
+                  </option>
+                  <option value="MD">
+                   통인 어린이 작은도서관
+                  </option>
+                  <option value="MR">
+                   도담도담 한옥도서관
+                  </option>
+                  <option value="ME">
+                   청운효자동 북카페
+                  </option>
+                  <option value="MF">
+                   꿈꾸는 평창동 작은도서관
+                  </option>
+                  <option value="MG">
+                   무악다솜방
+                  </option>
+                  <option value="MH">
+                   홍파랑 북카페
+                  </option>
+                  <option value="MJ">
+                   지혜만들기 작은도서관
+                  </option>
+                  <option value="MK">
+                   이화마을 작은도서관
+                  </option>
+                  <option value="ML">
+                   혜화마을 북카페
+                  </option>
+                  <option value="MP">
+                   숭인마루 작은도서관
+                  </option>
+                 </select>
+                </span>
+               </dd>
+              </dl>
+              <dl>
+               <dt>
+                <label for="search_year_start">
+                 발행년도
+                </label>
+               </dt>
+               <dd>
+                <div class="box">
+                 <input id="search_year_start" maxlength="4" name="search_year_start" onblur="setNumber(this);" title="시작년도" type="text" value=""/>
+                 <span style="width:6%;text-align:center;">
+                  ~
+                 </span>
+                 <input maxlength="4" name="search_year_end" onblur="setNumber(this);" title="마지막년도" type="text" value=""/>
+                </div>
+               </dd>
+              </dl>
+              <dl>
+               <dt>
+                <label for="subject_code">
+                 주제
+                </label>
+               </dt>
+               <dd>
+                <span class="select_style">
+                 <select id="subject_code" name="subject_code" title="주제선택">
+                  <option value="">
+                   선택
+                  </option>
+                  <option value="0">
+                   총류
+                  </option>
+                  <option value="1">
+                   철학
+                  </option>
+                  <option value="2">
+                   종교
+                  </option>
+                  <option value="3">
+                   사회과학
+                  </option>
+                  <option value="4">
+                   순수과학
+                  </option>
+                  <option value="5">
+                   기술과학
+                  </option>
+                  <option value="6">
+                   예술
+                  </option>
+                  <option value="7">
+                   언어
+                  </option>
+                  <option value="8">
+                   문학
+                  </option>
+                  <option value="9">
+                   역사
+                  </option>
+                 </select>
+                </span>
+               </dd>
+              </dl>
+              <dl>
+               <dt>
+                <label for="search_keyword">
+                 키워드
+                </label>
+               </dt>
+               <dd>
+                <input id="search_keyword" name="search_keyword" type="text" value=""/>
+               </dd>
+              </dl>
+              <dl>
+               <dt>
+                <label for="sh_orderby">
+                 정렬조건
+                </label>
+               </dt>
+               <dd>
+                <span class="select_style">
+                 <select id="sh_orderby" name="sh_orderby" title="도서정렬조건">
+                  <option value="">
+                   선택
+                  </option>
+                  <option value="TITLE;ASC">
+                   제목 오름차순
+                  </option>
+                  <option value="TITLE;DESC">
+                   제목 내림차순
+                  </option>
+                  <option value="AUTHOR;ASC">
+                   저자 오름차순
+                  </option>
+                  <option value="AUTHOR;DESC">
+                   저자 내림차순
+                  </option>
+                  <option value="PUBLISHER;ASC">
+                   발행처 오름차순
+                  </option>
+                  <option value="PUBLISHER;DESC">
+                   발행처 내림차순
+                  </option>
+                  <option value="PUB_YEAR;ASC">
+                   발행년도 오름차순
+                  </option>
+                  <option value="PUB_YEAR;DESC">
+                   발행년도 내림차순
+                  </option>
+                 </select>
+                </span>
+               </dd>
+              </dl>
+             </div>
+             <p class="global_search btn_w">
+              <input class="btn btn_blue" id="search_bt2" name="search_bt2" type="submit" value="검색하기"/>
+              <!-- <input type="button" value="다국어" class="lib_submit_btn"> -->
+              <!-- <input type="button" value="일반검색" class="btn btn_gray" onclick="javascript:change_search();"> -->
+             </p>
+            </div>
+           </form>
+          </div>
+          <div class="book_list_header">
+           <p>
+            검색건수 :
+            <b>
+             34
+            </b>
+            건
+           </p>
+          </div>
+          <div class="detail_list_content">
+           <input id="TITLE_INFO0" type="hidden" value="파친코 : 이민진 장편소설. 2">
+            <!-- 책명 -->
+            <input id="AUTHOR0" type="hidden" value="이민진 지음 ; 이미정 옮김">
+             <!-- 저자 -->
+             <input id="PUBLISHER0" type="hidden" value="문학사상사">
+              <!-- 발행사 -->
+              <input id="PUB_YEAR0" type="hidden" value="2018">
+               <!-- 발행년도 -->
+               <input id="ISBN0" type="hidden" value="9788970129822">
+                <!-- isbn -->
+                <input id="PRICE0" type="hidden" value="14500">
+                 <!-- 가격 -->
+                 <input id="CLASS_NO0" type="hidden" value="843.6">
+                  <!-- 한국십진분류코드 -->
+                  <input id="REG_CODE0" type="hidden" value="AR">
+                   <!-- 등록구분 -->
+                   <input id="SEPARATE_SHELF_CODE0" type="hidden" value="">
+                    <!-- 별치기호 -->
+                    <input id="BOOK_APPENDIX_FLAG0" type="hidden" value="B">
+                     <!-- 부록여부 -->
+                     <input id="BOOK_KEY0" type="hidden" value="89991463">
+                      <!-- 책정보키 -->
+                      <input id="LOAN_CHECK0" type="hidden" value="0">
+                       <!-- 대출가능여부 -->
+                       <input id="CALL_NO0" type="hidden" value="843.6-이38ㅍ-2">
+                        <!-- 청구기호 -->
+                        <input id="REG_NO0" type="hidden" value="AR0000179864">
+                         <!-- 등록번호 -->
+                         <input id="SHELF_LOC_NAME0" type="hidden" value="[아름꿈]청소년,일반열람실">
+                          <!-- 자료실 -->
+                          <input id="MEDIA_NAME0" type="hidden" value="인쇄자료(책자형)">
+                           <!-- 자료형태 -->
+                           <input id="MANAGE_CODE0" type="hidden" value="MB">
+                            <!-- 도서관부호 -->
+                            <input id="SPECIES_KEY0" type="hidden" value="89991462">
+                             <input id="LIB_NAME0" type="hidden" value="아름꿈 도서관">
+                              <input id="LIB_CODE0" type="hidden" value="111441">
+                               <input id="IMAGE0" type="hidden" value="https://kdotlib.jongno.go.kr/khub/resources/images/2021-09-08/9788970129822">
+                                <input id="DESCRIPTION0" type="hidden" value="어디에도 속하지 못했던 자이니치들의 분노와 슬픔에서 탄생한 대작!한국계 1.5세인 미국 작가 이민진의 장편소설 『파친코』 제2권. 내국인이면서 끝내 이방인일 수밖에 없었던 자이니치(재일동포)들의 처절한 생애를 깊이 있는 필체로 담아낸 작품이다. 저자가 자이니치, 즉 재일동포의 존재를 처음 접한 것은... ">
+                                 <input id="FORM_CODE0" type="hidden" value="BK">
+                                  <input id="PAGE0" type="hidden" value="399 p.">
+                                   <input id="BOOK_SIZE0" type="hidden" value="21 cm">
+                                    <input id="LOAN_CODE0" type="hidden" value="OK">
+                                     <input id="RETURN_PLAN_DATE0" type="hidden" value="">
+                                      <input id="RESERVE_CODE0" type="hidden" value="NOT_ALLOWED">
+                                       <input id="SUBJECT_CODE0" type="hidden" value="8">
+                                        <input id="LILL_YN0" type="hidden" value="O"/>
+                                        <section class="book_list">
+                                         <article>
+                                          <div class="book_code">
+                                           문학
+                                          </div>
+                                          <img alt="파친코 : 이민진 장편소설. 2" src="https://kdotlib.jongno.go.kr/khub/resources/images/2021-09-08/9788970129822">
+                                          </img>
+                                         </article>
+                                         <article>
+                                          <ul>
+                                           <li class="book_top_info">
+                                            <div class="book_name">
+                                             <a class="book_href" href="#" onclick="javascript:go_view(0);">
+                                              <font style="color:blue;font-weight:bold;">
+                                               [아름꿈 도서관]
+                                              </font>
+                                              파친코 : 이민진 장편소설. 2
+                                             </a>
+                                            </div>
+                                            <div class="book_state OK">
+                                             대출가능(비치중)
+                                            </div>
+                                           </li>
+                                           <li class="book_middle_info">
+                                            <strong>
+                                             저자
+                                            </strong>
+                                            이민진 지음 ; 이미정 옮김  |
+                                            <strong>
+                                             발행처
+                                            </strong>
+                                            문학사상사  |
+                                            <strong>
+                                             발행년도
+                                            </strong>
+                                            2018  |
+                                            <strong>
+                                             자료위치
+                                            </strong>
+                                            [아름꿈]청소년,일반열람실
+                                           </li>
+                                           <li class="book_bottom_info">
+                                            <strong>
+                                             청구기호
+                                            </strong>
+                                            843.6-이38ㅍ-2
+                                           </li>
+                                           <li class="book_button_info">
+                                            <input class="btn btn_blue" onclick="sendBookData('%ED%8C%8C%EC%B9%9C%EC%BD%94+%3A+%EC%9D%B4%EB%AF%BC%EC%A7%84+%EC%9E%A5%ED%8E%B8%EC%86%8C%EC%84%A4.+2','%EC%9D%B4%EB%AF%BC%EC%A7%84+%EC%A7%80%EC%9D%8C+%3B+%EC%9D%B4%EB%AF%B8%EC%A0%95+%EC%98%AE%EA%B9%80','%EC%95%84%EB%A6%84%EA%BF%88+%EB%8F%84%EC%84%9C%EA%B4%80','','89991463');" type="button" value="관심도서 담기"/>
+                                           </li>
+                                          </ul>
+                                         </article>
+                                        </section>
+                                        <input id="TITLE_INFO1" type="hidden" value="파친코 : 이민진 장편소설. 1">
+                                         <!-- 책명 -->
+                                         <input id="AUTHOR1" type="hidden" value="이민진 지음 ; 이미정 옮김"/>
+                                         <!-- 저자 -->
+                                         <input id="PUBLISHER1" type="hidden" value="문학사상사"/>
+                                         <!-- 발행사 -->
+                                         <input id="PUB_YEAR1" type="hidden" value="2018"/>
+                                         <!-- 발행년도 -->
+                                         <input id="ISBN1" type="hidden" value="9788970129815"/>
+                                         <!-- isbn -->
+                                         <input id="PRICE1" type="hidden" value="14500"/>
+                                         <!-- 가격 -->
+                                         <input id="CLASS_NO1" type="hidden" value="843.6"/>
+                                         <!-- 한국십진분류코드 -->
+                                         <input id="REG_CODE1" type="hidden" value="AR"/>
+                                         <!-- 등록구분 -->
+                                         <input id="SEPARATE_SHELF_CODE1" type="hidden" value=""/>
+                                         <!-- 별치기호 -->
+                                         <input id="BOOK_APPENDIX_FLAG1" type="hidden" value="B"/>
+                                         <!-- 부록여부 -->
+                                         <input id="BOOK_KEY1" type="hidden" value="89991465"/>
+                                         <!-- 책정보키 -->
+                                         <input id="LOAN_CHECK1" type="hidden" value="0"/>
+                                         <!-- 대출가능여부 -->
+                                         <input id="CALL_NO1" type="hidden" value="843.6-이38ㅍ-1"/>
+                                         <!-- 청구기호 -->
+                                         <input id="REG_NO1" type="hidden" value="AR0000179865"/>
+                                         <!-- 등록번호 -->
+                                         <input id="SHELF_LOC_NAME1" type="hidden" value="[아름꿈]청소년,일반열람실"/>
+                                         <!-- 자료실 -->
+                                         <input id="MEDIA_NAME1" type="hidden" value="인쇄자료(책자형)"/>
+                                         <!-- 자료형태 -->
+                                         <input id="MANAGE_CODE1" type="hidden" value="MB"/>
+                                         <!-- 도서관부호 -->
+                                         <input id="SPECIES_KEY1" type="hidden" value="89991464"/>
+                                         <input id="LIB_NAME1" type="hidden" value="아름꿈 도서관"/>
+                                         <input id="LIB_CODE1" type="hidden" value="111441"/>
+                                         <input id="IMAGE1" type="hidden" value="https://kdotlib.jongno.go.kr/khub/resources/images/2021-09-09/9788970129815"/>
+                                         <input id="DESCRIPTION1" type="hidden" value="어디에도 속하지 못했던 자이니치들의 분노와 슬픔에서 탄생한 대작!한국계 1.5세인 미국 작가 이민진의 장편소설 『파친코』 제1권. 내국인이면서 끝내 이방인일 수밖에 없었던 자이니치(재일동포)들의 처절한 생애를 깊이 있는 필체로 담아낸 작품이다. 저자가 자이니치, 즉 재일동포의 존재를 처음 접한 것은... "/>
+                                         <input id="FORM_CODE1" type="hidden" value="BK"/>
+                                         <input id="PAGE1" type="hidden" value="366 p."/>
+                                         <input id="BOOK_SIZE1" type="hidden" value="21 cm"/>
+                                         <input id="LOAN_CODE1" type="hidden" value="OK"/>
+                                         <input id="RETURN_PLAN_DATE1" type="hidden" value=""/>
+                                         <input id="RESERVE_CODE1" type="hidden" value="NOT_ALLOWED"/>
+                                         <input id="SUBJECT_CODE1" type="hidden" value="8"/>
+                                         <input id="LILL_YN1" type="hidden" value="O"/>
+                                         <section class="book_list">
+                                          <article>
+                                           <div class="book_code">
+                                            문학
+                                           </div>
+                                           <img alt="파친코 : 이민진 장편소설. 1" src="https://kdotlib.jongno.go.kr/khub/resources/images/2021-09-09/9788970129815">
+                                           </img>
+                                          </article>
+                                          <article>
+                                           <ul>
+                                            <li class="book_top_info">
+                                             <div class="book_name">
+                                              <a class="book_href" href="#" onclick="javascript:go_view(1);">
+                                               <font style="color:blue;font-weight:bold;">
+                                                [아름꿈 도서관]
+                                               </font>
+                                               파친코 : 이민진 장편소설. 1
+                                              </a>
+                                             </div>
+                                             <div class="book_state OK">
+                                              대출가능(비치중)
+                                             </div>
+                                            </li>
+                                            <li class="book_middle_info">
+                                             <strong>
+                                              저자
+                                             </strong>
+                                             이민진 지음 ; 이미정 옮김  |
+                                             <strong>
+                                              발행처
+                                             </strong>
+                                             문학사상사  |
+                                             <strong>
+                                              발행년도
+                                             </strong>
+                                             2018  |
+                                             <strong>
+                                              자료위치
+                                             </strong>
+                                             [아름꿈]청소년,일반열람실
+                                            </li>
+                                            <li class="book_bottom_info">
+                                             <strong>
+                                              청구기호
+                                             </strong>
+                                             843.6-이38ㅍ-1
+                                            </li>
+                                            <li class="book_button_info">
+                                             <input class="btn btn_blue" onclick="sendBookData('%ED%8C%8C%EC%B9%9C%EC%BD%94+%3A+%EC%9D%B4%EB%AF%BC%EC%A7%84+%EC%9E%A5%ED%8E%B8%EC%86%8C%EC%84%A4.+1','%EC%9D%B4%EB%AF%BC%EC%A7%84+%EC%A7%80%EC%9D%8C+%3B+%EC%9D%B4%EB%AF%B8%EC%A0%95+%EC%98%AE%EA%B9%80','%EC%95%84%EB%A6%84%EA%BF%88+%EB%8F%84%EC%84%9C%EA%B4%80','','89991465');" type="button" value="관심도서 담기"/>
+                                            </li>
+                                           </ul>
+                                          </article>
+                                         </section>
+                                         <input id="TITLE_INFO2" type="hidden" value="파친코 : 이민진 장편소설. 1">
+                                          <!-- 책명 -->
+                                          <input id="AUTHOR2" type="hidden" value="이민진 지음 ; 이미정 옮김."/>
+                                          <!-- 저자 -->
+                                          <input id="PUBLISHER2" type="hidden" value="문학사상"/>
+                                          <!-- 발행사 -->
+                                          <input id="PUB_YEAR2" type="hidden" value="2021"/>
+                                          <!-- 발행년도 -->
+                                          <input id="ISBN2" type="hidden" value="9788970129808"/>
+                                          <!-- isbn -->
+                                          <input id="PRICE2" type="hidden" value="14500"/>
+                                          <!-- 가격 -->
+                                          <input id="CLASS_NO2" type="hidden" value="843"/>
+                                          <!-- 한국십진분류코드 -->
+                                          <input id="REG_CODE2" type="hidden" value="JN"/>
+                                          <!-- 등록구분 -->
+                                          <input id="SEPARATE_SHELF_CODE2" type="hidden" value=""/>
+                                          <!-- 별치기호 -->
+                                          <input id="BOOK_APPENDIX_FLAG2" type="hidden" value="B"/>
+                                          <!-- 부록여부 -->
+                                          <input id="BOOK_KEY2" type="hidden" value="89859988"/>
+                                          <!-- 책정보키 -->
+                                          <input id="LOAN_CHECK2" type="hidden" value="0"/>
+                                          <!-- 대출가능여부 -->
+                                          <input id="CALL_NO2" type="hidden" value="843-이38ㅍ-1"/>
+                                          <!-- 청구기호 -->
+                                          <input id="REG_NO2" type="hidden" value="JN0000007005"/>
+                                          <!-- 등록번호 -->
+                                          <input id="SHELF_LOC_NAME2" type="hidden" value="일반자료실"/>
+                                          <!-- 자료실 -->
+                                          <input id="MEDIA_NAME2" type="hidden" value="인쇄자료(책자형)"/>
+                                          <!-- 자료형태 -->
+                                          <input id="MANAGE_CODE2" type="hidden" value="MJ"/>
+                                          <!-- 도서관부호 -->
+                                          <input id="SPECIES_KEY2" type="hidden" value="89859987"/>
+                                          <input id="LIB_NAME2" type="hidden" value="지혜만들기 작은도서관"/>
+                                          <input id="LIB_CODE2" type="hidden" value="111342"/>
+                                          <input id="IMAGE2" type="hidden" value="https://kdotlib.jongno.go.kr/khub/resources/images/bg_noImage2.png"/>
+                                          <input id="DESCRIPTION2" type="hidden" value="-"/>
+                                          <input id="FORM_CODE2" type="hidden" value="BK"/>
+                                          <input id="PAGE2" type="hidden" value="366 p."/>
+                                          <input id="BOOK_SIZE2" type="hidden" value="21 cm"/>
+                                          <input id="LOAN_CODE2" type="hidden" value="OK"/>
+                                          <input id="RETURN_PLAN_DATE2" type="hidden" value=""/>
+                                          <input id="RESERVE_CODE2" type="hidden" value="NOT_ALLOWED"/>
+                                          <input id="SUBJECT_CODE2" type="hidden" value="8"/>
+                                          <input id="LILL_YN2" type="hidden" value="X(등록구분신청제한)"/>
+                                          <section class="book_list">
+                                           <article>
+                                            <div class="book_code">
+                                             문학
+                                            </div>
+                                            <img alt="파친코 : 이민진 장편소설. 1" src="https://kdotlib.jongno.go.kr/khub/resources/images/bg_noImage2.png"/>
+                                           </article>
+                                           <article>
+                                            <ul>
+                                             <li class="book_top_info">
+                                              <div class="book_name">
+                                               <a class="book_href" href="#" onclick="javascript:go_view(2);">
+                                                <font style="color:blue;font-weight:bold;">
+                                                 [지혜만들기 작은도서관]
+                                                </font>
+                                                파친코 : 이민진 장편소설. 1
+                                               </a>
+                                              </div>
+                                              <div class="book_state OK">
+                                               대출가능(비치중)
+                                              </div>
+                                             </li>
+                                             <li class="book_middle_info">
+                                              <strong>
+                                               저자
+                                              </strong>
+                                              이민진 지음 ; 이미정 옮김.  |
+                                              <strong>
+                                               발행처
+                                              </strong>
+                                              문학사상  |
+                                              <strong>
+                                               발행년도
+                                              </strong>
+                                              2021  |
+                                              <strong>
+                                               자료위치
+                                              </strong>
+                                              일반자료실
+                                             </li>
+                                             <li class="book_bottom_info">
+                                              <strong>
+                                               청구기호
+                                              </strong>
+                                              843-이38ㅍ-1
+                                             </li>
+                                             <li class="book_button_info">
+                                              <input class="btn btn_blue" onclick="sendBookData('%ED%8C%8C%EC%B9%9C%EC%BD%94+%3A+%EC%9D%B4%EB%AF%BC%EC%A7%84+%EC%9E%A5%ED%8E%B8%EC%86%8C%EC%84%A4.+1','%EC%9D%B4%EB%AF%BC%EC%A7%84+%EC%A7%80%EC%9D%8C+%3B+%EC%9D%B4%EB%AF%B8%EC%A0%95+%EC%98%AE%EA%B9%80.','%EC%A7%80%ED%98%9C%EB%A7%8C%EB%93%A4%EA%B8%B0+%EC%9E%91%EC%9D%80%EB%8F%84%EC%84%9C%EA%B4%80','','89859988');" type="button" value="관심도서 담기"/>
+                                             </li>
+                                            </ul>
+                                           </article>
+                                          </section>
+                                          <input id="TITLE_INFO3" type="hidden" value="파친코 : 이민진 장편소설. 2">
+                                           <!-- 책명 -->
+                                           <input id="AUTHOR3" type="hidden" value="이민진 지음 ; 이미정 옮김."/>
+                                           <!-- 저자 -->
+                                           <input id="PUBLISHER3" type="hidden" value="문학사상"/>
+                                           <!-- 발행사 -->
+                                           <input id="PUB_YEAR3" type="hidden" value="2021"/>
+                                           <!-- 발행년도 -->
+                                           <input id="ISBN3" type="hidden" value="9788970129822"/>
+                                           <!-- isbn -->
+                                           <input id="PRICE3" type="hidden" value="14500"/>
+                                           <!-- 가격 -->
+                                           <input id="CLASS_NO3" type="hidden" value="843"/>
+                                           <!-- 한국십진분류코드 -->
+                                           <input id="REG_CODE3" type="hidden" value="JN"/>
+                                           <!-- 등록구분 -->
+                                           <input id="SEPARATE_SHELF_CODE3" type="hidden" value=""/>
+                                           <!-- 별치기호 -->
+                                           <input id="BOOK_APPENDIX_FLAG3" type="hidden" value="B"/>
+                                           <!-- 부록여부 -->
+                                           <input id="BOOK_KEY3" type="hidden" value="89859990"/>
+                                           <!-- 책정보키 -->
+                                           <input id="LOAN_CHECK3" type="hidden" value="0"/>
+                                           <!-- 대출가능여부 -->
+                                           <input id="CALL_NO3" type="hidden" value="843-이38ㅍ-2"/>
+                                           <!-- 청구기호 -->
+                                           <input id="REG_NO3" type="hidden" value="JN0000007006"/>
+                                           <!-- 등록번호 -->
+                                           <input id="SHELF_LOC_NAME3" type="hidden" value="일반자료실"/>
+                                           <!-- 자료실 -->
+                                           <input id="MEDIA_NAME3" type="hidden" value="인쇄자료(책자형)"/>
+                                           <!-- 자료형태 -->
+                                           <input id="MANAGE_CODE3" type="hidden" value="MJ"/>
+                                           <!-- 도서관부호 -->
+                                           <input id="SPECIES_KEY3" type="hidden" value="89859989"/>
+                                           <input id="LIB_NAME3" type="hidden" value="지혜만들기 작은도서관"/>
+                                           <input id="LIB_CODE3" type="hidden" value="111342"/>
+                                           <input id="IMAGE3" type="hidden" value="https://kdotlib.jongno.go.kr/khub/resources/images/2021-09-08/9788970129822"/>
+                                           <input id="DESCRIPTION3" type="hidden" value="어디에도 속하지 못했던 자이니치들의 분노와 슬픔에서 탄생한 대작!한국계 1.5세인 미국 작가 이민진의 장편소설 『파친코』 제2권. 내국인이면서 끝내 이방인일 수밖에 없었던 자이니치(재일동포)들의 처절한 생애를 깊이 있는 필체로 담아낸 작품이다. 저자가 자이니치, 즉 재일동포의 존재를 처음 접한 것은... "/>
+                                           <input id="FORM_CODE3" type="hidden" value="BK"/>
+                                           <input id="PAGE3" type="hidden" value="399 p."/>
+                                           <input id="BOOK_SIZE3" type="hidden" value="21 cm"/>
+                                           <input id="LOAN_CODE3" type="hidden" value="OK"/>
+                                           <input id="RETURN_PLAN_DATE3" type="hidden" value=""/>
+                                           <input id="RESERVE_CODE3" type="hidden" value="NOT_ALLOWED"/>
+                                           <input id="SUBJECT_CODE3" type="hidden" value="8"/>
+                                           <input id="LILL_YN3" type="hidden" value="X(등록구분신청제한)"/>
+                                           <section class="book_list">
+                                            <article>
+                                             <div class="book_code">
+                                              문학
+                                             </div>
+                                             <img alt="파친코 : 이민진 장편소설. 2" src="https://kdotlib.jongno.go.kr/khub/resources/images/2021-09-08/9788970129822"/>
+                                            </article>
+                                            <article>
+                                             <ul>
+                                              <li class="book_top_info">
+                                               <div class="book_name">
+                                                <a class="book_href" href="#" onclick="javascript:go_view(3);">
+                                                 <font style="color:blue;font-weight:bold;">
+                                                  [지혜만들기 작은도서관]
+                                                 </font>
+                                                 파친코 : 이민진 장편소설. 2
+                                                </a>
+                                               </div>
+                                               <div class="book_state OK">
+                                                대출가능(비치중)
+                                               </div>
+                                              </li>
+                                              <li class="book_middle_info">
+                                               <strong>
+                                                저자
+                                               </strong>
+                                               이민진 지음 ; 이미정 옮김.  |
+                                               <strong>
+                                                발행처
+                                               </strong>
+                                               문학사상  |
+                                               <strong>
+                                                발행년도
+                                               </strong>
+                                               2021  |
+                                               <strong>
+                                                자료위치
+                                               </strong>
+                                               일반자료실
+                                              </li>
+                                              <li class="book_bottom_info">
+                                               <strong>
+                                                청구기호
+                                               </strong>
+                                               843-이38ㅍ-2
+                                              </li>
+                                              <li class="book_button_info">
+                                               <input class="btn btn_blue" onclick="sendBookData('%ED%8C%8C%EC%B9%9C%EC%BD%94+%3A+%EC%9D%B4%EB%AF%BC%EC%A7%84+%EC%9E%A5%ED%8E%B8%EC%86%8C%EC%84%A4.+2','%EC%9D%B4%EB%AF%BC%EC%A7%84+%EC%A7%80%EC%9D%8C+%3B+%EC%9D%B4%EB%AF%B8%EC%A0%95+%EC%98%AE%EA%B9%80.','%EC%A7%80%ED%98%9C%EB%A7%8C%EB%93%A4%EA%B8%B0+%EC%9E%91%EC%9D%80%EB%8F%84%EC%84%9C%EA%B4%80','','89859990');" type="button" value="관심도서 담기"/>
+                                              </li>
+                                             </ul>
+                                            </article>
+                                           </section>
+                                           <input id="TITLE_INFO4" type="hidden" value="파친코 : 이민진 장편소설. 2">
+                                            <!-- 책명 -->
+                                            <input id="AUTHOR4" type="hidden" value="이민진 지음 ; 이미정 옮김."/>
+                                            <!-- 저자 -->
+                                            <input id="PUBLISHER4" type="hidden" value="문학사상"/>
+                                            <!-- 발행사 -->
+                                            <input id="PUB_YEAR4" type="hidden" value="2021"/>
+                                            <!-- 발행년도 -->
+                                            <input id="ISBN4" type="hidden" value="9788970129808"/>
+                                            <!-- isbn -->
+                                            <input id="PRICE4" type="hidden" value="14500"/>
+                                            <!-- 가격 -->
+                                            <input id="CLASS_NO4" type="hidden" value="843"/>
+                                            <!-- 한국십진분류코드 -->
+                                            <input id="REG_CODE4" type="hidden" value="PC"/>
+                                            <!-- 등록구분 -->
+                                            <input id="SEPARATE_SHELF_CODE4" type="hidden" value=""/>
+                                            <!-- 별치기호 -->
+                                            <input id="BOOK_APPENDIX_FLAG4" type="hidden" value="B"/>
+                                            <!-- 부록여부 -->
+                                            <input id="BOOK_KEY4" type="hidden" value="90040405"/>
+                                            <!-- 책정보키 -->
+                                            <input id="LOAN_CHECK4" type="hidden" value="0"/>
+                                            <!-- 대출가능여부 -->
+                                            <input id="CALL_NO4" type="hidden" value="843-이38파-2"/>
+                                            <!-- 청구기호 -->
+                                            <input id="REG_NO4" type="hidden" value="PC0000006811"/>
+                                            <!-- 등록번호 -->
+                                            <input id="SHELF_LOC_NAME4" type="hidden" value="일반자료실"/>
+                                            <!-- 자료실 -->
+                                            <input id="MEDIA_NAME4" type="hidden" value="인쇄자료(책자형)"/>
+                                            <!-- 자료형태 -->
+                                            <input id="MANAGE_CODE4" type="hidden" value="MF"/>
+                                            <!-- 도서관부호 -->
+                                            <input id="SPECIES_KEY4" type="hidden" value="90040404"/>
+                                            <input id="LIB_NAME4" type="hidden" value="꿈꾸는 평창동 작은도서관"/>
+                                            <input id="LIB_CODE4" type="hidden" value="111369"/>
+                                            <input id="IMAGE4" type="hidden" value="https://kdotlib.jongno.go.kr/khub/resources/images/bg_noImage2.png"/>
+                                            <input id="DESCRIPTION4" type="hidden" value="-"/>
+                                            <input id="FORM_CODE4" type="hidden" value="BK"/>
+                                            <input id="PAGE4" type="hidden" value="399 p."/>
+                                            <input id="BOOK_SIZE4" type="hidden" value="21 cm"/>
+                                            <input id="LOAN_CODE4" type="hidden" value="OK"/>
+                                            <input id="RETURN_PLAN_DATE4" type="hidden" value=""/>
+                                            <input id="RESERVE_CODE4" type="hidden" value="NOT_ALLOWED"/>
+                                            <input id="SUBJECT_CODE4" type="hidden" value="8"/>
+                                            <input id="LILL_YN4" type="hidden" value="X(등록구분신청제한)"/>
+                                            <section class="book_list">
+                                             <article>
+                                              <div class="book_code">
+                                               문학
+                                              </div>
+                                              <img alt="파친코 : 이민진 장편소설. 2" src="https://kdotlib.jongno.go.kr/khub/resources/images/bg_noImage2.png"/>
+                                             </article>
+                                             <article>
+                                              <ul>
+                                               <li class="book_top_info">
+                                                <div class="book_name">
+                                                 <a class="book_href" href="#" onclick="javascript:go_view(4);">
+                                                  <font style="color:blue;font-weight:bold;">
+                                                   [꿈꾸는 평창동 작은도서관]
+                                                  </font>
+                                                  파친코 : 이민진 장편소설. 2
+                                                 </a>
+                                                </div>
+                                                <div class="book_state OK">
+                                                 대출가능(비치중)
+                                                </div>
+                                               </li>
+                                               <li class="book_middle_info">
+                                                <strong>
+                                                 저자
+                                                </strong>
+                                                이민진 지음 ; 이미정 옮김.  |
+                                                <strong>
+                                                 발행처
+                                                </strong>
+                                                문학사상  |
+                                                <strong>
+                                                 발행년도
+                                                </strong>
+                                                2021  |
+                                                <strong>
+                                                 자료위치
+                                                </strong>
+                                                일반자료실
+                                               </li>
+                                               <li class="book_bottom_info">
+                                                <strong>
+                                                 청구기호
+                                                </strong>
+                                                843-이38파-2
+                                               </li>
+                                               <li class="book_button_info">
+                                                <input class="btn btn_blue" onclick="sendBookData('%ED%8C%8C%EC%B9%9C%EC%BD%94+%3A+%EC%9D%B4%EB%AF%BC%EC%A7%84+%EC%9E%A5%ED%8E%B8%EC%86%8C%EC%84%A4.+2','%EC%9D%B4%EB%AF%BC%EC%A7%84+%EC%A7%80%EC%9D%8C+%3B+%EC%9D%B4%EB%AF%B8%EC%A0%95+%EC%98%AE%EA%B9%80.','%EA%BF%88%EA%BE%B8%EB%8A%94+%ED%8F%89%EC%B0%BD%EB%8F%99+%EC%9E%91%EC%9D%80%EB%8F%84%EC%84%9C%EA%B4%80','','90040405');" type="button" value="관심도서 담기"/>
+                                               </li>
+                                              </ul>
+                                             </article>
+                                            </section>
+                                           </input>
+                                          </input>
+                                         </input>
+                                        </input>
+                                       </input>
+                                      </input>
+                                     </input>
+                                    </input>
+                                   </input>
+                                  </input>
+                                 </input>
+                                </input>
+                               </input>
+                              </input>
+                             </input>
+                            </input>
+                           </input>
+                          </input>
+                         </input>
+                        </input>
+                       </input>
+                      </input>
+                     </input>
+                    </input>
+                   </input>
+                  </input>
+                 </input>
+                </input>
+               </input>
+              </input>
+             </input>
+            </input>
+           </input>
+          </div>
+          <br/>
+          <nav class="pg_wrap">
+           <span class="pg">
+            <span class="sound_only">
+             열린
+            </span>
+            <strong class="pg_current">
+             1
+            </strong>
+            <span class="sound_only">
+             페이지
+            </span>
+            <a class="pg_page" href="https://lib.jongno.go.kr/menu/subpage/subpage_02/sub01.php?search_value=%ED%8C%8C%EC%B9%9C%EC%BD%94&amp;library=ALL&amp;page=2">
+             2
+             <span class="sound_only">
+              페이지
+             </span>
+            </a>
+            <a class="pg_page" href="https://lib.jongno.go.kr/menu/subpage/subpage_02/sub01.php?search_value=%ED%8C%8C%EC%B9%9C%EC%BD%94&amp;library=ALL&amp;page=3">
+             3
+             <span class="sound_only">
+              페이지
+             </span>
+            </a>
+            <a class="pg_page" href="https://lib.jongno.go.kr/menu/subpage/subpage_02/sub01.php?search_value=%ED%8C%8C%EC%B9%9C%EC%BD%94&amp;library=ALL&amp;page=4">
+             4
+             <span class="sound_only">
+              페이지
+             </span>
+            </a>
+            <a class="pg_page" href="https://lib.jongno.go.kr/menu/subpage/subpage_02/sub01.php?search_value=%ED%8C%8C%EC%B9%9C%EC%BD%94&amp;library=ALL&amp;page=5">
+             5
+             <span class="sound_only">
+              페이지
+             </span>
+            </a>
+            <a class="pg_page" href="https://lib.jongno.go.kr/menu/subpage/subpage_02/sub01.php?search_value=%ED%8C%8C%EC%B9%9C%EC%BD%94&amp;library=ALL&amp;page=6">
+             6
+             <span class="sound_only">
+              페이지
+             </span>
+            </a>
+            <a class="pg_page" href="https://lib.jongno.go.kr/menu/subpage/subpage_02/sub01.php?search_value=%ED%8C%8C%EC%B9%9C%EC%BD%94&amp;library=ALL&amp;page=7">
+             7
+             <span class="sound_only">
+              페이지
+             </span>
+            </a>
+            <a class="pg_page pg_end" href="https://lib.jongno.go.kr/menu/subpage/subpage_02/sub01.php?search_value=%ED%8C%8C%EC%B9%9C%EC%BD%94&amp;library=ALL&amp;page=7">
+             맨끝
+            </a>
+           </span>
+          </nav>
+         </div>
+         <div class="dim-layer layer_request">
+          <div class="dimBg">
+          </div>
+          <div class="pop-layer" id="layer">
+           <div class="pop-container">
+            <div class="pop-herder">
+             상호대차신청
+            </div>
+            <div class="pop-conts conts_request">
+             <!--content //-->
+             <!-- <p class="ctxt"><strong>책이음 신청</strong></p> -->
+             <form action="" method="post" name="req">
+              <input name="userno" type="hidden" value="">
+               <input name="regno" type="hidden" value=""/>
+               <input name="libcode" type="hidden" value=""/>
+               <input name="specieskey" type="hidden" value=""/>
+               <input name="localkey" type="hidden" value=""/>
+               <div class="sang_title">
+                도서명
+               </div>
+               <span class="title">
+               </span>
+               <br>
+                <div class="sang_title">
+                 소장도서관
+                </div>
+                <span class="libname">
+                </span>
+                <br/>
+                <div class="sang_title">
+                 수령도서관
+                </div>
+                <select name="uselibcode">
+                 <option value="111447">
+                  청운문학도서관
+                 </option>
+                 <option value="111441">
+                  아름꿈 도서관
+                 </option>
+                 <option disabled="disabled" value="111486">
+                  어린이청소년 국학도서관
+                 </option>
+                 <option value="111557">
+                  창신소담도서관
+                 </option>
+                 <option value="111395">
+                  삼청공원 숲속도서관
+                 </option>
+                 <option value="711275">
+                  우리소리도서관
+                 </option>
+                 <option value="111255">
+                  통인 어린이 작은도서관
+                 </option>
+                 <option value="111440">
+                  도담도담 한옥도서관
+                 </option>
+                 <option value="111372">
+                  청운효자동 북카페
+                 </option>
+                 <!-- <option value="111256">작은도서관 삼봉서랑</option> -->
+                 <option value="111369">
+                  꿈꾸는 평창동 작은도서관
+                 </option>
+                 <option value="111343">
+                  무악다솜방
+                 </option>
+                 <option value="111381">
+                  홍파랑 북카페
+                 </option>
+                 <option value="111342">
+                  지혜만들기 작은도서관
+                 </option>
+                 <option value="111340">
+                  이화마을 작은도서관
+                 </option>
+                 <option value="111368">
+                  혜화마을 북카페
+                 </option>
+                 <!-- <option value="111371">창이 작은도서관</option> -->
+                 <option value="111398">
+                  숭인마루 작은도서관
+                 </option>
+                </select>
+                <br/>
+                <div class="sang_title">
+                 부록
+                </div>
+                <input class="appendixrctyn hidden" name="appendixrctyn" type="checkbox"/>
+                <span class="append">
+                 없음
+                </span>
+               </br>
+              </input>
+             </form>
+             <div class="btn-r">
+              <a class="submit btn btn_lightblue">
+               확인
+              </a>
+              <a class="btn btn_gray btn-cancel">
+               취소
+              </a>
+             </div>
+             <!--// content-->
+             <script>
+              function go_test(){
+						document.req.action = '../../../plus/klas_request.php';
+						document.req.submit();
+					}
+                    
+                    $('a.btn-cancel').click(function(){
+                        $('.layer_request').fadeOut(); // 닫기 버튼을 클릭하면 레이어가 닫힌다.
+                        return false;
+                    });
+
+					var inventoryCheckAlerts = {"111486":"\uad6c\ub9bd\ub3c4\uc11c\uad00 \uc7a5\uc11c\uc810\uac80 \uc77c\uc815\uc5d0 \ub530\ub77c \uc0c1\ud638\ub300\ucc28 \uc2e0\uccad\uc774 \ubd88\uac00\ub2a5\ud569\ub2c8\ub2e4.\n\uae30\uac04 (8.5.(\uc218) ~ 8.14.(\uae08))"};
+
+					$('.submit').click(function(){
+						var useLibCode = $('form[name=req] select[name=uselibcode]').val();
+						if (inventoryCheckAlerts[useLibCode]) {
+							alert(inventoryCheckAlerts[useLibCode]);
+							return false;
+						}
+
+						$.ajax({
+							url: '../../../plus/klas_request.php',
+							type: 'post',
+							data: $('form[name=req]').serialize(),
+							success: function(data) {
+								var msg, img, addDiv;
+								if (data === 'OK') {
+									msg = "상호대차신청이<br> 정상처리되었습니다.";
+									img = "check_sub.PNG";
+								} else {
+									//alert(data);
+									msg = data;
+									img = "check_can.PNG";
+								}
+								addDiv = "<div class='checkmsg'><table><tr><td><!-- <img src='./image/"+img+"'/> --></td><td>"+msg+"</td></tr></table><div class='btn-c'> <a  class='bookbtn  btn-cancel' onclick='javascript:fadeout_layer();'>확인</a></div></div>";
+								$(".conts_submit").html(addDiv);
+								$('.layer_submit').css("display","block");
+
+								//$("a.btn-cancel").trigger('click');
+							}, error:function(request,status,error){
+								alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+							}
+
+						})
+					})
+             </script>
+            </div>
+           </div>
+          </div>
+         </div>
+         <div class="dim-layer layer_submit">
+          <div class="dimBg">
+          </div>
+          <div class="pop-layer" id="layer_sub">
+           <div class="pop-container">
+            <div class="pop-herder">
+             상호대차신청
+            </div>
+            <div class="pop-conts conts_submit">
+            </div>
+           </div>
+          </div>
+         </div>
+         <div class="dim-layer layer_request_mu">
+          <div class="dimBg">
+          </div>
+          <div class="pop-layer" id="layer_mu">
+           <div class="pop-container">
+            <div class="pop-herder">
+             무인예약신청
+            </div>
+            <div class="pop-conts conts_request_mu">
+             <!--content //-->
+             <!-- <p class="ctxt"><strong>책이음 신청</strong></p> -->
+             <form action="" method="post" name="req_mu">
+              <input name="userno" type="hidden" value=""/>
+              <input name="regno" type="hidden" value=""/>
+              <input name="libcode" type="hidden" value=""/>
+              <input name="specieskey" type="hidden" value=""/>
+              <input name="localkey" type="hidden" value=""/>
+              <div class="sang_title">
+               도서명
+              </div>
+              <span class="title">
+              </span>
+              <br/>
+              <div class="sang_title">
+               도서관
+              </div>
+              <span class="libname">
+               창신소담도서관
+              </span>
+              <br/>
+              <div class="sang_title">
+               부록
+              </div>
+              <input class="appendixrctyn hidden" name="appendixrctyn" type="checkbox"/>
+              <span class="append">
+               없음
+              </span>
+             </form>
+             <div class="btn-r">
+              <a class="submit_mu btn btn_lightblue">
+               확인
+              </a>
+              <a class="btn btn_gray btn-cancel_mu">
+               취소
+              </a>
+             </div>
+             <!--// content-->
+             <script>
+              $('a.btn-cancel_mu').click(function(){
+                        $('.layer_request_mu').fadeOut(); // 닫기 버튼을 클릭하면 레이어가 닫힌다.
+                        return false;
+                    });
+
+					$('.submit_mu').click(function(){
+						$.ajax({
+							url: '../../../plus/klas_request_mu.php',
+							type: 'post',
+							data: $('form[name=req_mu]').serialize(),
+							success: function(data) {
+								var msg, img, addDiv;
+								if (data === 'OK') {
+									msg = "무인예약신청이<br> 정상처리되었습니다.";
+									img = "check_sub.PNG";
+								} else {
+									//alert(data);
+									msg = data;
+									img = "check_can.PNG";
+								}
+								addDiv = "<div class='checkmsg'><table><tr><td><!-- <img src='./image/"+img+"'/> --></td><td>"+msg+"</td></tr></table><div class='btn-c'> <a  class='bookbtn  btn-cancel' onclick='javascript:fadeout_layer_ref();'>확인</a></div></div>";
+								$(".conts_submit_mu").html(addDiv);
+								$('.layer_submit_mu').css("display","block");
+
+								//$("a.btn-cancel").trigger('click');
+							}, error:function(request,status,error){
+								alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+							}
+
+						})
+					})
+             </script>
+            </div>
+           </div>
+          </div>
+         </div>
+         <div class="dim-layer layer_submit_mu">
+          <div class="dimBg">
+          </div>
+          <div class="pop-layer" id="layer_sub">
+           <div class="pop-container">
+            <div class="pop-herder">
+             무인예약신청
+            </div>
+            <div class="pop-conts conts_submit_mu">
+            </div>
+           </div>
+          </div>
+         </div>
+         <script type="text/javascript">
+          $("#sh_big").click(function(){
+        if($(this).prop("checked")){
+            $("input:checkbox[id^='big_manage_code']").prop("checked", true);
+        }else{
+            $("input:checkbox[id^='big_manage_code']").prop("checked", false);
+        }
+    });
+	function go_view(idx){
+		document.getElementById("TITLE_INFO").value = document.getElementById("TITLE_INFO"+idx).value;
+		document.getElementById("AUTHOR").value = document.getElementById("AUTHOR"+idx).value;
+		document.getElementById("PUBLISHER").value = document.getElementById("PUBLISHER"+idx).value;
+		document.getElementById("PUB_YEAR").value = document.getElementById("PUB_YEAR"+idx).value;
+		document.getElementById("ISBN").value = document.getElementById("ISBN"+idx).value;
+		document.getElementById("PRICE").value = document.getElementById("PRICE"+idx).value;
+		document.getElementById("CLASS_NO").value = document.getElementById("CLASS_NO"+idx).value;
+		document.getElementById("REG_CODE").value = document.getElementById("REG_CODE"+idx).value;
+		document.getElementById("SEPARATE_SHELF_CODE").value = document.getElementById("SEPARATE_SHELF_CODE"+idx).value;
+		document.getElementById("BOOK_APPENDIX_FLAG").value = document.getElementById("BOOK_APPENDIX_FLAG"+idx).value;
+		document.getElementById("BOOK_KEY").value = document.getElementById("BOOK_KEY"+idx).value;
+		document.getElementById("LOAN_CHECK").value = document.getElementById("LOAN_CHECK"+idx).value;
+		document.getElementById("CALL_NO").value = document.getElementById("CALL_NO"+idx).value;
+		document.getElementById("REG_NO").value = document.getElementById("REG_NO"+idx).value;
+		document.getElementById("SHELF_LOC_NAME").value = document.getElementById("SHELF_LOC_NAME"+idx).value;
+		document.getElementById("MEDIA_NAME").value = document.getElementById("MEDIA_NAME"+idx).value;
+		document.getElementById("MANAGE_CODE").value = document.getElementById("MANAGE_CODE"+idx).value;
+		document.getElementById("SPECIES_KEY").value = document.getElementById("SPECIES_KEY"+idx).value;
+		document.getElementById("LIB_NAME").value = document.getElementById("LIB_NAME"+idx).value;
+		document.getElementById("LIB_CODE").value = document.getElementById("LIB_CODE"+idx).value;
+		document.getElementById("IMAGE").value = document.getElementById("IMAGE"+idx).value;
+		document.getElementById("DESCRIPTION").value = document.getElementById("DESCRIPTION"+idx).value;
+		document.getElementById("FORM_CODE").value = document.getElementById("FORM_CODE"+idx).value;
+		document.getElementById("PAGE").value = document.getElementById("PAGE"+idx).value;
+		document.getElementById("BOOK_SIZE").value = document.getElementById("BOOK_SIZE"+idx).value;
+		document.getElementById("LOAN_CODE").value = document.getElementById("LOAN_CODE"+idx).value;
+		document.getElementById("RETURN_PLAN_DATE").value = document.getElementById("RETURN_PLAN_DATE"+idx).value;
+		document.getElementById("RESERVE_CODE").value = document.getElementById("RESERVE_CODE"+idx).value;
+		document.getElementById("SUBJECT_CODE").value = document.getElementById("SUBJECT_CODE"+idx).value;
+		document.getElementById("LILL_YN").value = document.getElementById("LILL_YN"+idx).value;
+		document.view_form.submit();
+	}
+    function change_search(type,tag){
+        if(type == "normal"){
+            $(".normal").removeClass('detail');            
+            $(".de").addClass('detail');          
+        }else{
+            $(".normal").addClass('detail');            
+            $(".de").removeClass('detail');                        
+        }
+        $(".ndlstab > ul > li > a").removeClass('on');  
+        $(tag).addClass('on');  
+    }
+
+    
+    function sendBookData(TitleInfo,Author,LibName,BookType,BookKey) {
+        if (confirm('관심도서에 추가하시겠습니까?')) {
+            var url = 'https://lib.jongno.go.kr/plus_m/interest_book_add.php?title='+TitleInfo+'&writer='+Author+'&lib='+LibName+'&type='+BookType+'&reckey='+BookKey;
+            $.ajax({
+                url: url,
+                success: function (response) {
+                    if (response === 'success') {
+                        alert('관심목록에 추가되었습니다');
+                    } else {
+                        alert(response);
+                    }
+                }, error: function (err) {
+                    alert('추가 도중 에러가 발생했습니다: [Error] ' + err);
+                }
+            });
+        }
+    }
+    
+    function sendReservationBook(BookKey,BookType){
+     if (confirm('해당 도서를 예약하시겠습니까?')) {
+                var requestData = {
+                    'bookkey': BookKey,
+        'booktype': BookType
+                }
+                $.ajax({
+                    url: '/plus/reservation_join2.php',
+                    data: requestData,
+                    success: function (response) {
+                        //console.log(response);
+                        alert(response);
+						//var obj = JSON.parse(response);
+						//alert(obj.RESULT_MESSAGE);
+                    }, error: function (err) {
+                        alert('예약 도중 에러가 발생했습니다');
+                            console.log(err);
+                    }
+                });
+            }
+    }
+         </script>
+         <form action="sub011.php" id="view_form" method="POST" name="view_form">
+          <input id="TITLE_INFO" name="TITLE_INFO" type="hidden" value=""/>
+          <!-- 책명 -->
+          <input id="AUTHOR" name="AUTHOR" type="hidden" value=""/>
+          <!-- 저자 -->
+          <input id="PUBLISHER" name="PUBLISHER" type="hidden" value=""/>
+          <!-- 발행사 -->
+          <input id="PUB_YEAR" name="PUB_YEAR" type="hidden" value=""/>
+          <!-- 발행년도 -->
+          <input id="ISBN" name="ISBN" type="hidden" value=""/>
+          <!-- isbn -->
+          <input id="PRICE" name="PRICE" type="hidden" value=""/>
+          <!-- 가격 -->
+          <input id="CLASS_NO" name="CLASS_NO" type="hidden" value=""/>
+          <!-- 한국십진분류코드 -->
+          <input id="REG_CODE" name="REG_CODE" type="hidden" value=""/>
+          <!-- 등록구분 -->
+          <input id="SEPARATE_SHELF_CODE" name="SEPARATE_SHELF_CODE" type="hidden" value=""/>
+          <!-- 별치기호 -->
+          <input id="BOOK_APPENDIX_FLAG" name="BOOK_APPENDIX_FLAG" type="hidden" value=""/>
+          <!-- 부록여부 -->
+          <input id="BOOK_KEY" name="BOOK_KEY" type="hidden" value=""/>
+          <!-- 책정보키 -->
+          <input id="LOAN_CHECK" name="LOAN_CHECK" type="hidden" value=""/>
+          <!-- 대출가능여부 -->
+          <input id="CALL_NO" name="CALL_NO" type="hidden" value=""/>
+          <!-- 청구기호 -->
+          <input id="REG_NO" name="REG_NO" type="hidden" value=""/>
+          <!-- 등록번호 -->
+          <input id="SHELF_LOC_NAME" name="SHELF_LOC_NAME" type="hidden" value=""/>
+          <!-- 자료실 -->
+          <input id="MEDIA_NAME" name="MEDIA_NAME" type="hidden" value=""/>
+          <!-- 자료형태 -->
+          <input id="MANAGE_CODE" name="MANAGE_CODE" type="hidden" value=""/>
+          <!-- 도서관부호 -->
+          <input id="SPECIES_KEY" name="SPECIES_KEY" type="hidden" value=""/>
+          <input id="LIB_NAME" name="LIB_NAME" type="hidden" value=""/>
+          <input id="LIB_CODE" name="LIB_CODE" type="hidden" value=""/>
+          <input id="IMAGE" name="IMAGE" type="hidden" value=""/>
+          <input id="DESCRIPTION" name="DESCRIPTION" type="hidden" value=""/>
+          <input id="FORM_CODE" name="FORM_CODE" type="hidden" value=""/>
+          <input id="PAGE" name="PAGE" type="hidden" value=""/>
+          <input id="BOOK_SIZE" name="BOOK_SIZE" type="hidden" value=""/>
+          <input id="LOAN_CODE" name="LOAN_CODE" type="hidden" value=""/>
+          <input id="RETURN_PLAN_DATE" name="RETURN_PLAN_DATE" type="hidden" value=""/>
+          <input id="RESERVE_CODE" name="RESERVE_CODE" type="hidden" value=""/>
+          <input id="SUBJECT_CODE" name="SUBJECT_CODE" type="hidden" value=""/>
+          <input id="LILL_YN" name="LILL_YN" type="hidden" value=""/>
+         </form>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+  <!-- } 콘텐츠 끝 -->
+  <hr/>
+  <!-- 하단 시작 { -->
+  <div id="ft">
+   <div id="ft_lib_info">
+    <ul>
+     <li>
+      <dl>
+       <dt>
+        청운문학도서관
+       </dt>
+       <dd>
+        070-4680-4032
+       </dd>
+       <dd>
+        자하문로36길 40
+       </dd>
+      </dl>
+      <dl>
+       <dt>
+        어린이청소년 국학도서관
+       </dt>
+       <dd>
+        02-747-8335
+       </dd>
+       <dd>
+        명륜길 26
+       </dd>
+      </dl>
+      <dl>
+       <dt>
+        창신소담도서관
+       </dt>
+       <dd>
+        02-3672-0234
+       </dd>
+       <dd>
+        창신길 83
+       </dd>
+      </dl>
+      <dl>
+       <dt>
+        아름꿈 도서관
+       </dt>
+       <dd>
+        02-2237-6644
+       </dd>
+       <dd>
+        종로58가길 19
+       </dd>
+      </dl>
+      <dl>
+       <dt>
+        삼청공원 숲속도서관
+       </dt>
+       <dd>
+        02-734-3900
+       </dd>
+       <dd>
+        북촌로 134-3 삼청공원 내
+       </dd>
+      </dl>
+      <dl>
+       <dt>
+        우리소리도서관
+       </dt>
+       <dd>
+        070-4550-5015
+       </dd>
+       <dd>
+        삼일대로30길 47 (종로1.2.3.4가동주민센터 4,5층)
+       </dd>
+      </dl>
+      <dl>
+       <dt>
+        통인 어린이 작은도서관
+       </dt>
+       <dd>
+        02-739-8444
+       </dd>
+       <dd>
+        자하문로13길 20
+       </dd>
+      </dl>
+      <dl>
+       <dt>
+        도담도담 한옥도서관
+       </dt>
+       <dd>
+        02-928-1133
+       </dd>
+       <dd>
+        숭인동길 43
+       </dd>
+      </dl>
+      <dl>
+       <dt>
+        청운효자동 북카페
+       </dt>
+       <dd>
+        02-2148-5020
+       </dd>
+       <dd>
+        자하문로 92 (청운효자동주민센터 2층)
+       </dd>
+      </dl>
+     </li>
+     <li>
+      <dl>
+       <dt>
+        꿈꾸는 평창동 작은도서관
+       </dt>
+       <dd>
+        02-2148-5140
+       </dd>
+       <dd>
+        평창문화로 65 (평창동주민센터 2층)
+       </dd>
+      </dl>
+      <dl>
+       <dt>
+        무악다솜방
+       </dt>
+       <dd>
+        02-2148-5164
+       </dd>
+       <dd>
+        통일로14길 36 (무악동주민센터 2층)
+       </dd>
+      </dl>
+      <dl>
+       <dt>
+        홍파랑 북카페
+       </dt>
+       <dd>
+        02-2148-5197
+       </dd>
+       <dd>
+        송월길 154 (교남동주민센터 2층)
+       </dd>
+      </dl>
+      <dl>
+       <dt>
+        지혜만들기 작은도서관
+       </dt>
+       <dd>
+        02-2148-5285
+       </dd>
+       <dd>
+        종로35가길 19 (종로5.6가동주민센터 3층)
+       </dd>
+      </dl>
+      <dl>
+       <dt>
+        이화마을 작은도서관
+       </dt>
+       <dd>
+        02-2148-5309
+       </dd>
+       <dd>
+        이화장길 33 (이화동주민센터 2층)
+       </dd>
+      </dl>
+      <dl>
+       <dt>
+        혜화마을 북카페
+       </dt>
+       <dd>
+        02-2148-5339
+       </dd>
+       <dd>
+        혜화로 12 (혜화동자치회관 4층)
+       </dd>
+      </dl>
+      <!-- <dl>
+                    <dt>창이 작은도서관</dt>
+                    <dd>02-2148-5439</dd>
+                    <dd>창신길 62 (창신2동주민센터 2층)</dd>
+                </dl> -->
+      <dl>
+       <dt>
+        숭인마루 작은도서관
+       </dt>
+       <dd>
+        02-2148-5496
+       </dd>
+       <dd>
+        지봉로 86 (숭인1동주민센터 2층)
+       </dd>
+      </dl>
+      <dl>
+       <dt>
+        작은도서관 삼봉서랑
+       </dt>
+       <dd>
+        (휴관 중)
+       </dd>
+       <dd>
+       </dd>
+      </dl>
+     </li>
+    </ul>
+   </div>
+   <div id="ft_wr">
+    <div class="ft_left_cnt" id="ft_company">
+     <dl>
+      <dd>
+       종로구청 평생교육과
+      </dd>
+      <dd>
+       서울특별시 종로구 종로1길 36
+      </dd>
+      <dd>
+       문의전화 :
+       <font color="white">
+        <strong>
+         02-2148-2082~2085
+        </strong>
+       </font>
+      </dd>
+      <dd>
+       팩스 : 2148-5877
+      </dd>
+     </dl>
+    </div>
+    <div class="ft_right_cnt" id="ft_link">
+     <ul>
+      <li>
+       <a href="https://lib.jongno.go.kr/menu/member/privacy.php">
+        개인정보처리방침
+       </a>
+      </li>
+      <li>
+       <select id="" name="" onchange="window.open(value,'_blank');">
+        <option value="/">
+         관련사이트 바로가기
+        </option>
+        <option title="종로구자치회관" value="http://www.jongno.go.kr/portalMain.do">
+         종로구청
+        </option>
+        <option title="정독도서관" value="http://jdlib.sen.go.kr">
+         서울시교육청 정독도서관
+        </option>
+        <option title="종로도서관" value="http://jnlib.sen.go.kr/jnlib_index.jsp">
+         서울시교육청 종로도서관
+        </option>
+        <option title="서울시립어린이도서관" value="http://childlib.sen.go.kr/">
+         서울시교육청 어린이도서관
+        </option>
+        <option title="서울도서관" value="http://lib.seoul.go.kr/">
+         서울도서관
+        </option>
+        <option title="국립장애인도서관" value="https://www.nld.go.kr/ableFront/index.jsp">
+         국립장애인도서관
+        </option>
+       </select>
+      </li>
+     </ul>
+    </div>
+   </div>
+   <!-- <div id="ft_catch"><img src="https://lib.jongno.go.kr/img/ft_logo.png" alt="그누보드5"></div> -->
+   <div id="ft_copy">
+    Copyright © 종로구립도서관. All Rights Reserved.
+   </div>
+   <button id="top_btn" type="button">
+    <i aria-hidden="true" class="fa fa-arrow-up">
+    </i>
+    <span class="sound_only">
+     상단으로
+    </span>
+   </button>
+   <script>
+    $(function() {
+        $("#top_btn").on("click", function() {
+            $("html, body").animate({scrollTop:0}, '500');
+            return false;
+        });
+    });
+   </script>
+  </div>
+  <div class="background_dark">
+  </div>
+  <!-- } 하단 끝 -->
+  <script>
+   $(function() {
+    // 폰트 리사이즈 쿠키있으면 실행
+    font_resize("container", get_cookie("ck_font_resize_rmv_class"), get_cookie("ck_font_resize_add_class"));
+});
+  </script>
+  <!-- ie6,7에서 사이드뷰가 게시판 목록에서 아래 사이드뷰에 가려지는 현상 수정 -->
+  <!--[if lte IE 7]>
+<script>
+$(function() {
+    var $sv_use = $(".sv_use");
+    var count = $sv_use.length;
+
+    $sv_use.each(function() {
+        $(this).css("z-index", count);
+        $(this).css("position", "relative");
+        count = count - 1;
+    });
+});
+</script>
+<![endif]-->
+ </body>
+</html>

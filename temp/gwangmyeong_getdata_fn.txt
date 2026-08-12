@@ -1,0 +1,79 @@
+function getDataDetail(bookKey, json)
+
+{
+
+	if(dataDetail[bookKey]){
+
+		var jkey  = dataDetail[bookKey]['jongKey'];
+
+		var bkey  = dataDetail[bookKey]['bookKey'];
+
+		var title  = dataDetail[bookKey]['title'];
+
+		var author = dataDetail[bookKey]['author'];
+
+		var pub    = dataDetail[bookKey]['publisher'];
+
+		var pyear  = dataDetail[bookKey]['pubYear']; 
+
+		var callno = dataDetail[bookKey]['callNo']; 
+
+		var dtype  = dataDetail[bookKey]['dataType'];
+
+		var libName= dataDetail[bookKey]['libName'];
+
+		var placeName= dataDetail[bookKey]['placeName'];
+
+		var image  = dataDetail[bookKey]['image'];
+
+
+
+		$('#aTitle').attr('href','./index.php?mod=wdDataSearch&act=searchResultDetail&dbType=dan&jongKey=' + jkey).html(title);
+
+		$('#aAuthor').html(author);
+
+		$('#aPubInfo').html(pub);
+
+		$('#aPubYear').html(pyear);
+
+		$('#aCallNo').html(callno);
+
+		$('#aType').html(dtype);
+
+		$('#aLibName').html(libName);
+
+		$('#aPlaceName').html(placeName);
+
+		$('#aImage').attr('src',image);
+
+		$('#aLink').attr('href','./index.php?mod=wdDataSearch&act=searchResultDetail&dbType=dan&jongKey=' + jkey);
+
+		return;
+
+	}
+
+	if(json){
+
+		for(var k in json) {
+
+			var tmp = {
+
+				'jongKey' : json[k]['jongKey'],
+
+				'bookKey' : json[k]['bookKey'],
+
+				'title' : json[k]['title'],
+
+				'author' : json[k]['author'],
+
+				'publisher' : json[k]['publisher'],
+
+				'pubYear' : json[k]['pubYear'], 
+
+				'callNo' : json[k]['callNo'], 
+
+				'dataType' : json[k]['dataType'],
+
+				'libName' : json[k]['libName'],
+
+				'placeNa

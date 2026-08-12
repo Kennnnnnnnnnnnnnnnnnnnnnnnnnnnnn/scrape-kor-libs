@@ -1,0 +1,2072 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>도서관 통합 자료 검색</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=10">
+<meta name="keywords" content="DLS-LTE, LTE, 자료검색">
+<meta name="description" content="DLS-LTE 자료검색">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SDVC4LKFFJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){
+	  dataLayer.push(arguments);
+	  }
+  gtag('js', new Date());
+
+  gtag('config', 'G-SDVC4LKFFJ');
+</script>
+<script>
+	//window.document.domain = "library.brcn.go.kr;
+	//alert(parent.location.host);
+</script>
+<script>
+	var userAgent = navigator.userAgent;
+	var pattern = /(SCH\-|SPH\-|SGH\-|LG\-|CANU|IM\-|EV\-|iPhone|Nokia|BlackBerry|Android)/gi;
+	var isMobile = pattern.test(userAgent);
+	//if (isMobile == true) location.href="http://library.brcn.go.kr/index.php?agent=mobile";
+</script>
+<link rel="stylesheet" type="text/css" href="./wdCommon/css/m.css?v=20260807" media="screen and (max-width:714px)">
+<link rel="stylesheet" type="text/css" href="./wdCommon/css/wide.css?v=20260807" media="screen and (min-width:715px)">
+<link href="./wdCommon/css/jquery-ui-1.10.3.custom.min.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&amp;display=swap" rel="stylesheet">
+<!--
+<script src="./wdCommon/jslib/jquery-2.2.4.js"></script>
+-->
+<script src="./wdCommon/jslib/jquery-3.4.0.js"></script>
+<script type="text/javascript" src="./wdCommon/jslib/jquery-ui-1.10.3.custom.min.js"></script>
+<script type="text/javascript" src="./wdCommon/jslib/jcarousellite_1.0.1.js"></script>
+<script type="text/javascript" src="./wdCommon/jslib/jquery.cookie.js"></script>
+<script type="text/javascript" src="./wdCommon/jslib/jquery.iframe-auto-height.plugin.1.5.0.min.js"></script>
+
+<script type="text/javascript" src="./wdModules/wdLayout/skins/default/jslib/thickbox.jquery.js"></script>
+<script type="text/javascript" src="./wdModules/wdLayout/skins/default/jslib/loyout.js"></script>
+<script type="text/javascript" src="./wdModules/wdDataSearch/skins/default/jslib/wdDataSearch.js"></script>
+<script type="text/javascript" src="./wdModules/wdDataSearch/skins/default/jslib/slide.jquery.js"></script>
+
+
+<script type="text/javascript">
+//<![CDATA[
+
+	$(function(){
+		$("#loading").css("display","none");
+	});
+
+	$(function(){
+		//if(document.getElementById('searchWord')) document.getElementById('searchWord').focus();
+	});
+
+//]]>
+</script>
+
+</head>
+
+<body>
+
+	<!--wdGetHtmlHeader()-->
+
+	<div id="loading"></div>
+
+<script type="text/javascript" src="./virtualKeyboard/vk_popup.js?vk_layout=CN%20Chinese%20Cangjie&vk_skin=flat_gray"></script>
+
+<div id="keyboard"></div>
+
+<div id="container">
+	
+	<div class="container">
+		
+	<script>
+var _auto_kwd = '';
+var _auto_idx = -1;
+var _auto_json = '';
+var dataDetail = [];
+
+$(function() {
+	/*
+	$('#searchWord').on('keydown', function() {
+			switch(event.keyCode) {
+			case 40: // 하
+			case 9: // Tab
+				if(!event.shiftKey) {
+					selectKeyword('dn');
+					return false;
+				}
+			case 38: // 상
+				selectKeyword('up');
+				return false;
+			case 37: // 좌
+			case 39: // 우
+				return;
+			default: //alert(event.keyCode);
+		}
+	}).on('blur', function() {
+		
+		$('#autoComplete').hide();
+	
+	}).on('mouseup', function() {
+
+		if($(this).val().replace(/ /g,'')) $('#autoComplete').show();
+
+	}).on('keyup', function() {
+		if($("#result_search").is(":checked")){
+			$("#autoComplete").hide();
+			return;
+		}
+		switch(event.keyCode) {
+			case 38: // 상
+			case 40: // 하
+			case 37: // 좌
+			case 39: // 우
+			case 9: // TAB
+			case 16: // Shift
+				return;
+			default: //alert(event.keyCode);
+		}
+		var q = $(this).val();
+		if(!q.replace(/ /g,'')) return;
+		
+		if(q.match(/[ㅂㅈㄷㄱㅅㅛㅕㅑㅐㅔㅣㅏㅓㅗㅎㄹㅇㄴㅁㅋㅌㅊㅍㅠㅜㅡ]/g)) return;
+		//if(q.length<2) return;
+		if(_auto_kwd == q) return;
+		_auto_kwd = q;
+
+		$.getJSON('./ajax/autocomplete.php?q='+encodeURIComponent(q), function(json) {
+			_auto_idx = -1;
+			var pannel = $('.keyword');
+			if(!json.length) return;
+			else pannel.html('');//.hide();
+
+			var ul = $('<ul />');
+			for(var k in json) {
+				getDataDetail('', json);
+
+				var jkey = json[k]['jongKey'];
+				var bkey = json[k]['bookKey'];
+				var title = json[k]['title']; 
+				$('<li />').html('<a>' + title + '</a>')
+					.on('click mousedown', function() {
+						var bk = $(this).attr('bkey');
+						$('#searchWord').val($(this).attr('title').replace(/<[/]*strong>/g,""));
+						getDataDetail(bk,'');
+						return false;
+					})
+					.attr('jkey', jkey)
+					.attr('bkey', bkey)
+					.attr('title', title)
+					.css({ 'cursor':'pointer' })
+					.appendTo(ul);
+				if(k == 0){
+					getDataDetail(bkey,'');
+				}
+					
+			}
+			$('#autoComplete').show();
+			pannel.append(ul).show();
+			_auto_json = json;
+		});
+	});*/
+});
+
+function getDataDetail(bookKey, json)
+{
+	if(dataDetail[bookKey]){
+		var jkey  = dataDetail[bookKey]['jongKey'];
+		var bkey  = dataDetail[bookKey]['bookKey'];
+		var title  = dataDetail[bookKey]['title'];
+		var author = dataDetail[bookKey]['author'];
+		var pub    = dataDetail[bookKey]['publisher'];
+		var pyear  = dataDetail[bookKey]['pubYear']; 
+		var callno = dataDetail[bookKey]['callNo']; 
+		var dtype  = dataDetail[bookKey]['dataType'];
+		var libName= dataDetail[bookKey]['libName'];
+		var placeName= dataDetail[bookKey]['placeName'];
+		var image  = dataDetail[bookKey]['image'];
+
+		$('#aTitle').attr('href','./index.php?mod=wdDataSearch&act=searchResultDetail&dbType=dan&jongKey=' + jkey).html(title);
+		$('#aAuthor').html(author);
+		$('#aPubInfo').html(pub);
+		$('#aPubYear').html(pyear);
+		$('#aCallNo').html(callno);
+		$('#aType').html(dtype);
+		$('#aLibName').html(libName);
+		$('#aPlaceName').html(placeName);
+		$('#aImage').attr('src',image);
+		$('#aLink').attr('href','./index.php?mod=wdDataSearch&act=searchResultDetail&dbType=dan&jongKey=' + jkey);
+		return;
+	}
+	if(json){
+		for(var k in json) {
+			var tmp = {
+				'jongKey' : json[k]['jongKey'],
+				'bookKey' : json[k]['bookKey'],
+				'title' : json[k]['title'],
+				'author' : json[k]['author'],
+				'publisher' : json[k]['publisher'],
+				'pubYear' : json[k]['pubYear'], 
+				'callNo' : json[k]['callNo'], 
+				'dataType' : json[k]['dataType'],
+				'libName' : json[k]['libName'],
+				'placeName' : json[k]['placeName'],
+				'image' : json[k]['image']};
+				console.log(tmp);
+			dataDetail[json[k]['bookKey']] = tmp;
+		};
+	}
+}
+
+function selectKeyword(flag) {
+	var obj = $('.keyword ul');
+	var child = obj.find('li a');
+	var cnt = child.length;
+	child.removeClass('sel');
+	if(_auto_idx<-1) _auto_idx = -1;
+	if(flag == 'up') _auto_idx--;
+	else if(flag == 'dn') _auto_idx++;
+	if(_auto_idx<0) {
+		$('#searchWord').val(_auto_kwd);
+		return;
+	}
+	if(_auto_idx>cnt-1) _auto_idx = cnt-1;
+	$('#searchWord').val(child.eq(_auto_idx).html().replace(/<[/]*strong>/g,""));
+	selectHover(child.eq(_auto_idx));
+}
+
+var selectHoverFlag = 0;
+function selectHover(obj) {
+	obj.addClass('sel').parent().click();
+	var ul = obj.parents('ul').eq(0);
+	var top = obj.offset().top - ul.offset().top + ul.scrollTop();
+	var height = ul.outerHeight();
+	var off = top-height;
+	if(off>selectHoverFlag) {
+		if(off>=0) {
+			ul.scrollTop(off+20);
+		}
+	} else {
+		if(off<=0) {
+			ul.scrollTop(ul.scrollTop()-20);
+		}
+	}
+	selectHoverFlag = off;
+}
+
+function getStringLength (str)
+{
+	var retCode = 0;
+	var strLength = 0;
+	for (i = 0; i < str.length; i++)
+	{
+		var code = str.charCodeAt(i)
+		var ch = str.substr(i,1).toUpperCase()
+		code = parseInt(code)
+		if ((ch < "0" || ch > "9") && (ch < "A" || ch > "Z") && ((code > 255) || (code < 0)))
+			strLength = strLength + 2;
+		else
+			strLength = strLength + 1;
+	}
+	return strLength;
+}
+
+function getByte(str) {
+	var resultSize = 0;
+	if (str == null) {
+		return 0;
+	}
+	for (var i = 0; i < str.length; i++) {
+		var c = escape(str.charAt(i));
+		if (c.length == 1) resultSize++;
+		else if (c.indexOf("%u") != -1) resultSize += 2;
+		else resultSize++;
+	}
+	return resultSize;
+}
+
+$(function(){
+	var checked = false;
+
+	$(".choice").removeClass("sel").hide();
+
+	$(".selbox").find("input[type=checkbox]").on("click",function(){
+		checked = false;
+		
+		$(".selbox").find("input[type=checkbox]").each(function(){
+			if($(this).is(":checked")) checked = true;
+		});
+		
+		if(checked){
+			$(".choice").addClass("sel").show().on('click',function(){
+				document.headSearchForm.submit();
+			});
+		}
+		//else $(".choice").removeClass("sel").hide();
+	})
+	
+	$(".clear").on("click",function(){
+		$(".selbox").find("input[type=checkbox]").attr("checked",false);
+		//$(".choice").removeClass("sel").hide();
+	})
+	
+// 실행 후 기관별 검색 활성화
+	$(".selbox").find("input[type=checkbox]").each(function(){
+		if($(this).is(":checked")) checked = true;
+	});
+	if(checked){
+		$(".choice").addClass("sel").show().on('click',function(){
+			document.headSearchForm.submit();
+		});
+	}
+	//else $(".choice").removeClass("sel").hide();
+
+	$(".option a").on("click",function(){
+		//자료실이 선택될 경우 다중 도서관 검색은 되지 않음..
+		$(this).parents().eq(4).find("input[type=checkbox]").attr("checked",false);
+
+		$(this).parents().eq(3).find("input[type=checkbox]").attr("checked",true);
+		
+	
+		$(".addPlaceCode").remove();
+		$(this).parents().eq(4).find('li').css('background-color','');
+		$(this).parent().css('background-color','#d8e1e2');
+		$("#headSearchForm").append($('<input type="hidden" class="addPlaceCode" name="placeCode[]" value="' + $(this).attr("id") + '">'));
+		//$(".option").hide();
+
+		$(".choice").addClass("sel").show().on('click',function(){
+			document.headSearchForm.submit();
+		});
+	});
+
+	$(".sbopen").click(function(){
+		$(".option").hide();
+		$(this).next().show();
+		return false;
+	});
+
+	$(function() {
+		//$(".wrapbox").css("display","none");
+	//	$(".wrapClose").css("display","none");
+		$(".wrapOpen").click(function(){
+			$(".wrapClose").css("display","block");
+			$(".wrapOpen").css("display","none");
+			$(".wrapbox").css("display","block");
+			$.cookie('isWrapOpen','open');
+		}),
+		$(".wrapClose").click(function(){
+			$(".wrapClose").css("display","none");
+			$(".wrapOpen").css("display","block");
+			$(".wrapbox").css("display","none");
+			$.cookie('isWrapOpen','close');
+		});
+		if(!$.cookie('isWrapOpen') || $.cookie('isWrapOpen') == 'open') $(".wrapOpen").click();
+	});
+})
+</script>
+<script type="text/javascript" src="./virtualKeyboard/vk_popup.js?vk_layout=CN%20Chinese%20Cangjie&vk_skin=flat_gray"></script>
+<form method="get" name="headSearchForm" action="./index.php" id="v" onsubmit="return wjSearchCheck(this);">
+	
+<input type='hidden' name='mod' value='wdDataSearch' />
+<input type='hidden' name='act' value='searchIList' />
+	
+	<input type="hidden" name="reWord[]" id="reWord" value="">
+	<input type="hidden" name="preWord" value="파이썬">
+	<input type="hidden" name="preItem" value="total">
+	<input type="hidden" name="preCond" value="">
+	
+	<input type="hidden" name="deSearch" id="reWord" value="">
+	<input type="hidden" name="word1" value="">
+	<input type="hidden" name="word2" value="">
+	<input type="hidden" name="word3" value="">
+	<input type="hidden" name="item1" value="">
+	<input type="hidden" name="itme2" value="">
+	<input type="hidden" name="item3" value="">
+	<input type="hidden" name="cond1" value="">
+	<input type="hidden" name="cond1" value="">
+	<input type="hidden" name="cond1" value="">
+
+		<div id="headSearchForm">
+
+		<div class="allbox">
+			<fieldset>
+				<legend>통합검색</legend>
+								<label for="reSearch" class="result" style="font-weight:bold; font-size:13px"><input id="reSearch" type="checkbox" name="reSearch" value="1" title="결과내 검색"> 결과내 검색</label>
+								<div class="search">
+					<div class="input">
+						<strong>
+						<select name="item" style="font-weight:bold; font-size:16px" title="검색 조건 선택">
+							<option value="total" selected="selected">전체
+							</option>
+							<option value="title">제목
+							</option>
+							<option value="author">저자
+							</option>
+							<option value="publisher">발행처
+							</option>
+							<option value="keyword">키워드
+							</option>
+						</select>
+				
+						<!-- select name="searchMothod">
+							<option value="total" >전체</option>
+							<option value="book"   selected='selected'>도서검색</option>
+							<option value="web"   >웹검색</option>
+						</select -->
+						</strong>
+
+
+						<input type="text" name="word" autocomplete="off" value="파이썬" id="searchWord" style="ime-mode:active;font-weight:bold; font-size:17px; width:70%;" onfocus="PopupVirtualKeyboard.attachInput(this);" placeholder="검색어를 적어주세요" title="검색어 입력창">
+												<button type="button" class="btn-close" title="지우기" onclick="$('input[name=word]').val('');  $(this).hide();">X</button>
+						
+						<!-- input type="hidden" name="item" value="title" id="item" -->
+					</div>
+					<input type="submit" class="btn btn-search" value="검색">
+					<div id="autoComplete" style="display:none">
+						<div class="keyword">
+							<ul>
+								<li>-</li>
+							</ul>
+						</div>
+						<div class="thumbnail">
+							<div class="list">
+								<dl>
+									<dt>
+										<a href="#" id="aLink"><img class="img" id="aImage" src="./wdModules/wdDataSearch/skins/default/img/common/small_img_no.gif" alt="NO IMAGE" width="83" height="119"></a>									
+										<em class="loadr"><img src="./wdModules/wdDataSearch/skins/default/./img/common/ajax-loader.gif" id="loading_" alt="로딩중입니다."></em>
+									</dt>
+									<dd>
+										<div class="ico ico-bk">
+											<strong><span id="aType">-</span></strong>
+											<span><a href="#title" id="aTitle">-</a></span>
+										</div>
+										<ul>
+											<li><strong>ㆍ저&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;자</strong><em>|</em> <span id="aAuthor">-</span></li>
+											<li><strong>ㆍ출&nbsp;판&nbsp;사</strong><em>|</em> <span id="aPubInfo">-</span></li>
+											<li><strong>ㆍ발&nbsp;행&nbsp;년</strong><em>|</em> <span id="aPubYear">-</span></li>
+											<li><strong>ㆍ청구기호</strong><em>|</em> <span id="aCallNo">-</span></li>
+											<li><strong>ㆍ소장기관</strong><em>|</em> <span id="aLibName">-</span></li>
+											<li><strong>ㆍ자&nbsp;료&nbsp;실</strong><em>|</em> <span id="aPlaceName">-</span></li>
+										</ul>
+									</dd>
+								</dl>
+							</div>
+							<a href="#close" onclick="$('#autoComplete').hide(); return false;" class="close">닫기</a>
+						</div>
+					</div>
+				</div>
+								<a href="./index.php?mod=wdDataSearch&act=dataDetailSearchForm&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC" class="btn btn-desearch">상세검색</a>
+								<a href="#" class="btn btn-research" title="새창 열림" onclick="PopupVirtualKeyboard.toggle('searchWord','keyboard'); return false;">다국어 입력기</a>
+			</fieldset>
+		</div>
+
+		
+				<div class="wrapbox">
+			<div class="selbox">
+				<dl>
+					<dt>시립도서관 (0)</dt>
+					<dd>
+						<ul id="_multiChk1">
+					 
+													<li><input name="manageCode[MA]" value="MA" id="MA" type="checkbox" >
+								<label for="MA">광명도서관</label>
+								<em>(109)</em>															</li>
+							 
+													<li><input name="manageCode[MB]" value="MB" id="MB" type="checkbox" >
+								<label for="MB">하안도서관</label>
+								<em>(117)</em>															</li>
+							 
+													<li><input name="manageCode[MD]" value="MD" id="MD" type="checkbox" >
+								<label for="MD">충현도서관</label>
+								<em>(27)</em>															</li>
+							 
+													<li><input name="manageCode[ME]" value="ME" id="ME" type="checkbox" >
+								<label for="ME">철산도서관</label>
+								<em>(190)</em>															</li>
+							 
+													<li><input name="manageCode[MF]" value="MF" id="MF" type="checkbox" >
+								<label for="MF">소하도서관</label>
+								<em>(229)</em>															</li>
+							 
+						 
+													<li><input name="manageCode[MJ]" value="MJ" id="MJ" type="checkbox" >
+								<label for="MJ">연서도서관</label>
+								<em>(90)</em>															</li>
+							 
+						 
+						 
+						 
+						 
+						 
+						 
+						 
+						 
+						 
+						 
+												</ul>
+					</dd>
+				</dl>
+				<a class="choice" href="#submit">선택한 기관 검색</a>
+				<a class="clear">선택해제</a>
+				<label class="all none"><input id="multiChk1" type="checkbox" name="multiChk1" value="1" title="전체선택" onclick="wjAllChecked(this.id);"> 전체선택</label>
+			</div>
+			<div class="selbox">
+				<dl>
+					<dt>작은도서관</dt>
+					<dd>
+						<ul id="_multiChk2">
+						 
+							 
+							 
+							 
+							 
+							 
+														<li><input name="manageCode[MI]" value="MI" id="MI" type="checkbox"  >
+								<label for="MI">새싹도서관</label>
+							</li>
+							 
+							 
+														<li><input name="manageCode[MK]" value="MK" id="MK" type="checkbox"  >
+								<label for="MK">안현작은도서관</label>
+							</li>
+							 
+														<li><input name="manageCode[ML]" value="ML" id="ML" type="checkbox"  >
+								<label for="ML">너 꿈 도서관 <em>(2)</em></label>
+							</li>
+							 
+							 
+														<li><input name="manageCode[MH]" value="MH" id="MH" type="checkbox"  >
+								<label for="MH">사성작은도서관</label>
+							</li>
+							 
+							 
+							 
+							 
+							 
+							 
+							 
+													</ul>
+					</dd>
+				</dl>
+			</div>
+			
+		</div>
+		<div class="btnbox">
+			<a href="#" class="wrapOpen">도서관 더보기<i>+</i></a>
+			<a href="#" class="wrapClose">도서관 닫기<i>-</i></a>
+		</div>
+			</div>
+</form><div id="searchDataList">
+		<div class="title">
+		<h2>자료검색 <em>&gt;</em> 검색결과</h2>
+	</div>
+	<div class="search_result">
+		<div class="search_sum">
+					<span class=""><strong>전체</strong>:<span class="red">파이썬</span></span>
+		
+						<span class="">총  765권(개) </span>
+		</div>
+	</div>	
+		<div class="btngroup">
+		<div class="button">
+									<a href="#login" onClick="alert('로그인을 해주세요.'); return false;" class="btn-pack">관심도서 담기</a>
+				<a href="#login" onClick="alert('로그인을 해주세요.'); return false;" class="btn-list">관심도서 목록</a>
+					
+			<a href="#xls" onclick="wjXlsCheck(); return false;" class="btn-excel">선택엑셀 다운로드</a>
+		</div>
+		<div class="enbloc">
+			<a href="#allChk" onClick="wjAllChecked(1);" class="del">전체선택</a>
+			<a href="#cancelChk" onClick="wjAllChecked(2);" class="del">선택취소</a>
+			<!--
+			<a href="#" onclick="alert('기능적용중입니다.'); return false;" class="exel">선택 엑셀 다운로드</a>
+			<a href="#" onclick="alert('기능적용중입니다.'); return false;" class="total">전체 엑셀 다운로드</a>
+			-->
+		</div>
+	</div>
+
+	<div class="settype">
+		<form method="get" name="" action="./index.php">
+			
+<input type='hidden' name='mod' value='wdDataSearch' />
+<input type='hidden' name='act' value='searchIList' />
+<input type='hidden' name='item' value='total' />
+<input type='hidden' name='word' value='파이썬' />
+
+
+			<fieldset>
+				<select id="listNum" name="listNum" title="출력건수 선택">
+					<option value="10" selected='selected'>출력 10건</option>
+					<option value="20">출력 20건</option>
+					<option value="30">출력 30건</option>
+					<option value="50">출력 40건</option>
+				</select>
+				<select id="dataSort" name="dataSort" title="정렬 방식 선택">
+					<option value=""        selected='selected'>정확도 순</option>
+					<option value="hddesc" >등록일 내림차순</option>
+					<option value="rkasc"  >등록일 오름차순</option>
+					<option value="tidesc" >책제목 내림차순</option>
+					<option value="tiasc"  >책제목 오름차순</option>
+					<option value="aidesc" >저자 내림차순</option>
+					<option value="aiasc"  >저자 오름차순</option>
+					<option value="pidesc" >발행자 내림차순</option>
+					<option value="piasc"  >발행자 오름차순</option>
+					<option value="pydesc" >발행년 내림차순</option>
+					<option value="pyasc"  >발행년 오름차순</option>
+				</select>
+				<input type="submit" value="검색" class="btn">
+			</fieldset>
+		</form>
+
+		<div class="type">
+			<a href="./index.php?viewType=div&mod=wdDataSearch&act=searchIList&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC" title="열거형(선택됨)" class="c1sel">열거형</a>
+			<a href="./index.php?viewType=table&mod=wdDataSearch&act=searchIList&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC"  title="목록형" class="c2">목록형</a>
+		</div>
+
+		<label class="all none"><input class="list_check" type="checkbox" name="allChk" value="" id="searchListChk" onClick="wjAllChecked(this.id);" /> 전체선택</label>
+
+	</div>
+</div>
+<div class="standard">
+	<div id="category">
+		
+<script>
+$(function(){
+	$("#more_man").off().on('click', function() {
+		if($(this).attr("class") == "more_op"){
+			$(this).attr("class","more_cs").html("감추기 <em></em>");
+			$('.man_block').show();
+		}else{
+			$(this).attr("class","more_op").html("더보기 <em></em>");
+			$('.man_block').hide();
+		}
+	});
+
+	$("#more_man").click();
+	
+	$("#more_aut").off().on('click', function() {
+		if($(this).attr("class") == "more_op"){
+			$(this).attr("class","more_cs").html("감추기 <em></em>");
+			$('.aut_block').show();
+		}else{
+			$(this).attr("class","more_op").html("더보기 <em></em>");
+			$('.aut_block').hide();
+		}
+	});
+	$("#more_aut").click();
+
+	$("#more_pub").off().on('click', function() {
+		if($(this).attr("class") == "more_op"){
+			$(this).attr("class","more_cs").html("감추기 <em></em>");
+			$('.pub_block').show();
+		}else{
+			$(this).attr("class","more_op").html("더보기 <em></em>");
+			$('.pub_block').hide();
+		}
+	});
+	$("#more_pub").click();
+});
+</script>
+
+<div class="widget ddc">
+	<h3>기관</h3>
+	<div class="list">
+
+
+
+
+	 
+		<div>
+			<a href="./index.php?act=searchIList&manageCode=MA&=page&limit=publisher&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">광명도서관(109)</a>
+		</div>
+	 
+		<div>
+			<a href="./index.php?act=searchIList&manageCode=MB&=page&limit=publisher&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">하안도서관(117)</a>
+		</div>
+	 
+		<div>
+			<a href="./index.php?act=searchIList&manageCode=MD&=page&limit=publisher&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">충현도서관(27)</a>
+		</div>
+	 
+		<div>
+			<a href="./index.php?act=searchIList&manageCode=ME&=page&limit=publisher&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">철산도서관(190)</a>
+		</div>
+	 
+		<div>
+			<a href="./index.php?act=searchIList&manageCode=MF&=page&limit=publisher&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">소하도서관(229)</a>
+		</div>
+	 
+		<div class="man_block">
+			<a href="./index.php?act=searchIList&manageCode=MI&=page&limit=publisher&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">새싹도서관</a>
+		</div>
+	 
+		<div>
+			<a href="./index.php?act=searchIList&manageCode=MJ&=page&limit=publisher&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">연서도서관(90)</a>
+		</div>
+	 
+		<div class="man_block">
+			<a href="./index.php?act=searchIList&manageCode=MK&=page&limit=publisher&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">안현작은도서관</a>
+		</div>
+	 
+		<div class="man_block">
+			<a href="./index.php?act=searchIList&manageCode=ML&=page&limit=publisher&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">너 꿈 도서관(2)</a>
+		</div>
+	 
+		<div class="man_block">
+			<a href="./index.php?act=searchIList&manageCode=SA&=page&limit=publisher&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">광명사거리역 대출기</a>
+		</div>
+	 
+		<div class="man_block">
+			<a href="./index.php?act=searchIList&manageCode=SB&=page&limit=publisher&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">길거리스마트도서관(자이)</a>
+		</div>
+	 
+		<div class="man_block">
+			<a href="./index.php?act=searchIList&manageCode=SC&=page&limit=publisher&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">365스마트도서관(호반)</a>
+		</div>
+	 
+		<div class="man_block">
+			<a href="./index.php?act=searchIList&manageCode=ZH&=page&limit=publisher&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">우리어린이공원 스마트도서관</a>
+		</div>
+	 
+		<div class="man_block">
+			<a href="./index.php?act=searchIList&manageCode=MH&=page&limit=publisher&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">사성작은도서관</a>
+		</div>
+	 
+		<div class="man_block">
+			<a href="./index.php?act=searchIList&manageCode=ZA&=page&limit=publisher&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">[광명]광명사거리역 스마트도서관</a>
+		</div>
+	 
+		<div class="man_block">
+			<a href="./index.php?act=searchIList&manageCode=ZB&=page&limit=publisher&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">[철산]광명시청 스마트도서관(1)</a>
+		</div>
+	 
+		<div class="man_block">
+			<a href="./index.php?act=searchIList&manageCode=ZC&=page&limit=publisher&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">[소하]광명역길거리 스마트도서관(자이)</a>
+		</div>
+	 
+		<div class="man_block">
+			<a href="./index.php?act=searchIList&manageCode=ZD&=page&limit=publisher&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">[소하]365 스마트도서관(호반)</a>
+		</div>
+	 
+		<div class="man_block">
+			<a href="./index.php?act=searchIList&manageCode=ZE&=page&limit=publisher&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">[철산]철산역 스마트도서관</a>
+		</div>
+	 
+		<div class="man_block">
+			<a href="./index.php?act=searchIList&manageCode=ZF&=page&limit=publisher&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">[광명]광명종합사회복지관 스마트도서관</a>
+		</div>
+	 
+		<div class="man_block">
+			<a href="./index.php?act=searchIList&manageCode=ZG&=page&limit=publisher&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">[하안]하안 쌈지공원 스마트도서관</a>
+		</div>
+			<a class="more_op" id="more_man">더보기 <em></em></a>
+	</div>
+</div>
+
+<div class="widget ddc">
+	<h3>자료형태</h3>
+	<ul>
+		<li class="sel">        <a href="./index.php?act=searchIList&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">전체 <span>(0)</span></a></li>
+		<li> <a href="./index.php?act=searchIList&dataType=book&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">도서 <span>(0)</span></a></li>
+		<li><a href="./index.php?act=searchIList&dataType=ebook&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">전자책(e-book) <span>(0)</span></a></li>
+		<li><a href="./index.php?act=searchIList&dataType=audio&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">오디오북 <span>(0)</span></a></li>
+		<li>  <a href="./index.php?act=searchIList&dataType=dvd&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">DVD(영화) <span>(0)</span></a></li>
+	</ul>
+</div>
+
+<div class="widget ddc">
+	<h3>저자</h3>
+	<div class="list">
+				<div>
+			<a href="./index.php?act=searchIList&author=%EB%B0%95%EC%9D%91%EC%9A%A9+%EC%A7%80%EC%9D%8C&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">박응용 지음 (11)</a>
+		</div>
+					<div>
+			<a href="./index.php?act=searchIList&author=%EA%B9%80%EC%84%9D%ED%9B%88+%EC%A7%80%EC%9D%8C&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">김석훈 지음 (10)</a>
+		</div>
+					<div>
+			<a href="./index.php?act=searchIList&author=%EC%82%AC%EC%9D%B4%ED%86%A0+%EA%B3%A0%ED%82%A4+%EC%A7%80%EC%9D%8C+%3B+%EA%B0%9C%EC%95%9E%EB%A7%B5%EC%8B%9C+%EC%98%AE%EA%B9%80&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">사이토 고키 지음 ; 개앞맵시 옮김 (10)</a>
+		</div>
+					<div>
+			<a href="./index.php?act=searchIList&author=%EB%B0%98%EB%B3%91%ED%98%84+%EC%A7%80%EC%9D%8C&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">반병현 지음 (9)</a>
+		</div>
+					<div>
+			<a href="./index.php?act=searchIList&author=%EB%B8%8C%EB%A0%88%EC%9D%B8+%ED%80%98%EC%8A%A4%ED%8A%B8+%EC%A7%80%EC%9D%8C+%3B+%EB%B0%B0%EC%9E%A5%EC%97%B4+%EC%98%AE%EA%B9%80&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">브레인 퀘스트 지음 ; 배장열 옮김 (9)</a>
+		</div>
+					<div class="aut_block">
+			<a href="./index.php?act=searchIList&author=%EA%B9%80%EC%B2%A0%EC%88%98+%EC%A7%80%EC%9D%8C&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">김철수 지음 (7)</a>
+		</div>
+					<div class="aut_block">
+			<a href="./index.php?act=searchIList&author=%EC%9D%B4%EC%8A%B9%EC%B0%AC+%EC%A7%80%EC%9D%8C&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">이승찬 지음 (7)</a>
+		</div>
+					<div class="aut_block">
+			<a href="./index.php?act=searchIList&author=%EC%9A%B0%EC%9E%AC%EB%82%A8+%EC%A7%80%EC%9D%8C&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">우재남 지음 (6)</a>
+		</div>
+					<div class="aut_block">
+			<a href="./index.php?act=searchIList&author=%EC%9C%A4%EC%9D%B8%EC%84%B1+%EC%A7%80%EC%9D%8C&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">윤인성 지음 (6)</a>
+		</div>
+					<div class="aut_block">
+			<a href="./index.php?act=searchIList&author=Dave+Lee+%EC%A0%80&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">Dave Lee 저 (5)</a>
+		</div>
+					<div class="aut_block">
+			<a href="./index.php?act=searchIList&author=%EB%AF%BC%ED%98%95%EA%B8%B0+%EC%A7%80%EC%9D%8C&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">민형기 지음 (5)</a>
+		</div>
+					<div class="aut_block">
+			<a href="./index.php?act=searchIList&author=%EB%B0%95%EC%9E%AC%ED%98%84+%EC%A7%80%EC%9D%8C&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">박재현 지음 (5)</a>
+		</div>
+					<div class="aut_block">
+			<a href="./index.php?act=searchIList&author=Dave+Lee+%EC%A7%80%EC%9D%8C&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">Dave Lee 지음 (4)</a>
+		</div>
+					<div class="aut_block">
+			<a href="./index.php?act=searchIList&author=%EA%B0%80%EB%A7%88%ED%83%80+%EB%A7%88%EC%82%AC%ED%9E%88%EB%A1%9C+%EC%A7%80%EC%9D%8C+%3B+%EC%9D%B4%EB%8F%99%EA%B7%9C+%EC%98%AE%EA%B9%80&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">가마타 마사히로 지음 ; 이동규 옮김 (4)</a>
+		</div>
+					<div class="aut_block">
+			<a href="./index.php?act=searchIList&author=%EB%82%A8%EC%9E%AC%EC%9C%A4+%EC%A7%80%EC%9D%8C&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">남재윤 지음 (4)</a>
+		</div>
+					<div class="aut_block">
+			<a href="./index.php?act=searchIList&author=%EB%A7%88%EC%9D%B4%ED%81%B4+%EC%95%8C%EB%B0%94%EB%8B%A4+%EC%A7%80%EC%9D%8C+%3B+%EA%B0%95%EB%AF%BC%ED%98%81+%EC%98%AE%EA%B9%80&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">마이클 알바다 지음 ; 강민혁 옮김 (4)</a>
+		</div>
+					<div class="aut_block">
+			<a href="./index.php?act=searchIList&author=%EB%A7%88%ED%81%AC+%EB%A3%A8%EC%B8%A0+%EC%A7%80%EC%9D%8C+%3B+%EA%B0%95%EC%84%B1%EC%9A%A9+%3B+%EC%A1%B0%EC%9D%B8%EC%A4%91+%5B%EA%B3%B5%5D%EC%98%AE%EA%B9%80&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">마크 루츠 지음 ; 강성용 ; 조인중 [공]옮김 (4)</a>
+		</div>
+					<div class="aut_block">
+			<a href="./index.php?act=searchIList&author=%EB%B0%95%EC%83%81%EA%B8%B8+%EC%A7%80%EC%9D%8C+%3B+%EC%A0%95%EC%A7%84%ED%98%B8+%EC%9D%BC%EB%9F%AC%EC%8A%A4%ED%8A%B8&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">박상길 지음 ; 정진호 일러스트 (4)</a>
+		</div>
+					<div class="aut_block">
+			<a href="./index.php?act=searchIList&author=%EB%B0%95%EC%A1%B0%EC%9D%80+%EC%86%A1%EC%98%81%EC%88%99+%5B%EA%B3%B5%5D%EC%A7%80%EC%9D%8C&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">박조은 송영숙 [공]지음 (4)</a>
+		</div>
+					<div class="aut_block">
+			<a href="./index.php?act=searchIList&author=%EC%8A%A4%ED%8B%B0%EB%B8%90+%EB%A1%9C%ED%8A%B8+%EC%A7%80%EC%9D%8C+%3B+%EC%8B%AC%EC%A7%80%ED%98%84+%EC%98%AE%EA%B9%80&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">스티븐 로트 지음 ; 심지현 옮김 (4)</a>
+		</div>
+					<div class="aut_block">
+			<a href="./index.php?act=searchIList&author=%EC%B2%9C%EC%9D%B8%EA%B5%AD+%EC%A7%80%EC%9D%8C&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">천인국 지음 (4)</a>
+		</div>
+					<div class="aut_block">
+			<a href="./index.php?act=searchIList&author=%EC%B5%9C%EC%9D%80%EC%84%9D+%EC%A7%80%EC%9D%8C&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">최은석 지음 (4)</a>
+		</div>
+					<div class="aut_block">
+			<a href="./index.php?act=searchIList&author=%EC%BF%A0%EC%A7%80%EB%9D%BC+%ED%9E%88%EC%BD%94%EC%9A%B0%EC%A6%88%EC%BF%A0%EC%97%90+%EC%A7%80%EC%9D%8C+%3B+%EC%9C%A4%EC%9D%B8%EC%84%B1+%EC%98%AE%EA%B9%80&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">쿠지라 히코우즈쿠에 지음 ; 윤인성 옮김 (4)</a>
+		</div>
+					<div class="aut_block">
+			<a href="./index.php?act=searchIList&author=Bohyoh+Shibata+%EC%A7%80%EC%9D%8C+%3B+%EA%B0%95%EB%AF%BC+%EC%98%AE%EA%B9%80&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">Bohyoh Shibata 지음 ; 강민 옮김 (3)</a>
+		</div>
+					<div class="aut_block">
+			<a href="./index.php?act=searchIList&author=%EA%B9%80%EC%9A%A9%EC%9E%AC+%EC%A7%80%EC%9D%8C&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">김용재 지음 (3)</a>
+		</div>
+					<div class="aut_block">
+			<a href="./index.php?act=searchIList&author=%EA%B9%80%EC%B0%BD%ED%98%84+%EC%A7%80%EC%9D%8C&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">김창현 지음 (3)</a>
+		</div>
+					<div class="aut_block">
+			<a href="./index.php?act=searchIList&author=%EB%8B%88%EC%BD%9C%EB%9D%BC+%EB%A0%88%EC%9D%B4%EC%8B%9C+%EC%A7%80%EC%9D%8C+%3B+%ED%99%A9%EB%B0%98%EC%84%9D+%EC%98%AE%EA%B9%80&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">니콜라 레이시 지음 ; 황반석 옮김 (3)</a>
+		</div>
+					<div class="aut_block">
+			<a href="./index.php?act=searchIList&author=%EB%93%9C%EB%AF%B8%ED%8A%B8%EB%A6%AC+%EC%A7%80%EB%85%B8%EB%B9%84%EC%97%90%ED%94%84+%EC%A7%80%EC%9D%8C+%3B+%ED%99%A9%EC%A4%80%EC%8B%9D+%EC%98%AE%EA%B9%80&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">드미트리 지노비에프 지음 ; 황준식 옮김 (3)</a>
+		</div>
+					<div class="aut_block">
+			<a href="./index.php?act=searchIList&author=%EB%A7%88%EB%A6%AC%EC%95%84%EB%85%B8+%EC%95%84%EB%82%98%EC%95%BC+%EC%A7%80%EC%9D%8C+%3B+%EA%B9%80%EC%B0%BD%EC%88%98+%EC%98%AE%EA%B9%80&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">마리아노 아나야 지음 ; 김창수 옮김 (3)</a>
+		</div>
+					<div class="aut_block">
+			<a href="./index.php?act=searchIList&author=%EB%AC%B8%ED%98%84%EC%9D%BC+%EC%A7%80%EC%9D%8C&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">문현일 지음 (3)</a>
+		</div>
+						<a class="more_op" id="more_aut">더보기 <em></em></a>
+		</div>
+</div>
+
+<div class="widget ddc">
+	<h3>발행처</h3>
+	<div class="list">
+		
+			<div>
+			<a href="./index.php?act=searchIList&publisher=%ED%95%9C%EB%B9%9B%EB%AF%B8%EB%94%94%EC%96%B4&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">한빛미디어 (124)</a>
+		</div>
+					<div>
+			<a href="./index.php?act=searchIList&publisher=%EC%97%90%EC%9D%B4%EC%BD%98&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">에이콘 (75)</a>
+		</div>
+					<div>
+			<a href="./index.php?act=searchIList&publisher=%EC%9C%84%ED%82%A4%EB%B6%81%EC%8A%A4&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">위키북스 (75)</a>
+		</div>
+					<div>
+			<a href="./index.php?act=searchIList&publisher=%EA%B8%B8%EB%B2%97&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">길벗 (66)</a>
+		</div>
+					<div>
+			<a href="./index.php?act=searchIList&publisher=%EC%9D%B4%EC%A7%80%EC%8A%A4%ED%8D%BC%EB%B8%94%EB%A6%AC%EC%8B%B1&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">이지스퍼블리싱 (34)</a>
+		</div>
+					<div class="pub_block">
+			<a href="./index.php?act=searchIList&publisher=Jpub&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">Jpub (29)</a>
+		</div>
+					<div class="pub_block">
+			<a href="./index.php?act=searchIList&publisher=%EB%B9%84%EC%A0%9C%EC%9D%B4%ED%8D%BC%EB%B8%94%EB%A6%AD&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">비제이퍼블릭 (24)</a>
+		</div>
+					<div class="pub_block">
+			<a href="./index.php?act=searchIList&publisher=%EC%9D%B8%EC%82%AC%EC%9D%B4%ED%8A%B8&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">인사이트 (23)</a>
+		</div>
+					<div class="pub_block">
+			<a href="./index.php?act=searchIList&publisher=BJpublic&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">BJpublic (22)</a>
+		</div>
+					<div class="pub_block">
+			<a href="./index.php?act=searchIList&publisher=%EC%83%9D%EB%8A%A5&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">생능 (18)</a>
+		</div>
+					<div class="pub_block">
+			<a href="./index.php?act=searchIList&publisher=%EC%95%A4%EC%8D%A8%EB%B6%81&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">앤써북 (17)</a>
+		</div>
+					<div class="pub_block">
+			<a href="./index.php?act=searchIList&publisher=%ED%94%84%EB%A6%AC%EB%A0%89&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">프리렉 (16)</a>
+		</div>
+					<div class="pub_block">
+			<a href="./index.php?act=searchIList&publisher=%EC%98%81%EC%A7%84%EB%8B%B7%EC%BB%B4&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">영진닷컴 (13)</a>
+		</div>
+					<div class="pub_block">
+			<a href="./index.php?act=searchIList&publisher=%EC%9A%B0%EB%A6%AC%ED%95%99%EA%B5%90&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">우리학교 (9)</a>
+		</div>
+					<div class="pub_block">
+			<a href="./index.php?act=searchIList&publisher=%EC%A0%9C%EC%9D%B4%ED%8E%8D&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">제이펍 (9)</a>
+		</div>
+					<div class="pub_block">
+			<a href="./index.php?act=searchIList&publisher=%ED%95%9C%EB%B9%9B%EC%95%84%EC%B9%B4%EB%8D%B0%EB%AF%B8&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">한빛아카데미 (9)</a>
+		</div>
+					<div class="pub_block">
+			<a href="./index.php?act=searchIList&publisher=%EC%A0%95%EB%B3%B4%EB%AC%B8%ED%99%94%EC%82%AC&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">정보문화사 (7)</a>
+		</div>
+					<div class="pub_block">
+			<a href="./index.php?act=searchIList&publisher=%EC%B1%85%EB%A7%8C&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">책만 (7)</a>
+		</div>
+					<div class="pub_block">
+			<a href="./index.php?act=searchIList&publisher=Youngjin.com&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">Youngjin.com (6)</a>
+		</div>
+					<div class="pub_block">
+			<a href="./index.php?act=searchIList&publisher=%EC%9D%B8%ED%94%BC%EB%8B%88%ED%8B%B0%EB%B6%81%EC%8A%A4&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">인피니티북스 (6)</a>
+		</div>
+					<div class="pub_block">
+			<a href="./index.php?act=searchIList&publisher=%ED%84%B0%EB%8B%9D%ED%8F%AC%EC%9D%B8%ED%8A%B8&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">터닝포인트 (6)</a>
+		</div>
+					<div class="pub_block">
+			<a href="./index.php?act=searchIList&publisher=Global&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">Global (5)</a>
+		</div>
+					<div class="pub_block">
+			<a href="./index.php?act=searchIList&publisher=%EA%B5%90%ED%95%99%EC%82%AC&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">교학사 (5)</a>
+		</div>
+					<div class="pub_block">
+			<a href="./index.php?act=searchIList&publisher=%EB%94%94%EC%A7%80%ED%84%B8%EB%B6%81%EC%8A%A4&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">디지털북스 (5)</a>
+		</div>
+					<div class="pub_block">
+			<a href="./index.php?act=searchIList&publisher=BM%EC%84%B1%EC%95%88%EB%8B%B9&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">BM성안당 (4)</a>
+		</div>
+					<div class="pub_block">
+			<a href="./index.php?act=searchIList&publisher=%EB%A3%A8%EB%B9%84%ED%8E%98%EC%9D%B4%ED%8D%BC&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">루비페이퍼 (4)</a>
+		</div>
+					<div class="pub_block">
+			<a href="./index.php?act=searchIList&publisher=%EB%B3%B5%EB%91%90&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">복두 (4)</a>
+		</div>
+					<div class="pub_block">
+			<a href="./index.php?act=searchIList&publisher=%EC%B2%AD%EC%96%B4%EB%9E%8C%EC%95%84%EC%9D%B4&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">청어람아이 (4)</a>
+		</div>
+					<div class="pub_block">
+			<a href="./index.php?act=searchIList&publisher=%ED%82%A8%EB%8D%94%EB%9E%9C%EB%93%9C&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">킨더랜드 (4)</a>
+		</div>
+					<div class="pub_block">
+			<a href="./index.php?act=searchIList&publisher=BJ&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">BJ (3)</a>
+		</div>
+						<a class="more_op" id="more_pub">더보기 <em></em></a>
+		</div>
+</div>
+
+<div class="widget ddc">
+	<h3>발행년도</h3>
+	<ul>
+		
+			<li><a href="./index.php?act=searchIList&pubYearS=2026&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">2026년 (8)</a></li>
+			<li><a href="./index.php?act=searchIList&pubYearS=2025&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">2025년 (34)</a></li>
+			<li><a href="./index.php?act=searchIList&pubYearS=2024&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">2024년 (39)</a></li>
+			<li><a href="./index.php?act=searchIList&pubYearS=2023&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">2023년 (64)</a></li>
+			<li><a href="./index.php?act=searchIList&pubYearS=2022&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">2022년 (58)</a></li>
+			<li><a href="./index.php?act=searchIList&pubYearS=2021&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">2021년 (90)</a></li>
+			<li><a href="./index.php?act=searchIList&pubYearS=2020&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">2020년 (52)</a></li>
+			<li><a href="./index.php?act=searchIList&pubYearS=2019&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">2019년 (95)</a></li>
+			<li><a href="./index.php?act=searchIList&pubYearS=2018&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">2018년 (117)</a></li>
+			<li><a href="./index.php?act=searchIList&pubYearS=2017&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">2017년 (91)</a></li>
+			<li><a href="./index.php?act=searchIList&pubYearS=2016&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">2016년 (38)</a></li>
+			<li><a href="./index.php?act=searchIList&pubYearS=2015&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">2015년 (29)</a></li>
+			<li><a href="./index.php?act=searchIList&pubYearS=2014&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">2014년 (17)</a></li>
+			<li><a href="./index.php?act=searchIList&pubYearS=2013&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">2013년 (13)</a></li>
+			<li><a href="./index.php?act=searchIList&pubYearS=2012&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">2012년 (7)</a></li>
+			<li><a href="./index.php?act=searchIList&pubYearS=2011&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">2011년 (6)</a></li>
+			<li><a href="./index.php?act=searchIList&pubYearS=2010&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">2010년 (4)</a></li>
+			<li><a href="./index.php?act=searchIList&pubYearS=2009&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">2009년 (2)</a></li>
+			<li><a href="./index.php?act=searchIList&pubYearS=2005&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">2005년 (1)</a></li>
+		</ul>
+</div>
+
+<div class="widget ddc">
+	<h3>KDC 카테고리</h3>
+	<ul>
+			
+					<li class="sel"><a href="./index.php?act=searchIList&kdcCode=0&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">000 총류 (752)</a></li>
+					<li><a href="./index.php?act=searchIList&kdcCode=1&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">100 철학 (1)</a></li>
+					<li><a href="./index.php?act=searchIList&kdcCode=2&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">200 종교 (0)</a></li>
+					<li><a href="./index.php?act=searchIList&kdcCode=3&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">300 사회과학 (5)</a></li>
+					<li><a href="./index.php?act=searchIList&kdcCode=4&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">400 자연과학 (3)</a></li>
+					<li><a href="./index.php?act=searchIList&kdcCode=5&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">500 기술과학 (3)</a></li>
+					<li><a href="./index.php?act=searchIList&kdcCode=6&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">600 예술 (1)</a></li>
+					<li><a href="./index.php?act=searchIList&kdcCode=7&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">700 언어 (0)</a></li>
+					<li><a href="./index.php?act=searchIList&kdcCode=8&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">800 문학 (0)</a></li>
+					<li><a href="./index.php?act=searchIList&kdcCode=9&serSec=limit&mod=wdDataSearch&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">900 역사 (0)</a></li>
+		</ul>
+</div>
+
+
+	</div>
+
+	<div id="sub">
+
+		<form method="post" name="dataRegistForm" action="./index.php" onsubmit="return wjDataChecked();">
+
+		<div id="searchBookList">
+			
+<input type='hidden' name='mod' value='wdDataSearch' />
+<input type='hidden' name='act' value='dataBasketRegist' />
+<input type='hidden' name='regAct' value='insert' />
+
+
+							
+<div class="divList" id="_searchListChk">
+
+	
+			<div  class="list">
+			<input title="파이썬 도서 선택" class="listCheck" type="checkbox" name="bookKey[]" value="286296133" />
+			<dl>
+				<dt>
+					<a href="./index.php?mod=wdDataSearch&act=searchResultDetail&dbType=dan&jongKey=286296131&bookKey=286296133&time=1786057569&offset=1&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">
+												<img class="img" src="https://bookthumb-phinf.pstatic.net/cover/001/518/00151877.jpg?type=m1&udate=20141122" alt="파이썬">					</a>
+										<em class="label label-bk"><img src="./wdModules/wdDataSearch/skins/default/./img/book/book_icon0.png" alt="총류"></em>
+										<em class="loadr"><img src="./wdModules/wdDataSearch/skins/default/./img/common/ajax-loader.gif" id="loading_" alt="로딩중입니다."></em>
+
+				</dt>
+				<dd>
+					<div class="ico ico-bk">
+						<strong>도서</strong>
+						<a href="./index.php?mod=wdDataSearch&act=searchResultDetail&dbType=dan&jongKey=286296131&bookKey=286296133&time=1786057569&offset=1&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">
+							<span>파이썬</span>						</a>
+					</div>
+					<ul>
+												<li>
+						<strong>저자</strong> 이강성 저 <em>|</em>
+												<strong>발행처</strong> 프리렉												</li>
+												<li>
+												<strong>발행년</strong> 2005 <em>|</em>
+																		<strong>청구기호</strong> 005.133-ㅇ655ㅍ												</li>
+						<li class="so">
+												<strong>소장기관</strong> <span class="fb blue">하안도서관</span>
+						
+						<em>|</em>
+						<strong>자료실</strong> <span class="fb yellow">[하안]종합자료실</span>
+
+						</li>
+					</ul>
+
+
+
+					<ol>
+
+											<li><strong class="using2">대출가능</strong></li>
+					
+													<li><strong class="nonone">도서 예약불가</strong></li>
+				
+			
+
+
+
+
+						<li>
+							<a href="#login" onclick="alert('로그인을 해주세요.'); return false;" >상호대차</a>
+						</li>
+			
+
+			
+						<li>
+				<a href="./index.php?mod=wdDataSearch&act=receBox&regNo=EM0000195938&manageCode=MB" class="btn"onclick="return confirm('무인대출예약 신청을 하시겠습니까?');">무인대출예약</a>
+			</li>
+			
+
+
+					</ol>
+					<div class="print">
+											<a href="./index.php?mod=wdDataSearch&act=callNoPrint&bookKey=286296133" onclick="var tar = window.open(this.href,'callNoPrint','width=280,height=350,resizable=1'); tar.focus(); return false;" title="청구기호 프린트 페이지 새창 열림">청구기호 출력</a>
+															</div>
+
+				</dd>
+			</dl>
+		</div>
+			<div  class="list">
+			<input title="파이썬 도서 선택" class="listCheck" type="checkbox" name="bookKey[]" value="1047325663" />
+			<dl>
+				<dt>
+					<a href="./index.php?mod=wdDataSearch&act=searchResultDetail&dbType=dan&jongKey=1047325661&bookKey=1047325663&time=1786057569&offset=2&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">
+												<img class="img" src="https://gmlib.gm.go.kr/book_img/9791188577255.jpg" alt="파이썬">					</a>
+										<em class="label label-bk"><img src="./wdModules/wdDataSearch/skins/default/./img/book/book_icon0.png" alt="총류"></em>
+										<em class="loadr"><img src="./wdModules/wdDataSearch/skins/default/./img/common/ajax-loader.gif" id="loading_" alt="로딩중입니다."></em>
+
+				</dt>
+				<dd>
+					<div class="ico ico-bk">
+						<strong>도서</strong>
+						<a href="./index.php?mod=wdDataSearch&act=searchResultDetail&dbType=dan&jongKey=1047325661&bookKey=1047325663&time=1786057569&offset=2&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">
+							<span>파이썬</span>						</a>
+					</div>
+					<ul>
+												<li>
+						<strong>저자</strong> 김유진 지음 <em>|</em>
+												<strong>발행처</strong> 다본												</li>
+												<li>
+												<strong>발행년</strong> 2019 <em>|</em>
+																		<strong>청구기호</strong> 005.133-ㄱ866ㅍ												</li>
+						<li class="so">
+												<strong>소장기관</strong> <span class="fb blue">하안도서관</span>
+						
+						<em>|</em>
+						<strong>자료실</strong> <span class="fb yellow">[하안]종합자료실</span>
+
+						</li>
+					</ul>
+
+
+
+					<ol>
+
+											<li><strong class="using2">대출가능</strong></li>
+					
+													<li><strong class="nonone">도서 예약불가</strong></li>
+				
+			
+
+
+
+
+						<li>
+							<a href="#login" onclick="alert('로그인을 해주세요.'); return false;" >상호대차</a>
+						</li>
+			
+
+			
+						<li>
+				<a href="./index.php?mod=wdDataSearch&act=receBox&regNo=EM0000288309&manageCode=MB" class="btn"onclick="return confirm('무인대출예약 신청을 하시겠습니까?');">무인대출예약</a>
+			</li>
+			
+
+
+					</ol>
+					<div class="print">
+											<a href="./index.php?mod=wdDataSearch&act=callNoPrint&bookKey=1047325663" onclick="var tar = window.open(this.href,'callNoPrint','width=280,height=350,resizable=1'); tar.focus(); return false;" title="청구기호 프린트 페이지 새창 열림">청구기호 출력</a>
+															</div>
+
+				</dd>
+			</dl>
+		</div>
+			<div  class="list">
+			<input title="파이썬 도서 선택" class="listCheck" type="checkbox" name="bookKey[]" value="1039432327" />
+			<dl>
+				<dt>
+					<a href="./index.php?mod=wdDataSearch&act=searchResultDetail&dbType=dan&jongKey=1039432324&bookKey=1039432327&time=1786057569&offset=3&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">
+												<img class="img" src="https://gmlib.gm.go.kr/book_img/9788920028892.jpg" alt="파이썬">					</a>
+										<em class="label label-bk"><img src="./wdModules/wdDataSearch/skins/default/./img/book/book_icon0.png" alt="총류"></em>
+										<em class="loadr"><img src="./wdModules/wdDataSearch/skins/default/./img/common/ajax-loader.gif" id="loading_" alt="로딩중입니다."></em>
+
+				</dt>
+				<dd>
+					<div class="ico ico-bk">
+						<strong>도서</strong>
+						<a href="./index.php?mod=wdDataSearch&act=searchResultDetail&dbType=dan&jongKey=1039432324&bookKey=1039432327&time=1786057569&offset=3&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">
+							<span>파이썬</span>						</a>
+					</div>
+					<ul>
+												<li>
+						<strong>저자</strong> Y. Daniel Liang 지음 ; 길준민 정재화 [공]옮김 <em>|</em>
+												<strong>발행처</strong> 에피스테메												</li>
+												<li>
+												<strong>발행년</strong> 2018 <em>|</em>
+																		<strong>청구기호</strong> 005.133-ㄹ944ㅍ												</li>
+						<li class="so">
+												<strong>소장기관</strong> <span class="fb blue">소하도서관</span>
+						
+						<em>|</em>
+						<strong>자료실</strong> <span class="fb yellow">[소하]종합자료실1</span>
+
+						</li>
+					</ul>
+
+
+
+					<ol>
+
+											<li><strong class="using2">대출가능</strong></li>
+					
+													<li><strong class="nonone">도서 예약불가</strong></li>
+				
+			
+
+
+
+
+						<li>
+							<a href="#login" onclick="alert('로그인을 해주세요.'); return false;" >상호대차</a>
+						</li>
+			
+
+			
+						<li>
+				<a href="./index.php?mod=wdDataSearch&act=receBox&regNo=KM0000056594&manageCode=MF" class="btn"onclick="return confirm('무인대출예약 신청을 하시겠습니까?');">무인대출예약</a>
+			</li>
+			
+
+
+					</ol>
+					<div class="print">
+											<a href="./index.php?mod=wdDataSearch&act=callNoPrint&bookKey=1039432327" onclick="var tar = window.open(this.href,'callNoPrint','width=280,height=350,resizable=1'); tar.focus(); return false;" title="청구기호 프린트 페이지 새창 열림">청구기호 출력</a>
+															</div>
+
+				</dd>
+			</dl>
+		</div>
+			<div  class="list">
+			<input title="파이썬 프로그래밍 도서 선택" class="listCheck" type="checkbox" name="bookKey[]" value="1176376182" />
+			<dl>
+				<dt>
+					<a href="./index.php?mod=wdDataSearch&act=searchResultDetail&dbType=dan&jongKey=1176376132&bookKey=1176376182&time=1786057569&offset=4&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">
+												<img class="img" src="https://gmlib.gm.go.kr/book_img/9791190732994.jpg" alt="파이썬 프로그래밍">					</a>
+										<em class="label label-bk"><img src="./wdModules/wdDataSearch/skins/default/./img/book/book_icon0.png" alt="총류"></em>
+										<em class="loadr"><img src="./wdModules/wdDataSearch/skins/default/./img/common/ajax-loader.gif" id="loading_" alt="로딩중입니다."></em>
+
+				</dt>
+				<dd>
+					<div class="ico ico-bk">
+						<strong>도서</strong>
+						<a href="./index.php?mod=wdDataSearch&act=searchResultDetail&dbType=dan&jongKey=1176376132&bookKey=1176376182&time=1786057569&offset=4&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">
+							<span>파이썬</span> 프로그래밍						</a>
+					</div>
+					<ul>
+												<li>
+						<strong>저자</strong> Dave Lee 지음 <em>|</em>
+												<strong>발행처</strong> 아티오												</li>
+												<li>
+												<strong>발행년</strong> 2023 <em>|</em>
+																		<strong>청구기호</strong> 일005.133-ㄹ874ㅇ2												</li>
+						<li class="so">
+												<strong>소장기관</strong> <span class="fb blue">충현도서관</span>
+						
+						<em>|</em>
+						<strong>자료실</strong> <span class="fb yellow">[충현]종합자료실</span>
+
+						</li>
+					</ul>
+
+
+
+					<ol>
+
+											<li><strong class="using2">대출가능</strong></li>
+					
+													<li><strong class="nonone">도서 예약불가</strong></li>
+				
+			
+
+
+
+
+						<li>
+							<a href="#login" onclick="alert('로그인을 해주세요.'); return false;" >상호대차</a>
+						</li>
+			
+
+			
+						<li>
+				<a href="./index.php?mod=wdDataSearch&act=receBox&regNo=SJ0000101118&manageCode=MD" class="btn"onclick="return confirm('무인대출예약 신청을 하시겠습니까?');">무인대출예약</a>
+			</li>
+			
+
+
+					</ol>
+					<div class="print">
+											<a href="./index.php?mod=wdDataSearch&act=callNoPrint&bookKey=1176376182" onclick="var tar = window.open(this.href,'callNoPrint','width=280,height=350,resizable=1'); tar.focus(); return false;" title="청구기호 프린트 페이지 새창 열림">청구기호 출력</a>
+															</div>
+
+				</dd>
+			</dl>
+		</div>
+			<div  class="list">
+			<input title="똑똑한 파이썬 도서 선택" class="listCheck" type="checkbox" name="bookKey[]" value="1229490577" />
+			<dl>
+				<dt>
+					<a href="./index.php?mod=wdDataSearch&act=searchResultDetail&dbType=dan&jongKey=1229490526&bookKey=1229490577&time=1786057569&offset=5&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">
+												<img class="img" src="https://gmlib.gm.go.kr/book_img/9791192038087.jpg" alt="똑똑한 파이썬">					</a>
+										<em class="label label-bk"><img src="./wdModules/wdDataSearch/skins/default/./img/book/book_icon0.png" alt="총류"></em>
+										<em class="loadr"><img src="./wdModules/wdDataSearch/skins/default/./img/common/ajax-loader.gif" id="loading_" alt="로딩중입니다."></em>
+
+				</dt>
+				<dd>
+					<div class="ico ico-bk">
+						<strong>도서</strong>
+						<a href="./index.php?mod=wdDataSearch&act=searchResultDetail&dbType=dan&jongKey=1229490526&bookKey=1229490577&time=1786057569&offset=5&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">
+							똑똑한 <span>파이썬</span>						</a>
+					</div>
+					<ul>
+												<li>
+						<strong>저자</strong> 황재호 ; 황예린 [공]지음 <em>|</em>
+												<strong>발행처</strong> 인포앤북												</li>
+												<li>
+												<strong>발행년</strong> 2025 <em>|</em>
+																		<strong>청구기호</strong> 005.133-ㅎ783ㄷ												</li>
+						<li class="so">
+												<strong>소장기관</strong> <span class="fb blue">광명도서관</span>
+						
+						<em>|</em>
+						<strong>자료실</strong> <span class="fb yellow">[광명]인문자연과학실 신간</span>
+
+						</li>
+					</ul>
+
+
+
+					<ol>
+
+											<li><strong class="using2">대출가능</strong></li>
+					
+													<li><strong class="nonone">도서 예약불가</strong></li>
+				
+			
+
+
+
+
+						<li>
+							<a href="#login" onclick="alert('로그인을 해주세요.'); return false;" >상호대차</a>
+						</li>
+			
+
+			
+						<li>
+				<a href="./index.php?mod=wdDataSearch&act=receBox&regNo=CM0000263592&manageCode=MA" class="btn"onclick="return confirm('무인대출예약 신청을 하시겠습니까?');">무인대출예약</a>
+			</li>
+			
+
+
+					</ol>
+					<div class="print">
+											<a href="./index.php?mod=wdDataSearch&act=callNoPrint&bookKey=1229490577" onclick="var tar = window.open(this.href,'callNoPrint','width=280,height=350,resizable=1'); tar.focus(); return false;" title="청구기호 프린트 페이지 새창 열림">청구기호 출력</a>
+															</div>
+
+				</dd>
+			</dl>
+		</div>
+			<div  class="list">
+			<input title="파이썬 프로그래밍 도서 선택" class="listCheck" type="checkbox" name="bookKey[]" value="1028695554" />
+			<dl>
+				<dt>
+					<a href="./index.php?mod=wdDataSearch&act=searchResultDetail&dbType=dan&jongKey=1028695552&bookKey=1028695554&time=1786057569&offset=6&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">
+												<img class="img" src="https://gmlib.gm.go.kr/book_img/9791156004189.jpg" alt="파이썬 프로그래밍">					</a>
+										<em class="label label-bk"><img src="./wdModules/wdDataSearch/skins/default/./img/book/book_icon0.png" alt="총류"></em>
+										<em class="loadr"><img src="./wdModules/wdDataSearch/skins/default/./img/common/ajax-loader.gif" id="loading_" alt="로딩중입니다."></em>
+
+				</dt>
+				<dd>
+					<div class="ico ico-bk">
+						<strong>도서</strong>
+						<a href="./index.php?mod=wdDataSearch&act=searchResultDetail&dbType=dan&jongKey=1028695552&bookKey=1028695554&time=1786057569&offset=6&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">
+							<span>파이썬</span> 프로그래밍						</a>
+					</div>
+					<ul>
+												<li>
+						<strong>저자</strong> John V. Guttag 저 ; 김영섭 옮김 <em>|</em>
+												<strong>발행처</strong> 홍릉과학												</li>
+												<li>
+												<strong>발행년</strong> 2016 <em>|</em>
+																		<strong>청구기호</strong> 005.133-ㄱ493ㅍ												</li>
+						<li class="so">
+												<strong>소장기관</strong> <span class="fb blue">철산도서관</span>
+						
+						<em>|</em>
+						<strong>자료실</strong> <span class="fb yellow">[철산]서고</span>
+
+						</li>
+					</ul>
+
+
+
+					<ol>
+
+											<li><strong class="using2">대출가능</strong></li>
+					
+													<li><strong class="nonone">도서 예약불가</strong></li>
+				
+			
+
+
+
+
+						<li>
+							<a href="#login" onclick="alert('로그인을 해주세요.'); return false;" >상호대차</a>
+						</li>
+			
+
+			
+						<li>
+				<a href="./index.php?mod=wdDataSearch&act=receBox&regNo=HM0000080488&manageCode=ME" class="btn"onclick="return confirm('무인대출예약 신청을 하시겠습니까?');">무인대출예약</a>
+			</li>
+			
+
+
+					</ol>
+					<div class="print">
+											<a href="./index.php?mod=wdDataSearch&act=callNoPrint&bookKey=1028695554" onclick="var tar = window.open(this.href,'callNoPrint','width=280,height=350,resizable=1'); tar.focus(); return false;" title="청구기호 프린트 페이지 새창 열림">청구기호 출력</a>
+															</div>
+
+				</dd>
+			</dl>
+		</div>
+			<div  class="list">
+			<input title="(두근두근)파이썬 도서 선택" class="listCheck" type="checkbox" name="bookKey[]" value="1095136827" />
+			<dl>
+				<dt>
+					<a href="./index.php?mod=wdDataSearch&act=searchResultDetail&dbType=dan&jongKey=1095136825&bookKey=1095136827&time=1786057569&offset=7&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">
+												<img class="img" src="https://gmlib.gm.go.kr/book_img/9788970506562.jpg" alt="(두근두근)파이썬">					</a>
+										<em class="label label-bk"><img src="./wdModules/wdDataSearch/skins/default/./img/book/book_icon0.png" alt="총류"></em>
+										<em class="loadr"><img src="./wdModules/wdDataSearch/skins/default/./img/common/ajax-loader.gif" id="loading_" alt="로딩중입니다."></em>
+
+				</dt>
+				<dd>
+					<div class="ico ico-bk">
+						<strong>도서</strong>
+						<a href="./index.php?mod=wdDataSearch&act=searchResultDetail&dbType=dan&jongKey=1095136825&bookKey=1095136827&time=1786057569&offset=7&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">
+							(두근두근)<span>파이썬</span>						</a>
+					</div>
+					<ul>
+												<li>
+						<strong>저자</strong> 천인국 지음 <em>|</em>
+												<strong>발행처</strong> 생능												</li>
+												<li>
+												<strong>발행년</strong> 2023 <em>|</em>
+																		<strong>청구기호</strong> 005.133-ㅊ252파2												</li>
+						<li class="so">
+												<strong>소장기관</strong> <span class="fb blue">철산도서관</span>
+						
+						<em>|</em>
+						<strong>자료실</strong> <span class="fb yellow">[철산]종합자료실1</span>
+
+						</li>
+					</ul>
+
+
+
+					<ol>
+
+											<li><strong class="using2">대출가능</strong></li>
+					
+													<li><strong class="nonone">도서 예약불가</strong></li>
+				
+			
+
+
+
+
+						<li>
+							<a href="#login" onclick="alert('로그인을 해주세요.'); return false;" >상호대차</a>
+						</li>
+			
+
+			
+						<li>
+				<a href="./index.php?mod=wdDataSearch&act=receBox&regNo=HM0000126829&manageCode=ME" class="btn"onclick="return confirm('무인대출예약 신청을 하시겠습니까?');">무인대출예약</a>
+			</li>
+			
+
+
+					</ol>
+					<div class="print">
+											<a href="./index.php?mod=wdDataSearch&act=callNoPrint&bookKey=1095136827" onclick="var tar = window.open(this.href,'callNoPrint','width=280,height=350,resizable=1'); tar.focus(); return false;" title="청구기호 프린트 페이지 새창 열림">청구기호 출력</a>
+															</div>
+
+				</dd>
+			</dl>
+		</div>
+			<div  class="list">
+			<input title="누구나 파이썬 도서 선택" class="listCheck" type="checkbox" name="bookKey[]" value="1074196161" />
+			<dl>
+				<dt>
+					<a href="./index.php?mod=wdDataSearch&act=searchResultDetail&dbType=dan&jongKey=1074196159&bookKey=1074196161&time=1786057569&offset=8&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">
+												<img class="img" src="https://gmlib.gm.go.kr/book_img/9791188829231.jpg" alt="누구나 파이썬">					</a>
+										<em class="label label-bk"><img src="./wdModules/wdDataSearch/skins/default/./img/book/book_icon0.png" alt="총류"></em>
+										<em class="loadr"><img src="./wdModules/wdDataSearch/skins/default/./img/common/ajax-loader.gif" id="loading_" alt="로딩중입니다."></em>
+
+				</dt>
+				<dd>
+					<div class="ico ico-bk">
+						<strong>도서</strong>
+						<a href="./index.php?mod=wdDataSearch&act=searchResultDetail&dbType=dan&jongKey=1074196159&bookKey=1074196161&time=1786057569&offset=8&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">
+							누구나 <span>파이썬</span>						</a>
+					</div>
+					<ul>
+												<li>
+						<strong>저자</strong> 전익진 지음 <em>|</em>
+												<strong>발행처</strong> 디스커버리미디어												</li>
+												<li>
+												<strong>발행년</strong> 2022 <em>|</em>
+																		<strong>청구기호</strong> 005.133-ㅈ312ㄴ												</li>
+						<li class="so">
+												<strong>소장기관</strong> <span class="fb blue">철산도서관</span>
+						
+						<em>|</em>
+						<strong>자료실</strong> <span class="fb yellow">[철산]종합자료실1</span>
+
+						</li>
+					</ul>
+
+
+
+					<ol>
+
+											<li><strong class="using2">대출가능</strong></li>
+					
+													<li><strong class="nonone">도서 예약불가</strong></li>
+				
+			
+
+
+
+
+						<li>
+							<a href="#login" onclick="alert('로그인을 해주세요.'); return false;" >상호대차</a>
+						</li>
+			
+
+			
+						<li>
+				<a href="./index.php?mod=wdDataSearch&act=receBox&regNo=HM0000120456&manageCode=ME" class="btn"onclick="return confirm('무인대출예약 신청을 하시겠습니까?');">무인대출예약</a>
+			</li>
+			
+
+
+					</ol>
+					<div class="print">
+											<a href="./index.php?mod=wdDataSearch&act=callNoPrint&bookKey=1074196161" onclick="var tar = window.open(this.href,'callNoPrint','width=280,height=350,resizable=1'); tar.focus(); return false;" title="청구기호 프린트 페이지 새창 열림">청구기호 출력</a>
+															</div>
+
+				</dd>
+			</dl>
+		</div>
+			<div  class="list">
+			<input title="(두근두근)파이썬 도서 선택" class="listCheck" type="checkbox" name="bookKey[]" value="1095491659" />
+			<dl>
+				<dt>
+					<a href="./index.php?mod=wdDataSearch&act=searchResultDetail&dbType=dan&jongKey=1095491657&bookKey=1095491659&time=1786057569&offset=9&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">
+												<img class="img" src="https://gmlib.gm.go.kr/book_img/9788970506562.jpg" alt="(두근두근)파이썬">					</a>
+										<em class="label label-bk"><img src="./wdModules/wdDataSearch/skins/default/./img/book/book_icon0.png" alt="총류"></em>
+										<em class="loadr"><img src="./wdModules/wdDataSearch/skins/default/./img/common/ajax-loader.gif" id="loading_" alt="로딩중입니다."></em>
+
+				</dt>
+				<dd>
+					<div class="ico ico-bk">
+						<strong>도서</strong>
+						<a href="./index.php?mod=wdDataSearch&act=searchResultDetail&dbType=dan&jongKey=1095491657&bookKey=1095491659&time=1786057569&offset=9&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">
+							(두근두근)<span>파이썬</span>						</a>
+					</div>
+					<ul>
+												<li>
+						<strong>저자</strong> 천인국 지음 <em>|</em>
+												<strong>발행처</strong> 생능												</li>
+												<li>
+												<strong>발행년</strong> 2023 <em>|</em>
+																		<strong>청구기호</strong> 005.133-ㅊ252파2=2												</li>
+						<li class="so">
+												<strong>소장기관</strong> <span class="fb blue">철산도서관</span>
+						
+						<em>|</em>
+						<strong>자료실</strong> <span class="fb yellow">[철산]종합자료실1</span>
+
+						</li>
+					</ul>
+
+
+
+					<ol>
+
+											<li><strong class="using2">대출가능</strong></li>
+					
+													<li><strong class="nonone">도서 예약불가</strong></li>
+				
+			
+
+
+
+
+						<li>
+							<a href="#login" onclick="alert('로그인을 해주세요.'); return false;" >상호대차</a>
+						</li>
+			
+
+			
+						<li>
+				<a href="./index.php?mod=wdDataSearch&act=receBox&regNo=HM0000128239&manageCode=ME" class="btn"onclick="return confirm('무인대출예약 신청을 하시겠습니까?');">무인대출예약</a>
+			</li>
+			
+
+
+					</ol>
+					<div class="print">
+											<a href="./index.php?mod=wdDataSearch&act=callNoPrint&bookKey=1095491659" onclick="var tar = window.open(this.href,'callNoPrint','width=280,height=350,resizable=1'); tar.focus(); return false;" title="청구기호 프린트 페이지 새창 열림">청구기호 출력</a>
+															</div>
+
+				</dd>
+			</dl>
+		</div>
+			<div  class="list">
+			<input title="파이썬 챌린지 도서 선택" class="listCheck" type="checkbox" name="bookKey[]" value="1070536791" />
+			<dl>
+				<dt>
+					<a href="./index.php?mod=wdDataSearch&act=searchResultDetail&dbType=dan&jongKey=1070536789&bookKey=1070536791&time=1786057569&offset=10&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">
+												<img class="img" src="https://gmlib.gm.go.kr/book_img/9791191600018.jpg" alt="파이썬 챌린지">					</a>
+										<em class="label label-bk"><img src="./wdModules/wdDataSearch/skins/default/./img/book/book_icon0.png" alt="총류"></em>
+										<em class="loadr"><img src="./wdModules/wdDataSearch/skins/default/./img/common/ajax-loader.gif" id="loading_" alt="로딩중입니다."></em>
+
+				</dt>
+				<dd>
+					<div class="ico ico-bk">
+						<strong>도서</strong>
+						<a href="./index.php?mod=wdDataSearch&act=searchResultDetail&dbType=dan&jongKey=1070536789&bookKey=1070536791&time=1786057569&offset=10&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC">
+							<span>파이썬</span> 챌린지						</a>
+					</div>
+					<ul>
+												<li>
+						<strong>저자</strong> 니콜라 레이시 지음 ; 황반석 옮김 <em>|</em>
+												<strong>발행처</strong> Jpub												</li>
+												<li>
+												<strong>발행년</strong> 2021 <em>|</em>
+																		<strong>청구기호</strong> 005.133-ㄹ432ㅍ												</li>
+						<li class="so">
+												<strong>소장기관</strong> <span class="fb blue">철산도서관</span>
+						
+						<em>|</em>
+						<strong>자료실</strong> <span class="fb yellow">[철산]종합자료실1</span>
+
+						</li>
+					</ul>
+
+
+
+					<ol>
+
+											<li><strong class="using2">대출가능</strong></li>
+					
+													<li><strong class="nonone">도서 예약불가</strong></li>
+				
+			
+
+
+
+
+						<li>
+							<a href="#login" onclick="alert('로그인을 해주세요.'); return false;" >상호대차</a>
+						</li>
+			
+
+			
+						<li>
+				<a href="./index.php?mod=wdDataSearch&act=receBox&regNo=HM0000117871&manageCode=ME" class="btn"onclick="return confirm('무인대출예약 신청을 하시겠습니까?');">무인대출예약</a>
+			</li>
+			
+
+
+					</ol>
+					<div class="print">
+											<a href="./index.php?mod=wdDataSearch&act=callNoPrint&bookKey=1070536791" onclick="var tar = window.open(this.href,'callNoPrint','width=280,height=350,resizable=1'); tar.focus(); return false;" title="청구기호 프린트 페이지 새창 열림">청구기호 출력</a>
+															</div>
+
+				</dd>
+			</dl>
+		</div>
+	</div>						<div class="btngroup">
+				<div class="button">
+															<a href="#login" onClick="alert('로그인을 해주세요.'); return false;" class="btn-pack">관심도서 담기</a>
+						<a href="#login" onClick="alert('로그인을 해주세요.'); return false;" class="btn-list">관심도서 목록</a>
+									
+					<a href="#xls" onclick="wjXlsCheck(); return false;" class="btn-excel">선택엑셀 다운로드</a>
+				</div>
+				<div class="enbloc">
+					<a href="#allChk" onClick="wjAllChecked(1);" class="del">전체선택</a>
+					<a href="#cancelChk" onClick="wjAllChecked(2);" class="del">선택취소</a>
+					<!--
+					<a href="#" onclick="alert('기능적용중입니다.'); return false;" class="exel">선택 엑셀 다운로드</a>
+					<a href="#" onclick="alert('기능적용중입니다.'); return false;" class="total">전체 엑셀 다운로드</a>
+					-->
+				</div>
+			</div>
+		</div>
+
+		</form>
+
+		<div id="paging">
+			<!--div class="total"><strong>1</strong>페이지 / 총 <strong>77</strong>페이지</div-->
+			<div class="paging">
+
+
+ 
+ 
+<strong>1</strong> 
+ 
+<a href="./index.php?page=2&mod=wdDataSearch&act=searchIList&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC" class="num">2</a> 
+ 
+<a href="./index.php?page=3&mod=wdDataSearch&act=searchIList&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC" class="num">3</a> 
+ 
+<a href="./index.php?page=4&mod=wdDataSearch&act=searchIList&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC" class="num">4</a> 
+ 
+<a href="./index.php?page=5&mod=wdDataSearch&act=searchIList&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC" class="num">5</a> 
+
+ 
+<span class="next"><a href="./index.php?page=6&mod=wdDataSearch&act=searchIList&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC" class="" alt="6 ~ 10 PAGE 이동">다음</a></span>
+<span class="nnext"><a href="./index.php?page=76&mod=wdDataSearch&act=searchIList&item=total&word=%ED%8C%8C%EC%9D%B4%EC%8D%AC" class="" alt="76 ~ 77 PAGE 이동">마지막</a> </span>
+</div>
+		</div>
+	</div>
+
+	<div id="aside">
+		<div class="widget ndc">
+	<h3>내가 찾은 검색어</h3>
+	<ul>
+		</ul>
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+	$(function() {
+		$(".tabs li:first-child a").addClass("sel");
+		$(".lists:not("+$(".tabs li a.sel").attr("href")+")").hide();
+		$(".tabs li a").click(function(){
+			$(".tabs li a").removeClass("sel");
+			$(this).addClass("sel");
+			$(".lists").hide();
+			$($(this).attr("href")).show();
+			return false;
+		});
+	});
+//]]>
+</script>
+
+
+<div class="widget bdc">
+	<h3>인기검색어</h3>
+	<ol class="tabs">
+		<li><a href="#d1">일간</a></li>
+		<li><a href="#d2">주간</a></li>
+		<li><a href="#d3">월간</a></li>
+	</ol>
+
+	<ul class="lists" id="d1">
+							<li><a href="#nocont"><em>1</em> _&nbsp;</a></li>
+									<li><a href="#nocont"><em>2</em> _&nbsp;</a></li>
+									<li><a href="#nocont"><em>3</em> _&nbsp;</a></li>
+									<li><a href="#nocont"><em>4</em> _&nbsp;</a></li>
+									<li><a href="#nocont"><em>5</em> _&nbsp;</a></li>
+									<li><a href="#nocont"><em>6</em> _&nbsp;</a></li>
+									<li><a href="#nocont"><em>7</em> _&nbsp;</a></li>
+									<li><a href="#nocont"><em>8</em> _&nbsp;</a></li>
+									<li><a href="#nocont"><em>9</em> _&nbsp;</a></li>
+									<li><a href="#nocont"><em>10</em> _&nbsp;</a></li>
+				</ul>
+	<ul class="lists" id="d2">
+							<li><a href="#nocont"><em>1</em> _&nbsp;</a></li>
+									<li><a href="#nocont"><em>2</em> _&nbsp;</a></li>
+									<li><a href="#nocont"><em>3</em> _&nbsp;</a></li>
+									<li><a href="#nocont"><em>4</em> _&nbsp;</a></li>
+									<li><a href="#nocont"><em>5</em> _&nbsp;</a></li>
+									<li><a href="#nocont"><em>6</em> _&nbsp;</a></li>
+									<li><a href="#nocont"><em>7</em> _&nbsp;</a></li>
+									<li><a href="#nocont"><em>8</em> _&nbsp;</a></li>
+									<li><a href="#nocont"><em>9</em> _&nbsp;</a></li>
+									<li><a href="#nocont"><em>10</em> _&nbsp;</a></li>
+				</ul>
+	<ul class="lists" id="d3">
+							<li><a href="#nocont"><em>1</em> _&nbsp;</a></li>
+									<li><a href="#nocont"><em>2</em> _&nbsp;</a></li>
+									<li><a href="#nocont"><em>3</em> _&nbsp;</a></li>
+									<li><a href="#nocont"><em>4</em> _&nbsp;</a></li>
+									<li><a href="#nocont"><em>5</em> _&nbsp;</a></li>
+									<li><a href="#nocont"><em>6</em> _&nbsp;</a></li>
+									<li><a href="#nocont"><em>7</em> _&nbsp;</a></li>
+									<li><a href="#nocont"><em>8</em> _&nbsp;</a></li>
+									<li><a href="#nocont"><em>9</em> _&nbsp;</a></li>
+									<li><a href="#nocont"><em>10</em> _&nbsp;</a></li>
+				</ul>
+</div>
+
+	</div>
+
+</div>
+<script type="text/javascript">
+//<![CDATA[
+
+	var _search_type = "keyword_log";
+	var _rec_key = "";				/* 회원 */
+	var _type = "";	/* 타입 */
+	var _code = "";	/* */
+	var _page = "1";	/* 페이지 */
+	var _lib_code = "";	/* manage_code ( 기본 MZ ) */
+	var _keyword = "";	/* 검색어 */
+	var _totalRecord = "765";		/* 총권수 */
+
+//]]>
+</script>	</div>
+
+</div>
+<div id="dkitfoot">
+	<div class="foot">
+		<h2></h2>
+	</div>
+</div>
+	<!--wdGetHtmlFooter()-->
+<div id="timeCheck1"></div>
+
+<script type="text/javascript">
+var nHeight = 0;
+var wrapper = '';
+var iframe  = '';
+function wjFrameResize(){
+	iframe.src  = "/iframeAutoResize.htm?height="+nHeight;
+	setTimeout(function(){
+		var height  = Math.max( document.body.offsetHeight, document.body.scrollHeight );
+		iframe.src  = "/iframeAutoResize.htm?height="+height;
+	},1000);
+}
+
+$(function(){
+
+	wrapper = document.getElementById( 'wrapper' );
+	iframe  = document.getElementById( 'innerIframe' );
+	var height  = Math.max( document.body.offsetHeight, document.body.scrollHeight ) + 500;
+	nHeight = height;
+
+	iframe.src  = "/iframeAutoResize.htm?height="+($(parent.document).find('#searchFrame').contents().find('#container').height()+400);
+	$(parent.document).scrollTop(300);
+
+	//console.log($('#innerIframe').find('#container').height());
+	//console.log($('body').height(), height);
+	//wjFrameResize();
+
+});
+
+</script>
+<script type="text/javascript">
+//<![CDATA[
+
+var nHeight = 0;
+var wrapper = '';
+var iframe  = '';
+
+(function($) {
+
+  $.fn.basictable = function(options) {
+
+    var setup = function(table, data) {
+      var headings = [];
+
+      if (data.tableWrap) {
+        table.wrap('<div class="bt-wrapper"></div>');
+      }
+
+      var format = '';
+
+      if (table.find('thead tr th').length) {
+        format = 'thead th';
+      }
+      else if (table.find('tbody tr th').length) {
+        format = 'tbody tr th';
+      }
+      else if (table.find('th').length) {
+        format = 'tr:first th';
+      }
+      else {
+        format = 'tr:first td';
+      }
+
+      $.each(table.find(format), function() {
+        var $heading = $(this);
+        var colspan = parseInt($heading.attr('colspan'), 10) || 1;
+        var row = $heading.closest('tr').index();
+
+        if (!headings[row]) {
+          headings[row] = [];
+        }
+
+        for (var i = 0; i < colspan; i++) {
+          headings[row].push($heading);
+        }
+      });
+
+      // Table Body
+      $.each(table.find('tbody tr'), function() {
+        setupRow($(this), headings, data);
+      });
+
+      // Table Footer
+      $.each(table.find('tfoot tr'), function() {
+        setupRow($(this), headings, data);
+      });
+    };
+
+    var setupRow = function($row, headings, data) {
+      $row.children().each(function() {
+        var $cell = $(this);
+
+        if (($cell.html() === '' || $cell.html() === '&nbsp;') && (!data.showEmptyCells)) {
+          $cell.addClass('bt-hide');
+        }
+        else {
+          var cellIndex = $cell.index();
+          var headingText = '';
+
+          for (var j = 0; j < headings.length; j++) {
+            if (j != 0) {
+              headingText += ': ';
+            }
+
+            var $heading = headings[j][cellIndex];
+            headingText += $heading.text();
+          }
+
+          $cell.attr('data-th', headingText);
+
+          if (data.contentWrap && !$cell.children().hasClass('bt-content')) {
+            $cell.wrapInner('<span class="bt-content" />');
+          }
+        }
+      });
+    };
+
+    var unwrap = function(table) {
+      $.each(table.find('td'), function() {
+        var $cell = $(this);
+        var content = $cell.children('.bt-content').html();
+        $cell.html(content);
+      });
+    };
+
+    var check = function(table, data) {
+      // Only change when table is larger than parent if force
+      // responsive is turned off.
+      if (!data.forceResponsive) {
+        if (table.removeClass('bt').outerWidth() > table.parent().width()) {
+          start(table, data);
+        }
+        else {
+          end(table, data);
+        }
+      }
+      else {
+        if ($(window).width() <= data.breakpoint) {
+          start(table, data);
+        }
+        else {
+          end(table, data);
+        }
+      }
+    };
+
+    var start = function(table, data) {
+      table.addClass('bt');
+
+      if (data.tableWrap) {
+        table.parent('.bt-wrapper').addClass('active');
+      }
+    };
+
+    var end = function(table, data) {
+      table.removeClass('bt');
+
+      if (data.tableWrap) {
+        table.parent('.bt-wrapper').removeClass('active');
+      }
+    };
+
+    var destroy = function(table, data) {
+      table.find('td').removeAttr('data-th');
+
+      if (data.tableWrap) {
+        table.unwrap();
+      }
+
+      if (data.contentWrap) {
+        unwrap(table);
+      }
+
+      table.removeData('basictable');
+    };
+
+    var resize = function(table) {
+      if (table.data('basictable')) {
+        check(table, table.data('basictable'));
+      }
+    };
+
+    // Get table.
+    this.each(function() {
+      var table = $(this);
+
+      // If table has already executed.
+      if (table.length === 0 || table.data('basictable')) {
+        if (table.data('basictable')) {
+          // Destroy basic table.
+          if (options == 'destroy') {
+            destroy(table, table.data('basictable'));
+          }
+          // Start responsive mode.
+          else if (options === 'start') {
+            start(table, table.data('basictable'));
+          }
+          else if (options === 'stop') {
+            end(table, table.data('basictable'));
+          }
+          else {
+            check(table, table.data('basictable'));
+          }
+        }
+        return false;
+      }
+
+      // Extend Settings.
+      var settings = $.extend({}, $.fn.basictable.defaults, options);
+
+      var vars = {
+        breakpoint: settings.breakpoint,
+        contentWrap: settings.contentWrap,
+        forceResponsive: settings.forceResponsive,
+        noResize: settings.noResize,
+        tableWrap: settings.tableWrap,
+        showEmptyCells: settings.showEmptyCells
+      };
+
+      // Initiate
+      table.data('basictable', vars);
+
+      setup(table, table.data('basictable'));
+
+      if (!vars.noResize) {
+        check(table, table.data('basictable'));
+
+        $(window).bind('resize.basictable', function() {
+          resize(table);
+        });
+      }
+    });
+  };
+  $.fn.basictable.defaults = {
+    breakpoint: 568,
+    contentWrap: true,
+    forceResponsive: true,
+    noResize: false,
+    tableWrap: false,
+    showEmptyCells: false
+  };
+})(jQuery);
+
+$(function() {
+	//$('html').removeClass('no-js');
+	$('.responsive').basictable({
+	noResize: true
+	});
+});
+</script>
+<iframe id="innerIframe" width="0" height="0" style="position:absolute;top:0px;left:0px; visibility:hidden;display:none;" title="iframe리사이즈"></iframe>
+</body>
+</html>

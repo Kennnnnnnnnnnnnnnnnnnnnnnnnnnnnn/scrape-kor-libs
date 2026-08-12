@@ -1,0 +1,2415 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="description" content="이천시립통합도서관">
+	<meta name="keyword" content="이천시립통합도서관, 이천시 도서관, 이천시 전자도서관, 이천시립 도서관, 이천시립도서관, 이천시도서관">
+	<meta name="copyright" content="@copy; 2019 ICHEON CITY LIBRARY. All Rights Reserved.">
+	<meta content="initial-scale=1, width=device-width" name="viewport">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<meta name="format-detection" content="telephone=no" /><!-- 아이폰 전화번호 스타일 초기화 -->
+	<title>이천시 통합 도서관</title>
+	<link rel="stylesheet" type="text/css" href="/style/ko/standard/common.css">
+	<link rel="stylesheet" href="/style/ko/theme/pc/main.css">
+	<link rel="stylesheet" href="/style/ko/theme/tablet/main.css" media="screen and (min-width:768px) and (max-width:1024px)">
+	<link rel="stylesheet" href="/style/ko/theme/mobile/main.css" media="screen and (max-width:767px)">
+	<link rel="apple-touch-icon" href="/image/ko/favicon.png">
+	<link rel="shortcut icon" href="/image/ko/favicon.ico">
+	<script src="/script/jquery-1.8.3.min.js"></script>
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-150822627-1"></script>
+	<!--[if lt IE 9]>
+	<script src="/script/css3-mediaqueries.js"></script>
+	<script src="/script/respond.src.js"></script>
+	<![endif]-->
+	<script>
+		var imgPath = '/image/ko/';
+		
+		var isLogin = 'false';
+		
+		 window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+		
+		  gtag('config', 'UA-150822627-1');
+		
+	</script>
+	<script src="/script/main.js"></script>
+	<script src="/script/mainFunction.js"></script>
+	<script src="/jsf/common/common.js"></script>
+	<script src="/script/jquery.placeholder.min.js"></script>
+	<script src="/script/jquery.dotdotdot.js"></script>
+	<script src="/script/jquery-ui.js"></script>
+	<script src="/script/jquery.easing.1.3.js"></script>
+	<script src="/jsf/common/cookie.js"></script>
+	<script src="/jsf/common/firefoxKeyEvent.js"></script>
+</head>
+<body>
+	<div id="divAccessibility">
+		<ul>
+			<li><a href="#divTopMenu">메뉴 바로가기</a></li>
+			<li><a href="#divContents">본문 바로가기(skip to content)</a></li>
+			<li><a href="#divSearch">검색 바로가기</a></li>
+			<li><a href="#divFooter">도서관정보 바로가기</a></li>
+		</ul>
+	</div>
+	
+	
+	
+	<div id="divWrapper">
+			<!-- divHeader -->
+			
+<script >
+<!--
+function fn_searchForm_submit(){
+	var si = $('#headerSearchForm select[name="si"] option:selected').val();
+	if(si == 'edu'){
+		location.href = "/education/list?si=title&sw="+$('#headerSearchForm input[name="q"]').val();
+		return false;
+	}else{
+		return true;
+	}
+}
+//-->
+</script>
+<div id="divHeader">
+	<!-- header1 -->
+	<div class="header1">
+		<div>
+			<h1><a href="/" title="">이천시립통합도서관</a></h1>
+			<!-- Global Menu -->
+			<div id="divGlobalMenu">
+				<ul class="gnbList1">
+					<li><a href="/" title="홈">홈</a></li>
+					<li><a href="/relation/ebook" title="전자책" target="_blank">전자책</a></li>
+					<li><a href="http://small.icheonlib.go.kr/sso/login" title="작은도서관" target="_blank">작은도서관</a></li>
+				</ul>
+				<ul class="gnbList2">
+					<li>
+					
+						
+						
+							<a href="/login" title="로그인">로그인</a>
+					
+					</li>
+					
+					<li><a href="/iplls/appGuide" title="회원가입">회원가입</a></li>
+					
+					<li class="sitemap"><a href="/sitemap">사이트맵</a></li>
+					<li><a href="/nonRelation/guideEng" title="ENG" target="_blank">ENG</a></li>
+				</ul>
+			</div>
+			<!-- //Global Menu -->
+			<!-- divSearch -->
+			<a href="#" class="mobileSearchBtn"><img src="/image/ko/local/search.png" alt="검색 열고 닫기"></a>
+			<div id="divSearch">
+				<div>
+					<h2 class="skip">검색</h2>
+					<div class="searchForm">
+						<form  action="/search/tot/result" onsubmit="return fn_searchForm_submit();" id="headerSearchForm">
+						<input type="hidden" name="si" value="TOTAL">
+						<input type="hidden" name="st" value="KWRD">
+							<fieldset>
+								<legend>검색</legend>
+								<span class="selectBox">
+									<label for="selectBox">도서명</label>
+									<select id="selectBox" name="si">
+										<option value="1">도서명</option>
+										<option value="2">저자</option>
+										<option value="3">출판사</option>
+										<option value="edu">문화행사</option>
+									</select>
+								</span>
+								<span class="inputWrap">
+									<input type="text" class="searchInput" title="Search" name="q" placeholder="검색어를 입력하세요.">
+									<input type="image" class="searchBtn" src="/image/ko/local/main/searchBtn.png" alt="Search" title="Search">
+								</span>
+							</fieldset>
+						</form>
+					</div>
+				</div>
+			</div>
+			<!-- // divSearch -->
+		</div>
+	</div>
+	<!-- //header1 -->
+	<!-- header2 -->
+	<div class="blackBg2"></div>
+	<div class="header2">
+		<!-- Top Menu -->
+		<div id="divTopMenu">
+			<h2 class="skip">탑메뉴</h2>
+			<div class="menuWrap">
+				<div class="tablet">
+					<div class="menuLogo">
+						<img src="/image/ko/local/logo.png" alt="이천시립통합도서관">
+					</div>
+					<div class="gnbList2">
+			        	<ul>
+			        		<li>
+							
+								
+								
+									<a href="/login" title="로그인">로그인</a>
+							
+							</li>
+							
+							<li><a href="/privacy/agree" title="회원가입">회원가입</a></li>
+							
+							<li><a href="/nonRelation/guideEng" title="ENG" target="_blank">ENG</a></li>
+			           </ul>
+					</div>                        
+				</div>
+				<div>
+					 <ul>
+					 
+					    
+					 <li class="divTopMenu1">
+					 	<a href="/search/tot" title="자료검색"><span>자료검색</span></a>
+					 	
+					 	
+					 	<div>
+					 		<p><a href="#" title="자료검색">자료검색</a></p>
+							<ul>
+								     				
+	     						
+	     						
+	     						<li><a href="/search/tot"  title="통합검색" >통합검색</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/search/maz"  title="비도서자료" >비도서자료</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/newarrival"  title="신착자료검색" >신착자료검색</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/newbook/list"  title="추천자료" >추천자료</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/statistics/loanBestList"  title="인기대출도서" >인기대출도서</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/searchA/icz"  title="스마트도서관" >스마트도서관</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/bbs/list/19"  title="도서관소식지" >도서관소식지</a></li>	
+	     						
+		     				
+							</ul>  
+						</div>
+					 	
+					 </li>
+					 
+					 
+					    
+					 <li class="divTopMenu2">
+					 	<a href="/local/html/bookstart" title="도서관서비스"><span>도서관서비스</span></a>
+					 	
+					 	
+					 	<div>
+					 		<p><a href="#" title="도서관서비스">도서관서비스</a></p>
+							<ul>
+								     				
+	     						
+	     						
+	     						<li><a href="/local/html/loan"  title="도서대출/반납/예약" >도서대출/반납/예약</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/local/html/subebook2"  title="전자책(E-BOOK)" >전자책(E-BOOK)</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/local/html/bookdure"  title="책두레서비스" >책두레서비스</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/local/html/bookshare"  title="책배달(택배) 서비스" >책배달(택배) 서비스</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/local/html/iplls"  title="책이음서비스" >책이음서비스</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/local/html/seat"  title="열람실 좌석현황" >열람실 좌석현황</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/local/html/cabinet_iclib"  title="사물함이용신청" >사물함이용신청</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/local/html/studyroom1"  title="독서토론실예약" >독서토론실예약</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/local/html/bookstart"  title="북스타트" >북스타트</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/local/html/1000book"  title="세상을 바꿀 천 권의 책" >세상을 바꿀 천 권의 책</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/local/html/libtour"  title="도서관 견학" >도서관 견학</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/local/html/smartlibrary"  title="스마트도서관" >스마트도서관</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/local/html/faqlib"  title="사서에게물어보세요" >사서에게물어보세요</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/local/html/dbpia"  title="전자저널 서비스" >전자저널 서비스</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/local/html/audiobook"  title="오디오북" >오디오북</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/local/html/siyoillib"  title="시요일" >시요일</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/local/html/100book"  title="고전백서" >고전백서</a></li>	
+	     						
+		     				
+							</ul>  
+						</div>
+					 	
+					 </li>
+					 
+					 
+					    
+					 <li class="divTopMenu3">
+					 	<a href="/libsch/mixMonthlyCalendar/1" title="문화행사"><span>문화행사</span></a>
+					 	
+					 	
+					 	<div>
+					 		<p><a href="#" title="문화행사">문화행사</a></p>
+							<ul>
+								     				
+	     						
+	     						
+	     						<li><a href="/libsch/mixMonthlyCalendar/1"  title="도서관 일정" >도서관 일정</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/education/list"  title="문화행사" >문화행사</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/bbs/list/22"  title="2025 이천이책" >2025 이천이책</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/bbs/list/23"  title="읽는 사람 공모전" >읽는 사람 공모전</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/bbs/list/6"  title="동아리 마당" >동아리 마당</a></li>	
+	     						
+		     				
+							</ul>  
+						</div>
+					 	
+					 </li>
+					 
+					 
+					    
+					 <li class="divTopMenu4">
+					 	<a href="/bbs/list/1" title="참여마당"><span>참여마당</span></a>
+					 	
+					 	
+					 	<div>
+					 		<p><a href="#" title="참여마당">참여마당</a></p>
+							<ul>
+								     				
+	     						
+	     						
+	     						<li><a href="/bbs/list/1"  title="공지사항" >공지사항</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/bbs/list/14"  title="묻고답하기" >묻고답하기</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/bbs/list/13"  title="프로그램 참여후기" >프로그램 참여후기</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="https://icheon.go.kr/portal/selectBbsNttList.do?bbsNo=8&key=1524"  title="칭찬합시다" target='_blank'>칭찬합시다</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/bbs/faq/2"  title="자주하는질문(FAQ)" >자주하는질문(FAQ)</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/local/html/donate"  title="도서 기증" >도서 기증</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/bbs/list/5"  title="추천 도서 게시판" >추천 도서 게시판</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/bbs/list/3"  title="포토갤러리" >포토갤러리</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/local/html/JobOpenings"  title="채용공고" >채용공고</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/bbs/list/21"  title="강좌제안서" >강좌제안서</a></li>	
+	     						
+		     				
+							</ul>  
+						</div>
+					 	
+					 </li>
+					 
+					 
+					    
+					 <li class="divTopMenu5">
+					 	<a href="/mynotice/list" title="나만의도서관"><span>나만의도서관</span></a>
+					 	
+					 	
+					 	<div>
+					 		<p><a href="#" title="나만의도서관">나만의도서관</a></p>
+							<ul>
+								     				
+	     						
+	     						
+	     						<li><a href="/mynotice/list"  title="개인공지" >개인공지</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/myloan/list"  title="나의현황" >나의현황</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/local/html/purchaserequest"  title="희망도서신청" >희망도서신청</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/education/applyList"  title="나의문화행사" >나의문화행사</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/myprofile/profile"  title="회원정보변경" >회원정보변경</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/myprofile/reloginLeave"  title="회원탈퇴" >회원탈퇴</a></li>	
+	     						
+		     				
+							</ul>  
+						</div>
+					 	
+					 </li>
+					 
+					 
+					    
+					 <li class="divTopMenu6">
+					 	<a href="/local/html/memberJoinGuide" title="도서관 소개"><span>도서관 소개</span></a>
+					 	
+					 	
+					 	<div>
+					 		<p><a href="#" title="도서관 소개">도서관 소개</a></p>
+							<ul>
+								     				
+	     						
+	     						
+	     						<li><a href="/local/html/memberJoinGuide"  title="회원가입" >회원가입</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/local/html/manner1"  title="시설 및 이용시간 안내" >시설 및 이용시간 안내</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/local/html/data1"  title="자료현황" >자료현황</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/local/html/history"  title="연혁및조직" >연혁및조직</a></li>	
+	     						
+		     					     				
+	     						
+	     						
+	     						<li><a href="/local/html/map1"  title="찾아오시는길" >찾아오시는길</a></li>	
+	     						
+		     				
+							</ul>  
+						</div>
+					 	
+					 </li>
+					 
+					 
+					 
+					 
+					 
+					 
+					 
+					 
+					</ul>
+				</div>
+				<div class="tablet">
+					<div class="sns">
+						<ul>
+							<li><a href="https://band.us/@icheonlib" target="_blank" title="새창"><img src="/image/ko/local/sns1.png" alt="네이버 band"></a></li>
+							<li><a href="https://pf.kakao.com/_XifaT" target="_blank" title="새창"><img src="/image/ko/local/sns2.png" alt="카카오톡"></a></li>
+						</ul>	
+					</div>
+				</div>
+			</div>
+			<a href="#" class="menuClose">
+				닫기
+				<span></span>
+				<span></span> 
+			</a>
+			<div class="btnWrap">
+				<a href="#" class="divTopMenuBtn">
+					전체메뉴열기
+					<span></span>
+					<span></span>
+					<span></span>
+				</a>
+			</div>
+		</div>
+		<!-- //Top Menu -->
+	</div>
+<!-- //header2 -->
+</div>
+			<!-- //divHeader -->
+			<div class="blackBg"></div>			
+			<hr>
+			<!-- divContents -->
+			<div id="divContents">
+				<!-- content1 -->
+				<div class="contents1">
+					<!-- Main Bg -->
+					<div class="mainBg">
+						<div class="bg1">
+							<img src="/image/ko/local/main/visualBg1.jpg" alt="메인 이미지1">
+						</div>
+					</div>
+					<!-- // MainBg -->
+					<div class="contentsWrap">
+						<!-- 주요서비스 바로가기 quickMenu -->
+						<div class="quickMenu">
+							<h2 class="quickMenuTitle"><span>주요서비스</span> 바로가기</h2>
+							<div>
+								<ul>
+									<li class="quickMenu1">
+										<a href="/local/html/memberJoinGuide" title="회원자격 및 가입안내">
+											<span class="menuImg">
+												<img src="/image/ko/local/main/quickMenu1.png" alt="회원자격 및 가입안내">
+											</span>
+											<span class="menuTitle">회원자격 및 가입안내</span>
+										</a>
+									</li>
+									<li class="quickMenu2">
+										<a href="/education/list" title="강좌신청">
+											<span class="menuImg">
+												<img src="/image/ko/local/main/quickMenu2.png" alt="강좌신청">
+											</span>
+											<span class="menuTitle">강좌신청</span>
+										</a>
+									</li>
+									<li class="quickMenu3">
+										<a href="/local/html/subebook" title="전자책" target="_blank">
+											<span class="menuImg">
+												<img src="/image/ko/local/main/quickMenu3.png" alt="전자책">
+											</span>
+											<span class="menuTitle">전자책</span>
+										</a>
+									</li>
+									<li class="quickMenu4">
+										<a href="/bbs/list/22" title="2025 이천이책" target="_self">
+											<span class="menuImg">
+												<img src="/image/ko/local/main/quickMenu4.png" alt="2025 이천이책">
+											</span>
+											<span class="menuTitle" style="color:#E8307A;">2025 이천이책</span>
+										</a>
+									</li>
+									<li class="quickMenu5">
+										<a href="/local/html/seat" title="열람좌석" >
+											<span class="menuImg">
+												<img src="/image/ko/local/main/quickMenu5.png" alt="열람좌석">
+											</span>
+											<span class="menuTitle">열람좌석</span>
+										</a>
+									</li>
+									<li class="quickMenu6">
+										<a href="/bbs/list/14" title="묻고답하기">
+											<span class="menuImg">
+												<img src="/image/ko/local/main/quickMenu6.png" alt="묻고답하기">
+											</span>
+											<span class="menuTitle">묻고답하기</span>
+										</a>
+									</li>
+									<li class="quickMenu7">
+										<a href="/local/html/organ" title="조직도">
+											<span class="menuImg">
+												<img src="/image/ko/local/main/quickMenu7-1.png" alt="조직도">
+											</span>
+											<span class="menuTitle">조직도</span>
+										</a>
+									</li>
+									<li class="quickMenu8">
+										<a href="/local/html/bookshare" title="책배달">
+											<span class="menuImg">
+												<img src="/image/ko/local/main/quickMenu8.png" alt="책배달">
+											</span>
+											<span class="menuTitle">책배달</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<!-- // 주요서비스 바로가기 - quickMenu -->
+						<!-- eventZone -->
+						<div class="eventZone">
+							
+							<ul>
+							
+								<li class="on" >
+									<a href="https://www.icheonlib.go.kr/bbs/content/1_24678" target="_blank" class="promotion">
+										<img src="/image/ko/local/main/[배너]%20마중나온도서관.jpg" alt="마중나온도서관" >
+									</a>
+								</li>
+							
+								<li  >
+									<a href="https://www.icheonlib.go.kr/bbs/content/1_24700" target="_blank" class="promotion">
+										<img src="/image/ko/local/main/[복사본]%20[인스타]%20처음만난고백%20(1).jpg" alt="처음 만난 고백" >
+									</a>
+								</li>
+							
+								<li  >
+									<a href="https://www.icheonlib.go.kr/education/detail?lecture_id=3741" target="_blank" class="promotion">
+										<img src="/image/ko/local/main/홈페이지%20배너.jpg" alt="마장 오늘도 빛나는 미디어리터러시" >
+									</a>
+								</li>
+							
+								<li  >
+									<a href="https://www.icheonlib.go.kr/education/detail?lecture_id=3735" target="_blank" class="promotion">
+										<img src="/image/ko/local/main/제목을%20입력하세요%20(21)-복사_1.jpg" alt="효양도서관 북스타트 " >
+									</a>
+								</li>
+							
+								<li  >
+									<a href="https://www.icheonlib.go.kr/bbs/content/1_24674" target="_blank" class="promotion">
+										<img src="/image/ko/local/main/여름책멍%20배너.png" alt="마장 여름책멍" >
+									</a>
+								</li>
+							
+								<li  >
+									<a href="https://www.icheonlib.go.kr/bbs/content/1_24641" target="_blank" class="promotion">
+										<img src="/image/ko/local/main/[홈페이지배너]%20김구.jpg" alt="김구" >
+									</a>
+								</li>
+							
+								<li  >
+									<a href="https://www.icheonlib.go.kr/bbs/content/1_24591" target="_blank" class="promotion">
+										<img src="/image/ko/local/main/1783482034702.jpg" alt="서희도서관 웹툰공모전" >
+									</a>
+								</li>
+							
+								<li  >
+									<a href="https://www.icheonlib.go.kr/bbs/content/1_24381" target="_blank" class="promotion">
+										<img src="/image/ko/local/main/IMG_1811.jpg" alt="어린이 독서 프로젝트 어도헌터스" >
+									</a>
+								</li>
+							
+								<li  >
+									<a href="https://www.icheonlib.go.kr/bbs/content/1_24478" target="_blank" class="promotion">
+										<img src="/image/ko/local/main/홈페이지%20배너.png" alt="마장 오늘도빛나는당신" >
+									</a>
+								</li>
+							
+								<li  >
+									<a href="https://www.icheonlib.go.kr/bbs/content/1_24409" target="_blank" class="promotion">
+										<img src="/image/ko/local/main/제목을%20입력하세요%20(27).jpg" alt="서희어린이독서문화프로그램" >
+									</a>
+								</li>
+							
+								<li  >
+									<a href="https://www.icheonlib.go.kr/bbs/content/1_23970" target="_blank" class="promotion">
+										<img src="/image/ko/local/main/배너%20-%20독서캠페인.jpg" alt="구독형 전자 콘텐츠 서비스" >
+									</a>
+								</li>
+							
+							</ul>
+							
+							<div class="btns">
+								<div>
+									<div  >
+									<a href="" class="prev"><img src="/image/ko/local/main/eventPrev.png" alt="이전"></a>
+									<a href="" class="next"><img src="/image/ko/local/main/eventNext.png" alt="다음"></a>
+									<a href="" class="pause"><img src="/image/ko/local/main/eventPause.png" alt="정지"></a>
+									<a href="" class="play"><img src="/image/ko/local/main/eventPlay.png" alt="시작"></a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- // eventZone -->
+					</div>
+				</div>
+				<!-- // content1 -->
+				<!-- contents2 -->
+				<div class="contents2">
+					<div>
+						<!-- 나만의 도서관 - myLibrary -->
+					 	<div class="myLibrary">
+							<h2 class="myLibrarytTitle">나만의 도서관</h2>
+							<a class="myLibraryLink" href="/myloan/list" title="나의현황 바로가기">나의현황 바로가기</a>
+							<ul>
+								<li class="myLibraryMenu1">
+									<a href="/myloan/list" title="대출조회/연장">
+										<span class="menuImg">
+											<img src="/image/ko/local/main/myLibraryMenu1.png" alt="대출조회/연장">
+											
+										</span>
+										<span class="menuTitle">대출조회/연장</span>
+									</a>
+								</li>
+								<li class="myLibraryMenu2">
+									<a href="/education/applyList" title="강좌신청조회">
+										<span class="menuImg">
+											<img src="/image/ko/local/main/myLibraryMenu2.png" alt="강좌신청조회">
+											
+										</span>
+										<span class="menuTitle">강좌신청조회</span>
+									</a>
+								</li>
+								<li class="myLibraryMenu3">
+									<a href="/local/html/purchaserequest" title="희망도서">
+										<span class="menuImg">
+											<img src="/image/ko/local/main/myLibraryMenu3.png" alt="희망도서">
+											
+										</span>
+										<span class="menuTitle">희망도서</span>
+									</a>
+								</li>
+								<li class="myLibraryMenu4">
+									<a href="/myprofile/profile" title="회원정보">
+										<span class="menuImg">
+											<img src="/image/ko/local/main/myLibraryMenu4.png" alt="회원정보">
+										</span>
+										<span class="menuTitle">회원정보</span>
+									</a>
+								</li>
+							</ul>
+							<div class="myLibraryMobile">
+								<a href="/myprofile/barcode">모바일회원증</a>
+							</div>
+						</div>
+						<!-- // 나만의 도서관 - myLibrary -->
+						<!-- O월 쉬는 날 -  holiday  -->
+						<div class="holiday">
+							<div>
+							  	<h2 class="holidayTitle"><span><span class="num" id="day" data-month=""></span>월 쉬는 날</span></h2>
+							  	<div class="holidayDate">
+							  		<h3 class="skip">휴관일</h3>
+							  		<ul>
+									  	<!-- 전체휴관일 일 경우 class : type1 -->
+									  	<!-- 자료실휴관일 일 경우 class : type2 -->		
+								  		<!--이전 클릭시 저번달 (.num 숫자 수정) -->
+							  			<!--다음 클릭시 다음달 (.num 숫자 수정) -->
+							  			<!-- <li class="type1"><span class="num">09</span></li>
+							  			<li class="type2"><span class="num">12</span></li> -->
+							  		</ul>
+							  	</div>
+							  	<div class="holidaySearch">
+									<div class="holidaySelectBox">
+										<label for="holidaySelectBox">시립도서관</label>
+										<select id="holidaySelectBox">
+										
+											<option value="MA000000">시립도서관</option>
+										
+											<option value="BR000000">청미도서관</option>
+										
+											<option value="MC000000">효양도서관</option>
+										
+											<option value="MB000000">어린이도서관</option>
+										
+											<option value="NA000000">마장도서관</option>
+										
+											<option value="NB000000">서희도서관</option>
+										
+										</select>
+									</div>
+									<div class="holidayinputWrap">
+										<span class="holidaySearchBtn"><a href="/libsch/mixMonthlyCalendar/1">달력<span>보기</span></a></span>
+									</div>
+								</div>
+								<div class="holidayBtn">
+									<span>
+										<a href="javascript:;" data-month="" class="prev">이전</a>
+										<a href="javascript:;" data-month="" class="next">다음</a>
+									</span>
+								</div>
+							</div>
+						</div>
+						<!-- // O월 쉬는 날 -  holiday  -->
+					</div>
+				</div>
+				<!-- // contents2 -->
+				<div class="contents3">
+					<div class="notice">
+						<h2>도서관소식</h2>
+						<ul>
+							<li class="on">
+								<a href="">공공도서관</a>
+								<ul>
+									
+										
+											
+											<li>
+											
+												
+													<a href="/bbs/content/1_24704" title=" 마장도서관 「도서관 독서활동 지원 프로그램」 운영(나만의 책 취향 찾기, 기록하는 독서생활)">
+														<h3 class="noticeTitle">
+														<span class="type21">마장</span>
+														 마장도서관 「도서관 독서활동 지원 프로그램」 운영(나만의 책 취향 찾기, 기록하는 독서생활) </h3>
+														<div class="noticeTxt">
+															<p>&nbsp;마장도서관에서 「경기도 도서관 독서활동 지원 프로그램」을 운영합니다.
+
+&lt;나만의 책 취향 찾기&gt; - 8. 12.(수) 10시부터 선착순 홈페이지 접수
+✅운영일시 : 2026. 8. 25. ~ 9. 22.(매주 화) 10:00~11:30
+✅운영장소 : 마장도서관 4층 지혜숲
+✅강사: 권규태(독립서점 하우스결 공동대표)
+✅운영내용
+
+	
+		
+			회차
+			주제
+			내용
+		
+		
+			1
+			요즘 사람들은 어떻게 읽을까
+			-&nbsp;독서&nbsp;공간&nbsp;소비&nbsp;트렌드분석,&nbsp;독서&nbsp;매체&nbsp;진단&nbsp;설문
+		
+		
+			2
+			나만의 책 취향 찾기1
+			-&nbsp;MBTI&nbsp;성격유형과&nbsp;현재의&nbsp;고민을&nbsp;바탕으로&nbsp;책&nbsp;고르는&nbsp;방법&nbsp;및&nbsp;책&nbsp;소개
+		
+		
+			3
+			나만의 책 취향 찾기2
+			-&nbsp;시대별,&nbsp;세대별,&nbsp;주제별&nbsp;좋은&nbsp;책&nbsp;소개해보기
+		
+		
+			4
+			나의 독서 루틴 만들기1
+			-&nbsp;하루&nbsp;15분&nbsp;독서&nbsp;실천하는&nbsp;방법을&nbsp;수행
+		
+		
+			5
+			나의 독서 루틴 만들기2
+			-&nbsp;서평&nbsp;쓰는&nbsp;법/브런치&nbsp;스토리&nbsp;작가되는&nbsp;방법
+		
+	
+
+
+
+&lt;기록하는독서생활&gt; - 9. 9.(수) 10시부터 선착순 홈페이지 접수
+✅운영일시 : 2026. 9. 29. ~ 10. 27.(매주 화) 14:00~15:30
+✅운영장소 : 마장도서관 4층 지혜숲
+✅운영내용 : 1~2회차 권규태(독립서점 하우스결 공동대표), 3~5회차 예남희(독서지도사)
+
+	
+		
+			회차
+			주제
+			내용
+		
+		
+			1
+			기록하는 독서생활1
+			-&nbsp;혼자&nbsp;보는&nbsp;일기에서&nbsp;누군가에게&nbsp;닿는&nbsp;에세이로
+		
+		
+			2
+			기록하는 독서생활2
+			-&nbsp;작은&nbsp;취향&nbsp;소개처에서부터&nbsp;매력적인&nbsp;북스타그래머&nbsp;되기
+		
+		
+			3
+			기록하는 독서생활3
+			-&nbsp;&#39;나&#39;와&nbsp;함께하는&nbsp;어제,&nbsp;오늘,&nbsp;내일
+		
+		
+			4
+			기록하는 독서생활4
+			-&nbsp;잘했고,&nbsp;잘하고&nbsp;있고&nbsp;잘할거야&nbsp;에세이&nbsp;이야기
+		
+		
+			5
+			기록하는 독서생활5
+			-&nbsp;힐링이&nbsp;필요한&nbsp;나에게&nbsp;작은&nbsp;위로의&nbsp;글쓰기
+		
+	
+
+
+&nbsp;</p>
+														</div>
+													</a>
+												
+												
+											
+											</li>
+											
+											<li>
+											
+												
+												
+													<a href="/bbs/content/1_24701" title="서희도서관 AI데이터 vs 어린이 생각대결 「생각 올림픽」 참여자 모집">
+														<span class="type98">서희</span>
+														서희도서관 AI데이터 vs 어린이 생각대결 「생각 올림픽」 참여자 모집
+													</a>
+													<span class="date">
+													
+													2026-08-06
+													</span>
+												
+											
+											</li>
+											
+											<li>
+											
+												
+												
+													<a href="/bbs/content/1_24700" title="(마중 나온 도서관) '처음 만난 고백' 참여 안내">
+														<span class="type1">시립</span>
+														(마중 나온 도서관) &#039;처음 만난 고백&#039; 참여 안내
+													</a>
+													<span class="date">
+													
+													2026-08-06
+													</span>
+												
+											
+											</li>
+											
+											<li>
+											
+												
+												
+													<a href="/bbs/content/1_24678" title="2026년 이천시 독서문화 프로그램 「마중 나온 도서관」 운영 안내">
+														<span class="type1">시립</span>
+														2026년 이천시 독서문화 프로그램 「마중 나온 도서관」 운영 안내
+													</a>
+													<span class="date">
+													
+													2026-07-27
+													</span>
+												
+											
+											</li>
+											
+											<li>
+											
+												
+												
+													<a href="/bbs/content/1_24674" title="마장도서관 「여름 책멍」 운영 안내">
+														<span class="type21">마장</span>
+														마장도서관 「여름 책멍」 운영 안내
+													</a>
+													<span class="date">
+													
+													2026-07-23
+													</span>
+												
+											
+											</li>
+											
+											<li>
+											
+												
+												
+													<a href="/bbs/content/1_24641" title="백범 김구 탄생 150주년 기념, 「나의 소원, 문화의 힘」 운영 안내">
+														<span class="type1">시립</span>
+														백범 김구 탄생 150주년 기념, 「나의 소원, 문화의 힘」 운영 안내
+													</a>
+													<span class="date">
+													
+													2026-07-14
+													</span>
+												
+											
+											</li>
+											
+										
+										
+									
+								</ul>
+								<p><a href="/bbs/list/1" class="more"><img src="/image/ko/local/main/more.png" alt="더보기"></a></p>
+							</li>
+							<li>
+								<a href="">작은도서관</a>
+								<ul>
+									
+										
+											
+											<li>
+											
+												
+													<a href="http://small.icheonlib.go.kr/bbs/content/9_22594" title="작은도서관 지도" target="_blank">
+														<h3 class="noticeTitle">작은도서관 지도 </h3>
+														<div class="noticeTxt">
+															<p></p>
+														</div>
+													</a>
+												
+												
+											
+											</li>
+											
+											<li>
+											
+												
+												
+													<a href="http://small.icheonlib.go.kr/bbs/content/9_22553" title="이천시 작은도서관 밴드 QR 가입 안내" target="_blank">이천시 작은도서관 밴드 QR 가입 안내</a>
+													<span class="date">
+													
+													2024-11-27
+													</span>
+												
+											
+											</li>
+											
+											<li>
+											
+												
+												
+													<a href="http://small.icheonlib.go.kr/bbs/content/9_24693" title="8월 임시휴관안내[8월4일 12:00~18:00]" target="_blank">8월 임시휴관안내[8월4일 12:00~18:00]</a>
+													<span class="date">
+													
+													2026-08-04
+													</span>
+												
+											
+											</li>
+											
+											<li>
+											
+												
+												
+													<a href="http://small.icheonlib.go.kr/bbs/content/9_24687" title="8월 임시 휴관 안내 [8월 4일 화요일]" target="_blank">8월 임시 휴관 안내 [8월 4일 화요일]</a>
+													<span class="date">
+													
+													2026-07-31
+													</span>
+												
+											
+											</li>
+											
+											<li>
+											
+												
+												
+													<a href="http://small.icheonlib.go.kr/bbs/content/9_24680" title="8월 임시 휴관 안내 [8월 4일 화요일]" target="_blank">8월 임시 휴관 안내 [8월 4일 화요일]</a>
+													<span class="date">
+													
+													2026-07-28
+													</span>
+												
+											
+											</li>
+											
+											<li>
+											
+												
+												
+													<a href="http://small.icheonlib.go.kr/bbs/content/9_24664" title="7월 점심시간 임시휴관 안내_7월 28일(화)~8월 1일(토) 12:00~13:00" target="_blank">7월 점심시간 임시휴관 안내_7월 28일(화)~8월 1일(토) 12:00~13:00</a>
+													<span class="date">
+													
+													2026-07-22
+													</span>
+												
+											
+											</li>
+											
+										
+										
+									
+								</ul>
+								<p><a href="http://small.icheonlib.go.kr/bbs/list/9" class="more" target="_blank"><img src="/image/ko/local/main/more.png" alt="더보기"></a></p>
+							</li>
+						</ul>
+					</div>
+					<div class="notice2">
+						<h2>문화행사</h2>
+						<ul>
+							<li class="on">
+								<a href="">공공도서관</a>
+								<div class="noticeList">
+									<ul>
+									
+									
+										
+											
+											
+											
+												
+											
+												
+											
+												
+											
+												
+											
+												
+													
+													
+												
+											
+												
+											
+											<li>
+												<a href="/education/detail?lecture_id=3743" title="[도서관독서활동지원]나만의 책 취향 찾기">
+													<h3>
+													<span class="type5">마장</span>
+													[도서관독서활동지원]나만의 책 취향 찾기 </h3>
+													<p>
+													<span class="date">
+													
+														
+														
+															26-08-25(화)
+													 		~ 26-09-22(화)	
+														
+													
+													
+														
+																<br>매주&nbsp;
+																
+																	
+																	
+																	화
+																	
+																	
+																	
+																	
+																	
+																
+														
+														
+														
+													
+													</span></p>
+													<p class="noticeImgWrap">
+														<img src="https://www.icheonlib.go.kr/uload/education/FILE/20260807//72341531820348917.gif"   alt="[도서관독서활동지원]나만의 책 취향 찾기" onerror="this.src='/image/ko/local/main/notice2Noimg.jpg'" >
+													</p>
+												</a>
+											</li>
+										
+											
+											
+											
+												
+											
+												
+											
+												
+											
+												
+											
+												
+													
+													
+												
+											
+												
+											
+											<li>
+												<a href="/education/detail?lecture_id=3741" title="[오늘도빛나는당신]시니어를 위한 미디어 리터러시">
+													<h3>
+													<span class="type5">마장</span>
+													[오늘도빛나는당신]시니어를 위한 미디어 리터러시 </h3>
+													<p>
+													<span class="date">
+													
+														
+														
+															26-08-26(수)
+													 		~ 26-09-30(수)	
+														
+													
+													
+														
+																<br>매주&nbsp;
+																
+																	
+																	
+																	
+																	수
+																	
+																	
+																	
+																	
+																
+														
+														
+														
+													
+													</span></p>
+													<p class="noticeImgWrap">
+														<img src="https://www.icheonlib.go.kr/uload/education/FILE/20260805//72147092281768311.jpg"   alt="[오늘도빛나는당신]시니어를 위한 미디어 리터러시" onerror="this.src='/image/ko/local/main/notice2Noimg.jpg'" >
+													</p>
+												</a>
+											</li>
+										
+											
+											
+											
+												
+											
+												
+											
+												
+											
+												
+											
+												
+											
+												
+													
+													
+												
+											
+											<li>
+												<a href="/education/detail?lecture_id=3740" title="(추가모집) [여름특강] 설레는 음악여행 B">
+													<h3>
+													<span class="type6">서희</span>
+													(추가모집) [여름특강] 설레는 음악여행 B </h3>
+													<p>
+													<span class="date">
+													
+														
+														
+															26-08-10(월)
+													 		~ 26-08-13(목)	
+														
+													
+													
+														
+														
+														
+													
+													</span></p>
+													<p class="noticeImgWrap">
+														<img src="https://www.icheonlib.go.kr/uload/education/FILE/20260802//71893145994452253.jpg"   alt="(추가모집) [여름특강] 설레는 음악여행 B" onerror="this.src='/image/ko/local/main/notice2Noimg.jpg'" >
+													</p>
+												</a>
+											</li>
+										
+											
+											
+											
+												
+											
+												
+											
+												
+											
+												
+													
+													
+												
+											
+												
+											
+												
+											
+											<li>
+												<a href="/education/detail?lecture_id=3739" title="책이랑 노는 날(9월)">
+													<h3>
+													<span class="type4">어린이</span>
+													책이랑 노는 날(9월) </h3>
+													<p>
+													<span class="date">
+													
+														
+														
+															26-08-28(금)
+													 		~ 26-09-18(금)	
+														
+													
+													
+														
+																<br>매주&nbsp;
+																
+																	
+																	
+																	
+																	
+																	
+																	금
+																	
+																	
+																
+														
+														
+														
+													
+													</span></p>
+													<p class="noticeImgWrap">
+														<img src="https://www.icheonlib.go.kr/uload/education/FILE/20260801//71811748838669770.jpg"   alt="책이랑 노는 날(9월)" onerror="this.src='/image/ko/local/main/notice2Noimg.jpg'" >
+													</p>
+												</a>
+											</li>
+										
+											
+											
+											
+												
+											
+												
+											
+												
+											
+												
+													
+													
+												
+											
+												
+											
+												
+											
+											<li>
+												<a href="/education/detail?lecture_id=3738" title="꿈꾸는 유아학교 [2학기 과정]">
+													<h3>
+													<span class="type4">어린이</span>
+													꿈꾸는 유아학교 [2학기 과정] </h3>
+													<p>
+													<span class="date">
+													
+														
+														
+															26-08-24(월)
+													 		~ 26-09-28(월)	
+														
+													
+													
+														
+																<br>매주&nbsp;
+																
+																	
+																	월
+																	
+																	
+																	
+																	
+																	
+																	,
+																
+																	
+																	
+																	
+																	
+																	목
+																	
+																	
+																	
+																
+														
+														
+														
+													
+													</span></p>
+													<p class="noticeImgWrap">
+														<img src="https://www.icheonlib.go.kr/uload/education/FILE/20260801//71811242696749966.jpg"   alt="꿈꾸는 유아학교 [2학기 과정]" onerror="this.src='/image/ko/local/main/notice2Noimg.jpg'" >
+													</p>
+												</a>
+											</li>
+										
+											
+											
+											
+												
+											
+												
+											
+												
+											
+												
+													
+													
+												
+											
+												
+											
+												
+											
+											<li>
+												<a href="/education/detail?lecture_id=3737" title="[북스타트 책놀이] 3기 2단계">
+													<h3>
+													<span class="type4">어린이</span>
+													[북스타트 책놀이] 3기 2단계 </h3>
+													<p>
+													<span class="date">
+													
+														
+														
+															26-08-25(화)
+													 		~ 26-09-29(화)	
+														
+													
+													
+														
+																<br>매주&nbsp;
+																
+																	
+																	
+																	화
+																	
+																	
+																	
+																	
+																	
+																
+														
+														
+														
+													
+													</span></p>
+													<p class="noticeImgWrap">
+														<img src="https://www.icheonlib.go.kr/uload/education/FILE/20260801//71810644442021338.jpg"   alt="[북스타트 책놀이] 3기 2단계" onerror="this.src='/image/ko/local/main/notice2Noimg.jpg'" >
+													</p>
+												</a>
+											</li>
+										
+											
+											
+											
+												
+											
+												
+											
+												
+											
+												
+													
+													
+												
+											
+												
+											
+												
+											
+											<li>
+												<a href="/education/detail?lecture_id=3736" title="[북스타트 책놀이] 3기 1단계">
+													<h3>
+													<span class="type4">어린이</span>
+													[북스타트 책놀이] 3기 1단계 </h3>
+													<p>
+													<span class="date">
+													
+														
+														
+															26-08-25(화)
+													 		~ 26-09-29(화)	
+														
+													
+													
+														
+																<br>매주&nbsp;
+																
+																	
+																	
+																	화
+																	
+																	
+																	
+																	
+																	
+																
+														
+														
+														
+													
+													</span></p>
+													<p class="noticeImgWrap">
+														<img src="https://www.icheonlib.go.kr/uload/education/FILE/20260801//71810543278130470.jpg"   alt="[북스타트 책놀이] 3기 1단계" onerror="this.src='/image/ko/local/main/notice2Noimg.jpg'" >
+													</p>
+												</a>
+											</li>
+										
+											
+											
+											
+												
+											
+												
+											
+												
+													
+													
+												
+											
+												
+											
+												
+											
+												
+											
+											<li>
+												<a href="/education/detail?lecture_id=3735" title="[북스타트]그림책 속 가을이야기 A">
+													<h3>
+													<span class="type3">효양</span>
+													[북스타트]그림책 속 가을이야기 A </h3>
+													<p>
+													<span class="date">
+													
+														
+														
+															26-09-02(수)
+													 		~ 26-10-28(수)	
+														
+													
+													
+														
+																<br>매주&nbsp;
+																
+																	
+																	
+																	
+																	수
+																	
+																	
+																	
+																	
+																
+														
+														
+														
+													
+													</span></p>
+													<p class="noticeImgWrap">
+														<img src="https://www.icheonlib.go.kr/uload/education/FILE/20260729//71552127158040340.jpg"   alt="[북스타트]그림책 속 가을이야기 A" onerror="this.src='/image/ko/local/main/notice2Noimg.jpg'" >
+													</p>
+												</a>
+											</li>
+										
+									
+									
+									
+									</ul>
+								</div>
+								<p><a href="/education/list" class="more"><img src="/image/ko/local/main/more.png" alt="더보기"></a></p>
+								
+								<div class="noticeBtn">
+									<a href="#" class="prev"><img src="/image/ko/local/main/noticeBtnPrev.png" alt="이전"></a>
+									<a href="#" class="next"><img src="/image/ko/local/main/noticeBtnNext.png" alt="다음"></a>
+								</div>
+								
+							</li>
+							<li>
+								<a href="">작은도서관</a>
+								<div class="noticeList">
+									<ul>
+										
+											
+												
+												<li>
+													<a href="http://small.icheonlib.go.kr/bbs/content/7_24703" title="8월~9월 프로그램 [북적북적 경제교실]" target="_blank">
+														<h3>8월~9월 프로그램 [북적북적 경제교실]</h3>
+														<p>
+															<span class="date">
+																
+																2026-08-07
+															</span>
+														</p>
+													</a>
+												</li>
+												
+												<li>
+													<a href="http://small.icheonlib.go.kr/bbs/content/7_24697" title="9월 프로그램[클래식 음악 읽어주기]" target="_blank">
+														<h3>9월 프로그램[클래식 음악 읽어주기]</h3>
+														<p>
+															<span class="date">
+																
+																2026-08-05
+															</span>
+														</p>
+													</a>
+												</li>
+												
+												<li>
+													<a href="http://small.icheonlib.go.kr/bbs/content/7_24696" title="8월 프로그램 [증정 그림자 극장]" target="_blank">
+														<h3>8월 프로그램 [증정 그림자 극장]</h3>
+														<p>
+															<span class="date">
+																
+																2026-08-04
+															</span>
+														</p>
+													</a>
+												</li>
+												
+												<li>
+													<a href="http://small.icheonlib.go.kr/bbs/content/7_24690" title="8월 여름방학 도서관 방문 챌린지 [북카페 빙고]" target="_blank">
+														<h3>8월 여름방학 도서관 방문 챌린지 [북카페 빙고]</h3>
+														<p>
+															<span class="date">
+																
+																2026-08-01
+															</span>
+														</p>
+													</a>
+												</li>
+												
+												<li>
+													<a href="http://small.icheonlib.go.kr/bbs/content/7_24675" title="8-11월 무료강좌 프로그램 [코딩수업]" target="_blank">
+														<h3>8-11월 무료강좌 프로그램 [코딩수업]</h3>
+														<p>
+															<span class="date">
+																
+																2026-07-24
+															</span>
+														</p>
+													</a>
+												</li>
+												
+												<li>
+													<a href="http://small.icheonlib.go.kr/bbs/content/7_24672" title="8월 프로그램[사과 빵-백설공주의 독이 든 사과!]" target="_blank">
+														<h3>8월 프로그램[사과 빵-백설공주의 독이 든 사과!]</h3>
+														<p>
+															<span class="date">
+																
+																2026-07-23
+															</span>
+														</p>
+													</a>
+												</li>
+												
+												<li>
+													<a href="http://small.icheonlib.go.kr/bbs/content/7_24660" title="8월 프로그램 [한여름 캔버스]" target="_blank">
+														<h3>8월 프로그램 [한여름 캔버스]</h3>
+														<p>
+															<span class="date">
+																
+																2026-07-21
+															</span>
+														</p>
+													</a>
+												</li>
+												
+												<li>
+													<a href="http://small.icheonlib.go.kr/bbs/content/7_24639" title="어린이독서동아리 2기(추가) 모집 [술술 말하고 쓰는 역사 논술]" target="_blank">
+														<h3>어린이독서동아리 2기(추가) 모집 [술술 말하고 쓰는 역사 논술]</h3>
+														<p>
+															<span class="date">
+																
+																2026-07-14
+															</span>
+														</p>
+													</a>
+												</li>
+												
+											
+											
+										
+									</ul>
+								</div>
+								<p><a href="http://small.icheonlib.go.kr/bbs/list/7" class="more" target="_blank"><img src="/image/ko/local/main/more.png" alt="더보기"></a></p>
+							</li>
+							<!--<li>
+								<a href="">영화상영</a>
+								<div class="noticeList">
+									<ul>
+									
+									
+									
+										<li>데이터가 존재하지 않습니다.</li>
+									
+									
+									</ul>
+								</div>
+								<p><a href="/moviesch/list" class="more"><img src="/image/ko/local/main/more.png" alt="더보기"></a></p>
+								
+							</li>-->
+						</ul>
+					</div>
+				</div>
+				<!-- contents4 -->
+				<div class="contents4">
+					<div class="bookbg"></div>
+					<div class="bookbg2"></div>
+					<div class="bookbg3"><div><div></div></div></div>
+					<div>
+						<!-- 추천도서 - book -->
+						<div class="book">
+							<h2>추천도서</h2>
+							<ul>
+								<li class="on">
+									<a href="" title="">일반인</a>
+									<div>
+										<div class="bookList">
+										
+											
+											<div>
+												<ul>
+													
+													<li>
+														<a href="/search/detail/CATTOT000001546561"> 
+															<span class="bookImg"><img src="/image/ko/local/main/bookNoimg.jpg" alt="유럽 도시 기행 . 3" id="newBook0_0"></span>
+															<span class="bookTitle"><span>유럽 도시 기행 . 3</span><span>유시민</span></span>  
+															<div class="bookHover">
+																 <span class="bookTitle">유럽 도시 기행 . 3</span>
+																 <span class="bookWriter">유시민</span>
+																 <span class="btn"><span>자세히보기</span></span>
+															</div>
+														</a>
+														<script>
+															callThumbnail('#newBook0_0','9788965138310','CAT','000001546561');
+														</script>
+													</li>
+													
+													<li>
+														<a href="/search/detail/CATTOT000001532788"> 
+															<span class="bookImg"><img src="/image/ko/local/main/bookNoimg.jpg" alt="내면 근력 : 결국 멘탈 게임이다" id="newBook0_1"></span>
+															<span class="bookTitle"><span>내면 근력 : 결국 멘탈 게임이다</span><span>머피, 짐</span></span>  
+															<div class="bookHover">
+																 <span class="bookTitle">내면 근력 : 결국 멘탈 게임이다</span>
+																 <span class="bookWriter">머피, 짐</span>
+																 <span class="btn"><span>자세히보기</span></span>
+															</div>
+														</a>
+														<script>
+															callThumbnail('#newBook0_1','9791155819227','CAT','000001532788');
+														</script>
+													</li>
+													
+													<li>
+														<a href="/search/detail/CATTOT000001543083"> 
+															<span class="bookImg"><img src="/image/ko/local/main/bookNoimg.jpg" alt="리치먼드힐의 이층 버스" id="newBook0_2"></span>
+															<span class="bookTitle"><span>리치먼드힐의 이층 버스</span><span>이경진</span></span>  
+															<div class="bookHover">
+																 <span class="bookTitle">리치먼드힐의 이층 버스</span>
+																 <span class="bookWriter">이경진</span>
+																 <span class="btn"><span>자세히보기</span></span>
+															</div>
+														</a>
+														<script>
+															callThumbnail('#newBook0_2','9791124038499','CAT','000001543083');
+														</script>
+													</li>
+													
+												</ul>
+											</div>
+											
+											
+										
+										</div>
+									</div>
+									
+									<div class="btn">
+										<a href="" class="prev"><img src="/image/ko/local/main/bookPrev.png" alt="이전"></a>
+										<a href="" class="next"><img src="/image/ko/local/main/bookNext.png" alt="다음"></a>
+									</div>
+									
+									
+									<p class="more">
+										<a href="/newbook/list/2">
+											<img src="/image/ko/local/main/more.png" alt="더보기">
+										</a>
+									</p>
+									
+								</li>
+								<li>
+									<a href="" title="">청소년</a>
+									<div>
+									  	<div class="bookList">
+										
+											
+											<div>
+												<ul>
+													
+													<li>
+														<a href="/search/detail/CATTOT000001526250"> 
+															<span class="bookImg"><img src="/image/ko/local/main/bookNoimg.jpg" alt="새벽의 의뢰인 : 가언 장편소설" id="newBook1_0"></span>
+															<span class="bookTitle"><span>새벽의 의뢰인 : 가언 장편소설</span><span>가언</span></span>  
+															<div class="bookHover">
+																 <span class="bookTitle">새벽의 의뢰인 : 가언 장편소설</span>
+																 <span class="bookWriter">가언</span>
+																 <span class="btn"><span>자세히보기</span></span>
+															</div>
+														</a>
+														<script>
+															callThumbnail('#newBook1_0','9791172133818','CAT','000001526250');
+														</script>
+													</li>
+													
+													<li>
+														<a href="/search/detail/CATTOT000001526228"> 
+															<span class="bookImg"><img src="/image/ko/local/main/bookNoimg.jpg" alt="럭키 펀치 : 이송현 장편소설" id="newBook1_1"></span>
+															<span class="bookTitle"><span>럭키 펀치 : 이송현 장편소설</span><span>이송현</span></span>  
+															<div class="bookHover">
+																 <span class="bookTitle">럭키 펀치 : 이송현 장편소설</span>
+																 <span class="bookWriter">이송현</span>
+																 <span class="btn"><span>자세히보기</span></span>
+															</div>
+														</a>
+														<script>
+															callThumbnail('#newBook1_1','9791130674490','CAT','000001526228');
+														</script>
+													</li>
+													
+													<li>
+														<a href="/search/detail/CATTOT000001543092"> 
+															<span class="bookImg"><img src="/image/ko/local/main/bookNoimg.jpg" alt="미세 행복 도감" id="newBook1_2"></span>
+															<span class="bookTitle"><span>미세 행복 도감</span><span>썩어라 수시생</span></span>  
+															<div class="bookHover">
+																 <span class="bookTitle">미세 행복 도감</span>
+																 <span class="bookWriter">썩어라 수시생</span>
+																 <span class="btn"><span>자세히보기</span></span>
+															</div>
+														</a>
+														<script>
+															callThumbnail('#newBook1_2','9791124591000','CAT','000001543092');
+														</script>
+													</li>
+													
+												</ul>
+											</div>
+											
+											
+										
+										</div>
+									</div>
+									
+									<div class="btn">
+										<a href="" class="prev"><img src="/image/ko/local/main/bookPrev.png" alt="이전"></a>
+										<a href="" class="next"><img src="/image/ko/local/main/bookNext.png" alt="다음"></a>
+									</div>
+									
+									
+									<p class="more">
+										<a href="/newbook/list/3">
+											<img src="/image/ko/local/main/more.png" alt="더보기">
+										</a>
+									</p>
+									
+								</li>
+								<li>
+									<a href="" title="">어린이</a>
+										<div>
+											<div class="bookList">
+											
+												
+												<div>
+													<ul>
+														
+														<li>
+															<a href="/search/detail/CATTOT000001544617"> 
+																<span class="bookImg"><img src="/image/ko/local/main/bookNoimg.jpg" alt="딱지 파이브" id="newBook2_0"></span>
+																<span class="bookTitle"><span>딱지 파이브</span><span>김시온</span></span>  
+																<div class="bookHover">
+																	 <span class="bookTitle">딱지 파이브</span>
+																	 <span class="bookWriter">김시온</span>
+																	 <span class="btn"><span>자세히보기</span></span>
+																</div>
+															</a>
+															<script>
+																callThumbnail('#newBook2_0','9791172721053','CAT','000001544617');
+															</script>
+														</li>
+														
+														<li>
+															<a href="/search/detail/CATTOT000001535338"> 
+																<span class="bookImg"><img src="/image/ko/local/main/bookNoimg.jpg" alt="무지개 목욕탕" id="newBook2_1"></span>
+																<span class="bookTitle"><span>무지개 목욕탕</span><span>강효미</span></span>  
+																<div class="bookHover">
+																	 <span class="bookTitle">무지개 목욕탕</span>
+																	 <span class="bookWriter">강효미</span>
+																	 <span class="btn"><span>자세히보기</span></span>
+																</div>
+															</a>
+															<script>
+																callThumbnail('#newBook2_1','9791199368484','CAT','000001535338');
+															</script>
+														</li>
+														
+														<li>
+															<a href="/search/detail/CATTOT000001537030"> 
+																<span class="bookImg"><img src="/image/ko/local/main/bookNoimg.jpg" alt="자꾸자꾸 웃음이 터져요" id="newBook2_2"></span>
+																<span class="bookTitle"><span>자꾸자꾸 웃음이 터져요</span><span>김유경</span></span>  
+																<div class="bookHover">
+																	 <span class="bookTitle">자꾸자꾸 웃음이 터져요</span>
+																	 <span class="bookWriter">김유경</span>
+																	 <span class="btn"><span>자세히보기</span></span>
+																</div>
+															</a>
+															<script>
+																callThumbnail('#newBook2_2','9791160517293','CAT','000001537030');
+															</script>
+														</li>
+														
+													</ul>
+												</div>
+												
+												
+											
+											</div>
+										</div>
+										
+										<div class="btn">
+											<a href="" class="prev"><img src="/image/ko/local/main/bookPrev.png" alt="이전"></a>
+											<a href="" class="next"><img src="/image/ko/local/main/bookNext.png" alt="다음"></a>
+										</div>
+										
+										
+										<p class="more">
+											<a href="/newbook/list/4">
+												<img src="/image/ko/local/main/more.png" alt="더보기">
+											</a>
+										</p>
+										
+									</li>
+								</ul>
+							</div>
+						<!-- // 추천도서 - book -->
+						<!-- 도서관 정보 - infoLibrary -->
+						<div class="infoLibrary">
+							<ul>
+								<li class="on">
+									<a href="">시립<span class="tablet">도서관</span></a>
+									<div class="infoLibraryBox">
+										<h3>도서관 정보</h3>
+										<ul>
+									  		<li class="icon1"><span>주소 : <a href="http://kko.to/OkOkCENjM" target="_blank" title="새창">경기도 이천시 설봉로81번길 50(창전동)</a></span></li>
+											<li class="icon2">
+												<span>이용시간</span>
+												<ul class="infoLibraryList">
+													<li><p><span><span class="minw">자유열람실 : </span></span><span class="num">08:00 ~ 23:00</span><br>※ 월요일~일요일(신정,설,추석 연휴기간 제외)</p></li>
+													<li>
+														<ul class="fll">
+															<li><p><span><span class="minw">문헌정보실 : </span></span><span class="num">09:00 ~ 22:00</span></p></li>
+															<li><p><span>(토,일)</span><span class="num">18:00</span></p></li>
+														</ul>
+													</li>
+													<li>
+														<ul class="fll">
+															<li><p><span><span class="minw">전자정보실 : </span></span><span class="num">09:00 ~ 22:00</span></p></li>
+															<li><p><span>(토,일)</span><span class="num">18:00</span></p></li>
+														</ul>
+													</li>
+													<li><p><span><span class="minw">가족열람실  : </span></span><span class="num">09:00 ~ 18:00</span></p></li>
+													<li><p><span>휴관일 : 매주 월요일 및 법정공휴일</span></p></li>
+												</ul>
+											</li>
+											<li class="icon3"><span>전화번호 : </span><span class="num type"><a href="tel:031-644-4351">031) 644 ~ 4351~4</a></span></li>
+										</ul>
+									</div>
+								</li>
+								<li>
+									<a href="">청미<span class="tablet">도서관</span></a>
+									<div class="infoLibraryBox">
+										<h3>도서관 정보</h3>
+										<ul>
+									  		<li class="icon1"><span>주소 : <a href="http://kko.to/v2DCCENjH" target="_blank" title="새창">경기도 이천시 장호원읍 서동대로8829번길 53-6</a></span></li>
+											<li class="icon2">
+												<span>이용시간</span>
+												<ul class="infoLibraryList">
+													<li><p><span><span class="minw">일반열람실 : </span></span><span class="num">08:00 ~ 23:00</span><br>※ 월요일~일요일(신정,설,추석 연휴기간 제외)</p></li>
+													<li>
+														<ul class="fll">
+															<li><p><span><span class="minw">문헌정보실 : </span></span><span class="num">09:00 ~ 22:00</span></p></li>
+															<li><p><span>(토,일)</span><span class="num">18:00</span></p></li>
+														</ul>
+													</li>
+													<li><p><span><span class="minw">청미어린이도서관  : </span></span><span class="num">09:00 ~ 18:00</span></p></li>
+													<li>
+														<ul class="fll">
+															<li><p><span><span class="minw">북카페 : </span></span><span class="num">08:00 ~ 23:00</span></p></li>
+														</ul>
+													</li>
+													<li><p><span>휴관일 : 매주 월요일 및 법정공휴일</span></p></li>
+												</ul>
+											</li>
+											<li class="icon3"><span>전화번호 : </span><span class="num type"><a href="tel:031-644-4371">031) 644 ~ 4371</a></span></li>
+										</ul>
+									</div>
+								</li>
+								<li>
+									<a href="">효양<span class="tablet">도서관</span></a>
+									<div class="infoLibraryBox">
+										<h3>도서관 정보</h3>
+										<ul>
+									  		<li class="icon1"><span>주소 : <a href="http://kko.to/DCKyCE70B" target="_blank" title="새창">경기도 이천시 부발읍 경충대로2250번길 35</a></span></li>
+											<li class="icon2">
+												<span>이용시간</span>
+												<ul class="infoLibraryList">
+													<li><p><span><span class="minw">일반열람실 : </span></span><span class="num">08:00 ~ 23:00 </span><br>※ 월요일~일요일(신정,설,추석 연휴기간 제외)</p></li>
+													<li>
+														<ul class="fll">
+															<li><p><span><span class="minw">종합자료실 : </span></span><span class="num">09:00 ~ 22:00</span></p></li>
+															<li><p><span>(토,일)</span><span class="num">18:00</span></p></li>
+														</ul>
+													</li>
+													<li>
+														<ul class="fll">
+															<li><p><span><span class="minw">디지털자료실 : </span></span><span class="num">09:00 ~ 20:00</span></p></li>
+															<li><p><span>(토,일)</span><span class="num">18:00</span></p></li>
+														</ul>
+													</li>
+													<li>
+														<ul class="fll">
+															<li><p><span><span class="minw">어린이자료실 : </span></span><span class="num">09:00 ~ 18:00</span></p></li>
+														</ul>
+													</li>
+													<li>
+														<ul class="fll">
+															<li><p><span><span class="minw">북카페 : </span></span><span class="num">09:00 ~ 22:00</span></p></li>
+														</ul>
+													</li>
+													<li><p><span>휴관일 : 매주 금요일 및 법정공휴일</span></p></li>
+												</ul>
+											</li>
+											<li class="icon3"><span>전화번호 : </span><span class="num type"><a href="tel:031-644-4391">031) 644 ~ 4391</a></span></li>
+										</ul>
+									</div>
+								</li>
+								<li>
+									<a href="">어린이<span class="tablet">도서관</span></a>
+									<div class="infoLibraryBox">
+										<h3>도서관 정보</h3>
+										<ul>
+									  		<li class="icon1"><span>주소 : <a href="http://kko.to/2jSmkEN00" target="_blank" title="새창">경기도 이천시 남천로 31(중리동)</a></span></li>
+											<li class="icon2">
+												<span>이용시간</span>
+												<ul class="infoLibraryList">
+													<li><p><span><span class="minw">새싹자료실 : </span></span><span class="num">09:00 ~ 18:00</span></p></li>
+													<li><p><span><span class="minw">꿈나무자료실 : </span></span><span class="num">09:00 ~ 18:00</span></p></li>
+													<li><p><span>휴관일 : 매주 월요일 및 법정공휴일</span></p></li>
+												</ul>
+											</li>
+											<li class="icon3"><span>전화번호 : </span><span class="num type"><a href="tel:031-644-4380">031) 644 ~ 4380</a></span></li>
+										</ul>
+									</div>
+								</li>
+								<li>
+									<a href="">마장<span class="tablet">도서관</span></a>
+									<div class="infoLibraryBox">
+										<h3>도서관 정보</h3>
+										<ul>
+									  		<li class="icon1"><span>주소 : <a href="http://kko.to/pwkRCxNjp" target="_blank" title="새창">경기도 이천시 마장면 마장로 11</a></span></li>
+											<li class="icon2">
+												<span>이용시간</span>
+												<ul class="infoLibraryList">
+													<li><p><span><span class="minw">자유열람실 : </span></span><span class="num">08:00 ~ 23:00</span><br>※ 월요일~일요일(신정,설,추석 연휴기간 제외)</p></li>
+													<li>
+														<ul class="fll">
+															<li><p><span><span class="minw">종합자료실 : </span></span><span class="num">09:00 ~ 22:00</span></p></li>
+															<li><p><span>(토,일)</span><span class="num">18:00</span></p></li>
+														</ul>
+													</li>
+													<li><p><span><span class="minw">어린이자료실 : </span></span><span class="num">09:00 ~ 18:00</span></p></li>
+													<li><p><span>휴관일 : 매주 월요일 및 법정공휴일</span></p></li>
+												</ul>
+											</li>
+											<li class="icon3"><span>전화번호 : </span><span class="num type"><a href="tel:031-645-3440">031) 645 ~ 3440</a></span></li>
+										</ul>
+									</div>
+								</li>
+<li>
+    <a href="">서희<span class="tablet">도서관</span></a>
+    <div class="infoLibraryBox">
+        <h3>도서관 정보</h3>
+        <ul>
+            <li class="icon1">
+                <span
+                    >주소 :
+                    <a href="#" target="_blank" title="새창"
+                        >경기도 이천시 애련정로 29(안흥동)</a
+                    ></span
+                >
+            </li>
+            <li class="icon2">
+                <span>이용시간</span>
+                <ul class="infoLibraryList">
+                    <li>
+                        <ul class="fll">
+                            <li>
+                                <p>
+                                    <span><span class="minw">종합자료실 : </span></span
+                                    ><span class="num">09:00 ~ 22:00, (토, 일)~18:00</span>
+                                </p>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <p>
+                            <span><span class="minw">어린이자료실 : </span></span
+                            ><span class="num">09:00 ~ 18:00</span>
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <span><span class="minw">맘대로 A+ 놀이터 : </span></span
+                            ><span class="num">10:00 ~ 17:00</span>
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <span><span class="minw">열람실 : </span></span
+                            ><span class="num">08:00 ~ 23:00</span>
+                        </p>
+                    </li>
+                    <li>
+                        <p><span>휴관일 : 매주 금요일 및 법정공휴일</span></p>
+                    </li>
+                </ul>
+            </li>
+            <li class="icon3">
+                <span>전화번호 : </span
+                ><span class="num type"
+                    ><a href="tel:031-645-3440">031) 645 ~ 3430~3</a></span
+                >
+            </li>
+        </ul>
+    </div>
+</li>
+							</ul>
+							<div class="infoLibraryLinkBox">
+								<ul>
+									<li class="type1"><a href="/local/html/libGuide">도서관 찾기<span class="bg"></span></a></li>
+									<li class="type2"><a href="http://small.icheonlib.go.kr/sso/login" title="작은도서관" target="_blank">작은도서관<span class="bg"></span></a></li>
+								</ul>
+							</div>
+						</div>
+						<!-- // 도서관 정보 - infoLibrary -->
+						</div>									
+					</div>
+				<!-- // contents4 -->
+				<!-- contents5 -->
+				<div class="contents5">
+					<!-- 배너모음 - banner -->
+					<div class="banner">
+						<h2 class="bannerTitle">배너모음</h2>
+						<div>
+							<div class="bannerList">
+								<ul>
+									<li class="banner1">
+										<a href="http://www.nl.go.kr/" target="_blank" title="새창" rel="noopener noreferrer">
+											<img src="/image/ko/local/main/banner7.jpg" alt="국립중앙도서관">
+											<p class="mobile">국립중앙도서관</p>
+										</a>
+									</li>
+									<li class="banner2">
+										<a href="https://www.nld.go.kr/ableFront/index.jsp" target="_blank" title="새창" rel="noopener noreferrer">
+											<img src="/image/ko/local/main/banner13.jpg" alt="국립장애인도서관">
+											<p class="mobile">국립장애인도서관</p>
+										</a>
+									</li>
+									<li class="banner3">
+										<a href="http://www.nanet.go.kr/" target="_blank" title="새창" rel="noopener noreferrer">
+											<img src="/image/ko/local/main/banner10.jpg" alt="국회도서관">
+											<p class="mobile">국회도서관</p>
+										</a>
+									</li>
+									<li class="banner4">
+										<a href="https://www.library.kr/" target="_blank" title="새창" rel="noopener noreferrer">
+											<img src="/image/ko/local/main/banner6.jpg" alt="경기도사이버도서관">
+											<p class="mobile">경기도사이버도서관</p>
+										</a>
+									</li>
+									<li class="banner5">
+										<a href="http://www.icheon.go.kr/" target="_blank" title="새창" rel="noopener noreferrer">
+											<img src="/image/ko/local/main/banner11.jpg" alt="ART이천	">
+											<p class="mobile">ART이천	</p>
+										</a>
+									</li>
+									<li class="banner6">
+										<a href="http://www.icheonlll.go.kr/" target="_blank" title="새창" rel="noopener noreferrer">
+											<img src="/image/ko/local/main/banner8.jpg" alt="이천시평생학습">
+											<p class="mobile">이천시평생학습</p>
+										</a>
+									</li>
+									<li class="banner7">
+										<a href="https://www.nlcy.go.kr/" target="_blank" title="새창" rel="noopener noreferrer">
+											<img src="/image/ko/local/main/banner1.jpg" alt="국립어린이청소년도서관">
+											<p class="mobile">국립어린이청소년도서관</p>
+										</a>
+									</li>
+									<li class="banner8">
+										<a href="http://blog.naver.com/2000happy_" target="_blank" title="새창" rel="noopener noreferrer">
+											<img src="/image/ko/local/main/banner9.jpg" alt="이천시 blog">
+											<p class="mobile">이천시 blog</p>
+										</a>
+									</li>
+									<li class="banner9">
+										<a href="https://www.icheon.go.kr/portal/contents.do?key=1562" target="_blank" title="새창" rel="noopener noreferrer">
+											<img src="/image/ko/local/main/banner12.jpg" alt="유네스코 창의도시이천">
+											<p class="mobile">유네스코 창의도시이천</p>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<a href="" class="prev"><img src="/image/ko/local/main/bannerPrev.png" alt="이전"></a>
+						<a href="" class="next"><img src="/image/ko/local/main/bannerNext.png" alt="다음"></a>
+						<a href="" class="pause"><img src="/image/ko/local/main/bannerPause.png" alt="정지"></a>
+						<a href="" class="play"><img src="/image/ko/local/main/bannerPlay.png" alt="시작"></a>
+					</div>
+					<!-- // 배너모음 - banner -->
+				</div>
+				<!-- // contents5 -->
+			</div>
+			<!-- //divContents -->
+			<hr>
+			
+			
+<div id="divFooter">
+	<div class="footer">
+		<div class="footerLogo">
+			<img src="/image/ko/local/footerLogo.png" alt="이천시립통합도서관">
+		</div>
+		<div>
+			<div class="footerMenu">
+				<ul>
+					<li class="privacy">
+						<a href="/local/html/privacy" title="개인정보처리방침">개인정보처리방침</a>
+					</li>
+					<li>
+						<a href="/local/html/email" title="이메일무단수집거부">이메일무단수집거부</a>
+					</li>
+					<li>
+						<a href="/local/html/map1" title="찾아오시는길">찾아오시는길</a>
+					</li>
+					<li>
+						<a href="/sitemap" title="사이트맵">사이트맵</a>
+					</li>
+				</ul>
+			</div>
+			<div class="libraryInfo">
+				<ul class="addressList">
+					<li>
+						<h3>시립</h3>
+						<address>
+							(17354 ) 경기도 이천시 설봉로81번길 50(창전동) 
+						</address>
+						<ul>
+							<li>Tel. 031-644-4351~4</li>
+						</ul>
+					</li>
+					<li>
+						<h3>청미</h3>
+						<address>
+							(17421 ) 경기도 이천시 장호원읍 서동대로8829번길 53-6
+						</address>
+						<ul>
+							<li>Tel. 031 - 644 - 4371</li>
+						</ul>
+					</li>
+					<li>
+						<h3>효양</h3>
+						<address>
+							(17327 ) 경기도 이천시 부발읍 경충대로2250번길 35 
+						</address>
+						<ul>
+							<li>Tel. 031- 644 - 4391</li>
+						</ul>
+					</li>
+					<li>
+						<h3>어린이</h3>
+						<address>
+							(17375 ) 경기도 이천시 남천로 31
+						</address>
+						<ul>
+							<li>Tel. 031 - 644 - 4381</li>
+						</ul>
+					</li>
+					<li>
+						<h3>마장</h3>
+						<address> 
+							(17387 ) 경기도 이천시 마장면 마장로11
+						</address>
+						<ul>
+							<li>Tel. 031-645-3440</li>
+						</ul>
+					</li>
+					<li>
+						<h3>서희</h3>
+						<address>
+							(17372) 경기도 이천시 애련정로 29
+						</address>
+						<ul>
+							<li>Tel. 031-645-3430~3</li>
+						</ul>
+					</li>
+					<li>
+						<h3>이천시 도서관과 전자팩스</h3>
+						<address>
+							0502-696-2009
+						</address>
+					</li>
+				</ul>
+				<p class="copyright">
+					COPYRIGHT(C)2019 <span>ICHEON CITY LIBRARY.</span> ALL RIGHTS RESERVED.
+				</p>
+			</div>
+			<div class="familySite">
+				<ul>
+					<li>
+						<a href="">관련사이트 바로가기<span class="bg"></span></a>
+						<div class="siteWrap">
+							<div>
+								<ul>
+									<li><a href="http://www.icheon.go.kr/" title="새창" target="_blank" rel="noopener noreferrer">이천시청</a></li>
+									<li><a href="https://www.icheon.go.kr/depart/farmSubMain.do?key=2428" title="새창" target="_blank" rel="noopener noreferrer">이천시 농업기술센터</a></li>
+									<li><a href="https://www.icheon.go.kr/depart/selectEmployeeList.do?key=2425&searchDeptCode=000003136" title="새창" target="_blank" rel="noopener noreferrer">이천시 체육지원센터</a></li>
+									<li><a href="https://www.icheon.go.kr/depart/selectEmployeeList.do?key=2425&searchDeptCode=000003136" title="새창" target="_blank" rel="noopener noreferrer">이천문화재단</a></li>
+									<li><a href="https://www.artic.or.kr/icmus/main/view" title="새창" target="_blank" rel="noopener noreferrer">이천시립박물관</a></li>
+									<li><a href="http://www.sulbong.or.kr/" title="새창" target="_blank" rel="noopener noreferrer">설봉서원</a></li>
+									<li><a href="http://www.iwoljeon.org/" title="새창" target="_blank" rel="noopener noreferrer">이천시립월전미술관</a></li>
+									<li><a href="http://www.eais.go.kr/" title="새창" target="_blank" rel="noopener noreferrer">새움터</a></li>
+								</ul>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="visitToday">
+				<ul>
+					<li><span class="title">VISIT  TODAY</span><span class="num">35,133</span></li>
+					<li><span class="title">TOTAL</span><span class="num">142,965,871</span></li>
+				</ul>
+			</div>
+			<div class="sns">
+				<ul>
+					<li><a href="https://band.us/@icheonlib" target="_blank" title="새창"><img src="/image/ko/local/sns1.png" alt="네이버 band"></a></li>
+					<li><a href="https://pf.kakao.com/_XifaT" target="_blank" title="새창"><img src="/image/ko/local/sns2.png" alt="카카오톡"></a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+			
+		</div>
+	
+	
+</body>
+</html>

@@ -1,0 +1,1060 @@
+<!DOCTYPE HTML>
+
+<!-- Back End와 통신하는 부분을 호출하여 검색결과를 request객체에 받아온다. -->
+
+<!-- Back End와 통신하는 부분을 호출하여 검색결과를 request객체에 받아온다. -->
+        
+<!-- 검색결과 결과및 각종 셋팅 공통 설정 로드 -->
+
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="language" content="ko">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Pragma" content="no-cache">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>안성시 통합검색 페이지 입니다.</title>
+
+<!-- css -->
+<link media="all" type="text/css" rel="stylesheet" href="./include/css/common.css">
+<link media="all" type="text/css" rel="stylesheet" href="./include/css/swiper.css">
+<link media="all" type="text/css" rel="stylesheet" href="./include/css/layout.css">
+<link media="all" type="text/css" rel="stylesheet" href="./include/css/search.css">
+
+<link media="all" type="text/css" rel="stylesheet" href="./css/schfMedia.css">
+
+<script src="./include/js/jquery-1.11.3.min.js"></script>
+<script src="./include/js/jquery-ui-1.10.0.custom.min.js"></script>
+<script src="./include/js/jquery.nicescroll.min.js"></script>
+<script src="./include/js/common.js"></script>
+<script src="./include/js/swiper.js"></script>
+<script src="./include/js/script.js"></script>
+
+<!-- 검색엔진 공통 JS -->
+<script src="./js/search.js"></script>
+<script type="text/javascript" src="./wpdldptm/rsa.js"></script>
+<script type="text/javascript" src="./wpdldptm/search.js" ></script>
+<script type="text/javascript" src="./wpdldptm/common.js"></script>
+<script type="text/javascript" src="./wpdldptm/preview.js"></script>
+<script type="text/javascript" src="./wpdldptm/rcmdWord.js"></script>
+
+<script>
+
+    function formSubmit(){
+        if(document.RsaSearchForm1.qt.value==""){
+            clickFldSet(document.RsaSearchForm1,'menu', '통합검색' );
+        }else{
+            document.RsaSearchForm1.submit();
+        }
+        
+    }
+    $(document).ready(function($) {
+        /* 검색 창 */
+        $(".sc_input").attr("autocomplete", "off"); /* 시스템 자동 완성 해제 */
+        $(".sc_input").css("ime-mode", "active"); /* 한글 기본 */
+        $(".sc_input").keypress(function(key){
+            if(key.which == 13)
+            {
+                if(document.RsaSearchForm1.qt.value==""){
+                    clickFldSet(document.RsaSearchForm1,'menu', '통합검색' );
+                }else{
+                    document.RsaSearchForm1.submit();
+                }
+            }
+        });
+
+        /* 인기 검색어 상태 저장 */
+        var fMode=readCookie("fMode");
+        if(fMode=='day') $('#pc_title_on2').trigger('click');
+        else if(fMode=="week")
+        {
+            $('#pc_title_on3').trigger('click');
+        }
+        else if(fMode=='month') $('#pc_title_on4').trigger('click');
+
+        /* 카테고리 상태 저장 */
+        var cMode=readCookie("cMode");
+        if(cMode=='open')
+        {
+            $('.nav-wrap button').attr('class', 'open');
+            $('.nav-wrap button').trigger('click');
+        }
+
+        /* 상세보기 상태 저장 */
+        var advMode=readCookie("advMode");
+        if(advMode=='open')
+        {
+            detailOpen();
+        }
+
+        /* 이미지 초기화 */
+        $('img').each( function(){
+            var instance = $(this);
+            var img = new Image();
+
+            $(img).error(function(){
+                if(instance.hasClass('thumb_img')==true)
+                {
+                    instance.attr('src', 'images/noimage.png');
+                }
+                else if(instance.hasClass('file_icn')==true)
+                {
+                    instance.attr('src', 'images/file_icn_unknown.png');
+                    // instance.attr('alt', '');
+                }
+                // else
+                    // instance.attr('src', 'images/noimage.png');
+            }).attr('src', instance.attr('src'));
+
+            if(instance.hasClass('sect_image')==true && instance.attr('src')!='')
+                instance.show();
+        });
+
+        /* 매개 변수 초기화 */
+        initForm(document.RsaSearchForm1, 'false', '', '@all', '', '');
+        
+        /* 상세검색 고정 */
+        $("#detailOpenButton").click(function() {
+            if($("#detailStatus").val() == "0"){
+                $("#detailStatus").val("1");
+            }else if($("#detailStatus").val() == "1"){
+                $("#detailStatus").val("0");
+            }
+        });
+        
+        $(".detail_btn1").click(function() {
+            if($("#detailStatus").val() == "0"){
+                $("#detailStatus").val("1");
+            }else if($("#detailStatus").val() == "1"){
+                $("#detailStatus").val("0");
+            }
+        });
+            if($("#detailStatus").val() == "0"){
+                $("#detailSearch").attr("style","display:none;");
+            }else if($("#detailStatus").val() == "1"){
+                $("#detailSearch").attr("style","display:block;");
+            }
+        
+    });
+
+    $(document).ready(function() {
+
+        $.ajax({
+            url: '/search/mTool/common/getdirectList.do'       // 요청 할 주소
+            , async: true           // false 일 경우 동기 요청으로 변경
+            , type: 'post'          // GET, PUT
+            , data: $('form[name="RsaSearchForm1"]').serialize()    // 전송할 데이터
+            , dataType: 'text' // xml, json, script, html
+            , beforeSend: function(jqXHR) {}        // 서버 요청 전 호출 되는 함수 return false; 일 경우 요청 중단
+            , success: function(jqXHR) {            // 요청 완료 시
+                var data = jqXHR;
+                if(data.length>100)
+                {
+                    $('div.totalSearch_golink').html(data);
+                    $('div.totalSearch_golink').show();
+                }
+            }
+            , error: function(jqXHR) {}                     // 요청 실패
+            , complete: function(jqXHR) {}          // 요청의 실패, 성공과 상관 없이 완료 될 경우 호출
+        }); 
+
+        $.ajax({
+            url: '/search/mTool/common/getcontentList.do'      // 요청 할 주소
+            , async: true           // false 일 경우 동기 요청으로 변경
+            , type: 'post'          // GET, PUT
+            , data: $('form[name="RsaSearchForm1"]').serialize()    // 전송할 데이터
+            , dataType: 'text' // xml, json, script, html
+            , beforeSend: function(jqXHR) {}        // 서버 요청 전 호출 되는 함수 return false; 일 경우 요청 중단
+            , success: function(jqXHR) {            // 요청 완료 시
+                var data = jqXHR;
+                if(data.length>100)
+                {
+                    $('div.totalSearch_goTheme').html(data);
+                    $('div.totalSearch_goTheme').show();
+                }
+            }
+            , error: function(jqXHR) {}                     // 요청 실패
+            , complete: function(jqXHR) {}          // 요청의 실패, 성공과 상관 없이 완료 될 경우 호출
+        });
+    });
+</script>
+
+</head>
+<body>
+
+
+
+
+<div id="skipNav">
+    <a href="#conts">본문 바로가기</a>
+    <a href="#lnb">주메뉴 바로가기</a>
+</div>
+<div id="wrap">
+
+<header id="headerWrap" class="headerWrap">
+
+    <div id="gnbWrap" class="gnbWrap">
+        <div class="inner">
+            <div class="otherNav portal">
+                <button type="button" onclick="$(this).closest('.otherNav').addClass('active');" class="open"><span>포털사이트</span><span class="blind">포털사이트 바로가기 열기</span></button>
+                <ul class="detail">
+                    <li class="home"><a href="https://www.anseong.go.kr/main.do">안성포털</a></li>
+                    <li><a href="https://www.anseong.go.kr/depart/main.do">분야별</a></li>
+                    <li><a href="https://www.anseong.go.kr/gilmok/main.do">소통의길목</a></li>
+                    <li><a href="https://www.anseong.go.kr/festival/main.do">바우덕이축제</a></li>
+                    <li><a href="https://www.anseong.go.kr/tour/main.do">문화관광</a></li>
+                </ul>
+                <button type="button" onclick="$(this).closest('.otherNav').removeClass('active').find('.open').focus();" class="close"><span class="blind">포털사이트 바로가기 닫기</span></button>
+            </div>
+
+            <div class="otherNav lang">
+            <button type="button" onclick="$(this).closest('.otherNav').addClass('active');" class="open"><span>Language</span><span class="blind">외국어 사이트 바로가기 열기</span></button>
+                <ul class="detail">
+                    <li><a href="https://www.anseong.go.kr/portal"><span>Korea</span></a></li>
+                    <li><a href="https://www.anseong.go.kr/en"><span>English</span></a></li>
+                    <li><a href="https://www.anseong.go.kr/ja"><span>Japanese</span></a></li>
+                    <li><a href="https://www.anseong.go.kr/ch"><span>Chinese</span></a></li>
+                </ul>
+                <button type="button" onclick="$(this).closest('.otherNav').removeClass('active').find('.open').focus();" class="close"><span class="blind">외국어 사이트 바로가기 닫기</span></button>
+            </div>
+        </div>
+    </div>
+	
+	
+	<div class="inner">
+		<h1 class="logo"><a href="https://www.anseong.go.kr"><strong>안성시 통합검색</strong></a></h1>
+		<div class="searchWrap">
+		
+			<!-- 통합검색 영역 -->
+			<form id="searchForm" name="RsaSearchForm1" method="post" action="/search/front/Search.jsp" onsubmit="return chkSearchForm(this);">
+				<div class="search">
+					<div class="in">
+						<input type="text" id="qt" name="qt" class="sc_input" title="검색 키워드" value="파이썬" onfocus="return setTextBox_(event);" onmousedown="setTextBox_(event);" onkeydown="setTextBox_(event);" onchange="javascript:search_promo_off();" placeholder="검색어를 입력하세요">
+
+    <!--// rcmd load init start // -->
+    <script type="text/javascript">
+        rcmd_default_set(document.RsaSearchForm1.qt, 500);
+        if (t_>0 && c_>0)
+        {
+            wd_ ();
+            setTimeout ("wi_()", TimeOut);
+        }
+    </script>
+    <!--// rcmd load init end // -->
+
+                        <div class="search_arrow" id="autoCompleteToOn">
+                            <a href="javascript:;" title="검색어자동완성 열기" class="set_sugicn" onclick="ac_show__();"></a>
+                        </div><!--search_arrow-->
+                        <div class="search_arrow_off" id="autoComplete" onmouseover="set_mouseon_(2);" onmouseout="set_mouseoff_(2);">
+                            <a href="javascript:;" title="검색어자동완성 닫기" class="set_sugicn" onclick="ac_hide__()"></a>
+                        </div><!--search_arrow_off-->
+                        <input type="submit" value="검색" class="btn-search" onclick="formSubmit();">
+                        <div class="rcmdResult" id="rcmdResult" style="display:none" onmouseover="set_mouseon_(2);" onmouseout="set_mouseoff_(2);">
+                        </div>
+                    </div>
+                    
+			<div class="recommend">
+				<strong class="tit">추천검색어</strong>
+					<ul class="list">
+
+					<li>
+						<a href="javascript:;" onclick="clickFldSet(document.RsaSearchForm1, 'qt', '보건소'); return false;" title="추천검색어 보건소">보건소</a>
+					</li>
+
+					<li>
+						<a href="javascript:;" onclick="clickFldSet(document.RsaSearchForm1, 'qt', '통계연보'); return false;" title="추천검색어 통계연보">통계연보</a>
+					</li>
+
+					<li>
+						<a href="javascript:;" onclick="clickFldSet(document.RsaSearchForm1, 'qt', '신청서'); return false;" title="추천검색어 신청서">신청서</a>
+					</li>
+
+					<li>
+						<a href="javascript:;" onclick="clickFldSet(document.RsaSearchForm1, 'qt', '보건증'); return false;" title="추천검색어 보건증">보건증</a>
+					</li>
+
+					<li>
+						<a href="javascript:;" onclick="clickFldSet(document.RsaSearchForm1, 'qt', '문화'); return false;" title="추천검색어 문화">문화</a>
+					</li>
+
+					<li>
+						<a href="javascript:;" onclick="clickFldSet(document.RsaSearchForm1, 'qt', '예산서'); return false;" title="추천검색어 예산서">예산서</a>
+					</li>
+
+					<li>
+						<a href="javascript:;" onclick="clickFldSet(document.RsaSearchForm1, 'qt', '공시지가'); return false;" title="추천검색어 공시지가">공시지가</a>
+					</li>
+
+				</ul>
+			</div>
+
+                    <div class="side">
+                        <p>
+                            <input type="checkbox" id="txt_researching" name="pq" value="" onclick="clickPq(this, document.RsaSearchForm1.qt);"/>
+                            <label for="txt_researching"><span>결과 내 재검색</span></label>
+                        </p>
+                        <button type="button" class="control open" onclick="control_search_detail();"><span>상세검색</span></button>
+                    </div>
+                </div>
+
+                <!-- 통합검색 상세 영역 -->
+                <div class="detail">
+                    <div class="inner">
+                        <dl>
+                            <dt><strong>정렬</strong></dt>
+                            <dd>
+                                <fieldset>
+                                    <input type="radio" id="chk_order1" onclick="goSortField('@import')" name="chk_order1"  value="">
+                                    <label for="chk_order1"><span>정확도</span></label>
+                                    <input type="radio" id="chk_order2"  onclick="goSortField('@date')" name="chk_order1" checked value="">
+                                    <label for="chk_order2"><span>최신순</span></label>
+                                </fieldset>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt><strong>검색기간</strong></dt>
+                            <dd>
+                                <fieldset>
+                                    <input type="radio" id="chk_period1" onclick="goSPeriodField('all','', '20260807')" checked name="chk_period1" value="">
+                                    <label for="chk_period1"><span>전체기간</span></label>
+                                </fieldset>
+                                
+                                <fieldset class="radio-box">
+                                    <input type="radio" id="chk_period_week" onclick="goSPeriodField('week','20260731', '20260807')" name="chk_period2"  value="">
+                                    <label for="chk_period_week"><span>1주</span></label>
+                                    <input type="radio" id="chk_period_month" onclick="goSPeriodField('month','20260707', '20260807')" name="chk_period2"  value="">
+                                    <label for="chk_period_month"><span>1개월</span></label>
+                                    <input type="radio" id="chk_period_year" onclick="goSPeriodField('year','20250807', '20260807')" name="chk_period2"  value="">
+                                    <label for="chk_period_year"><span>1년</span></label>
+                                </fieldset>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt><strong>검색범위</strong></dt>
+                            <dd>
+                                <fieldset>
+                                    <input type="radio" id="chk_scope1" onclick="goSearchField('@all')" name="chk_scope" checked value="">
+                                    <label for="chk_scope1"><span>전체</span></label>
+                                    <input type="radio" id="chk_scope2" onclick="goSearchField('@title')" name="chk_scope"   value="">
+                                    <label for="chk_scope2"><span>제목</span></label>
+                                </fieldset>
+                            </dd>
+                        </dl>
+                    </div>
+                    <input type="submit" value="검색" class="btn-search" />
+                <button type="button" class="btn-control" onclick="control_search_detail('close');"><span>상세검색 닫기</span></button>
+                </div>
+            
+            <input type="hidden" name="section" value="" />
+            
+                <input type="hidden" name="nh" value="20" />
+                <input type="hidden" name="st" value="1" />
+                <input type="hidden" name="adv" value="0" />
+                <input type="hidden" name="sw" value="0" />
+                <input type="hidden" name="searchType" value="1"/>
+                <input type="hidden" class="opt_sDate" name="sDate" value=""/>
+                <input type="hidden" class="opt_eDate" name="eDate" value=""/>
+                <input type="hidden" class="opt_sPeriod" name="sPeriod" value=""/>
+                <input type="hidden" id="menu" name="menu" value="통합검색"/>
+                <input type="hidden" name="rf" class="opt_sort" value="@date"/>
+                <input type="hidden" name="field" class="opt_field" value="@all" />
+                <input type="hidden" name="delmyquery" id="delmyquery" value="null"/>
+                <!-- // 통합검색 상세 영역 -->
+            </form>
+            <!-- // 통합검색 영역 -->
+        </div>
+    </div>
+    <nav id="lnbWrap" class="lnbWrap">
+        <div class="inner">
+            <!-- 주 메뉴 목록 -->
+            <ul id="lnb">
+
+                <li class="active">
+                    <a href="javascript:;" data-target="" data-trcode="" onclick="document.RsaSearchForm1.section.value='통합검색';clickFldSet(document.RsaSearchForm1,'menu', '통합검색');return false;"  title="통합검색 선택됨" ><span>통합검색</span></a>
+                </li>
+
+                <li>
+                    <a href="javascript:;" data-target="" data-trcode="" onclick="document.RsaSearchForm1.section.value='메뉴검색';clickFldSet(document.RsaSearchForm1,'menu', '메뉴검색');return false;"  title="메뉴검색 메뉴선택" ><span>메뉴검색</span></a>
+                </li>
+
+                <li>
+                    <a href="javascript:;" data-target="" data-trcode="" onclick="document.RsaSearchForm1.section.value='직원업무';clickFldSet(document.RsaSearchForm1,'menu', '직원업무');return false;"  title="직원업무 메뉴선택" ><span>직원업무</span></a>
+                </li>
+
+                <li>
+                    <a href="javascript:;" data-target="" data-trcode="" onclick="document.RsaSearchForm1.section.value='웹페이지';clickFldSet(document.RsaSearchForm1,'menu', '웹페이지');return false;"  title="웹페이지 메뉴선택" ><span>웹페이지</span></a>
+                </li>
+
+                <li>
+                    <a href="javascript:;" data-target="" data-trcode="" onclick="document.RsaSearchForm1.section.value='게시판';clickFldSet(document.RsaSearchForm1,'menu', '게시판');return false;"  title="게시판 메뉴선택" ><span>게시판</span></a>
+                </li>
+
+                <li>
+                    <a href="javascript:;" data-target="" data-trcode="" onclick="document.RsaSearchForm1.section.value='첨부파일';clickFldSet(document.RsaSearchForm1,'menu', '첨부파일');return false;"  title="첨부파일 메뉴선택" ><span>첨부파일</span></a>
+                </li>
+
+                <li>
+                    <a href="javascript:;" data-target="" data-trcode="" onclick="document.RsaSearchForm1.section.value='민원서식';clickFldSet(document.RsaSearchForm1,'menu', '민원서식');return false;"  title="민원서식 메뉴선택" ><span>민원서식</span></a>
+                </li>
+
+                <li>
+                    <a href="javascript:;" data-target="" data-trcode="" onclick="document.RsaSearchForm1.section.value='멀티미디어';clickFldSet(document.RsaSearchForm1,'menu', '멀티미디어');return false;"  title="멀티미디어 메뉴선택" ><span>멀티미디어</span></a>
+                </li>
+
+                <li>
+                    <a href="javascript:;" data-target="" data-trcode="" onclick="document.RsaSearchForm1.section.value='사전정보공표';clickFldSet(document.RsaSearchForm1,'menu', '사전정보공표');return false;"  title="사전정보공표 메뉴선택" ><span>사전정보공표</span></a>
+                </li>
+
+                <li>
+                    <a href="javascript:;" data-target="" data-trcode="" onclick="document.RsaSearchForm1.section.value='소셜미디어';clickFldSet(document.RsaSearchForm1,'menu', '소셜미디어');return false;"  title="소셜미디어 메뉴선택" ><span>소셜미디어</span></a>
+                </li>
+
+                <li>
+                    <a href="javascript:;" data-target="" data-trcode="" onclick="document.RsaSearchForm1.section.value='문화관광';clickFldSet(document.RsaSearchForm1,'menu', '문화관광');return false;"  title="문화관광 메뉴선택" ><span>문화관광</span></a>
+                </li>
+
+            </ul>
+            <!-- // 주 메뉴 목록 -->
+        </div>
+    </nav>
+
+</header>
+<section id="body" class="inner">
+
+    <div id="conts">
+        <div class="contents resultContent">
+            <h2>검색어 <em>파이썬</em>에 대한 총 <em>5</em>건의 검색결과를 찾았습니다.</h2>
+			
+
+            <section class="resultBox">
+                <h3><strong>통합검색 </strong><span>총(<em>5</em>)건</span></h3>
+                <ul class="totalList">
+
+                    <li>
+                        <a href="#Result_메뉴검색" title="메뉴검색 영역으로 이동" ><span>메뉴검색(<em>0</em>)</span></a>
+                    </li>
+
+                    <li>
+                        <a href="#Result_직원업무" title="직원업무 영역으로 이동" ><span>직원업무(<em>0</em>)</span></a>
+                    </li>
+
+                    <li>
+                        <a href="#Result_웹페이지" title="웹페이지 영역으로 이동" ><span>웹페이지(<em>0</em>)</span></a>
+                    </li>
+
+                    <li>
+                        <a href="#Result_게시판" title="게시판 영역으로 이동" ><span>게시판(<em>3</em>)</span></a>
+                    </li>
+
+                    <li>
+                        <a href="#Result_첨부파일" title="첨부파일 영역으로 이동" ><span>첨부파일(<em>1</em>)</span></a>
+                    </li>
+
+                    <li>
+                        <a href="#Result_민원서식" title="민원서식 영역으로 이동" ><span>민원서식(<em>0</em>)</span></a>
+                    </li>
+
+                    <li>
+                        <a href="#Result_멀티미디어" title="멀티미디어 영역으로 이동" ><span>멀티미디어(<em>0</em>)</span></a>
+                    </li>
+
+                    <li>
+                        <a href="#Result_사전정보공표" title="사전정보공표 영역으로 이동" ><span>사전정보공표(<em>0</em>)</span></a>
+                    </li>
+
+                    <li>
+                        <a href="#Result_소셜미디어" title="소셜미디어 영역으로 이동" ><span>소셜미디어(<em>1</em>)</span></a>
+                    </li>
+
+                    <li>
+                        <a href="#Result_문화관광" title="문화관광 영역으로 이동" ><span>문화관광(<em>0</em>)</span></a>
+                    </li>
+
+                </ul>
+                
+                
+                
+                
+            <!-- 바로가기 S -->
+            <div class="totalSearch_golink"></div>
+            <!-- 바로가기 E -->
+            <!--  콘텐츠가이드 S -->
+            <div class="totalSearch_goTheme"></div>
+            <!--  콘텐츠가이드 E -->
+            </section>
+
+            <section class="resultBox" id="Result_게시판"> 
+                <h3><strong>게시판</strong><span>총(<em>3</em>)건</span></h3>
+
+
+
+                <ul class="contentList">
+
+
+							<li>
+								<div class="cont-item">
+									<div class="tit">
+										<strong class="subj">
+											<a href="https://www.anseong.go.kr/portal/bbs/view.do?bIdx=189524&ptIdx=16&mId=0501010000" title="중앙도서관 행복 AI 스터디 랩 겨울방학특강 바로가기">
+												중앙도서관 행복 AI 스터디 랩 겨울방학특강
+											</a>
+										</strong>
+										<span class="date">2025.12.29</span>
+										<a href="https://www.anseong.go.kr/portal/bbs/view.do?bIdx=189524&ptIdx=16&mId=0501010000" target="_blank" class="btn-link" title="중앙도서관 행복 AI 스터디 랩 겨울방학특강 새창열기" rel="noopener noreferrer"><span>새창열기</span></a>
+									</div>
+									<div class="desc">
+										2실    -컴퓨터처럼 생각하는 법을 배워요(B) / 1.17.~2.7.(매주 토) 14:00~14:50 / 미래배움터 2실        [초등4~6학년] (2025년기준)    -<span class='highlight'>파이썬</span>, 로봇코딩으로 출발(영어타자필수) / 1.17.~2.7.(매주 토) 10:00~12:00 / 미래배움터 1실    -궁금해! 인공지능이 뭔지 / 1.17.~2.7.(매주
+									</div>
+									<div class="location">
+										<ul>
+											<li>대표 홈페이지/읍면동/직속기관/사업소 > 공지사항</li>
+										</ul>
+									</div>
+								</div>
+							</li>
+					
+
+							<li>
+								<div class="cont-item">
+									<div class="tit">
+										<strong class="subj">
+											<a href="https://www.anseong.go.kr/portal/bbs/view.do?bIdx=184653&ptIdx=16&mId=0501010000" title="아양도서관 독서의 달 행사 안내 바로가기">
+												아양도서관 독서의 달 행사 안내
+											</a>
+										</strong>
+										<span class="date">2025.09.04</span>
+										<a href="https://www.anseong.go.kr/portal/bbs/view.do?bIdx=184653&ptIdx=16&mId=0501010000" target="_blank" class="btn-link" title="아양도서관 독서의 달 행사 안내 새창열기" rel="noopener noreferrer"><span>새창열기</span></a>
+									</div>
+									<div class="desc">
+										기술의 장단점과 윤리 문제   생성형 인공지능 제작 체험  - 강사 : 이영호 교수(대구교육대학교 컴퓨터학과 교수 / 「모두의 인공지능 with <span class='highlight'>파이썬</span>」 / 「인공지능은 선생님을 대신할까요 」 / 「빅데이터 분석과 머신러닝」 등 저술)  - 대상 : 가족/어린이/청소년을 대상으로 한 AI특강
+									</div>
+									<div class="location">
+										<ul>
+											<li>대표 홈페이지/읍면동/직속기관/사업소 > 공지사항</li>
+										</ul>
+									</div>
+								</div>
+							</li>
+					
+
+							<li>
+								<div class="cont-item">
+									<div class="tit">
+										<strong class="subj">
+											<a href="https://www.anseong.go.kr/portal/bbs/view.do?bIdx=184040&ptIdx=16&mId=0501010000" title="2025년 중앙도서관 「행복 AI 스터디 랩」 교육프로그램 수강생 모집 바로가기">
+												2025년 중앙도서관 「행복 AI 스터디 랩」 교육프로그램 수강생 모집
+											</a>
+										</strong>
+										<span class="date">2025.08.13</span>
+										<a href="https://www.anseong.go.kr/portal/bbs/view.do?bIdx=184040&ptIdx=16&mId=0501010000" target="_blank" class="btn-link" title="2025년 중앙도서관 「행복 AI 스터디 랩」 교육프로그램 수강생 모집 새창열기" rel="noopener noreferrer"><span>새창열기</span></a>
+									</div>
+									<div class="desc">
+										- 레고 브릭, 모터, 센서 등을 결합하여 로봇을 만들고, 코딩으로 작동시키는 STEAM 교육 솔루션. 스크래치 기반의 쉬운 블록 코딩부터 <span class='highlight'>파이썬</span>까지 다양한 언어를 지원하여 놀이처럼 재미있게 논리적 사고력과 문제 해결 능력 양성. 초등학생용 에센셜과 초중학생용 프라임이 있음.    ※
+									</div>
+									<div class="location">
+										<ul>
+											<li>대표 홈페이지/읍면동/직속기관/사업소 > 공지사항</li>
+										</ul>
+									</div>
+								</div>
+							</li>
+					
+
+                </ul>
+                    
+
+            </section>
+
+            <section class="resultBox" id="Result_첨부파일"> 
+                <h3><strong>첨부파일</strong><span>총(<em>1</em>)건</span></h3>
+
+
+
+                <ul class="contentList">
+
+
+							<li>
+								<div class="cont-item">
+									<div class="tit">
+										<!-- 첨부파일 클래스 : doc, hwp, pdf, zip, ppt, txt, xls, jpg, png, gif, img -->
+										<i class="icon hwp">첨부파일 hwp</i>
+										<strong class="subj">
+											<a href="https://www.anseong.go.kr/cmm/fms/FileDown.do?atchFileId=FILE_000000000270284&fileSn=0" title="첨부파일 다운로드" >
+												학교복합시설 기본계획 및 활성화방안.hwp
+											</a>
+										</strong>
+										<span class="date">2023.04.06</span>
+										<a href="https://www.anseong.go.kr/portal/bbs/view.do?bIdx=163511&ptIdx=242&mId=0402110000" target="_blank" class="btn-link" title="학교복합시설 기본계획 및 활성화방안.hwp 새창열기" rel="noopener noreferrer"><span>새창열기</span></a>
+									</div>
+									<div class="desc">
+										열람실, 플라이존, 휴게공간 등 다양한 공간을 제공함 특히 어린이프로그램으로 기본적인 독서프로그램은 물론이고 미래지향적인 메이커교육, <span class='highlight'>파이썬</span> 교육 등 다양한 프로그램을 진행하고 있음 지역주민의 참여를 높인 도서관 학교복합시설에 위치한 공공도서관은 주민참여형 도서관으로 
+									</div>
+									<div class="location">
+										<ul>
+											
+											<li>대표 > 행정정보 > 시정정보 > 용역결과공개</li>
+											
+										</ul>
+									</div>
+								</div>
+							</li>
+
+
+                </ul>
+
+
+            </section>
+
+            <section class="resultBox" id="Result_소셜미디어"> 
+                <h3><strong>소셜미디어</strong><span>총(<em>1</em>)건</span></h3>
+
+
+
+                <ul class="contentList">
+
+							<li>
+								<div class="cont-item">
+									<div class="tit">
+										<!-- SNS 클래스 : blog, facebook -->
+										<i class="icon blog">blog</i>
+										<strong class="subj">
+											<a href="https://blog.naver.com/PostView.nhn?blogId=anseongsi1&logNo=222018649909" title="3D 프린팅 모델링&SW코딩 자격증 수강생 모집 안내 바로가기">
+											3D 프린팅 모델링&SW코딩 자격증 수강생 모집 안내
+											</a>
+										</strong>
+										<span class="date">2020.07.02</span>
+										<a href="https://blog.naver.com/PostView.nhn?blogId=anseongsi1&logNo=222018649909" target="_blank" class="btn-link" title="3D 프린팅 모델링&SW코딩 자격증 수강생 모집 안내 새창열기" rel="noopener noreferrer"><span>새창열기</span></a>
+									</div>
+									<div class="desc">
+										eong.go.kr ▶선발 안내◀ 인터넷 추첨에 의한 선발 2020. 7. 8. (수) 10:00 추첨 후 즉시 결과발표 (문자통보) ▶교육 내용◀ 스크래치, 드론, <span class='highlight'>파이썬</span>, 코딩, 오토캐드, 3D 프린터, 아두이노, 동영상 편집 등 융합교육 ▶세부 일정◀ 하단의 첨부파일 확인 ▶문 의 처◀ 안성시 교육체육과
+									</div>
+								</div>
+							</li>
+
+                </ul>
+
+            </section>
+
+        </div>
+		<div class="sideList">
+			<section>
+				<h3><strong>인기검색어</strong></h3>
+				<ul class="tab-list">
+					<li class="active">
+						<button type="button" onclick="tab_rank(this);" aria-expanded="true"><span>실시간</span></button>
+						<ul class="rank-list">
+							
+			<li>
+				<div class="rank-item">
+					<i class="num">1</i>
+					<a href="javascript:;" onclick="javascript:clickFldSet(document.RsaSearchForm1, 'qt', '채용공고'); return false;"  class="subj"  title="실시간 인기검색어 1위 채용공고">채용공고</a>
+					<span class="mod">-</span>
+				</div>
+			</li>
+
+			<li>
+				<div class="rank-item">
+					<i class="num">2</i>
+					<a href="javascript:;" onclick="javascript:clickFldSet(document.RsaSearchForm1, 'qt', '카드수수료'); return false;"  class="subj"  title="실시간 인기검색어 2위 카드수수료">카드수수료</a>
+					<span class="mod">-</span>
+				</div>
+			</li>
+
+			<li>
+				<div class="rank-item">
+					<i class="num">3</i>
+					<a href="javascript:;" onclick="javascript:clickFldSet(document.RsaSearchForm1, 'qt', '새올행정전자민원창구'); return false;"  class="subj"  title="실시간 인기검색어 3위 새올행정전자민원창구">새올행정전자민원창구</a>
+					<span class="mod">-</span>
+				</div>
+			</li>
+
+			<li>
+				<div class="rank-item">
+					<i class="num">4</i>
+					<a href="javascript:;" onclick="javascript:clickFldSet(document.RsaSearchForm1, 'qt', '버스 시간표'); return false;"  class="subj"  title="실시간 인기검색어 4위 버스 시간표">버스 시간표</a>
+					<span class="mod">-</span>
+				</div>
+			</li>
+
+			<li>
+				<div class="rank-item">
+					<i class="num">5</i>
+					<a href="javascript:;" onclick="javascript:clickFldSet(document.RsaSearchForm1, 'qt', '조직도'); return false;"  class="subj"  title="실시간 인기검색어 5위 조직도">조직도</a>
+					<span class="mod">-</span>
+				</div>
+			</li>
+
+			<li>
+				<div class="rank-item">
+					<i class="num">6</i>
+					<a href="javascript:;" onclick="javascript:clickFldSet(document.RsaSearchForm1, 'qt', '공고'); return false;"  class="subj"  title="실시간 인기검색어 6위 공고">공고</a>
+					<span class="mod">-</span>
+				</div>
+			</li>
+
+			<li>
+				<div class="rank-item">
+					<i class="num">7</i>
+					<a href="javascript:;" onclick="javascript:clickFldSet(document.RsaSearchForm1, 'qt', '청년주택'); return false;"  class="subj"  title="실시간 인기검색어 7위 청년주택">청년주택</a>
+					<span class="mod">-</span>
+				</div>
+			</li>
+
+			<li>
+				<div class="rank-item">
+					<i class="num">8</i>
+					<a href="javascript:;" onclick="javascript:clickFldSet(document.RsaSearchForm1, 'qt', '개발행위'); return false;"  class="subj"  title="실시간 인기검색어 8위 개발행위">개발행위</a>
+					<span class="mod">-</span>
+				</div>
+			</li>
+
+			<li>
+				<div class="rank-item">
+					<i class="num">9</i>
+					<a href="javascript:;" onclick="javascript:clickFldSet(document.RsaSearchForm1, 'qt', '보건소'); return false;"  class="subj"  title="실시간 인기검색어 9위 보건소">보건소</a>
+					<span class="mod">-</span>
+				</div>
+			</li>
+
+			<li>
+				<div class="rank-item">
+					<i class="num">10</i>
+					<a href="javascript:;" onclick="javascript:clickFldSet(document.RsaSearchForm1, 'qt', '지원'); return false;"  class="subj"  title="실시간 인기검색어 10위 지원">지원</a>
+					<span class="mod">-</span>
+				</div>
+			</li>
+
+						</ul>
+					</li>
+					<li>
+						<button type="button" onclick="tab_rank(this);" aria-expanded="false"><span>일간</span></button>
+						<ul class="rank-list">
+							
+			<li>
+				<div class="rank-item">
+					<i class="num">1</i>
+					<a href="javascript:;" onclick="javascript:clickFldSet(document.RsaSearchForm1, 'qt', '채용'); return false;" class="subj" title="일간 인기검색어 1위 채용">채용</a>
+				</div>
+			</li>
+
+
+			<li>
+				<div class="rank-item">
+					<i class="num">2</i>
+					<a href="javascript:;" onclick="javascript:clickFldSet(document.RsaSearchForm1, 'qt', '채용공고'); return false;" class="subj" title="일간 인기검색어 2위 채용공고">채용공고</a>
+				</div>
+			</li>
+
+
+			<li>
+				<div class="rank-item">
+					<i class="num">3</i>
+					<a href="javascript:;" onclick="javascript:clickFldSet(document.RsaSearchForm1, 'qt', '버스시간표'); return false;" class="subj" title="일간 인기검색어 3위 버스시간표">버스시간표</a>
+				</div>
+			</li>
+
+
+			<li>
+				<div class="rank-item">
+					<i class="num">4</i>
+					<a href="javascript:;" onclick="javascript:clickFldSet(document.RsaSearchForm1, 'qt', '조직도'); return false;" class="subj" title="일간 인기검색어 4위 조직도">조직도</a>
+				</div>
+			</li>
+
+
+			<li>
+				<div class="rank-item">
+					<i class="num">5</i>
+					<a href="javascript:;" onclick="javascript:clickFldSet(document.RsaSearchForm1, 'qt', '정책공감토크'); return false;" class="subj" title="일간 인기검색어 5위 정책공감토크">정책공감토크</a>
+				</div>
+			</li>
+
+
+			<li>
+				<div class="rank-item">
+					<i class="num">6</i>
+					<a href="javascript:;" onclick="javascript:clickFldSet(document.RsaSearchForm1, 'qt', '자원순환과'); return false;" class="subj" title="일간 인기검색어 6위 자원순환과">자원순환과</a>
+				</div>
+			</li>
+
+
+			<li>
+				<div class="rank-item">
+					<i class="num">7</i>
+					<a href="javascript:;" onclick="javascript:clickFldSet(document.RsaSearchForm1, 'qt', '예산서'); return false;" class="subj" title="일간 인기검색어 7위 예산서">예산서</a>
+				</div>
+			</li>
+
+
+			<li>
+				<div class="rank-item">
+					<i class="num">8</i>
+					<a href="javascript:;" onclick="javascript:clickFldSet(document.RsaSearchForm1, 'qt', '공람'); return false;" class="subj" title="일간 인기검색어 8위 공람">공람</a>
+				</div>
+			</li>
+
+
+			<li>
+				<div class="rank-item">
+					<i class="num">9</i>
+					<a href="javascript:;" onclick="javascript:clickFldSet(document.RsaSearchForm1, 'qt', '지원'); return false;" class="subj" title="일간 인기검색어 9위 지원">지원</a>
+				</div>
+			</li>
+
+
+			<li>
+				<div class="rank-item">
+					<i class="num">10</i>
+					<a href="javascript:;" onclick="javascript:clickFldSet(document.RsaSearchForm1, 'qt', '개인정보처리  동의서'); return false;" class="subj" title="일간 인기검색어 10위 개인정보처리  동의서">개인정보처리  동의서</a>
+				</div>
+			</li>
+
+
+						</ul>
+					</li>
+					<li>
+						<button type="button" onclick="tab_rank(this);" aria-expanded="false"><span>주간</span></button>
+						<ul class="rank-list">
+							
+							<li>
+				<div class="rank-item">
+					<i class="num">1</i>
+					<a href="javascript:;" onclick="javascript:clickFldSet(document.RsaSearchForm1, 'qt', '채용'); return false;" class="subj" title="주간 인기검색어 1위 채용">채용</a>
+				</div>
+			</li>
+
+							<li>
+				<div class="rank-item">
+					<i class="num">2</i>
+					<a href="javascript:;" onclick="javascript:clickFldSet(document.RsaSearchForm1, 'qt', '버스시간표'); return false;" class="subj" title="주간 인기검색어 2위 버스시간표">버스시간표</a>
+				</div>
+			</li>
+
+							<li>
+				<div class="rank-item">
+					<i class="num">3</i>
+					<a href="javascript:;" onclick="javascript:clickFldSet(document.RsaSearchForm1, 'qt', '채용공고'); return false;" class="subj" title="주간 인기검색어 3위 채용공고">채용공고</a>
+				</div>
+			</li>
+
+							<li>
+				<div class="rank-item">
+					<i class="num">4</i>
+					<a href="javascript:;" onclick="javascript:clickFldSet(document.RsaSearchForm1, 'qt', '조직도'); return false;" class="subj" title="주간 인기검색어 4위 조직도">조직도</a>
+				</div>
+			</li>
+
+							<li>
+				<div class="rank-item">
+					<i class="num">5</i>
+					<a href="javascript:;" onclick="javascript:clickFldSet(document.RsaSearchForm1, 'qt', '건설관리과'); return false;" class="subj" title="주간 인기검색어 5위 건설관리과">건설관리과</a>
+				</div>
+			</li>
+
+							<li>
+				<div class="rank-item">
+					<i class="num">6</i>
+					<a href="javascript:;" onclick="javascript:clickFldSet(document.RsaSearchForm1, 'qt', '공고'); return false;" class="subj" title="주간 인기검색어 6위 공고">공고</a>
+				</div>
+			</li>
+
+							<li>
+				<div class="rank-item">
+					<i class="num">7</i>
+					<a href="javascript:;" onclick="javascript:clickFldSet(document.RsaSearchForm1, 'qt', '자원순환과'); return false;" class="subj" title="주간 인기검색어 7위 자원순환과">자원순환과</a>
+				</div>
+			</li>
+
+							<li>
+				<div class="rank-item">
+					<i class="num">8</i>
+					<a href="javascript:;" onclick="javascript:clickFldSet(document.RsaSearchForm1, 'qt', '예산서'); return false;" class="subj" title="주간 인기검색어 8위 예산서">예산서</a>
+				</div>
+			</li>
+
+							<li>
+				<div class="rank-item">
+					<i class="num">9</i>
+					<a href="javascript:;" onclick="javascript:clickFldSet(document.RsaSearchForm1, 'qt', '버스'); return false;" class="subj" title="주간 인기검색어 9위 버스">버스</a>
+				</div>
+			</li>
+
+							<li>
+				<div class="rank-item">
+					<i class="num">10</i>
+					<a href="javascript:;" onclick="javascript:clickFldSet(document.RsaSearchForm1, 'qt', '신활력공모사업'); return false;" class="subj" title="주간 인기검색어 10위 신활력공모사업">신활력공모사업</a>
+				</div>
+			</li>
+
+						</ul>
+					</li>
+					<li>
+						<button type="button" onclick="tab_rank(this);" aria-expanded="false"><span>월간</span></button>
+						<ul class="rank-list">
+							
+			<li>
+				<div class="rank-item">
+					<i class="num">1</i>
+					<a href="javascript:;" onclick="javascript:clickFldSet(document.RsaSearchForm1, 'qt', '채용공고'); return false;" class="subj" title="월간 인기검색어 1위 채용공고">채용공고</a>
+				</div>
+			</li>
+
+
+			<li>
+				<div class="rank-item">
+					<i class="num">2</i>
+					<a href="javascript:;" onclick="javascript:clickFldSet(document.RsaSearchForm1, 'qt', '채용'); return false;" class="subj" title="월간 인기검색어 2위 채용">채용</a>
+				</div>
+			</li>
+
+
+			<li>
+				<div class="rank-item">
+					<i class="num">3</i>
+					<a href="javascript:;" onclick="javascript:clickFldSet(document.RsaSearchForm1, 'qt', '버스시간표'); return false;" class="subj" title="월간 인기검색어 3위 버스시간표">버스시간표</a>
+				</div>
+			</li>
+
+
+			<li>
+				<div class="rank-item">
+					<i class="num">4</i>
+					<a href="javascript:;" onclick="javascript:clickFldSet(document.RsaSearchForm1, 'qt', '조직도'); return false;" class="subj" title="월간 인기검색어 4위 조직도">조직도</a>
+				</div>
+			</li>
+
+
+			<li>
+				<div class="rank-item">
+					<i class="num">5</i>
+					<a href="javascript:;" onclick="javascript:clickFldSet(document.RsaSearchForm1, 'qt', '바우덕이'); return false;" class="subj" title="월간 인기검색어 5위 바우덕이">바우덕이</a>
+				</div>
+			</li>
+
+
+			<li>
+				<div class="rank-item">
+					<i class="num">6</i>
+					<a href="javascript:;" onclick="javascript:clickFldSet(document.RsaSearchForm1, 'qt', '홈스테이'); return false;" class="subj" title="월간 인기검색어 6위 홈스테이">홈스테이</a>
+				</div>
+			</li>
+
+
+			<li>
+				<div class="rank-item">
+					<i class="num">7</i>
+					<a href="javascript:;" onclick="javascript:clickFldSet(document.RsaSearchForm1, 'qt', '공고'); return false;" class="subj" title="월간 인기검색어 7위 공고">공고</a>
+				</div>
+			</li>
+
+
+			<li>
+				<div class="rank-item">
+					<i class="num">8</i>
+					<a href="javascript:;" onclick="javascript:clickFldSet(document.RsaSearchForm1, 'qt', '버스'); return false;" class="subj" title="월간 인기검색어 8위 버스">버스</a>
+				</div>
+			</li>
+
+
+			<li>
+				<div class="rank-item">
+					<i class="num">9</i>
+					<a href="javascript:;" onclick="javascript:clickFldSet(document.RsaSearchForm1, 'qt', '재산세'); return false;" class="subj" title="월간 인기검색어 9위 재산세">재산세</a>
+				</div>
+			</li>
+
+
+			<li>
+				<div class="rank-item">
+					<i class="num">10</i>
+					<a href="javascript:;" onclick="javascript:clickFldSet(document.RsaSearchForm1, 'qt', '운전면허'); return false;" class="subj" title="월간 인기검색어 10위 운전면허">운전면허</a>
+				</div>
+			</li>
+
+
+						</ul>
+					</li>
+				</ul>
+			</section>
+
+			<section>
+				<h3><strong>관련 사이트</strong></h3>
+				<ul class="relation-list">
+					<li>
+						<a href="https://www.anseong.go.kr/tour/main.do" title="안성시 문화관광 바로가기"><span>안성시 문화관광</span></a>
+					</li>
+					<li>
+						<a href="https://www.anseong.go.kr/portal/dreamTree/calList.do?mId=0703010000" title="안성시 통합예약 바로가기"><span>안성시 통합예약</span></a>
+					</li>
+					<li>
+						<a href="https://anseongcl.go.kr" title="안성시의회 바로가기"><span>안성시의회</span></a>
+					</li>
+				</ul>
+			</section>
+
+			<section>
+                <h3><strong>내가 찾은 검색어</strong></h3>
+                
+			<script type="text/javascript">
+				// <![CDATA[
+				function delMyQuery(qt){
+					var input=confirm('\'' + qt + '\' 검색어를 삭제하시겠습니까?');
+					if(input==true){
+						deleteMyQuery(document.RsaSearchForm1, 'delmyquery', qt);
+					}
+				}
+				function delMyQueryAll(){
+					var input=confirm('모두 삭제하시겠습니까?');
+					if(input==true){
+						deleteMyQuery(document.RsaSearchForm1, 'delmyquery', 'init');
+					}
+				}
+				// ]]>
+			</script>
+				<ul class="rank-list">	
+
+				<li>
+						<div class="rank-item">
+							<i class="num">1</i>
+							<a href="javascript:;" onclick="clickFldSet(document.RsaSearchForm1, 'qt', '파이썬');" class="subj" title="파이썬">파이썬</a>
+							<a href="javascript:delMyQuery('파이썬');" class="del">삭제</a>
+						</div>
+					</li>
+			  
+			</ul>
+
+
+			</section>
+		</div>
+	</div>
+</section>
+<footer id="footer" class="footerWrap">
+	<div class="inner">		
+		<a href="#" class="goto-top"><span>TOP</span></a>
+		<ul class="links">
+			<li><a href="https://www.anseong.go.kr/portal/contents.do?mId=0407110000" class="point"><span>개인정보처리방침</span></a></li>
+			<li><a href="https://www.anseong.go.kr/portal/contents.do?mId=0801000000"><span>저작권정책</span></a></li>
+			<li><a href="https://www.anseong.go.kr/portal/contents.do?mId=0802000000"><span>누리집도우미</span></a></li>
+			<li><a href="https://www.anseong.go.kr/portal/contents.do?mId=0803000000"><span>뷰어내려받기</span></a></li>
+			<li><a href="https://www.anseong.go.kr/portal/contents.do?mId=0602040000"><span>시청오시는길</span></a></li>
+			<li><a href="https://www.anseong.go.kr/portal/guide/siteMap.do?mId=0807000000"><span>사이트맵</span></a></li>
+			<li><a href="https://www.gov.kr/portal/orgSite?Mcode=11181"><span>정부/지자체누리집</span></a></li>
+		</ul>
+	
+		<div class="info">
+			<address>우)17586 경기도 안성시 시청길 25(봉산동)</address>
+			<span>대표전화 : <strong>031-678-2114</strong></span>
+			<span>대표 팩스 : 031-678-5889</span>
+		</div>
+		
+		<div class="copyright">COPYRIGHT © ANSEONG CITY. ALL RIGHTS RESERVED.</div>
+	</div>
+</footer>
+
+</div>
+</body>
+</html>
+

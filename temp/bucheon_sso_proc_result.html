@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<title>SSO</title>
+</head>
+<body onload="fSSOInitialize();">
+
+	<script>
+		var route = "SEARCH";
+		var keyword = "%ED%8C%8C%EC%9D%B4%EC%8D%AC";
+		var detailParam = "";
+		
+		if (route == "SEARCH") {
+			//location.href = "https://alpasq.bcl.go.kr/search/keyword/" + encodeURIComponent(keyword);
+			location.href = "https://alpasq.bcl.go.kr/search/keyword/" + keyword;
+		} else if (route == "NEW") {
+			location.href = "https://alpasq.bcl.go.kr/discovery/accessionBook";
+		} else if (route == "BEST") {
+			location.href = "https://alpasq.bcl.go.kr/discovery/popularBook/monthBook";
+		} else if (route == "RESV_LIST" || route == "TRANS_LIST" || route == "BOOKCASE_LIST" || route == "HOPE_LIST") {
+			alert("로그인 후 이용가능합니다.");
+			location.href = "https://bcl.go.kr";
+		} else if (route == "HOPE_APPLY") {
+			location.href = "https://alpasq.bcl.go.kr/hopeBookInfo";
+		} else if (route == "DETAIL") {
+			location.href = "https://alpasq.bcl.go.kr/" + detailParam;
+		} else if (route == "EBOOK") {
+			location.href = "https://alpasq.bcl.go.kr/Ebook";
+		} else {
+			location.href = "https://alpasq.bcl.go.kr";
+		}
+	</script>
+
+</body>
+</html>

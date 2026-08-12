@@ -1,0 +1,4104 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+
+
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="안양시립도서관">
+<meta name="description" content="안양시립도서관 정보 및 도서검색 제공">
+<meta name="generator" content="jnet co. ltd.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="안양시립도서관">
+<meta property="og:description" content="안양시립도서관 정보 및 도서검색 제공">
+<meta property="og:image" content="/include/image/common/ico_sns_favicon.png">
+<meta property="og:url" content="https://lib.anyang.go.kr/intro/index.do">
+<title>안양시립도서관</title>
+<link rel="shortcut icon" href="/include/image/common/ico_sns_favicon.png">
+<link rel="stylesheet" type="text/css" href="/include/css/intro/sub.css?ver=20250604">
+<link rel="stylesheet" type="text/css" href="/include/js/jquery-ui.min.css">
+<link rel="stylesheet" type="text/css" href="/include/js/swiper.min.css">
+<script src="/include/js/jquery-1.12.4.min.js"></script>
+<script src="/include/js/jquery.slider.js"></script>
+<script src="/include/js/jquery.tab.js"></script>
+<script src="/include/js/jquery.newsticker.js"></script>
+<script src="/include/js/jquery-ui.min.js"></script>
+<script src="/include/js/jquery-ui.datepicker.js"></script>
+<script src="/include/js/gnb.js"></script>
+<script src="/include/js/swiper.min.js"></script>
+<script src="/include/js/common.js"></script>
+<script src="/include/js/layerPop.js"></script>
+<script src="/include/js/moment.min.js"></script>
+<script src="/include/js/moment-ko.js"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+
+
+		<script>
+			$(function(){
+				eval("initMenu(1,1,1,0,0)");
+			});
+		</script>
+	
+
+<script type="text/javascript" src="/include/booksearch/js/ui.js"></script>
+<script type="text/javascript" src="/include/booksearch/js/alpasq.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("#totalSearchValue").keypress(fnSearchEnter);
+		$("#searchBtn").click(fnSearch);
+		$("#librarySearchBtn").click(fnLibrarySearch);
+		$("#smallLibBtn").click(fnSearchSmallLibrary);
+		$("#ebookBtn").click(fnSearchEBook);
+
+		$("#sortListBtn").click(fnSortList);
+		$("#aggsSearchBtn").click(fnAggsSearch);
+		$("#aggsPubYearSearchBtn").click(fnAggsSearch);
+
+		$("#searchForm select[name=searchArticle]").change(fnSearchArticleChange);
+		$("#searchForm input[name=searchManageCode]").click(fnSearchLibraryAll);
+		$("#searchForm input[name=searchManageCodeArr]").click(fnSearchLibrary);
+		$(".languageContents ul li a").on("click", fnInputMultiLang);
+
+		$("#searchKeywordArea").load("/search/include/searchKeywordArea.do");
+
+		$('#viewTypeList').click({type : "LIST"}, fnViewType);
+		$('#viewTypeCard').click({type : "CARD"}, fnViewType);
+
+		$('.pasitNavi a').on("click", function(){
+			if(!$(this).hasClass("on")) {
+			$(this).addClass('on');
+			$('.finder_area').addClass('open');
+			$(this).attr('title','검색결과 제한 확장됨');
+			} else {
+			$(this).removeClass('on');
+			$('.finder_area').removeClass('open');
+			$(this).attr('title','검색결과 제한 축소됨');
+			}
+		});
+		$('.finder_list li label').on("click", function(){
+			var picText = $(this).text();
+			var picId = $(this).siblings('input').attr("id");
+			if(!$(this).hasClass("on")) {
+			$(this).addClass("on");
+			$(".selc_object").append('<a href="#del" title="' + picText + '" class="pic ' + picId + '"><span>' + picText + '</span><span class="del">선택해제</span></a>');
+			} else {
+			$(this).removeClass("on");
+			$(".selc_object a." + picId).remove();
+			}
+
+			$('.selc_object a.' + picId).on("click", function(){
+			$(this).remove();
+			$('.finder_list li input[id="' + picId + '"] + label').removeClass("on");
+			$('.finder_list li input[id="' + picId + '"]').prop("checked", false);
+			});
+		});
+		$('.finder_list li input').keydown(function(event) {
+			if(window.event.keyCode == 32) {
+				var picText1 = $(this).siblings("label").text();
+				var picId1 = $(this).attr("id");
+				if(!$(this).hasClass("on")) {
+					$(this).addClass("on");
+					$(".selc_object").append('<a href="#btn" title="' + picText1 + '" class="pic ' + picId1 + '"><span>' + picText1 + '</span><span class="del">선택해제</span></a>');
+				} else {
+					$(this).removeClass("on");
+					$(".selc_object a." + picId1).remove();
+				}
+				$('.selc_object a.' + picId1).on("click", function(){
+					$(this).remove();
+					$('.finder_list li input[id="' + picId1 + '"] + label').removeClass("on");
+					$('.finder_list li input[id="' + picId1 + '"]').prop("checked", false);
+				});
+			}
+		});
+
+		// 검색결과제한 전체해제
+		$(".clear").on("click", function(){
+			$(".selc_object .pic").remove();
+			$(".finder_list li label").removeClass("on");
+			$(".finder_list li input[type='checkbox']").prop("checked", false);
+		});
+
+		$('.btn_extend').on("click", function(){
+			if(!$(this).parents('._filter_row').hasClass("on")) {
+			$(this).parents('._filter_row').addClass('on');
+			$(this).attr('title','더보기 확장됨');
+			} else {
+			$(this).parents('._filter_row').removeClass('on');
+			$(this).attr('title','더보기 축소됨');
+			}
+		});
+
+	});
+
+	function fnSearchSmallLibrary(){
+		var form = document.paramForm;
+		form.smallLibSearchYn.value = 'Y';
+		form.eBookSearchYn.value = 'N';
+		form.action="/intro/menu/10003/program/30001/searchResultList.do";
+		form.submit();
+		return false;
+	}
+
+	function fnSearchEBook(){
+		var form = document.paramForm;
+		form.smallLibSearchYn.value = 'N';
+		form.eBookSearchYn.value = 'Y';
+		form.action="/intro/menu/10003/program/30001/searchResultList.do";
+		form.submit();
+		return false;
+	}
+
+	function fnViewType(event){
+		document.paramForm.viewType.value = event.data.type;
+		document.searchForm.viewType.value = event.data.type;
+		return false;
+	}
+
+
+	function fnSearchArticleChange(){
+		switch($(this).val()){
+			case "SCORE":
+				$("#searchForm select[name=searchOrder]").hide();
+				break;
+			default:
+				$("#searchForm select[name=searchOrder]").show();
+			break;
+		}
+	}
+
+	function fnSearch(){
+		var form = document.searchForm;
+		if(isEmpty(form.searchKeyword.value)){
+			alert("검색어를 입력하세요.")
+			form.searchKeyword.focus();
+			return false;
+		}
+		form.action="/intro/searchResultList.do";
+		form.submit();
+		return false;
+	}
+
+	function fnLibrarySearch(){
+		var form = document.paramForm;
+
+		if(document.searchForm.searchManageCode.checked){
+			form.searchManageCode.value = "ALL";
+			$("#paramForm input[name=searchManageCodeArr]").remove();
+		}else{
+			form.searchManageCode.value = "";
+			$("#paramForm input[name=searchManageCodeArr]").remove();
+			$("#searchForm input[name=searchManageCodeArr]:checked").each(function(){
+				$("#paramForm").append("<input type=\"hidden\" name=\"searchManageCodeArr\" value=\"" + $(this).val() + "\">")
+			});
+		}
+		form.action = "/intro/menu/10003/program/30001/searchResultList.do";
+		form.submit();
+		return false;
+	}
+
+	function fnAggsSearch(){
+		var formData = $('#searchForm').serialize();
+		$("#bookList").load("/search/include/aggsBookList.do", formData);
+	}
+
+	function fnAggsList(page){
+		var form = document.searchForm;
+		form.currentPageNo.value = page;
+		var formData = $('#searchForm').serialize();
+		$("#bookList").load("/search/include/aggsBookList.do", formData);
+	}
+
+	function fnSortList(){
+		var form = document.paramForm;
+		//form.currentPageNo.value = 1;
+		form.searchArticle.value = document.searchForm.searchArticle.value;
+		form.searchOrder.value = document.searchForm.searchOrder.value;
+		form.searchDisplay.value = document.searchForm.searchDisplay.value;
+		form.action = "/intro/menu/10003/program/30001/searchResultList.do";
+		form.submit();
+		return false;
+	}
+
+	function fnSearchKeyword(keyword){
+		var form = document.searchForm;
+		form.searchKeyword.value = keyword;
+		form.action="/intro/menu/10003/program/30001/searchResultList.do";
+		form.submit();
+	}
+
+	function fnInputMultiLang(){
+		var form = document.searchForm;
+		form.searchKeyword.value = form.searchKeyword.value + $(this).text().trim();
+		return false;
+	}
+
+	function fnSearchLibraryAll(){
+		var form = document.searchForm;
+		if(form.searchManageCode.checked){
+			$("#searchForm input[name=searchManageCodeArr]").prop("checked", false);
+		}
+	}
+
+	function fnSearchLibrary(){
+		var form = document.searchForm;
+		if($("#searchForm input[name=searchManageCodeArr]").size() == $("#searchForm input[name=searchManageCodeArr]:checked").size()){
+			$("#searchForm input[name=searchManageCodeArr]").prop("checked", false);
+			form.searchManageCode.checked = true;
+		}else{
+			form.searchManageCode.checked = false;
+		}
+	}
+
+	function fnAutoComplete(){
+		var options = {
+			isSelectSubmit : true,
+			suggestRequestUrl : "/search/include/autoCompleteList.do",
+			submitForm : "#searchForm",
+			submitUrl : "/intro/menu/10003/program/30001/searchResultList.do"
+		};
+		$.autoComplete("#searchForm #totalSearchValue", "#atcBox", "#atcList", "#atcShowBtn", "#atcCloseBtn", "#atcToggleBtn", options);
+	}
+
+	function fnList(page){
+		var form = document.paramForm;
+		form.currentPageNo.value = page;
+		form.action = "/intro/menu/10003/program/30001/searchResultList.do";
+		form.submit();
+	}
+
+	function fnSearchPubFormCode(pubFormCode){
+		var form = document.paramForm;
+		form.eBookSearchYn.value = 'N';
+		form.smallLibSearchYn.value = 'N';
+		form.currentPageNo.value = 1;
+		form.searchPubFormCode.value = pubFormCode;
+		form.action = "/intro/menu/10003/program/30001/searchResultList.do";
+		form.submit();
+	}
+
+	function fnDetail(speciesKey, isbn, pubFormCode){
+		var form = document.paramForm;
+		form.speciesKey.value = speciesKey;
+		form.isbn.value = isbn;
+		form.pubFormCode.value = pubFormCode;
+		form.action = "/intro/menu/10003/program/30001/searchResultDetail.do";
+		form.submit();
+	}
+
+	// 상호대차 신청 팝업
+	function fnLibraryOneApplyPop(bookkey,regNo){
+		window.open('/mutual/mutualLoanApplyPop.do?bookKey='+bookkey+"&regNo="+regNo,'libOnePopup','scrollbars=no,toolbar=no,resizable=0,width=500,height=520,left=0,top=0');
+	};
+	// 내서재 담기 팝업
+	function fnLibraryMyLibPop(isbn,pubCode){
+		window.open('/intro/bookcaseAddPopup.do?isbn='+isbn+"&pubFormCode="+pubCode,'myLibPopup','scrollbars=no,toolbar=no,resizable=0,width=500,height=300,left=0,top=0');
+	};
+
+	//대출예약
+	function reservationApplyProc(bookKey,regNo){
+
+		if(confirm("대출예약을 하시겠습니까?")){
+			$.ajax({
+					type:"POST",
+					url: "/loan/reservationApplyProc.do",
+					data : {
+							"bookKey" : bookKey,
+							"regNo" : regNo
+					},
+					dataType : 'json',
+					async: false,
+					success: function(data){
+						alert(data.msg);
+						window.location.reload();
+					},
+					error : function(request, status, error) {
+					alert("에러코드 : " + request.status +"\n" + "메시지 :"+ request.responseText);
+				}
+			});
+		}
+	}
+
+	//비대면 대출 장바구니 담기(워킹스루)
+	function fnWalkingApplyPop(bookKey){
+		if(confirm("책바구니에 담겠습니까?")){
+			window.open('/intro/walkingAddPopup.do?bookKey='+bookKey,'safeLoanPopup','scrollbars=no,toolbar=no,resizable=0,width=450,height=300,left=0,top=0');
+		}
+	};
+
+</script>
+
+	<script>
+		$(function(){
+			
+				var libKey= "502f273e7bb60f4030deb5e8ab3d15d794616fc9d34d3fd4c58139cf80a56810";
+				var libCode= "141669";
+				var searchTxt = "파이썬";
+				var sessionId= "aaaBVFbGtGqpnbUKiHj9zxblRZSjLmvcR54hXmoaKafg1QmyzekMG8gFH9Ky";
+					$.ajax({
+					/*도서관의코드사용*/
+					url: "https://data4library.kr/weblog",
+					jsonp : "callback",
+					data:{
+					"libKey":libKey,
+					"logType":"search",
+					"libCode":libCode,
+					"sessionId":sessionId,
+					"q":encodeURIComponent(searchTxt)
+					},
+					responseType:'application/json',
+					success:function(res){
+					if( res.result.response_code==200 ){
+					console.log("Web log등록완료");
+					}
+					}
+				});
+			
+		});
+	</script>
+</head>
+<body>
+<form name="paramForm" id="paramForm" method="get">
+	<input type="hidden" name="searchType" value="SIMPLE">
+	<input type="hidden" name="viewType" value="LIST">
+	<input type="hidden" name="searchKeyword" value="파이썬">
+	<input type="hidden" name="searchPubFormCode" value="MO">
+	<input type="hidden" name="currentPageNo" value="1">
+	<input type="hidden" name="searchDisplay" value="20">
+	<input type="hidden" name="searchArticle" value="SCORE">
+	<input type="hidden" name="searchOrder" value="ASC">
+	<input type="hidden" name="reSearchYn" value="N">
+	<input type="hidden" name="preSearchKeyword" value="파이썬">
+	
+	<input type="hidden" name="searchManageCode" value="ALL">
+	
+	<input type="hidden" name="searchAdvSearchKeywordA" value="">
+	<input type="hidden" name="searchAdvSearchKeywordB" value="">
+	<input type="hidden" name="searchAdvSearchKeywordC" value="">
+	<input type="hidden" name="searchAdvSearchKeywordD" value="">
+	<input type="hidden" name="searchAdvContentsType" value="">
+	
+	<input type="hidden" name="searchAdvTitle" value="">
+	<input type="hidden" name="searchAdvAuthor" value="">
+	<input type="hidden" name="searchAdvPublisher" value="">
+	<input type="hidden" name="searchAdvIsbn" value="">
+	<input type="hidden" name="searchAdvIssn" value="">
+	<input type="hidden" name="searchAdvClassNo" value="">
+	<input type="hidden" name="searchAdvFromPubYear" value="">
+	<input type="hidden" name="searchAdvToPubYear" value="">
+	<input type="hidden" name="searchAdvTextLang" value="">
+	<input type="hidden" name="smallLibSearchYn" value="N">
+	<input type="hidden" name="eBookSearchYn" value="N">
+	<input type="hidden" name="speciesKey">
+	<input type="hidden" name="isbn">
+	<input type="hidden" name="pubFormCode">
+</form>
+<!-- skip -->
+<ul class="skip">
+	<li><a href="#contentcore">본문 바로가기</a></li>
+	<li><a href="#lnb">하위메뉴 바로가기</a></li>
+</ul>
+<!-- //skip -->
+<!-- wrap -->
+<div id="wrap">
+	
+
+<div id="mobileIndex"></div>
+<a href="#back" id="blackBG"><span class="blind">이전으로 돌아가기</span></a>
+<div id="topheader">
+	<div id="indexColumn">
+		
+
+
+<div id="snb">
+	<div class="siteUtilGroup">
+		<div id="libraryShortcut" class="libSite dropdown">
+			<a href="#open" class="button" title="도서관 바로가기(축소됨)">도서관 바로가기</a>
+			<ul>
+				
+					<li><a href="/intro/index.do?appYn=">안양시립도서관</a></li>
+				
+					<li><a href="/seoksu/index.do?appYn=">석수도서관</a></li>
+				
+					<li><a href="/manan/index.do?appYn=">만안도서관</a></li>
+				
+					<li><a href="/samdeok/index.do?appYn=">삼덕도서관(임시휴관)</a></li>
+				
+					<li><a href="/bakdal/index.do?appYn=">박달도서관</a></li>
+				
+					<li><a href="/keunsaem/index.do?appYn=">큰샘어린이도서관</a></li>
+				
+					<li><a href="/pyeongchon/index.do?appYn=">평촌도서관(임시운영)</a></li>
+				
+					<li><a href="/gwanyang/index.do?appYn=">관양도서관</a></li>
+				
+					<li><a href="/bisan/index.do?appYn=">비산도서관</a></li>
+				
+					<li><a href="/hogye/index.do?appYn=">호계도서관</a></li>
+				
+					<li><a href="/child/index.do?appYn=">안양어린이도서관</a></li>
+				
+					<li><a href="/beolmal/index.do?appYn=">벌말도서관</a></li>
+				
+					<li><a href="/small/index.do?appYn=">작은도서관</a></li>
+				
+					<li><a href="/marathon/index.do?appYn=">독서마라톤</a></li>
+				
+			</ul>
+		</div>
+		<div id="siteMenu" class="siteMenu clearfix">
+			<ul class="clearfix">
+				
+					
+							
+								<li><a href="/intro/memberLogin.do?returnUrl=aHR0cHM6Ly9saWIuYW55YW5nLmdvLmtyL2ludHJvL3NlYXJjaFJlc3VsdExpc3QuZG8/c2VhcmNoS2V5d29yZD0lRUQlOEMlOEMlRUMlOUQlQjQlRUMlOEQlQUMmc2VhcmNoVHlwZT1TSU1QTEUmc2VhcmNoT3JkZXI9QVNDJnNlYXJjaEFydGljbGU9U0NPUkUmc2VhcmNoTWFuYWdlQ29kZT1BTEwmdG9wU2VhcmNoQ29uZGl0aW9uPUFMTA==">로그인</a></li>
+								<li><a href="/intro/memberJoin.do">회원가입</a></li>
+							
+						
+				
+				<li class="mobileHide"><a href="/intro/siteMap.do">사이트맵</a></li>
+			</ul>
+			<div class="snsShortcut clearfix">
+				<a href="https://pf.kakao.com/_MxfxkLT" id="sns_link1" title="카카오채널 바로가기 새창열림" class="snsKakao" target="_blank" rel ="noopener noreferrer"><span class="blind">카카오채널</span></a>
+				<a href="https://www.instagram.com/anyanglib/" id="sns_link2" title="인스타그램 바로가기 새창열림" class="snsInstar" target="_blank" rel ="noopener noreferrer"><span class="blind">인스타그램</span></a>
+				<!-- <a href="https://twitter.com/anyanglib" id="sns_link3" title="트위터 바로가기 새창열림" class="snsTwitter" target="_blank"><span class="blind">트위터</span></a> -->
+				<a href="https://www.youtube.com/channel/UCOTyiNx6Di5A_Yn4SrzNMzg" id="sns_link4" title="유튜브 바로가기 새창열림" class="snsYoutube" target="_blank" rel ="noopener noreferrer"><span class="blind">유튜브</span></a>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+
+	$(function(){
+		$(".dropdown > a").click(function(){
+			var $dropdownNav = $(this).siblings("ul");
+			if($dropdownNav.css("display") == "none"){
+				$(".dropdown > ul").hide();
+				$dropdownNav.show();
+				$(this).attr("title","도서관 바로가기(확장됨)");
+			}else{
+				$dropdownNav.hide();
+				$(this).attr("title","도서관 바로가기(축소됨)");
+			}
+			return false;
+		});
+		$(".dropdown > ul > li:last-child a").focusout(function(){
+			$(".dropdown > ul").hide();
+		});
+
+	});
+</script>
+		<div id="headerInner">
+			<div id="mobileIndexOpen"><a href="#open" title="모바일 메뉴 열기"><span class="blind">열기</span></a></div>
+			<div id="mobileIndexClose"><button type="button" title="모바일 메뉴 닫기"><span class="blind">닫기</span></button></div>
+			<h1 id="logo"><a href="/intro/index.do?appYn="><img src="/include/image/intro/common/logo.png" alt="안양시립도서관"></a></h1>
+			<a href="#searchBoxOpen" id="btnSearchTop"><span class="blind">검색창열기</span></a>
+		</div>
+		<div id="indexNavi">
+			<ul id="topmenu">
+				<li id="gnb1"> <a href="/intro/menu/10003/program/30001/searchSimple.do"> <em>자료검색</em> </a> 
+ <ul> 
+  <li id="gnb1_1"><a href="/intro/menu/10003/program/30001/searchSimple.do">소장자료검색</a> 
+   <ul class="MkSub"> 
+    <li id="gnb1_1_1"><a href="/intro/menu/10003/program/30001/searchSimple.do">통합검색</a> </li> 
+    <li id="gnb1_1_2"><a href="/intro/menu/10004/program/30002/searchDetail.do">고급검색</a> </li> 
+   </ul> </li> 
+  <li id="gnb1_2"><a href="/intro/menu/10005/program/30003/searchKdc.do">주제별검색</a> </li> 
+  <li id="gnb1_3"><a href="/intro/menu/10006/program/30004/accessionBookList.do">신착자료검색</a> </li> 
+  <li id="gnb1_6"><a href="/intro/menu/10012/program/30006/magazineList.do">정기간행물검색</a> 
+   <ul class="MkTab"> 
+    <li id="gnb1_6_1"><a href="/intro/menu/10012/program/30006/magazineList.do">잡지</a> </li> 
+    <li id="gnb1_6_2"><a href="/intro/menu/10013/program/30007/newspaperList.do">신문</a> </li> 
+   </ul> </li> 
+  <li id="gnb1_7"><a href="/intro/menu/10015/contents/40002/contents.do">비치희망도서신청</a> 
+   <ul class="MkTab"> 
+    <li id="gnb1_7_1"><a href="/intro/menu/10015/contents/40002/contents.do">신청안내</a> </li> 
+    <li id="gnb1_7_2"><a href="/intro/menu/10016/program/30008/hopeBookSearch.do">신청하기</a> </li> 
+   </ul> </li> 
+ </ul> </li> 
+<li id="gnb2"> <a href="/intro/menu/10018/program/30009/recommendBookList.do"> <em>독서정보</em> </a> 
+ <ul> 
+  <li id="gnb2_1"><a href="/intro/menu/10018/program/30009/recommendBookList.do">사서추천도서</a> </li> 
+  <li id="gnb2_2"><a href="/intro/menu/12380/contents/41341/contents.do">난독증(읽기곤란)</a> </li> 
+  <li id="gnb2_3"><a href="/intro/menu/10020/program/30010/popularBookMonthList.do">도서대출베스트</a> 
+   <ul class="MkSub"> 
+    <li id="gnb2_3_1"><a href="/intro/menu/10020/program/30010/popularBookMonthList.do">이달의 인기도서</a> </li> 
+    <li id="gnb2_3_2"><a href="/intro/menu/10021/program/30011/popularBookAgeList.do">연령별 인기도서</a> </li> 
+    <li id="gnb2_3_3"><a href="/intro/menu/10022/program/30012/popularBookResvList.do">예약 인기도서</a> </li> 
+    <li id="gnb2_3_4"><a href="/intro/menu/10023/program/30013/popularBookSubjectList.do">주제별 인기도서</a> </li> 
+   </ul> </li> 
+  <li id="gnb2_4"><a href="/intro/menu/10024/contents/40003/contents.do">원문/학술정보</a> </li> 
+  <li id="gnb2_5"><a href="https://memory.library.kr/konan-search?type=keyword&amp;field=creator&amp;query=%EC%95%88%EC%96%91%EC%8B%9C" target="_blank" title="새창열림">향토자료(경기도메모리)</a> </li> 
+  <li id="gnb2_6"><a href="/intro/menu/10026/program/30014/libraryPopularBookList.do">공공도서관 인기도서</a> </li> 
+  <li id="gnb2_7"><a href="/intro/menu/10027/contents/40004/contents.do">도서기증안내</a> </li> 
+ </ul> </li> 
+<li id="gnb3"> <a href="/intro/menu/10029/contents/40005/contents.do"> <em>문화행사/참여</em> </a> 
+ <ul> 
+  <li id="gnb3_1"><a href="/intro/menu/10029/contents/40005/contents.do">독서마라톤</a> </li> 
+  <li id="gnb3_2"><a href="/intro/menu/12318/contents/41241/contents.do">한 도시 한책 읽기</a> 
+   <ul class="MkTab"> 
+    <li id="gnb3_2_1"><a href="/intro/menu/12318/contents/41241/contents.do">한 도시 한 책 읽기</a> </li> 
+    <li id="gnb3_2_2"><a href="/intro/menu/12319/contents/41281/contents.do">역대 선정도서</a> </li> 
+   </ul> </li> 
+  <li id="gnb3_3"><a href="/intro/menu/10030/program/30015/lectureList.do">문화행사신청</a> </li> 
+  <li id="gnb3_4"><a href="/intro/menu/10031/program/30016/movieList.do">영화상영</a> </li> 
+  <li id="gnb3_5"><a href="/intro/menu/10032/contents/40006/contents.do">스마트영어도서관</a> </li> 
+  <li id="gnb3_6"><a href="/intro/menu/10033/contents/40007/contents.do">북스타트</a> </li> 
+  <li id="gnb3_7"><a href="/intro/menu/10034/program/30034/readingClubList.do">독서동아리</a> </li> 
+  <li id="gnb3_8"><a href="/intro/menu/10035/program/30018/surveyList.do">설문조사</a> </li> 
+ </ul> </li> 
+<li id="gnb4"> <a href="/intro/menu/10037/bbs/20001/bbsPostList.do"> <em>이용안내</em> </a> 
+ <ul> 
+  <li id="gnb4_1"><a href="/intro/menu/10037/bbs/20001/bbsPostList.do">도서관소식</a> </li> 
+  <li id="gnb4_2"><a href="/intro/menu/10038/bbs/20002/bbsPostList.do">자주하는질문</a> </li> 
+  <li id="gnb4_3"><a href="/intro/menu/12140/contents/41161/contents.do">도서관이용안내</a> 
+   <ul class="MkSub"> 
+    <li id="gnb4_3_1"><a href="/intro/menu/12140/contents/41161/contents.do">도서관예절</a> </li> 
+    <li id="gnb4_3_2"><a href="/intro/menu/10040/contents/40027/contents.do">이용시간</a> </li> 
+    <li id="gnb4_3_3"><a href="/intro/menu/10041/program/30019/calendar.do">휴관일안내</a> </li> 
+    <li id="gnb4_3_4"><a href="/intro/menu/10042/contents/40008/contents.do">회원가입</a> </li> 
+    <li id="gnb4_3_5"><a href="/intro/menu/10043/contents/40009/contents.do">대출/반납/예약</a> </li> 
+   </ul> </li> 
+  <li id="gnb4_4"><a href="/intro/menu/10044/contents/40010/contents.do">상호대차</a> </li> 
+  <li id="gnb4_5"><a href="/intro/menu/10045/contents/40011/contents.do">모바일앱</a> </li> 
+  <li id="gnb4_6"><a href="/intro/menu/10046/contents/40012/contents.do">스마트도서관</a> </li> 
+  <li id="gnb4_7"><a href="/intro/menu/10048/contents/40013/contents.do">책배달서비스</a> 
+   <ul class="MkSub"> 
+    <li id="gnb4_7_1"><a href="/intro/menu/10048/contents/40013/contents.do">책바다</a> </li> 
+    <li id="gnb4_7_2"><a href="/intro/menu/10049/contents/40014/contents.do">책나래</a> </li> 
+    <li id="gnb4_7_3"><a href="/intro/menu/10050/contents/40015/contents.do">두루두루</a> </li> 
+    <li id="gnb4_7_4"><a href="/intro/menu/10051/contents/40016/contents.do">내생애첫도서관</a> </li> 
+   </ul> </li> 
+  <li id="gnb4_8"><a href="/intro/menu/12260/contents/41261/contents.do">전자도서관</a> 
+   <ul class="MkSub"> 
+    <li id="gnb4_8_1"><a href="/intro/menu/12260/contents/41261/contents.do">시큐레이션(시요일)</a> </li> 
+    <li id="gnb4_8_2"><a href="/intro/menu/10053/contents/40017/contents.do">전자책</a> </li> 
+    <li id="gnb4_8_3"><a href="/intro/menu/12203/contents/41221/contents.do">구독형 전자책 (경기도)</a> </li> 
+    <li id="gnb4_8_4"><a href="/intro/menu/10054/contents/40018/contents.do">오디오북</a> </li> 
+    <li id="gnb4_8_5"><a href="/intro/menu/10057/contents/40021/contents.do">학술논문</a> </li> 
+    <li id="gnb4_8_6"><a href="/intro/menu/10056/contents/40020/contents.do">도서요약</a> </li> 
+    <li id="gnb4_8_7"><a href="/intro/menu/10055/contents/40019/contents.do">인문학강의</a> </li> 
+    <li id="gnb4_8_8"><a href="/intro/menu/11105/contents/40109/contents.do">전자잡지</a> </li> 
+    <li id="gnb4_8_9"><a href="/intro/menu/11106/contents/40110/contents.do">IT강좌</a> </li> 
+   </ul> </li> 
+ </ul> </li> 
+<li id="gnb5"> <a href="/intro/menu/10061/contents/40028/contents.do"> <em>도서관소개</em> </a> 
+ <ul> 
+  <li id="gnb5_1"><a href="/intro/menu/10061/contents/40028/contents.do">인사말</a> </li> 
+  <li id="gnb5_2"><a href="/intro/menu/10064/contents/40029/contents.do">안양시도서관안내</a> 
+   <ul class="MkSub"> 
+    <li id="gnb5_2_1"><a href="/intro/menu/10064/contents/40029/contents.do">도서관현황</a> 
+     <ul class="MkTab"> 
+      <li id="gnb5_2_1_1"><a href="/intro/menu/10064/contents/40029/contents.do">공공도서관</a></li> 
+      <li id="gnb5_2_1_2"><a href="/small/index.do" target="_blank" title="새창열림">작은도서관</a></li> 
+     </ul> </li> 
+    <li id="gnb5_2_2"><a href="/intro/menu/10066/contents/40030/contents.do">특성화안내</a> </li> 
+   </ul> </li> 
+  <li id="gnb5_3"><a href="/intro/menu/10067/contents/40031/contents.do">연혁</a> </li> 
+  <li id="gnb5_4"><a href="/intro/menu/10068/contents/41202/contents.do">자료현황</a> </li> 
+  <li id="gnb5_5"><a href="/intro/menu/10070/program/30021/staffList.do?deptCd=SS">조직</a> 
+   <ul class="MkSub"> 
+    <li id="gnb5_5_1"><a href="/intro/menu/10070/program/30021/staffList.do?deptCd=SS">만안구도서관</a> </li> 
+    <li id="gnb5_5_2"><a href="/intro/menu/10071/program/30021/staffList.do?deptCd=PC">동안구도서관</a> </li> 
+   </ul> </li> 
+  <li id="gnb5_6"><a href="/intro/menu/10072/contents/40024/contents.do">도서관관련법규</a> </li> 
+ </ul> </li> 
+<li id="gnb6"> <a href="/intro/menu/10074/program/30023/mypage/myInfo.do"> <em>마이페이지</em> </a> 
+ <ul> 
+  <li id="gnb6_1"><a href="/intro/menu/10074/program/30023/mypage/myInfo.do">나의정보</a> </li> 
+  <li id="gnb6_2"><a href="/intro/menu/10076/program/30024/mypage/loanStatusList.do">도서이용내역</a> 
+   <ul class="MkTab"> 
+    <li id="gnb6_2_1"><a href="/intro/menu/10076/program/30024/mypage/loanStatusList.do">대출현황</a> </li> 
+    <li id="gnb6_2_2"><a href="/intro/menu/10077/program/30025/mypage/reservationStatusList.do">예약현황</a> </li> 
+    <li id="gnb6_2_3"><a href="/intro/menu/10078/program/30026/mypage/loanHistoryList.do">대출이력</a> </li> 
+   </ul> </li> 
+  <li id="gnb6_4"><a href="/intro/menu/10083/program/30027/mypage/libraryOneLillStatusList.do">상호대차조회</a> 
+   <ul class="MkTab"> 
+    <li id="gnb6_4_1"><a href="/intro/menu/10083/program/30027/mypage/libraryOneLillStatusList.do">신청현황</a> </li> 
+    <li id="gnb6_4_2"><a href="/intro/menu/10084/program/30028/mypage/libraryOneLillHistoryList.do">상호대차이력</a> </li> 
+   </ul> </li> 
+  <li id="gnb6_5"><a href="/intro/menu/10085/program/30029/mypage/bookcaseList.do">관심도서목록</a> </li> 
+  <li id="gnb6_6"><a href="/intro/menu/10086/program/30030/mypage/myPopularBookList.do">추천도서목록</a> </li> 
+  <li id="gnb6_7"><a href="/intro/menu/10087/program/30008/mypage/hopeBookList.do">희망도서신청조회</a> </li> 
+  <li id="gnb6_8"><a href="/intro/menu/10088/program/30015/mypage/lectureApplyList.do">문화행사신청조회</a> </li> 
+ </ul> </li> 
+<li id="gnb7"> <a href="/intro/menu/10090/program/30031/siteMap.do"> <em>홈페이지이용안내</em> </a> 
+ <ul> 
+  <li id="gnb7_1"><a href="/intro/menu/10090/program/30031/siteMap.do">사이트맵</a> </li> 
+  <li id="gnb7_2"><a href="https://www.anyang.go.kr/main/contents.do?key=865" target="_blank" title="새창열림">개인정보처리방침</a> </li> 
+  <li id="gnb7_3"><a href="/intro/menu/10092/contents/40026/contents.do">이메일추출방지정책</a> </li> 
+ </ul> </li>
+
+				
+
+				
+						<li id="gnb9"><a href="/intro/memberLogin.do"><strong>회원정보</strong></a>
+							<ul>
+								<li id="gnb9_1"><a href="/intro/memberLogin.do">로그인</a></li>
+								<li id="gnb9_2"><a href="https://www.anyang.go.kr/userIdSelfCrtfc.do" target="_blank" rel="noopener noreferrer" title="새 창 열림">아이디찾기</a></li>
+								<li id="gnb9_3"><a href="https://www.anyang.go.kr/userPwSelfCrtfc.do" target="_blank" rel="noopener noreferrer" title="새 창 열림">비밀번호 재발급</a></li>
+								<li id="gnb9_4"><a href="/intro/memberJoin.do">회원가입</a></li>
+							</ul>
+						</li>
+					
+
+				
+					<li id="gnb10"><a href="/intro/jnsearch.do"><strong>홈페이지검색</strong></a>
+						<ul>
+							<li id="gnb10_1"><a href="/intro/jnsearch.do">홈페이지검색</a></li>
+						</ul>
+					</li>
+				
+			</ul>
+			
+			<div id="submenuArea"></div>
+		</div>
+	</div>
+</div>
+
+	
+
+
+<form name="topSearchForm" id="topSearchForm" method="post">
+	<input type="hidden" name="searchType" value="SIMPLE">
+	
+			<input type="hidden" name="searchManageCode" value="ALL" />
+		
+	<fieldset>
+		<legend>통합자료 검색영역</legend>
+		<div id="searchBox" class="searchBoxWrap">
+			<p class="logo"><a href="/intro/index.do"><img src="/include/image/intro/common/logo.png" alt="안양시립도서관"></a></p>
+			<div class="searchBox">
+				<select id="topSearchCondition" name="topSearchCondition" title="검색유형 선택">
+					<option value="book" selected="selected">소장자료</option>
+					<option value="home">홈페이지</option>
+				</select>
+				<div class="keywordInput">
+					<label for="topSearchKeyword" class="blind">검색어 입력</label>
+					<input type="text" title="검색어 입력" id="topSearchKeyword" name="searchKeyword" autocomplete="off" placeholder="검색어를 입력하세요.">
+					<a href="#search" id="topSearchBtn" class="btnSearch">검색</a>
+					<a href="/intro/searchDetail.do" class="btnDetail themeBtn mobileHide">고급검색</a>
+				</div>
+			</div>
+			<div id="topSearchBestKeyword" class="keywordPop mobileHide"></div>
+		</div>
+	</fieldset>
+</form>
+<a href="#searchTopClose" id="searchTopClose"><span class="blind">검색창닫기</span></a>
+<script>
+	$(function(){
+		$("#btnSearchTop").click(fnTopSearchBestKeyword);
+		$("#topSearchBestKeyword, #topSearchKeyword").keypress(function (e){
+			if((e.keyCode || e.which) == 13){
+				fnTopSearch();
+				e.preventDefault();
+			}
+		});
+
+		$("#topSearchBtn").click(fnTopSearch);
+	});
+
+	function fnTopSearch() {
+		var form = document.topSearchForm;
+		if(isEmpty(form.searchKeyword.value)){
+			alert("검색어를 입력하세요.");
+			form.searchKeyword.focus();
+			return false;
+		}
+		if(form.topSearchCondition.value == 'book'){
+			form.action="/intro/searchResultList.do";
+		}else {
+			form.action="/intro/jnsearch.do";
+		}
+		form.submit();
+	}
+
+	function fnTopSearchBestKeyword(){
+		$("#topSearchBestKeyword").load("/intro/include/topSearchBestKeyword.do");
+	}
+</script>
+
+
+	<div id="container" class="sub">
+		
+<div class="sVisualWrap">
+	<div class="sVisual">
+		<h3>페이지타이틀</h3>
+	</div>
+</div>
+		<div id="contentGroup">
+			
+<div id="lnbNav" class="navArea">
+	<h2>주메뉴</h2>
+	<ul id="lnb" class="lnb"></ul>
+</div>
+
+			<div id="contentcore">
+				
+
+
+
+<div class="naviandtitle">
+	<h3>페이지타이틀</h3>
+	<div class="navi"></div>
+	<div class="snsFarm">
+		<ul class="snsBtnArea clearfix">
+			<li>
+				<a href="#snsGroup" id="sns" title="SNS 공유하기" class="snsShare"><span class="blind">SNS 공유하기</span></a>
+				<div id="snsGroup" class="snsList clearfix">
+					<a href="#sns1" id="sns1" title="단축URL 복사하기" class="snsUrl" onclick="fnShorturlCopy();" data-clipboard-text="https://lib.anyang.go.kr/intro/searchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&searchType=SIMPLE&searchOrder=ASC&searchArticle=SCORE&searchManageCode=ALL&topSearchCondition=ALL"><span class="blind">단축URL</span></a>
+					<a href="#sns2" id="sns2" title="QR코드 레이어팝업 열림" onclick="fnShareUrl('qrcode');" class="snsQr" data-tooltip="chartSns"><span class="blind">QR코드</span></a>
+					<a href="#sns4" id="sns4" onclick="javascript:fnShareTwitter('https://lib.anyang.go.kr/intro/searchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&searchType=SIMPLE&searchOrder=ASC&searchArticle=SCORE&searchManageCode=ALL&topSearchCondition=ALL'); return false;" title="트위터에 공유하기 새창열림" class="snsTwitter"><span class="blind">트위터</span></a>
+					<a href="#sns5" id="sns5" onclick="javascript:fnShareFaceBook('https://lib.anyang.go.kr/intro/searchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&searchType=SIMPLE&searchOrder=ASC&searchArticle=SCORE&searchManageCode=ALL&topSearchCondition=ALL'); return false;" title="페이스북에 공유하기 새창열림" class="snsFacebook"><span class="blind">페이스북</span></a>
+				</div>
+			</li>
+			<li class="mobileHide"><a href="#print" id="pprint" title="새 창 열림" class="snsPrint" onclick="javascript:fnPrintPopup('intro'); return false;"><span class="blind">현재화면 프린트</span></a></li>
+		</ul>
+	</div>
+</div>
+
+<!-- 레이어팝업 -->
+<div class="chart-pop chartSns" tabindex="0" data-tooltip-con="chartSns" data-focus="chartSns" data-focus-prev="chartSns-close">
+	<div class="layer-content">
+		<h4>QR코드</h4>
+		<div class="layer-content">
+			<div class="conTxt ta_c" id="qrcodeImg"></div>
+			<div class="conTxt">
+				<p>QR코드 이미지 저장</p>
+				QR코드 &gt; 우측 클릭 &gt; 저장 &gt; 확장자 변경(png, jpg) 후 저장
+			</div>
+		</div>
+		<a href="#close" class="chart-close01 tooltip-close" data-focus="chartSns-close" data-focus-next="chartSns"><span class="blind">닫기</span></a>
+	</div>
+</div>
+<!-- //레이어팝업 -->
+
+<script src="/include/js/clipboard.min.js"></script>
+<script src="/include/js/jquery-qrcode-0.18.0.min.js"></script>
+<script>
+	function fnShareUrl(site){
+		const shareUrl = "https://lib.anyang.go.kr/intro/searchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&searchType=SIMPLE&searchOrder=ASC&searchArticle=SCORE&searchManageCode=ALL&topSearchCondition=ALL";
+		$("#qrcodeImg").append("<span class='blind'>QR코드 URL경로: "+shareUrl+"</span>");
+		if (site == 'copy'){
+			$("#snsShortUrl").attr('data-clipboard-text', shareUrl);
+			new ClipboardJS('#snsShortUrl');
+			alert('주소가 복사되었습니다.');
+			setTimeout(function(){
+				$("#snsShortUrl").focus();
+			});
+			return;
+		}else if (site == 'qrcode'){
+			$("canvas").remove();
+			var qrOptions = {
+				render: 'canvas',
+				minVersion: 1,
+				maxVersion: 40,
+				size: 120,
+				text: shareUrl
+			}
+			$("#qrcodeImg").qrcode(qrOptions);
+			$(".chartSns").css("display", "flex").focus();
+			return false;
+		}
+	}
+
+</script>
+				<div id="contents" class="contentArea">
+					
+<!--Forced tab Show Que-->
+<div class="ttabWrap">
+	<div id="virtSelect"><a href="#script">탭메뉴</a></div>
+	<ul id="ttab3" class="tnb clearfix">
+		<li></li>
+	</ul>
+</div>
+<!--Forced tab Show Que-->
+
+<div id="popblackBG"></div>
+					<!--Real Contents Start-->
+					<form id="searchForm" name="searchForm" method="get">
+						<input type="hidden" name="searchType" value="SIMPLE">
+						<input type="hidden" name="viewType" value="LIST">
+						<input type="hidden" name="searchPubFormCode" value="MO">
+						<input type="hidden" name="currentPageNo" value="1"/>
+						<input type="hidden" name="preSearchKeyword" value="파이썬">
+						
+						<input type="hidden" name="smallLibSearchYn" value="N">
+						<input type="hidden" name="eBookSearchYn" value="N">
+						<div class="searchWrap">
+							<div class="searchFormWeb">
+								<div class="searchToparea">
+									<div class="searchBardiv">
+										<div class="searchTit">통합자료</div>
+										<div class="searchInputbox">
+											<input type="text" id="totalSearchValue" name="searchKeyword" title="검색어를 입력하세요." value="파이썬" placeholder="검색어를 입력하세요." autocomplete="off">
+											<button type="button" id="searchBtn" title="검색" class="unifiedSearchbtn">검색</button>
+										</div>
+										<!-- 	최근 검색어, 인기 검색어 조회-->
+										<div id="searchKeywordArea" class="tab_wrap_search open"></div>
+										<!-- 	최근 검색어, 인기 검색어 조회-->
+										<!-- 자동완성 검색어 조회-->
+										
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" src="/include/booksearch/js/autocom.js"></script>
+<script type="text/javascript">
+	$(function(){
+		fnAutoComplete();
+	});
+</script>
+<div class="autoSearch" id="atcBox">
+	<ul id="atcList">
+	</ul>
+	<div class="button_wrap">
+		<button type="button"></button>
+		<div class="button_box">
+			<button type="button" class="auto_off" id="atcToggleBtn">자동완성 끄기</button>
+		</div>
+	</div>
+</div>
+
+										<!-- 자동완성 검색어 조회-->
+										<a href="/intro/searchDetail.do" class="btn input" title="고급검색 페이지 이동">고급검색</a>
+									</div>
+
+									<div class="innerSearch">
+										<input type="checkbox" id="reSearchYn" name="reSearchYn" value="Y" class="check">
+										<label for="reSearchYn">결과 내 검색</label>
+									</div>
+
+									<div class="searchUtilWrap">
+										<ol>
+											<li><a href="javascript:;" data-tab="sh_util01" class="sh_util01" title="축소됨">다국어 입력</a></li>
+											<li><a href="javascript:;" data-tab="sh_util03" class="sh_util03" title="축소됨">도서관 선택</a></li>
+										</ol>
+									</div>
+								</div>
+							</div>
+
+							<div class="searchBotarea">
+								<div class="divSelect" id="sh_util01">
+									<div class="worldwordWrap">
+										<!-- 다국어 키보드  -->
+										
+
+<div class="worldwordBox ui-draggable" id="worldwordBoxLayer">
+	<fieldset>
+		<legend>다국어 입력폼</legend>
+		<div class="worldword">
+			<ul class="language webLang">
+				<li><a class="selected" href="#none">히라가나</a></li>
+				<li><a href="#none">가타카나</a></li>
+				<li><a href="#none">한글고어</a></li>
+				<li><a href="#none">그리스문자</a></li>
+				<li><a href="#none">라틴문자</a></li>
+				<li><a href="#none">러시아문자</a></li>
+				<li><a href="#none">단위기호</a></li>
+				<li><a href="#none">일반기호</a></li>
+				<li><a href="#none">로마자</a></li>
+				<li><a href="#none">첨자기호</a></li>
+				<li><a href="#none">몽골어</a></li>
+				<li><a href="#none">베트남어</a></li>
+				<li><a href="#none">캄보디아어</a></li>
+				<li><a href="#none">태국어</a></li>
+			</ul>
+
+			<select class="mobLang" title="언어 선택">
+				<option>히라가나</option>
+				<option>가타카나</option>
+				<option>한글고어</option>
+				<option>그리스문자</option>
+				<option>라틴문자</option>
+				<option>러시아문자</option>
+				<option>단위기호</option>
+				<option>일반기호</option>
+				<option>로마자</option>
+				<option>첨자기호</option>
+				<option>몽골어</option>
+				<option>베트남어</option>
+				<option>캄보디아어</option>
+				<option>태국어</option>
+			</select>
+
+			<!-- 히라가나 -->
+			<div class="languageContents" style="display: block;">
+				<ul>
+					<li><a href="#">あ</a></li>
+					<li><a href="#">ぁ</a></li>
+					<li><a href="#">か</a></li>
+					<li><a href="#">が</a></li>
+					<li><a href="#">さ</a></li>
+					<li><a href="#">ざ</a></li>
+					<li><a href="#">た</a></li>
+					<li><a href="#">だ</a></li>
+					<li><a href="#">な</a></li>
+					<li><a href="#">は</a></li>
+					<li><a href="#">ば</a></li>
+					<li><a href="#">ぱ</a></li>
+					<li><a href="#">ま</a></li>
+					<li><a href="#">や</a></li>
+					<li><a href="#">ゃ</a></li>
+					<li><a href="#">ら</a></li>
+					<li><a href="#">わ</a></li>
+					<li><a href="#">ゎ</a></li>
+					<li><a href="#">ん</a></li>
+				</ul>
+				<ul>
+					<li><a href="#">い</a></li>
+					<li><a href="#">ぃ</a></li>
+					<li><a href="#">き</a></li>
+					<li><a href="#">ぎ</a></li>
+					<li><a href="#">し</a></li>
+					<li><a href="#">じ</a></li>
+					<li><a href="#">ち</a></li>
+					<li><a href="#">ぢ</a></li>
+					<li><a href="#">に</a></li>
+					<li><a href="#">ひ</a></li>
+					<li><a href="#">び</a></li>
+					<li><a href="#">ぴ</a></li>
+					<li><a href="#">み</a></li>
+					<li>&nbsp;</li>
+					<li>&nbsp;</li>
+					<li>&nbsp;</li>
+					<li>&nbsp;</li>
+					<li><a href="#">り</a></li>
+				</ul>
+				<ul>
+					<li><a href="#">う</a></li>
+					<li><a href="#">ぅ</a></li>
+					<li><a href="#">く</a></li>
+					<li><a href="#">ぐ</a></li>
+					<li><a href="#">す</a></li>
+					<li><a href="#">ず</a></li>
+					<li><a href="#">つ</a></li>
+					<li><a href="#">づ</a></li>
+					<li><a href="#">っ</a></li>
+					<li><a href="#">ぬ</a></li>
+					<li><a href="#">ふ</a></li>
+					<li><a href="#">ぶ</a></li>
+					<li><a href="#">ぷ</a></li>
+					<li><a href="#">む</a></li>
+					<li><a href="#">ゆ</a></li>
+					<li><a href="#">ゅ</a></li>
+					<li><a href="#">る</a></li>
+				</ul>
+				<ul>
+					<li><a href="#">え</a></li>
+					<li><a href="#">ぇ</a></li>
+					<li><a href="#">け</a></li>
+					<li><a href="#">げ</a></li>
+					<li><a href="#">せ</a></li>
+					<li><a href="#">ぜ</a></li>
+					<li><a href="#">て</a></li>
+					<li><a href="#">で</a></li>
+					<li><a href="#">ね</a></li>
+					<li><a href="#">へ</a></li>
+					<li><a href="#">べ</a></li>
+					<li><a href="#">ぺ</a></li>
+					<li><a href="#">め</a></li>
+					<li>&nbsp;</li>
+					<li>&nbsp;</li>
+					<li>&nbsp;</li>
+					<li>&nbsp;</li>
+					<li><a href="#">れ</a></li>
+				</ul>
+				<ul>
+					<li><a href="#">お</a></li>
+					<li><a href="#">ぉ</a></li>
+					<li><a href="#">こ</a></li>
+					<li><a href="#">ご</a></li>
+					<li><a href="#">そ</a></li>
+					<li><a href="#">ぞ</a></li>
+					<li><a href="#">と</a></li>
+					<li><a href="#">ど</a></li>
+					<li><a href="#">の</a></li>
+					<li><a href="#">ほ</a></li>
+					<li><a href="#">ぼ</a></li>
+					<li><a href="#">ぽ</a></li>
+					<li><a href="#">も</a></li>
+					<li><a href="#">よ</a></li>
+					<li><a href="#">ょ</a></li>
+					<li><a href="#">ろ</a></li>
+					<li><a href="#">を</a></li>
+				</ul>
+			</div>
+			<!-- //히라가나 -->
+			<!-- 가타카나 -->
+			<div class="languageContents" style="display: none;">
+				<ul>
+					<li><a href="#">ア</a></li>
+					<li><a href="#">ァ</a></li>
+					<li><a href="#">カ</a></li>
+					<li><a href="#">ガ</a></li>
+					<li><a href="#">サ</a></li>
+					<li><a href="#">ザ</a></li>
+					<li><a href="#">タ</a></li>
+					<li><a href="#">ダ</a></li>
+					<li><a href="#">ナ</a></li>
+					<li><a href="#">ハ</a></li>
+					<li><a href="#">バ</a></li>
+					<li><a href="#">パ</a></li>
+					<li><a href="#">マ</a></li>
+					<li><a href="#">ヤ</a></li>
+					<li><a href="#">ャ</a></li>
+					<li><a href="#">ラ</a></li>
+					<li><a href="#">ワ</a></li>
+					<li><a href="#">ヮ</a></li>
+					<li><a href="#">ン</a></li>
+				</ul>
+				<ul>
+					<li><a href="#">イ</a></li>
+					<li><a href="#">ィ</a></li>
+					<li><a href="#">キ</a></li>
+					<li><a href="#">ギ</a></li>
+					<li><a href="#">シ</a></li>
+					<li><a href="#">ジ</a></li>
+					<li><a href="#">チ</a></li>
+					<li><a href="#">ヂ</a></li>
+					<li><a href="#">ニ</a></li>
+					<li><a href="#">ヒ</a></li>
+					<li><a href="#">ビ</a></li>
+					<li><a href="#">ピ</a></li>
+					<li><a href="#">ミ</a></li>
+					<li>&nbsp;</li>
+					<li>&nbsp;</li>
+					<li>&nbsp;</li>
+					<li>&nbsp;</li>
+					<li><a href="#">リ</a></li>
+				</ul>
+				<ul>
+					<li><a href="#">ウ</a></li>
+					<li><a href="#">ゥ</a></li>
+					<li><a href="#">ク</a></li>
+					<li><a href="#">グ</a></li>
+					<li><a href="#">ス</a></li>
+					<li><a href="#">ズ</a></li>
+					<li><a href="#">ツ</a></li>
+					<li><a href="#">ヅ</a></li>
+					<li><a href="#">ッ</a></li>
+					<li><a href="#">ヌ</a></li>
+					<li><a href="#">フ</a></li>
+					<li><a href="#">ブ</a></li>
+					<li><a href="#">プ</a></li>
+					<li><a href="#">ム</a></li>
+					<li><a href="#">ユ</a></li>
+					<li><a href="#">ュ</a></li>
+					<li><a href="#">ル</a></li>
+				</ul>
+				<ul>
+					<li><a href="#">エ</a></li>
+					<li><a href="#">ェ</a></li>
+					<li><a href="#">ケ</a></li>
+					<li><a href="#">ゲ</a></li>
+					<li><a href="#">セ</a></li>
+					<li><a href="#">ゼ</a></li>
+					<li><a href="#">テ</a></li>
+					<li><a href="#">デ</a></li>
+					<li><a href="#">ネ</a></li>
+					<li><a href="#">ヘ</a></li>
+					<li><a href="#">ベ</a></li>
+					<li><a href="#">ペ</a></li>
+					<li><a href="#">メ</a></li>
+					<li>&nbsp;</li>
+					<li>&nbsp;</li>
+					<li>&nbsp;</li>
+					<li>&nbsp;</li>
+					<li><a href="#">レ</a></li>
+				</ul>
+				<ul>
+					<li><a href="#">オ</a></li>
+					<li><a href="#">ォ</a></li>
+					<li><a href="#">コ</a></li>
+					<li><a href="#">ゴ</a></li>
+					<li><a href="#">ソ</a></li>
+					<li><a href="#">ゾ</a></li>
+					<li><a href="#">ト</a></li>
+					<li><a href="#">ド</a></li>
+					<li><a href="#">ノ</a></li>
+					<li><a href="#">ホ</a></li>
+					<li><a href="#">ボ</a></li>
+					<li><a href="#">ポ</a></li>
+					<li><a href="#">モ</a></li>
+					<li><a href="#">ヨ</a></li>
+					<li><a href="#">ョ</a></li>
+					<li><a href="#">ロ</a></li>
+					<li><a href="#">ヲ</a></li>
+					<li><a href="#">―</a></li>
+				</ul>
+			</div>
+			<!-- //가타카나 -->
+			<!-- 한글고어 -->
+			<div class="languageContents" style="display: none;">
+				<ul>
+					<li><a href="#">ㅥ</a></li>
+					<li><a href="#">ㅦ</a></li>
+					<li><a href="#">ㅧ</a></li>
+					<li><a href="#">ㅨ</a></li>
+					<li><a href="#">ㅩ</a></li>
+					<li><a href="#">ㅪ</a></li>
+					<li><a href="#">ㅫ</a></li>
+					<li><a href="#">ㅬ</a></li>
+					<li><a href="#">ㅭ</a></li>
+					<li><a href="#">ㅮ</a></li>
+					<li><a href="#">ㅯ</a></li>
+					<li><a href="#">ㅰ</a></li>
+					<li><a href="#">ㅱ</a></li>
+					<li><a href="#">ㅲ</a></li>
+					<li><a href="#">ㅳ</a></li>
+					<li><a href="#">ㅴ</a></li>
+					<li><a href="#">ㅵ</a></li>
+					<li><a href="#">ㅶ</a></li>
+					<li><a href="#">ㅷ</a></li>
+					<li><a href="#">ㅸ</a></li>
+					<li><a href="#">ㅹ</a></li>
+					<li><a href="#">ㅺ</a></li>
+					<li><a href="#">ㅻ</a></li>
+					<li><a href="#">ㅼ</a></li>
+					<li><a href="#">ㅽ</a></li>
+					<li><a href="#">ㅾ</a></li>
+					<li><a href="#">ㅿ</a></li>
+					<li><a href="#">ㆀ</a></li>
+					<li><a href="#">ㆁ</a></li>
+					<li><a href="#">ㆂ</a></li>
+					<li><a href="#">ㆃ</a></li>
+					<li><a href="#">ㆄ</a></li>
+					<li><a href="#">ㆅ</a></li>
+					<li><a href="#">ㆆ</a></li>
+					<li><a href="#">ㆇ</a></li>
+					<li><a href="#">ㆈ</a></li>
+					<li><a href="#">ㆉ</a></li>
+					<li><a href="#">ㆊ</a></li>
+					<li><a href="#">ㆋ</a></li>
+					<li><a href="#">ㆌ</a></li>
+					<li><a href="#">ㆍ</a></li>
+					<li><a href="#">ㆎ</a></li>
+				</ul>
+			</div>
+			<!-- //한글고어 -->
+			<!-- 그리스문자 -->
+			<div class="languageContents" style="display: none;">
+				<ul>
+					<li><a href="#">Α</a></li>
+					<li><a href="#">Β</a></li>
+					<li><a href="#">Γ</a></li>
+					<li><a href="#">Δ</a></li>
+					<li><a href="#">Ε</a></li>
+					<li><a href="#">Ζ</a></li>
+					<li><a href="#">Η</a></li>
+					<li><a href="#">Θ</a></li>
+					<li><a href="#">Ι</a></li>
+					<li><a href="#">Κ</a></li>
+					<li><a href="#">Λ</a></li>
+					<li><a href="#">Μ</a></li>
+					<li><a href="#">Ν</a></li>
+					<li><a href="#">Ξ</a></li>
+					<li><a href="#">Ο</a></li>
+					<li><a href="#">Π</a></li>
+					<li><a href="#">Ρ</a></li>
+					<li><a href="#">Σ</a></li>
+					<li><a href="#">Τ</a></li>
+					<li><a href="#">Υ</a></li>
+					<li><a href="#">Φ</a></li>
+					<li><a href="#">Χ</a></li>
+					<li><a href="#">Ψ</a></li>
+					<li><a href="#">Ω</a></li>
+					<li><a href="#">α</a></li>
+					<li><a href="#">β</a></li>
+					<li><a href="#">γ</a></li>
+					<li><a href="#">δ</a></li>
+					<li><a href="#">ε</a></li>
+					<li><a href="#">ζ</a></li>
+					<li><a href="#">η</a></li>
+					<li><a href="#">θ</a></li>
+					<li><a href="#">ι</a></li>
+					<li><a href="#">κ</a></li>
+					<li><a href="#">λ</a></li>
+					<li><a href="#">μ</a></li>
+					<li><a href="#">ν</a></li>
+					<li><a href="#">ξ</a></li>
+					<li><a href="#">ο</a></li>
+					<li><a href="#">π</a></li>
+					<li><a href="#">ρ</a></li>
+					<li><a href="#">σ</a></li>
+					<li><a href="#">τ</a></li>
+					<li><a href="#">υ</a></li>
+					<li><a href="#">φ</a></li>
+					<li><a href="#">χ</a></li>
+					<li><a href="#">ψ</a></li>
+					<li><a href="#">ω</a></li>
+				</ul>
+			</div>
+			<!-- //그리스문자 -->
+			<!-- 괄호기호 -->
+			<!-- //기술기호 -->
+			<!-- 라틴문자 -->
+			<div class="languageContents" style="display: none;">
+				<ul>
+					<li><a href="#">Æ</a></li>
+					<li><a href="#">Ð</a></li>
+					<li><a href="#">Ħ</a></li>
+					<li><a href="#">ĲvĿ</a></li>
+					<li><a href="#">Ł</a></li>
+					<li><a href="#">Ø</a></li>
+					<li><a href="#">Œ</a></li>
+					<li><a href="#">Þ</a></li>
+					<li><a href="#">Ŧ</a></li>
+					<li><a href="#">Ŋ</a></li>
+					<li><a href="#">æ</a></li>
+					<li><a href="#">đ</a></li>
+					<li><a href="#">ð</a></li>
+					<li><a href="#">ħ</a></li>
+					<li><a href="#">ı</a></li>
+					<li><a href="#">ĳ</a></li>
+					<li><a href="#">ĸ</a></li>
+					<li><a href="#">ŀ</a></li>
+					<li><a href="#">ł</a></li>
+					<li><a href="#">ø</a></li>
+					<li><a href="#">œ</a></li>
+					<li><a href="#">ß</a></li>
+					<li><a href="#">þ</a></li>
+					<li><a href="#">ŧ</a></li>
+					<li><a href="#">ŋ</a></li>
+					<li><a href="#">ŉ</a></li>
+				</ul>
+			</div>
+			<!-- //라틴문자 -->
+			<!-- 러시아문자 -->
+			<div class="languageContents" style="display: none;">
+				<ul>
+					<li><a href="#">А</a></li>
+					<li><a href="#">Б</a></li>
+					<li><a href="#">В</a></li>
+					<li><a href="#">Г</a></li>
+					<li><a href="#">Д</a></li>
+					<li><a href="#">Е</a></li>
+					<li><a href="#">Ё</a></li>
+					<li><a href="#">Ж</a></li>
+					<li><a href="#">З</a></li>
+					<li><a href="#">И</a></li>
+					<li><a href="#">Й</a></li>
+					<li><a href="#">К</a></li>
+					<li><a href="#">Л</a></li>
+					<li><a href="#">М</a></li>
+					<li><a href="#">Н</a></li>
+					<li><a href="#">О</a></li>
+					<li><a href="#">П</a></li>
+					<li><a href="#">Р</a></li>
+					<li><a href="#">С</a></li>
+					<li><a href="#">Т</a></li>
+					<li><a href="#">У</a></li>
+					<li><a href="#">Ф</a></li>
+					<li><a href="#">Х</a></li>
+					<li><a href="#">Ц</a></li>
+					<li><a href="#">Ч</a></li>
+					<li><a href="#">Ш</a></li>
+					<li><a href="#">Щ</a></li>
+					<li><a href="#">Ъ</a></li>
+					<li><a href="#">Ы</a></li>
+					<li><a href="#">Ь</a></li>
+					<li><a href="#">Э</a></li>
+					<li><a href="#">Ю</a></li>
+					<li><a href="#">Я</a></li>
+					<li><a href="#">а</a></li>
+					<li><a href="#">б</a></li>
+					<li><a href="#">в</a></li>
+					<li><a href="#">г</a></li>
+					<li><a href="#">д</a></li>
+					<li><a href="#">е</a></li>
+					<li><a href="#">ё</a></li>
+					<li><a href="#">ж</a></li>
+					<li><a href="#">з</a></li>
+					<li><a href="#">и</a></li>
+					<li><a href="#">й</a></li>
+					<li><a href="#">к</a></li>
+					<li><a href="#">л</a></li>
+					<li><a href="#">м</a></li>
+					<li><a href="#">н</a></li>
+					<li><a href="#">о</a></li>
+					<li><a href="#">п</a></li>
+					<li><a href="#">р</a></li>
+					<li><a href="#">с</a></li>
+					<li><a href="#">т</a></li>
+					<li><a href="#">у</a></li>
+					<li><a href="#">ф</a></li>
+					<li><a href="#">х</a></li>
+					<li><a href="#">ц</a></li>
+					<li><a href="#">ч</a></li>
+					<li><a href="#">ш</a></li>
+					<li><a href="#">щ</a></li>
+					<li><a href="#">ъ</a></li>
+					<li><a href="#">ы</a></li>
+					<li><a href="#">ь</a></li>
+					<li><a href="#">э</a></li>
+					<li><a href="#">ю</a></li>
+					<li><a href="#">я</a></li>
+				</ul>
+			</div>
+			<!-- //러시아문자 -->
+			<!-- 단위기호 -->
+			<div class="languageContents" style="display: none;">
+				<ul>
+					<li><a href="#">′</a></li>
+					<li><a href="#">″</a></li>
+					<li><a href="#">℃</a></li>
+					<li><a href="#">Å</a></li>
+					<li><a href="#">￠</a></li>
+					<li><a href="#">￡</a></li>
+					<li><a href="#">￥</a></li>
+					<li><a href="#">¤</a></li>
+					<li><a href="#">℉</a></li>
+					<li><a href="#">‰</a></li>
+					<li><a href="#">＄</a></li>
+					<li><a href="#">％</a></li>
+					<li><a href="#">Ｆ</a></li>
+					<li><a href="#">￦</a></li>
+					<li><a href="#">㎕</a></li>
+					<li><a href="#">㎖</a></li>
+					<li><a href="#">㎗</a></li>
+					<li><a href="#">ℓ</a></li>
+					<li><a href="#">㎘</a></li>
+					<li><a href="#">㏄</a></li>
+					<li><a href="#">㎣</a></li>
+					<li><a href="#">㎤</a></li>
+					<li><a href="#">㎥</a></li>
+					<li><a href="#">㎦</a></li>
+					<li><a href="#">㎙</a></li>
+					<li><a href="#">㎚</a></li>
+					<li><a href="#">㎛</a></li>
+					<li><a href="#">㎜</a></li>
+					<li><a href="#">㎝</a></li>
+					<li><a href="#">㎞</a></li>
+					<li><a href="#">㎟</a></li>
+					<li><a href="#">㎠</a></li>
+					<li><a href="#">㎡</a></li>
+					<li><a href="#">㎢</a></li>
+					<li><a href="#">㏊</a></li>
+					<li><a href="#">㎍</a></li>
+					<li><a href="#">㎎</a></li>
+					<li><a href="#">㎏</a></li>
+					<li><a href="#">㏏</a></li>
+					<li><a href="#">㎈</a></li>
+					<li><a href="#">㎉</a></li>
+					<li><a href="#">㏈</a></li>
+					<li><a href="#">㎧</a></li>
+					<li><a href="#">㎨</a></li>
+					<li><a href="#">㎰</a></li>
+					<li><a href="#">㎱</a></li>
+					<li><a href="#">㎲</a></li>
+					<li><a href="#">㎳</a></li>
+					<li><a href="#">㎴</a></li>
+					<li><a href="#">㎵</a></li>
+					<li><a href="#">㎶</a></li>
+					<li><a href="#">㎷</a></li>
+					<li><a href="#">㎸</a></li>
+					<li><a href="#">㎹</a></li>
+					<li><a href="#">㎀</a></li>
+					<li><a href="#">㎁</a></li>
+					<li><a href="#">㎂</a></li>
+					<li><a href="#">㎃</a></li>
+					<li><a href="#">㎄</a></li>
+					<li><a href="#">㎺</a></li>
+					<li><a href="#">㎻</a></li>
+					<li><a href="#">㎽</a></li>
+					<li><a href="#">㎾</a></li>
+					<li><a href="#">㎿</a></li>
+					<li><a href="#">㎐</a></li>
+					<li><a href="#">㎑</a></li>
+					<li><a href="#">㎒</a></li>
+					<li><a href="#">㎓</a></li>
+					<li><a href="#">㎔</a></li>
+					<li><a href="#">Ω</a></li>
+					<li><a href="#">㏀</a></li>
+					<li><a href="#">㏁</a></li>
+					<li><a href="#">㎊</a></li>
+					<li><a href="#">㎋</a></li>
+					<li><a href="#">㎌</a></li>
+					<li><a href="#">㏖</a></li>
+					<li><a href="#">㏅</a></li>
+					<li><a href="#">㎭</a></li>
+					<li><a href="#">㎮</a></li>
+					<li><a href="#">㎯</a></li>
+					<li><a href="#">㏛</a></li>
+					<li><a href="#">㎩</a></li>
+					<li><a href="#">㎪</a></li>
+					<li><a href="#">㎫</a></li>
+					<li><a href="#">㎬</a></li>
+					<li><a href="#">㏝</a></li>
+					<li><a href="#">㏐</a></li>
+					<li><a href="#">㏓</a></li>
+					<li><a href="#">㏃</a></li>
+					<li><a href="#">㏉</a></li>
+					<li><a href="#">㏜</a></li>
+					<li><a href="#">㏆</a></li>
+				</ul>
+			</div>
+			<!-- //단위기호 -->
+			<!-- 일반기호 -->
+		<div class="languageContents" style="display: none;">
+				<ul>
+					<li><a href="#">§</a></li>
+					<li><a href="#">※</a></li>
+					<li><a href="#">☆</a></li>
+					<li><a href="#">★</a></li>
+					<li><a href="#">○</a></li>
+					<li><a href="#">●</a></li>
+					<li><a href="#">◎</a></li>
+					<li><a href="#">◇</a></li>
+					<li><a href="#">◆</a></li>
+					<li><a href="#">□</a></li>
+					<li><a href="#">■</a></li>
+					<li><a href="#">△</a></li>
+					<li><a href="#">▽</a></li>
+					<li><a href="#">→</a></li>
+					<li><a href="#">←</a></li>
+					<li><a href="#">↑</a></li>
+					<li><a href="#">↓</a></li>
+					<li><a href="#">↔</a></li>
+					<li><a href="#">〓</a></li>
+					<li><a href="#">◁</a></li>
+					<li><a href="#">◀</a></li>
+					<li><a href="#">▷</a></li>
+					<li><a href="#">▶</a></li>
+					<li><a href="#">♤</a></li>
+					<li><a href="#">♠</a></li>
+					<li><a href="#">♡</a></li>
+					<li><a href="#">♥</a></li>
+					<li><a href="#">♧</a></li>
+					<li><a href="#">♣</a></li>
+					<li><a href="#">⊙</a></li>
+					<li><a href="#">◈</a></li>
+					<li><a href="#">▣</a></li>
+					<li><a href="#">◐</a></li>
+					<li><a href="#">◑</a></li>
+					<li><a href="#">▒</a></li>
+					<li><a href="#">▤</a></li>
+					<li><a href="#">▥</a></li>
+					<li><a href="#">▨</a></li>
+					<li><a href="#">▧</a></li>
+					<li><a href="#">▦</a></li>
+					<li><a href="#">▩</a></li>
+					<li><a href="#">♨</a></li>
+					<li><a href="#">☏</a></li>
+					<li><a href="#">☎</a></li>
+					<li><a href="#">☜</a></li>
+					<li><a href="#">☞</a></li>
+					<li><a href="#">¶</a></li>
+					<li><a href="#">†</a></li>
+					<li><a href="#">‡</a></li>
+					<li><a href="#">↕</a></li>
+					<li><a href="#">↗</a></li>
+					<li><a href="#">↙</a></li>
+					<li><a href="#">↖</a></li>
+					<li><a href="#">↘</a></li>
+					<li><a href="#">♭</a></li>
+					<li><a href="#">♩</a></li>
+					<li><a href="#">♪</a></li>
+					<li><a href="#">♬</a></li>
+					<li><a href="#">㉿</a></li>
+					<li><a href="#">㈜</a></li>
+					<li><a href="#">№</a></li>
+					<li><a href="#">㏇</a></li>
+					<li><a href="#">™</a></li>
+					<li><a href="#">㏂</a></li>
+					<li><a href="#">㏘</a></li>
+					<li><a href="#">℡</a></li>
+					<li><a href="#">＃</a></li>
+					<li><a href="#">＆</a></li>
+					<li><a href="#">＊</a></li>
+					<li><a href="#">＠</a></li>
+					<li><a href="#">ª</a></li>
+					<li><a href="#">º</a></li>
+				</ul>
+			</div>
+			<!-- //일반기호 -->
+			<!-- 로마자 -->
+			<div class="languageContents" style="display: none;">
+				<ul>
+					<li><a href="#">ⅰ</a></li>
+					<li><a href="#">ⅱ</a></li>
+					<li><a href="#">ⅲ</a></li>
+					<li><a href="#">ⅳ</a></li>
+					<li><a href="#">ⅴ</a></li>
+					<li><a href="#">ⅵ</a></li>
+					<li><a href="#">ⅶ</a></li>
+					<li><a href="#">ⅷ</a></li>
+					<li><a href="#">ⅸ</a></li>
+					<li><a href="#">ⅹ</a></li>
+					<li><a href="#">Ⅰ</a></li>
+					<li><a href="#">Ⅱ</a></li>
+					<li><a href="#">Ⅲ</a></li>
+					<li><a href="#">Ⅳ</a></li>
+					<li><a href="#">Ⅴ</a></li>
+					<li><a href="#">Ⅵ</a></li>
+					<li><a href="#">Ⅶ</a></li>
+					<li><a href="#">Ⅷ</a></li>
+					<li><a href="#">Ⅸ</a></li>
+					<li><a href="#">Ⅹ</a></li>
+				</ul>
+			</div>
+			<!-- //로마자 -->
+			<!-- 첨자기호 -->
+			<div class="languageContents" style="display: none;">
+				<ul>
+					<li><a href="#">½</a></li>
+					<li><a href="#">⅓</a></li>
+					<li><a href="#">⅔</a></li>
+					<li><a href="#">¼</a></li>
+					<li><a href="#">¾</a></li>
+					<li><a href="#">⅛</a></li>
+					<li><a href="#">⅜</a></li>
+					<li><a href="#">⅝</a></li>
+					<li><a href="#">⅞</a></li>
+					<li><a href="#">¹</a></li>
+					<li><a href="#">²</a></li>
+					<li><a href="#">³</a></li>
+					<li><a href="#">⁴</a></li>
+					<li><a href="#">ⁿ</a></li>
+					<li><a href="#">₁</a></li>
+					<li><a href="#">₂</a></li>
+					<li><a href="#">₃</a></li>
+					<li><a href="#">₄</a></li>
+				</ul>
+			</div>
+			<!-- //첨자기호 -->
+			<!-- 몽골어 -->
+			<div class="languageContents" style="display: none;">
+				<ul>
+					<li><a href="#">а</a></li>
+					<li><a href="#">б</a></li>
+					<li><a href="#">в</a></li>
+					<li><a href="#">г</a></li>
+					<li><a href="#">д</a></li>
+					<li><a href="#">е</a></li>
+					<li><a href="#">ё</a></li>
+					<li><a href="#">ж</a></li>
+					<li><a href="#">з</a></li>
+					<li><a href="#">и</a></li>
+					<li><a href="#">й</a></li>
+					<li><a href="#">к</a></li>
+					<li><a href="#">л</a></li>
+					<li><a href="#">м</a></li>
+					<li><a href="#">н</a></li>
+					<li><a href="#">о</a></li>
+					<li><a href="#">ө</a></li>
+					<li><a href="#">п</a></li>
+					<li><a href="#">р</a></li>
+					<li><a href="#">с</a></li>
+					<li><a href="#">т</a></li>
+					<li><a href="#">у</a></li>
+					<li><a href="#">ү</a></li>
+					<li><a href="#">ф</a></li>
+					<li><a href="#">х</a></li>
+					<li><a href="#">ц</a></li>
+					<li><a href="#">ч</a></li>
+					<li><a href="#">ш</a></li>
+					<li><a href="#">щ</a></li>
+					<li><a href="#">ъ</a></li>
+					<li><a href="#">ы</a></li>
+					<li><a href="#">ь</a></li>
+					<li><a href="#">э</a></li>
+					<li><a href="#">ю</a></li>
+					<li><a href="#">я</a></li>
+				</ul>
+			</div>
+			<!-- //몽골어 -->
+
+			<!-- 베트남어 -->
+			<div class="languageContents" style="display: none;">
+				<ul>
+					<li><a href="#">b</a></li>
+					<li><a href="#">c</a></li>
+					<li><a href="#">d</a></li>
+					<li><a href="#">đ</a></li>
+					<li><a href="#">g</a></li>
+					<li><a href="#">h</a></li>
+					<li><a href="#">k</a></li>
+					<li><a href="#">l</a></li>
+					<li><a href="#">m</a></li>
+					<li><a href="#">n</a></li>
+					<li><a href="#">p</a></li>
+					<li><a href="#">q</a></li>
+					<li><a href="#">r</a></li>
+					<li><a href="#">s</a></li>
+					<li><a href="#">t</a></li>
+					<li><a href="#">v</a></li>
+					<li><a href="#">x</a></li>
+					<li><a href="#">f</a></li>
+					<li><a href="#">j</a></li>
+					<li><a href="#">w</a></li>
+					<li><a href="#">z</a></li>
+					<li><a href="#">a</a></li>
+					<li><a href="#">á</a></li>
+					<li><a href="#">à</a></li>
+					<li><a href="#">ả</a></li>
+					<li><a href="#">ã</a></li>
+					<li><a href="#">ạ</a></li>
+					<li><a href="#">ă</a></li>
+					<li><a href="#">ắ</a></li>
+					<li><a href="#">ằ</a></li>
+					<li><a href="#">ẳ</a></li>
+					<li><a href="#">ẵ</a></li>
+					<li><a href="#">ặ</a></li>
+					<li><a href="#">â</a></li>
+					<li><a href="#">ấ</a></li>
+					<li><a href="#">ầ</a></li>
+					<li><a href="#">ẩ</a></li>
+					<li><a href="#">ẫ</a></li>
+					<li><a href="#">ậ</a></li>
+					<li><a href="#">o</a></li>
+					<li><a href="#">ó</a></li>
+					<li><a href="#">ò</a></li>
+					<li><a href="#">ỏ</a></li>
+					<li><a href="#">õ</a></li>
+					<li><a href="#">ọ</a></li>
+					<li><a href="#">ô</a></li>
+					<li><a href="#">ố</a></li>
+					<li><a href="#">ồ</a></li>
+					<li><a href="#">ổ</a></li>
+					<li><a href="#">ỗ</a></li>
+					<li><a href="#">ộ</a></li>
+					<li><a href="#">ơ</a></li>
+					<li><a href="#">ớ</a></li>
+					<li><a href="#">ờ</a></li>
+					<li><a href="#">ở</a></li>
+					<li><a href="#">ỡ</a></li>
+					<li><a href="#">ợ</a></li>
+					<li><a href="#">e</a></li>
+					<li><a href="#">é</a></li>
+					<li><a href="#">è</a></li>
+					<li><a href="#">ẻ</a></li>
+					<li><a href="#">ẽ</a></li>
+					<li><a href="#">ẹ</a></li>
+					<li><a href="#">ê</a></li>
+					<li><a href="#">ế</a></li>
+					<li><a href="#">ề</a></li>
+					<li><a href="#">ể</a></li>
+					<li><a href="#">ễ</a></li>
+					<li><a href="#">ệ</a></li>
+					<li><a href="#">u</a></li>
+					<li><a href="#">ú</a></li>
+					<li><a href="#">ù</a></li>
+					<li><a href="#">ủ</a></li>
+					<li><a href="#">ũ</a></li>
+					<li><a href="#">ụ</a></li>
+					<li><a href="#">ư</a></li>
+					<li><a href="#">ứ</a></li>
+					<li><a href="#">ừ</a></li>
+					<li><a href="#">ử</a></li>
+					<li><a href="#">ữ</a></li>
+					<li><a href="#">ự</a></li>
+					<li><a href="#">i</a></li>
+					<li><a href="#">í</a></li>
+					<li><a href="#">ì</a></li>
+					<li><a href="#">ỉ</a></li>
+					<li><a href="#">ĩ</a></li>
+					<li><a href="#">ị</a></li>
+					<li><a href="#">y</a></li>
+					<li><a href="#">ý</a></li>
+					<li><a href="#">ỳ</a></li>
+					<li><a href="#">ỷ</a></li>
+					<li><a href="#">ỹ</a></li>
+					<li><a href="#">ỵ</a></li>
+				</ul>
+			</div>
+			<!-- //베트남어 -->
+
+			<!-- 캄보디아어 -->
+			<div class="languageContents" style="display: none;">
+				<ul>
+					<li><a href="#">ក</a></li>
+					<li><a href="#">ខ</a></li>
+					<li><a href="#">គ</a></li>
+					<li><a href="#">ឃ</a></li>
+					<li><a href="#">ង</a></li>
+					<li><a href="#">ច</a></li>
+					<li><a href="#">ឆ</a></li>
+					<li><a href="#">ជ</a></li>
+					<li><a href="#">ឈ</a></li>
+					<li><a href="#">ញ</a></li>
+					<li><a href="#">ដ</a></li>
+					<li><a href="#">ឋ</a></li>
+					<li><a href="#">ឌ</a></li>
+					<li><a href="#">ឍ</a></li>
+					<li><a href="#">ណ</a></li>
+					<li><a href="#">ត</a></li>
+					<li><a href="#">ថ</a></li>
+					<li><a href="#">ទ</a></li>
+					<li><a href="#">ធ</a></li>
+					<li><a href="#">ន</a></li>
+					<li><a href="#">ប</a></li>
+					<li><a href="#">ផ</a></li>
+					<li><a href="#">ព</a></li>
+					<li><a href="#">ភ</a></li>
+					<li><a href="#">ម</a></li>
+					<li><a href="#">យ</a></li>
+					<li><a href="#">រ</a></li>
+					<li><a href="#">ល</a></li>
+					<li><a href="#">វ</a></li>
+					<li><a href="#">ឝ</a></li>
+					<li><a href="#">ឞ</a></li>
+					<li><a href="#">ស</a></li>
+					<li><a href="#">ហ</a></li>
+					<li><a href="#">ឡ</a></li>
+					<li><a href="#">អ</a></li>
+					<li><a href="#">ឣ</a></li>
+					<li><a href="#">ឤ</a></li>
+					<li><a href="#">ឥ</a></li>
+					<li><a href="#">ឦ</a></li>
+					<li><a href="#">ឧ</a></li>
+					<li><a href="#">ឨ</a></li>
+					<li><a href="#">ឩ</a></li>
+					<li><a href="#">ឪ</a></li>
+					<li><a href="#">ឫ</a></li>
+					<li><a href="#">ឬ</a></li>
+					<li><a href="#">ឭ</a></li>
+					<li><a href="#">ឮ</a></li>
+					<li><a href="#">ឯ</a></li>
+					<li><a href="#">ឰ</a></li>
+					<li><a href="#">ឱ</a></li>
+					<li><a href="#">ឲ</a></li>
+					<li><a href="#">ឳ</a></li>
+					<li><a href="#">឴</a></li>
+					<li><a href="#">឵</a></li>
+					<li><a href="#">ា</a></li>
+					<li><a href="#">ិ</a></li>
+					<li><a href="#">ី</a></li>
+					<li><a href="#">ឹ</a></li>
+					<li><a href="#">ឺ</a></li>
+					<li><a href="#">ុ</a></li>
+					<li><a href="#">ូ</a></li>
+					<li><a href="#">ួ</a></li>
+					<li><a href="#">ើ</a></li>
+					<li><a href="#">ឿ</a></li>
+					<li><a href="#">ៀ</a></li>
+					<li><a href="#">េ</a></li>
+					<li><a href="#">ែ</a></li>
+					<li><a href="#">ៃ</a></li>
+					<li><a href="#">ោ</a></li>
+					<li><a href="#">ៅ</a></li>
+					<li><a href="#">ំ</a></li>
+					<li><a href="#">ះ</a></li>
+					<li><a href="#">ៈ</a></li>
+					<li><a href="#">៉</a></li>
+					<li><a href="#">៊</a></li>
+					<li><a href="#">់</a></li>
+					<li><a href="#">៌</a></li>
+					<li><a href="#">៍</a></li>
+					<li><a href="#">៎</a></li>
+					<li><a href="#">៏</a></li>
+					<li><a href="#">័</a></li>
+					<li><a href="#">៑</a></li>
+					<li><a href="#">្</a></li>
+					<li><a href="#">៓</a></li>
+					<li><a href="#">។</a></li>
+					<li><a href="#">៕</a></li>
+					<li><a href="#">៖</a></li>
+					<li><a href="#">ៗ</a></li>
+					<li><a href="#">៘</a></li>
+					<li><a href="#">៙</a></li>
+					<li><a href="#">៚</a></li>
+					<li><a href="#">៛</a></li>
+					<li><a href="#">ៜ</a></li>
+					<li><a href="#">៝</a></li>
+					<li><a href="#">០</a></li>
+					<li><a href="#">១</a></li>
+					<li><a href="#">២</a></li>
+					<li><a href="#">៣</a></li>
+					<li><a href="#">៤</a></li>
+					<li><a href="#">៥</a></li>
+					<li><a href="#">៦</a></li>
+					<li><a href="#">៧</a></li>
+					<li><a href="#">៨</a></li>
+					<li><a href="#">៩</a></li>
+					<li><a href="#">៰</a></li>
+					<li><a href="#">៱</a></li>
+					<li><a href="#">៲</a></li>
+					<li><a href="#">៳</a></li>
+					<li><a href="#">៴</a></li>
+					<li><a href="#">៵</a></li>
+					<li><a href="#">៶</a></li>
+					<li><a href="#">៷</a></li>
+					<li><a href="#">៸</a></li>
+					<li><a href="#">៹</a></li>
+				</ul>
+			</div>
+			<!-- //캄보디아어 -->
+
+			<!-- 태국어 -->
+			<div class="languageContents" style="display: none;">
+				<ul>
+					<li><a href="#">ๅ</a></li>
+					<li><a href="#">/</a></li>
+					<li><a href="#">_</a></li>
+					<li><a href="#">ภ</a></li>
+					<li><a href="#">ถ</a></li>
+					<li><a href="#">ุ</a></li>
+					<li><a href="#">ึ</a></li>
+					<li><a href="#">ค</a></li>
+					<li><a href="#">ต</a></li>
+					<li><a href="#">จ</a></li>
+					<li><a href="#">ข</a></li>
+					<li><a href="#">ช</a></li>
+					<li><a href="#">ๆ</a></li>
+					<li><a href="#">ไ</a></li>
+					<li><a href="#">ำ</a></li>
+					<li><a href="#">พ</a></li>
+					<li><a href="#">ะ</a></li>
+					<li><a href="#">ั</a></li>
+					<li><a href="#">ี</a></li>
+					<li><a href="#">ร</a></li>
+					<li><a href="#">น</a></li>
+					<li><a href="#">ย</a></li>
+					<li><a href="#">บ</a></li>
+					<li><a href="#">ล</a></li>
+					<li><a href="#">ฟ</a></li>
+					<li><a href="#">ห</a></li>
+					<li><a href="#">ก</a></li>
+					<li><a href="#">ด</a></li>
+					<li><a href="#">เ</a></li>
+					<li><a href="#">้</a></li>
+					<li><a href="#">่</a></li>
+					<li><a href="#">ส</a></li>
+					<li><a href="#">า</a></li>
+					<li><a href="#">ว</a></li>
+					<li><a href="#">ง</a></li>
+					<li><a href="#">ฃ</a></li>
+					<li><a href="#">ผ</a></li>
+					<li><a href="#">ป</a></li>
+					<li><a href="#">แ</a></li>
+					<li><a href="#">อ</a></li>
+					<li><a href="#">ิ</a></li>
+					<li><a href="#">ื</a></li>
+					<li><a href="#">ท</a></li>
+					<li><a href="#">ม</a></li>
+					<li><a href="#">ใ</a></li>
+					<li><a href="#">ฝ</a></li>
+					<li><a href="#">+</a></li>
+					<li><a href="#">๑</a></li>
+					<li><a href="#">๒</a></li>
+					<li><a href="#">๓</a></li>
+					<li><a href="#">๔</a></li>
+					<li><a href="#">ู</a></li>
+					<li><a href="#">฿</a></li>
+					<li><a href="#">๕</a></li>
+					<li><a href="#">๖</a></li>
+					<li><a href="#">๗</a></li>
+					<li><a href="#">๘</a></li>
+					<li><a href="#">๙</a></li>
+					<li><a href="#">๐</a></li>
+					<li><a href="#">"</a></li>
+					<li><a href="#">ฎ</a></li>
+					<li><a href="#">ฑ</a></li>
+					<li><a href="#">ธ</a></li>
+					<li><a href="#">ํ</a></li>
+					<li><a href="#">๊</a></li>
+					<li><a href="#">ณ</a></li>
+					<li><a href="#">ฯ</a></li>
+					<li><a href="#">ญ</a></li>
+					<li><a href="#">ฐ</a></li>
+					<li><a href="#">,</a></li>
+					<li><a href="#">ฤ</a></li>
+					<li><a href="#">ฆ</a></li>
+					<li><a href="#">ฏ</a></li>
+					<li><a href="#">โ</a></li>
+					<li><a href="#">ฌ</a></li>
+					<li><a href="#">็</a></li>
+					<li><a href="#">๋</a></li>
+					<li><a href="#">ษ</a></li>
+					<li><a href="#">ศ</a></li>
+					<li><a href="#">ซ</a></li>
+					<li><a href="#">.</a></li>
+					<li><a href="#">ฅ</a></li>
+					<li><a href="#">(</a></li>
+					<li><a href="#">)</a></li>
+					<li><a href="#">ฉ</a></li>
+					<li><a href="#">ฮ</a></li>
+					<li><a href="#">ฺ</a></li>
+					<li><a href="#">์</a></li>
+					<li><a href="#">?</a></li>
+					<li><a href="#">ฒ</a></li>
+					<li><a href="#">ฬ</a></li>
+					<li><a href="#">ฦ</a></li>
+				</ul>
+			</div>
+			<!-- //태국어 -->
+		</div>
+	</fieldset>
+</div>
+										<!-- // 다국어 키보드  -->
+									</div>
+								</div>
+
+								<div class="divSelect" id="sh_util03">
+									<!-- 도서관 정보 -->
+									<div>
+										<div class="box_check">
+											<input type="checkbox" name="searchManageCode" id="searchManageCode" value="ALL" class="check" checked="checked"> <label for="searchManageCode">전체 도서관</label>
+										</div>
+										<div class="box_check">
+											<ol>
+												
+													
+												
+													
+														<li>
+															<input type="checkbox" name="searchManageCodeArr" id="searchManageCodeArr2" value="MA" class="check"
+															
+															
+															>
+															<label for="searchManageCodeArr2">석수도서관</label>
+														</li>
+													
+												
+													
+														<li>
+															<input type="checkbox" name="searchManageCodeArr" id="searchManageCodeArr3" value="MI" class="check"
+															
+															
+															>
+															<label for="searchManageCodeArr3">만안도서관</label>
+														</li>
+													
+												
+													
+														<li>
+															<input type="checkbox" name="searchManageCodeArr" id="searchManageCodeArr4" value="MH" class="check"
+															
+															
+															>
+															<label for="searchManageCodeArr4">삼덕도서관</label>
+														</li>
+													
+												
+													
+														<li>
+															<input type="checkbox" name="searchManageCodeArr" id="searchManageCodeArr5" value="ME" class="check"
+															
+															
+															>
+															<label for="searchManageCodeArr5">박달도서관</label>
+														</li>
+													
+												
+													
+														<li>
+															<input type="checkbox" name="searchManageCodeArr" id="searchManageCodeArr6" value="MB" class="check"
+															
+															
+															>
+															<label for="searchManageCodeArr6">평촌도서관</label>
+														</li>
+													
+												
+													
+														<li>
+															<input type="checkbox" name="searchManageCodeArr" id="searchManageCodeArr7" value="MG" class="check"
+															
+															
+															>
+															<label for="searchManageCodeArr7">관양도서관</label>
+														</li>
+													
+												
+													
+														<li>
+															<input type="checkbox" name="searchManageCodeArr" id="searchManageCodeArr8" value="MC" class="check"
+															
+															
+															>
+															<label for="searchManageCodeArr8">비산도서관</label>
+														</li>
+													
+												
+													
+														<li>
+															<input type="checkbox" name="searchManageCodeArr" id="searchManageCodeArr9" value="MD" class="check"
+															
+															
+															>
+															<label for="searchManageCodeArr9">호계도서관</label>
+														</li>
+													
+												
+													
+														<li>
+															<input type="checkbox" name="searchManageCodeArr" id="searchManageCodeArr10" value="MJ" class="check"
+															
+															
+															>
+															<label for="searchManageCodeArr10">안양어린이도서관</label>
+														</li>
+													
+												
+													
+														<li>
+															<input type="checkbox" name="searchManageCodeArr" id="searchManageCodeArr11" value="MF" class="check"
+															
+															
+															>
+															<label for="searchManageCodeArr11">벌말도서관</label>
+														</li>
+													
+												
+													
+														<li>
+															<input type="checkbox" name="searchManageCodeArr" id="searchManageCodeArr12" value="MO" class="check"
+															
+															
+															>
+															<label for="searchManageCodeArr12">큰샘어린이도서관</label>
+														</li>
+													
+												
+													
+														<li>
+															<input type="checkbox" name="searchManageCodeArr" id="searchManageCodeArr13" value="MK" class="check"
+															
+															
+															>
+															<label for="searchManageCodeArr13">안양역스마트도서관</label>
+														</li>
+													
+												
+													
+														<li>
+															<input type="checkbox" name="searchManageCodeArr" id="searchManageCodeArr14" value="ML" class="check"
+															
+															
+															>
+															<label for="searchManageCodeArr14">동안구청스마트도서관</label>
+														</li>
+													
+												
+													
+														<li>
+															<input type="checkbox" name="searchManageCodeArr" id="searchManageCodeArr15" value="MM" class="check"
+															
+															
+															>
+															<label for="searchManageCodeArr15">범계스마트도서관</label>
+														</li>
+													
+												
+													
+														<li>
+															<input type="checkbox" name="searchManageCodeArr" id="searchManageCodeArr16" value="MN" class="check"
+															
+															
+															>
+															<label for="searchManageCodeArr16">인덕원역스마트도서관</label>
+														</li>
+													
+												
+											</ol>
+										</div>
+										<a href="#btn" id="librarySearchBtn" class="btn">적용</a>
+									</div>
+									<!-- 도서관 정보 -->
+								</div>
+							</div>
+						</div>
+
+						<div class="searchResultWrap">
+							<div class="result_box">
+								<ul class="cateTab col-5 clearfix">
+									
+									<li>
+										<a href="#link" id="ebookBtn">전자책<br class="mobileShow3">(8)</a>
+									</li>
+									<li class="choiced">
+										<a href="#link" onclick="javascript:fnSearchPubFormCode('MO'); return false;">단행본<br class="mobileShow3">(571)</a>
+									</li>
+									<li >
+										<a href="#link" onclick="javascript:fnSearchPubFormCode('MM'); return false;">멀티미디어<br class="mobileShow3">(0)</a>
+									</li>
+									<li >
+										<a href="#link" onclick="javascript:fnSearchPubFormCode('SE'); return false;">연속간행물<br class="mobileShow3">(0)</a>
+									</li>
+									<li >
+										<a href="#link" id="smallLibBtn">작은도서관</a>
+									</li>
+								</ul>
+
+								<div class="listSetting">
+									
+
+
+
+
+
+		
+				
+			
+	
+<div class="result_screen">
+	
+		'<strong>키워드:파이썬</strong>'에 대한
+	
+	검색결과 총 <span id="totalCnt">
+	571
+	</span> 건
+</div>
+
+									<div class="listStyleType">
+										<p class="HanChange">
+											<span class="langKor on" data-name="kor" title="선택됨"><a href="#kor"><b class="blind">한글 변환</b>가</a></span>
+											<span class="langHan" data-name="han"><a href="#han"><b class="blind">한자 변환</b>漢</a></span>
+										</p>
+										<select name="searchArticle" title="정렬조건 선택">
+											<option value="SCORE" selected="selected">적합도</option>
+											<option value="TITLE" >서명</option>
+											<option value="AUTHOR" >저자</option>
+											<option value="PUBLISHER" >발행처</option>
+											<option value="PUBYEAR" >발행일</option>
+											<option value="LOANCOUNT" >대출수</option>
+											<option value="WDATE" >등록일</option>
+										</select>
+										<select name="searchOrder" class="orderSel" style="display:none" title="정렬순서 선택">
+											<option value="ASC" selected="selected">오름차순</option>
+											<option value="DESC" >내림차순</option>
+										</select>
+										<select name="searchDisplay" class="numSel" title="한페이지에 보여줄 건수 선택">
+											
+												<option value="20" selected="selected">20건</option>
+											
+												<option value="40" >40건</option>
+											
+												<option value="60" >60건</option>
+											
+												<option value="80" >80건</option>
+											
+										</select>
+										<a href="#btn" id="sortListBtn" class="btn">확인</a>
+										<div class="btnSetmob">
+											<span class="mobPasit">검색결과 제한</span>
+											<span class="listTypeList mobListType">리스트형</span>
+										</div>
+										<div class="btnSetWeb">
+											<a href="#list" class="listTypeList on" id="viewTypeList" title="선택됨"><span class="blind">리스트형</span></a>
+											<a href="#img" class="listTypeCard " id="viewTypeCard"><span class="blind">이미지형</span></a>
+										</div>
+									</div>
+								</div>
+
+								<div class="pasitNavi">
+									<a href="javascript:;" class="" title="검색결과 제한 축소됨"><span>검색결과 제한</span></a>
+								</div>
+								<!-- 검색결과 제한  -->
+								
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="finder_area">
+	<div id="_filter" class="finder">
+		<div class="finder_col _filter_row">
+			<h3 class="finder_tit">자료유형</h3>
+			<ul class="finder_list">
+				
+					<li>
+						<input type="checkbox" id="aggsContentsType1" name="searchAggsContentsTypeArr" value="단행본"><label for="aggsContentsType1" class="text_over">단행본</label>
+						<label for="aggsContentsType1" class="facet_remove"></label>
+					</li>
+				
+			</ul>
+		</div>
+
+		<div class="finder_col _filter_row">
+			<h3 class="finder_tit">저자<a href="javascript:;" class="btn_extend _filter_more" title="더보기 축소됨"><span>더보기</span></a></h3>
+			<ul class="finder_list">
+				
+					<li>
+						<input type="checkbox" id="aggsAuthor1" name="searchAggsAuthorArr" value="천인국"><label for="aggsAuthor1" class="text_over">천인국</label>
+						<label for="aggsAuthor1" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsAuthor2" name="searchAggsAuthorArr" value="박해선"><label for="aggsAuthor2" class="text_over">박해선</label>
+						<label for="aggsAuthor2" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsAuthor3" name="searchAggsAuthorArr" value="윤인성"><label for="aggsAuthor3" class="text_over">윤인성</label>
+						<label for="aggsAuthor3" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsAuthor4" name="searchAggsAuthorArr" value="유세라"><label for="aggsAuthor4" class="text_over">유세라</label>
+						<label for="aggsAuthor4" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsAuthor5" name="searchAggsAuthorArr" value="조대표"><label for="aggsAuthor5" class="text_over">조대표</label>
+						<label for="aggsAuthor5" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsAuthor6" name="searchAggsAuthorArr" value="스웨이가트, 알"><label for="aggsAuthor6" class="text_over">스웨이가트, 알</label>
+						<label for="aggsAuthor6" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsAuthor7" name="searchAggsAuthorArr" value="조인석"><label for="aggsAuthor7" class="text_over">조인석</label>
+						<label for="aggsAuthor7" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsAuthor8" name="searchAggsAuthorArr" value="김은철"><label for="aggsAuthor8" class="text_over">김은철</label>
+						<label for="aggsAuthor8" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsAuthor9" name="searchAggsAuthorArr" value="류광"><label for="aggsAuthor9" class="text_over">류광</label>
+						<label for="aggsAuthor9" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsAuthor10" name="searchAggsAuthorArr" value="박응용"><label for="aggsAuthor10" class="text_over">박응용</label>
+						<label for="aggsAuthor10" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsAuthor11" name="searchAggsAuthorArr" value="박진수"><label for="aggsAuthor11" class="text_over">박진수</label>
+						<label for="aggsAuthor11" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsAuthor12" name="searchAggsAuthorArr" value="오현석"><label for="aggsAuthor12" class="text_over">오현석</label>
+						<label for="aggsAuthor12" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsAuthor13" name="searchAggsAuthorArr" value="이승찬"><label for="aggsAuthor13" class="text_over">이승찬</label>
+						<label for="aggsAuthor13" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsAuthor14" name="searchAggsAuthorArr" value="Sweigart, Al"><label for="aggsAuthor14" class="text_over">Sweigart, Al</label>
+						<label for="aggsAuthor14" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsAuthor15" name="searchAggsAuthorArr" value="개앞맵시"><label for="aggsAuthor15" class="text_over">개앞맵시</label>
+						<label for="aggsAuthor15" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsAuthor16" name="searchAggsAuthorArr" value="김석훈"><label for="aggsAuthor16" class="text_over">김석훈</label>
+						<label for="aggsAuthor16" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsAuthor17" name="searchAggsAuthorArr" value="로피, 크리스"><label for="aggsAuthor17" class="text_over">로피, 크리스</label>
+						<label for="aggsAuthor17" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsAuthor18" name="searchAggsAuthorArr" value="문용준"><label for="aggsAuthor18" class="text_over">문용준</label>
+						<label for="aggsAuthor18" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsAuthor19" name="searchAggsAuthorArr" value="박찬성"><label for="aggsAuthor19" class="text_over">박찬성</label>
+						<label for="aggsAuthor19" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsAuthor20" name="searchAggsAuthorArr" value="사이토 고키"><label for="aggsAuthor20" class="text_over">사이토 고키</label>
+						<label for="aggsAuthor20" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsAuthor21" name="searchAggsAuthorArr" value="서수환"><label for="aggsAuthor21" class="text_over">서수환</label>
+						<label for="aggsAuthor21" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsAuthor22" name="searchAggsAuthorArr" value="서승희"><label for="aggsAuthor22" class="text_over">서승희</label>
+						<label for="aggsAuthor22" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsAuthor23" name="searchAggsAuthorArr" value="심지현"><label for="aggsAuthor23" class="text_over">심지현</label>
+						<label for="aggsAuthor23" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsAuthor24" name="searchAggsAuthorArr" value="윤대희"><label for="aggsAuthor24" class="text_over">윤대희</label>
+						<label for="aggsAuthor24" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsAuthor25" name="searchAggsAuthorArr" value="이병욱"><label for="aggsAuthor25" class="text_over">이병욱</label>
+						<label for="aggsAuthor25" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsAuthor26" name="searchAggsAuthorArr" value="장철원"><label for="aggsAuthor26" class="text_over">장철원</label>
+						<label for="aggsAuthor26" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsAuthor27" name="searchAggsAuthorArr" value="한선용"><label for="aggsAuthor27" class="text_over">한선용</label>
+						<label for="aggsAuthor27" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsAuthor28" name="searchAggsAuthorArr" value="Danjou, Julien"><label for="aggsAuthor28" class="text_over">Danjou, Julien</label>
+						<label for="aggsAuthor28" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsAuthor29" name="searchAggsAuthorArr" value="Hilpisch, Yves"><label for="aggsAuthor29" class="text_over">Hilpisch, Yves</label>
+						<label for="aggsAuthor29" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsAuthor30" name="searchAggsAuthorArr" value="Lott, Steven F"><label for="aggsAuthor30" class="text_over">Lott, Steven F</label>
+						<label for="aggsAuthor30" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsAuthor31" name="searchAggsAuthorArr" value="Mitchell, Ryan"><label for="aggsAuthor31" class="text_over">Mitchell, Ryan</label>
+						<label for="aggsAuthor31" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsAuthor32" name="searchAggsAuthorArr" value="クジラ飛行机"><label for="aggsAuthor32" class="text_over">クジラ飛行机</label>
+						<label for="aggsAuthor32" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsAuthor33" name="searchAggsAuthorArr" value="我妻幸長"><label for="aggsAuthor33" class="text_over">我妻幸長</label>
+						<label for="aggsAuthor33" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsAuthor34" name="searchAggsAuthorArr" value="赤石雅典"><label for="aggsAuthor34" class="text_over">赤石雅典</label>
+						<label for="aggsAuthor34" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsAuthor35" name="searchAggsAuthorArr" value="金宏和實"><label for="aggsAuthor35" class="text_over">金宏和實</label>
+						<label for="aggsAuthor35" class="facet_remove"></label>
+					</li>
+				
+			</ul>
+		</div>
+
+		<div class="finder_col _filter_row">
+			<h3 class="finder_tit">발행처<a href="javascript:;" class="btn_extend _filter_more" title="더보기 축소됨"><span>더보기</span></a>
+			</h3>
+			<ul class="finder_list">
+				
+					<li>
+						<input type="checkbox" id="aggsPublisher1" name="searchAggsPublisherArr" value="한빛미디어"><label for="aggsPublisher1" class="text_over">한빛미디어</label>
+						<label for="aggsPublisher1" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsPublisher2" name="searchAggsPublisherArr" value="길벗"><label for="aggsPublisher2" class="text_over">길벗</label>
+						<label for="aggsPublisher2" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsPublisher3" name="searchAggsPublisherArr" value="위키북스"><label for="aggsPublisher3" class="text_over">위키북스</label>
+						<label for="aggsPublisher3" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsPublisher4" name="searchAggsPublisherArr" value="에이콘"><label for="aggsPublisher4" class="text_over">에이콘</label>
+						<label for="aggsPublisher4" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsPublisher5" name="searchAggsPublisherArr" value="비제이퍼블릭"><label for="aggsPublisher5" class="text_over">비제이퍼블릭</label>
+						<label for="aggsPublisher5" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsPublisher6" name="searchAggsPublisherArr" value="제이펍"><label for="aggsPublisher6" class="text_over">제이펍</label>
+						<label for="aggsPublisher6" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsPublisher7" name="searchAggsPublisherArr" value="인사이트"><label for="aggsPublisher7" class="text_over">인사이트</label>
+						<label for="aggsPublisher7" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsPublisher8" name="searchAggsPublisherArr" value="영진닷컴"><label for="aggsPublisher8" class="text_over">영진닷컴</label>
+						<label for="aggsPublisher8" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsPublisher9" name="searchAggsPublisherArr" value="이지스퍼블리싱"><label for="aggsPublisher9" class="text_over">이지스퍼블리싱</label>
+						<label for="aggsPublisher9" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsPublisher10" name="searchAggsPublisherArr" value="프리렉"><label for="aggsPublisher10" class="text_over">프리렉</label>
+						<label for="aggsPublisher10" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsPublisher11" name="searchAggsPublisherArr" value="BJPUBLIC"><label for="aggsPublisher11" class="text_over">BJPUBLIC</label>
+						<label for="aggsPublisher11" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsPublisher12" name="searchAggsPublisherArr" value="생능"><label for="aggsPublisher12" class="text_over">생능</label>
+						<label for="aggsPublisher12" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsPublisher13" name="searchAggsPublisherArr" value="에이콘출판"><label for="aggsPublisher13" class="text_over">에이콘출판</label>
+						<label for="aggsPublisher13" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsPublisher14" name="searchAggsPublisherArr" value="정보문화사"><label for="aggsPublisher14" class="text_over">정보문화사</label>
+						<label for="aggsPublisher14" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsPublisher15" name="searchAggsPublisherArr" value="한빛아카데미"><label for="aggsPublisher15" class="text_over">한빛아카데미</label>
+						<label for="aggsPublisher15" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsPublisher16" name="searchAggsPublisherArr" value="JPUB"><label for="aggsPublisher16" class="text_over">JPUB</label>
+						<label for="aggsPublisher16" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsPublisher17" name="searchAggsPublisherArr" value="INFINITYBOOKS"><label for="aggsPublisher17" class="text_over">INFINITYBOOKS</label>
+						<label for="aggsPublisher17" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsPublisher18" name="searchAggsPublisherArr" value="YOUNGJINCOM"><label for="aggsPublisher18" class="text_over">YOUNGJINCOM</label>
+						<label for="aggsPublisher18" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsPublisher19" name="searchAggsPublisherArr" value="디지털북스"><label for="aggsPublisher19" class="text_over">디지털북스</label>
+						<label for="aggsPublisher19" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsPublisher20" name="searchAggsPublisherArr" value="로드북"><label for="aggsPublisher20" class="text_over">로드북</label>
+						<label for="aggsPublisher20" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsPublisher21" name="searchAggsPublisherArr" value="인피니티북스"><label for="aggsPublisher21" class="text_over">인피니티북스</label>
+						<label for="aggsPublisher21" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsPublisher22" name="searchAggsPublisherArr" value="교학사"><label for="aggsPublisher22" class="text_over">교학사</label>
+						<label for="aggsPublisher22" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsPublisher23" name="searchAggsPublisherArr" value="루비페이퍼"><label for="aggsPublisher23" class="text_over">루비페이퍼</label>
+						<label for="aggsPublisher23" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsPublisher24" name="searchAggsPublisherArr" value="성안당"><label for="aggsPublisher24" class="text_over">성안당</label>
+						<label for="aggsPublisher24" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsPublisher25" name="searchAggsPublisherArr" value="앤써북"><label for="aggsPublisher25" class="text_over">앤써북</label>
+						<label for="aggsPublisher25" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsPublisher26" name="searchAggsPublisherArr" value="연두에디션"><label for="aggsPublisher26" class="text_over">연두에디션</label>
+						<label for="aggsPublisher26" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsPublisher27" name="searchAggsPublisherArr" value="책만"><label for="aggsPublisher27" class="text_over">책만</label>
+						<label for="aggsPublisher27" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsPublisher28" name="searchAggsPublisherArr" value="홍릉"><label for="aggsPublisher28" class="text_over">홍릉</label>
+						<label for="aggsPublisher28" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsPublisher29" name="searchAggsPublisherArr" value="AKIT"><label for="aggsPublisher29" class="text_over">AKIT</label>
+						<label for="aggsPublisher29" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsPublisher30" name="searchAggsPublisherArr" value="JPUB제이펍"><label for="aggsPublisher30" class="text_over">JPUB제이펍</label>
+						<label for="aggsPublisher30" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsPublisher31" name="searchAggsPublisherArr" value="골든래빗"><label for="aggsPublisher31" class="text_over">골든래빗</label>
+						<label for="aggsPublisher31" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsPublisher32" name="searchAggsPublisherArr" value="생능출판"><label for="aggsPublisher32" class="text_over">생능출판</label>
+						<label for="aggsPublisher32" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsPublisher33" name="searchAggsPublisherArr" value="잇플"><label for="aggsPublisher33" class="text_over">잇플</label>
+						<label for="aggsPublisher33" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsPublisher34" name="searchAggsPublisherArr" value="자유아카데미"><label for="aggsPublisher34" class="text_over">자유아카데미</label>
+						<label for="aggsPublisher34" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsPublisher35" name="searchAggsPublisherArr" value="터닝포인트"><label for="aggsPublisher35" class="text_over">터닝포인트</label>
+						<label for="aggsPublisher35" class="facet_remove"></label>
+					</li>
+				
+			</ul>
+		</div>
+
+		<div class="finder_col _filter_row year">
+			<h3 class="finder_tit">발행년도</h3>
+			<ul class="finder_list">
+				<li class="year_wrap">
+					<div class="year_search">
+						<input type="text" name="searchAggsFromPubYear" class="y_input" title="시작연도 입력" value="2005">
+						<span>~</span>
+						<input type="text" name="searchAggsToPubYear" class="y_input2" title="종료연도 입력" value="2026">
+						<button type="button" id="aggsPubYearSearchBtn" class="button"><span class="blind">검색하기</span></button>
+					</div>
+				</li>
+			</ul>
+		</div>
+
+		<div class="finder_col _filter_row">
+			<h3 class="finder_tit">언어</h3>
+			<ul class="finder_list">
+				
+					<li>
+						<input type="checkbox" id="aggsTextLang1" name="searchAggsTextLangArr" value="한국어"><label for="aggsTextLang1" class="text_over">한국어</label>
+						<label for="aggsTextLang1" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsTextLang2" name="searchAggsTextLangArr" value="영어"><label for="aggsTextLang2" class="text_over">영어</label>
+						<label for="aggsTextLang2" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsTextLang3" name="searchAggsTextLangArr" value="기타"><label for="aggsTextLang3" class="text_over">기타</label>
+						<label for="aggsTextLang3" class="facet_remove"></label>
+					</li>
+				
+			</ul>
+		</div>
+
+		<div class="finder_col _filter_row">
+			<h3 class="finder_tit">소장처<a href="javascript:;" class="btn_extend _filter_more" title="더보기 축소됨"><span>더보기</span></a></h3>
+			<ul class="finder_list">
+				
+					<li>
+						<input type="checkbox" id="aggsLibName1" name="searchAggsLibNameArr" value="안양시관양도서관"><label for="aggsLibName1" class="text_over">안양시관양도서관</label>
+						<label for="aggsLibName1" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsLibName2" name="searchAggsLibNameArr" value="안양시립비산도서관"><label for="aggsLibName2" class="text_over">안양시립비산도서관</label>
+						<label for="aggsLibName2" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsLibName3" name="searchAggsLibNameArr" value="안양시만안도서관"><label for="aggsLibName3" class="text_over">안양시만안도서관</label>
+						<label for="aggsLibName3" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsLibName4" name="searchAggsLibNameArr" value="안양시박달도서관"><label for="aggsLibName4" class="text_over">안양시박달도서관</label>
+						<label for="aggsLibName4" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsLibName5" name="searchAggsLibNameArr" value="안양시벌말도서관"><label for="aggsLibName5" class="text_over">안양시벌말도서관</label>
+						<label for="aggsLibName5" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsLibName6" name="searchAggsLibNameArr" value="안양시삼덕도서관"><label for="aggsLibName6" class="text_over">안양시삼덕도서관</label>
+						<label for="aggsLibName6" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsLibName7" name="searchAggsLibNameArr" value="안양시석수도서관"><label for="aggsLibName7" class="text_over">안양시석수도서관</label>
+						<label for="aggsLibName7" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsLibName8" name="searchAggsLibNameArr" value="안양시평촌도서관"><label for="aggsLibName8" class="text_over">안양시평촌도서관</label>
+						<label for="aggsLibName8" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsLibName9" name="searchAggsLibNameArr" value="안양시호계도서관"><label for="aggsLibName9" class="text_over">안양시호계도서관</label>
+						<label for="aggsLibName9" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsLibName10" name="searchAggsLibNameArr" value="안양어린이도서관"><label for="aggsLibName10" class="text_over">안양어린이도서관</label>
+						<label for="aggsLibName10" class="facet_remove"></label>
+					</li>
+				
+			</ul>
+		</div>
+
+		<div class="finder_col _filter_row">
+			<h3 class="finder_tit">주제분류<a href="javascript:;" class="btn_extend _filter_more" title="더보기 축소됨"><span>더보기</span></a></h3>
+			<ul class="finder_list">
+				
+					<li>
+						<input type="checkbox" id="aggsClassNoDesc1" name="searchAggsClassNoDescArr" value="기술과학"><label for="aggsClassNoDesc1" class="text_over">기술과학</label>
+						<label for="aggsClassNoDesc1" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsClassNoDesc2" name="searchAggsClassNoDescArr" value="사회과학"><label for="aggsClassNoDesc2" class="text_over">사회과학</label>
+						<label for="aggsClassNoDesc2" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsClassNoDesc3" name="searchAggsClassNoDescArr" value="자연과학"><label for="aggsClassNoDesc3" class="text_over">자연과학</label>
+						<label for="aggsClassNoDesc3" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsClassNoDesc4" name="searchAggsClassNoDescArr" value="총류"><label for="aggsClassNoDesc4" class="text_over">총류</label>
+						<label for="aggsClassNoDesc4" class="facet_remove"></label>
+					</li>
+				
+			</ul>
+		</div>
+
+		<div class="finder_col _filter_row">
+			<h3 class="finder_tit">주제어<a href="javascript:;" class="btn_extend _filter_more" title="더보기 축소됨"><span>더보기</span></a></h3>
+			<ul class="finder_list">
+				
+					<li>
+						<input type="checkbox" id="aggsKeyword1" name="searchAggsKeywordArr" value="파이썬"><label for="aggsKeyword1" class="text_over">파이썬</label>
+						<label for="aggsKeyword1" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsKeyword2" name="searchAggsKeywordArr" value="프로그래밍"><label for="aggsKeyword2" class="text_over">프로그래밍</label>
+						<label for="aggsKeyword2" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsKeyword3" name="searchAggsKeywordArr" value="프로그래밍언어"><label for="aggsKeyword3" class="text_over">프로그래밍언어</label>
+						<label for="aggsKeyword3" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsKeyword4" name="searchAggsKeywordArr" value="컴퓨터"><label for="aggsKeyword4" class="text_over">컴퓨터</label>
+						<label for="aggsKeyword4" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsKeyword5" name="searchAggsKeywordArr" value="PYTHON"><label for="aggsKeyword5" class="text_over">PYTHON</label>
+						<label for="aggsKeyword5" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsKeyword6" name="searchAggsKeywordArr" value="코딩"><label for="aggsKeyword6" class="text_over">코딩</label>
+						<label for="aggsKeyword6" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsKeyword7" name="searchAggsKeywordArr" value="인공지능"><label for="aggsKeyword7" class="text_over">인공지능</label>
+						<label for="aggsKeyword7" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsKeyword8" name="searchAggsKeywordArr" value="딥러닝"><label for="aggsKeyword8" class="text_over">딥러닝</label>
+						<label for="aggsKeyword8" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsKeyword9" name="searchAggsKeywordArr" value="언어"><label for="aggsKeyword9" class="text_over">언어</label>
+						<label for="aggsKeyword9" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsKeyword10" name="searchAggsKeywordArr" value="머신러닝"><label for="aggsKeyword10" class="text_over">머신러닝</label>
+						<label for="aggsKeyword10" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsKeyword11" name="searchAggsKeywordArr" value="데이터분석"><label for="aggsKeyword11" class="text_over">데이터분석</label>
+						<label for="aggsKeyword11" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsKeyword12" name="searchAggsKeywordArr" value="데이터"><label for="aggsKeyword12" class="text_over">데이터</label>
+						<label for="aggsKeyword12" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsKeyword13" name="searchAggsKeywordArr" value="알고리즘"><label for="aggsKeyword13" class="text_over">알고리즘</label>
+						<label for="aggsKeyword13" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsKeyword14" name="searchAggsKeywordArr" value="컴퓨터공학"><label for="aggsKeyword14" class="text_over">컴퓨터공학</label>
+						<label for="aggsKeyword14" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsKeyword15" name="searchAggsKeywordArr" value="IT"><label for="aggsKeyword15" class="text_over">IT</label>
+						<label for="aggsKeyword15" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsKeyword16" name="searchAggsKeywordArr" value="AI"><label for="aggsKeyword16" class="text_over">AI</label>
+						<label for="aggsKeyword16" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsKeyword17" name="searchAggsKeywordArr" value="자료구조"><label for="aggsKeyword17" class="text_over">자료구조</label>
+						<label for="aggsKeyword17" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsKeyword18" name="searchAggsKeywordArr" value="기계학습"><label for="aggsKeyword18" class="text_over">기계학습</label>
+						<label for="aggsKeyword18" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsKeyword19" name="searchAggsKeywordArr" value="컴퓨터프로그래밍"><label for="aggsKeyword19" class="text_over">컴퓨터프로그래밍</label>
+						<label for="aggsKeyword19" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsKeyword20" name="searchAggsKeywordArr" value="챗GPT"><label for="aggsKeyword20" class="text_over">챗GPT</label>
+						<label for="aggsKeyword20" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsKeyword21" name="searchAggsKeywordArr" value="웹프로그래밍"><label for="aggsKeyword21" class="text_over">웹프로그래밍</label>
+						<label for="aggsKeyword21" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsKeyword22" name="searchAggsKeywordArr" value="분석"><label for="aggsKeyword22" class="text_over">분석</label>
+						<label for="aggsKeyword22" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsKeyword23" name="searchAggsKeywordArr" value="엑셀"><label for="aggsKeyword23" class="text_over">엑셀</label>
+						<label for="aggsKeyword23" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsKeyword24" name="searchAggsKeywordArr" value="데이터과학"><label for="aggsKeyword24" class="text_over">데이터과학</label>
+						<label for="aggsKeyword24" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsKeyword25" name="searchAggsKeywordArr" value="업무자동화"><label for="aggsKeyword25" class="text_over">업무자동화</label>
+						<label for="aggsKeyword25" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsKeyword26" name="searchAggsKeywordArr" value="웹"><label for="aggsKeyword26" class="text_over">웹</label>
+						<label for="aggsKeyword26" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsKeyword27" name="searchAggsKeywordArr" value="자동화"><label for="aggsKeyword27" class="text_over">자동화</label>
+						<label for="aggsKeyword27" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsKeyword28" name="searchAggsKeywordArr" value="코드"><label for="aggsKeyword28" class="text_over">코드</label>
+						<label for="aggsKeyword28" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsKeyword29" name="searchAggsKeywordArr" value="시각화"><label for="aggsKeyword29" class="text_over">시각화</label>
+						<label for="aggsKeyword29" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsKeyword30" name="searchAggsKeywordArr" value="애플리케이션"><label for="aggsKeyword30" class="text_over">애플리케이션</label>
+						<label for="aggsKeyword30" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsKeyword31" name="searchAggsKeywordArr" value="개발"><label for="aggsKeyword31" class="text_over">개발</label>
+						<label for="aggsKeyword31" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsKeyword32" name="searchAggsKeywordArr" value="웹개발"><label for="aggsKeyword32" class="text_over">웹개발</label>
+						<label for="aggsKeyword32" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsKeyword33" name="searchAggsKeywordArr" value="기초"><label for="aggsKeyword33" class="text_over">기초</label>
+						<label for="aggsKeyword33" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsKeyword34" name="searchAggsKeywordArr" value="데이터베이스"><label for="aggsKeyword34" class="text_over">데이터베이스</label>
+						<label for="aggsKeyword34" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsKeyword35" name="searchAggsKeywordArr" value="데이터수집"><label for="aggsKeyword35" class="text_over">데이터수집</label>
+						<label for="aggsKeyword35" class="facet_remove"></label>
+					</li>
+				
+			</ul>
+		</div>
+
+		<div class="finder_col _filter_row">
+			<h3 class="finder_tit">총서명<a href="javascript:;" class="btn_extend _filter_more" title="더보기 축소됨"><span>더보기</span></a></h3>
+			<ul class="finder_list">
+				
+					<li>
+						<input type="checkbox" id="aggsTotalTitle1" name="searchAggsTotalTitleArr" value="데이터 사이언스 시리즈"><label for="aggsTotalTitle1" class="text_over">데이터 사이언스 시리즈</label>
+						<label for="aggsTotalTitle1" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsTotalTitle2" name="searchAggsTotalTitleArr" value="데이터 사이언스 시리즈"><label for="aggsTotalTitle2" class="text_over">데이터 사이언스 시리즈</label>
+						<label for="aggsTotalTitle2" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsTotalTitle3" name="searchAggsTotalTitleArr" value="세상의 속도를 따라잡고 싶다면Do it"><label for="aggsTotalTitle3" class="text_over">세상의 속도를 따라잡고 싶다면Do it</label>
+						<label for="aggsTotalTitle3" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsTotalTitle4" name="searchAggsTotalTitleArr" value="위키북스 데이터 사이언스 시리즈"><label for="aggsTotalTitle4" class="text_over">위키북스 데이터 사이언스 시리즈</label>
+						<label for="aggsTotalTitle4" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsTotalTitle5" name="searchAggsTotalTitleArr" value="에이콘 데이터 과학 시리즈"><label for="aggsTotalTitle5" class="text_over">에이콘 데이터 과학 시리즈</label>
+						<label for="aggsTotalTitle5" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsTotalTitle6" name="searchAggsTotalTitleArr" value="제이펍의 인공지능 시리즈"><label for="aggsTotalTitle6" class="text_over">제이펍의 인공지능 시리즈</label>
+						<label for="aggsTotalTitle6" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsTotalTitle7" name="searchAggsTotalTitleArr" value="프로그래밍 인사이트"><label for="aggsTotalTitle7" class="text_over">프로그래밍 인사이트</label>
+						<label for="aggsTotalTitle7" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsTotalTitle8" name="searchAggsTotalTitleArr" value="영진닷컴"><label for="aggsTotalTitle8" class="text_over">영진닷컴</label>
+						<label for="aggsTotalTitle8" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsTotalTitle9" name="searchAggsTotalTitleArr" value="혼자 공부하는 시리즈"><label for="aggsTotalTitle9" class="text_over">혼자 공부하는 시리즈</label>
+						<label for="aggsTotalTitle9" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsTotalTitle10" name="searchAggsTotalTitleArr" value="10대를 위한 프로그래밍 노트 수프"><label for="aggsTotalTitle10" class="text_over">10대를 위한 프로그래밍 노트 수프</label>
+						<label for="aggsTotalTitle10" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsTotalTitle11" name="searchAggsTotalTitleArr" value="DS 데이터 사이언스 시리즈"><label for="aggsTotalTitle11" class="text_over">DS 데이터 사이언스 시리즈</label>
+						<label for="aggsTotalTitle11" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsTotalTitle12" name="searchAggsTotalTitleArr" value="Do it 시리즈"><label for="aggsTotalTitle12" class="text_over">Do it 시리즈</label>
+						<label for="aggsTotalTitle12" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsTotalTitle13" name="searchAggsTotalTitleArr" value="IT cookbook"><label for="aggsTotalTitle13" class="text_over">IT cookbook</label>
+						<label for="aggsTotalTitle13" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsTotalTitle14" name="searchAggsTotalTitleArr" value="acornPACKT technical book 시리즈"><label for="aggsTotalTitle14" class="text_over">acornPACKT technical book 시리즈</label>
+						<label for="aggsTotalTitle14" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsTotalTitle15" name="searchAggsTotalTitleArr" value="모두의 시리즈"><label for="aggsTotalTitle15" class="text_over">모두의 시리즈</label>
+						<label for="aggsTotalTitle15" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsTotalTitle16" name="searchAggsTotalTitleArr" value="세상의 속도를 따라잡고 싶다면 Do it"><label for="aggsTotalTitle16" class="text_over">세상의 속도를 따라잡고 싶다면 Do it</label>
+						<label for="aggsTotalTitle16" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsTotalTitle17" name="searchAggsTotalTitleArr" value="에이콘 프로그래밍 언어 시리즈"><label for="aggsTotalTitle17" class="text_over">에이콘 프로그래밍 언어 시리즈</label>
+						<label for="aggsTotalTitle17" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsTotalTitle18" name="searchAggsTotalTitleArr" value="에이콘 해킹보안 시리즈"><label for="aggsTotalTitle18" class="text_over">에이콘 해킹보안 시리즈</label>
+						<label for="aggsTotalTitle18" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsTotalTitle19" name="searchAggsTotalTitleArr" value="영진닷컴"><label for="aggsTotalTitle19" class="text_over">영진닷컴</label>
+						<label for="aggsTotalTitle19" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsTotalTitle20" name="searchAggsTotalTitleArr" value="즐거운 프로그래밍 경험"><label for="aggsTotalTitle20" class="text_over">즐거운 프로그래밍 경험</label>
+						<label for="aggsTotalTitle20" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsTotalTitle21" name="searchAggsTotalTitleArr" value="코딩 첫걸음 시리즈"><label for="aggsTotalTitle21" class="text_over">코딩 첫걸음 시리즈</label>
+						<label for="aggsTotalTitle21" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsTotalTitle22" name="searchAggsTotalTitleArr" value="프로그래밍인사이트"><label for="aggsTotalTitle22" class="text_over">프로그래밍인사이트</label>
+						<label for="aggsTotalTitle22" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsTotalTitle23" name="searchAggsTotalTitleArr" value="AcornPACKT technical book"><label for="aggsTotalTitle23" class="text_over">AcornPACKT technical book</label>
+						<label for="aggsTotalTitle23" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsTotalTitle24" name="searchAggsTotalTitleArr" value="AcornPackt technical book 시리즈"><label for="aggsTotalTitle24" class="text_over">AcornPackt technical book 시리즈</label>
+						<label for="aggsTotalTitle24" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsTotalTitle25" name="searchAggsTotalTitleArr" value="DS 데이터 사이언스 시리즈"><label for="aggsTotalTitle25" class="text_over">DS 데이터 사이언스 시리즈</label>
+						<label for="aggsTotalTitle25" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsTotalTitle26" name="searchAggsTotalTitleArr" value="IT Cookbook"><label for="aggsTotalTitle26" class="text_over">IT Cookbook</label>
+						<label for="aggsTotalTitle26" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsTotalTitle27" name="searchAggsTotalTitleArr" value="Lets get IT"><label for="aggsTotalTitle27" class="text_over">Lets get IT</label>
+						<label for="aggsTotalTitle27" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsTotalTitle28" name="searchAggsTotalTitleArr" value="Programming insight"><label for="aggsTotalTitle28" class="text_over">Programming insight</label>
+						<label for="aggsTotalTitle28" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsTotalTitle29" name="searchAggsTotalTitleArr" value="데이터 과학 시리즈"><label for="aggsTotalTitle29" class="text_over">데이터 과학 시리즈</label>
+						<label for="aggsTotalTitle29" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsTotalTitle30" name="searchAggsTotalTitleArr" value="위키북스 오픈소스 웹 시리즈"><label for="aggsTotalTitle30" class="text_over">위키북스 오픈소스 웹 시리즈</label>
+						<label for="aggsTotalTitle30" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsTotalTitle31" name="searchAggsTotalTitleArr" value="위키북스 프로그래밍 프랙티스 시리즈"><label for="aggsTotalTitle31" class="text_over">위키북스 프로그래밍 프랙티스 시리즈</label>
+						<label for="aggsTotalTitle31" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsTotalTitle32" name="searchAggsTotalTitleArr" value="Acorn packt technical book 시리즈"><label for="aggsTotalTitle32" class="text_over">Acorn packt technical book 시리즈</label>
+						<label for="aggsTotalTitle32" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsTotalTitle33" name="searchAggsTotalTitleArr" value="AcornPACKT"><label for="aggsTotalTitle33" class="text_over">AcornPACKT</label>
+						<label for="aggsTotalTitle33" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsTotalTitle34" name="searchAggsTotalTitleArr" value="AcornPACKT 시리즈"><label for="aggsTotalTitle34" class="text_over">AcornPACKT 시리즈</label>
+						<label for="aggsTotalTitle34" class="facet_remove"></label>
+					</li>
+				
+					<li>
+						<input type="checkbox" id="aggsTotalTitle35" name="searchAggsTotalTitleArr" value="AcornPackt"><label for="aggsTotalTitle35" class="text_over">AcornPackt</label>
+						<label for="aggsTotalTitle35" class="facet_remove"></label>
+					</li>
+				
+			</ul>
+		</div>
+	</div>
+
+	<div class="category_tit">
+		<p><a class="clear" href="javascript:void(0);">전체해제 <span class="ico_clear"></span></a></p>
+		<div class="selc_object">
+		</div>
+		<a href="#btn" id="aggsSearchBtn" class="btn">적용</a>
+	</div>
+
+	<div class="pasit_dim"></div>
+</div>
+								<!-- 검색결과 제한  -->
+							</div>
+						</div>
+					</form>
+
+					<!--
+						listViewStyle   ,   cardViewStyle
+						리스트 스타일         카드 스타일
+					-->
+					<div id="bookList">
+						
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" src="/include/booksearch/js/ui.js"></script>
+<script type="text/javascript">
+	function fnBibliographicInfo(count, speciesKey, pubFormCode){
+		if(!$("#btn_sergeInfo"+count).hasClass("on")) {
+			$("#bibliographicInfo"+count).load("/search/include/bibliographicInfo.do", {speciesKey : speciesKey, pubFormCode : pubFormCode});
+		}
+	}
+
+	function fnCollectionInfo(count, speciesKey, pubFormCode){
+	    if(!$("#btn_haveInfo"+count).hasClass("on")) {
+	    	if (pubFormCode == 'SE'){
+	    		$("#collectionInfo"+count).load("/search/include/collectionSerialList.do", {speciesKey : speciesKey, pubFormCode : pubFormCode});
+	    	}else {
+	    		$("#collectionInfo"+count).load("/search/include/collectionBookList.do", {speciesKey : speciesKey, pubFormCode : pubFormCode});
+	    	}
+	    }
+	}
+</script>
+<div class="bookList listViewStyle">
+	<ul class="listWrap">
+		
+			<li>
+				<div class="bookArea">
+					<div class="bookImg"><a href="#link" onclick="fnDetail('20156253,20156256,20156258,20156261', '9791162240540', 'MO');"><img alt="파이썬 정복 " src="https://image.aladin.co.kr/product/13916/99/cover500/k752532529_1.jpg" onerror="javascript:fnNoImgBook(this); return false;"></a></div>
+
+					<div class="bookData">
+						<div class="book_dataInner">
+							<span class="book_kind">단행본</span>
+							<a href="#link" onclick="fnDetail('20156253,20156256,20156258,20156261', '9791162240540', 'MO');" class="book_name kor on"><span class='highlight word'>파이썬</span> 정복 </a>
+							<a href="#link" onclick="fnDetail('20156253,20156256,20156258,20156261', '9791162240540', 'MO');" class="book_name han"><span class='highlight word'>파이썬</span> 정복 </a>
+							<ul class="dot-list clearfix">
+								<li class="kor on"><span>저자</span> : 김상형 지음</li>
+								<li class="han"><span>저자</span> : 김상형 지음</li>
+								<li class="kor on"><span>발행처</span> : 한빛미디어,</li>
+								<li class="han"><span>발행처</span> : 한빛미디어,</li>
+								
+										<li><span>발행년도</span> : 2018</li>
+										<li><span>ISBN</span> : 9791162240540</li>
+									
+							</ul>
+						</div>
+
+						<div class="bookDetailInfo">
+							<ol>
+								<li><a href="#link" id="btn_haveInfo1" onclick="fnCollectionInfo('1', '20156253,20156256,20156258,20156261', 'MO');" class="btn_haveInfo" title="소장정보 축소됨">소장정보</a></li>
+								<li><a href="#link" id="btn_sergeInfo1" onclick="fnBibliographicInfo('1', '20156253,20156256,20156258,20156261', 'MO');" class="btn_sergeInfo" title="서지정보 축소됨">서지정보</a></li>
+								
+									<li><a href="#apply" onclick="javascript:fnLibraryMyLibPop('9791162240540', 'MO'); return false" class="btn_mylibrary themeFC themeBD" title="내서재 담기 새창열림">내서재 담기</a></li>
+								
+							</ol>
+						</div>
+					</div>
+				</div>
+
+				<!-- 소장정보 -->
+				<div id="collectionInfo1" class="bookDetailLayer whereLibrary"></div>
+
+				<!-- 서지정보 -->
+				<div id="bibliographicInfo1" class="bookDetailLayer bibliographicInfo"></div>
+
+			</li>
+		
+			<li>
+				<div class="bookArea">
+					<div class="bookImg"><a href="#link" onclick="fnDetail('19941791,19941793,19941796', '9788993163629', 'MO');"><img alt="파이썬 " src="https://bookthumb-phinf.pstatic.net/cover/162/611/16261149.jpg" onerror="javascript:fnNoImgBook(this); return false;"></a></div>
+
+					<div class="bookData">
+						<div class="book_dataInner">
+							<span class="book_kind">단행본</span>
+							<a href="#link" onclick="fnDetail('19941791,19941793,19941796', '9788993163629', 'MO');" class="book_name kor on"><span class='highlight word'>파이썬</span> </a>
+							<a href="#link" onclick="fnDetail('19941791,19941793,19941796', '9788993163629', 'MO');" class="book_name han"><span class='highlight word'>파이썬</span> </a>
+							<ul class="dot-list clearfix">
+								<li class="kor on"><span>저자</span> : 김충석 지음</li>
+								<li class="han"><span>저자</span> : 김충석 지음</li>
+								<li class="kor on"><span>발행처</span> : 이한미디어,</li>
+								<li class="han"><span>발행처</span> : 이한미디어,</li>
+								
+										<li><span>발행년도</span> : 2020</li>
+										<li><span>ISBN</span> : 9788993163629</li>
+									
+							</ul>
+						</div>
+
+						<div class="bookDetailInfo">
+							<ol>
+								<li><a href="#link" id="btn_haveInfo2" onclick="fnCollectionInfo('2', '19941791,19941793,19941796', 'MO');" class="btn_haveInfo" title="소장정보 축소됨">소장정보</a></li>
+								<li><a href="#link" id="btn_sergeInfo2" onclick="fnBibliographicInfo('2', '19941791,19941793,19941796', 'MO');" class="btn_sergeInfo" title="서지정보 축소됨">서지정보</a></li>
+								
+									<li><a href="#apply" onclick="javascript:fnLibraryMyLibPop('9788993163629', 'MO'); return false" class="btn_mylibrary themeFC themeBD" title="내서재 담기 새창열림">내서재 담기</a></li>
+								
+							</ol>
+						</div>
+					</div>
+				</div>
+
+				<!-- 소장정보 -->
+				<div id="collectionInfo2" class="bookDetailLayer whereLibrary"></div>
+
+				<!-- 서지정보 -->
+				<div id="bibliographicInfo2" class="bookDetailLayer bibliographicInfo"></div>
+
+			</li>
+		
+			<li>
+				<div class="bookArea">
+					<div class="bookImg"><a href="#link" onclick="fnDetail('92602045', '9788970504797', 'MO');"><img alt="파이썬 알고리즘" src="https://bookthumb-phinf.pstatic.net/cover/178/557/17855709.jpg" onerror="javascript:fnNoImgBook(this); return false;"></a></div>
+
+					<div class="bookData">
+						<div class="book_dataInner">
+							<span class="book_kind">단행본</span>
+							<a href="#link" onclick="fnDetail('92602045', '9788970504797', 'MO');" class="book_name kor on"><span class='highlight word'>파이썬</span> 알고리즘</a>
+							<a href="#link" onclick="fnDetail('92602045', '9788970504797', 'MO');" class="book_name han"><span class='highlight word'>파이썬</span> 알고리즘</a>
+							<ul class="dot-list clearfix">
+								<li class="kor on"><span>저자</span> : 최영규 지음</li>
+								<li class="han"><span>저자</span> : 최영규 지음</li>
+								<li class="kor on"><span>발행처</span> : 생능</li>
+								<li class="han"><span>발행처</span> : 생능</li>
+								
+										<li><span>발행년도</span> : 2021</li>
+										<li><span>ISBN</span> : 9788970504797</li>
+									
+							</ul>
+						</div>
+
+						<div class="bookDetailInfo">
+							<ol>
+								<li><a href="#link" id="btn_haveInfo3" onclick="fnCollectionInfo('3', '92602045', 'MO');" class="btn_haveInfo" title="소장정보 축소됨">소장정보</a></li>
+								<li><a href="#link" id="btn_sergeInfo3" onclick="fnBibliographicInfo('3', '92602045', 'MO');" class="btn_sergeInfo" title="서지정보 축소됨">서지정보</a></li>
+								
+									<li><a href="#apply" onclick="javascript:fnLibraryMyLibPop('9788970504797', 'MO'); return false" class="btn_mylibrary themeFC themeBD" title="내서재 담기 새창열림">내서재 담기</a></li>
+								
+							</ol>
+						</div>
+					</div>
+				</div>
+
+				<!-- 소장정보 -->
+				<div id="collectionInfo3" class="bookDetailLayer whereLibrary"></div>
+
+				<!-- 서지정보 -->
+				<div id="bibliographicInfo3" class="bookDetailLayer bibliographicInfo"></div>
+
+			</li>
+		
+			<li>
+				<div class="bookArea">
+					<div class="bookImg"><a href="#link" onclick="fnDetail('19011223,19011225,19011227,19011229', '9791161340463', 'MO');"><img alt="파이썬 클린 코드 " src="https://image.aladin.co.kr/product/17950/48/cover500/k062534234_1.jpg" onerror="javascript:fnNoImgBook(this); return false;"></a></div>
+
+					<div class="bookData">
+						<div class="book_dataInner">
+							<span class="book_kind">단행본</span>
+							<a href="#link" onclick="fnDetail('19011223,19011225,19011227,19011229', '9791161340463', 'MO');" class="book_name kor on"><span class='highlight word'>파이썬</span> 클린 코드 </a>
+							<a href="#link" onclick="fnDetail('19011223,19011225,19011227,19011229', '9791161340463', 'MO');" class="book_name han"><span class='highlight word'>파이썬</span> 클린 코드 </a>
+							<ul class="dot-list clearfix">
+								<li class="kor on"><span>저자</span> : 마리아노 아나야 지음;, 김창수 옮김</li>
+								<li class="han"><span>저자</span> : 마리아노 아나야 지음;, 김창수 옮김</li>
+								<li class="kor on"><span>발행처</span> : 터닝포인트,</li>
+								<li class="han"><span>발행처</span> : 터닝포인트,</li>
+								
+										<li><span>발행년도</span> : 2019</li>
+										<li><span>ISBN</span> : 9791161340463</li>
+									
+							</ul>
+						</div>
+
+						<div class="bookDetailInfo">
+							<ol>
+								<li><a href="#link" id="btn_haveInfo4" onclick="fnCollectionInfo('4', '19011223,19011225,19011227,19011229', 'MO');" class="btn_haveInfo" title="소장정보 축소됨">소장정보</a></li>
+								<li><a href="#link" id="btn_sergeInfo4" onclick="fnBibliographicInfo('4', '19011223,19011225,19011227,19011229', 'MO');" class="btn_sergeInfo" title="서지정보 축소됨">서지정보</a></li>
+								
+									<li><a href="#apply" onclick="javascript:fnLibraryMyLibPop('9791161340463', 'MO'); return false" class="btn_mylibrary themeFC themeBD" title="내서재 담기 새창열림">내서재 담기</a></li>
+								
+							</ol>
+						</div>
+					</div>
+				</div>
+
+				<!-- 소장정보 -->
+				<div id="collectionInfo4" class="bookDetailLayer whereLibrary"></div>
+
+				<!-- 서지정보 -->
+				<div id="bibliographicInfo4" class="bookDetailLayer bibliographicInfo"></div>
+
+			</li>
+		
+			<li>
+				<div class="bookArea">
+					<div class="bookImg"><a href="#link" onclick="fnDetail('20385164', '9791162241042', 'MO');"><img alt="파이썬 웹 프로그래밍 " src="https://image.aladin.co.kr/product/16229/98/cover500/k982533143_1.jpg" onerror="javascript:fnNoImgBook(this); return false;"></a></div>
+
+					<div class="bookData">
+						<div class="book_dataInner">
+							<span class="book_kind">단행본</span>
+							<a href="#link" onclick="fnDetail('20385164', '9791162241042', 'MO');" class="book_name kor on"><span class='highlight word'>파이썬</span> 웹 프로그래밍 </a>
+							<a href="#link" onclick="fnDetail('20385164', '9791162241042', 'MO');" class="book_name han"><span class='highlight word'>파이썬</span> 웹 프로그래밍 </a>
+							<ul class="dot-list clearfix">
+								<li class="kor on"><span>저자</span> : 김석훈 지음</li>
+								<li class="han"><span>저자</span> : 김석훈 지음</li>
+								<li class="kor on"><span>발행처</span> : 한빛미디어,</li>
+								<li class="han"><span>발행처</span> : 한빛미디어,</li>
+								
+										<li><span>발행년도</span> : 2018</li>
+										<li><span>ISBN</span> : 9791162241042</li>
+									
+							</ul>
+						</div>
+
+						<div class="bookDetailInfo">
+							<ol>
+								<li><a href="#link" id="btn_haveInfo5" onclick="fnCollectionInfo('5', '20385164', 'MO');" class="btn_haveInfo" title="소장정보 축소됨">소장정보</a></li>
+								<li><a href="#link" id="btn_sergeInfo5" onclick="fnBibliographicInfo('5', '20385164', 'MO');" class="btn_sergeInfo" title="서지정보 축소됨">서지정보</a></li>
+								
+									<li><a href="#apply" onclick="javascript:fnLibraryMyLibPop('9791162241042', 'MO'); return false" class="btn_mylibrary themeFC themeBD" title="내서재 담기 새창열림">내서재 담기</a></li>
+								
+							</ol>
+						</div>
+					</div>
+				</div>
+
+				<!-- 소장정보 -->
+				<div id="collectionInfo5" class="bookDetailLayer whereLibrary"></div>
+
+				<!-- 서지정보 -->
+				<div id="bibliographicInfo5" class="bookDetailLayer bibliographicInfo"></div>
+
+			</li>
+		
+			<li>
+				<div class="bookArea">
+					<div class="bookImg"><a href="#link" onclick="fnDetail('18911509,18911511,18911512,18911514,18911523', '9788968481819', 'MO');"><img alt="파이썬 웹 프로그래밍 " src="https://image.aladin.co.kr/product/5524/90/cover500/8968481814_1.jpg" onerror="javascript:fnNoImgBook(this); return false;"></a></div>
+
+					<div class="bookData">
+						<div class="book_dataInner">
+							<span class="book_kind">단행본</span>
+							<a href="#link" onclick="fnDetail('18911509,18911511,18911512,18911514,18911523', '9788968481819', 'MO');" class="book_name kor on"><span class='highlight word'>파이썬</span> 웹 프로그래밍 </a>
+							<a href="#link" onclick="fnDetail('18911509,18911511,18911512,18911514,18911523', '9788968481819', 'MO');" class="book_name han"><span class='highlight word'>파이썬</span> 웹 프로그래밍 </a>
+							<ul class="dot-list clearfix">
+								<li class="kor on"><span>저자</span> : 김석훈 지음</li>
+								<li class="han"><span>저자</span> : 김석훈 지음</li>
+								<li class="kor on"><span>발행처</span> : 한빛미디어,</li>
+								<li class="han"><span>발행처</span> : 한빛미디어,</li>
+								
+										<li><span>발행년도</span> : 2015</li>
+										<li><span>ISBN</span> : 9788968481819</li>
+									
+							</ul>
+						</div>
+
+						<div class="bookDetailInfo">
+							<ol>
+								<li><a href="#link" id="btn_haveInfo6" onclick="fnCollectionInfo('6', '18911509,18911511,18911512,18911514,18911523', 'MO');" class="btn_haveInfo" title="소장정보 축소됨">소장정보</a></li>
+								<li><a href="#link" id="btn_sergeInfo6" onclick="fnBibliographicInfo('6', '18911509,18911511,18911512,18911514,18911523', 'MO');" class="btn_sergeInfo" title="서지정보 축소됨">서지정보</a></li>
+								
+									<li><a href="#apply" onclick="javascript:fnLibraryMyLibPop('9788968481819', 'MO'); return false" class="btn_mylibrary themeFC themeBD" title="내서재 담기 새창열림">내서재 담기</a></li>
+								
+							</ol>
+						</div>
+					</div>
+				</div>
+
+				<!-- 소장정보 -->
+				<div id="collectionInfo6" class="bookDetailLayer whereLibrary"></div>
+
+				<!-- 서지정보 -->
+				<div id="bibliographicInfo6" class="bookDetailLayer bibliographicInfo"></div>
+
+			</li>
+		
+			<li>
+				<div class="bookArea">
+					<div class="bookImg"><a href="#link" onclick="fnDetail('88331477,89035108', '9791165213190', 'MO');"><img alt="파이썬 코딩의 기술" src="https://bookthumb-phinf.pstatic.net/cover/168/769/16876960.jpg" onerror="javascript:fnNoImgBook(this); return false;"></a></div>
+
+					<div class="bookData">
+						<div class="book_dataInner">
+							<span class="book_kind">단행본</span>
+							<a href="#link" onclick="fnDetail('88331477,89035108', '9791165213190', 'MO');" class="book_name kor on"><span class='highlight word'>파이썬</span> 코딩의 기술</a>
+							<a href="#link" onclick="fnDetail('88331477,89035108', '9791165213190', 'MO');" class="book_name han"><span class='highlight word'>파이썬</span> 코딩의 기술</a>
+							<ul class="dot-list clearfix">
+								<li class="kor on"><span>저자</span> : 브렛 슬라킨 지음; 오현석 옮김</li>
+								<li class="han"><span>저자</span> : 브렛 슬라킨 지음; 오현석 옮김</li>
+								<li class="kor on"><span>발행처</span> : 길벗</li>
+								<li class="han"><span>발행처</span> : 길벗</li>
+								
+										<li><span>발행년도</span> : 2020</li>
+										<li><span>ISBN</span> : 9791165213190</li>
+									
+							</ul>
+						</div>
+
+						<div class="bookDetailInfo">
+							<ol>
+								<li><a href="#link" id="btn_haveInfo7" onclick="fnCollectionInfo('7', '88331477,89035108', 'MO');" class="btn_haveInfo" title="소장정보 축소됨">소장정보</a></li>
+								<li><a href="#link" id="btn_sergeInfo7" onclick="fnBibliographicInfo('7', '88331477,89035108', 'MO');" class="btn_sergeInfo" title="서지정보 축소됨">서지정보</a></li>
+								
+									<li><a href="#apply" onclick="javascript:fnLibraryMyLibPop('9791165213190', 'MO'); return false" class="btn_mylibrary themeFC themeBD" title="내서재 담기 새창열림">내서재 담기</a></li>
+								
+							</ol>
+						</div>
+					</div>
+				</div>
+
+				<!-- 소장정보 -->
+				<div id="collectionInfo7" class="bookDetailLayer whereLibrary"></div>
+
+				<!-- 서지정보 -->
+				<div id="bibliographicInfo7" class="bookDetailLayer bibliographicInfo"></div>
+
+			</li>
+		
+			<li>
+				<div class="bookArea">
+					<div class="bookImg"><a href="#link" onclick="fnDetail('100470181,96468213', '9791191600018', 'MO');"><img alt="파이썬 챌린지" src="https://bookthumb-phinf.pstatic.net/cover/204/773/20477376.jpg" onerror="javascript:fnNoImgBook(this); return false;"></a></div>
+
+					<div class="bookData">
+						<div class="book_dataInner">
+							<span class="book_kind">단행본</span>
+							<a href="#link" onclick="fnDetail('100470181,96468213', '9791191600018', 'MO');" class="book_name kor on"><span class='highlight word'>파이썬</span> 챌린지</a>
+							<a href="#link" onclick="fnDetail('100470181,96468213', '9791191600018', 'MO');" class="book_name han"><span class='highlight word'>파이썬</span> 챌린지</a>
+							<ul class="dot-list clearfix">
+								<li class="kor on"><span>저자</span> : 니콜라 레이시 지음; 황반석 옮김</li>
+								<li class="han"><span>저자</span> : 니콜라 레이시 지음; 황반석 옮김</li>
+								<li class="kor on"><span>발행처</span> : 제이펍</li>
+								<li class="han"><span>발행처</span> : 제이펍</li>
+								
+										<li><span>발행년도</span> : 2021</li>
+										<li><span>ISBN</span> : 9791191600018</li>
+									
+							</ul>
+						</div>
+
+						<div class="bookDetailInfo">
+							<ol>
+								<li><a href="#link" id="btn_haveInfo8" onclick="fnCollectionInfo('8', '100470181,96468213', 'MO');" class="btn_haveInfo" title="소장정보 축소됨">소장정보</a></li>
+								<li><a href="#link" id="btn_sergeInfo8" onclick="fnBibliographicInfo('8', '100470181,96468213', 'MO');" class="btn_sergeInfo" title="서지정보 축소됨">서지정보</a></li>
+								
+									<li><a href="#apply" onclick="javascript:fnLibraryMyLibPop('9791191600018', 'MO'); return false" class="btn_mylibrary themeFC themeBD" title="내서재 담기 새창열림">내서재 담기</a></li>
+								
+							</ol>
+						</div>
+					</div>
+				</div>
+
+				<!-- 소장정보 -->
+				<div id="collectionInfo8" class="bookDetailLayer whereLibrary"></div>
+
+				<!-- 서지정보 -->
+				<div id="bibliographicInfo8" class="bookDetailLayer bibliographicInfo"></div>
+
+			</li>
+		
+			<li>
+				<div class="bookArea">
+					<div class="bookImg"><a href="#link" onclick="fnDetail('109821218', '9788956749204', 'MO');"><img alt="파이썬 딥러닝 케라스" src="https://shopping-phinf.pstatic.net/main_3556850/35568501622.20230418162601.jpg" onerror="javascript:fnNoImgBook(this); return false;"></a></div>
+
+					<div class="bookData">
+						<div class="book_dataInner">
+							<span class="book_kind">단행본</span>
+							<a href="#link" onclick="fnDetail('109821218', '9788956749204', 'MO');" class="book_name kor on"><span class='highlight word'>파이썬</span> 딥러닝 케라스</a>
+							<a href="#link" onclick="fnDetail('109821218', '9788956749204', 'MO');" class="book_name han"><span class='highlight word'>파이썬</span> 딥러닝 케라스</a>
+							<ul class="dot-list clearfix">
+								<li class="kor on"><span>저자</span> : 조한성 지음</li>
+								<li class="han"><span>저자</span> : 조한성 지음</li>
+								<li class="kor on"><span>발행처</span> : 정보문화사</li>
+								<li class="han"><span>발행처</span> : 정보문화사</li>
+								
+										<li><span>발행년도</span> : 2022</li>
+										<li><span>ISBN</span> : 9788956749204</li>
+									
+							</ul>
+						</div>
+
+						<div class="bookDetailInfo">
+							<ol>
+								<li><a href="#link" id="btn_haveInfo9" onclick="fnCollectionInfo('9', '109821218', 'MO');" class="btn_haveInfo" title="소장정보 축소됨">소장정보</a></li>
+								<li><a href="#link" id="btn_sergeInfo9" onclick="fnBibliographicInfo('9', '109821218', 'MO');" class="btn_sergeInfo" title="서지정보 축소됨">서지정보</a></li>
+								
+									<li><a href="#apply" onclick="javascript:fnLibraryMyLibPop('9788956749204', 'MO'); return false" class="btn_mylibrary themeFC themeBD" title="내서재 담기 새창열림">내서재 담기</a></li>
+								
+							</ol>
+						</div>
+					</div>
+				</div>
+
+				<!-- 소장정보 -->
+				<div id="collectionInfo9" class="bookDetailLayer whereLibrary"></div>
+
+				<!-- 서지정보 -->
+				<div id="bibliographicInfo9" class="bookDetailLayer bibliographicInfo"></div>
+
+			</li>
+		
+			<li>
+				<div class="bookArea">
+					<div class="bookImg"><a href="#link" onclick="fnDetail('20384875,20384878,89036407', '9791160506181', 'MO');"><img alt="파이썬 코딩 도장 " src="https://image.aladin.co.kr/product/17329/42/cover500/k072534390_1.jpg" onerror="javascript:fnNoImgBook(this); return false;"></a></div>
+
+					<div class="bookData">
+						<div class="book_dataInner">
+							<span class="book_kind">단행본</span>
+							<a href="#link" onclick="fnDetail('20384875,20384878,89036407', '9791160506181', 'MO');" class="book_name kor on"><span class='highlight word'>파이썬</span> 코딩 도장 </a>
+							<a href="#link" onclick="fnDetail('20384875,20384878,89036407', '9791160506181', 'MO');" class="book_name han"><span class='highlight word'>파이썬</span> 코딩 도장 </a>
+							<ul class="dot-list clearfix">
+								<li class="kor on"><span>저자</span> : 남재윤 지음</li>
+								<li class="han"><span>저자</span> : 남재윤 지음</li>
+								<li class="kor on"><span>발행처</span> : 길벗,</li>
+								<li class="han"><span>발행처</span> : 길벗,</li>
+								
+										<li><span>발행년도</span> : 2018</li>
+										<li><span>ISBN</span> : 9791160506181</li>
+									
+							</ul>
+						</div>
+
+						<div class="bookDetailInfo">
+							<ol>
+								<li><a href="#link" id="btn_haveInfo10" onclick="fnCollectionInfo('10', '20384875,20384878,89036407', 'MO');" class="btn_haveInfo" title="소장정보 축소됨">소장정보</a></li>
+								<li><a href="#link" id="btn_sergeInfo10" onclick="fnBibliographicInfo('10', '20384875,20384878,89036407', 'MO');" class="btn_sergeInfo" title="서지정보 축소됨">서지정보</a></li>
+								
+									<li><a href="#apply" onclick="javascript:fnLibraryMyLibPop('9791160506181', 'MO'); return false" class="btn_mylibrary themeFC themeBD" title="내서재 담기 새창열림">내서재 담기</a></li>
+								
+							</ol>
+						</div>
+					</div>
+				</div>
+
+				<!-- 소장정보 -->
+				<div id="collectionInfo10" class="bookDetailLayer whereLibrary"></div>
+
+				<!-- 서지정보 -->
+				<div id="bibliographicInfo10" class="bookDetailLayer bibliographicInfo"></div>
+
+			</li>
+		
+			<li>
+				<div class="bookArea">
+					<div class="bookImg"><a href="#link" onclick="fnDetail('20304892', '9788966260256', 'MO');"><img alt="파이썬 완벽 가이드 " src="https://image.aladin.co.kr/product/1611/87/cover500/896626025x_1.jpg" onerror="javascript:fnNoImgBook(this); return false;"></a></div>
+
+					<div class="bookData">
+						<div class="book_dataInner">
+							<span class="book_kind">단행본</span>
+							<a href="#link" onclick="fnDetail('20304892', '9788966260256', 'MO');" class="book_name kor on"><span class='highlight word'>파이썬</span> 완벽 가이드 </a>
+							<a href="#link" onclick="fnDetail('20304892', '9788966260256', 'MO');" class="book_name han"><span class='highlight word'>파이썬</span> 완벽 가이드 </a>
+							<ul class="dot-list clearfix">
+								<li class="kor on"><span>저자</span> : 데이비드 M. 비즐리 지음;, 송인철,, 송현제 [공]옮김</li>
+								<li class="han"><span>저자</span> : 데이비드 M. 비즐리 지음;, 송인철,, 송현제 [공]옮김</li>
+								<li class="kor on"><span>발행처</span> : 인사이트,</li>
+								<li class="han"><span>발행처</span> : 인사이트,</li>
+								
+										<li><span>발행년도</span> : 2012</li>
+										<li><span>ISBN</span> : 9788966260256</li>
+									
+							</ul>
+						</div>
+
+						<div class="bookDetailInfo">
+							<ol>
+								<li><a href="#link" id="btn_haveInfo11" onclick="fnCollectionInfo('11', '20304892', 'MO');" class="btn_haveInfo" title="소장정보 축소됨">소장정보</a></li>
+								<li><a href="#link" id="btn_sergeInfo11" onclick="fnBibliographicInfo('11', '20304892', 'MO');" class="btn_sergeInfo" title="서지정보 축소됨">서지정보</a></li>
+								
+									<li><a href="#apply" onclick="javascript:fnLibraryMyLibPop('9788966260256', 'MO'); return false" class="btn_mylibrary themeFC themeBD" title="내서재 담기 새창열림">내서재 담기</a></li>
+								
+							</ol>
+						</div>
+					</div>
+				</div>
+
+				<!-- 소장정보 -->
+				<div id="collectionInfo11" class="bookDetailLayer whereLibrary"></div>
+
+				<!-- 서지정보 -->
+				<div id="bibliographicInfo11" class="bookDetailLayer bibliographicInfo"></div>
+
+			</li>
+		
+			<li>
+				<div class="bookArea">
+					<div class="bookImg"><a href="#link" onclick="fnDetail('19385259,19385261,19385264,19385270', '9791186978825', 'MO');"><img alt="파이썬 코딩의 기술 " src="https://image.aladin.co.kr/product/8027/75/cover500/k212434638_1.jpg" onerror="javascript:fnNoImgBook(this); return false;"></a></div>
+
+					<div class="bookData">
+						<div class="book_dataInner">
+							<span class="book_kind">단행본</span>
+							<a href="#link" onclick="fnDetail('19385259,19385261,19385264,19385270', '9791186978825', 'MO');" class="book_name kor on"><span class='highlight word'>파이썬</span> 코딩의 기술 </a>
+							<a href="#link" onclick="fnDetail('19385259,19385261,19385264,19385270', '9791186978825', 'MO');" class="book_name han"><span class='highlight word'>파이썬</span> 코딩의 기술 </a>
+							<ul class="dot-list clearfix">
+								<li class="kor on"><span>저자</span> : 브렛 슬라킨 지음;, 김형철 옮김</li>
+								<li class="han"><span>저자</span> : 브렛 슬라킨 지음;, 김형철 옮김</li>
+								<li class="kor on"><span>발행처</span> : 길벗,</li>
+								<li class="han"><span>발행처</span> : 길벗,</li>
+								
+										<li><span>발행년도</span> : 2016</li>
+										<li><span>ISBN</span> : 9791186978825</li>
+									
+							</ul>
+						</div>
+
+						<div class="bookDetailInfo">
+							<ol>
+								<li><a href="#link" id="btn_haveInfo12" onclick="fnCollectionInfo('12', '19385259,19385261,19385264,19385270', 'MO');" class="btn_haveInfo" title="소장정보 축소됨">소장정보</a></li>
+								<li><a href="#link" id="btn_sergeInfo12" onclick="fnBibliographicInfo('12', '19385259,19385261,19385264,19385270', 'MO');" class="btn_sergeInfo" title="서지정보 축소됨">서지정보</a></li>
+								
+									<li><a href="#apply" onclick="javascript:fnLibraryMyLibPop('9791186978825', 'MO'); return false" class="btn_mylibrary themeFC themeBD" title="내서재 담기 새창열림">내서재 담기</a></li>
+								
+							</ol>
+						</div>
+					</div>
+				</div>
+
+				<!-- 소장정보 -->
+				<div id="collectionInfo12" class="bookDetailLayer whereLibrary"></div>
+
+				<!-- 서지정보 -->
+				<div id="bibliographicInfo12" class="bookDetailLayer bibliographicInfo"></div>
+
+			</li>
+		
+			<li>
+				<div class="bookArea">
+					<div class="bookImg"><a href="#link" onclick="fnDetail('121676134', '9791140714056', 'MO');"><img alt="파이썬 코딩의 기술 51 " src="https://shopping-phinf.pstatic.net/main_4907037/49070379624.20240712093721.jpg" onerror="javascript:fnNoImgBook(this); return false;"></a></div>
+
+					<div class="bookData">
+						<div class="book_dataInner">
+							<span class="book_kind">단행본</span>
+							<a href="#link" onclick="fnDetail('121676134', '9791140714056', 'MO');" class="book_name kor on"><span class='highlight word'>파이썬</span> 코딩의 기술 51 </a>
+							<a href="#link" onclick="fnDetail('121676134', '9791140714056', 'MO');" class="book_name han"><span class='highlight word'>파이썬</span> 코딩의 기술 51 </a>
+							<ul class="dot-list clearfix">
+								<li class="kor on"><span>저자</span> : 데이비드 메르츠 지음 ; 김진호 옮김</li>
+								<li class="han"><span>저자</span> : 데이비드 메르츠 지음 ; 김진호 옮김</li>
+								<li class="kor on"><span>발행처</span> : 길벗</li>
+								<li class="han"><span>발행처</span> : 길벗</li>
+								
+										<li><span>발행년도</span> : 2024</li>
+										<li><span>ISBN</span> : 9791140714056</li>
+									
+							</ul>
+						</div>
+
+						<div class="bookDetailInfo">
+							<ol>
+								<li><a href="#link" id="btn_haveInfo13" onclick="fnCollectionInfo('13', '121676134', 'MO');" class="btn_haveInfo" title="소장정보 축소됨">소장정보</a></li>
+								<li><a href="#link" id="btn_sergeInfo13" onclick="fnBibliographicInfo('13', '121676134', 'MO');" class="btn_sergeInfo" title="서지정보 축소됨">서지정보</a></li>
+								
+									<li><a href="#apply" onclick="javascript:fnLibraryMyLibPop('9791140714056', 'MO'); return false" class="btn_mylibrary themeFC themeBD" title="내서재 담기 새창열림">내서재 담기</a></li>
+								
+							</ol>
+						</div>
+					</div>
+				</div>
+
+				<!-- 소장정보 -->
+				<div id="collectionInfo13" class="bookDetailLayer whereLibrary"></div>
+
+				<!-- 서지정보 -->
+				<div id="bibliographicInfo13" class="bookDetailLayer bibliographicInfo"></div>
+
+			</li>
+		
+			<li>
+				<div class="bookArea">
+					<div class="bookImg"><a href="#link" onclick="fnDetail('112404116', '9791169211277', 'MO');"><img alt="파이썬 크래시 코스" src="https://shopping-phinf.pstatic.net/main_4143445/41434455620.20230822102412.jpg" onerror="javascript:fnNoImgBook(this); return false;"></a></div>
+
+					<div class="bookData">
+						<div class="book_dataInner">
+							<span class="book_kind">단행본</span>
+							<a href="#link" onclick="fnDetail('112404116', '9791169211277', 'MO');" class="book_name kor on"><span class='highlight word'>파이썬</span> 크래시 코스</a>
+							<a href="#link" onclick="fnDetail('112404116', '9791169211277', 'MO');" class="book_name han"><span class='highlight word'>파이썬</span> 크래시 코스</a>
+							<ul class="dot-list clearfix">
+								<li class="kor on"><span>저자</span> : 에릭 마테스 지음; 한선용 옮김</li>
+								<li class="han"><span>저자</span> : 에릭 마테스 지음; 한선용 옮김</li>
+								<li class="kor on"><span>발행처</span> : 한빛미디어</li>
+								<li class="han"><span>발행처</span> : 한빛미디어</li>
+								
+										<li><span>발행년도</span> : 2023</li>
+										<li><span>ISBN</span> : 9791169211277</li>
+									
+							</ul>
+						</div>
+
+						<div class="bookDetailInfo">
+							<ol>
+								<li><a href="#link" id="btn_haveInfo14" onclick="fnCollectionInfo('14', '112404116', 'MO');" class="btn_haveInfo" title="소장정보 축소됨">소장정보</a></li>
+								<li><a href="#link" id="btn_sergeInfo14" onclick="fnBibliographicInfo('14', '112404116', 'MO');" class="btn_sergeInfo" title="서지정보 축소됨">서지정보</a></li>
+								
+									<li><a href="#apply" onclick="javascript:fnLibraryMyLibPop('9791169211277', 'MO'); return false" class="btn_mylibrary themeFC themeBD" title="내서재 담기 새창열림">내서재 담기</a></li>
+								
+							</ol>
+						</div>
+					</div>
+				</div>
+
+				<!-- 소장정보 -->
+				<div id="collectionInfo14" class="bookDetailLayer whereLibrary"></div>
+
+				<!-- 서지정보 -->
+				<div id="bibliographicInfo14" class="bookDetailLayer bibliographicInfo"></div>
+
+			</li>
+		
+			<li>
+				<div class="bookArea">
+					<div class="bookImg"><a href="#link" onclick="fnDetail('19154108', '9791158390358', 'MO');"><img alt="파이썬 웹 프로그래밍 " src="https://image.aladin.co.kr/product/8459/56/cover500/k832535261_1.jpg" onerror="javascript:fnNoImgBook(this); return false;"></a></div>
+
+					<div class="bookData">
+						<div class="book_dataInner">
+							<span class="book_kind">단행본</span>
+							<a href="#link" onclick="fnDetail('19154108', '9791158390358', 'MO');" class="book_name kor on"><span class='highlight word'>파이썬</span> 웹 프로그래밍 </a>
+							<a href="#link" onclick="fnDetail('19154108', '9791158390358', 'MO');" class="book_name han"><span class='highlight word'>파이썬</span> 웹 프로그래밍 </a>
+							<ul class="dot-list clearfix">
+								<li class="kor on"><span>저자</span> : 주성식;, 홍성민 [공]지음</li>
+								<li class="han"><span>저자</span> : 주성식;, 홍성민 [공]지음</li>
+								<li class="kor on"><span>발행처</span> : 위키북스,</li>
+								<li class="han"><span>발행처</span> : 위키북스,</li>
+								
+										<li><span>발행년도</span> : 2016</li>
+										<li><span>ISBN</span> : 9791158390358</li>
+									
+							</ul>
+						</div>
+
+						<div class="bookDetailInfo">
+							<ol>
+								<li><a href="#link" id="btn_haveInfo15" onclick="fnCollectionInfo('15', '19154108', 'MO');" class="btn_haveInfo" title="소장정보 축소됨">소장정보</a></li>
+								<li><a href="#link" id="btn_sergeInfo15" onclick="fnBibliographicInfo('15', '19154108', 'MO');" class="btn_sergeInfo" title="서지정보 축소됨">서지정보</a></li>
+								
+									<li><a href="#apply" onclick="javascript:fnLibraryMyLibPop('9791158390358', 'MO'); return false" class="btn_mylibrary themeFC themeBD" title="내서재 담기 새창열림">내서재 담기</a></li>
+								
+							</ol>
+						</div>
+					</div>
+				</div>
+
+				<!-- 소장정보 -->
+				<div id="collectionInfo15" class="bookDetailLayer whereLibrary"></div>
+
+				<!-- 서지정보 -->
+				<div id="bibliographicInfo15" class="bookDetailLayer bibliographicInfo"></div>
+
+			</li>
+		
+			<li>
+				<div class="bookArea">
+					<div class="bookImg"><a href="#link" onclick="fnDetail('94828216,96468207', '9788956749099', 'MO');"><img alt="파이썬 딥러닝 텐서플로" src="https://image.aladin.co.kr/product/27507/68/cover/8956749094_1.jpg" onerror="javascript:fnNoImgBook(this); return false;"></a></div>
+
+					<div class="bookData">
+						<div class="book_dataInner">
+							<span class="book_kind">단행본</span>
+							<a href="#link" onclick="fnDetail('94828216,96468207', '9788956749099', 'MO');" class="book_name kor on"><span class='highlight word'>파이썬</span> 딥러닝 텐서플로</a>
+							<a href="#link" onclick="fnDetail('94828216,96468207', '9788956749099', 'MO');" class="book_name han"><span class='highlight word'>파이썬</span> 딥러닝 텐서플로</a>
+							<ul class="dot-list clearfix">
+								<li class="kor on"><span>저자</span> : 오승환 [외]지음</li>
+								<li class="han"><span>저자</span> : 오승환 [외]지음</li>
+								<li class="kor on"><span>발행처</span> : 정보문화사</li>
+								<li class="han"><span>발행처</span> : 정보문화사</li>
+								
+										<li><span>발행년도</span> : 2021</li>
+										<li><span>ISBN</span> : 9788956749099</li>
+									
+							</ul>
+						</div>
+
+						<div class="bookDetailInfo">
+							<ol>
+								<li><a href="#link" id="btn_haveInfo16" onclick="fnCollectionInfo('16', '94828216,96468207', 'MO');" class="btn_haveInfo" title="소장정보 축소됨">소장정보</a></li>
+								<li><a href="#link" id="btn_sergeInfo16" onclick="fnBibliographicInfo('16', '94828216,96468207', 'MO');" class="btn_sergeInfo" title="서지정보 축소됨">서지정보</a></li>
+								
+									<li><a href="#apply" onclick="javascript:fnLibraryMyLibPop('9788956749099', 'MO'); return false" class="btn_mylibrary themeFC themeBD" title="내서재 담기 새창열림">내서재 담기</a></li>
+								
+							</ol>
+						</div>
+					</div>
+				</div>
+
+				<!-- 소장정보 -->
+				<div id="collectionInfo16" class="bookDetailLayer whereLibrary"></div>
+
+				<!-- 서지정보 -->
+				<div id="bibliographicInfo16" class="bookDetailLayer bibliographicInfo"></div>
+
+			</li>
+		
+			<li>
+				<div class="bookArea">
+					<div class="bookImg"><a href="#link" onclick="fnDetail('20492875', '9791158391386', 'MO');"><img alt="파이썬 머신러닝 완벽 가이드 " src="https://image.aladin.co.kr/product/18389/80/cover500/k182534159_1.jpg" onerror="javascript:fnNoImgBook(this); return false;"></a></div>
+
+					<div class="bookData">
+						<div class="book_dataInner">
+							<span class="book_kind">단행본</span>
+							<a href="#link" onclick="fnDetail('20492875', '9791158391386', 'MO');" class="book_name kor on"><span class='highlight word'>파이썬</span> 머신러닝 완벽 가이드 </a>
+							<a href="#link" onclick="fnDetail('20492875', '9791158391386', 'MO');" class="book_name han"><span class='highlight word'>파이썬</span> 머신러닝 완벽 가이드 </a>
+							<ul class="dot-list clearfix">
+								<li class="kor on"><span>저자</span> : 권철민 지음</li>
+								<li class="han"><span>저자</span> : 권철민 지음</li>
+								<li class="kor on"><span>발행처</span> : 위키북스,</li>
+								<li class="han"><span>발행처</span> : 위키북스,</li>
+								
+										<li><span>발행년도</span> : 2019</li>
+										<li><span>ISBN</span> : 9791158391386</li>
+									
+							</ul>
+						</div>
+
+						<div class="bookDetailInfo">
+							<ol>
+								<li><a href="#link" id="btn_haveInfo17" onclick="fnCollectionInfo('17', '20492875', 'MO');" class="btn_haveInfo" title="소장정보 축소됨">소장정보</a></li>
+								<li><a href="#link" id="btn_sergeInfo17" onclick="fnBibliographicInfo('17', '20492875', 'MO');" class="btn_sergeInfo" title="서지정보 축소됨">서지정보</a></li>
+								
+									<li><a href="#apply" onclick="javascript:fnLibraryMyLibPop('9791158391386', 'MO'); return false" class="btn_mylibrary themeFC themeBD" title="내서재 담기 새창열림">내서재 담기</a></li>
+								
+							</ol>
+						</div>
+					</div>
+				</div>
+
+				<!-- 소장정보 -->
+				<div id="collectionInfo17" class="bookDetailLayer whereLibrary"></div>
+
+				<!-- 서지정보 -->
+				<div id="bibliographicInfo17" class="bookDetailLayer bibliographicInfo"></div>
+
+			</li>
+		
+			<li>
+				<div class="bookArea">
+					<div class="bookImg"><a href="#link" onclick="fnDetail('102651757,103254263', '9791165217884', 'MO');"><img alt="파이썬 매일 코딩" src="https://bookthumb-phinf.pstatic.net/cover/213/073/21307305.jpg" onerror="javascript:fnNoImgBook(this); return false;"></a></div>
+
+					<div class="bookData">
+						<div class="book_dataInner">
+							<span class="book_kind">단행본</span>
+							<a href="#link" onclick="fnDetail('102651757,103254263', '9791165217884', 'MO');" class="book_name kor on"><span class='highlight word'>파이썬</span> 매일 코딩</a>
+							<a href="#link" onclick="fnDetail('102651757,103254263', '9791165217884', 'MO');" class="book_name han"><span class='highlight word'>파이썬</span> 매일 코딩</a>
+							<ul class="dot-list clearfix">
+								<li class="kor on"><span>저자</span> : 루벤 M. 러너 지음; 윤인성 옮김</li>
+								<li class="han"><span>저자</span> : 루벤 M. 러너 지음; 윤인성 옮김</li>
+								<li class="kor on"><span>발행처</span> : 길벗</li>
+								<li class="han"><span>발행처</span> : 길벗</li>
+								
+										<li><span>발행년도</span> : 2021</li>
+										<li><span>ISBN</span> : 9791165217884</li>
+									
+							</ul>
+						</div>
+
+						<div class="bookDetailInfo">
+							<ol>
+								<li><a href="#link" id="btn_haveInfo18" onclick="fnCollectionInfo('18', '102651757,103254263', 'MO');" class="btn_haveInfo" title="소장정보 축소됨">소장정보</a></li>
+								<li><a href="#link" id="btn_sergeInfo18" onclick="fnBibliographicInfo('18', '102651757,103254263', 'MO');" class="btn_sergeInfo" title="서지정보 축소됨">서지정보</a></li>
+								
+									<li><a href="#apply" onclick="javascript:fnLibraryMyLibPop('9791165217884', 'MO'); return false" class="btn_mylibrary themeFC themeBD" title="내서재 담기 새창열림">내서재 담기</a></li>
+								
+							</ol>
+						</div>
+					</div>
+				</div>
+
+				<!-- 소장정보 -->
+				<div id="collectionInfo18" class="bookDetailLayer whereLibrary"></div>
+
+				<!-- 서지정보 -->
+				<div id="bibliographicInfo18" class="bookDetailLayer bibliographicInfo"></div>
+
+			</li>
+		
+			<li>
+				<div class="bookArea">
+					<div class="bookImg"><a href="#link" onclick="fnDetail('89670163,89832744,90094408,91016981,93950977', '9788956749006', 'MO');"><img alt="파이썬 딥러닝 머신러닝 입문" src="https://bookthumb-phinf.pstatic.net/cover/175/975/17597510.jpg" onerror="javascript:fnNoImgBook(this); return false;"></a></div>
+
+					<div class="bookData">
+						<div class="book_dataInner">
+							<span class="book_kind">단행본</span>
+							<a href="#link" onclick="fnDetail('89670163,89832744,90094408,91016981,93950977', '9788956749006', 'MO');" class="book_name kor on"><span class='highlight word'>파이썬</span> 딥러닝 머신러닝 입문</a>
+							<a href="#link" onclick="fnDetail('89670163,89832744,90094408,91016981,93950977', '9788956749006', 'MO');" class="book_name han"><span class='highlight word'>파이썬</span> 딥러닝 머신러닝 입문</a>
+							<ul class="dot-list clearfix">
+								<li class="kor on"><span>저자</span> : 오승환 지음</li>
+								<li class="han"><span>저자</span> : 오승환 지음</li>
+								<li class="kor on"><span>발행처</span> : 정보문화사</li>
+								<li class="han"><span>발행처</span> : 정보문화사</li>
+								
+										<li><span>발행년도</span> : 2021</li>
+										<li><span>ISBN</span> : 9788956749006</li>
+									
+							</ul>
+						</div>
+
+						<div class="bookDetailInfo">
+							<ol>
+								<li><a href="#link" id="btn_haveInfo19" onclick="fnCollectionInfo('19', '89670163,89832744,90094408,91016981,93950977', 'MO');" class="btn_haveInfo" title="소장정보 축소됨">소장정보</a></li>
+								<li><a href="#link" id="btn_sergeInfo19" onclick="fnBibliographicInfo('19', '89670163,89832744,90094408,91016981,93950977', 'MO');" class="btn_sergeInfo" title="서지정보 축소됨">서지정보</a></li>
+								
+									<li><a href="#apply" onclick="javascript:fnLibraryMyLibPop('9788956749006', 'MO'); return false" class="btn_mylibrary themeFC themeBD" title="내서재 담기 새창열림">내서재 담기</a></li>
+								
+							</ol>
+						</div>
+					</div>
+				</div>
+
+				<!-- 소장정보 -->
+				<div id="collectionInfo19" class="bookDetailLayer whereLibrary"></div>
+
+				<!-- 서지정보 -->
+				<div id="bibliographicInfo19" class="bookDetailLayer bibliographicInfo"></div>
+
+			</li>
+		
+			<li>
+				<div class="bookArea">
+					<div class="bookImg"><a href="#link" onclick="fnDetail('19274491', '9791188621477', 'MO');"><img alt="파이썬 쉽게, 더 쉽게 " src="https://image.aladin.co.kr/product/17620/48/cover500/k662534118_1.jpg" onerror="javascript:fnNoImgBook(this); return false;"></a></div>
+
+					<div class="bookData">
+						<div class="book_dataInner">
+							<span class="book_kind">단행본</span>
+							<a href="#link" onclick="fnDetail('19274491', '9791188621477', 'MO');" class="book_name kor on"><span class='highlight word'>파이썬</span> 쉽게, 더 쉽게 </a>
+							<a href="#link" onclick="fnDetail('19274491', '9791188621477', 'MO');" class="book_name han"><span class='highlight word'>파이썬</span> 쉽게, 더 쉽게 </a>
+							<ul class="dot-list clearfix">
+								<li class="kor on"><span>저자</span> : 츠지 신고 지음;, 진명조 옮김</li>
+								<li class="han"><span>저자</span> : 츠지 신고 지음;, 진명조 옮김</li>
+								<li class="kor on"><span>발행처</span> : Jpub,</li>
+								<li class="han"><span>발행처</span> : Jpub,</li>
+								
+										<li><span>발행년도</span> : 2018</li>
+										<li><span>ISBN</span> : 9791188621477</li>
+									
+							</ul>
+						</div>
+
+						<div class="bookDetailInfo">
+							<ol>
+								<li><a href="#link" id="btn_haveInfo20" onclick="fnCollectionInfo('20', '19274491', 'MO');" class="btn_haveInfo" title="소장정보 축소됨">소장정보</a></li>
+								<li><a href="#link" id="btn_sergeInfo20" onclick="fnBibliographicInfo('20', '19274491', 'MO');" class="btn_sergeInfo" title="서지정보 축소됨">서지정보</a></li>
+								
+									<li><a href="#apply" onclick="javascript:fnLibraryMyLibPop('9791188621477', 'MO'); return false" class="btn_mylibrary themeFC themeBD" title="내서재 담기 새창열림">내서재 담기</a></li>
+								
+							</ol>
+						</div>
+					</div>
+				</div>
+
+				<!-- 소장정보 -->
+				<div id="collectionInfo20" class="bookDetailLayer whereLibrary"></div>
+
+				<!-- 서지정보 -->
+				<div id="bibliographicInfo20" class="bookDetailLayer bibliographicInfo"></div>
+
+			</li>
+		
+	</ul>
+</div>
+<!-- 페이징 -->
+<div class="pagingWrap">
+	<p class="paging"><a href="javascript:fnList(1);" class="btn-paging first"><span class="blind">맨 첫 페이지로 가기</span></a>
+<a href="javascript:fnList(1);" class="btn-paging prev"><span class="blind">이전 10개 보기</span></a>
+<span class="current">1</span>
+<a href="javascript:fnList(2);">2</a>
+<a href="javascript:fnList(3);">3</a>
+<a href="javascript:fnList(4);">4</a>
+<a href="javascript:fnList(5);">5</a>
+<a href="javascript:fnList(6);">6</a>
+<a href="javascript:fnList(7);">7</a>
+<a href="javascript:fnList(8);">8</a>
+<a href="javascript:fnList(9);">9</a>
+<a href="javascript:fnList(10);">10</a>
+<a href="javascript:fnList(11);" class="btn-paging next"><span class="blind">다음 10개 보기</span></a>
+<a href="javascript:fnList(29);" class="btn-paging last"><span class="blind">맨 마지막 페이지로 가기</span></a>
+
+</p>
+</div>
+<!-- //페이징 -->
+
+					</div>
+
+					<!-- End Of the Real Contents-->
+				</div>
+			</div>
+		</div>
+	</div>
+	
+
+<!-- footer -->
+<footer id="footer">
+    <div class="fnbWrap">
+        <div class="footerInner clearfix">
+            <ul class="fnb clearfix">
+                <!--<li><a href="/intro/40025/contents.do"><span>개인정보처리방침</span></a></li>-->
+                <li><a href="https://www.anyang.go.kr/main/contents.do?key=865" title="새 창 열림" target="_blank"><span>개인정보처리방침</span></a></li>
+                <li><a href="/intro/40026/contents.do">이메일추출방지정책</a></li>
+                
+                	<li><a href="/intro/40024/contents.do">도서관관련법규</a></li>
+                
+            </ul>
+            <div class="familySite mobileHide">
+                <select name="relateSite" id="relateSite" title="관련기관 사이트 바로가기 선택">
+                    <option value="" selected="selected">관련기관 사이트</option>
+                    <option value="https://www.nl.go.kr/">국립중앙도서관</option>
+                    <option value="http://www.dlibrary.go.kr/">국가전자도서관</option>
+                    <option value="https://www.nlcy.go.kr/NLCY/main/index.do">국립어린이청소년도서관</option>
+                    <option value="https://www.nld.go.kr/ableFront/index.jsp">국립중앙장애인도서관</option>
+                    <option value="https://www.nanet.go.kr/main.do">국회도서관</option>
+                    <option value="https://www.library.kr/cyber/index.do">경기도사이버도서관</option>
+                    <option value="https://memory.library.kr/">경기도메모리</option>
+                    <option value="https://books.nl.go.kr/">책바다</option>
+                    <option value="http://cn.nl.go.kr/chaeknarae/index.do">책나래</option>
+                    <option value="https://books.nl.go.kr/">책이음</option>
+                    <option value="https://www.nl.go.kr/NL/contents/N50203010000.do">사서에게물어보세요</option>
+                    <option value="http://tv.anyang.go.kr/categories/42">안녕, 안양</option>
+                    <option value="https://www.anyang.go.kr/main/index.do">안양시청</option>
+                    <option value="http://learning.anyang.go.kr/">안양시평생학습원</option>
+                    <option value="https://www.ayf.or.kr/">얀양시청소년재단</option>
+                    <option value="https://www.aba.or.kr/">안양산업진흥원</option>
+                    <option value="https://www.fc-anyang.com/">FC안양</option>
+                    <option value="https://www.auc.or.kr/">안양도시공사</option>
+                    <option value="https://www.ayac.or.kr/">안양문화예술재단</option>
+                    <option value="http://www.kdyslexia.org">한국난독증협회</option>
+                    <option value="http://www.nandoc.com">(사)대한난독증협회</option>
+                </select>
+                <a href="#go" id="btnRelateSite" class="btnGo" title="새창열림">이동</a>
+            </div>
+        </div>
+    </div>
+    <div class="faddWrap">
+        <div class="footerInner clearfix">
+            <div class="fadd">
+            	
+                <cite>Copyright 2020. Anyang Municipal Library All Rights Reserved.</cite>
+				
+					<div class="mark_wa">
+						<a href="http://webwatch.or.kr/Situation/WA_Situation.html?MenuCD=110" title="새창에서 열림" target="_blank" rel="noopener noreferrer"><img src="/include/image/common/mark_wa.png" alt="과학기술정보통신부 WEB ACCESSIBILITY(웹접근성인증마크)" /></a>
+					</div>
+            	
+            </div>
+        </div>
+    </div>
+    <div>
+        <p id="post-result"></p>
+    </div>
+</footer>
+<a href="#body" id="btnTopScroll" title="상단으로 이동"></a>
+<!-- //footer -->
+<input type="hidden" name="pbInitNo1" id="pbInitNo1" value="" />
+<input type="hidden" name="pbInitNo2" id="pbInitNo2" value="" />
+<input type="hidden" name="pbInitNo3" id="pbInitNo3" value="" />
+<input type="hidden" name="pbInitNo4" id="pbInitNo4" value="" />
+<input type="hidden" name="pbInitNo5" id="pbInitNo5" value="" />
+<iframe name="hiddenFrame" id="hiddenFrame" title="빈프레임" style="display:none;"></iframe>
+<script type="text/javascript">
+    $(function () {
+        $("#btnRelateSite").click(function () {
+            var url = $("#relateSite").val();
+            if (!$("#relateSite").val()) {
+                alert("관련기관을 선택하세요.");
+                $("#relateSite").focus();
+            } else {
+                window.open(url, "_blank");
+            }
+            return false;
+        });
+    });
+</script>
+
+
+<script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
+<script type="text/javascript">
+	if(!wcs_add) var wcs_add = {};
+	wcs_add["wa"] = "6c8e2060d98f94";
+	if(window.wcs) {wcs_do();}
+</script>
+</div>
+<!-- //wrap -->
+</body>
+</html>

@@ -1,0 +1,2434 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="유성구통합도서관">
+<meta name="description" content="유성구통합도서관 정보 및 도서검색 제공">
+<meta name="generator" content="jnet co. ltd.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="유성구통합도서관">
+<meta property="og:description" content="유성구통합도서관 정보 및 도서검색 제공">
+<meta property="og:image" content="/include/image/common/ico_sns_favicon.png">
+<meta property="og:url" content="https://www.yuseong.go.kr">
+<link rel="canonical" href="https://www.yuseong.go.kr">
+<title>유성구통합도서관</title>
+
+<link rel="shortcut icon" href="/include/image/common/ico_sns_favicon.png">
+<link rel="stylesheet" href="/include/js/jquery-ui.min.css">
+<link rel="stylesheet" href="/include/js/slick-theme.css">
+<link rel="stylesheet" href="/include/js/slick.css">
+<link rel="stylesheet" href="/include/css/sub.css?v=20240712">
+<script>
+var $ctx = "";
+var $siteCd = "web";
+var $kakaoAppKey = "a4781b95fbdd81e96103a6e97399fc2a";
+</script>
+<script src="/include/js/jquery-1.12.4.min.js"></script>
+<script src="/include/js/jquery-ui.min.js"></script>
+<script src="/include/js/jquery.alphanum.js"></script>
+<script src="/include/js/jquery.tab.js"></script>
+<script src="/include/js/jQuery.stringify.js"></script>
+<script src="/include/js/slick.min.js"></script>
+<script src="/include/js/gnb.js"></script>
+<script src="/include/js/sub.js"></script>
+<script src="/include/js/layerPop.js"></script>
+<script src="/include/js/common.js"></script>
+<script src="/include/js/gu-dong.js"></script>
+<script>
+$(function(){
+	
+		
+		
+			//<![CDATA[
+			initMenu(2,1,1,0,0);
+			//]]>
+		
+	
+});
+//정회원 체크
+function isRegularMember() {
+	if(isEmpty("")) {
+		alert("로그인 후 이용하시기 바랍니다.");
+		return false;
+	}
+	if("" != "정회원") {
+		alert("정회원(대출회원)만 이용가능합니다.");
+		return false;
+	}
+	return true;
+}
+</script>
+
+
+<script src="/include/booksearch/js/ui.js"></script>
+<script src="/include/booksearch/js/ilus.js"></script>
+<script>
+$(function(){
+	$("#searchForm #searchWord").keypress(fnSearchEnter);
+	$("#searchBtn").click(fnSearch);
+	$("#reSearchLibraryBtn").click(fnReSearchLibrary);
+	$("#sortBtn").click(fnSort);
+	$("#viewTypeCardBtn").click(function() {
+		fnViewTyp("cardViewStyle");
+	});
+	$("#viewTypeListBtn").click(function() {
+		fnViewTyp("listViewStyle");
+	});
+	$("#checkAll").click(fnCheckAll);
+	$("#addBasketBatchBtn").click(fnAddBasketBatchProc);
+
+	// 도서관 모두 체크 될 경우 전체도서관에 체크
+	var paramVLmt2Len = "H0000015;H0000016;H0000018;H0000019;H0000020;H0000026;H0000028;H0000030;H0000031;H0000013;H0000033".split(";").length;
+	var inputVLmt2Len = $("input[name='tmpVLmt2']").length;
+
+	if( paramVLmt2Len == inputVLmt2Len ){
+		$("#vLmt2All").prop("checked", true);
+	}
+
+	$("#searchForm input[name=vLmt2All]").change(function(){
+		if($(this).prop("checked")){
+			$("#searchForm input[name=tmpVLmt2]").prop("checked",true);
+		} else {
+			$("#searchForm input[name=tmpVLmt2]").prop("checked",false);
+		}
+	});
+
+	$("#searchForm input[name=tmpVLmt2]").click(function(){
+		if( $("input[name='tmpVLmt2']:checked").length == inputVLmt2Len ){
+			$("#searchForm input[name=vLmt2All]").prop("checked",true);
+		}else{
+			$("#searchForm input[name=vLmt2All]").prop("checked",false);
+		}
+
+	});
+
+});
+
+function fnList(currentPageNo){
+	var form = document.paramForm;
+	form.currentPageNo.value = currentPageNo;
+	form.action = "/web/menu/10075/program/30005/searchResultList.do";
+	form.submit();
+}
+
+function fnDetail(vCtrl){
+	var form = document.detailForm;
+	form.vCtrl.value = vCtrl;
+	form.action = "/web/menu/10075/program/30005/searchResultDetail.do";
+	form.submit();
+}
+
+function fnSort(){
+	var form = document.paramForm;
+	var oform = document.optionForm;
+	form.currentPageNo.value = 1;
+	form.recordCountPerPage.value = oform.recordCountPerPage.value;
+	form.vOI.value = oform.vOI.value;
+	form.vOS.value = oform.vOS.value;
+	form.action = "/web/menu/10075/program/30005/searchResultList.do";
+	form.submit();
+}
+
+function fnViewTyp(viewType){
+	var form = document.paramForm;
+	form.viewType.value = viewType;
+	form.action = "/web/menu/10075/program/30005/searchResultList.do";
+	form.submit();
+}
+
+function fnSearch(){
+	var form = document.searchForm;
+	if(isEmpty(form.searchWord.value)){
+		alert("검색어를 입력하세요.");
+		return false;
+	}
+	if(form.vRefine.checked == false) {
+		form.searchType.value = "SIMPLE";
+	}
+
+	var vLmt2 = "";
+	var vLmt2Arr = new Array();
+	$("input[name='tmpVLmt2']").each(function(){
+		if($(this).prop("checked")){
+			vLmt2Arr.push($(this).val());
+		}
+	});
+	form.vLmt2.value = vLmt2Arr.join(";");
+
+	form.action="/web/menu/10075/program/30005/searchResultList.do";
+	form.submit();
+}
+
+function fnReSearchLibrary(){
+	var form = document.paramForm;
+// 	form.vLoca.value = $("#searchForm input[name=vLoca]:checked").val();
+
+	var vLmt2 = "";
+	var vLmt2Arr = new Array();
+	$("input[name='tmpVLmt2']").each(function(){
+		if($(this).prop("checked")){
+			vLmt2Arr.push($(this).val());
+		}
+	});
+	form.vLmt2.value = vLmt2Arr.join(";");
+
+	form.currentPageNo.value = 1;
+	form.action = "/web/menu/10075/program/30005/searchResultList.do";
+	form.submit();
+}
+
+function fnLmt0(vLmt0){
+	var form = document.paramForm;
+	form.vLmt0.value = vLmt0;
+	form.action="/web/menu/10075/program/30005/searchResultList.do";
+	form.submit();
+}
+
+</script>
+</head>
+<body>
+<form id="paramForm" name="paramForm" method="post">
+	<input type="hidden" name="csrfToken" value="32d28c9c-4d46-47da-9e0f-b210150eec3d">
+	<input type="hidden" name="currentPageNo" value="1">
+	<input type="hidden" name="recordCountPerPage" value="10">
+	<input type="hidden" name="searchType" value="SIMPLE">
+	<input type="hidden" name="viewType" value="cardViewStyle">
+	<input type="hidden" name="vLoca" value="">
+	<input type="hidden" name="vOI" value="">
+	<input type="hidden" name="vOS" value="">
+	<input type="hidden" name="vLmt0" value="">
+	<input type="hidden" name="vLmt2" value="H0000015;H0000016;H0000018;H0000019;H0000020;H0000026;H0000028;H0000030;H0000031;H0000013;H0000033">
+	<input type="hidden" name="vSubLoca" value="">
+	
+	
+</form>
+<form name="detailForm" id="detailForm" method="post">
+	<input type="hidden" name="vCtrl" value="">
+	<input type="hidden" name="returnUrl" value="1dje3NFupMzfL9V08lkp09HpvkfHb1BjnkybVzR05Wmz06RfgBjVNtalud0CuAuuuY4Ud1bwygT72OGYYh5vdbuOMNIOXI7o6vCfut52KEFmL86zR1sPaw87vhnUNYfl1x1AffunRBNGbMMS0RvsIuOt3XIscWJWE6Sh9qDBwxBNNHLPfulmfTksYHaNQmlaNjsSl8YULgWtXLQ0XqlGnZ3c5FNouvUndvj1pmjbiMaljQI7K4sAbTWj7ydMlAf2saz7mIjWniLPaMbbDxiXJ3YmpK0uv8Bn">
+</form>
+<!-- skip -->
+<ul class="skip">
+	<li><a href="#contentArea">본문 바로가기</a></li>
+	<li><a href="#lnb">하위메뉴 바로가기</a></li>
+</ul>
+<!-- skip -->
+<!-- wrap -->
+<div id="wrap">
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="blackBG"><span class="blind">이전으로 돌아가기</span></div>
+<header id="header">
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+	function fnTopSiteChange() {
+		var form = document.topForm;
+		form.action = "/web/changeLib.do";
+		form.submit();
+	}
+</script>
+<div id="snb">
+	<div class="snbUtilGroup">
+		<div class="snb-siteLink">
+			<a href="https://www.yuseong.go.kr/" target="_blank" title="새창열림" class="site-item"><span>유성구청</span></a>
+			<a href="https://lib.yuseong.go.kr/lly/" target="_blank" title="새창열림" class="site-item"><span>평생학습센터</span></a>
+			<div class="snb-libList">
+				<form name="topForm" id="topForm" method="post">
+					<input type="hidden" name="csrfToken" value="32d28c9c-4d46-47da-9e0f-b210150eec3d">
+					<input type="hidden" name="returnUrl" value="1dje3NFupMzfL9V08lkp09HpvkfHb1BjnkybVzR05Wmz06RfgBjVNtalud0CuAuuuY4Ud1bwygT72OGYYh5vdbuOMNIOXI7o6vCfut52KEFmL86zR1sPaw87vhnUNYfl1x1AffunRBNGbMMS0RvsIuOt3XIscWJWE6Sh9qDBwxBNNHLPfulmfTksYHaNQmlaNjsSl8YULgWtXLQ0XqlGnZ3c5FNouvUndvj1pmjbiMaljQI7K4sAbTWj7ydMlAf2saz7mIjWniLPaMbbDxiXJ3YmpK0uv8Bn">
+					<select name="manageCd" id="manageCd" title="도서관 선택">
+						<option value="">도서관 선택</option>
+						
+							<option value="H0000015" >노은도서관</option>
+						
+							<option value="H0000016" >유성도서관</option>
+						
+							<option value="H0000018" >진잠도서관</option>
+						
+							<option value="H0000019" >구즉도서관</option>
+						
+							<option value="H0000020" >구암도서관</option>
+						
+							<option value="H0000026" >원신흥도서관</option>
+						
+							<option value="H0000028" >아가랑도서관</option>
+						
+							<option value="H0000030" >관평도서관</option>
+						
+							<option value="H0000031" >전민도서관</option>
+						
+							<option value="H0000033" >용산도서관</option>
+						
+					</select>
+				</form>
+				<button type="button" onclick="fnTopSiteChange()" class="btn" title="선택한 도서관으로 이동"><span>확인</span></button>
+				<div class="sns-group ml10">
+					<a href="http://pf.kakao.com/_LNxibT" target="_blank" aria-label="카카오톡 이동(새 창 열림)">
+						<img src="/include/image/common/ico_snsKakao.png?ver=20260219" alt="" aria-hidden="true">
+					</a>
+					<a href="https://www.instagram.com/yuseong_lifelib/" target="_blank" aria-label="인스타그램으로 이동(새 창 열림)">
+						<img src="/include/image/common/ico_snsInsta.png?ver=20260219" alt="" aria-hidden="true">
+					</a>
+					<a href="https://www.facebook.com/yuseonglifelib" target="_blank" aria-label="페이스북으로 이동(새 창 열림)">
+						<img src="/include/image/common/ico_snsFace.png?ver=20260219" alt="" aria-hidden="true">
+					</a>
+					<a href="https://band.us/@yuseonglifelib" target="_blank" aria-label="네이버밴드로 이동(새 창 열림)">
+						<img src="/include/image/common/ico_snsBand.png?ver=20260219" alt="" aria-hidden="true">
+					</a>
+				</div>
+			</div>
+		</div>
+		<div class="snb-memLink">
+			
+				
+					<a href="/web/program/memberLogin.do?returnUrl=1dje3NFupMzfL9V08lkp09HpvkfHb1BjnkybVzR05Wmz06RfgBjVNtalud0CuAuuuY4Ud1bwygT72OGYYh5vdbuOMNIOXI7o6vCfut52KEFmL86zR1sPaw87vhnUNYfl1x1AffunRBNGbMMS0RvsIuOt3XIscWJWE6Sh9qDBwxBNNHLPfulmfTksYHaNQmlaNjsSl8YULgWtXLQ0XqlGnZ3c5FNouvUndvj1pmjbiMaljQI7K4sAbTWj7ydMlAf2saz7mIjWniLPaMbbDxiXJ3YmpK0uv8Bn" class="mem-item login"><span>로그인</span></a>
+					<a href="https://www.u-library.kr/webcontent/info/9" target="_blank" title="새창열림" class="mem-item join"><span>회원가입</span></a>
+				
+				
+			
+			<a href="/web/program/sitemap.do" class="mem-item sitemap mobileHide"><span>사이트맵</span></a>
+		</div>
+	</div>
+</div>
+<div class="headerInner">
+	<h1 id="logo"><a href="/web/index.do"><span class="blind">유성구통합도서관</span></a></h1>
+	<div class="btnTopArea">
+		<button class="btnTopSearch"><span class="blind">검색창 비활성화됨</span></button>
+		<button class="menuBtn btnTopTotal"><span class="blind">전체메뉴 비활성화됨</span></button>
+		<button class="menuBtn mobileGnbOpen"><span class="blind">메뉴열기</span></button>
+	</div>
+</div>
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<form name="topSearchForm" id="topSearchForm" method="post" onsubmit="return false;">
+	<input type="hidden" name="csrfToken" value="32d28c9c-4d46-47da-9e0f-b210150eec3d">
+	<fieldset>
+		<legend>통합자료 검색영역</legend>
+		<div id="searchBox" class="searchTopWrap">
+			<div class="searchTopArea">
+				<div class="searchTit">도서검색</div>
+				<div class="searchKeyWord">
+					<input type="text" title="검색어 입력" id="topSearchKeyword" name="vSrchText" autocomplete="off" placeholder="검색어를 입력하세요.">
+					<button type="button" id="topSearchBtn"  class="btnSearch"><span>검색</span></button>
+				</div>
+			</div>
+			<button type="button" id="searchTopClose" class="searchTopCloseBtn"><span>검색창닫기</span></button>
+		</div>
+	</fieldset>
+</form>
+<div id="searchblackBG"></div>
+<script>
+$(function(){
+	$("#topSearchBtn").click(fnTopSearch);
+	$("#topSearchKeyword").keypress(function(e){
+		if((e.keyCode || e.which) == 13){
+			fnTopSearch();
+			e.preventDefault();
+		}
+	});
+});
+function fnTopSearch() {
+	var form = document.topSearchForm;
+	if(isEmpty(form.vSrchText.value)) {
+		alert("검색어를 입력해주세요.");
+		form.vSrchText.focus();
+		return;
+	}
+	form.action = "/web/program/searchResultList.do";
+	form.submit();
+}
+</script>
+	<nav id="gnbNav" class="gnbNav">
+		<div id="mobileIndexClose">
+			<div class="myDiv">
+				
+					
+						<a href="#" class="myDivItem login"><span>로그인</span></a>
+						<a href="https://www.u-library.kr/nonRelation/memberJoin" target="_blank" title="새창열림" class="myDivItem join"><span>회원가입</span></a>
+					
+					
+				
+			</div>
+			<button class="mobileGnbClose"><span class="blind">메뉴 닫기</span></button>
+		</div>
+		<ul id="gnb" class="gnb">
+	<li id="gnb1"><a href="/web/menu/10003/contents/40001/contents.do" ><span>도서관안내</span></a>
+			<ul>
+					<li id="gnb1_1">
+							<a href="/web/menu/10003/contents/40001/contents.do" ><span>도서관소개</span></a>
+							<ul class="MkTab">
+									<li id="gnb1_1_1">
+											<a href="/web/menu/10003/contents/40001/contents.do" ><span>인사말</span></a>
+											</li>
+									<li id="gnb1_1_2">
+											<a href="/web/menu/10004/program/30001/organChart.do" ><span>조직도</span></a>
+											</li>
+									<li id="gnb1_1_3">
+											<a href="/web/menu/10005/program/30002/libraryMap.do" ><span>한눈에보는도서관</span></a>
+											</li>
+									</ul>
+							</li>
+					<li id="gnb1_2">
+							<a href="/web/menu/10007/contents/40002/contents.do" ><span>노은도서관</span></a>
+							<ul class="MkTab">
+									<li id="gnb1_2_1">
+											<a href="/web/menu/10007/contents/40002/contents.do" ><span>도서관연혁</span></a>
+											</li>
+									<li id="gnb1_2_2">
+											<a href="/web/menu/10008/program/30003/dataStatus.do?manageCd=H0000015" ><span>장서현황</span></a>
+											</li>
+									<li id="gnb1_2_3">
+											<a href="/web/menu/10009/contents/40003/contents.do" ><span>층별안내</span></a>
+											</li>
+									<li id="gnb1_2_4">
+											<a href="/web/menu/10010/program/30001/organChart.do?deptIdx=4" ><span>조직도</span></a>
+											</li>
+									<li id="gnb1_2_5">
+											<a href="/web/menu/10011/contents/40004/contents.do" ><span>찾아오시는길</span></a>
+											</li>
+									</ul>
+							</li>
+					<li id="gnb1_3">
+							<a href="/web/menu/10013/contents/40005/contents.do" ><span>아가랑도서관</span></a>
+							<ul class="MkTab">
+									<li id="gnb1_3_1">
+											<a href="/web/menu/10013/contents/40005/contents.do" ><span>도서관연혁</span></a>
+											</li>
+									<li id="gnb1_3_2">
+											<a href="/web/menu/10014/program/30003/dataStatus.do?manageCd=H0000028" ><span>장서현황</span></a>
+											</li>
+									<li id="gnb1_3_3">
+											<a href="/web/menu/10015/contents/40006/contents.do" ><span>층별안내</span></a>
+											</li>
+									<li id="gnb1_3_4">
+											<a href="/web/menu/10016/program/30001/organChart.do?deptIdx=5" ><span>조직도</span></a>
+											</li>
+									<li id="gnb1_3_5">
+											<a href="/web/menu/10017/contents/40007/contents.do" ><span>찾아오시는길</span></a>
+											</li>
+									</ul>
+							</li>
+					<li id="gnb1_4">
+							<a href="/web/menu/10019/contents/40008/contents.do" ><span>원신흥도서관</span></a>
+							<ul class="MkTab">
+									<li id="gnb1_4_1">
+											<a href="/web/menu/10019/contents/40008/contents.do" ><span>도서관연혁</span></a>
+											</li>
+									<li id="gnb1_4_2">
+											<a href="/web/menu/10020/program/30003/dataStatus.do?manageCd=H0000026" ><span>장서현황</span></a>
+											</li>
+									<li id="gnb1_4_3">
+											<a href="/web/menu/10021/contents/40009/contents.do" ><span>층별안내</span></a>
+											</li>
+									<li id="gnb1_4_4">
+											<a href="/web/menu/10022/program/30001/organChart.do?deptIdx=6" ><span>조직도</span></a>
+											</li>
+									<li id="gnb1_4_5">
+											<a href="/web/menu/10023/contents/40010/contents.do" ><span>찾아오시는길</span></a>
+											</li>
+									</ul>
+							</li>
+					<li id="gnb1_5">
+							<a href="/web/menu/10025/contents/40011/contents.do" ><span>유성도서관</span></a>
+							<ul class="MkTab">
+									<li id="gnb1_5_1">
+											<a href="/web/menu/10025/contents/40011/contents.do" ><span>도서관연혁</span></a>
+											</li>
+									<li id="gnb1_5_2">
+											<a href="/web/menu/10026/program/30003/dataStatus.do?manageCd=H0000016" ><span>장서현황</span></a>
+											</li>
+									<li id="gnb1_5_3">
+											<a href="/web/menu/10027/contents/40012/contents.do" ><span>층별안내</span></a>
+											</li>
+									<li id="gnb1_5_4">
+											<a href="/web/menu/10028/program/30001/organChart.do?deptIdx=7" ><span>조직도</span></a>
+											</li>
+									<li id="gnb1_5_5">
+											<a href="/web/menu/10029/contents/40013/contents.do" ><span>찾아오시는길</span></a>
+											</li>
+									</ul>
+							</li>
+					<li id="gnb1_6">
+							<a href="/web/menu/10031/contents/40014/contents.do" ><span>진잠도서관</span></a>
+							<ul class="MkTab">
+									<li id="gnb1_6_1">
+											<a href="/web/menu/10031/contents/40014/contents.do" ><span>도서관연혁</span></a>
+											</li>
+									<li id="gnb1_6_2">
+											<a href="/web/menu/10032/program/30003/dataStatus.do?manageCd=H0000018" ><span>장서현황</span></a>
+											</li>
+									<li id="gnb1_6_3">
+											<a href="/web/menu/10033/contents/40015/contents.do" ><span>층별안내</span></a>
+											</li>
+									<li id="gnb1_6_4">
+											<a href="/web/menu/10153/contents/40057/contents.do" ><span>휴게실</span></a>
+											</li>
+									<li id="gnb1_6_5">
+											<a href="/web/menu/10034/program/30001/organChart.do?deptIdx=8" ><span>조직도</span></a>
+											</li>
+									<li id="gnb1_6_6">
+											<a href="/web/menu/10035/contents/40016/contents.do" ><span>찾아오시는길</span></a>
+											</li>
+									</ul>
+							</li>
+					<li id="gnb1_7">
+							<a href="/web/menu/10037/contents/40017/contents.do" ><span>구즉도서관</span></a>
+							<ul class="MkTab">
+									<li id="gnb1_7_1">
+											<a href="/web/menu/10037/contents/40017/contents.do" ><span>도서관연혁</span></a>
+											</li>
+									<li id="gnb1_7_2">
+											<a href="/web/menu/10038/program/30003/dataStatus.do?manageCd=H0000019" ><span>장서현황</span></a>
+											</li>
+									<li id="gnb1_7_3">
+											<a href="/web/menu/10039/contents/40018/contents.do" ><span>층별안내</span></a>
+											</li>
+									<li id="gnb1_7_4">
+											<a href="/web/menu/10040/program/30001/organChart.do?deptIdx=9" ><span>조직도</span></a>
+											</li>
+									<li id="gnb1_7_5">
+											<a href="/web/menu/10041/contents/40019/contents.do" ><span>찾아오시는길</span></a>
+											</li>
+									</ul>
+							</li>
+					<li id="gnb1_8">
+							<a href="/web/menu/10043/contents/40020/contents.do" ><span>구암도서관</span></a>
+							<ul class="MkTab">
+									<li id="gnb1_8_1">
+											<a href="/web/menu/10043/contents/40020/contents.do" ><span>도서관연혁</span></a>
+											</li>
+									<li id="gnb1_8_2">
+											<a href="/web/menu/10044/program/30003/dataStatus.do?manageCd=H0000020" ><span>장서현황</span></a>
+											</li>
+									<li id="gnb1_8_3">
+											<a href="/web/menu/10045/contents/40021/contents.do" ><span>층별안내</span></a>
+											</li>
+									<li id="gnb1_8_4">
+											<a href="/web/menu/10046/program/30001/organChart.do?deptIdx=3" ><span>조직도</span></a>
+											</li>
+									<li id="gnb1_8_5">
+											<a href="/web/menu/10047/contents/40022/contents.do" ><span>찾아오시는길</span></a>
+											</li>
+									</ul>
+							</li>
+					<li id="gnb1_9">
+							<a href="/web/menu/10049/contents/40023/contents.do" ><span>관평도서관</span></a>
+							<ul class="MkTab">
+									<li id="gnb1_9_1">
+											<a href="/web/menu/10049/contents/40023/contents.do" ><span>도서관연혁</span></a>
+											</li>
+									<li id="gnb1_9_2">
+											<a href="/web/menu/10050/program/30003/dataStatus.do?manageCd=H0000030" ><span>장서현황</span></a>
+											</li>
+									<li id="gnb1_9_3">
+											<a href="/web/menu/10051/contents/40024/contents.do" ><span>층별안내</span></a>
+											</li>
+									<li id="gnb1_9_4">
+											<a href="/web/menu/10052/program/30001/organChart.do?deptIdx=10" ><span>조직도</span></a>
+											</li>
+									<li id="gnb1_9_5">
+											<a href="/web/menu/10054/contents/40026/contents.do" ><span>채널</span></a>
+											</li>
+									<li id="gnb1_9_6">
+											<a href="/web/menu/10053/contents/40025/contents.do" ><span>찾아오시는길</span></a>
+											</li>
+									</ul>
+							</li>
+					<li id="gnb1_10">
+							<a href="/web/menu/10056/contents/40027/contents.do" ><span>전민도서관</span></a>
+							<ul class="MkTab">
+									<li id="gnb1_10_1">
+											<a href="/web/menu/10056/contents/40027/contents.do" ><span>도서관연혁</span></a>
+											</li>
+									<li id="gnb1_10_2">
+											<a href="/web/menu/10057/program/30003/dataStatus.do?manageCd=H0000031" ><span>장서현황</span></a>
+											</li>
+									<li id="gnb1_10_3">
+											<a href="/web/menu/10058/contents/40028/contents.do" ><span>층별안내</span></a>
+											</li>
+									<li id="gnb1_10_4">
+											<a href="/web/menu/10059/program/30001/organChart.do?deptIdx=11" ><span>조직도</span></a>
+											</li>
+									<li id="gnb1_10_5">
+											<a href="/web/menu/10152/contents/40056/contents.do" ><span>채널</span></a>
+											</li>
+									<li id="gnb1_10_6">
+											<a href="/web/menu/10060/contents/40029/contents.do" ><span>찾아오시는길</span></a>
+											</li>
+									</ul>
+							</li>
+					<li id="gnb1_11">
+							<a href="/web/menu/10157/contents/40059/contents.do" ><span>용산도서관</span></a>
+							<ul class="MkTab">
+									<li id="gnb1_11_1">
+											<a href="/web/menu/10157/contents/40059/contents.do" ><span>도서관연혁</span></a>
+											</li>
+									<li id="gnb1_11_2">
+											<a href="/web/menu/10158/program/30003/dataStatus.do?manageCd=H0000033" ><span>장서현황</span></a>
+											</li>
+									<li id="gnb1_11_3">
+											<a href="/web/menu/10159/contents/40060/contents.do" ><span>층별안내</span></a>
+											</li>
+									<li id="gnb1_11_4">
+											<a href="/web/menu/10160/program/30001/organChart.do?deptIdx=13" ><span>조직도</span></a>
+											</li>
+									<li id="gnb1_11_5">
+											<a href="/web/menu/10161/contents/40061/contents.do" ><span>찾아오시는길</span></a>
+											</li>
+									</ul>
+							</li>
+					<li id="gnb1_12">
+							<a href="/web/menu/10063/bbs/20005/bbsPostList.do" ><span>작은도서관</span></a>
+							<ul class="MkSub">
+									<li id="gnb1_12_1">
+											<a href="/web/menu/10063/bbs/20005/bbsPostList.do" ><span>공립작은도서관</span></a>
+											<ul class="MkTab">
+													<li id="gnb1_12_1_1">
+															<a href="/web/menu/10063/bbs/20005/bbsPostList.do" ><span>공지사항</span></a>
+														</li>
+													<li id="gnb1_12_1_2">
+															<a href="/web/menu/10064/program/30035/smallLibDetail.do?libIdx=57" ><span>온천마을</span></a>
+														</li>
+													<li id="gnb1_12_1_3">
+															<a href="/web/menu/10065/program/30035/smallLibDetail.do?libIdx=64" ><span>자운마을</span></a>
+														</li>
+													<li id="gnb1_12_1_5">
+															<a href="/web/menu/10067/program/30035/smallLibDetail.do?libIdx=51" ><span>신성마을</span></a>
+														</li>
+													<li id="gnb1_12_1_6">
+															<a href="/web/menu/10068/program/30035/smallLibDetail.do?libIdx=45" ><span>송강마을</span></a>
+														</li>
+													<li id="gnb1_12_1_7">
+															<a href="/web/menu/10069/program/30035/smallLibDetail.do?libIdx=62" ><span>어린이영어</span></a>
+														</li>
+													<li id="gnb1_12_1_8">
+															<a href="/web/menu/10070/program/30035/smallLibDetail.do?libIdx=41" ><span>별똥별과학</span></a>
+														</li>
+													<li id="gnb1_12_1_9">
+															<a href="/web/menu/10071/program/30035/smallLibDetail.do?libIdx=33" ><span>문학마을</span></a>
+														</li>
+													</ul>
+											</li>
+									<li id="gnb1_12_2">
+											<a href="/web/menu/10072/program/30004/privateSmallLibList.do" ><span>사립작은도서관</span></a>
+											</li>
+									</ul>
+							</li>
+					</ul>
+			</li>
+	<li id="gnb2"><a href="/web/menu/10075/program/30005/searchSimple.do" ><span>자료검색</span></a>
+			<ul>
+					<li id="gnb2_1">
+							<a href="/web/menu/10075/program/30005/searchSimple.do" ><span>도서검색</span></a>
+							<ul class="MkSub">
+									<li id="gnb2_1_1">
+											<a href="/web/menu/10075/program/30005/searchSimple.do" ><span>간략검색</span></a>
+											</li>
+									<li id="gnb2_1_2">
+											<a href="/web/menu/10076/program/30006/searchDetail.do" ><span>상세검색</span></a>
+											</li>
+									</ul>
+							</li>
+					<li id="gnb2_2">
+							<a href="/web/menu/10077/program/30007/searchNewList.do" ><span>신착자료안내</span></a>
+							</li>
+					<li id="gnb2_3">
+							<a href="/web/menu/10078/program/30008/curationList.do" ><span>북큐레이션</span></a>
+							</li>
+					<li id="gnb2_4">
+							<a href="/web/menu/10079/program/30009/loanBestList.do" ><span>도서대출베스트</span></a>
+							</li>
+					<li id="gnb2_5">
+							<a href="/web/menu/10154/program/30038/searchKdc.do" ><span>주제별검색</span></a>
+							</li>
+					</ul>
+			</li>
+	<li id="gnb3"><a href="/web/menu/10081/contents/40038/contents.do" ><span>통합안내</span></a>
+			<ul>
+					<li id="gnb3_1">
+							<a href="/web/menu/10081/contents/40038/contents.do" ><span>이용시간</span></a>
+							</li>
+					<li id="gnb3_2">
+							<a href="/web/menu/10082/contents/40039/contents.do" ><span>회원가입</span></a>
+							</li>
+					<li id="gnb3_3">
+							<a href="/web/menu/10083/contents/40040/contents.do" ><span>대출/반납/연장</span></a>
+							</li>
+					<li id="gnb3_4">
+							<a href="/web/menu/10084/contents/40041/contents.do" ><span>상호대차(책두레)</span></a>
+							</li>
+					<li id="gnb3_5">
+							<a href="/web/menu/10086/contents/40042/contents.do" ><span>편의시설</span></a>
+							<ul class="MkTab">
+									<li id="gnb3_5_1">
+											<a href="/web/menu/10086/contents/40042/contents.do" ><span>무선인터넷</span></a>
+											</li>
+									<li id="gnb3_5_2">
+											<a href="/web/menu/10087/contents/40043/contents.do" ><span>프린터/자료복사</span></a>
+											</li>
+									</ul>
+							</li>
+					<li id="gnb3_6">
+							<a href="/web/menu/10088/contents/40044/contents.do" ><span>도서기증</span></a>
+							</li>
+					<li id="gnb3_7">
+							<a href="/web/menu/10090/contents/40045/contents.do" ><span>전자책이용</span></a>
+							<ul class="MkTab">
+									<li id="gnb3_7_1">
+											<a href="/web/menu/10090/contents/40045/contents.do" ><span>전자책</span></a>
+											</li>
+									<li id="gnb3_7_2">
+											<a href="/web/menu/10091/contents/40046/contents.do" ><span>오디오북</span></a>
+											</li>
+									<li id="gnb3_7_3">
+											<a href="/web/menu/10092/contents/40047/contents.do" ><span>영어전자책</span></a>
+											</li>
+									</ul>
+							</li>
+					</ul>
+			</li>
+	<li id="gnb4"><a href="/web/menu/10095/program/30010/lectureList.do" ><span>문화행사</span></a>
+			<ul>
+					<li id="gnb4_1">
+							<a href="/web/menu/10095/program/30010/lectureList.do" ><span>문화행사신청/조회</span></a>
+							<ul class="MkTab">
+									<li id="gnb4_1_1">
+											<a href="/web/menu/10095/program/30010/lectureList.do" ><span>행사신청</span></a>
+											</li>
+									<li id="gnb4_1_2">
+											<a href="/web/menu/10096/program/30010/mypage/lectureApplyList.do" ><span>신청조회</span></a>
+											</li>
+									</ul>
+							</li>
+					<li id="gnb4_2">
+							<a href="/web/menu/10097/program/30011/eventCalendar.do" ><span>월별행사안내</span></a>
+							</li>
+					<li id="gnb4_3">
+							<a href="/web/menu/10098/program/30012/eventNotiGuide.do" ><span>행사알림신청</span></a>
+							</li>
+					<li id="gnb4_4">
+							<a href="/web/menu/10099/bbs/20006/bbsPostList.do" ><span>강사등록</span></a>
+							</li>
+					</ul>
+			</li>
+	<li id="gnb5"><a href="/web/menu/10102/contents/40048/contents.do" ><span>온라인신청</span></a>
+			<ul>
+					<li id="gnb5_1">
+							<a href="/web/menu/10102/contents/40048/contents.do" ><span>희망도서신청</span></a>
+							<ul class="MkTab">
+									<li id="gnb5_1_1">
+											<a href="/web/menu/10102/contents/40048/contents.do" ><span>신청안내</span></a>
+											</li>
+									<li id="gnb5_1_2">
+											<a href="/web/menu/10103/program/30014/hopeBookApply.do" ><span>신청하기</span></a>
+											</li>
+									</ul>
+							</li>
+					<li id="gnb5_2">
+							<a href="/web/menu/10163/contents/40062/contents.do" ><span>책바로 서비스</span></a>
+							</li>
+					</li>
+					<li id="gnb5_3">
+							<a href="/web/menu/10104/contents/40049/contents.do" ><span>맘편한도서대출신청</span></a>
+							</li>
+					<li id="gnb5_4">
+							<a href="/web/menu/10106/contents/40050/contents.do" ><span>견학신청</span></a>
+							<ul class="MkTab">
+									<li id="gnb5_4_1">
+											<a href="/web/menu/10106/contents/40050/contents.do" ><span>신청안내</span></a>
+											</li>
+									<li id="gnb5_4_2">
+											<a href="/web/menu/10107/program/30015/visitCalendar.do" ><span>신청하기</span></a>
+											</li>
+									<li id="gnb5_4_3">
+											<a href="/web/menu/10108/program/30015/mypage/visitApplyList.do" ><span>신청조회</span></a>
+											</li>
+									</ul>
+							</li>
+					<li id="gnb5_5">
+							<a href="/web/menu/10110/contents/40051/contents.do" ><span>사물함이용신청</span></a>
+							<ul class="MkTab">
+									<li id="gnb5_5_1">
+											<a href="/web/menu/10110/contents/40051/contents.do" ><span>이용안내</span></a>
+											</li>
+									<li id="gnb5_5_2">
+											<a href="/web/menu/10111/program/30016/lockerPostList.do" ><span>신청하기</span></a>
+											</li>
+									<li id="gnb5_5_3">
+											<a href="/web/menu/10112/program/30016/mypage/lockerApplyList.do" ><span>신청조회</span></a>
+											</li>
+									</ul>
+							</li>
+					<li id="gnb5_6">
+							<a href="/web/menu/10114/contents/40052/contents.do" ><span>갤러리대관신청</span></a>
+							<ul class="MkTab">
+									<li id="gnb5_6_1">
+											<a href="/web/menu/10114/contents/40052/contents.do" ><span>신청안내</span></a>
+											</li>
+									<li id="gnb5_6_2">
+											<a href="/web/menu/10115/program/30017/galleryCalendar.do" ><span>신청하기</span></a>
+											</li>
+									<li id="gnb5_6_3">
+											<a href="/web/menu/10116/program/30017/mypage/galleryApplyList.do" ><span>신청조회</span></a>
+											</li>
+									</ul>
+							</li>
+					<li id="gnb5_7">
+							<a href="/web/menu/10118/contents/40053/contents.do" ><span>미디어창작공간신청</span></a>
+							<ul class="MkTab">
+									<li id="gnb5_7_1">
+											<a href="/web/menu/10118/contents/40053/contents.do" ><span>신청안내</span></a>
+											</li>
+									<li id="gnb5_7_2">
+											<a href="/web/menu/10119/program/30018/mediaCalendar.do" ><span>신청하기</span></a>
+											</li>
+									<li id="gnb5_7_3">
+											<a href="/web/menu/10120/program/30018/mypage/mediaApplyList.do" ><span>신청조회</span></a>
+											</li>
+									</ul>
+							</li>
+					</ul>
+			</li>
+	<li id="gnb6"><a href="/web/menu/10126/bbs/20001/bbsPostList.do" ><span>소통·참여</span></a>
+			<ul>
+					<li id="gnb6_1">
+							<a href="/web/menu/10126/bbs/20001/bbsPostList.do" ><span>공지사항</span></a>
+							</li>
+					<li id="gnb6_2">
+							<a href="/web/menu/10127/bbs/20002/bbsPostList.do" ><span>자주묻는질문</span></a>
+							</li>
+					<li id="gnb6_3">
+							<a href="/web/menu/10128/bbs/20003/bbsPostList.do" ><span>자유게시판</span></a>
+							</li>
+					<li id="gnb6_4">
+							<a href="/web/menu/10129/program/30020/surveyList.do" ><span>설문조사</span></a>
+							</li>
+					</ul>
+			</li>
+	<li id="gnb7"><a href="/web/menu/10135/program/30022/mypage/loanStatusList.do" ><span>내서재</span></a>
+			<ul>
+					<li id="gnb7_1">
+							<a href="/web/menu/10135/program/30022/mypage/loanStatusList.do" ><span>대출조회/연장신청</span></a>
+							<ul class="MkTab">
+									<li id="gnb7_1_1">
+											<a href="/web/menu/10135/program/30022/mypage/loanStatusList.do" ><span>대출중도서</span></a>
+											</li>
+									<li id="gnb7_1_2">
+											<a href="/web/menu/10136/program/30023/mypage/loanHistoryList.do" ><span>대출내역</span></a>
+											</li>
+									<li id="gnb7_1_3">
+											<a href="/web/menu/10137/program/30024/mypage/deliveryLoanList.do" ><span>맘편한대출내역</span></a>
+											</li>
+									</ul>
+							</li>
+					<li id="gnb7_2">
+							<a href="/web/menu/10139/program/30025/mypage/reservationList.do" ><span>나의신청현황</span></a>
+							<ul class="MkTab">
+									<li id="gnb7_2_1">
+											<a href="/web/menu/10139/program/30025/mypage/reservationList.do" ><span>도서예약</span></a>
+											</li>
+									<li id="gnb7_2_2">
+											<a href="/web/menu/10140/program/30026/mypage/interlibraryLoanList.do" ><span>상호대차</span></a>
+											</li>
+									<li id="gnb7_2_3">
+											<a href="/web/menu/10141/program/30027/mypage/hopeBookApplyList.do" ><span>희망도서</span></a>
+											</li>
+									</ul>
+							</li>
+					<li id="gnb7_3">
+							<a href="/web/menu/10142/program/30028/mypage/basketList.do" ><span>관심도서</span></a>
+							</li>
+					<li id="gnb7_4">
+							<a href="/web/menu/10143/program/30029/mypage/myPopularBookList.do" ><span>맞춤추천도서</span></a>
+							</li>
+					</ul>
+			</li>
+	<li id="gnb8"><a href="/web/menu/10145/program/30030/memberLogin.do" ><span>회원정보</span></a>
+			<ul>
+					<li id="gnb8_1">
+							<a href="/web/menu/10145/program/30030/memberLogin.do" ><span>로그인</span></a>
+							</li>
+					<li id="gnb8_2">
+							<a href="https://www.u-library.kr/account/inquiryId"  target="_blank" title="새창열림"><span>아이디/비밀번호찾기</span></a>
+							<ul class="MkSub">
+									<li id="gnb8_2_1">
+											<a href="https://www.u-library.kr/webcontent/info/9"  target="_blank" title="새창열림"><span>회원가입</span></a>
+											</li>
+									</ul>
+							</li>
+					</ul>
+			</li>
+	<li id="gnb9"><a href="/web/menu/10149/program/30031/siteSearchResult.do" ><span>홈페이지이용안내</span></a>
+			<ul>
+					<li id="gnb9_1">
+							<a href="/web/menu/10149/program/30031/siteSearchResult.do" ><span>사이트검색</span></a>
+							</li>
+					<li id="gnb9_2">
+							<a href="/web/menu/10150/contents/40055/contents.do" ><span>개인정보처리방침</span></a>
+							</li>
+					<li id="gnb9_3">
+							<a href="/web/menu/10151/program/30032/sitemap.do" ><span>사이트맵</span></a>
+							</li>
+					</ul>
+			</li>
+	</ul>
+		<div id="submenuArea"></div>
+		<div id="gnbblackBG"></div>
+	</nav>
+</header>
+
+	<div id="container" class="sub">
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="sVisualWrap"></div>
+		<div id="contentGroup">
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="lnbNav" class="navArea">
+	<h2><span>1뎁스메뉴명</span></h2>
+	<ul id="lnb" class="lnb"></ul>
+</div>
+
+			<div id="contentcore">
+				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="naviandtitle">
+	<h3><span class="blind">페이지타이틀</span></h3>
+	<div class="navi"></div>
+	<div class="snsFarm">
+		<ul class="snsBtnArea">
+			<li><a href="#snsOpen" id="sns" title="SNS 공유하기" class="snsShare"><span class="blind">SNS 공유하기</span></a>
+				<div id="snsGroup" class="snsList">
+					<ul>
+						<li><a href="javascript:fnShareNaver('https://lib.yuseong.go.kr/web/menu/10075/program/30005/searchResultList.do?searchKeyword=%ED%8C%8C%EC%9D%B4%EC%8D%AC&searchType=SIMPLE&vLmt2=H0000015;H0000016;H0000018;H0000019;H0000020;H0000026;H0000028;H0000030;H0000031;H0000013;H0000033');" id="sns1" title="블로그에 공유하기 새창열림" class="snsBlog"><span class="blind">블로그</span></a></li>
+					</ul>
+				</div>
+			</li>
+			<li class="mobileHide"><a href="javascript:fnPrintPopup('web');" id="pprint" title="새창에서 열림" class="snsPrint"><span class="blind">현재화면 프린트</span></a></li>
+		</ul>
+	</div>
+</div>
+				<div id="contentArea">
+					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--Forced tab Show Que-->
+<div class="tabNav">
+	<div class="virtSelect"><a href="#script">탭메뉴</a></div>
+	<ul class="tnb clearfix">
+		<li></li>
+	</ul>
+</div>
+<!--Forced tab Show Que-->
+					<!--Real Contents Start-->
+					<div class="searchWrap result">
+						<!-- 검색박스 -->
+						<form id="searchForm" name="searchForm" method="post">
+							<input type="hidden" name="csrfToken" value="32d28c9c-4d46-47da-9e0f-b210150eec3d">
+							<input type="hidden" name="searchType" value="SIMPLE">
+							<input type="hidden" name="viewType" value="cardViewStyle">
+							<input type="hidden" name="recordCountPerPage" value="10">
+							
+							
+							<input type="hidden" name="vLmt2" value="H0000015;H0000016;H0000018;H0000019;H0000020;H0000026;H0000028;H0000030;H0000031;H0000013;H0000033">
+							<strong class="highlight mb05">검색한 도서의 대출상태가 확인 불가능할 경우, 해당 도서를 한번 더 클릭하시면 확인하실 수 있습니다.</strong>
+							<div class="searchBardiv">
+								<div class="searchInputbox">
+									<!-- 검색조건  -->
+									<select name="vSrchKey" id="searchTypeSel" title="검색조건 선택">
+										<option value="0">전체</option>
+										
+											<option value="000000000001">서명</option>
+										
+											<option value="000000000002">저자</option>
+										
+											<option value="000000000003">출판사</option>
+										
+											<option value="000000000004">주제어</option>
+										
+									</select>
+									<!-- //검색조건 -->
+									<!-- 결과 내 재검색 검색 후 활성화 -->
+									<div class="reSearch">
+										<input type="checkbox" name="vRefine" value="Y" id="reChk">
+										<label for="reChk">결과 내 검색</label>
+									</div>
+									<!-- //결과 내 재검색 검색 후 활성화 -->
+									<!-- 다국어 키보드  -->
+									<button type="button" class="mutiLangBtn" title="비활성화"><span class="blind">다국어 입력</span></button>
+									
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="worldwordBox ui-draggable" id="worldwordBoxLayer">
+	<fieldset>
+		<legend>다국어 입력폼</legend>
+		<div class="worldword clearfix">
+			<h4 class="title">다국어입력</h4>
+			<ul class="language webLang">
+				<li><a class="selected" href="#none">히라가나</a></li>
+				<li><a href="#none">가타카나</a></li>
+				<li><a href="#none">한글고어</a></li>
+				<li><a href="#none">그리스문자</a></li>
+				<li><a href="#none">라틴문자</a></li>
+				<li><a href="#none">러시아문자</a></li>
+				<li><a href="#none">단위기호</a></li>
+				<li><a href="#none">일반기호</a></li>
+				<li><a href="#none">로마자</a></li>
+				<li><a href="#none">첨자기호</a></li>
+				<li><a href="#none">몽골어</a></li>
+				<li><a href="#none">베트남어</a></li>
+				<li><a href="#none">캄보디아어</a></li>
+				<li><a href="#none">태국어</a></li>
+			</ul>
+
+			<select class="mobLang" title="다국어선택">
+				<option>히라가나</option>
+				<option>가타카나</option>
+				<option>한글고어</option>
+				<option>그리스문자</option>
+				<option>라틴문자</option>
+				<option>러시아문자</option>
+				<option>단위기호</option>
+				<option>일반기호</option>
+				<option>로마자</option>
+				<option>첨자기호</option>
+				<option>몽골어</option>
+				<option>베트남어</option>
+				<option>캄보디아어</option>
+				<option>태국어</option>
+			</select>
+
+			<!-- 히라가나 -->
+			<div class="languageContents" style="display: block;">
+				<ul>
+					<li><a href="#">あ</a></li>
+					<li><a href="#">ぁ</a></li>
+					<li><a href="#">か</a></li>
+					<li><a href="#">が</a></li>
+					<li><a href="#">さ</a></li>
+					<li><a href="#">ざ</a></li>
+					<li><a href="#">た</a></li>
+					<li><a href="#">だ</a></li>
+					<li><a href="#">な</a></li>
+					<li><a href="#">は</a></li>
+					<li><a href="#">ば</a></li>
+					<li><a href="#">ぱ</a></li>
+					<li><a href="#">ま</a></li>
+					<li><a href="#">や</a></li>
+					<li><a href="#">ゃ</a></li>
+					<li><a href="#">ら</a></li>
+					<li><a href="#">わ</a></li>
+					<li><a href="#">ゎ</a></li>
+					<li><a href="#">ん</a></li>
+				</ul>
+				<ul>
+					<li><a href="#">い</a></li>
+					<li><a href="#">ぃ</a></li>
+					<li><a href="#">き</a></li>
+					<li><a href="#">ぎ</a></li>
+					<li><a href="#">し</a></li>
+					<li><a href="#">じ</a></li>
+					<li><a href="#">ち</a></li>
+					<li><a href="#">ぢ</a></li>
+					<li><a href="#">に</a></li>
+					<li><a href="#">ひ</a></li>
+					<li><a href="#">び</a></li>
+					<li><a href="#">ぴ</a></li>
+					<li><a href="#">み</a></li>
+					<li>&nbsp;</li>
+					<li>&nbsp;</li>
+					<li>&nbsp;</li>
+					<li>&nbsp;</li>
+					<li><a href="#">り</a></li>
+				</ul>
+				<ul>
+					<li><a href="#">う</a></li>
+					<li><a href="#">ぅ</a></li>
+					<li><a href="#">く</a></li>
+					<li><a href="#">ぐ</a></li>
+					<li><a href="#">す</a></li>
+					<li><a href="#">ず</a></li>
+					<li><a href="#">つ</a></li>
+					<li><a href="#">づ</a></li>
+					<li><a href="#">っ</a></li>
+					<li><a href="#">ぬ</a></li>
+					<li><a href="#">ふ</a></li>
+					<li><a href="#">ぶ</a></li>
+					<li><a href="#">ぷ</a></li>
+					<li><a href="#">む</a></li>
+					<li><a href="#">ゆ</a></li>
+					<li><a href="#">ゅ</a></li>
+					<li><a href="#">る</a></li>
+					<li>&nbsp;</li>
+				</ul>
+				<ul>
+					<li><a href="#">え</a></li>
+					<li><a href="#">ぇ</a></li>
+					<li><a href="#">け</a></li>
+					<li><a href="#">げ</a></li>
+					<li><a href="#">せ</a></li>
+					<li><a href="#">ぜ</a></li>
+					<li><a href="#">て</a></li>
+					<li><a href="#">で</a></li>
+					<li><a href="#">ね</a></li>
+					<li><a href="#">へ</a></li>
+					<li><a href="#">べ</a></li>
+					<li><a href="#">ぺ</a></li>
+					<li><a href="#">め</a></li>
+					<li>&nbsp;</li>
+					<li>&nbsp;</li>
+					<li>&nbsp;</li>
+					<li>&nbsp;</li>
+					<li><a href="#">れ</a></li>
+				</ul>
+				<ul>
+					<li><a href="#">お</a></li>
+					<li><a href="#">ぉ</a></li>
+					<li><a href="#">こ</a></li>
+					<li><a href="#">ご</a></li>
+					<li><a href="#">そ</a></li>
+					<li><a href="#">ぞ</a></li>
+					<li><a href="#">と</a></li>
+					<li><a href="#">ど</a></li>
+					<li><a href="#">の</a></li>
+					<li><a href="#">ほ</a></li>
+					<li><a href="#">ぼ</a></li>
+					<li><a href="#">ぽ</a></li>
+					<li><a href="#">も</a></li>
+					<li><a href="#">よ</a></li>
+					<li><a href="#">ょ</a></li>
+					<li><a href="#">ろ</a></li>
+					<li><a href="#">を</a></li>
+					<li>&nbsp;</li>
+				</ul>
+			</div>
+			<!-- //히라가나 -->
+			<!-- 가타카나 -->
+			<div class="languageContents" style="display: none;">
+				<ul>
+					<li><a href="#">ア</a></li>
+					<li><a href="#">ァ</a></li>
+					<li><a href="#">カ</a></li>
+					<li><a href="#">ガ</a></li>
+					<li><a href="#">サ</a></li>
+					<li><a href="#">ザ</a></li>
+					<li><a href="#">タ</a></li>
+					<li><a href="#">ダ</a></li>
+					<li><a href="#">ナ</a></li>
+					<li><a href="#">ハ</a></li>
+					<li><a href="#">バ</a></li>
+					<li><a href="#">パ</a></li>
+					<li><a href="#">マ</a></li>
+					<li><a href="#">ヤ</a></li>
+					<li><a href="#">ャ</a></li>
+					<li><a href="#">ラ</a></li>
+					<li><a href="#">ワ</a></li>
+					<li><a href="#">ヮ</a></li>
+					<li><a href="#">ン</a></li>
+				</ul>
+				<ul>
+					<li><a href="#">イ</a></li>
+					<li><a href="#">ィ</a></li>
+					<li><a href="#">キ</a></li>
+					<li><a href="#">ギ</a></li>
+					<li><a href="#">シ</a></li>
+					<li><a href="#">ジ</a></li>
+					<li><a href="#">チ</a></li>
+					<li><a href="#">ヂ</a></li>
+					<li><a href="#">ニ</a></li>
+					<li><a href="#">ヒ</a></li>
+					<li><a href="#">ビ</a></li>
+					<li><a href="#">ピ</a></li>
+					<li><a href="#">ミ</a></li>
+					<li>&nbsp;</li>
+					<li>&nbsp;</li>
+					<li>&nbsp;</li>
+					<li>&nbsp;</li>
+					<li><a href="#">リ</a></li>
+				</ul>
+				<ul>
+					<li><a href="#">ウ</a></li>
+					<li><a href="#">ゥ</a></li>
+					<li><a href="#">ク</a></li>
+					<li><a href="#">グ</a></li>
+					<li><a href="#">ス</a></li>
+					<li><a href="#">ズ</a></li>
+					<li><a href="#">ツ</a></li>
+					<li><a href="#">ヅ</a></li>
+					<li><a href="#">ッ</a></li>
+					<li><a href="#">ヌ</a></li>
+					<li><a href="#">フ</a></li>
+					<li><a href="#">ブ</a></li>
+					<li><a href="#">プ</a></li>
+					<li><a href="#">ム</a></li>
+					<li><a href="#">ユ</a></li>
+					<li><a href="#">ュ</a></li>
+					<li><a href="#">ル</a></li>
+				</ul>
+				<ul>
+					<li><a href="#">エ</a></li>
+					<li><a href="#">ェ</a></li>
+					<li><a href="#">ケ</a></li>
+					<li><a href="#">ゲ</a></li>
+					<li><a href="#">セ</a></li>
+					<li><a href="#">ゼ</a></li>
+					<li><a href="#">テ</a></li>
+					<li><a href="#">デ</a></li>
+					<li><a href="#">ネ</a></li>
+					<li><a href="#">ヘ</a></li>
+					<li><a href="#">ベ</a></li>
+					<li><a href="#">ペ</a></li>
+					<li><a href="#">メ</a></li>
+					<li>&nbsp;</li>
+					<li>&nbsp;</li>
+					<li>&nbsp;</li>
+					<li>&nbsp;</li>
+					<li><a href="#">レ</a></li>
+				</ul>
+				<ul>
+					<li><a href="#">オ</a></li>
+					<li><a href="#">ォ</a></li>
+					<li><a href="#">コ</a></li>
+					<li><a href="#">ゴ</a></li>
+					<li><a href="#">ソ</a></li>
+					<li><a href="#">ゾ</a></li>
+					<li><a href="#">ト</a></li>
+					<li><a href="#">ド</a></li>
+					<li><a href="#">ノ</a></li>
+					<li><a href="#">ホ</a></li>
+					<li><a href="#">ボ</a></li>
+					<li><a href="#">ポ</a></li>
+					<li><a href="#">モ</a></li>
+					<li><a href="#">ヨ</a></li>
+					<li><a href="#">ョ</a></li>
+					<li><a href="#">ロ</a></li>
+					<li><a href="#">ヲ</a></li>
+					<li><a href="#">―</a></li>
+				</ul>
+			</div>
+			<!-- //가타카나 -->
+			<!-- 한글고어 -->
+			<div class="languageContents" style="display: none;">
+				<ul>
+					<li><a href="#">ㅥ</a></li>
+					<li><a href="#">ㅦ</a></li>
+					<li><a href="#">ㅧ</a></li>
+					<li><a href="#">ㅨ</a></li>
+					<li><a href="#">ㅩ</a></li>
+					<li><a href="#">ㅪ</a></li>
+					<li><a href="#">ㅫ</a></li>
+					<li><a href="#">ㅬ</a></li>
+					<li><a href="#">ㅭ</a></li>
+					<li><a href="#">ㅮ</a></li>
+					<li><a href="#">ㅯ</a></li>
+					<li><a href="#">ㅰ</a></li>
+					<li><a href="#">ㅱ</a></li>
+					<li><a href="#">ㅲ</a></li>
+					<li><a href="#">ㅳ</a></li>
+					<li><a href="#">ㅴ</a></li>
+					<li><a href="#">ㅵ</a></li>
+					<li><a href="#">ㅶ</a></li>
+					<li><a href="#">ㅷ</a></li>
+					<li><a href="#">ㅸ</a></li>
+					<li><a href="#">ㅹ</a></li>
+					<li><a href="#">ㅺ</a></li>
+					<li><a href="#">ㅻ</a></li>
+					<li><a href="#">ㅼ</a></li>
+					<li><a href="#">ㅽ</a></li>
+					<li><a href="#">ㅾ</a></li>
+					<li><a href="#">ㅿ</a></li>
+					<li><a href="#">ㆀ</a></li>
+					<li><a href="#">ㆁ</a></li>
+					<li><a href="#">ㆂ</a></li>
+					<li><a href="#">ㆃ</a></li>
+					<li><a href="#">ㆄ</a></li>
+					<li><a href="#">ㆅ</a></li>
+					<li><a href="#">ㆆ</a></li>
+					<li><a href="#">ㆇ</a></li>
+					<li><a href="#">ㆈ</a></li>
+					<li><a href="#">ㆉ</a></li>
+					<li><a href="#">ㆊ</a></li>
+					<li><a href="#">ㆋ</a></li>
+					<li><a href="#">ㆌ</a></li>
+					<li><a href="#">ㆍ</a></li>
+					<li><a href="#">ㆎ</a></li>
+				</ul>
+			</div>
+			<!-- //한글고어 -->
+			<!-- 그리스문자 -->
+			<div class="languageContents" style="display: none;">
+				<ul>
+					<li><a href="#">Α</a></li>
+					<li><a href="#">Β</a></li>
+					<li><a href="#">Γ</a></li>
+					<li><a href="#">Δ</a></li>
+					<li><a href="#">Ε</a></li>
+					<li><a href="#">Ζ</a></li>
+					<li><a href="#">Η</a></li>
+					<li><a href="#">Θ</a></li>
+					<li><a href="#">Ι</a></li>
+					<li><a href="#">Κ</a></li>
+					<li><a href="#">Λ</a></li>
+					<li><a href="#">Μ</a></li>
+					<li><a href="#">Ν</a></li>
+					<li><a href="#">Ξ</a></li>
+					<li><a href="#">Ο</a></li>
+					<li><a href="#">Π</a></li>
+					<li><a href="#">Ρ</a></li>
+					<li><a href="#">Σ</a></li>
+					<li><a href="#">Τ</a></li>
+					<li><a href="#">Υ</a></li>
+					<li><a href="#">Φ</a></li>
+					<li><a href="#">Χ</a></li>
+					<li><a href="#">Ψ</a></li>
+					<li><a href="#">Ω</a></li>
+					<li><a href="#">α</a></li>
+					<li><a href="#">β</a></li>
+					<li><a href="#">γ</a></li>
+					<li><a href="#">δ</a></li>
+					<li><a href="#">ε</a></li>
+					<li><a href="#">ζ</a></li>
+					<li><a href="#">η</a></li>
+					<li><a href="#">θ</a></li>
+					<li><a href="#">ι</a></li>
+					<li><a href="#">κ</a></li>
+					<li><a href="#">λ</a></li>
+					<li><a href="#">μ</a></li>
+					<li><a href="#">ν</a></li>
+					<li><a href="#">ξ</a></li>
+					<li><a href="#">ο</a></li>
+					<li><a href="#">π</a></li>
+					<li><a href="#">ρ</a></li>
+					<li><a href="#">σ</a></li>
+					<li><a href="#">τ</a></li>
+					<li><a href="#">υ</a></li>
+					<li><a href="#">φ</a></li>
+					<li><a href="#">χ</a></li>
+					<li><a href="#">ψ</a></li>
+					<li><a href="#">ω</a></li>
+				</ul>
+			</div>
+			<!-- //그리스문자 -->
+			<!-- 괄호기호 -->
+			<!-- //기술기호 -->
+			<!-- 라틴문자 -->
+			<div class="languageContents" style="display: none;">
+				<ul>
+					<li><a href="#">Æ</a></li>
+					<li><a href="#">Ð</a></li>
+					<li><a href="#">Ħ</a></li>
+					<li><a href="#">ĲvĿ</a></li>
+					<li><a href="#">Ł</a></li>
+					<li><a href="#">Ø</a></li>
+					<li><a href="#">Œ</a></li>
+					<li><a href="#">Þ</a></li>
+					<li><a href="#">Ŧ</a></li>
+					<li><a href="#">Ŋ</a></li>
+					<li><a href="#">æ</a></li>
+					<li><a href="#">đ</a></li>
+					<li><a href="#">ð</a></li>
+					<li><a href="#">ħ</a></li>
+					<li><a href="#">ı</a></li>
+					<li><a href="#">ĳ</a></li>
+					<li><a href="#">ĸ</a></li>
+					<li><a href="#">ŀ</a></li>
+					<li><a href="#">ł</a></li>
+					<li><a href="#">ø</a></li>
+					<li><a href="#">œ</a></li>
+					<li><a href="#">ß</a></li>
+					<li><a href="#">þ</a></li>
+					<li><a href="#">ŧ</a></li>
+					<li><a href="#">ŋ</a></li>
+					<li><a href="#">ŉ</a></li>
+				</ul>
+			</div>
+			<!-- //라틴문자 -->
+			<!-- 러시아문자 -->
+			<div class="languageContents" style="display: none;">
+				<ul>
+					<li><a href="#">А</a></li>
+					<li><a href="#">Б</a></li>
+					<li><a href="#">В</a></li>
+					<li><a href="#">Г</a></li>
+					<li><a href="#">Д</a></li>
+					<li><a href="#">Е</a></li>
+					<li><a href="#">Ё</a></li>
+					<li><a href="#">Ж</a></li>
+					<li><a href="#">З</a></li>
+					<li><a href="#">И</a></li>
+					<li><a href="#">Й</a></li>
+					<li><a href="#">К</a></li>
+					<li><a href="#">Л</a></li>
+					<li><a href="#">М</a></li>
+					<li><a href="#">Н</a></li>
+					<li><a href="#">О</a></li>
+					<li><a href="#">П</a></li>
+					<li><a href="#">Р</a></li>
+					<li><a href="#">С</a></li>
+					<li><a href="#">Т</a></li>
+					<li><a href="#">У</a></li>
+					<li><a href="#">Ф</a></li>
+					<li><a href="#">Х</a></li>
+					<li><a href="#">Ц</a></li>
+					<li><a href="#">Ч</a></li>
+					<li><a href="#">Ш</a></li>
+					<li><a href="#">Щ</a></li>
+					<li><a href="#">Ъ</a></li>
+					<li><a href="#">Ы</a></li>
+					<li><a href="#">Ь</a></li>
+					<li><a href="#">Э</a></li>
+					<li><a href="#">Ю</a></li>
+					<li><a href="#">Я</a></li>
+					<li><a href="#">а</a></li>
+					<li><a href="#">б</a></li>
+					<li><a href="#">в</a></li>
+					<li><a href="#">г</a></li>
+					<li><a href="#">д</a></li>
+					<li><a href="#">е</a></li>
+					<li><a href="#">ё</a></li>
+					<li><a href="#">ж</a></li>
+					<li><a href="#">з</a></li>
+					<li><a href="#">и</a></li>
+					<li><a href="#">й</a></li>
+					<li><a href="#">к</a></li>
+					<li><a href="#">л</a></li>
+					<li><a href="#">м</a></li>
+					<li><a href="#">н</a></li>
+					<li><a href="#">о</a></li>
+					<li><a href="#">п</a></li>
+					<li><a href="#">р</a></li>
+					<li><a href="#">с</a></li>
+					<li><a href="#">т</a></li>
+					<li><a href="#">у</a></li>
+					<li><a href="#">ф</a></li>
+					<li><a href="#">х</a></li>
+					<li><a href="#">ц</a></li>
+					<li><a href="#">ч</a></li>
+					<li><a href="#">ш</a></li>
+					<li><a href="#">щ</a></li>
+					<li><a href="#">ъ</a></li>
+					<li><a href="#">ы</a></li>
+					<li><a href="#">ь</a></li>
+					<li><a href="#">э</a></li>
+					<li><a href="#">ю</a></li>
+					<li><a href="#">я</a></li>
+				</ul>
+			</div>
+			<!-- //러시아문자 -->
+			<!-- 단위기호 -->
+			<div class="languageContents" style="display: none;">
+				<ul>
+					<li><a href="#">′</a></li>
+					<li><a href="#">″</a></li>
+					<li><a href="#">℃</a></li>
+					<li><a href="#">Å</a></li>
+					<li><a href="#">￠</a></li>
+					<li><a href="#">￡</a></li>
+					<li><a href="#">￥</a></li>
+					<li><a href="#">¤</a></li>
+					<li><a href="#">℉</a></li>
+					<li><a href="#">‰</a></li>
+					<li><a href="#">＄</a></li>
+					<li><a href="#">％</a></li>
+					<li><a href="#">Ｆ</a></li>
+					<li><a href="#">￦</a></li>
+					<li><a href="#">㎕</a></li>
+					<li><a href="#">㎖</a></li>
+					<li><a href="#">㎗</a></li>
+					<li><a href="#">ℓ</a></li>
+					<li><a href="#">㎘</a></li>
+					<li><a href="#">㏄</a></li>
+					<li><a href="#">㎣</a></li>
+					<li><a href="#">㎤</a></li>
+					<li><a href="#">㎥</a></li>
+					<li><a href="#">㎦</a></li>
+					<li><a href="#">㎙</a></li>
+					<li><a href="#">㎚</a></li>
+					<li><a href="#">㎛</a></li>
+					<li><a href="#">㎜</a></li>
+					<li><a href="#">㎝</a></li>
+					<li><a href="#">㎞</a></li>
+					<li><a href="#">㎟</a></li>
+					<li><a href="#">㎠</a></li>
+					<li><a href="#">㎡</a></li>
+					<li><a href="#">㎢</a></li>
+					<li><a href="#">㏊</a></li>
+					<li><a href="#">㎍</a></li>
+					<li><a href="#">㎎</a></li>
+					<li><a href="#">㎏</a></li>
+					<li><a href="#">㏏</a></li>
+					<li><a href="#">㎈</a></li>
+					<li><a href="#">㎉</a></li>
+					<li><a href="#">㏈</a></li>
+					<li><a href="#">㎧</a></li>
+					<li><a href="#">㎨</a></li>
+					<li><a href="#">㎰</a></li>
+					<li><a href="#">㎱</a></li>
+					<li><a href="#">㎲</a></li>
+					<li><a href="#">㎳</a></li>
+					<li><a href="#">㎴</a></li>
+					<li><a href="#">㎵</a></li>
+					<li><a href="#">㎶</a></li>
+					<li><a href="#">㎷</a></li>
+					<li><a href="#">㎸</a></li>
+					<li><a href="#">㎹</a></li>
+					<li><a href="#">㎀</a></li>
+					<li><a href="#">㎁</a></li>
+					<li><a href="#">㎂</a></li>
+					<li><a href="#">㎃</a></li>
+					<li><a href="#">㎄</a></li>
+					<li><a href="#">㎺</a></li>
+					<li><a href="#">㎻</a></li>
+					<li><a href="#">㎽</a></li>
+					<li><a href="#">㎾</a></li>
+					<li><a href="#">㎿</a></li>
+					<li><a href="#">㎐</a></li>
+					<li><a href="#">㎑</a></li>
+					<li><a href="#">㎒</a></li>
+					<li><a href="#">㎓</a></li>
+					<li><a href="#">㎔</a></li>
+					<li><a href="#">Ω</a></li>
+					<li><a href="#">㏀</a></li>
+					<li><a href="#">㏁</a></li>
+					<li><a href="#">㎊</a></li>
+					<li><a href="#">㎋</a></li>
+					<li><a href="#">㎌</a></li>
+					<li><a href="#">㏖</a></li>
+					<li><a href="#">㏅</a></li>
+					<li><a href="#">㎭</a></li>
+					<li><a href="#">㎮</a></li>
+					<li><a href="#">㎯</a></li>
+					<li><a href="#">㏛</a></li>
+					<li><a href="#">㎩</a></li>
+					<li><a href="#">㎪</a></li>
+					<li><a href="#">㎫</a></li>
+					<li><a href="#">㎬</a></li>
+					<li><a href="#">㏝</a></li>
+					<li><a href="#">㏐</a></li>
+					<li><a href="#">㏓</a></li>
+					<li><a href="#">㏃</a></li>
+					<li><a href="#">㏉</a></li>
+					<li><a href="#">㏜</a></li>
+					<li><a href="#">㏆</a></li>
+				</ul>
+			</div>
+			<!-- //단위기호 -->
+			<!-- 일반기호 -->
+		<div class="languageContents" style="display: none;">
+				<ul>
+					<li><a href="#">§</a></li>
+					<li><a href="#">※</a></li>
+					<li><a href="#">☆</a></li>
+					<li><a href="#">★</a></li>
+					<li><a href="#">○</a></li>
+					<li><a href="#">●</a></li>
+					<li><a href="#">◎</a></li>
+					<li><a href="#">◇</a></li>
+					<li><a href="#">◆</a></li>
+					<li><a href="#">□</a></li>
+					<li><a href="#">■</a></li>
+					<li><a href="#">△</a></li>
+					<li><a href="#">▽</a></li>
+					<li><a href="#">→</a></li>
+					<li><a href="#">←</a></li>
+					<li><a href="#">↑</a></li>
+					<li><a href="#">↓</a></li>
+					<li><a href="#">↔</a></li>
+					<li><a href="#">〓</a></li>
+					<li><a href="#">◁</a></li>
+					<li><a href="#">◀</a></li>
+					<li><a href="#">▷</a></li>
+					<li><a href="#">▶</a></li>
+					<li><a href="#">♤</a></li>
+					<li><a href="#">♠</a></li>
+					<li><a href="#">♡</a></li>
+					<li><a href="#">♥</a></li>
+					<li><a href="#">♧</a></li>
+					<li><a href="#">♣</a></li>
+					<li><a href="#">⊙</a></li>
+					<li><a href="#">◈</a></li>
+					<li><a href="#">▣</a></li>
+					<li><a href="#">◐</a></li>
+					<li><a href="#">◑</a></li>
+					<li><a href="#">▒</a></li>
+					<li><a href="#">▤</a></li>
+					<li><a href="#">▥</a></li>
+					<li><a href="#">▨</a></li>
+					<li><a href="#">▧</a></li>
+					<li><a href="#">▦</a></li>
+					<li><a href="#">▩</a></li>
+					<li><a href="#">♨</a></li>
+					<li><a href="#">☏</a></li>
+					<li><a href="#">☎</a></li>
+					<li><a href="#">☜</a></li>
+					<li><a href="#">☞</a></li>
+					<li><a href="#">¶</a></li>
+					<li><a href="#">†</a></li>
+					<li><a href="#">‡</a></li>
+					<li><a href="#">↕</a></li>
+					<li><a href="#">↗</a></li>
+					<li><a href="#">↙</a></li>
+					<li><a href="#">↖</a></li>
+					<li><a href="#">↘</a></li>
+					<li><a href="#">♭</a></li>
+					<li><a href="#">♩</a></li>
+					<li><a href="#">♪</a></li>
+					<li><a href="#">♬</a></li>
+					<li><a href="#">㉿</a></li>
+					<li><a href="#">㈜</a></li>
+					<li><a href="#">№</a></li>
+					<li><a href="#">㏇</a></li>
+					<li><a href="#">™</a></li>
+					<li><a href="#">㏂</a></li>
+					<li><a href="#">㏘</a></li>
+					<li><a href="#">℡</a></li>
+					<li><a href="#">＃</a></li>
+					<li><a href="#">＆</a></li>
+					<li><a href="#">＊</a></li>
+					<li><a href="#">＠</a></li>
+					<li><a href="#">ª</a></li>
+					<li><a href="#">º</a></li>
+				</ul>
+			</div>
+			<!-- //일반기호 -->
+			<!-- 로마자 -->
+			<div class="languageContents" style="display: none;">
+				<ul>
+					<li><a href="#">ⅰ</a></li>
+					<li><a href="#">ⅱ</a></li>
+					<li><a href="#">ⅲ</a></li>
+					<li><a href="#">ⅳ</a></li>
+					<li><a href="#">ⅴ</a></li>
+					<li><a href="#">ⅵ</a></li>
+					<li><a href="#">ⅶ</a></li>
+					<li><a href="#">ⅷ</a></li>
+					<li><a href="#">ⅸ</a></li>
+					<li><a href="#">ⅹ</a></li>
+					<li><a href="#">Ⅰ</a></li>
+					<li><a href="#">Ⅱ</a></li>
+					<li><a href="#">Ⅲ</a></li>
+					<li><a href="#">Ⅳ</a></li>
+					<li><a href="#">Ⅴ</a></li>
+					<li><a href="#">Ⅵ</a></li>
+					<li><a href="#">Ⅶ</a></li>
+					<li><a href="#">Ⅷ</a></li>
+					<li><a href="#">Ⅸ</a></li>
+					<li><a href="#">Ⅹ</a></li>
+				</ul>
+			</div>
+			<!-- //로마자 -->
+			<!-- 첨자기호 -->
+			<div class="languageContents" style="display: none;">
+				<ul>
+					<li><a href="#">½</a></li>
+					<li><a href="#">⅓</a></li>
+					<li><a href="#">⅔</a></li>
+					<li><a href="#">¼</a></li>
+					<li><a href="#">¾</a></li>
+					<li><a href="#">⅛</a></li>
+					<li><a href="#">⅜</a></li>
+					<li><a href="#">⅝</a></li>
+					<li><a href="#">⅞</a></li>
+					<li><a href="#">¹</a></li>
+					<li><a href="#">²</a></li>
+					<li><a href="#">³</a></li>
+					<li><a href="#">⁴</a></li>
+					<li><a href="#">ⁿ</a></li>
+					<li><a href="#">₁</a></li>
+					<li><a href="#">₂</a></li>
+					<li><a href="#">₃</a></li>
+					<li><a href="#">₄</a></li>
+				</ul>
+			</div>
+			<!-- //첨자기호 -->
+			<!-- 몽골어 -->
+			<div class="languageContents" style="display: none;">
+				<ul>
+					<li><a href="#">а</a></li>
+					<li><a href="#">б</a></li>
+					<li><a href="#">в</a></li>
+					<li><a href="#">г</a></li>
+					<li><a href="#">д</a></li>
+					<li><a href="#">е</a></li>
+					<li><a href="#">ё</a></li>
+					<li><a href="#">ж</a></li>
+					<li><a href="#">з</a></li>
+					<li><a href="#">и</a></li>
+					<li><a href="#">й</a></li>
+					<li><a href="#">к</a></li>
+					<li><a href="#">л</a></li>
+					<li><a href="#">м</a></li>
+					<li><a href="#">н</a></li>
+					<li><a href="#">о</a></li>
+					<li><a href="#">ө</a></li>
+					<li><a href="#">п</a></li>
+					<li><a href="#">р</a></li>
+					<li><a href="#">с</a></li>
+					<li><a href="#">т</a></li>
+					<li><a href="#">у</a></li>
+					<li><a href="#">ү</a></li>
+					<li><a href="#">ф</a></li>
+					<li><a href="#">х</a></li>
+					<li><a href="#">ц</a></li>
+					<li><a href="#">ч</a></li>
+					<li><a href="#">ш</a></li>
+					<li><a href="#">щ</a></li>
+					<li><a href="#">ъ</a></li>
+					<li><a href="#">ы</a></li>
+					<li><a href="#">ь</a></li>
+					<li><a href="#">э</a></li>
+					<li><a href="#">ю</a></li>
+					<li><a href="#">я</a></li>
+				</ul>
+			</div>
+			<!-- //몽골어 -->
+
+			<!-- 베트남어 -->
+			<div class="languageContents" style="display: none;">
+				<ul>
+					<li><a href="#">b</a></li>
+					<li><a href="#">c</a></li>
+					<li><a href="#">d</a></li>
+					<li><a href="#">đ</a></li>
+					<li><a href="#">g</a></li>
+					<li><a href="#">h</a></li>
+					<li><a href="#">k</a></li>
+					<li><a href="#">l</a></li>
+					<li><a href="#">m</a></li>
+					<li><a href="#">n</a></li>
+					<li><a href="#">p</a></li>
+					<li><a href="#">q</a></li>
+					<li><a href="#">r</a></li>
+					<li><a href="#">s</a></li>
+					<li><a href="#">t</a></li>
+					<li><a href="#">v</a></li>
+					<li><a href="#">x</a></li>
+					<li><a href="#">f</a></li>
+					<li><a href="#">j</a></li>
+					<li><a href="#">w</a></li>
+					<li><a href="#">z</a></li>
+					<li><a href="#">a</a></li>
+					<li><a href="#">á</a></li>
+					<li><a href="#">à</a></li>
+					<li><a href="#">ả</a></li>
+					<li><a href="#">ã</a></li>
+					<li><a href="#">ạ</a></li>
+					<li><a href="#">ă</a></li>
+					<li><a href="#">ắ</a></li>
+					<li><a href="#">ằ</a></li>
+					<li><a href="#">ẳ</a></li>
+					<li><a href="#">ẵ</a></li>
+					<li><a href="#">ặ</a></li>
+					<li><a href="#">â</a></li>
+					<li><a href="#">ấ</a></li>
+					<li><a href="#">ầ</a></li>
+					<li><a href="#">ẩ</a></li>
+					<li><a href="#">ẫ</a></li>
+					<li><a href="#">ậ</a></li>
+					<li><a href="#">o</a></li>
+					<li><a href="#">ó</a></li>
+					<li><a href="#">ò</a></li>
+					<li><a href="#">ỏ</a></li>
+					<li><a href="#">õ</a></li>
+					<li><a href="#">ọ</a></li>
+					<li><a href="#">ô</a></li>
+					<li><a href="#">ố</a></li>
+					<li><a href="#">ồ</a></li>
+					<li><a href="#">ổ</a></li>
+					<li><a href="#">ỗ</a></li>
+					<li><a href="#">ộ</a></li>
+					<li><a href="#">ơ</a></li>
+					<li><a href="#">ớ</a></li>
+					<li><a href="#">ờ</a></li>
+					<li><a href="#">ở</a></li>
+					<li><a href="#">ỡ</a></li>
+					<li><a href="#">ợ</a></li>
+					<li><a href="#">e</a></li>
+					<li><a href="#">é</a></li>
+					<li><a href="#">è</a></li>
+					<li><a href="#">ẻ</a></li>
+					<li><a href="#">ẽ</a></li>
+					<li><a href="#">ẹ</a></li>
+					<li><a href="#">ê</a></li>
+					<li><a href="#">ế</a></li>
+					<li><a href="#">ề</a></li>
+					<li><a href="#">ể</a></li>
+					<li><a href="#">ễ</a></li>
+					<li><a href="#">ệ</a></li>
+					<li><a href="#">u</a></li>
+					<li><a href="#">ú</a></li>
+					<li><a href="#">ù</a></li>
+					<li><a href="#">ủ</a></li>
+					<li><a href="#">ũ</a></li>
+					<li><a href="#">ụ</a></li>
+					<li><a href="#">ư</a></li>
+					<li><a href="#">ứ</a></li>
+					<li><a href="#">ừ</a></li>
+					<li><a href="#">ử</a></li>
+					<li><a href="#">ữ</a></li>
+					<li><a href="#">ự</a></li>
+					<li><a href="#">i</a></li>
+					<li><a href="#">í</a></li>
+					<li><a href="#">ì</a></li>
+					<li><a href="#">ỉ</a></li>
+					<li><a href="#">ĩ</a></li>
+					<li><a href="#">ị</a></li>
+					<li><a href="#">y</a></li>
+					<li><a href="#">ý</a></li>
+					<li><a href="#">ỳ</a></li>
+					<li><a href="#">ỷ</a></li>
+					<li><a href="#">ỹ</a></li>
+					<li><a href="#">ỵ</a></li>
+				</ul>
+			</div>
+			<!-- //베트남어 -->
+
+			<!-- 캄보디아어 -->
+			<div class="languageContents" style="display: none;">
+				<ul>
+					<li><a href="#">ក</a></li>
+					<li><a href="#">ខ</a></li>
+					<li><a href="#">គ</a></li>
+					<li><a href="#">ឃ</a></li>
+					<li><a href="#">ង</a></li>
+					<li><a href="#">ច</a></li>
+					<li><a href="#">ឆ</a></li>
+					<li><a href="#">ជ</a></li>
+					<li><a href="#">ឈ</a></li>
+					<li><a href="#">ញ</a></li>
+					<li><a href="#">ដ</a></li>
+					<li><a href="#">ឋ</a></li>
+					<li><a href="#">ឌ</a></li>
+					<li><a href="#">ឍ</a></li>
+					<li><a href="#">ណ</a></li>
+					<li><a href="#">ត</a></li>
+					<li><a href="#">ថ</a></li>
+					<li><a href="#">ទ</a></li>
+					<li><a href="#">ធ</a></li>
+					<li><a href="#">ន</a></li>
+					<li><a href="#">ប</a></li>
+					<li><a href="#">ផ</a></li>
+					<li><a href="#">ព</a></li>
+					<li><a href="#">ភ</a></li>
+					<li><a href="#">ម</a></li>
+					<li><a href="#">យ</a></li>
+					<li><a href="#">រ</a></li>
+					<li><a href="#">ល</a></li>
+					<li><a href="#">វ</a></li>
+					<li><a href="#">ឝ</a></li>
+					<li><a href="#">ឞ</a></li>
+					<li><a href="#">ស</a></li>
+					<li><a href="#">ហ</a></li>
+					<li><a href="#">ឡ</a></li>
+					<li><a href="#">អ</a></li>
+					<li><a href="#">ឣ</a></li>
+					<li><a href="#">ឤ</a></li>
+					<li><a href="#">ឥ</a></li>
+					<li><a href="#">ឦ</a></li>
+					<li><a href="#">ឧ</a></li>
+					<li><a href="#">ឨ</a></li>
+					<li><a href="#">ឩ</a></li>
+					<li><a href="#">ឪ</a></li>
+					<li><a href="#">ឫ</a></li>
+					<li><a href="#">ឬ</a></li>
+					<li><a href="#">ឭ</a></li>
+					<li><a href="#">ឮ</a></li>
+					<li><a href="#">ឯ</a></li>
+					<li><a href="#">ឰ</a></li>
+					<li><a href="#">ឱ</a></li>
+					<li><a href="#">ឲ</a></li>
+					<li><a href="#">ឳ</a></li>
+					<li><a href="#">឴</a></li>
+					<li><a href="#">឵</a></li>
+					<li><a href="#">ា</a></li>
+					<li><a href="#">ិ</a></li>
+					<li><a href="#">ី</a></li>
+					<li><a href="#">ឹ</a></li>
+					<li><a href="#">ឺ</a></li>
+					<li><a href="#">ុ</a></li>
+					<li><a href="#">ូ</a></li>
+					<li><a href="#">ួ</a></li>
+					<li><a href="#">ើ</a></li>
+					<li><a href="#">ឿ</a></li>
+					<li><a href="#">ៀ</a></li>
+					<li><a href="#">េ</a></li>
+					<li><a href="#">ែ</a></li>
+					<li><a href="#">ៃ</a></li>
+					<li><a href="#">ោ</a></li>
+					<li><a href="#">ៅ</a></li>
+					<li><a href="#">ំ</a></li>
+					<li><a href="#">ះ</a></li>
+					<li><a href="#">ៈ</a></li>
+					<li><a href="#">៉</a></li>
+					<li><a href="#">៊</a></li>
+					<li><a href="#">់</a></li>
+					<li><a href="#">៌</a></li>
+					<li><a href="#">៍</a></li>
+					<li><a href="#">៎</a></li>
+					<li><a href="#">៏</a></li>
+					<li><a href="#">័</a></li>
+					<li><a href="#">៑</a></li>
+					<li><a href="#">្</a></li>
+					<li><a href="#">៓</a></li>
+					<li><a href="#">។</a></li>
+					<li><a href="#">៕</a></li>
+					<li><a href="#">៖</a></li>
+					<li><a href="#">ៗ</a></li>
+					<li><a href="#">៘</a></li>
+					<li><a href="#">៙</a></li>
+					<li><a href="#">៚</a></li>
+					<li><a href="#">៛</a></li>
+					<li><a href="#">ៜ</a></li>
+					<li><a href="#">៝</a></li>
+					<li><a href="#">០</a></li>
+					<li><a href="#">១</a></li>
+					<li><a href="#">២</a></li>
+					<li><a href="#">៣</a></li>
+					<li><a href="#">៤</a></li>
+					<li><a href="#">៥</a></li>
+					<li><a href="#">៦</a></li>
+					<li><a href="#">៧</a></li>
+					<li><a href="#">៨</a></li>
+					<li><a href="#">៩</a></li>
+					<li><a href="#">៰</a></li>
+					<li><a href="#">៱</a></li>
+					<li><a href="#">៲</a></li>
+					<li><a href="#">៳</a></li>
+					<li><a href="#">៴</a></li>
+					<li><a href="#">៵</a></li>
+					<li><a href="#">៶</a></li>
+					<li><a href="#">៷</a></li>
+					<li><a href="#">៸</a></li>
+					<li><a href="#">៹</a></li>
+				</ul>
+			</div>
+			<!-- //캄보디아어 -->
+
+			<!-- 태국어 -->
+			<div class="languageContents" style="display: none;">
+				<ul>
+					<li><a href="#">ๅ</a></li>
+					<li><a href="#">/</a></li>
+					<li><a href="#">_</a></li>
+					<li><a href="#">ภ</a></li>
+					<li><a href="#">ถ</a></li>
+					<li><a href="#">ุ</a></li>
+					<li><a href="#">ึ</a></li>
+					<li><a href="#">ค</a></li>
+					<li><a href="#">ต</a></li>
+					<li><a href="#">จ</a></li>
+					<li><a href="#">ข</a></li>
+					<li><a href="#">ช</a></li>
+					<li><a href="#">ๆ</a></li>
+					<li><a href="#">ไ</a></li>
+					<li><a href="#">ำ</a></li>
+					<li><a href="#">พ</a></li>
+					<li><a href="#">ะ</a></li>
+					<li><a href="#">ั</a></li>
+					<li><a href="#">ี</a></li>
+					<li><a href="#">ร</a></li>
+					<li><a href="#">น</a></li>
+					<li><a href="#">ย</a></li>
+					<li><a href="#">บ</a></li>
+					<li><a href="#">ล</a></li>
+					<li><a href="#">ฟ</a></li>
+					<li><a href="#">ห</a></li>
+					<li><a href="#">ก</a></li>
+					<li><a href="#">ด</a></li>
+					<li><a href="#">เ</a></li>
+					<li><a href="#">้</a></li>
+					<li><a href="#">่</a></li>
+					<li><a href="#">ส</a></li>
+					<li><a href="#">า</a></li>
+					<li><a href="#">ว</a></li>
+					<li><a href="#">ง</a></li>
+					<li><a href="#">ฃ</a></li>
+					<li><a href="#">ผ</a></li>
+					<li><a href="#">ป</a></li>
+					<li><a href="#">แ</a></li>
+					<li><a href="#">อ</a></li>
+					<li><a href="#">ิ</a></li>
+					<li><a href="#">ื</a></li>
+					<li><a href="#">ท</a></li>
+					<li><a href="#">ม</a></li>
+					<li><a href="#">ใ</a></li>
+					<li><a href="#">ฝ</a></li>
+					<li><a href="#">+</a></li>
+					<li><a href="#">๑</a></li>
+					<li><a href="#">๒</a></li>
+					<li><a href="#">๓</a></li>
+					<li><a href="#">๔</a></li>
+					<li><a href="#">ู</a></li>
+					<li><a href="#">฿</a></li>
+					<li><a href="#">๕</a></li>
+					<li><a href="#">๖</a></li>
+					<li><a href="#">๗</a></li>
+					<li><a href="#">๘</a></li>
+					<li><a href="#">๙</a></li>
+					<li><a href="#">๐</a></li>
+					<li><a href="#">"</a></li>
+					<li><a href="#">ฎ</a></li>
+					<li><a href="#">ฑ</a></li>
+					<li><a href="#">ธ</a></li>
+					<li><a href="#">ํ</a></li>
+					<li><a href="#">๊</a></li>
+					<li><a href="#">ณ</a></li>
+					<li><a href="#">ฯ</a></li>
+					<li><a href="#">ญ</a></li>
+					<li><a href="#">ฐ</a></li>
+					<li><a href="#">,</a></li>
+					<li><a href="#">ฤ</a></li>
+					<li><a href="#">ฆ</a></li>
+					<li><a href="#">ฏ</a></li>
+					<li><a href="#">โ</a></li>
+					<li><a href="#">ฌ</a></li>
+					<li><a href="#">็</a></li>
+					<li><a href="#">๋</a></li>
+					<li><a href="#">ษ</a></li>
+					<li><a href="#">ศ</a></li>
+					<li><a href="#">ซ</a></li>
+					<li><a href="#">.</a></li>
+					<li><a href="#">ฅ</a></li>
+					<li><a href="#">(</a></li>
+					<li><a href="#">)</a></li>
+					<li><a href="#">ฉ</a></li>
+					<li><a href="#">ฮ</a></li>
+					<li><a href="#">ฺ</a></li>
+					<li><a href="#">์</a></li>
+					<li><a href="#">?</a></li>
+					<li><a href="#">ฒ</a></li>
+					<li><a href="#">ฬ</a></li>
+					<li><a href="#">ฦ</a></li>
+				</ul>
+			</div>
+			<!-- //태국어 -->
+			<a href="#close" class="btnClose"><span class="blind">닫기</span></a>
+		</div>
+	</fieldset>
+</div>
+									<!-- //다국어 키보드  -->
+
+									<!-- 검색입력  -->
+									<input type="text" name="vSrchText" id="searchWord" title="검색어를 입력하세요" placeholder="검색어를 입력하세요" autocomplete="off">
+									<!-- //검색입력  -->
+									<button type="button" id="searchBtn" class="searchBtn">검색</button>
+								</div>
+								<a href="/web/program/searchDetail.do" class="btn deatilBtn" title="상세검색 페이지 이동">상세검색</a>
+							</div>
+							<!-- //검색박스 -->
+
+							<!-- 도서관선택 -->
+							<div class="searchLibWrap on">
+								<div class="box_choice">
+									<button type="button" class="libListBtn"><span>도서관 선택</span></button>
+<!-- 									<div class="selc_lib"></div> -->
+								</div>
+								<div class="box_checkWrap">
+									<div class="libList">
+										<ul class="chk_lib">
+											<li><input type="checkbox" name="vLmt2All" id="vLmt2All" value="ALL" class="check selc_all"><label for="vLmt2All"><strong>전체 도서관</strong></label></li>
+										</ul>
+									</div>
+									<div class="libList">
+										<ul class="chk_lib">
+											
+												<li><input type="checkbox" name="tmpVLmt2" id="selectlibrary0" value="H0000015" class="check" checked="checked" ><label for="selectlibrary0" class="">노은도서관</label></li>
+											
+												<li><input type="checkbox" name="tmpVLmt2" id="selectlibrary1" value="H0000016" class="check" checked="checked" ><label for="selectlibrary1" class="">유성도서관</label></li>
+											
+												<li><input type="checkbox" name="tmpVLmt2" id="selectlibrary2" value="H0000018" class="check" checked="checked" ><label for="selectlibrary2" class="">진잠도서관</label></li>
+											
+												<li><input type="checkbox" name="tmpVLmt2" id="selectlibrary3" value="H0000019" class="check" checked="checked" ><label for="selectlibrary3" class="">구즉도서관</label></li>
+											
+												<li><input type="checkbox" name="tmpVLmt2" id="selectlibrary4" value="H0000020" class="check" checked="checked" ><label for="selectlibrary4" class="">구암도서관</label></li>
+											
+												<li><input type="checkbox" name="tmpVLmt2" id="selectlibrary5" value="H0000026" class="check" checked="checked" ><label for="selectlibrary5" class="">원신흥도서관</label></li>
+											
+												<li><input type="checkbox" name="tmpVLmt2" id="selectlibrary6" value="H0000028" class="check" checked="checked" ><label for="selectlibrary6" class="">아가랑도서관</label></li>
+											
+												<li><input type="checkbox" name="tmpVLmt2" id="selectlibrary7" value="H0000030" class="check" checked="checked" ><label for="selectlibrary7" class="">관평도서관</label></li>
+											
+												<li><input type="checkbox" name="tmpVLmt2" id="selectlibrary8" value="H0000031" class="check" checked="checked" ><label for="selectlibrary8" class="">전민도서관</label></li>
+											
+												<li><input type="checkbox" name="tmpVLmt2" id="selectlibrary9" value="H0000013" class="check" checked="checked" ><label for="selectlibrary9" class="">유성엑스포도서관</label></li>
+											
+												<li><input type="checkbox" name="tmpVLmt2" id="selectlibrary10" value="H0000033" class="check" checked="checked" ><label for="selectlibrary10" class="">용산도서관</label></li>
+											
+										</ul>
+									</div>
+									<button type="button" id="reSearchLibraryBtn" class="applyBtn">적용</button>
+								</div>
+							</div>
+						</form>
+						<!-- //도서관선택 -->
+
+						<!-- 검색결과 리스트 -->
+						<div class="searchResultWrap">
+							<div class="result_box">
+								<!-- 탭 -->
+								<ul class="cateTab col-3">
+									<li class="choiced">
+										<a href="#btn" onclick="fnLmt0(''); return false;" title="선택됨"><p>전체</p></a>
+									</li>
+									<li >
+										<a href="#btn" onclick="fnLmt0('m'); return false;" ><p>단행본</p></a>
+									</li>
+									<li >
+										<a href="#btn" onclick="fnLmt0('b;p;v;x;u;c'); return false;" ><p>비도서</p></a>
+									</li>
+								</ul>
+								<!-- //탭 -->
+
+								<!-- 결과 건수 -->
+								<div class="result_screen">
+									<strong class="highlight">
+										
+									</strong>에 대한 검색결과
+									총 <strong class="highlight">0</strong> 건
+								</div>
+								<!-- //결과 건수 -->
+
+								<!-- 변환&정렬&버튼 -->
+								<div class="resultTypeWrap">
+									<div class="resultType-left">
+										<div class="chkBox"><input type="checkbox" name="checkAll" id="checkAll" class="checkOnly"><label for="checkAll">전체선택</label></div>
+										<button type="button" id="addBasketBatchBtn" class="btn wishB"><span>관심자료담기</span></button>
+									</div>
+									<div class="resultType-right">
+										<form id="optionForm" name="optionForm" method="post">
+											<select name="vOI" id="resultListSel" title="정렬항목 선택">
+												<option value="">정렬항목</option>
+												
+											</select>
+											<select name="vOS" id="resultOrderSel" title="정렬순서 선택">
+												<option value="">정렬순서</option>
+												<option value="ASC" >오름차순</option>
+												<option value="DESC" >내림차순</option>
+											</select>
+											<select name="recordCountPerPage" id="searchNumSel" title="표시개수 선택">
+												<option value="10" selected="selected">10건</option>
+												<option value="20" >20건</option>
+												<option value="30" >30건</option>
+												<option value="50" >50건</option>
+											</select>
+										</form>
+										<button type="button" id="sortBtn" class="btn"><span>확인</span></button>
+										<div class="typeBtnGroup">
+											
+												
+													<button type="button" class="typeBtn listTypeCard on" id="viewTypeCardBtn" title="선택됨"><span class="blind">표지형 보기</span></button>
+													<button type="button" class="typeBtn listTypeList " id="viewTypeListBtn"><span class="blind">목록형 보기</span></button>
+												
+												
+											
+										</div>
+									</div>
+								</div>
+								<!-- //변환&정렬&버튼 -->
+							</div>
+
+							<!-- cardViewStyle - 표지형, listViewStyle - 목록형  -->
+							<div class="bookList cardViewStyle">
+								<div class="top">
+									<div class="list01">서명</div>
+									<div class="list02">저자</div>
+									<div class="list03">출판사</div>
+									<div class="list04">청구기호</div>
+									<div class="list05">소장처</div>
+									<div class="list06">소장정보</div>
+								</div>
+								
+								
+									<div class="noResultNote">
+										<div class="inner">
+											<p class="noResult">검색결과가 없습니다.</p>
+											<p>다른 키워드로 검색을 다시하거나 희망자료를 신청해주세요.</p>
+										</div>
+									</div>
+								
+							</div>
+						</div>
+						<!-- //검색결과 리스트 -->
+
+						<!-- 페이징 -->
+						<div class="pagingWrap">
+							<p class="paging">
+								
+
+							</p>
+						</div>
+						<!-- //페이징 -->
+					</div>
+					<!-- End Of the Real Contents-->
+				</div>
+			</div>
+		</div>
+	</div>
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- footer -->
+<footer id="footer">
+	<div class="footerInner">
+		<div class="fnb">
+			<a href="/web/contents/40055/contents.do"><span style="color:#FDD874">개인정보처리방침</span></a>
+		</div>
+
+		<div class="familySite">
+            <a href="javascript:void(0);" class="fLink" title="축소됨">관련기관 바로가기</a>
+            <ul class="familyList">
+                <li><a href="https://lib.daedeok.go.kr/daedeoklib/index.do" target="_blank" title="새창열림">대덕구복합문화센터</a></li>
+                <li><a href="https://donggu.go.kr/dg/lib/contents/673" target="_blank" title="새창열림">대전동구공공도서관</a></li>
+                <li><a href="https://www.seogu.go.kr/learning/wolpyeonglib/index.do" target="_blank" title="새창열림">월평도서관</a></li>
+                <li><a href="https://www.seogu.go.kr/learning/dunsanlib/index.do" target="_blank" title="새창열림">둔산도서관</a></li>
+                <li><a href="https://www.seogu.go.kr/learning/gasuwonlib/index.do" target="_blank" title="새창열림">가수원도서관</a></li>
+                <li><a href="https://www.seogu.go.kr/learning/galmalib/index.do" target="_blank" title="새창열림">갈마도서관</a></li>
+                <li><a href="https://www.dllc.or.kr:2443/web/index.do" target="_blank" title="새창열림">평생학습관</a></li>
+                <li><a href="https://dsecc.djsch.kr/djsecc/main.do" target="_blank" title="새창열림">학생교육문화원</a></li>
+                <li><a href="https://lifelong.yuseong.go.kr/lly/front/" target="_blank" title="새창열림">평생학습센터</a></li>
+                <li><a href="https://www.daejeon.go.kr/hanbatlibrary/index.do" target="_blank" title="새창열림">한밭도서관</a></li>
+            </ul>
+        </div>
+	</div>
+
+	<div class="footerInner">
+		<div class="fAdd">
+			<address>
+				<p><strong>노은도서관</strong> <span>노은동로 234번길 34 (지족동)<i></i>전화 042-611-6610</span></p>
+				<p><strong>구즉도서관</strong> <span>와룡로 37번길 20 (송강동)<i></i>전화 042-611-6510</span></p>
+				<p><strong>유성도서관</strong> <span>대덕대로 507-38 (가정동)<i></i>전화 042-611-6530</span></p>
+				<p><strong>구암도서관</strong> <span>유성대로 626번길 57 (구암동)<i></i>전화 042-611-6630</span></p>
+				<p><strong>엑스포분관</strong> <span>엑스포로 448 (전민동)<i></i>전화 042-611-6583</span></p>
+				<p><strong>원신흥도서관</strong> <span>원신흥남로 59 (원신흥동)<i></i>전화 042-611-6970</span></p>
+				<p><strong>진잠도서관</strong> <span>진잠로 160번길 19 (원내동)<i></i>전화 042-611-6590</span></p>
+				<p><strong>아가랑도서관</strong> <span>반석로 78(반석동)<i></i>전화 042-611-6526</span></p>
+				<p><strong>관평도서관</strong> <span>테크노4로 131 (관평동)<i></i>전화 042-716-0350</span></p>
+				<p><strong>전민도서관</strong> <span>문지로299번길 18 (문지동)<i></i>전화 042-389-0350</span></p>
+				<p><strong>용산도서관</strong> <span>배울1로 118(용산동)<i></i>전화 042-611-6793</span></p>
+			</address>
+			<cite>Copyright ⓒ 2024 by <strong>lib.yuseong.go.kr</strong> All right reserved.</cite>
+		</div>
+		<div class="waMark mobileHide">
+			<img src="/include/image/common/wa_mark.png" alt="과학기술정보통신부 WA(WEB접근성) 품질인증 마크, 웹와치(WebWatch) 2025.04.08 ~ 2026.04.07" title="WA 품질인증 마크, 웹와치(WebWatch) 2025.04.08 ~ 2026.04.07">
+		</div>
+	</div>
+
+	<a href="javascript:void(0);" class="btnTopScroll sub" title="상단으로 이동"><p>TOP</p></a>
+</footer>
+<iframe name="hiddenFrame" id="hiddenFrame" width="0" height="0" class="blind" title="빈프레임"></iframe>
+<!-- //footer -->
+<script>
+	$(function(){
+		$(".familyList").hide();
+		$(".fLink").click(function(){
+			let $this = $(this);
+			$(".familyList").not($this.next(".familyList").slideToggle(300)).slideUp();
+			$this.toggleClass("on");
+			if(!$this.hasClass("on")) {
+				$this.attr("title","축소됨");
+			} else {
+				$this.attr("title","확장됨");
+			};
+		});
+		$(".familyList a").click(function(){
+			$(".familyList").removeAttr("style");
+			$(".fLink").removeClass("on");
+		});
+	});
+</script>
+</div>
+<!-- //wrap -->
+</body>
+</html>

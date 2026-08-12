@@ -1,0 +1,3179 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="여주시립도서관">
+<meta name="description" content="여주시립도서관 정보 및 도서검색 제공">
+<meta name="generator" content="jnet co. ltd.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="여주시립도서관">
+<meta property="og:description" content="여주시립도서관 정보 및 도서검색 제공">
+<meta property="og:image" content="/include/image/common/ico_sns_favicon.png">
+<meta property="og:url" content="https://www.yjlib.go.kr/">
+<meta name="_csrf_parameter" content="_csrf" /><meta name="_csrf_header" content="X-CSRF-TOKEN" /><meta name="_csrf" content="047fcb0c-a005-453c-81e6-1f925b91fd71" />
+<link rel="canonical" href="https://www.yjlib.go.kr/">
+<title>여주시립도서관</title>
+<link rel="shortcut icon" href="/include/image/common/ico_sns_favicon.png">
+<link rel="stylesheet" href="/include/js/jquery-ui.min.css" />
+<link rel="stylesheet" href="/include/js/swiper.min.css" />
+<link rel="stylesheet" href="/include/js/swiper-bundle.min.css" />
+<link rel="stylesheet" href="/include/js/jquery.fullpage.css">
+<link rel="stylesheet" href="/include/js/slick.css">
+<link rel="stylesheet" href="/include/css/main.css?ver=20251021003">
+
+<script src="/include/js/jquery-1.12.4.min.js"></script>
+<script src="/include/js/jquery-ui.min.js"></script>
+<script src="/include/js/jquery.slider.js"></script>
+<script src="/include/js/jquery.tab.js"></script>
+<script src="/include/js/swiper.min.js"></script>
+<script src="/include/js/gnb.js"></script>
+<script src="/include/js/jquery.fullpage.js"></script>
+<script src="/include/js/slick.min.js"></script>
+<script src="/include/js/jquery.cookie.js"></script>
+<!-- <script src="/include/js/jquery.alphanum.js"></script>
+<script src="/include/js/common.js"></script> -->
+
+<!-- AJAX 전역 설정 -->
+<script>
+$(document).ready(function() {
+	var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");
+
+	if (token && header) {
+		$(document).ajaxSend(function(e, xhr, options) {
+			xhr.setRequestHeader(header, token);
+		});
+	}
+});
+</script>
+
+
+<script>
+  $(document).ready(function() {
+	$('#fullpage').fullpage({
+		//options here
+		responsiveWidth: 1580,
+		responsiveHeight: 800,
+		navigation: true,
+		navigationPosition: 'left',
+		navigationTooltips: ['HOME', '정보알림', '문화행사', '도서정보','푸터'],
+		showActiveTooltip: true,
+		'afterLoad': function (anchorLink, index) {
+			if (index == 1){
+				$("#header").removeClass("fixed");
+				$("#gnbNav").removeClass("fixed");
+			} else {
+				$("#header").addClass("fixed");
+				$("#gnbNav").addClass("fixed");
+			}
+		},
+	});
+
+	var $fpNav = $("#fp-nav");
+	var $sctTop = $(".btnTopScroll")
+	$("#wrap").append($fpNav);
+	$("#wrap").append($sctTop);
+	$("#fp-nav").append('<div class="pageDown"><img src="/include/image/main/pageDown.png" alt="스크롤다운 안내이미지"></div>');
+
+	//탭
+	$(".tab").each(function(){
+		$(this).tabList({tabContSelector : false});
+	});
+
+	$(".btnTopScrollMain").click(function (){
+		$.fn.fullpage.moveTo(1, 1);
+	});
+
+
+});
+
+ 	function fnLecture(code){
+		$("#lecture").load("/web/main/include/lecture.do?manageCd="+code);
+		$(".cultureZone .cultureTab > div a").click(function(e){
+
+			 setTimeout(function(){
+				$(".cultureSwiper .swiper-slide-active a").focus();
+			 }, 300)
+		});
+	}
+
+ 	//Null 체크
+ 	function isEmpty( val ){
+ 		if(val==null || typeof(val) === 'undefined' || $.trim(val) == '') {
+ 			return true;
+ 		}
+ 		return false;
+ 	}
+
+ 	function isNotEmpty(val){
+ 		return !isEmpty(val);
+ 	}
+
+</script>
+</head>
+<body>
+<!-- skip -->
+<ul class="skip">
+	<li><a href="#container">본문 바로가기</a></li>
+	<li><a href="#gnb">주메뉴 바로가기</a></li>
+</ul>
+<!-- skip -->
+<!-- wrap -->
+<div id="wrap">
+	
+<header id="header">
+	<a href="#back" id="blackBG"><span class="blind">이전으로 돌아가기</span></a>
+	
+<script>
+	function fnTopEbookLink() {
+	    var form = document.topEbookForm;
+		if(isEmpty("")) {
+			alert("로그인 후 이용가능합니다.");
+			return false;
+		}
+		if(isEmpty("")) {
+			alert("정회원만 이용가능한 서비스입니다.");
+			return false;
+		}
+		form.submit();
+	}
+
+	function fnMarathonLink() {
+	    var form = document.marathonForm;
+		if(isEmpty("")) {
+			alert("로그인 후 이용가능합니다.");
+			return false;
+		}
+		if(isEmpty("")) {
+			alert("정회원만 이용가능한 서비스입니다.");
+			return false;
+		}
+		form.submit();
+	}
+</script>
+
+<form name="marathonForm" method="post" action="https://www.yjlib.go.kr/marathon/sso/login.do" target="_blank">
+	<input type="hidden" name="_csrf" value="047fcb0c-a005-453c-81e6-1f925b91fd71" />
+	<input type="hidden" name ="userNo" value ="" />
+	<input type="hidden" name ="userId" value ="" />
+	<input type="hidden" name ="recKey" value ="" />
+</form>
+<!-- <form name="topEbookForm" method="post" action="https://ebook.yjlib.go.kr/Login_Check.asp" target="_blank"> -->
+
+<!-- </form> -->
+<div id="snb">
+	<div class="siteUtilGroup">
+		<div class="libSite">
+			<ul>
+				<li><a href="#none" onclick="fnMarathonLink();" title="새창열림">독서마라톤</a></li>
+				<li><a href="https://yeoju.gseek.kr" target="_blank" title="새창열림">평생학습</a></li>
+				<li><a href="https://www.yjlib.go.kr/web/menu/10179/contents/40064/contents.do" title="새창열림">전자도서관</a></li>
+			</ul>
+		</div>
+
+		<div class="rightArea">
+			<div id="siteMenu" class="siteMenu">
+				<ul class="sitePc">
+					
+							<li class="login"><a href="/web/program/memberLogin.do?returnUrl=aHR0cHM6Ly93d3cueWpsaWIuZ28ua3Ivd2ViL2luZGV4LmRv">로그인</a></li>
+							<li class="join"><a href="/web/program/memberJoinIntro.do">회원가입</a></li>
+						
+					<li class="stiemap mobileHide"><a href="/web/program/sitemap.do">사이트맵</a></li>
+				</ul>
+			</div>
+
+			
+			<ul class="snsMenu">
+				<li><a href="https://band.us/band/57702898" target="_blank" title="새창열림"><img src="/include/image/common/ico_snb_band.png" alt="네이버 밴드 바로가기" /><span class="blind">네이버 밴드</span></a></li>
+				<li><a href="https://www.facebook.com/lib.yeoju.5" target="_blank" title="새창열림"><img src="/include/image/common/ico_snb_facebook.png" alt="페이스북 바로가기" /><span class="blind">페이스북</span></a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="headerInner clearfix">
+	<h1 id="logo"><a href="/web/index.do"><span class="blind">여주시립도서관</span></a></h1>
+	<a href="#open" id="mobileIndexOpen" title="메뉴 열기"><span><i></i><i></i><i></i></span></a>
+	<a href="#search" class="btnTopSearch mobileTopSearch"><span><span class="blind">검색창 비활성화</span></span></a>
+	<ul class="libInfoMenu">
+		
+				<li>
+					<a href="/web/program/memberLogin.do?returnUrl=aHR0cHM6Ly93d3cueWpsaWIuZ28ua3Ivd2ViL2luZGV4LmRv">모바일회원증</a>
+				</li>
+			
+
+		<li class="help"><a href="#none">처음오셨나요?</a></li>
+	</ul>
+</div>
+	<nav id="gnbNav" class="gnbNav">
+		<div id="mobileIndexClose">
+			<a href="#close"><span class="blind">메뉴 닫기</span></a>
+		</div>
+		<ul id="gnb" class="gnb">
+			
+	<li id="gnb1">
+		<a href="/web/menu/10003/contents/40032/contents.do" ><span>이용안내</span></a>
+		
+			<ul>
+				
+					<li id="gnb1_1">
+						<a href="/web/menu/10003/contents/40032/contents.do" ><span>이용시간</span></a>
+						
+							<ul class="MkTab">
+								
+									<li id="gnb1_1_1">
+										<a href="/web/menu/10003/contents/40032/contents.do" ><span>여주도서관</span></a>
+										
+									</li>
+								
+									<li id="gnb1_1_2">
+										<a href="/web/menu/10004/contents/40035/contents.do" ><span>세종도서관</span></a>
+										
+									</li>
+								
+									<li id="gnb1_1_3">
+										<a href="/web/menu/10005/contents/40038/contents.do" ><span>점동도서관</span></a>
+										
+									</li>
+								
+									<li id="gnb1_1_4">
+										<a href="/web/menu/10006/contents/40041/contents.do" ><span>여주기적의도서관</span></a>
+										
+									</li>
+								
+									<li id="gnb1_1_5">
+										<a href="/web/menu/10007/contents/40044/contents.do" ><span>흥천도서관</span></a>
+										
+									</li>
+								
+									<li id="gnb1_1_6">
+										<a href="/web/menu/10008/contents/40047/contents.do" ><span>금사도서관</span></a>
+										
+									</li>
+								
+									<li id="gnb1_1_7">
+										<a href="/web/menu/10009/contents/40050/contents.do" ><span>대신도서관</span></a>
+										
+									</li>
+								
+									<li id="gnb1_1_8">
+										<a href="/web/menu/10010/contents/40053/contents.do" ><span>산북작은도서관</span></a>
+										
+									</li>
+								
+									<li id="gnb1_1_9">
+										<a href="/web/menu/10011/contents/40056/contents.do" ><span>북내작은도서관</span></a>
+										
+									</li>
+								
+							</ul>
+						
+					</li>
+				
+					<li id="gnb1_2">
+						<a href="/web/menu/10012/contents/40002/contents.do" ><span>회원가입</span></a>
+						
+					</li>
+				
+					<li id="gnb1_3">
+						<a href="/web/menu/10013/contents/40003/contents.do" ><span>도서대출</span></a>
+						
+					</li>
+				
+					<li id="gnb1_4">
+						<a href="/web/menu/10015/contents/40004/contents.do" ><span>상호대차</span></a>
+						
+							<ul class="MkTab">
+								
+									<li id="gnb1_4_1">
+										<a href="/web/menu/10015/contents/40004/contents.do" ><span>관내 상호대차(책두레)</span></a>
+										
+									</li>
+								
+									<li id="gnb1_4_2">
+										<a href="/web/menu/10016/contents/40005/contents.do" ><span>관외 상호대차(책바다)</span></a>
+										
+									</li>
+								
+							</ul>
+						
+					</li>
+				
+					<li id="gnb1_5">
+						<a href="/web/menu/10179/contents/40064/contents.do" ><span>전자도서관</span></a>
+						
+							<ul class="MkSub">
+								
+									<li id="gnb1_5_1">
+										<a href="/web/menu/10179/contents/40064/contents.do" ><span>전자책</span></a>
+										
+											<ul class="MkTab">
+												
+													<li id="gnb1_5_1_1"><a href="/web/menu/10179/contents/40064/contents.do" ><span>구독형 전자책(교보문고전자도서관)</span></a></li>
+												
+													<li id="gnb1_5_1_2"><a href="/web/menu/10020/contents/40007/contents.do" ><span>소장형 전자책</span></a></li>
+												
+													<li id="gnb1_5_1_3"><a href="/web/menu/10019/contents/40006/contents.do" ><span>소장형 전자책(경기도사이버도서관)</span></a></li>
+												
+											</ul>
+										
+									</li>
+								
+									<li id="gnb1_5_2">
+										<a href="/web/menu/10192/contents/40069/contents.do" ><span>오디오북</span></a>
+										
+											<ul class="MkTab">
+												
+													<li id="gnb1_5_2_1"><a href="/web/menu/10192/contents/40069/contents.do" ><span>구독형 오디오북(교보문고)</span></a></li>
+												
+													<li id="gnb1_5_2_2"><a href="/web/menu/10022/contents/40008/contents.do" ><span>구독형 오디오북(윌라)</span></a></li>
+												
+													<li id="gnb1_5_2_3"><a href="/web/menu/10023/contents/40009/contents.do" ><span>소장형 오디오북</span></a></li>
+												
+											</ul>
+										
+									</li>
+								
+									<li id="gnb1_5_3">
+										<a href="/web/menu/10024/contents/40010/contents.do" ><span>시요일</span></a>
+										
+									</li>
+								
+									<li id="gnb1_5_4">
+										<a href="/web/menu/10025/contents/40011/contents.do" ><span>원문서비스</span></a>
+										
+									</li>
+								
+									<li id="gnb1_5_5">
+										<a href="/web/menu/10026/contents/40012/contents.do" ><span>학술정보서비스(DBpia)</span></a>
+										
+									</li>
+								
+							</ul>
+						
+					</li>
+				
+					<li id="gnb1_6">
+						<a href="/web/menu/10027/contents/40013/contents.do" ><span>스마트도서관</span></a>
+						
+					</li>
+				
+					<li id="gnb1_7">
+						<a href="/web/menu/10029/contents/40014/contents.do" ><span>도서택배서비스</span></a>
+						
+							<ul class="MkTab">
+								
+									<li id="gnb1_7_1">
+										<a href="/web/menu/10029/contents/40014/contents.do" ><span>내생애첫도서관</span></a>
+										
+									</li>
+								
+									<li id="gnb1_7_2">
+										<a href="/web/menu/10030/contents/40015/contents.do" ><span>두루두루</span></a>
+										
+									</li>
+								
+							</ul>
+						
+					</li>
+				
+					<li id="gnb1_8">
+						<a href="/web/menu/10031/contents/40016/contents.do" ><span>열람실이용</span></a>
+						
+					</li>
+				
+					<li id="gnb1_9">
+						<a href="/web/menu/10032/contents/40017/contents.do" ><span>디지털자료실</span></a>
+						
+					</li>
+				
+					<li id="gnb1_10">
+						<a href="/web/menu/10033/contents/40018/contents.do" ><span>도서기증</span></a>
+						
+					</li>
+				
+			</ul>
+		
+	</li>
+
+	<li id="gnb2">
+		<a href="/web/menu/10036/program/30001/searchSimple.do" ><span>자료검색</span></a>
+		
+			<ul>
+				
+					<li id="gnb2_1">
+						<a href="/web/menu/10036/program/30001/searchSimple.do" ><span>소장자료검색</span></a>
+						
+							<ul class="MkSub">
+								
+									<li id="gnb2_1_1">
+										<a href="/web/menu/10036/program/30001/searchSimple.do" ><span>간략검색</span></a>
+										
+									</li>
+								
+									<li id="gnb2_1_2">
+										<a href="/web/menu/10037/program/30002/searchDetail.do" ><span>상세검색</span></a>
+										
+									</li>
+								
+							</ul>
+						
+					</li>
+				
+					<li id="gnb2_2">
+						<a href="/web/menu/10038/program/30003/searchSmartList.do" ><span>스마트도서관검색</span></a>
+						
+					</li>
+				
+					<li id="gnb2_3">
+						<a href="/web/menu/10039/program/30004/searchKdc.do" ><span>주제별검색</span></a>
+						
+					</li>
+				
+					<li id="gnb2_4">
+						<a href="/web/menu/10040/program/30006/loanBestList.do" ><span>대출베스트</span></a>
+						
+					</li>
+				
+					<li id="gnb2_5">
+						<a href="/web/menu/10041/program/30005/searchNewList.do" ><span>신착도서</span></a>
+						
+					</li>
+				
+					<li id="gnb2_6">
+						<a href="/web/menu/10042/program/30007/periodicalList.do" ><span>연속간행물목록</span></a>
+						
+					</li>
+				
+					<li id="gnb2_7">
+						<a href="/web/menu/10044/contents/40019/contents.do" ><span>읍면행정복지센터 대출반납서비스</span></a>
+						
+							<ul class="MkTab">
+								
+									<li id="gnb2_7_1">
+										<a href="/web/menu/10044/contents/40019/contents.do" ><span>서비스안내</span></a>
+										
+									</li>
+								
+									<li id="gnb2_7_2">
+										<a href="/web/menu/10045/program/30008/officeLoanApply.do" ><span>신청하기</span></a>
+										
+									</li>
+								
+							</ul>
+						
+					</li>
+				
+					<li id="gnb2_8">
+						<a href="/web/menu/10047/contents/40020/contents.do" ><span>희망도서신청</span></a>
+						
+							<ul class="MkTab">
+								
+									<li id="gnb2_8_1">
+										<a href="/web/menu/10047/contents/40020/contents.do" ><span>서비스안내</span></a>
+										
+									</li>
+								
+									<li id="gnb2_8_2">
+										<a href="/web/menu/10048/program/30009/hopeBookApply.do" ><span>신청하기</span></a>
+										
+									</li>
+								
+							</ul>
+						
+					</li>
+				
+			</ul>
+		
+	</li>
+
+	<li id="gnb3">
+		<a href="/web/menu/10051/contents/40021/contents.do" ><span>독서문화</span></a>
+		
+			<ul>
+				
+					<li id="gnb3_1">
+						<a href="/web/menu/10051/contents/40021/contents.do" ><span>독서진작프로젝트</span></a>
+						
+							<ul class="MkSub">
+								
+									<li id="gnb3_1_1">
+										<a href="/web/menu/10051/contents/40021/contents.do" ><span>북스타트(0~3세)</span></a>
+										
+									</li>
+								
+									<li id="gnb3_1_2">
+										<a href="/web/menu/10053/contents/40022/contents.do" ><span>내천책(4~6세)</span></a>
+										
+											<ul class="MkTab">
+												
+													<li id="gnb3_1_2_1"><a href="/web/menu/10053/contents/40022/contents.do" ><span>내천책 안내</span></a></li>
+												
+													<li id="gnb3_1_2_2"><a href="/web/menu/10054/program/30011/thousandProjectFameList.do" ><span>명예의 전당</span></a></li>
+												
+													<li id="gnb3_1_2_3"><a href="/web/menu/10055/program/30010/thousandProjectBookList.do" ><span>내천책 도서목록</span></a></li>
+												
+											</ul>
+										
+									</li>
+								
+									<li id="gnb3_1_3">
+										<a href="/web/menu/10057/contents/40023/contents.do" ><span>초능력(7~12세)</span></a>
+										
+											<ul class="MkTab">
+												
+													<li id="gnb3_1_3_1"><a href="/web/menu/10057/contents/40023/contents.do" ><span>초능력 안내</span></a></li>
+												
+													<li id="gnb3_1_3_2"><a href="/web/menu/10058/program/30013/elemProjectFameList.do" ><span>명예의 전당</span></a></li>
+												
+													<li id="gnb3_1_3_3"><a href="/web/menu/10059/program/30012/elemProjectBookList.do" ><span>초능력 도서목록</span></a></li>
+												
+											</ul>
+										
+									</li>
+								
+									<li id="gnb3_1_4">
+										<a href="/web/menu/10061/contents/40024/contents.do" ><span>YES Books(4~12세)</span></a>
+										
+											<ul class="MkTab">
+												
+													<li id="gnb3_1_4_1"><a href="/web/menu/10061/contents/40024/contents.do" ><span>YES Books 안내</span></a></li>
+												
+													<li id="gnb3_1_4_2"><a href="/web/menu/10062/program/30015/yesProjectFameList.do" ><span>명예의 전당</span></a></li>
+												
+													<li id="gnb3_1_4_3"><a href="/web/menu/10063/program/30014/yesProjectBookList.do" ><span>YES Books 도서목록</span></a></li>
+												
+											</ul>
+										
+									</li>
+								
+									<li id="gnb3_1_5">
+										<a href="/web/menu/10065/contents/40025/contents.do" ><span>고백 프로젝트</span></a>
+										
+											<ul class="MkTab">
+												
+													<li id="gnb3_1_5_1"><a href="/web/menu/10065/contents/40025/contents.do" ><span>고백 프로젝트 안내</span></a></li>
+												
+													<li id="gnb3_1_5_2"><a href="/web/menu/10178/program/30049/goProjectFameList.do" ><span>명예의 전당</span></a></li>
+												
+													<li id="gnb3_1_5_3"><a href="/web/menu/10066/program/30016/goProjectBookList.do" ><span>고백 프로젝트 선정도서</span></a></li>
+												
+											</ul>
+										
+									</li>
+								
+									<li id="gnb3_1_6">
+										<a href="/web/menu/10182/contents/40065/contents.do" ><span>한입문학</span></a>
+										
+											<ul class="MkTab">
+												
+													<li id="gnb3_1_6_1"><a href="/web/menu/10182/contents/40065/contents.do" ><span>한입문학 안내</span></a></li>
+												
+													<li id="gnb3_1_6_2"><a href="/web/menu/10183/program/30051/hanipProjectBookList.do" ><span>한입문학 도서목록</span></a></li>
+												
+											</ul>
+										
+									</li>
+								
+									<li id="gnb3_1_7">
+										<a href="/web/menu/10184/contents/40066/contents.do" ><span>전래동화 읽기</span></a>
+										
+											<ul class="MkTab">
+												
+													<li id="gnb3_1_7_1"><a href="/web/menu/10184/contents/40066/contents.do" ><span>전래동화읽기 안내</span></a></li>
+												
+													<li id="gnb3_1_7_2"><a href="/web/menu/10185/program/30050/kfairytaleProjectBookList.do" ><span>전래동화읽기 도서목록</span></a></li>
+												
+											</ul>
+										
+									</li>
+								
+									<li id="gnb3_1_8">
+										<a href="/web/menu/10186/contents/40067/contents.do" ><span>청소년 한 달 한 책</span></a>
+										
+									</li>
+								
+							</ul>
+						
+					</li>
+				
+					<li id="gnb3_2">
+						<a href="/web/menu/10067/contents/40062/contents.do" ><span>교과연계도서목록</span></a>
+						
+					</li>
+				
+					<li id="gnb3_3">
+						<a href="/web/menu/10068/program/30018/curationList.do" ><span>북큐레이션</span></a>
+						
+					</li>
+				
+					<li id="gnb3_4">
+						<a href="/web/menu/10069/program/30019/librarianBookList.do" ><span>요즘 사서들이 읽는 책</span></a>
+						
+					</li>
+				
+					<li id="gnb3_5">
+						<a href="/web/menu/10188/contents/40068/contents.do" ><span>지역작가 은행제</span></a>
+						
+							<ul class="MkSub">
+								
+									<li id="gnb3_5_1">
+										<a href="/web/menu/10188/contents/40068/contents.do" ><span>지역작가 은행제란?</span></a>
+										
+									</li>
+								
+									<li id="gnb3_5_2">
+										<a href="/web/menu/10189/bbs/20004/bbsPostList.do" ><span>지역작가 소개</span></a>
+										
+									</li>
+								
+							</ul>
+						
+					</li>
+				
+					<li id="gnb3_6">
+						<a href="/web/menu/10191/bbs/20005/bbsPostList.do" ><span>박현모의 세종이야기</span></a>
+						
+					</li>
+				
+			</ul>
+		
+	</li>
+
+	<li id="gnb4">
+		<a href="/web/menu/10071/program/30020/lectureList.do" ><span>신청·참여</span></a>
+		
+			<ul>
+				
+					<li id="gnb4_1">
+						<a href="/web/menu/10071/program/30020/lectureList.do" ><span>강좌신청</span></a>
+						
+					</li>
+				
+					<li id="gnb4_2">
+						<a href="/web/menu/10073/contents/40026/contents.do" ><span>대관신청</span></a>
+						
+							<ul class="MkTab">
+								
+									<li id="gnb4_2_1">
+										<a href="/web/menu/10073/contents/40026/contents.do" ><span>대관안내</span></a>
+										
+									</li>
+								
+									<li id="gnb4_2_2">
+										<a href="/web/menu/10074/program/30021/spaceList.do" ><span>신청하기</span></a>
+										
+									</li>
+								
+							</ul>
+						
+					</li>
+				
+					<li id="gnb4_3">
+						<a href="/web/menu/10075/program/30022/performList.do" ><span>공연·강연예약</span></a>
+						
+					</li>
+				
+					<li id="gnb4_4">
+						<a href="/web/menu/10077/contents/40027/contents.do" ><span>사물함신청</span></a>
+						
+							<ul class="MkTab">
+								
+									<li id="gnb4_4_1">
+										<a href="/web/menu/10077/contents/40027/contents.do" ><span>신청안내</span></a>
+										
+									</li>
+								
+									<li id="gnb4_4_2">
+										<a href="/web/menu/10078/program/30023/lockerList.do" ><span>신청하기</span></a>
+										
+									</li>
+								
+							</ul>
+						
+					</li>
+				
+					<li id="gnb4_5">
+						<a href="/web/menu/10080/contents/40028/contents.do" ><span>도서관 나들이</span></a>
+						
+							<ul class="MkTab">
+								
+									<li id="gnb4_5_1">
+										<a href="/web/menu/10080/contents/40028/contents.do" ><span>서비스 안내</span></a>
+										
+									</li>
+								
+									<li id="gnb4_5_2">
+										<a href="/web/menu/10081/program/30024/visitCalendar.do" ><span>신청하기</span></a>
+										
+									</li>
+								
+							</ul>
+						
+					</li>
+				
+					<li id="gnb4_6">
+						<a href="/web/menu/10082/program/30025/clubList.do" ><span>동아리</span></a>
+						
+					</li>
+				
+					<li id="gnb4_7">
+						<a href="/web/menu/10083/contents/40029/contents.do" ><span>자원봉사</span></a>
+						
+					</li>
+				
+			</ul>
+		
+	</li>
+
+	<li id="gnb5">
+		<a href="/web/menu/10085/bbs/20001/bbsPostList.do" ><span>도서관소식</span></a>
+		
+			<ul>
+				
+					<li id="gnb5_1">
+						<a href="/web/menu/10085/bbs/20001/bbsPostList.do" ><span>공지사항</span></a>
+						
+					</li>
+				
+					<li id="gnb5_2">
+						<a href="/web/menu/10086/program/30026/calendar.do" ><span>도서관일정</span></a>
+						
+					</li>
+				
+					<li id="gnb5_3">
+						<a href="/web/menu/10087/bbs/20002/bbsPostList.do" ><span>묻고답하기</span></a>
+						
+					</li>
+				
+					<li id="gnb5_4">
+						<a href="/web/menu/10088/contents/40030/contents.do" ><span>사서에게 물어보세요</span></a>
+						
+					</li>
+				
+			</ul>
+		
+	</li>
+
+	<li id="gnb6">
+		<a href="/web/menu/10090/contents/40031/contents.do" ><span>도서관소개</span></a>
+		
+			<ul>
+				
+					<li id="gnb6_1">
+						<a href="/web/menu/10090/contents/40031/contents.do" ><span>연혁</span></a>
+						
+					</li>
+				
+					<li id="gnb6_2">
+						<a href="/web/menu/10091/program/30027/organogram.do" ><span>조직도</span></a>
+						
+					</li>
+				
+					<li id="gnb6_3">
+						<a href="/web/menu/10095/contents/40032/contents.do" ><span>시립도서관</span></a>
+						
+							<ul class="MkSub">
+								
+									<li id="gnb6_3_1">
+										<a href="/web/menu/10095/contents/40032/contents.do" ><span>여주도서관</span></a>
+										
+											<ul class="MkTab">
+												
+													<li id="gnb6_3_1_1"><a href="/web/menu/10095/contents/40032/contents.do" ><span>이용시간</span></a></li>
+												
+													<li id="gnb6_3_1_2"><a href="/web/menu/10096/contents/40033/contents.do" ><span>시설현황</span></a></li>
+												
+													<li id="gnb6_3_1_3"><a href="/web/menu/10097/program/30029/dataStatus.do?manageCd=MA" ><span>자료현황</span></a></li>
+												
+													<li id="gnb6_3_1_4"><a href="/web/menu/10098/contents/40034/contents.do" ><span>찾아오시는길</span></a></li>
+												
+											</ul>
+										
+									</li>
+								
+									<li id="gnb6_3_2">
+										<a href="/web/menu/10100/contents/40035/contents.do" ><span>세종도서관</span></a>
+										
+											<ul class="MkTab">
+												
+													<li id="gnb6_3_2_1"><a href="/web/menu/10100/contents/40035/contents.do" ><span>이용시간</span></a></li>
+												
+													<li id="gnb6_3_2_2"><a href="/web/menu/10101/contents/40036/contents.do" ><span>시설현황</span></a></li>
+												
+													<li id="gnb6_3_2_3"><a href="/web/menu/10102/program/30029/dataStatus.do?manageCd=MB" ><span>자료현황</span></a></li>
+												
+													<li id="gnb6_3_2_4"><a href="/web/menu/10103/contents/40037/contents.do" ><span>찾아오시는길</span></a></li>
+												
+											</ul>
+										
+									</li>
+								
+									<li id="gnb6_3_3">
+										<a href="/web/menu/10105/contents/40038/contents.do" ><span>점동도서관</span></a>
+										
+											<ul class="MkTab">
+												
+													<li id="gnb6_3_3_1"><a href="/web/menu/10105/contents/40038/contents.do" ><span>이용시간</span></a></li>
+												
+													<li id="gnb6_3_3_2"><a href="/web/menu/10106/contents/40039/contents.do" ><span>시설현황</span></a></li>
+												
+													<li id="gnb6_3_3_3"><a href="/web/menu/10107/program/30029/dataStatus.do?manageCd=ME" ><span>자료현황</span></a></li>
+												
+													<li id="gnb6_3_3_4"><a href="/web/menu/10108/contents/40040/contents.do" ><span>찾아오시는길</span></a></li>
+												
+											</ul>
+										
+									</li>
+								
+									<li id="gnb6_3_4">
+										<a href="/web/menu/10110/contents/40041/contents.do" ><span>여주기적의도서관</span></a>
+										
+											<ul class="MkTab">
+												
+													<li id="gnb6_3_4_1"><a href="/web/menu/10110/contents/40041/contents.do" ><span>이용시간</span></a></li>
+												
+													<li id="gnb6_3_4_2"><a href="/web/menu/10111/contents/40042/contents.do" ><span>시설현황</span></a></li>
+												
+													<li id="gnb6_3_4_3"><a href="/web/menu/10112/program/30029/dataStatus.do?manageCd=MH" ><span>자료현황</span></a></li>
+												
+													<li id="gnb6_3_4_4"><a href="/web/menu/10113/contents/40043/contents.do" ><span>찾아오시는길</span></a></li>
+												
+											</ul>
+										
+									</li>
+								
+									<li id="gnb6_3_5">
+										<a href="/web/menu/10115/contents/40044/contents.do" ><span>흥천도서관</span></a>
+										
+											<ul class="MkTab">
+												
+													<li id="gnb6_3_5_1"><a href="/web/menu/10115/contents/40044/contents.do" ><span>이용시간</span></a></li>
+												
+													<li id="gnb6_3_5_2"><a href="/web/menu/10116/contents/40045/contents.do" ><span>시설현황</span></a></li>
+												
+													<li id="gnb6_3_5_3"><a href="/web/menu/10117/program/30029/dataStatus.do?manageCd=MI" ><span>자료현황</span></a></li>
+												
+													<li id="gnb6_3_5_4"><a href="/web/menu/10118/contents/40046/contents.do" ><span>찾아오시는길</span></a></li>
+												
+											</ul>
+										
+									</li>
+								
+									<li id="gnb6_3_6">
+										<a href="/web/menu/10120/contents/40047/contents.do" ><span>금사도서관</span></a>
+										
+											<ul class="MkTab">
+												
+													<li id="gnb6_3_6_1"><a href="/web/menu/10120/contents/40047/contents.do" ><span>이용시간</span></a></li>
+												
+													<li id="gnb6_3_6_2"><a href="/web/menu/10121/contents/40048/contents.do" ><span>시설현황</span></a></li>
+												
+													<li id="gnb6_3_6_3"><a href="/web/menu/10122/program/30029/dataStatus.do?manageCd=MG" ><span>자료현황</span></a></li>
+												
+													<li id="gnb6_3_6_4"><a href="/web/menu/10123/contents/40049/contents.do" ><span>찾아오시는길</span></a></li>
+												
+											</ul>
+										
+									</li>
+								
+									<li id="gnb6_3_7">
+										<a href="/web/menu/10125/contents/40050/contents.do" ><span>대신도서관</span></a>
+										
+											<ul class="MkTab">
+												
+													<li id="gnb6_3_7_1"><a href="/web/menu/10125/contents/40050/contents.do" ><span>이용시간</span></a></li>
+												
+													<li id="gnb6_3_7_2"><a href="/web/menu/10126/contents/40051/contents.do" ><span>시설현황</span></a></li>
+												
+													<li id="gnb6_3_7_3"><a href="/web/menu/10127/program/30029/dataStatus.do?manageCd=MF" ><span>자료현황</span></a></li>
+												
+													<li id="gnb6_3_7_4"><a href="/web/menu/10128/contents/40052/contents.do" ><span>찾아오시는길</span></a></li>
+												
+											</ul>
+										
+									</li>
+								
+									<li id="gnb6_3_8">
+										<a href="/web/menu/10130/contents/40053/contents.do" ><span>산북작은도서관</span></a>
+										
+											<ul class="MkTab">
+												
+													<li id="gnb6_3_8_1"><a href="/web/menu/10130/contents/40053/contents.do" ><span>이용시간</span></a></li>
+												
+													<li id="gnb6_3_8_2"><a href="/web/menu/10131/contents/40054/contents.do" ><span>시설현황</span></a></li>
+												
+													<li id="gnb6_3_8_3"><a href="/web/menu/10132/program/30029/dataStatus.do?manageCd=MC" ><span>자료현황</span></a></li>
+												
+													<li id="gnb6_3_8_4"><a href="/web/menu/10133/contents/40055/contents.do" ><span>찾아오시는길</span></a></li>
+												
+											</ul>
+										
+									</li>
+								
+									<li id="gnb6_3_9">
+										<a href="/web/menu/10135/contents/40056/contents.do" ><span>북내작은도서관</span></a>
+										
+											<ul class="MkTab">
+												
+													<li id="gnb6_3_9_1"><a href="/web/menu/10135/contents/40056/contents.do" ><span>이용시간</span></a></li>
+												
+													<li id="gnb6_3_9_2"><a href="/web/menu/10136/contents/40057/contents.do" ><span>시설현황</span></a></li>
+												
+													<li id="gnb6_3_9_3"><a href="/web/menu/10137/program/30029/dataStatus.do?manageCd=MD" ><span>자료현황</span></a></li>
+												
+													<li id="gnb6_3_9_4"><a href="/web/menu/10138/contents/40058/contents.do" ><span>찾아오시는길</span></a></li>
+												
+											</ul>
+										
+									</li>
+								
+							</ul>
+						
+					</li>
+				
+					<li id="gnb6_4">
+						<a href="/web/menu/10140/program/30030/smallLibList.do" ><span>사립작은도서관</span></a>
+						
+							<ul class="MkTab">
+								
+									<li id="gnb6_4_1">
+										<a href="/web/menu/10140/program/30030/smallLibList.do" ><span>현황</span></a>
+										
+									</li>
+								
+									<li id="gnb6_4_2">
+										<a href="/web/menu/10141/contents/40059/contents.do" ><span>설립 및 등록안내</span></a>
+										
+									</li>
+								
+									<li id="gnb6_4_3">
+										<a href="/web/menu/10142/bbs/20003/bbsPostList.do" ><span>작은도서관 소식</span></a>
+										
+									</li>
+								
+							</ul>
+						
+					</li>
+				
+					<li id="gnb6_5">
+						<a href="/web/menu/10144/contents/40060/contents.do" ><span>도서관정책</span></a>
+						
+							<ul class="MkSub">
+								
+									<li id="gnb6_5_1">
+										<a href="/web/menu/10144/contents/40060/contents.do" ><span>도서관조례</span></a>
+										
+									</li>
+								
+									<li id="gnb6_5_2">
+										<a href="/web/menu/10145/contents/40061/contents.do" ><span>도서관서비스 이행표준</span></a>
+										
+									</li>
+								
+							</ul>
+						
+					</li>
+				
+			</ul>
+		
+	</li>
+
+	<li id="gnb7">
+		<a href="/web/menu/10147/program/30031/mypage/myInfo.do" ><span>마이페이지</span></a>
+		
+			<ul>
+				
+					<li id="gnb7_1">
+						<a href="/web/menu/10147/program/30031/mypage/myInfo.do" ><span>나의정보</span></a>
+						
+					</li>
+				
+					<li id="gnb7_2">
+						<a href="/web/menu/10149/program/30032/mypage/loanStatusList.do" ><span>대출정보조회</span></a>
+						
+							<ul class="MkTab">
+								
+									<li id="gnb7_2_1">
+										<a href="/web/menu/10149/program/30032/mypage/loanStatusList.do" ><span>대출현황</span></a>
+										
+									</li>
+								
+									<li id="gnb7_2_2">
+										<a href="/web/menu/10150/program/30033/mypage/reservationStatusList.do" ><span>예약현황</span></a>
+										
+									</li>
+								
+									<li id="gnb7_2_3">
+										<a href="/web/menu/10151/program/30034/mypage/loanHistoryList.do" ><span>대출이력</span></a>
+										
+									</li>
+								
+							</ul>
+						
+					</li>
+				
+					<li id="gnb7_3">
+						<a href="/web/menu/10152/program/30035/mypage/dooraeLillStatusList.do" ><span>상호대차조회</span></a>
+						
+					</li>
+				
+					<li id="gnb7_4">
+						<a href="/web/menu/10153/program/30036/mypage/basketList.do" ><span>관심자료목록</span></a>
+						
+					</li>
+				
+					<li id="gnb7_5">
+						<a href="/web/menu/10154/program/30009/mypage/hopeBookApplyList.do" ><span>희망도서신청조회</span></a>
+						
+					</li>
+				
+					<li id="gnb7_6">
+						<a href="/web/menu/10155/program/30008/mypage/officeLoanList.do" ><span>읍면행정복지센터 대출반납서비스</span></a>
+						
+					</li>
+				
+					<li id="gnb7_7">
+						<a href="/web/menu/10157/program/30020/mypage/lectureApplyList.do" ><span>신청·참여조회</span></a>
+						
+							<ul class="MkSub">
+								
+									<li id="gnb7_7_1">
+										<a href="/web/menu/10157/program/30020/mypage/lectureApplyList.do" ><span>강좌신청</span></a>
+										
+									</li>
+								
+									<li id="gnb7_7_2">
+										<a href="/web/menu/10158/program/30021/mypage/spaceApplyList.do" ><span>대관신청</span></a>
+										
+									</li>
+								
+									<li id="gnb7_7_3">
+										<a href="/web/menu/10159/program/30022/mypage/performApplyList.do" ><span>공연·강연예약</span></a>
+										
+									</li>
+								
+									<li id="gnb7_7_4">
+										<a href="/web/menu/10160/program/30024/mypage/visitApplyList.do" ><span>도서관나들이</span></a>
+										
+									</li>
+								
+									<li id="gnb7_7_5">
+										<a href="/web/menu/10161/program/30023/mypage/lockerApplyList.do" ><span>사물함신청</span></a>
+										
+									</li>
+								
+							</ul>
+						
+					</li>
+				
+					<li id="gnb7_8">
+						<a href="/web/menu/10163/bbs/20002/mypage/bbsPostList.do" ><span>나의게시글</span></a>
+						
+							<ul class="MkSub">
+								
+									<li id="gnb7_8_1">
+										<a href="/web/menu/10163/bbs/20002/mypage/bbsPostList.do" ><span>묻고답하기</span></a>
+										
+									</li>
+								
+							</ul>
+						
+					</li>
+				
+			</ul>
+		
+	</li>
+
+	<li id="gnb8">
+		<a href="/web/menu/10165/program/30037/memberLogin.do" ><span>회원정보</span></a>
+		
+			<ul>
+				
+					<li id="gnb8_1">
+						<a href="/web/menu/10165/program/30037/memberLogin.do" ><span>로그인</span></a>
+						
+					</li>
+				
+					<li id="gnb8_2">
+						<a href="/web/menu/10166/program/30038/memberJoinIntro.do" ><span>회원가입</span></a>
+						
+					</li>
+				
+					<li id="gnb8_3">
+						<a href="/web/menu/10167/program/30039/memberFindId.do" ><span>아이디찾기</span></a>
+						
+					</li>
+				
+					<li id="gnb8_4">
+						<a href="/web/menu/10168/program/30040/memberFindPwd.do" ><span>비밀번호재설정</span></a>
+						
+					</li>
+				
+			</ul>
+		
+	</li>
+
+	<li id="gnb9">
+		<a href="/web/menu/10170/program/30041/memberModifyCheck.do" ><span>회원정보</span></a>
+		
+			<ul>
+				
+					<li id="gnb9_1">
+						<a href="/web/menu/10170/program/30041/memberModifyCheck.do" ><span>회원정보수정</span></a>
+						
+					</li>
+				
+					<li id="gnb9_2">
+						<a href="/web/menu/10171/program/30042/cardPwdModifyCheck.do" ><span>회원증관리</span></a>
+						
+					</li>
+				
+					<li id="gnb9_3">
+						<a href="/web/menu/10172/program/30043/memberPwdModifyCheck.do" ><span>비밀번호변경</span></a>
+						
+					</li>
+				
+					<li id="gnb9_4">
+						<a href="/web/menu/10173/program/30044/memberWithdraw.do" ><span>회원탈퇴</span></a>
+						
+					</li>
+				
+			</ul>
+		
+	</li>
+
+	<li id="gnb10">
+		<a href="/web/menu/10175/program/30045/sitemap.do" ><span>홈페이지이용안내</span></a>
+		
+			<ul>
+				
+					<li id="gnb10_1">
+						<a href="/web/menu/10175/program/30045/sitemap.do" ><span>사이트맵</span></a>
+						
+					</li>
+				
+					<li id="gnb10_2">
+						<a href="https://www.yeoju.go.kr/www/contents.do?key=657"  target="_blank" title="새창열림"><span>개인정보처리방침</span></a>
+						
+					</li>
+				
+			</ul>
+		
+	</li>
+
+		</ul>
+		
+				<script>
+					$("#gnb9").remove();
+				</script>
+			
+		<div class="btnTopArea">
+			<a href="#search" class="btnTopSearch"><span><span class="blind">검색창 비활성화</span></span></a>
+			<a href="/web/program/mypage/myInfo.do" class="btnTopInfo"><span><span class="blind">내 정보</span></span></a>
+			<a href="#search" class="btnTopTotal"><span><span class="blind">메뉴 열기</span></span></a>
+		</div>
+	</nav>
+	
+<script>
+	$(function(){
+		$("#topSearchWord").keypress(function (e){
+			if((e.keyCode || e.which) == 13){
+			    fnTopSearch();
+				e.preventDefault();
+			}
+		});
+		$("#topSearchBtn").click(fnTopSearch);
+
+		$(".btnTopSearch").click(function (){
+		    $(".keyWordList").load("/web/include/topSearchWord.do");
+		});
+	});
+
+	function fnTopSearch() {
+		var form = document.topSearchForm;
+		if(isEmpty(form.searchWord.value)){
+			alert("검색어를 입력하세요.");
+			form.searchWord.focus();
+			return false;
+		}
+		form.action="/web/program/searchResultList.do";
+		form.submit();
+	}
+
+	function fnTopSearchPopularWord(word){
+		var form = document.topSearchForm;
+		form.searchWord.value = word;
+		form.action="/web/program/searchResultList.do";
+		form.submit();
+	}
+</script>
+<form name="topSearchForm" id="topSearchForm" method="post">
+	<input type="hidden" name="_csrf" value="047fcb0c-a005-453c-81e6-1f925b91fd71" />
+	<input type="hidden" name="searchType" value="SIMPLE">
+	<input type="hidden" name="searchCategory" value="ALL">
+	<input type="hidden" name="searchClassNo1Aggs" value="ALL">
+	<input type="hidden" name="searchLibrary" value="ALL">
+	<fieldset>
+		<legend>통합자료 검색영역</legend>
+		<div id="searchBox" class="searchTopWrap">
+			<div class="searchBox">
+				<h3 class="searchTitle"><strong>무슨 책</strong>을 찾으시나요?</h3>
+				<div class="searchKeyWord">
+					<select name="searchField" id="topSearchField" title="검색유형 선택">
+						<option value="ALL">전체</option>
+						<option value="TITLE">서명</option>
+						<option value="AUTHOR">저자</option>
+						<option value="PUBLISHER">발행자</option>
+						<option value="KEYWORD">키워드</option>
+					</select>
+					<input type="text" title="검색어 입력" id="topSearchWord" name="searchWord" autocomplete="off" placeholder="검색어를 입력하세요">
+					<a href="#search" id="topSearchBtn" class="btnSearch"><span class="blind">자료검색</span></a>
+				</div>
+				<div class="populKeyWord">
+					<div class="tit">인기검색어</div>
+					<ul class="keyWordList"></ul>
+				</div>
+			</div>
+			<a href="#searchTopClose" id="searchTopClose"><span class="blind">검색창닫기</span></a>
+		</div>
+	</fieldset>
+</form>
+
+	<div id="submenuArea"></div>
+	<div id="gnbblackBG"></div>
+</header>
+<script>
+	$(function(){
+		$("#todayCloseBtn").click(function(){
+			$.cookie('MAIN_POPUP', '2026-08-07', { expires: 1, path: '/' });
+			$("#mainLayerPop").hide();
+		});
+
+		$("#popupCloseBtn").click(function(){
+			$("#mainLayerPop").hide();
+		});
+	});
+</script>
+<!-- S: 메인 레이어팝업 -->
+
+<!-- E: 메인 레이어팝업 -->
+
+	<div id="fullpage">
+		<div id="container" class="main">
+			<div class="section section1">
+				<div class="bgBox">
+					<img src="/include/image/main/section1_bg_01.png" alt="섹션1 백그라운드1" class="bg_01">
+					<img src="/include/image/main/section1_bg_02.png" alt="섹션1 백그라운드2" class="bg_02">
+					<img src="/include/image/main/section1_bg_03.png" alt="섹션1 백그라운드3" class="bg_03">
+					<img src="/include/image/main/section1_bg_04.png" alt="섹션1 백그라운드4" class="bg_04">
+				</div>
+				<div class="sectionGroup">
+					<div class="sectionInner">
+						<div class="searchGroup">
+							
+<script>
+	$(function(){
+		$("#mainSearchKeyword").keypress(function (e){
+			if((e.keyCode || e.which) == 13){
+				fnMainSearch();
+				e.preventDefault();
+			}
+		});
+		$("#mainSearchBtn").click(fnMainSearch);
+	});
+
+	function fnMainSearch() {
+		var form = document.mainSearchForm;
+		if(isEmpty(form.searchWord.value)){
+			alert("검색어를 입력하세요.");
+			form.searchWord.focus();
+			return false;
+		}
+		form.action="/web/program/searchResultList.do";
+		form.submit();
+	}
+</script>
+
+<form name="mainSearchForm" id="mainSearchForm" method="post">
+	<input type="hidden" name="_csrf" value="047fcb0c-a005-453c-81e6-1f925b91fd71" />
+	<input type="hidden" name="searchType" value="SIMPLE">
+	<input type="hidden" name="searchLibrary" value="ALL">
+	<input type="hidden" name="searchCategory" value="ALL">
+<div class="MainSearchKeyWord">
+
+		<select name="searchField" id="mainSearchField" title="검색유형 선택">
+			<option value="ALL">전체</option>
+			<option value="TITLE">서명</option>
+			<option value="AUTHOR">저자</option>
+			<option value="PUBLISHER">발행자</option>
+			<option value="KEYWORD">키워드</option>
+		</select>
+		<input type="text" id="mainSearchKeyword" name="searchWord" title="검색어 입력" autocomplete="off" placeholder="무슨 책을 찾으시나요?">
+		<a href="#search" id="mainSearchBtn" class="MainbtnSearch"><span class="blind">자료검색</span></a>
+
+</div>
+</form>
+
+
+							<div class="help"><a href="#help"><img src="/include/image/main/help.png" alt="처음오셨나요?"></a></div>
+						</div>
+						<div class="row">
+							<!-- 팝업존 -->
+							
+<script>
+	$(function(){
+
+	    $(".popup-slick").slick({
+			slidesToShow: 1,
+			arrows: false,
+			autoplay: true,
+			autoplaySpeed: 3000,
+			pauseOnHover: false,
+			speed:1000,
+			infinite: true,
+			dots: true,
+			customPaging: function (slider, i) {
+				return '<span>' + (i + 1) + '</span> / ' + slider.slideCount;
+			}
+		});
+		$(".popupZone .numbering").append($(".popupZone .slick-dots"));
+
+		$(".popup-slick").on("beforeChange", function(){
+			$("svg circle").css("animation","none");
+		});
+
+		$(".popup-slick").on("afterChange", function(){
+			$("svg circle").css("animation","countdown 3s linear forwards");
+		});
+
+
+
+		// slick slider 공통 - play / stop / prev / next
+		$(".slick-button .pause").on("click", function() {
+			$(this).parents(".slick-button").siblings(".slider").slick("slickPause");
+			$(this).hide().siblings(".play").css("display","flex");
+			$("svg circle").css("animation","none");
+		});
+		$(".slick-button .play").on("click", function() {
+			$(this).parents(".slick-button").siblings(".slider").slick("slickPlay");
+			$(this).hide().siblings(".pause").css("display","flex");
+			$("svg circle").css("animation","countdown 3s linear forwards");
+		});
+		$(".slick-button .prev").on("click", function() {
+			$(this).parents(".slick-button").siblings(".slider").slick("slickPrev");
+		});
+		$(".slick-button .next").on("click", function() {
+			$(this).parents(".slick-button").siblings(".slider").slick("slickNext");
+		});
+
+		// 포커스
+		$(".popup-slick .slideImg a").focusin(function(){
+			$(".popup-slick").addClass("isFocused");
+			// $(".popup-slick").slick("slickPause");
+			// $(this).parents(".popup-slick").siblings(".slick-button").find(".pause").hide().siblings(".play").css("display","flex");
+			// $("svg circle").css("animation","none");
+			$("a, button").not(".popup-slick .slideImg a").focusin(function(){
+				$(".popup-slick").removeClass("isFocused");
+			});
+		});
+	});
+</script>
+<div class="popupZone">
+	<h3 class="blind">팝업존</h3>
+	<div class="slick-button">
+		<div class="numbering"></div>
+		<div class="btnBox">
+			<button class="prev"><span class="blind">이전슬라이드</span></button>
+			<button class="next"><span class="blind">다음슬라이드</span></button>
+		</div>
+		<div id="countdown">
+			<div id="StopGo">
+				<button class="pause"><span class="blind">자동슬라이드 stop</span></button>
+				<button class="play"><span class="blind">자동슬라이드 play</span></button>
+			</div>
+			<svg>
+				<circle r="18" cx="20" cy="20"></circle>
+			</svg>
+		</div>
+	</div>
+
+	<div class="popup-slick slider">
+		
+					<div class="slick-slide">
+						<div class="slideImg">
+							<a href="https://www.yjlib.go.kr/web/bbs/20001/bbsPostDetail.do?postIdx=72635" >
+								<img src="/attachfile/popupzone/5564_1_20260727102428620.jpg" alt="여주도서관 다문화 체험 부스 '다문화 축제 시장'" onerror="fnNoImagePopupzone(this);">
+							</a>
+						</div>
+					</div>
+				
+					<div class="slick-slide">
+						<div class="slideImg">
+							<a href="https://www.yjlib.go.kr/web/menu/10071/program/30020/lectureDetail.do?currentPageNo=1&amp;lectureIdx=72368&amp;manageCd=MI&amp;searchTarget=&amp;searchStatusCd=" >
+								<img src="/attachfile/popupzone/5560_1_20260722132912494.jpg" alt="말놀이 숲에서 책이랑 쑥쑥!" onerror="fnNoImagePopupzone(this);">
+							</a>
+						</div>
+					</div>
+				
+					<div class="slick-slide">
+						<div class="slideImg">
+							<a href="https://www.yjlib.go.kr/web/menu/10075/program/30022/performDetail.do?currentPageNo=1&amp;performIdx=72385&amp;placeCd=&amp;searchStatusCd=" >
+								<img src="/attachfile/popupzone/5554_1_20260720123931118.jpeg" alt="여주음악제 - 여주의 사계 : 여름 콘서트" onerror="fnNoImagePopupzone(this);">
+							</a>
+						</div>
+					</div>
+				
+					<div class="slick-slide">
+						<div class="slideImg">
+							<a href="https://www.yjlib.go.kr/web/menu/10071/program/30020/lectureDetail.do?currentPageNo=1&amp;lectureIdx=72348&amp;manageCd=MB&amp;searchTarget=&amp;searchStatusCd=" >
+								<img src="/attachfile/popupzone/5557_1_20260722090126278.jpg" alt="[길 위의 인문학]세종처럼 생각하고 세종처럼 생활하자: 세종5종신기를 통한 생활 개선 운동 배워보기" onerror="fnNoImagePopupzone(this);">
+							</a>
+						</div>
+					</div>
+				
+					<div class="slick-slide">
+						<div class="slideImg">
+							<a href="https://www.yjlib.go.kr/web/menu/10071/program/30020/lectureDetail.do?currentPageNo=1&amp;lectureIdx=72610&amp;manageCd=MB&amp;searchTarget=&amp;searchStatusCd=" >
+								<img src="/attachfile/popupzone/5565_1_20260731105222751.jpg" alt="[유명작가 특강] 김진명 작가 <세종의 나라>" onerror="fnNoImagePopupzone(this);">
+							</a>
+						</div>
+					</div>
+				
+					<div class="slick-slide">
+						<div class="slideImg">
+							<a href="https://www.yjlib.go.kr/web/menu/10071/program/30020/lectureList.do?currentPageNo=1&amp;lectureIdx=0&amp;manageCd=MB&amp;searchTarget=&amp;searchStatusCd=" >
+								<img src="/attachfile/popupzone/5308_1_20260324154535151.jpg" alt="2026년 세종 인문학 특강 '기술과학 편'" onerror="fnNoImagePopupzone(this);">
+							</a>
+						</div>
+					</div>
+				
+					<div class="slick-slide">
+						<div class="slideImg">
+							<a href="https://www.library.kr/bookpoint/board/notice/detail/72" target="_blank">
+								<img src="/attachfile/popupzone/5549_1_20260715142649506.png" alt="천권으로 독서포인트 2026년 독서포인트 신청 조기마감  
+7월19일(일) 까지 신청분에 한해 8월14일 지역화폐 전환 지급 예정
+자세한 내용은 공지사항에서 확인해주세요" onerror="fnNoImagePopupzone(this);">
+							</a>
+						</div>
+					</div>
+				
+					<div class="slick-slide">
+						<div class="slideImg">
+							<a href="https://www.yjlib.go.kr/web/menu/10085/bbs/20001/bbsPostDetail.do?currentPageNo=1&amp;postIdx=37485&amp;manageCd=" >
+								<img src="/attachfile/popupzone/3591_1_20231031092314019.jpg" alt="[여주시립도서관 카카오톡 챗봇 서비스 오픈]
+1. 카카오톡 친구 검색 후 여주시립도서관 추가
+2. 채팅창에서 챗봇 시작 클릭
+1회 로그인으로 모바일회원증, 가족 회원증도 사용가능
+도서대출현황, 반납연장, 도서검색 등
+챗봇에서 다양한 도서관 서비스를 편리하게 이용" onerror="fnNoImagePopupzone(this);">
+							</a>
+						</div>
+					</div>
+				
+					<div class="slick-slide">
+						<div class="slideImg">
+							<a href="/web/menu/10061/contents/40024/contents.do" >
+								<img src="/attachfile/popupzone/2236_1_20231013171835258.jpg" alt="Yeoju English Story - Yes Books
+문의 : 금사도서관 031-887-3390
+대상 : 5~13세 어린이
+신청 : 금사도서관 안내데스크" onerror="fnNoImagePopupzone(this);">
+							</a>
+						</div>
+					</div>
+				
+					<div class="slick-slide">
+						<div class="slideImg">
+							<a href="/web/menu/10057/contents/40023/contents.do" >
+								<img src="/attachfile/popupzone/2235_1_20231013171702557.jpg" alt="초등학생 독서 능력 향상 프로젝트
+독서능력→문제해결능력→인생성공능력
+초능력시리즈 600권과 함께 인생 성공을 향해 고고씽~~" onerror="fnNoImagePopupzone(this);">
+							</a>
+						</div>
+					</div>
+				
+					<div class="slick-slide">
+						<div class="slideImg">
+							<a href="/web/menu/10053/contents/40022/contents.do" >
+								<img src="/attachfile/popupzone/2234_1_20231013171508283.jpg" alt="내 아이 인생 성공 천 책 프로젝트 
+어린이독서능력 및 발달수준에 맞는 책을 도서관에서 선정하여 초등학교 입학 전까지 1000권의 책을 읽을 수 있도록 유도하는 독서진작 프로젝트입니다." onerror="fnNoImagePopupzone(this);">
+							</a>
+						</div>
+					</div>
+				
+					<div class="slick-slide">
+						<div class="slideImg">
+							<a href="https://www.yjlib.go.kr/web/menu/10184/contents/40066/contents.do" >
+								<img src="/attachfile/popupzone/4754_1_20250702164119426.png" alt="[점동도서관 전래동화 읽기 프로젝트]
+전래동화 읽기를 통해 우리나라의 전통문화, 도덕적 교훈, 생활의 지혜를 배우는 독서진흥사업
+-기간: 2025년 7월부터 계속
+-대상: 6세~10세
+-참여자 혜택: 100권 완독시 간식꾸러미 증정
+-문의전화: 점동도서관 031-887-3332" onerror="fnNoImagePopupzone(this);">
+							</a>
+						</div>
+					</div>
+				
+					<div class="slick-slide">
+						<div class="slideImg">
+							<a href="https://www.yjlib.go.kr/web/menu/10182/contents/40065/contents.do" >
+								<img src="/attachfile/popupzone/4750_1_20250702163734777.png" alt="[점동도서관 단편문학 읽기 프로젝트]
+문학 한 입, 긴 여운~ 한입 문학 단편문학 100권
+-기간: 2025년 7월부터 계속
+-대상: 여주시립도서관 회원(중학생 이상)
+-참여자 혜택: 20권 단위 완독 시 소정의 상품 증정
+-문의전화: 점동도서관 031-887-3332
+선정된 도서목록 중 도서 100권을 읽고 독서노트를 작성하여 인증 받기!" onerror="fnNoImagePopupzone(this);">
+							</a>
+						</div>
+					</div>
+				
+					<div class="slick-slide">
+						<div class="slideImg">
+							<a href="/web/menu/10065/contents/40025/contents.do" >
+								<img src="/attachfile/popupzone/2237_1_20231013172030988.jpg" alt="고전문학 백 권 읽기
+고백(Go-100) 프로젝트
+자세히보기" onerror="fnNoImagePopupzone(this);">
+							</a>
+						</div>
+					</div>
+				
+	</div>
+</div>
+
+							<div class="box">
+								
+<div>
+	<h3 class="mtitle">주요 서비스</h3>
+	<ul class="icoBox">
+		<li>
+			<a href="/web/contents/40003/contents.do" title="대출안내 바로가기">
+				<img src="/include/image/main/ico_01.png" alt="대출안내 바로가기">
+				<p>대출안내</p>
+			</a>
+		</li>
+		<li>
+			<a href="/web/program/curationList.do" title="북큐레이션 바로가기">
+				<img src="/include/image/main/ico_02.png" alt="북큐레이션 바로가기">
+				<p>북큐레이션</p>
+			</a>
+		</li>
+		<li>
+			<a href="/web/program/lectureList.do" title="강좌신청 바로가기">
+				<img src="/include/image/main/ico_03.png" alt="강좌신청 바로가기">
+				<p>강좌신청</p>
+			</a>
+		</li>
+		<li>
+			<a href="/web/contents/40020/contents.do" title="희망도서신청 바로가기">
+				<img src="/include/image/main/ico_04.png" alt="희망도서신청 바로가기">
+				<p>희망도서신청</p>
+			</a>
+		</li>
+		<li>
+			<a href="/web/contents/40010/contents.do" title="시요일 바로가기">
+				<img src="/include/image/main/ico_05.png" alt="시요일 바로가기">
+				<p>시요일</p>
+			</a>
+		</li>
+		<li>
+			<a href="/web/contents/40064/contents.do" title="전자도서관 바로가기">
+				<img src="/include/image/main/ico_06.png" alt="전자도서관 바로가기">
+				<p>전자도서관</p>
+			</a>
+		</li>
+		<li>
+			<a href="/web/contents/40008/contents.do" title="오디오북 바로가기">
+				<img src="/include/image/main/ico_07.png" alt="오디오북 바로가기">
+				<p>오디오북</p>
+			</a>
+		</li>
+		<li>
+			<a href="#link" onclick="fnMarathonLink();" title="독서마라톤 바로가기">
+				<img src="/include/image/main/ico_08.png" alt="독서마라톤 바로가기">
+				<p>독서마라톤</p>
+			</a>
+		</li>
+	</ul>
+</div>
+								<div>
+									<div class="titArea">
+										<h3 class="mtitle">나만의 도서관</h3>
+										<div class="moreBtn type2">
+											<a href="/web/program/mypage/myInfo.do" title="나의정보(바로가기)"></a>
+										</div>
+									</div>
+									
+<script>
+	$(function(){
+	    $("#mainLoginPwd").keypress(function (e){
+			if((e.keyCode || e.which) == 13){
+			    fnLoginProc();
+				e.preventDefault();
+			}
+		});
+		$("#loginBtn").click(fnLoginProc);
+	});
+
+	function fnLoginProc(){
+		var form = document.loginForm;
+		if(form.userId.value == ""){
+			alert("아이디를 입력하세요");
+			form.userId.focus();
+			return false;
+		}
+
+		if(form.password.value == ""){
+			alert("비밀번호를 입력하세요");
+			form.password.focus();
+			return false;
+		}
+
+		form.action = "/web/program/memberLoginProc.do";
+		form.submit();
+		return true;
+	}
+
+	// 로그인 아이콘 on 클래스
+	$(function(){
+		$(".section1 .sectionInner .box .loginBox .formBox div input").on("focus", function(){
+		$(this).parent().addClass("on");
+		});
+		$(".section1 .sectionInner .box .loginBox .formBox div input").on("focusout", function(){
+			$(this).parent().removeClass("on");
+		});
+	});
+</script>
+<div class="loginBox">
+	<form name="loginForm" id="loginForm" method="post">
+		<input type="hidden" name="_csrf" value="047fcb0c-a005-453c-81e6-1f925b91fd71" />
+		<input type="hidden" name="returnUrl" value="">
+		<div class="formBox">
+			<div>
+				<div class="login">
+					<input type="text" name="userId" title="아이디입력"/>
+				</div>
+				<div class="password">
+					<input type="password" name="password" id="mainLoginPwd" title="패스워드입력"/>
+				</div>
+			</div>
+			<div>
+				<button type="button" id="loginBtn">로그인</button>
+			</div>
+		</div>
+	</form>
+	<div class="caption">
+		<p>로그인 후 모바일회원증 확인(정회원)</p>
+	</div>
+	<div class="barList">
+		<div class="nowrap">
+			<p><a href="/web/program/memberFindId.do">아이디찾기</a></p>
+			<p><a href="/web/program/memberFindPwd.do">비밀번호재설정</a></p>
+			<p><a href="/web/program/memberJoinIntro.do">회원가입</a></p>
+		</div>
+	</div>
+</div>
+<ul class="status loginBefore">
+	<li>
+		<p>도서대출현황</p><a href="/web/program/mypage/loanStatusList.do" title="도서대출현황 더보기">&gt;<span class="blind">도서대출현황 더보기</span></a>
+	</li>
+	<li>
+		<p>도서예약현황</p><a href="/web/program/mypage/reservationStatusList.do" title="도서예약현황 더보기">&gt;<span class="blind">도서예약현황 더보기</span></a>
+	</li>
+	<li>
+		<p>상호대차조회</p><a href="/web/program/mypage/dooraeLillStatusList.do" title="상호대차조회 더보기">&gt;<span class="blind">상호대차조회 더보기</span></a>
+	</li>
+	<li>
+		<p>희망도서조회</p><a href="/web/program/mypage/hopeBookApplyList.do" title="희망도서조회 더보기">&gt;<span class="blind">희망도서조회 더보기</span></a>
+	</li>
+</ul>
+
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<a href="#next" class="nextFocus1"><span class="blind">다음 화면으로 이동</span></a>
+			</div>
+			<div class="section section2">
+				<div class="bgBox">
+					<img src="/include/image/main/section2_bg_01.png" alt="섹션2 백그라운드1" class="bg_01">
+					<img src="/include/image/main/section2_bg_02.png" alt="섹션2 백그라운드2" class="bg_02">
+				</div>
+				<div class="sectionGroup">
+					<div class="sectionInner">
+						<div class="row">
+							
+<div class="mainBoardZone">
+	<div class="titArea">
+		<h3 class="mtitle">공지사항</h3>
+		<div class="moreBtn">
+			<a href="/web/bbs/20001/bbsPostList.do" title="공지사항 더보기"></a>
+		</div>
+	</div>
+	<ul class="noticeList">
+		
+						<li class="item">
+							<div class="lib public">
+								기적
+								<span class="date">2026<b>08.05</b></span>
+							</div>
+							<a href="/web/bbs/20001/bbsPostDetail.do?postIdx=72860">
+								<p class="tit"><span>여주기적의도서관 여름행사 &#034;독(讀)파민&#034; 안내</span></p>
+								<p class="cont">&amp;lt;여주기적의도서관 여름행사 &#034;독(讀)파민&#034; 안내&amp;gt; 여주기적의도서관에서 여름을 맞아하여 도서관에서 즐길 수 있는 미션을 준비하였습니다. 1. &#034;기,적,의,도,서,관&#034;으로 시작하는 책을 찾아라! 도서관 곳곳을 돌아다니거나 자료검색 PC를 활용하여 해당 음절로 시작하는 책을 찾으세요. 찾은 책 제목을 미션종이에 작성하여 데스크에 제출하고 선물을 받으시길 바랍니다. 2. &#034;추리 스도쿠 : 사라진 고서의 비밀&#034; 기적의도서관의 귀중한 고서가 사라졌습니다 용의자는 4명! 추리 스도쿠를 풀어 범인을 찾아주세요! 범인을 찾으신 분들께 선물을 드립니다. 독파민 행사 참여하시고 기적의도서관에서 시원한 여름 보내시기 바랍니다.</p>
+							</a>
+						</li>
+					
+						<li class="item">
+							<span class="lib common">공통</span>
+							<a href="/web/bbs/20001/bbsPostDetail.do?postIdx=72857">
+								<p class="tit"><span>여주시립도서관 어린이 독서진작 프로젝트 완독자 시상식 관련 안내(내천책, 초능력,  YES Books)</span></p>
+							</a>
+							<span class="date">2026.08.05</span>
+						</li>
+					
+						<li class="item">
+							<span class="lib public">여주</span>
+							<a href="/web/bbs/20001/bbsPostDetail.do?postIdx=72852">
+								<p class="tit"><span>식단표-여주도서관 식당(매점) 메뉴(2026. 8.)</span></p>
+							</a>
+							<span class="date">2026.08.05</span>
+						</li>
+					
+						<li class="item">
+							<span class="lib public">대신</span>
+							<a href="/web/bbs/20001/bbsPostDetail.do?postIdx=72693">
+								<p class="tit"><span>[대신도서관] 대신면 가스관공사에 따른 도서관 주차장 진입 불편 안내</span></p>
+							</a>
+							<span class="date">2026.07.30</span>
+						</li>
+					
+						<li class="item">
+							<span class="lib common">공통</span>
+							<a href="/web/bbs/20001/bbsPostDetail.do?postIdx=72671">
+								<p class="tit"><span>[여주교육청 연계] &#039;도서관에서 만나는 신나는 AI 세상&#039; 수강생 모집</span></p>
+							</a>
+							<span class="date">2026.07.29</span>
+						</li>
+					
+	</ul>
+</div>
+
+<script>
+	$(function(){
+		$(".libInfoZone .inner .libInfoList li:first-child > a").addClass("on").attr("title", "선택됨");
+	  $(".libInfoZone .inner .libInfoList li > a").on("click focus", function(e){
+			e.preventDefault();
+			$(".libInfoZone .inner .libInfoList li > a").removeClass("on").removeAttr("title");
+			$(this).addClass("on").attr("title", "선택됨");
+		});
+
+	});
+</script>
+<div class="libInfoZone">
+	<div class="titArea">
+		<h3 class="mtitle">도서관 안내</h3>
+	</div>
+	<div class="inner">
+		<ul class="libInfoList">
+			
+						<li data-lib="MA">
+							<a href="#none">
+								여주<span class="mobileHide2">도서관</span>
+								<span class="holiday">휴관일</span>
+							</a>
+							<!-- 여주도서관 -->
+							<div class="libInfoArea" data-lib="MA">
+								<div class="libInfo">
+									<div class="textBox">
+										<h3 class="title">도서관 정보</h3>
+										<ul>
+											<li><span class="blind">주소: </span>여주시 여양로 190-17</li>
+											<li><span class="blind">전화번호: </span>031) 887-3300</li>
+											<li><span class="blind">휴관일: </span>매주 <span class="emp1">금</span>요일, 법정공휴일 휴관</li>
+										</ul>
+									</div>
+									<div class="imgBox">
+										<img src="/include/image/main/main_libInfo_yeoju.png" alt="여주도서관">
+										<a href="/web/contents/40032/contents.do">자세히보기</a>
+									</div>
+								</div>
+								<div class="timeInfo">
+									<h3 class="title">이용시간 안내</h3>
+									<div class="floorInfo">
+										<div>
+											<p class="tit">1층 북카페/매점</p>
+											<p>09:00 ~ 18:00</p>
+										</div>
+										<div>
+											<p class="tit">2층 어린이자료실</p>
+											<p>09:00 ~ 21:00</p>
+											<p>(토,일)09:00 ~ 18:00</p>
+										</div>
+										<div>
+											<p class="tit">3층 종합자료실</p>
+											<p>09:00 ~ 22:00</p>
+											<p>(토,일)09:00 ~ 18:00</p>
+										</div>
+										<div>
+											<p class="tit">4층 전자정보실</p>
+											<p>09:00 ~ 22:00</p>
+											<p>(토,일)09:00 ~ 18:00</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- //여주도서관 -->
+						</li>
+					
+						<li data-lib="MB">
+							<a href="#none">
+								세종<span class="mobileHide2">도서관</span>
+								
+							</a>
+							<!-- 세종도서관 -->
+							<div class="libInfoArea" data-lib="MB">
+								<div class="libInfo">
+									<div class="textBox">
+										<h3 class="title">도서관 정보</h3>
+										<ul>
+											<li><span class="blind">주소: </span>여주시 영릉로 125</li>
+											<li><span class="blind">전화번호: </span>031) 887-2861</li>
+											<li><span class="blind">휴관일: </span>매주 <span class="emp1">월</span>요일, 법정공휴일 휴관 <br>(자료실만 휴실)</li>
+										</ul>
+									</div>
+									<div class="imgBox">
+										<img src="/include/image/main/main_libInfo_sejong.png" alt="세종도서관">
+										<a href="/web/contents/40035/contents.do">자세히보기</a>
+									</div>
+								</div>
+								<div class="timeInfo">
+									<h3 class="title">이용시간 안내</h3>
+									<div class="floorInfo">
+										<div>
+											<p class="tit">2층 영유아·어린이자료실</p>
+											<p>09:00 ~ 20:00</p>
+											<p>(토,일)09:00 ~ 18:00</p>
+										</div>
+										<div>
+											<p class="tit">3층 종합자료실</p>
+											<p>09:00 ~ 22:00</p>
+											<p>(토,일)09:00 ~ 18:00</p>
+										</div>
+										<div>
+											<p class="tit">4층 디지털실</p>
+											<p>09:00 ~ 22:00</p>
+											<p>(토,일)09:00 ~ 18:00</p>
+										</div>
+										<div>
+											<p class="tit">4층 열람실</p>
+											<p>08:00 ~ 24:00</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- //세종도서관 -->
+						</li>
+					
+						<li data-lib="ME">
+							<a href="#none">
+								점동<span class="mobileHide2">도서관</span>
+								
+							</a>
+							<!-- 점동도서관 -->
+							<div class="libInfoArea" data-lib="ME">
+								<div class="libInfo">
+									<div class="textBox">
+										<h3 class="title">도서관 정보</h3>
+										<ul>
+											<li><span class="blind">주소: </span>여주시 점동면 청안로 130-15</li>
+											<li><span class="blind">전화번호: </span>031) 887-3331</li>
+											<li><span class="blind">휴관일: </span>매주 <span class="emp1">월</span>요일, 법정공휴일 휴관</li>
+										</ul>
+									</div>
+									<div class="imgBox">
+										<img src="/include/image/main/main_libInfo_jeomdong.png" alt="점동도서관">
+										<a href="/web/contents/40038/contents.do">자세히보기</a>
+									</div>
+								</div>
+								<div class="timeInfo">
+									<h3 class="title">이용시간 안내</h3>
+									<div class="floorInfo">
+										<div>
+											<p class="tit">1층 북카페</p>
+											<p>09:00 ~ 22:00</p>
+											<p>(토,일)09:00 ~ 18:00</p>
+										</div>
+										<div>
+											<p class="tit">2층 어린이자료실</p>
+											<p>09:00 ~ 19:00</p>
+											<p>(토,일)09:00 ~ 18:00</p>
+										</div>
+										<div>
+											<p class="tit">3층 종합자료실</p>
+											<p>09:00 ~ 22:00</p>
+											<p>(토,일)09:00 ~ 18:00</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- //점동도서관 -->
+						</li>
+					
+						<li data-lib="MH">
+							<a href="#none">
+								<span class="mobileHide2">여주</span>기적<span class="mobileHide2">의도서관</span>
+								
+							</a>
+							<!-- 여주기적의도서관 -->
+							<div class="libInfoArea" data-lib="MH">
+								<div class="libInfo">
+									<div class="textBox">
+										<h3 class="title">도서관 정보</h3>
+										<ul>
+											<li><span class="blind">주소: </span>여주시 세종대왕면 양화로 913</li>
+											<li><span class="blind">전화번호: </span>031) 887-2965</li>
+											<li><span class="blind">휴관일: </span>매주 <span class="emp1">월</span>요일, 법정공휴일 휴관</li>
+										</ul>
+									</div>
+									<div class="imgBox">
+										<img src="/include/image/main/main_libInfo_miracleY.png" alt="여주기적의도서관">
+										<a href="/web/contents/40041/contents.do">자세히보기</a>
+									</div>
+								</div>
+								<div class="timeInfo">
+									<h3 class="title">이용시간 안내</h3>
+									<div class="floorInfo">
+										<div>
+											<p class="tit">1층 어린이자료실</p>
+											<p>09:00 ~ 19:00</p>
+											<p>(토,일)09:00 ~ 18:00</p>
+										</div>
+										<div>
+											<p class="tit">2층 종합자료실</p>
+											<p>09:00 ~ 22:00</p>
+											<p>(토,일)09:00 ~ 18:00</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- //여주기적의도서관 -->
+						</li>
+					
+						<li data-lib="MI">
+							<a href="#none">
+								흥천<span class="mobileHide2">도서관</span>
+								<span class="holiday">휴관일</span>
+							</a>
+							<!-- 흥천도서관 -->
+							<div class="libInfoArea" data-lib="MI">
+								<div class="libInfo">
+									<div class="textBox">
+										<h3 class="title">도서관 정보</h3>
+										<ul>
+											<li><span class="blind">주소: </span>여주시 흥천면 효자로 121</li>
+											<li><span class="blind">전화번호: </span>031) 887-3234</li>
+											<li><span class="blind">휴관일: </span>매주 <span class="emp1">금</span>요일, 법정공휴일 휴관</li>
+										</ul>
+									</div>
+									<div class="imgBox">
+										<img src="/include/image/main/main_libInfo_hongcheon.png" alt="흥천도서관">
+										<a href="/web/contents/40044/contents.do">자세히보기</a>
+									</div>
+								</div>
+								<div class="timeInfo">
+									<h3 class="title">이용시간 안내</h3>
+									<div class="floorInfo">
+										<div>
+											<p class="tit">어린이자료실</p>
+											<p>10:00 ~ 19:00</p>
+											<p>(토,일)09:00 ~ 18:00</p>
+										</div>
+										<div>
+											<p class="tit">일반자료실</p>
+											<p>10:00 ~ 19:00</p>
+											<p>(토,일)09:00 ~ 18:00</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- //흥천도서관 -->
+						</li>
+					
+						<li data-lib="MG">
+							<a href="#none">
+								금사<span class="mobileHide2">도서관</span>
+								
+							</a>
+							<!-- 금사도서관 -->
+							<div class="libInfoArea" data-lib="MG">
+								<div class="libInfo">
+									<div class="textBox">
+										<h3 class="title">도서관 정보</h3>
+										<ul>
+											<li><span class="blind">주소: </span>여주시 흥천면 이여로 1278-2</li>
+											<li><span class="blind">전화번호: </span>031) 887-3390</li>
+											<li><span class="blind">휴관일: </span>매주 <span class="emp1">월</span>요일, 법정공휴일 휴관</li>
+										</ul>
+									</div>
+									<div class="imgBox">
+										<img src="/include/image/main/main_libInfo_guemsa.png" alt="금사도서관">
+										<a href="/web/contents/40047/contents.do">자세히보기</a>
+									</div>
+								</div>
+								<div class="timeInfo">
+									<h3 class="title">이용시간 안내</h3>
+									<div class="floorInfo">
+										<div>
+											<p class="tit">3층 자료실</p>
+											<p>10:00 ~ 19:00</p>
+											<p>(토,일)09:00 ~ 18:00</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- //금사도서관 -->
+						</li>
+					
+						<li data-lib="MF">
+							<a href="#none">
+								대신<span class="mobileHide2">도서관</span>
+								
+							</a>
+							<!-- 대신도서관 -->
+							<div class="libInfoArea" data-lib="MF">
+								<div class="libInfo">
+									<div class="textBox">
+										<h3 class="title">도서관 정보</h3>
+										<ul>
+											<li><span class="blind">주소: </span>여주시 대신면 율촌1길 12-10</li>
+											<li><span class="blind">전화번호: </span>031) 887-3361</li>
+											<li><span class="blind">휴관일: </span>매주 <span class="emp1">월</span>요일, 법정공휴일 휴관</li>
+										</ul>
+									</div>
+									<div class="imgBox">
+										<img src="/include/image/main/main_libInfo_daesin.png" alt="대신도서관">
+										<a href="/web/contents/40050/contents.do">자세히보기</a>
+									</div>
+								</div>
+								<div class="timeInfo">
+									<h3 class="title">이용시간 안내</h3>
+									<div class="floorInfo">
+										<div>
+											<p class="tit">1층 어린이자료실</p>
+											<p>09:00 ~ 19:00</p>
+											<p>(토,일)09:00 ~ 18:00</p>
+										</div>
+										<div>
+											<p class="tit">2층 종합자료실</p>
+											<p>09:00 ~ 22:00</p>
+											<p>(토,일)09:00 ~ 18:00</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- //대신도서관 -->
+						</li>
+					
+						<li data-lib="MC">
+							<a href="#none">
+								산북<span class="mobileHide2">작은도서관</span>
+								
+							</a>
+							<!-- 산북작은도서관 -->
+							<div class="libInfoArea" data-lib="MC">
+								<div class="libInfo">
+									<div class="textBox">
+										<h3 class="title">도서관 정보</h3>
+										<ul>
+											<li><span class="blind">주소: </span>여주시 산북면 상품로 113</li>
+											<li><span class="blind">전화번호: </span>031) 887-3316</li>
+											<li><span class="blind">휴관일: </span>매주 <span class="emp1">월</span>요일, 법정공휴일 휴관</li>
+										</ul>
+									</div>
+									<div class="imgBox">
+										<img src="/include/image/main/main_libInfo_sanbuk.png" alt="산북작은도서관">
+										<a href="/web/contents/40053/contents.do">자세히보기</a>
+									</div>
+								</div>
+								<div class="timeInfo">
+									<h3 class="title">이용시간 안내</h3>
+									<div class="floorInfo">
+										<div>
+											<p class="tit">3층 어린이실</p>
+											<p>10:00 ~ 19:00</p>
+											<p>(토,일)09:00 ~ 18:00</p>
+										</div>
+										<div>
+											<p class="tit">3층 청소년/성인실</p>
+											<p>10:00 ~ 19:00</p>
+											<p>(토,일)09:00 ~ 18:00</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- //산북작은도서관 -->
+						</li>
+					
+						<li data-lib="MD">
+							<a href="#none">
+								북내<span class="mobileHide2">작은도서관</span>
+								
+							</a>
+							<!-- 북내작은도서관 -->
+							<div class="libInfoArea" data-lib="MD">
+								<div class="libInfo">
+									<div class="textBox">
+										<h3 class="title">도서관 정보</h3>
+										<ul>
+											<li><span class="blind">주소: </span>여주시 북내면 여강로 337-38</li>
+											<li><span class="blind">전화번호: </span>031) 883-0766</li>
+											<li><span class="blind">휴관일: </span>매주 <span class="emp1">월</span>요일, 법정공휴일 휴관</li>
+										</ul>
+									</div>
+									<div class="imgBox">
+										<img src="/include/image/main/main_libInfo_buknae.png" alt="북내작은도서관">
+										<a href="/web/contents/40056/contents.do" class="lastMore">자세히보기</a>
+									</div>
+								</div>
+								<div class="timeInfo">
+									<h3 class="title">이용시간 안내</h3>
+									<div class="floorInfo">
+										<div>
+											<p class="tit">1층 자료실</p>
+											<p>10:00 ~ 19:00</p>
+											<p>(토,일)09:00 ~ 18:00</p>
+										</div>
+										<div>
+											<p class="tit">2층 열람실</p>
+											<p>10:00 ~ 19:00</p>
+											<p>(토,일)09:00 ~ 18:00</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- //북내작은도서관 -->
+						</li>
+					
+		</ul>
+	</div>
+
+	<div class="moreBtn">
+		<a href="/web/contents/40032/contents.do" title="도서관 안내 더보기"></a>
+	</div>
+</div>
+						</div>
+					</div>
+				</div>
+				<a href="#next" class="nextFocus2"><span class="blind">다음 화면으로 이동</span></a>
+			</div>
+			<div class="section section3">
+				<div class="bgBox">
+					<img src="/include/image/main/section3_bg_01.png" alt="섹션3 백그라운드1" class="bg_01">
+					<img src="/include/image/main/section3_bg_02.png" alt="섹션3 백그라운드2" class="bg_02">
+				</div>
+				<div class="sectionGroup">
+					<div class="sectionInner">
+						<div class="row" id="lecture">
+							
+<script>
+	$(function(){
+	    $("#lectureManageCd").change(function(){
+	        fnLecture($(this).val());
+	    });
+
+		let options = {};
+        if ( $(".cultureSwiper .swiper-slide").length < 4 ) {
+            options = {
+                slidesPerView: 4,
+				spaceBetween: 0,
+				loop: false,
+				speed : 700,
+				autoplay: false,
+				pagination: {
+					el: ".cultureSwiper .swiper-pagination",
+					type: "progressbar",
+				},
+				navigation: {
+					nextEl: ".cultureSwiper .swiper-button-next",
+					prevEl: ".cultureSwiper .swiper-button-prev",
+				},
+                loop:false,
+				breakpoints: {
+
+				  1580: {
+					slidesPerView: 3,
+				  },
+				  1024: {
+					slidesPerView: 2,
+					autoplay: false,
+				  },
+				  768: {
+					slidesPerView: 1,
+					autoplay: false,
+				  },
+				  640: {
+					slidesPerView: 1,
+				  },
+				},
+            }
+        } else {
+            options = {
+                  slidesPerView: 4,
+				  spaceBetween: 0,
+				  loop: false,
+				  speed : 700,
+				  autoplay: false,
+				  pagination: {
+					el: ".cultureSwiper .swiper-pagination",
+					type: "progressbar",
+				  },
+				  navigation: {
+					nextEl: ".cultureSwiper .swiper-button-next",
+					prevEl: ".cultureSwiper .swiper-button-prev",
+				  },
+				  breakpoints: {
+
+				  1580: {
+					slidesPerView: 3,
+				  },
+				  1024: {
+					slidesPerView: 2,
+					autoplay: false,
+				  },
+				  768: {
+					slidesPerView: 1,
+					autoplay: false,
+				  },
+				  640: {
+					slidesPerView: 1,
+				  },
+				},
+            }
+        }
+        const cultureSwiper = new Swiper('.cultureSwiper', options);
+
+
+	    $(".cultureTab div a").on("click",function(){
+			$(".cultureTab div a").parent().removeClass("on");
+			$(this).parent().addClass("on");
+		});
+
+		
+		/*$(".cultureTab p").keydown(function (e) {    
+			if (e.which == 9) {
+				$(".cultureSwiper .swiper-slide-active a").focus();
+			}
+		});*/
+
+		$(".cultureTab div:last-child a").on("focusout", function(){
+			$(".cultureSwiper .swiper-slide-active a").focus();
+		});
+
+
+		$(".cultureSwiper .swiper-slide-active").prevAll().find("a").attr("tabindex","-1");
+
+
+
+		$(".cultureSwiper .swiper-button-pause").click(function(){
+			$(this).hide();
+			$(".cultureSwiper .swiper-button-play").show();
+			cultureSwiper.autoplay.stop();
+		});
+		$(".cultureSwiper .swiper-button-play").click(function(){
+			$(this).hide();
+			$(".cultureSwiper .swiper-button-pause").show();
+			cultureSwiper.autoplay.start();
+		});
+
+		$(".cultureSwiper .swiper-button-pause").keyup(function(e){
+			if (event.keyCode == 13) {
+				$(this).hide();
+				$(".cultureSwiper .swiper-button-play").show();
+				cultureSwiper.autoplay.stop();
+			}
+		});
+		$(".cultureSwiper .swiper-button-play").keyup(function(e){
+			if (event.keyCode == 13) {
+				$(this).hide();
+				$(".cultureSwiper .swiper-button-pause").show();
+				cultureSwiper.autoplay.start();
+			}
+		});
+	});
+</script>
+<div class="cultureZone">
+	<h3 class="mtitle">문화강좌안내</h3>
+	<p class="mobileShow ta_c">도서관에서 운영되는 다양한 행사를 만나보세요</p>
+	<div class="cultureTab">
+		<div class="on"><a href="#none" onclick="fnLecture('ALL');" title="클릭 시 전체도서관 문화강좌 안내 리스트 이동">전체</a></div>
+		
+			<div ><a href="#none" onclick="fnLecture('MA');" title="클릭 시 여주도서관 문화강좌 안내 리스트 이동">여주</a></div>
+		
+			<div ><a href="#none" onclick="fnLecture('MB');" title="클릭 시 세종도서관 문화강좌 안내 리스트 이동">세종</a></div>
+		
+			<div ><a href="#none" onclick="fnLecture('ME');" title="클릭 시 점동도서관 문화강좌 안내 리스트 이동">점동</a></div>
+		
+			<div ><a href="#none" onclick="fnLecture('MH');" title="클릭 시 기적도서관 문화강좌 안내 리스트 이동">기적</a></div>
+		
+			<div ><a href="#none" onclick="fnLecture('MI');" title="클릭 시 흥천도서관 문화강좌 안내 리스트 이동">흥천</a></div>
+		
+			<div ><a href="#none" onclick="fnLecture('MG');" title="클릭 시 금사도서관 문화강좌 안내 리스트 이동">금사</a></div>
+		
+			<div ><a href="#none" onclick="fnLecture('MF');" title="클릭 시 대신도서관 문화강좌 안내 리스트 이동">대신</a></div>
+		
+			<div ><a href="#none" onclick="fnLecture('MC');" title="클릭 시 산북도서관 문화강좌 안내 리스트 이동">산북</a></div>
+		
+			<div ><a href="#none" onclick="fnLecture('MD');" title="클릭 시 북내도서관 문화강좌 안내 리스트 이동">북내</a></div>
+		
+		<script>
+		$(function(){
+			$(".cultureTab div.on a").attr("title","선택됨");
+		});
+		</script>
+	</div>
+	<div class="cultureSel">
+		<select name="lectureManageCd" id="lectureManageCd" title="도서관선택">
+			<option value="ALL" selected>전체도서관</option>
+			
+				<option value="MA" >여주도서관</option>
+			
+				<option value="MB" >세종도서관</option>
+			
+				<option value="ME" >점동도서관</option>
+			
+				<option value="MH" >여주기적의도서관</option>
+			
+				<option value="MI" >흥천도서관</option>
+			
+				<option value="MG" >금사도서관</option>
+			
+				<option value="MF" >대신도서관</option>
+			
+				<option value="MC" >산북작은도서관</option>
+			
+				<option value="MD" >북내작은도서관</option>
+			
+		</select>
+	</div>
+	
+		<div class="swiper cultureSwiper">
+			<ul class="swiper-wrapper">
+				
+					<li class="swiper-slide MB" tabindex="-1">
+						<div>
+							<div class="info">
+								<p class="tit">
+									
+											<a href="/web/program/lectureDetail.do?lectureIdx=72348" tabindex="0">[길 위의 인문학] 세종처럼 생각하고 세종처럼 생활하자 - 세종5종신기를 통한 생활 개선 운동 배워보기 </a>
+										
+								</p>
+								<span class="date">
+									<small class="blind">공연일정: </small>
+									2026.09.02
+										~ 2026.11.04
+								</span>
+								<span class="user"><small class="blind">대상: </small>-</span>
+								<span class="place"><small class="blind">공연장소: </small>세종도서관 여민홀 / 여주 대로사 / 세종 영릉 </span>
+							</div>
+							<div class="listbtm">
+								<p class="lib">세종도서관</p>
+								
+										<p class="status ing">접수중
+											(29/30)
+										</p>
+									
+							</div>
+						</div>
+					</li>
+				
+					<li class="swiper-slide MB" tabindex="-1">
+						<div>
+							<div class="info">
+								<p class="tit">
+									
+											<a href="/web/program/lectureDetail.do?lectureIdx=72610" tabindex="0">[하반기 유명작가 특강] 김진명 작가 &lt;세종의 나라&gt;</a>
+										
+								</p>
+								<span class="date">
+									<small class="blind">공연일정: </small>
+									2026.10.01
+								</span>
+								<span class="user"><small class="blind">대상: </small>-</span>
+								<span class="place"><small class="blind">공연장소: </small>세종국악당</span>
+							</div>
+							<div class="listbtm">
+								<p class="lib">세종도서관</p>
+								
+										<p class="status ing">접수중
+											(99/300)
+										</p>
+									
+							</div>
+						</div>
+					</li>
+				
+					<li class="swiper-slide MI" tabindex="-1">
+						<div>
+							<div class="info">
+								<p class="tit">
+									
+											<a href="/web/program/lectureDetail.do?lectureIdx=72368" tabindex="0">[2026 경기도 어린이 독서코칭] 말놀이 숲에서 책이랑 쑥쑥!</a>
+										
+								</p>
+								<span class="date">
+									<small class="blind">공연일정: </small>
+									2026.08.22
+										~ 2026.09.12
+								</span>
+								<span class="user"><small class="blind">대상: </small>7세(2020년생)</span>
+								<span class="place"><small class="blind">공연장소: </small>흥천도서관 강의실</span>
+							</div>
+							<div class="listbtm">
+								<p class="lib">흥천도서관</p>
+								
+										<p class="status wait">대기접수중
+											
+												(3/4)
+											
+										</p>
+									
+							</div>
+						</div>
+					</li>
+				
+					<li class="swiper-slide MB" tabindex="-1">
+						<div>
+							<div class="info">
+								<p class="tit">
+									
+											<a href="/web/program/lectureDetail.do?lectureIdx=72668" tabindex="0">[세종/여름행사(책열음)/여주시가족센터연계특강] &#039;어린이 다문화 프로그램 중국 :  니하오&#039;</a>
+										
+								</p>
+								<span class="date">
+									<small class="blind">공연일정: </small>
+									2026.08.22
+								</span>
+								<span class="user"><small class="blind">대상: </small>초등1~3학년</span>
+								<span class="place"><small class="blind">공연장소: </small>1층 훈민방</span>
+							</div>
+							<div class="listbtm">
+								<p class="lib">세종도서관</p>
+								
+										<p class="status wait">대기접수중
+											
+												(0/5)
+											
+										</p>
+									
+							</div>
+						</div>
+					</li>
+				
+					<li class="swiper-slide MA" tabindex="-1">
+						<div>
+							<div class="info">
+								<p class="tit">
+									
+											<a href="/web/program/lectureDetail.do?lectureIdx=72884" tabindex="0">[하반기 정기강좌/어린이] 그림책 세계 여행</a>
+										
+								</p>
+								<span class="date">
+									<small class="blind">공연일정: </small>
+									2026.09.14
+										~ 2026.12.14
+								</span>
+								<span class="user"><small class="blind">대상: </small>초등1~3학년</span>
+								<span class="place"><small class="blind">공연장소: </small>여주도서관 솜다리방</span>
+							</div>
+							<div class="listbtm">
+								<p class="lib">여주도서관</p>
+								
+										<p class="status ready">접수전
+											D-12
+										</p>
+									
+							</div>
+						</div>
+					</li>
+				
+					<li class="swiper-slide MA" tabindex="-1">
+						<div>
+							<div class="info">
+								<p class="tit">
+									
+											<a href="/web/program/lectureDetail.do?lectureIdx=72410" tabindex="0">[내천책 연계특강] 여주도서관 오감만족 놀이터(8월)</a>
+										
+								</p>
+								<span class="date">
+									<small class="blind">공연일정: </small>
+									2026.08.22
+								</span>
+								<span class="user"><small class="blind">대상: </small>5~7세</span>
+								<span class="place"><small class="blind">공연장소: </small>여주도서관 솜다리방</span>
+							</div>
+							<div class="listbtm">
+								<p class="lib">여주도서관</p>
+								<p class="status end">접수마감</p>
+							</div>
+						</div>
+					</li>
+				
+					<li class="swiper-slide MB" tabindex="-1">
+						<div>
+							<div class="info">
+								<p class="tit">
+									
+											<a href="/web/program/lectureDetail.do?lectureIdx=68780" tabindex="0">[세종 인문학 특강 &#039;기술과학 편&#039;] 장홍제 교수 &#039;과학의 양면성에 대하여&#039;</a>
+										
+								</p>
+								<span class="date">
+									<small class="blind">공연일정: </small>
+									2026.08.13
+								</span>
+								<span class="user"><small class="blind">대상: </small>-</span>
+								<span class="place"><small class="blind">공연장소: </small>세종도서관 여민홀(1층)</span>
+							</div>
+							<div class="listbtm">
+								<p class="lib">세종도서관</p>
+								<p class="status end">접수마감</p>
+							</div>
+						</div>
+					</li>
+				
+					<li class="swiper-slide MI" tabindex="-1">
+						<div>
+							<div class="info">
+								<p class="tit">
+									
+											<a href="/web/program/performDetail.do?performIdx=72385" tabindex="0">「제1회 여주음악제 - 여주의 사계」 : 여름 콘서트</a>
+										
+								</p>
+								<span class="date">
+									<small class="blind">공연일정: </small>
+									2026.08.08
+								</span>
+								<span class="user"><small class="blind">대상: </small>전체</span>
+								<span class="place"><small class="blind">공연장소: </small>흥천도서관 공연장</span>
+							</div>
+							<div class="listbtm">
+								<p class="lib">흥천도서관</p>
+								<p class="status end">접수종료</p>
+							</div>
+						</div>
+					</li>
+				
+					<li class="swiper-slide MA" tabindex="-1">
+						<div>
+							<div class="info">
+								<p class="tit">
+									
+											<a href="/web/program/lectureDetail.do?lectureIdx=72369" tabindex="0">[여주도서관 &#039;여休만만 스케치&#039; 재능기부 프로그램] 그림이랑 놀자!</a>
+										
+								</p>
+								<span class="date">
+									<small class="blind">공연일정: </small>
+									2026.08.11
+								</span>
+								<span class="user"><small class="blind">대상: </small>초등 1~4학년</span>
+								<span class="place"><small class="blind">공연장소: </small>여성회관 제4강의실</span>
+							</div>
+							<div class="listbtm">
+								<p class="lib">여주도서관</p>
+								<p class="status end">접수종료</p>
+							</div>
+						</div>
+					</li>
+				
+					<li class="swiper-slide MF" tabindex="-1">
+						<div>
+							<div class="info">
+								<p class="tit">
+									
+											<a href="/web/program/lectureDetail.do?lectureIdx=72422" tabindex="0">[여름맞이 행사] 바다를 닮은 썬캐처 만들기 </a>
+										
+								</p>
+								<span class="date">
+									<small class="blind">공연일정: </small>
+									2026.08.02
+								</span>
+								<span class="user"><small class="blind">대상: </small>-</span>
+								<span class="place"><small class="blind">공연장소: </small>제3강의실</span>
+							</div>
+							<div class="listbtm">
+								<p class="lib">대신도서관</p>
+								<p class="status end">강의종료</p>
+							</div>
+						</div>
+					</li>
+				
+					<li class="swiper-slide MF" tabindex="-1">
+						<div>
+							<div class="info">
+								<p class="tit">
+									
+											<a href="/web/program/lectureDetail.do?lectureIdx=72420" tabindex="0">[경기도서관연계] 경기독서문화진흥-리딩ON경기 : 독서캠프</a>
+										
+								</p>
+								<span class="date">
+									<small class="blind">공연일정: </small>
+									2026.08.01
+								</span>
+								<span class="user"><small class="blind">대상: </small>-</span>
+								<span class="place"><small class="blind">공연장소: </small>대신도서관 </span>
+							</div>
+							<div class="listbtm">
+								<p class="lib">대신도서관</p>
+								<p class="status end">강의종료</p>
+							</div>
+						</div>
+					</li>
+				
+					<li class="swiper-slide MF" tabindex="-1">
+						<div>
+							<div class="info">
+								<p class="tit">
+									
+											<a href="/web/program/lectureDetail.do?lectureIdx=72419" tabindex="0">[여주시가족센터연계] 도서관에서 떠나는 일본여행 </a>
+										
+								</p>
+								<span class="date">
+									<small class="blind">공연일정: </small>
+									2026.08.01
+								</span>
+								<span class="user"><small class="blind">대상: </small>-</span>
+								<span class="place"><small class="blind">공연장소: </small>제3강의실 </span>
+							</div>
+							<div class="listbtm">
+								<p class="lib">대신도서관</p>
+								<p class="status end">강의종료</p>
+							</div>
+						</div>
+					</li>
+				
+			</ul>
+			<div class="swiperBtnGroup">
+				<button type="button" class="swiper-button-prev"><span class="blind">이전 슬라이드로 이동</span></button>
+				<button type="button" class="swiper-button-next"><span class="blind">다음 슬라이드로 이동</span></button>
+				<button type="button" class="swiper-button-pause"><span class="blind">슬라이드 일시정지</span></button>
+				<button type="button" class="swiper-button-play"><span class="blind">슬라이드 재생</span></button>
+			</div>
+			<div class="swiper-pagination"></div>
+		</div>
+		<p class="more"><a href="/web/program/lectureList.do" title="문화강좌안내 더보기">+<span class="blind">문화강좌안내 더보기</span></a></p>
+	
+</div>
+
+						</div>
+					</div>
+				</div>
+				<a href="#next" class="nextFocus3"><span class="blind">다음 화면으로 이동</span></a>
+			</div>
+			<div class="section section4">
+				<div class="bgBox">
+					<img src="/include/image/main/section4_bg_01.png" alt="섹션4 백그라운드1" class="bg_01">
+				</div>
+				<div class="sectionGroup">
+					<div class="sectionInner">
+						<div class="row">
+
+							
+<script>
+	function fnBookDetail(speciesKey, bookKey, publishFormCode, searchType){
+		var form = document.bookForm;
+		form.speciesKey.value = speciesKey;
+		form.bookKey.value = bookKey;
+		form.publishFormCode.value = publishFormCode;
+		form.searchType.value = searchType;
+		if(bookKey == "" || speciesKey == ""){
+			form.searchWord.value = title;
+			form.action = "/web/program/searchResultList.do";
+		}else {
+			form.action = "/web/program/searchResultDetail.do";
+		}
+		form.submit();
+	}
+
+	function fnNoImageMainBook(obj) {
+		$(obj).unbind("error").attr("src","/include/image/main/mainBook_noimg.png");
+	}
+</script>
+<form id="bookForm" name="bookForm" method="post">
+	<input type="hidden" name="_csrf" value="047fcb0c-a005-453c-81e6-1f925b91fd71" />
+	<input type="hidden" name="searchType">
+	<input type="hidden" name="speciesKey">
+	<input type="hidden" name="bookKey">
+	<input type="hidden" name="publishFormCode">
+	<input type="hidden" name="searchWord">
+	<input type="hidden" name="searchField" value="ALL">
+</form>
+<div class="tabBox">
+	<div class="titArea">
+		<h3 class="mtitle">책과 만나다</h3>
+		<p>오늘, 도서관에서<br> 한 권의 책을<br class="mobileHide"> 발견해보세요!</p>
+	</div>
+	<ul class="tab">
+		<li class="on" data-slider="bookQurationSlider"><a href="#bookQurationSlider" class="animated-button">북큐레이션</a></li>
+		<li data-slider="newBookSlider"><a href="#newBookSlider" class="animated-button">도서관 신착도서</a></li>
+		<li data-slider="onePickSlider"><a href="#onePickSlider" class="animated-button">요즘 사서들이 읽는 책</a></li>
+	</ul>
+	<div class="mainBookSel">
+		<select name="mainBookSel" id="mainBookSel" title="도서타입선택">
+			<option value="bookQurationSlider">북큐레이션</option>
+			<option value="newBookSlider">도서관신착도서</option>
+			<option value="onePickSlider">요즘 사서들이 읽는 책</option>
+		</select>
+	</div>
+</div>
+<div class="bookZone">
+	<div id="bookQurationSlider" class="bookListWrap">
+		
+<script>
+	$(function(){
+		$(".curationBook").on("init", function() {
+		  const curIdx = $(this).find(".slick-dots li").length;
+		  const currentDot = $(this).find(".slick-dots .slick-active").index() + 1;
+		  const dots = $(this).find(".slick-dots li").length;
+		  const calc = (currentDot/dots) * 100;
+		  $(this).siblings(".progress").children(".progressBar").css("width", calc + "%");
+		});
+		$(".curationBook").on('afterChange',function(){
+		  const curIdx = $(this).find(".slick-dots li").length;
+		  const currentDot = $(this).find(".slick-dots .slick-active").index() + 1;
+		  const dots = $(this).find(".slick-dots li").length;
+		  const calc = (currentDot/dots) * 100;
+		  $(this).siblings(".progress").children(".progressBar").css("width", calc + "%");
+		});
+
+		/* 북리스트 */
+		$(".curationBook").slick({
+			arrows: false,
+			pauseOnHover: false,
+			speed:1000,
+			dots:true,
+			autoplay:true,
+			autoplaySpeed: 2500,
+			slidesToShow: 5,
+			infinite: true,
+
+			responsive: [
+				{
+					breakpoint: 1500,
+					settings: {
+						slidesToShow: 4,
+					}
+				},
+				{
+					breakpoint: 1320,
+					settings: {
+						slidesToShow: 3,
+					}
+				},
+				{
+					breakpoint: 768,
+					settings: {
+						slidesToShow: 3,
+						autoplay: false,
+					}
+				},
+				{
+					breakpoint: 640,
+					settings: {
+						slidesToShow: 2,
+						autoplay: false,
+					}
+				}
+			]
+		});
+	});
+</script>
+
+
+	<ul class="bookList slider curationBook">
+		
+			<li class="slick-slide">
+				<a href="/web/program/curationDetail.do?curationIdx=72732" class="cover">
+					
+							<img src="https://shopping-phinf.pstatic.net/main_3396416/33964166627.20260331120850.jpg" alt="트로피컬 나이트: 조예은 소설집" onerror="javascript:fnNoImageMainBook(this); return false;">
+						
+				</a>
+				<p class="tit">트로피컬 나이트: 조예은 소설집</p>
+				<p class="author">조예은 지음</p>
+			</li>
+		
+			<li class="slick-slide">
+				<a href="/web/program/curationDetail.do?curationIdx=72732" class="cover">
+					
+							<img src="https://shopping-phinf.pstatic.net/main_5382179/53821790771.20260331120824.jpg" alt="긴키 지방의 어느 장소에 대하여 : 세스지 장편소설" onerror="javascript:fnNoImageMainBook(this); return false;">
+						
+				</a>
+				<p class="tit">긴키 지방의 어느 장소에 대하여 : 세스지 장편소설</p>
+				<p class="author">세스지 지음  ; 전선영 옮김</p>
+			</li>
+		
+			<li class="slick-slide">
+				<a href="/web/program/curationDetail.do?curationIdx=72732" class="cover">
+					
+							<img src="https://shopping-phinf.pstatic.net/main_4046051/40460515618.20260331103205.jpg" alt="도서부 종이접기 클럽 : 천개의 종이학과 불타는 교실 : 이종산 장편소설" onerror="javascript:fnNoImageMainBook(this); return false;">
+						
+				</a>
+				<p class="tit">도서부 종이접기 클럽 : 천개의 종이학과 불타는 교실 : 이종산 장편소설</p>
+				<p class="author">이종산 지음</p>
+			</li>
+		
+			<li class="slick-slide">
+				<a href="/web/program/curationDetail.do?curationIdx=72732" class="cover">
+					
+							<img src="https://shopping-phinf.pstatic.net/main_3248553/32485539466.20260331115858.jpg" alt="여름, 어디선가 시체가" onerror="javascript:fnNoImageMainBook(this); return false;">
+						
+				</a>
+				<p class="tit">여름, 어디선가 시체가</p>
+				<p class="author">박연선 지음</p>
+			</li>
+		
+			<li class="slick-slide">
+				<a href="/web/program/curationDetail.do?curationIdx=72732" class="cover">
+					
+							<img src="https://shopping-phinf.pstatic.net/main_3243817/32438177755.20260331122550.jpg" alt="작별인사 : 김영하 장편소설" onerror="javascript:fnNoImageMainBook(this); return false;">
+						
+				</a>
+				<p class="tit">작별인사 : 김영하 장편소설</p>
+				<p class="author">김영하 지음</p>
+			</li>
+		
+			<li class="slick-slide">
+				<a href="/web/program/curationDetail.do?curationIdx=72732" class="cover">
+					
+							<img src="https://shopping-phinf.pstatic.net/main_3243634/32436342677.20260331114257.jpg" alt="우리가 빛의 속도로 갈 수 없다면  : 김초엽 소설" onerror="javascript:fnNoImageMainBook(this); return false;">
+						
+				</a>
+				<p class="tit">우리가 빛의 속도로 갈 수 없다면  : 김초엽 소설</p>
+				<p class="author">김초엽 지음</p>
+			</li>
+		
+			<li class="slick-slide">
+				<a href="/web/program/curationDetail.do?curationIdx=72732" class="cover">
+					
+							<img src="https://shopping-phinf.pstatic.net/main_5725297/57252971158.20260331114900.jpg" alt="여름의 비행운 : 이혜령 소설집" onerror="javascript:fnNoImageMainBook(this); return false;">
+						
+				</a>
+				<p class="tit">여름의 비행운 : 이혜령 소설집</p>
+				<p class="author">이혜령 지음</p>
+			</li>
+		
+			<li class="slick-slide">
+				<a href="/web/program/curationDetail.do?curationIdx=72732" class="cover">
+					
+							<img src="https://shopping-phinf.pstatic.net/main_4899749/48997499619.20260331111305.jpg" alt="여름의 빛" onerror="javascript:fnNoImageMainBook(this); return false;">
+						
+				</a>
+				<p class="tit">여름의 빛</p>
+				<p class="author">장자크 상페 지음  ; 양영란 옮김</p>
+			</li>
+		
+			<li class="slick-slide">
+				<a href="/web/program/curationDetail.do?curationIdx=72732" class="cover">
+					
+							<img src="https://shopping-phinf.pstatic.net/main_3246550/32465501345.20260722083402.jpg" alt="아무튼, 여름  : 내가 그리워한 건 여름이 아니라 여름의 나였다" onerror="javascript:fnNoImageMainBook(this); return false;">
+						
+				</a>
+				<p class="tit">아무튼, 여름  : 내가 그리워한 건 여름이 아니라 여름의 나였다</p>
+				<p class="author">김신회 지음</p>
+			</li>
+		
+			<li class="slick-slide">
+				<a href="/web/program/curationDetail.do?curationIdx=72732" class="cover">
+					
+							<img src="https://shopping-phinf.pstatic.net/main_4082437/40824372618.20260331104553.jpg" alt="너무나 많은 여름이" onerror="javascript:fnNoImageMainBook(this); return false;">
+						
+				</a>
+				<p class="tit">너무나 많은 여름이</p>
+				<p class="author">김연수 지음</p>
+			</li>
+		
+	</ul>
+	<div class="slick-button">
+		<button class="prev"><span class="blind">이전슬라이드</span></button>
+		<button class="next"><span class="blind">다음슬라이드</span></button>
+		<button class="pause"><span class="blind">자동슬라이드 stop</span></button>
+		<button class="play"><span class="blind">자동슬라이드 play</span></button>
+	</div>
+	<div class="progress">
+		<div class="progressBar"></div>
+	</div>
+
+	</div>
+	<div id="newBookSlider" class="bookListWrap"></div>
+	<div id="onePickSlider" class="bookListWrap"></div>
+</div>
+<script>
+	$(function(){
+		$("#newBookSlider").load("/web/main/include/newBook.do");
+		$("#onePickSlider").load("/web/main/include/librarianBook.do");
+
+		$(".bookListWrap").each(function(index, slider){
+			var index = index;
+			$(slider).attr('id');
+
+			const libInfo = $(this).attr("id");
+
+			$("#mainBookSel").on("change", function(){
+
+				const libList = $("#mainBookSel option:selected").val();
+
+				if(libList === libInfo){
+					$(".bookListWrap").hide();
+					$(slider).show();
+				}
+				$(".bookList").slick("setPosition");
+
+				// slick slider 공통 - play / stop / prev / next
+				$(".slick-button .pause").on("click", function() {
+					$(this).parents(".slick-button").siblings(".slider").slick("slickPause");
+					$(this).hide().siblings(".play").css("display","flex");
+					$("svg circle").css("animation","none");
+				});
+				$(".slick-button .play").on("click", function() {
+					$(this).parents(".slick-button").siblings(".slider").slick("slickPlay");
+					$(this).hide().siblings(".pause").css("display","flex");
+					$("svg circle").css("animation","countdown 3s linear forwards");
+				});
+				$(".slick-button .prev").on("click", function() {
+					$(this).parents(".slick-button").siblings(".slider").slick("slickPrev");
+				});
+				$(".slick-button .next").on("click", function() {
+					$(this).parents(".slick-button").siblings(".slider").slick("slickNext");
+				});
+			});
+		});
+
+		$(".section4 .tab a").on("click", function() {
+			$(".bookList").slick("setPosition");
+
+			// slick slider 공통 - play / stop / prev / next
+			$(".slick-button .pause").on("click", function() {
+				$(this).parents(".slick-button").siblings(".slider").slick("slickPause");
+				$(this).hide().siblings(".play").css("display","flex");
+				$("svg circle").css("animation","none");
+			});
+			$(".slick-button .play").on("click", function() {
+				$(this).parents(".slick-button").siblings(".slider").slick("slickPlay");
+				$(this).hide().siblings(".pause").css("display","flex");
+				$("svg circle").css("animation","countdown 3s linear forwards");
+			});
+			$(".slick-button .prev").on("click", function() {
+				$(this).parents(".slick-button").siblings(".slider").slick("slickPrev");
+			});
+			$(".slick-button .next").on("click", function() {
+				$(this).parents(".slick-button").siblings(".slider").slick("slickNext");
+			});
+		});
+
+		$(".section4 .tabBox ul li").on("click",function(){
+			$(".section4 .tabBox ul li").removeClass("on");
+			$(this).addClass("on");
+		});
+
+	});
+</script>
+
+
+
+						</div>
+					</div>
+				</div>
+				<a href="#next" class="nextFocus4"><span class="blind">다음 화면으로 이동</span></a>
+			</div>
+
+			<div class="section section5 fp-auto-height">
+				
+<!-- footer -->
+<footer id="footer">
+	<div class="fnb">
+		<ul class="fnbList">
+			<li><a href="https://www.yeoju.go.kr/www/contents.do?key=657" target="_blank" title="새창열림"><span>개인정보처리방침</span></a></li>
+			<li><a href="/web/program/sitemap.do">사이트맵</a></li>
+		</ul>
+	</div>
+	<div class="footerInner clearfix">
+		<!-- 패밀리사이트 -->
+		<div class="familySite mobileHide">
+			<a href="#familyLink" class="fLink" title="축소됨">유관기관 바로가기</a>
+			<ul class="familyList">
+				<li><a href="https://yeoju.gseek.kr" target="_blank" title="새창열림">여주시평생학습</a></li>
+				<li><a href="http://ebook.yjlib.go.kr" target="_blank" title="새창열림">여주시 전자도서관</a></li>
+				<li><a href="https://library.yit.ac.kr/" target="_blank" title="새창열림">여주시 여암학술정보관</a></li>
+				<li><a href="http://www.library.kr" target="_blank" title="새창열림">경기도 사이버도서관</a></li>
+				<li><a href="http://www.nl.go.kr" target="_blank" title="새창열림">국립중앙도서관</a></li>
+				<li><a href="http://www.nanet.go.kr" target="_blank" title="새창열림">국회도서관</a></li>
+				<li><a href="http://library.scourt.go.kr" target="_blank" title="새창열림">법원도서관</a></li>
+				<li><a href="https://www.yeoju.go.kr" target="_blank" title="새창열림">여주시청</a></li>
+				<li><a href="http://www.yeojucouncil.go.kr" target="_blank" title="새창열림">여주시의회</a></li>
+				<li><a href="http://www.gg.go.kr" target="_blank" title="새창열림">경기도청</a></li>
+				<li><a href="http://www.goeyj.kr" target="_blank" title="새창열림">여주교육지원청</a></li>
+				<li><a href="http://www.goe.go.kr" target="_blank" title="새창열림">경기도 교육청</a></li>
+			</ul>
+		</div>
+		<!-- //패밀리사이트 -->
+
+		<!-- 주소 -->
+		<div class="fAdd">
+			<address>
+				<p><strong>여주도서관</strong> <span>여주시 여양로 190-17(천송동)</span> <span>031-887-3300</span></p>
+				<p><strong>세종도서관</strong> <span>여주시 영릉로 125</span> <span>031-887-2861</span></p>
+				<p><strong>점동도서관</strong> <span>여주시 점동면 청안로 130-15</span> <span>031-887-3331</span></p>
+				<p><strong>여주기적의도서관</strong> <span>여주시 세종대왕면 양화로 913</span> <span>031-887-2965</span></p>
+				<p><strong>흥천도서관</strong> <span>여주시 흥천면 효자로 121</span> <span>031-887-3234</span></p>
+				<p><strong>금사도서관</strong> <span>여주시 흥천면 이여로 1278-2</span> <span>031-887-3390</span></p>
+				<p><strong>대신도서관</strong> <span>여주시 대신면 율촌1길 12-10</span> <span>031-887-3361</span></p>
+				<p><strong>산북작은도서관</strong> <span>여주시 산북면 상품로 113</span> <span>031-887-3316</span></p>
+				<p><strong>북내작은도서관</strong> <span>여주시 북내면 여강로 337-38</span> <span>031-883-0766</span></p>
+			</address>
+			<cite>Copyright © 2023 YEOJU CITY. All Rights Reserved.</cite>
+			<div class="mark_wa">
+				<a href="http://webwatch.or.kr" title="새 창 열림" target="_blank"><img src="/include/image/common/mark_wa.png" alt="과학기술정보통신부 WA(WEB접근성) 품질인증 마크, 웹와치(WebWatch) 2025.12.07 ~ 2026.12.06"></a>
+			</div>
+		</div>
+		<!-- //주소 -->
+	</div>
+</footer>
+<iframe name="hiddenFrame" id="hiddenFrame" title="빈프레임" style="display:none;"></iframe>
+<a href="#body" class="btnTopScroll sub" title="상단으로 이동"><img src="/include/image/common/ico_scrollTop.png" alt="스크롤 상단 바로가기" /></a>
+<a href="#body" class="btnTopScrollMain" title="상단으로 이동"><img src="/include/image/common/ico_scrollTop.png" alt="스크롤 상단 바로가기" /></a><!-- //footer -->
+
+<script>
+	$(function(){
+		$(".familyList").hide();
+		$(".fLink").click(function(){
+			$(".familyList").not($(this).next(".familyList").slideToggle(300)).slideUp();
+
+			$(this).toggleClass("on");
+			if ($(this).hasClass("on")){
+				$(this).attr("title", "확장됨");
+			} else {
+				$(this).attr("title", "축소됨");
+			}
+		});
+	});
+</script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-42163253-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-42163253-1');
+</script>
+
+
+				<a href="#next" class="nextFocus5"><span class="blind">다음 화면으로 이동</span></a>
+			</div>
+
+		</div>
+	</div>
+	
+<script>
+	$(function(){
+	    $(".help").on("click", function(){
+			$(".firstIntroWrap").show();
+			$(".firstIntroWrap .quickList li:first a").focus();
+		});
+
+		$(".firstIntroWrap .quickList li:last").focusout(function(){
+			$(".firstIntroWrap .barClose").focus();
+		});
+
+		$(".firstIntroWrap .popDim, .firstIntroWrap .barClose").on("click", function(){
+			$(".firstIntroWrap").hide();
+			$(".help a").focus();
+		});
+	});
+</script>
+
+<div class="firstIntroWrap">
+	<div class="firstIntro">
+		<div class="topItem">
+			<p class="tit"><span>처음</span> 오셨나요?</p>
+			<a href="#close" class="barClose" title="창 닫기"></a>
+		</div>
+		<div class="inner">
+			<ul class="quickList">
+				<li class="list01">
+					<div class="imgBox">
+						<a href="/web/contents/40002/contents.do" title="회원가입 이동"></a>
+					</div>
+					<div class="txtBox">회원가입</div>
+				</li>
+				<li class="list02">
+					<div class="imgBox">
+						<a href="/web/contents/40032/contents.do" title="이용시간 이동"></a>
+					</div>
+					<div class="txtBox">이용시간</div>
+				</li>
+				<li class="list03">
+					<div class="imgBox">
+						<a href="/web/contents/40003/contents.do" title="도서대출 이동"></a>
+					</div>
+					<div class="txtBox">도서대출</div>
+				</li>
+				<li class="list05">
+					<div class="imgBox">
+						<a href="/web/program/searchSimple.do" title="소장자료검색 이동"></a>
+					</div>
+					<div class="txtBox">소장자료검색</div>
+				</li>
+				<li class="list06">
+					<div class="imgBox">
+						<a href="/web/program/loanBestList.do" title="대출베스트 이동"></a>
+					</div>
+					<div class="txtBox">대출베스트</div>
+				</li>
+				<li class="list07">
+					<div class="imgBox">
+						<a href="/web/program/searchNewList.do" title="신착도서 이동"></a>
+					</div>
+					<div class="txtBox">신착도서</div>
+				</li>
+				<li class="list08">
+					<div class="imgBox">
+						<a href="/web/program/curationList.do" title="북큐레이션 이동"></a>
+					</div>
+					<div class="txtBox">북큐레이션</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="popDim">
+	</div>
+</div>
+</div>
+<!-- //wrap -->
+<script>initMenu(0,0,0,0,0);</script>
+
+<script>
+	//메인 포커스 이동
+	$(".nextFocus1").on("focus",function(){
+		$("#fp-nav ul li").eq(1).find("a").click();
+	});
+	$(".nextFocus2").on("focus",function(){
+		$("#fp-nav ul li").eq(2).find("a").click();
+	});
+	$(".nextFocus3").on("focus",function(){
+		$("#fp-nav ul li").eq(3).find("a").click();
+	});
+	$(".nextFocus4").on("focus",function(){
+		$("#fp-nav ul li").eq(4).find("a").click();
+	});
+	$(".nextFocus5").on("focus",function(){
+		$("#fp-nav ul li").eq(5).find("a").click();
+	});
+</script>
+
+</body>
+</html>

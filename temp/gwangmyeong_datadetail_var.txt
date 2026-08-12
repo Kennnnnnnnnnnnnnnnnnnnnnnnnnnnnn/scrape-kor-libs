@@ -1,0 +1,199 @@
+dataDetail = [];
+
+
+
+$(function() {
+
+	/*
+
+	$('#searchWord').on('keydown', function() {
+
+			switch(event.keyCode) {
+
+			case 40: // 하
+
+			case 9: // Tab
+
+				if(!event.shiftKey) {
+
+					selectKeyword('dn');
+
+					return false;
+
+				}
+
+			case 38: // 상
+
+				selectKeyword('up');
+
+				return false;
+
+			case 37: // 좌
+
+			case 39: // 우
+
+				return;
+
+			default: //alert(event.keyCode);
+
+		}
+
+	}).on('blur', function() {
+
+		
+
+		$('#autoComplete').hide();
+
+	
+
+	}).on('mouseup', function() {
+
+
+
+		if($(this).val().replace(/ /g,'')) $('#autoComplete').show();
+
+
+
+	}).on('keyup', function() {
+
+		if($("#result_search").is(":checked")){
+
+			$("#autoComplete").hide();
+
+			return;
+
+		}
+
+		switch(event.keyCode) {
+
+			case 38: // 상
+
+			case 40: // 하
+
+			case 37: // 좌
+
+			case 39: // 우
+
+			case 9: // TAB
+
+			case 16: // Shift
+
+				return;
+
+			default: //alert(event.keyCode);
+
+		}
+
+		var q = $(this).val();
+
+		if(!q.replace(/ /g,'')) return;
+
+		
+
+		if(q.match(/[ㅂㅈㄷㄱㅅㅛㅕㅑㅐㅔㅣㅏㅓㅗㅎㄹㅇㄴㅁㅋㅌㅊㅍㅠㅜㅡ]/g)) return;
+
+		//if(q.length<2) return;
+
+		if(_auto_kwd == q) return;
+
+		_auto_kwd = q;
+
+
+
+		$.getJSON('./ajax/autocomplete.php?q='+encodeURIComponent(q), function(json) {
+
+			_auto_idx = -1;
+
+			var pannel = $('.keyword');
+
+			if(!json.length) return;
+
+			else pannel.html('');//.hide();
+
+
+
+			var ul = $('<ul />');
+
+			for(var k in json) {
+
+				getDataDetail('', json);
+
+
+
+				var jkey = json[k]['jongKey'];
+
+				var bkey = json[k]['bookKey'];
+
+				var title = json[k]['title']; 
+
+				$('<li />').html('<a>' + title + '</a>')
+
+					.on('click mousedown', function() {
+
+						var bk = $(this).attr('bkey');
+
+						$('#searchWord').val($(this).attr('title').replace(/<[/]*strong>/g,""));
+
+						getDataDetail(bk,'');
+
+						return false;
+
+					})
+
+					.attr('jkey', jkey)
+
+					.attr('bkey', bkey)
+
+					.attr('title', title)
+
+					.css({ 'cursor':'pointer' })
+
+					.appendTo(ul);
+
+				if(k == 0){
+
+					getDataDetail(bkey,'');
+
+				}
+
+					
+
+			}
+
+			$('#autoComplete').show();
+
+			pannel.append(ul).show();
+
+			_auto_json = json;
+
+		});
+
+	});*/
+
+});
+
+
+
+function getDataDetail(bookKey, json)
+
+{
+
+	if(dataDetail[bookKey]){
+
+		var jkey  = dataDetail[bookKey]['jongKey'];
+
+		var bkey  = dataDetail[bookKey]['bookKey'];
+
+		var title  = dataDetail[bookKey]['title'];
+
+		var author = dataDetail[bookKey]['author'];
+
+		var pub    = dataDetail[bookKey]['publisher'];
+
+		var pyear  = dataDetail[bookKey]['pubYear']; 
+
+		var callno = dataDetail[bookKey]['callNo']; 
+
+		var dtype  = dataDetail[bookKey]['dataType'];
+
+		var libName

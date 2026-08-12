@@ -1,0 +1,90 @@
+Total: 62, Books: 62
+
+도서관: [송린이음터도서관] (7건)
+  - 제목: (The) Chronicles of Narnia. 6, (The) Silver chair | 청구기호: W 843-L673c-6 | 위치: [송린이음터] [송린]어린이실
+  - 제목: (The) Chronicles of Narnia. 1, (The) Magician's nephew | 청구기호: W 843-L673c-1 | 위치: [송린이음터] [송린]어린이실
+  - 제목: (The) Chronicles of Narnia. 7, (The) Last battle | 청구기호: W 843-L673c-7 | 위치: [송린이음터] [송린]어린이실
+  - 제목: (The) Chronicles of Narnia. 3, (The) Horse and his boy | 청구기호: W 843-L673c-3 | 위치: [송린이음터] [송린]어린이실
+  - 제목: (The) Chronicles of Narnia. 4, (The) Prince Caspina | 청구기호: W 843-L673c-4 | 위치: [송린이음터] [송린]어린이실
+  - 제목: (The) Chronicles of Narnia. 5, (The) Voyage of the dawn treader | 청구기호: W 843-L673c-5 | 위치: [송린이음터] [송린]어린이실
+  - 제목: (The) Chronicles of Narnia. 2, (The) Lion, the witch and the wardrobe | 청구기호: W 843-L673c-2 | 위치: [송린이음터] [송린]어린이실
+
+도서관: [태안도서관] (6건)
+  - 제목: (The)Chronicles of Narnia. 1, (The)Magician's Nephew | 청구기호: AW 843-L673c-1 | 위치: [태안] [태안]일반자료실
+  - 제목: (The)Chronicles of Narnia. 6, (The)Silver chair | 청구기호: AW 843-L673c-6 | 위치: [태안] [태안]일반자료실
+  - 제목: (The)Chronicles of Narnia. 2, (The)Lion, the witch and the wardrobe | 청구기호: AW 843-L673c-2 | 위치: [태안] [태안]일반자료실
+  - 제목: (The)Chronicles of Narnia. 3, (The)Horse and his boy | 청구기호: AW 843-L673c-3 | 위치: [태안] [태안]일반자료실
+  - 제목: (The chronicles of)Narnia | 청구기호: AW 843-L673N | 위치: [태안] [태안]일반자료실
+  - 제목: 나니아 연대기 : 캐스피언 왕자 : Prince Caspian | 청구기호: DVD 688-아221ㄴ | 위치: [태안] [태안]전자정보실
+
+도서관: [남양도서관] (8건)
+  - 제목: (The)Last battle | 청구기호: AW 843-L673c-7 | 위치: [남양] [남양]종합자료실
+  - 제목: Prince caspian | 청구기호: AW 843-L673c-4 | 위치: [남양] [남양]종합자료실
+  - 제목: (The)Voyage of the dawn treader | 청구기호: AW 843-L673c-5 | 위치: [남양] [남양]종합자료실
+  - 제목: (The)Silver chair | 청구기호: AW 843-L673c-6 | 위치: [남양] [남양]종합자료실
+  - 제목: (The)Lion, the Witch, and the Wardrobe | 청구기호: AW 843-L673c-2 | 위치: [남양] [남양]종합자료실
+  - 제목: (The)Horse and his boy | 청구기호: AW 843-L673c-3 | 위치: [남양] [남양]종합자료실
+  - 제목: (The)Magician's nephew | 청구기호: AW 843-L673c-1 | 위치: [남양] [남양]종합자료실
+  - 제목: (The)Lion, the Witch and the Wardrobe | 청구기호: AW 843-L673c-2=2 | 위치: [남양] [남양]종합자료실
+
+도서관: [진안도서관] (7건)
+  - 제목: (The)last battle | 청구기호: W 843-L673c-7 | 위치: [진안] [진안]어린이자료실
+  - 제목: (The)voyage of the dawn treader | 청구기호: W 843-L673c-5 | 위치: [진안] [진안]어린이자료실
+  - 제목: Prince caspian : the return to narnia | 청구기호: W 843-L673c-4 | 위치: [진안] [진안]어린이자료실
+  - 제목: (The)silver chair | 청구기호: W 843-L673c-6 | 위치: [진안] [진안]어린이자료실
+  - 제목: (The)horse and his boy | 청구기호: W 843-L673c-3 | 위치: [진안] [진안]어린이자료실
+  - 제목: (The)lion, the witch and the wardrobe | 청구기호: W 843-L673c-2 | 위치: [진안] [진안]어린이자료실
+  - 제목: (The)magician's nephew | 청구기호: W 843-L673c-1 | 위치: [진안] [진안]어린이자료실
+
+도서관: [병점도서관] (1건)
+  - 제목: (The)Lion, the witch and the wardrobe | 청구기호: W 843-L673c-2 | 위치: [병점] [병점]다국어정보자료실
+
+도서관: [둥지나래도서관] (1건)
+  - 제목: (The)Lion, the witch and the wardrobe | 청구기호: A4 843-L673c-2 | 위치: [둥지나래] [둥지나래]영어자료실
+
+도서관: [서신도서관] (7건)
+  - 제목: (The)last battle  | 청구기호: W 843-L673c-7 | 위치: [서신] [서신작은도서관]종합자료실
+  - 제목: (The)voyage of the Dawn Treader  | 청구기호: W 843-L673c-5 | 위치: [서신] [서신작은도서관]종합자료실
+  - 제목: (The)silver chair  | 청구기호: W 843-L673c-6 | 위치: [서신] [서신작은도서관]종합자료실
+  - 제목: (The)horse and his boy  | 청구기호: W 843-L673c-3 | 위치: [서신] [서신작은도서관]종합자료실
+  - 제목: (The)magician's nephew  | 청구기호: W 843-L673c-1 | 위치: [서신] [서신작은도서관]종합자료실
+  - 제목: Prince Caspian : the return to Narnia  | 청구기호: W 843-L673c-4 | 위치: [서신] [서신작은도서관]종합자료실
+  - 제목: (The)lion, the witch, and the wardrobe  | 청구기호: W 843-L673c-2 | 위치: [서신] [서신작은도서관]종합자료실
+
+도서관: [호연이음터도서관] (7건)
+  - 제목: (The)silver chair | 청구기호: 영어도서 843.5-L673c-6 | 위치: [호연이음터] [호연이음터작은도서관]영어자료실
+  - 제목: (The)last battle | 청구기호: 영어도서 843.5-L673c-7 | 위치: [호연이음터] [호연이음터작은도서관]영어자료실
+  - 제목: (The)horse and his boy | 청구기호: 영어도서 843.5-L673c-3 | 위치: [호연이음터] [호연이음터작은도서관]영어자료실
+  - 제목: (The)magician's nephew | 청구기호: 영어도서 843.5-L673c-1 | 위치: [호연이음터] [호연이음터작은도서관]영어자료실
+  - 제목: (The)lion, the witch and the wardrobe | 청구기호: 영어도서 843.5-L673c-2 | 위치: [호연이음터] [호연이음터작은도서관]영어자료실
+  - 제목: (The)voyage of the dawn treader | 청구기호: 영어도서 843.5-L673c-5 | 위치: [호연이음터] [호연이음터작은도서관]영어자료실
+  - 제목: Prince caspian: the return to narnia | 청구기호: 영어도서 843.5-L673c-4 | 위치: [호연이음터] [호연이음터작은도서관]영어자료실
+
+도서관: [다원이음터도서관] (8건)
+  - 제목: (The) Chronicles of Narnia. 4, Prince Caspian | 청구기호: W 843-L673c-4 | 위치: [다원이음터] [다원이음터]어린이실
+  - 제목: (The) Chronicles of Narnia. 5, The voyage of the Dawn Treader | 청구기호: W 843-L673c-5 | 위치: [다원이음터] [다원이음터]어린이실
+  - 제목: (The) Chronicles of Narnia. [8], Trivia Book | 청구기호: W 843-L673c-8 | 위치: [다원이음터] [다원이음터]어린이실
+  - 제목: (The) Chronicles of Narnia. 6, The silver chair | 청구기호: W 843-L673c-6 | 위치: [다원이음터] [다원이음터]어린이실
+  - 제목: (The) Chronicles of Narnia. 7, The last battle | 청구기호: W 843-L673c-7 | 위치: [다원이음터] [다원이음터]어린이실
+  - 제목: (The) Chronicles of Narnia. 1, The magician's nephew | 청구기호: W 843-L673c-1 | 위치: [다원이음터] [다원이음터]어린이실
+  - 제목: (The) Chronicles of Narnia. 3, The horse and his boy | 청구기호: W 843-L673c-3 | 위치: [다원이음터] [다원이음터]어린이실
+  - 제목: (The) Chronicles of Narnia. 2, The lion, the witch and the wardrobe | 청구기호: W 843-L673c-2 | 위치: [다원이음터] [다원이음터]어린이실
+
+도서관: [송산도서관] (1건)
+  - 제목: 나니아 연대기 | 청구기호: 아 843-루69나 | 위치: [송산] [송산]어린이자료실
+
+도서관: [목동이음터도서관] (4건)
+  - 제목: 나니아 연대기 | 청구기호: 843.5-루68ㄴ | 위치: [목동이음터] [목동이음터]종합자료실
+  - 제목: Fantasymphony : One concert to rule them all | 청구기호: DVD 674.8-슈32ㅍ | 위치: [목동이음터] [목동이음터]음악자료실
+  - 제목: Fantasymphony : One concert to rule them all | 청구기호: DVD 674.8-슈32ㅍ | 위치: [목동이음터] [목동이음터]음악자료실
+  - 제목: Movies in concert : with the Danish National Symphony Orchestra . LP 1 , Fantasymphony: One concert to rule them all | 청구기호: LP 674.8-덴32ㅁ-1 | 위치: [목동이음터] [목동이음터]음악자료실
+
+도서관: [기아행복마루도서관] (2건)
+  - 제목: (The)lion, the witch and the wardrobe | 청구기호: W 843-L677W-1 | 위치: [기아행복마루] [기아행복]기아행복마루
+  - 제목: (The)lion, the witch and the wardrobe | 청구기호: W 843-L677T-1 | 위치: [기아행복마루] [기아행복]기아행복마루
+
+도서관: [삼괴도서관] (3건)
+  - 제목: (The)Lion, the witch and the wardrobe | 청구기호: W 843-L673L | 위치: [삼괴] [삼괴]종합자료실
+  - 제목: 나니아 연대기 : 캐스피언 왕자 : Prince Caspian | 청구기호: DVD 688-아221ㄴ | 위치: [삼괴] [삼괴]전자정보실
+  - 제목: 나니아 연대기 : 사자, 마녀 그리고 옷장 : The lion, the witch and the wardrobe | 청구기호: DVD 688-아221ㄴ | 위치: [삼괴] [삼괴]전자정보실
+
