@@ -45,18 +45,22 @@ jobs:
         run: |
           Compress-Archive -Path "dist/main.exe", "data" -DestinationPath "dist/release.zip" -Force
 
+      # (선택) 아티팩트 업로드는 유지하거나 삭제 가능 (로그인해야 보이는 용도)
       - name: Upload Artifact
-        uses: actions/upload-artifact@v4.4.3
+        uses: actions/upload-artifact@v4
         with:
           name: scrape-kor-libs-windows
           path: |
             dist/main.exe
             data
 
-      - name: Create or Update GitHub Release
-        shell: powershell
-        continue-on-error: true
+      # 기존 "Create or Update GitHub Release" 단계를 아래 내용으로 교체
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: "v1.0.${{ github.run_number }}"
+          name: "Release v1.0.${{ github.run_number }}"
+          body: "Automated build release"
+          files: dist/release.zip
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          gh release create "v1.0.${{ github.run_number }}" "dist/release.zip" --title "Release v1.0.${{ github.run_number }}" --notes "Automated build release" --latest --clobber
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

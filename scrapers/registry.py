@@ -27,7 +27,8 @@ METRO_MAP = {
         "영등포구립도서관", "용산구립도서관", "은평구립도서관", "종로구립도서관", "중구립도서관", "중랑구립도서관"
     ],
     "부산광역시": [
-        "부산도서관", "부산광역시립시민도서관", "해운대구립도서관", "금정구립도서관", "사하구립도서관"
+        "중구", "서구", "동구", "영도구", "부산진구", "동래구", "남구", "북구",
+        "해운대구", "기장군", "사하구", "금정구", "강서구", "연제구", "수영구", "사상구"
     ],
     "대구광역시": [
         "대구광역시립도서관통합포털", "수성구립도서관", "달서구립도서관"
@@ -98,16 +99,16 @@ def get_scraper(region_name: str, metro_name: str = "") -> LibraryScraper:
     """지역 이름(및 광역단위 이름)으로 스크래퍼 인스턴스를 반환합니다."""
     # 1. 완벽 일치 검색
     if metro_name and metro_name in _METRO_REGISTRY and region_name in _METRO_REGISTRY[metro_name]:
-        return _METRO_REGISTRY[metro_name][region_name]()
+        return _METRO_REGISTRY[metro_name][region_name](region_name=region_name)
 
     # 2. 광역 관계없이 region_name 찾기
     for m_name, sub_dict in _METRO_REGISTRY.items():
         if region_name in sub_dict:
-            return sub_dict[region_name]()
+            return sub_dict[region_name](region_name=region_name)
         # 접미사 (시/군) 호환
         for key, scraper_cls in sub_dict.items():
             if key.startswith(region_name) or region_name.startswith(key):
-                return scraper_cls()
+                return scraper_cls(region_name=region_name)
 
     # 3. 범용 GenericScraper 반환 (기본 통합 스크래퍼)
     from .generic import GenericLibraryScraper
