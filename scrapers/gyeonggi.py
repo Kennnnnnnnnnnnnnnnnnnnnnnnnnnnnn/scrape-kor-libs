@@ -2010,9 +2010,9 @@ register_scraper("부천시립도서관", BucheonScraper, metro_name="경기도"
 class GoyangScraper(LibraryScraper):
     """고양시 도서관센터 스크래퍼 (www.goyanglib.or.kr)"""
 
-    def __init__(self):
+    def __init__(self, region_name="고양시"):
         super().__init__(
-            region_name="고양시",
+            region_name=region_name,
             base_url="https://www.goyanglib.or.kr/center/program/searchResultList.do"
         )
         self._session = requests.Session()
