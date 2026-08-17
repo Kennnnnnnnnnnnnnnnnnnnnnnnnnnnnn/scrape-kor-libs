@@ -22,6 +22,7 @@ from . import jnet
 
 # 광역단위 스크래퍼 모듈 자동 등록
 from . import gyeonggi
+from . import goyang
 from . import seoul
 from . import incheon
 from . import others
